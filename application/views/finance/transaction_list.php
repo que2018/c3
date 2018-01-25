@@ -135,7 +135,7 @@
 					  <td>
 					    <center>
 						  <a href="<?php echo base_url(); ?>finance/transaction/edit?transaction_id=<?php echo $transaction['transaction_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						  <button class="btn btn-danger btn-delete" data="<?php echo $transaction['transaction_id']; ?>"><i class="fa fa-trash"></i></button>
+						  <button class="btn btn-danger btn-delete" onclick="delete_transaction(this, <?php echo $transaction['transaction_id']; ?>)"><i class="fa fa-trash"></i></button>
 					    </center>
 					  </td>
 					</tr>
@@ -165,6 +165,34 @@
   </div>
 </div>
 <script>
+function delete_transaction(handle, transaction_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>finance/transaction/delete?transaction_id=' + transaction_id,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		success: function(json) {					
+			if(json.success) {
+				$.ajax({
+					url: '<?php echo base_url(); ?>finance/transaction/reload',
+					dataType: 'html',
+					success: function(html) {					
+						$('.ibox-content').html(html);
+					},
+				});
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 $(document).ready(function() {
 	//filter
 	$('#btn-search').click(function() {
@@ -176,7 +204,6 @@ $(document).ready(function() {
 		comment     = $('input[name=\'comment\']').val();
 		date_from   = $('input[name=\'date_from\']').val();
 		date_to     = $('input[name=\'date_to\']').val();
-
 
 		url = '<?php echo $filter_url; ?>';
 		
@@ -212,32 +239,6 @@ $(document).ready(function() {
 		{
 			$('#btn-search').trigger('click');
 		}
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		handler = $(this);
-		transaction_id = $(this).attr('data');
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>finance/transaction/delete?transaction_id=' + transaction_id,
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType: "json",
-			beforeSend: function() {
-				handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {					
-				if(json.success) 
-					handler.closest('tr').remove();
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
 	});
 });
 </script>
