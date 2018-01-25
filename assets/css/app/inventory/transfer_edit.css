@@ -1,0 +1,25 @@
+.page-heading {
+    position: relative;
+}
+.panel-body {
+	padding-top: 25px !important;
+}
+.btn-submit {	
+	margin-right: 6px;
+}
+.button-group {			
+position: absolute;    		
+	top: 30px;    		
+	right: 50px;
+}
+.note-editor.note-frame {
+    border: none !important;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+	color: #807d7d;
+}
+input[name=code] {
+    border: 5px solid #1ab394;
+    height: 42px;
+}
+

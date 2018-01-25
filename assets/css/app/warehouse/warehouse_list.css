@@ -1,0 +1,41 @@
+a {
+	color: #676a6c;
+}
+a:focus, a:hover {
+    color: #444444;
+}
+.limit-select {
+	width: 70px;
+	margin-bottom: 5px;
+    font-weight: 700;
+}
+.filter-td {
+}
+.filter-input {	border: none;
+	line-height: 20px;
+}
+.filter-select {
+	width: 100%;
+}
+input:focus {
+	outline:0;
+}
+.button-group {
+	min-height: 34px;
+}
+.page-heading {
+	position: relative;
+}
+.button-group {		position: absolute;    	top: 30px;    	right: 50px;}
+.btn-edit {
+	margin-right: 5px;
+}
+.btn-delete {
+	margin-left: 5px;
+}
+
+
+
+
+
+

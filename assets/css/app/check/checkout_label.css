@@ -1,0 +1,36 @@
+.loading { 
+	display: block; 
+	margin: 0 auto; 
+	padding-top: 100px; 
+}
+#message { 
+	padding: 20px; 
+	font-weight: bold; 
+}
+#label img { 
+	margin: 0 auto; 
+	display: block; 
+	position: relative; 
+}
+.btn-print { 
+	position: absolute; 
+	bottom: 30px; 
+	right: 30px; 
+}
+.table-packing {
+	width: 240px; 
+	margin: 0 auto; 
+	background: #fff; 
+	margin-top: 25px;
+}
+@media print
+{    
+	.btn-print { 
+		display: none !important;
+	}
+}
+
+
+
+
+
