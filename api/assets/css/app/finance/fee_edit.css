@@ -1,0 +1,11 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	position: absolute;
+    top: 30px;
+    right: 40px;
+}
+.ibox-content {
+    padding-top: 20px;
+}

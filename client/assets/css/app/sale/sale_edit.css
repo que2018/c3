@@ -1,0 +1,76 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.btn-label {
+	margin-left: 25px;
+}
+.btn-commit {
+	margin-right: 6px;
+}
+
+.panel-body {
+	min-height: 650px;
+	padding-top: 25px !important;
+}
+.code-box {
+	position: absolute;
+    right: 22px;
+    top: 30px;
+    width: 500px;
+    padding: 10px;
+    background: #1ab394;
+    border-radius: 2px;
+}
+.code-box input {
+	width: 100%;
+    border-radius: 2px;
+    line-height: 25px;
+}
+#sale-product {
+	margin-top: 95px;
+}
+.button-group {
+	position: absolute;
+    top: 30px;
+    right: 50px;
+}
+.button-group-checkout {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+input[name="customer_name"] {
+    border: 5px solid #1ab394;
+    height: 42px;
+}
+.label-customer {
+    padding-top: 12px !important;
+}
+.label-img {	
+    width: 200px;
+}
+.note-editor .panel-body {
+	padding: 10px !important;
+	min-height: 250px !important;	
+}	
+.note-editor.note-frame {
+    border: none !important;
+}
+.note-editor.note-frame .note-statusbar {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.note-editor .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.note-editable.panel-body {
+	color: #555 !important;
+	padding: 10px !important;
+}
+
+
+

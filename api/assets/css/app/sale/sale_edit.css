@@ -1,0 +1,53 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.btn-print {
+	margin-right: 6px;
+}
+.btn-label {
+	margin-left: 25px;
+}
+.btn-commit {
+	margin-right: 6px;
+}
+
+.panel-body {
+	min-height: 650px;
+	padding-top: 25px !important;
+}
+.code-box {
+	position: absolute;
+    right: 22px;
+    top: 30px;
+    width: 500px;
+    padding: 10px;
+    background: #1ab394;
+    border-radius: 2px;
+}
+.code-box input {
+	width: 100%;
+    border-radius: 2px;
+    line-height: 25px;
+}
+#ptable {
+	margin-top: 95px;
+}
+.button-group {
+	position: absolute;
+    top: 30px;
+    right: 50px;
+}
+.button-group-checkout {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+.label-img {	
+    width: 200px;
+}
+
+
+

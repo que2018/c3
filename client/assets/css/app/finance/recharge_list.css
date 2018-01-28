@@ -1,0 +1,39 @@
+a {
+	color: #676a6c;
+}
+a:focus, a:hover {
+    color: #444444;
+}
+.limit-select {
+	width: 70px;
+	margin-bottom: 5px;
+    font-weight: 700;
+}
+.filter-td {
+}
+.filter-input {
+	border: none;
+	line-height: 20px;
+}.filter-select {    width: 100%;    border: none;}.filter-select:focus, input:focus {	outline:0;}
+input:focus {
+	outline:0;
+}
+.button-group {
+	min-height: 34px;
+}
+.page-heading {
+	position: relative;
+}
+.btn-add {
+	position: absolute;
+    top: 30px;
+    right: 40px;
+}
+.btn-edit {
+    margin-right: 8px;
+}
+
+
+
+
+

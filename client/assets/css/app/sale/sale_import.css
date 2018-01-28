@@ -1,0 +1,19 @@
+.ibox-content {
+	min-height: 300px;
+}
+.client {
+	min-height: 60px;
+}
+.client label {
+	margin-top: 7px;
+	text-align: right;
+}
+.alert {
+	position: relative;
+}
+.close {
+	position: absolute;
+    right: 14px;
+    top: 14px;
+}.btn-download {    position: absolute;    top: 30px;    right: 50px;}.page-heading {	position: relative;}
+

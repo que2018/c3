@@ -1,0 +1,57 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.btn-print {
+	margin-right: 6px;
+}
+.code-box {
+	position: absolute;
+    right: 40px;
+    top: 40px;
+    width: 500px;
+    padding: 10px;
+    background: #1ab394;
+    border-radius: 2px;
+}
+.code-box input {
+	width: 100%;
+    border-radius: 2px;
+    line-height: 25px;
+}
+.panel-body {
+	min-height: 590px;
+    padding-top: 25px !important
+}
+.fbox-title {
+	background-color: #ffffff;
+    color: inherit;
+    margin-bottom: 0;
+    min-height: 48px;
+}
+.fbox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 0px 20px 0px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+.btn-download {
+	margin-left: 6px;
+}
+.button-group {		
+	position: absolute;    	
+	top: 30px;    	
+	right: 50px;
+}
+.form-control[disabled] {
+    background-color: #fff;
+}
+
+
+
+
