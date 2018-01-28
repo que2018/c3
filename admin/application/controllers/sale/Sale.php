@@ -29,6 +29,7 @@ class Sale extends CI_Controller {
 	
 	function get_list()
 	{
+		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -204,23 +205,38 @@ class Sale extends CI_Controller {
 
 				$weight_class = $this->weight_class_model->get_weight_class($sale['weight_class_id']);
 
+				//shipping info
+				if($sale['shipping_provider'] && $sale['shipping_service'])
+				{
+					$shipping_provider = $sale['shipping_provider'];
+					$shipping_service_code  = $sale['shipping_service'];
+					
+					$shipping_service = $this->shipping_model->get_shipping_service($shipping_provider, $shipping_service_code);
+					
+					$shipping = $shipping_service['name'];
+				}
+				else
+				{
+					$shipping = '';
+				}
+				
 				$data['sales'][] = array(
-					'sale_id'         	=> $sale['id'],
-					'store_name'      	=> $store_name,
-					'store_sale_id'   	=> $sale['store_sale_id'],
-					'tracking'        	=> $sale['tracking'],
-					'status_id'       	=> $sale['status_id'],
-					'name'            	=> $sale['name'],
-					'length' 			=> $sale['length'],
-					'width' 			=> $sale['width'],
-					'height' 			=> $sale['height'],
-					'weight' 			=> $sale['weight'],
-					'length_class' 		=> $length_class['unit'],
-					'weight_class' 		=> $weight_class['unit'],
-					'shipping_provider' => $sale['shipping_provider'],
-					'date_added'      	=> $sale['date_added'],
-					'sale_products'   	=> $sale_products,
-					'edit'            	=> base_url() . 'sale/sale/edit?sale_id=' . $sale['id'] . $url
+					'sale_id'         => $sale['id'],
+					'store_name'      => $store_name,
+					'store_sale_id'   => $sale['store_sale_id'],
+					'tracking'        => $sale['tracking'],
+					'status_id'       => $sale['status_id'],
+					'name'            => $sale['name'],
+					'length' 		  => $sale['length'],
+					'width' 		  => $sale['width'],
+					'height' 		  => $sale['height'],
+					'weight' 		  => $sale['weight'],
+					'length_class' 	  => $length_class['unit'],
+					'weight_class' 	  => $weight_class['unit'],
+					'shipping'        => $shipping,
+					'date_added'      => $sale['date_added'],
+					'sale_products'   => $sale_products,
+					'edit'            => base_url() . 'sale/sale/edit?sale_id=' . $sale['id'] . $url
 				);	
 			}
 		}

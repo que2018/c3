@@ -126,8 +126,8 @@
 						    <tbody>
 							  <tr>
 							    <td colspan=4 class="text-right">
-							      <?php if($sale['shipping_provider']) { ?>
-							        <span class="shipping"><?php echo $sale['shipping_provider']; ?></span>
+							      <?php if($sale['shipping']) { ?>
+							        <span class="shipping"><?php echo $sale['shipping']; ?></span>
 								  <?php } ?>
 							      <?php if($sale['store_name']) { ?>
 							        <span class="store"><?php echo $sale['store_name']; ?></span>

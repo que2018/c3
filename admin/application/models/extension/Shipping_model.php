@@ -53,4 +53,54 @@ class Shipping_model extends CI_Model
 		
 		return false;
 	}
+	
+	public function get_shipping_service($shipping_provider, $shipping_service_code) 
+	{
+		$shipping_services = $this->config->item($shipping_provider . '_service');
+		
+		if($shipping_services) 
+		{
+			$target_shipping_service = false;
+			
+			foreach($shipping_services as $shipping_service)
+			{
+				if($shipping_service['code'] == $shipping_service_code)
+				{
+					$target_shipping_service = $shipping_service;
+					
+					break;
+				}
+			}
+			
+			return $target_shipping_service;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
