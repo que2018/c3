@@ -11,7 +11,23 @@ class Transaction extends CI_Controller {
 		$this->load->model('finance/transaction_model');
 	}
 	
-	function index()
+	public function index()
+	{	
+		$data = $this->get_list();
+	
+		$this->load->view('common/header');
+		$this->load->view('finance/transaction_list', $data);
+		$this->load->view('common/footer');
+	}
+	
+	public function reload() 
+	{
+		$data = $this->get_list();
+		
+		$this->load->view('finance/transaction_list_table', $data);
+	}
+	
+	protected function get_list()
 	{	
 		$this->load->library('currency');
 		$this->load->library('phpexcel');
@@ -244,7 +260,6 @@ class Transaction extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->getStyle('E'.($i+2))->getFont()->setSize(12);
 		$objPHPExcel->getActiveSheet()->getStyle('F'.($i+2))->getFont()->setSize(12);
 
-		
 		$objPHPExcel->getActiveSheet()->SetCellValue('E'.($i+2), $this->lang->line('text_total_amount'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('F'.($i+2), $this->currency->format($total_amount));
 		
@@ -427,10 +442,8 @@ class Transaction extends CI_Controller {
 				);	
 			}
 		}
-				
-		$this->load->view('common/header');
-		$this->load->view('finance/transaction_list', $data);
-		$this->load->view('common/footer');
+			
+		return $data;
 	}
 	
 	public function add()
