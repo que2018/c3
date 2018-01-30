@@ -52,7 +52,7 @@ class Fedex_model extends CI_Model
 						
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);			
-		$sale_products = $this->sale_model->get_sale_products($sale_id);
+		$sale_detail = $this->sale_model->get_sale_detail($sale_id);
 		
 		$length_class = $this->length_class_model->get_length_class($sale['length_class_id']);
 
@@ -81,7 +81,8 @@ class Fedex_model extends CI_Model
 		$config->setDefault('fedex', 'key', $this->config->item('fedex_key'));
 		$config->setDefault('fedex', 'password', $this->config->item('fedex_password'));
 
-		$config->setDefault('fedex', 'toCountryCode', $this->config->item('fedex_country'));
+		$config->setDefault('fedex', 'shipmentDescription', $sale_detail);	
+		$config->setDefault('fedex', 'toCountryCode', $this->config->item('fedex_country'));	
 		$config->setDefault('fedex', 'service', $sale_shipping_service['method']);
 		$config->setDefault('fedex', 'packagingType', $sale_shipping_service['package']);
 		$config->setDefault('fedex', 'imageType', $this->config->item('fedex_image_type'));
@@ -104,7 +105,6 @@ class Fedex_model extends CI_Model
 		$shipment->setParameter('toCity', $sale['city']);
 		$shipment->setParameter('toState',$state);
 		$shipment->setParameter('toCode', $zipcode);
-		
 		$shipment->setParameter('RateType', 'PAYOR_ACCOUNT_PACKAGE');
 		
 		$response = $shipment->submitShipment();

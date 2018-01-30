@@ -2,6 +2,10 @@
 
 // Text
 $lang['text_print_label'] 	  	                = 'print label';
+$lang['text_sale_id'] 	  	                    = 'Order ID';
+$lang['text_store_sale_id'] 	  	            = 'Store Order ID';
+$lang['text_tracking'] 	  	                    = 'Tracking';
+$lang['text_search'] 	  	                    = 'Search';
 $lang['text_sku'] 	  	                 		= 'sku';
 $lang['text_quantity'] 	  	                    = 'quantity';
 $lang['text_customer_name'] 	  	            = 'customer name';

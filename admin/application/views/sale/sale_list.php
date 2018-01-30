@@ -30,6 +30,31 @@
 		  <h5><?php echo $this->lang->line('text_order_list_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
+		  <div class="form-horizontal">
+		    <div class="row">
+		      <div class="col-md-3">
+			    <div class="form-group">
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
+			      <div class="col-sm-9"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
+				</div>
+			  </div>
+			  <div class="col-md-3">
+			    <div class="form-group">
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_store_sale_id'); ?></label>
+			      <div class="col-sm-8"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <div class="form-group">
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_tracking'); ?></label>
+			      <div class="col-sm-9"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+			  </div>
+		    </div>
+		  </div>
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
@@ -155,7 +180,7 @@
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
 						<button onclick="print_label(this)" class="btn btn-info btn-print"><i class="fa fa-print"></i></button>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $sale['sale_id']; ?>"><i class="fa fa-trash"></i></button>
+						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
 				      <input type="hidden" name="sale_id" value="<?php echo $sale['sale_id']; ?>" >
 					</tr>
@@ -163,17 +188,6 @@
 				  <?php } ?>
 				<?php } ?>
 			  </tbody>			  
-			  <tfoot>
-			    <tr>
-				  <th></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="id" placeholder="<?php echo $this->lang->line('column_order_id'); ?>" value="<?php echo $filter_sale_id; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="store_sale_id" placeholder="<?php echo $this->lang->line('column_store_order_id'); ?>" value="<?php echo $filter_store_sale_id; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="tracking" placeholder="<?php echo $this->lang->line('column_tracking'); ?>" value="<?php echo $filter_tracking; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="name" placeholder="<?php echo $this->lang->line('column_name'); ?>" value="<?php echo $filter_name; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="date_added" placeholder="<?php echo $this->lang->line('column_date_added'); ?>" value="<?php echo $filter_date_added; ?>" /></th>
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 		  <div class="pagination-block">
@@ -185,6 +199,36 @@
     </div>
   </div>
 </div>
+<script>
+function delete_sale(handle, sale_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>sale/sale/delete?sale_id=' + sale_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
+</script>
 <script>
 function print_label(handle) 
 {
@@ -268,67 +312,29 @@ function print_label_d(handle, sale_id)
 <script>
 $(document).ready(function() {
 	//filter
+	$(document).on('click', '#btn-search', function() {
+		sale_id     	= $('input[name=\'sale_id\']').val();
+		store_sale_id   = $('input[name=\'store_sale_id\']').val();
+		tracking        = $('input[name=\'tracking\']').val();
+
+		url = '<?php echo $filter_url; ?>';
+		
+		if(sale_id)
+			url += '&filter_sale_id=' + sale_id;
+		
+		if(store_sale_id)
+			url += '&filter_store_sale_id=' + store_sale_id;
+		
+		if(tracking)
+			url += '&filter_tracking=' + tracking;
+						
+		window.location.href = url;
+	});
+	
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
-			sale_id         = $("input[name='id']").val();	
-			store_sale_id   = $("input[name='store_sale_id']").val();	
-			tracking        = $("input[name='tracking']").val();
-			name            = $("input[name='name']").val();
-			date_added      = $("input[name='date_added']").val();
-
-			url = '<?php echo $filter_url; ?>';
-			
-			if(sale_id)
-				url += '&filter_sale_id=' + sale_id;
-			
-			if(store_sale_id)
-				url += '&filter_store_sale_id=' + store_sale_id;
-			
-			if(tracking)
-				url += '&filter_tracking=' + tracking;
-		
-			if(name)
-				url += '&filter_name=' + name;
-			
-			if(date_added)
-				url += '&filter_date_added=' + date_added;
-						
-			window.location.href = url;
-		}
-	});
-	
-	//date picker
-	$("input[name='date_added']").datetimepicker({
-		pickTime: false,
-		format: 'YYYY-MM-DD'
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			sale_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>sale/sale/delete?sale_id=' + sale_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-						handler.closest('tr').remove();
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-				}
-			});
+			$('#btn-search').trigger('click');
 		}
 	});
 });
@@ -349,9 +355,11 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-	$('td:nth-child(2)').hover(function() {
+	$(document).on('mouseenter', 'td:nth-child(2)', function() {
 		$(this).find('.detail').show();
-	}, function() {
+	});
+	
+	$(document).on('mouseleave', 'td:nth-child(2)', function() {
 		$(this).find('.detail').hide();
 	});
 });

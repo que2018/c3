@@ -1,6 +1,32 @@
+<div class="form-horizontal">
+  <div class="row">
+    <div class="col-md-3">
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
+	    <div class="col-sm-9"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
+	  </div>
+    </div>
+    <div class="col-md-3">
+	  <div class="form-group">
+	    <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_store_sale_id'); ?></label>
+	    <div class="col-sm-8"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
+	  </div>
+    </div>
+    <div class="col-md-3">
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_tracking'); ?></label>
+	    <div class="col-sm-9"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
+	  </div>
+    </div>
+    <div class="col-md-2">
+	  <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+    </div>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover dataTables-example" >
     <thead>
+	  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 	  <?php if($sort == 'sale.id') { ?>
 	  <th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
 		<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
@@ -53,6 +79,9 @@
 	    <?php $offset = 0; ?>
 	    <?php foreach($sales as $sale) { ?>
 		  <tr>
+		    <td class="text-center">
+			  <input type="checkbox" name="selected[]" value="<?php echo $sale['sale_id']; ?>" />
+		    </td>
 		    <td>
 			  <span>#<?php echo $sale['sale_id']; ?></span>
 			  <div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
@@ -90,8 +119,8 @@
 				  <tbody>
 				    <tr>
 					  <td colspan=4 class="text-right">
-					    <?php if($sale['shipping_provider']) { ?>
-						  <span class="shipping"><?php echo $sale['shipping_provider']; ?></span>
+					    <?php if($sale['shipping']) { ?>
+						  <span class="shipping"><?php echo $sale['shipping']; ?></span>
 					    <?php } ?>
 					    <?php if($sale['store_name']) { ?>
 						  <span class="store"><?php echo $sale['store_name']; ?></span>
@@ -108,7 +137,7 @@
 			  </div>
 		    </td>
 		    <td><?php echo $sale['store_sale_id']; ?></td>
-		    <td>
+		    <td class="tracking-td">
 			  <?php if($sale['tracking']) { ?>
 			    <span class="tracking"><?php echo $sale['tracking']; ?></span>
 			  <?php } ?>
@@ -116,9 +145,10 @@
 		    <td><?php echo $sale['name']; ?></td>
 		    <td><?php echo $sale['date_added']; ?></td>
 		    <td class="text-center">
+			  <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
 			  <button onclick="print_label(this)" class="btn btn-info btn-print"><i class="fa fa-print"></i></button>
 			  <a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-			  <button class="btn btn-danger btn-delete" data="<?php echo $sale['sale_id']; ?>"><i class="fa fa-trash"></i></button>
+			  <button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>
 		    <input type="hidden" name="sale_id" value="<?php echo $sale['sale_id']; ?>" >
 		  </tr>
@@ -126,41 +156,9 @@
 	    <?php } ?>
 	  <?php } ?>
     </tbody>			  
-    <tfoot>
-	  <tr>
-	    <th class="filter-td"><input type="text" class="filter-input" name="id" placeholder="<?php echo $this->lang->line('column_order_id'); ?>" value="<?php echo $filter_sale_id; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="store_sale_id" placeholder="<?php echo $this->lang->line('column_store_order_id'); ?>" value="<?php echo $filter_store_sale_id; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="tracking" placeholder="<?php echo $this->lang->line('column_tracking'); ?>" value="<?php echo $filter_tracking; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="name" placeholder="<?php echo $this->lang->line('column_name'); ?>" value="<?php echo $filter_name; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="date_added" placeholder="<?php echo $this->lang->line('column_date_added'); ?>" value="<?php echo $filter_date_added; ?>" /></th>
-	    <th></th>
-	  </tr>
-    </tfoot>
   </table>
 </div>
 <div class="pagination-block">
   <div class="pull-left"><?php echo $results; ?></div>
   <div class="pull-right"><?php echo $pagination; ?></div>
 </div>
-<script>
-/* $(document).ready(function() {
-	Pace.options.ajax = false;
-	
-	setInterval(function(){ 
-		$.ajax({
-			url: '<?php echo base_url(); ?>sale/sale/reload<?php echo $url; ?>',
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType: "html",
-			success: function(html) {					
-				$('.ibox-content').html(html);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}, 4000); 
-}); */
-</script>
-	    

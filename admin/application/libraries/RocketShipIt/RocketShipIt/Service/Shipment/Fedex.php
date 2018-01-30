@@ -363,8 +363,6 @@ class Fedex extends \RocketShipIt\Service\Common
         $xml->pop(); // end CreatePendingShipmentRequest
 
         $xmlString = $xml->getXml();
-
-		file_put_contents("log.txt", $xmlString);
 		
         return $xmlString;
     }

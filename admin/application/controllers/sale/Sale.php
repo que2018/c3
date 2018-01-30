@@ -62,24 +62,6 @@ class Sale extends CI_Controller {
 			$filter_tracking = '';
 		}
 		
-		if($this->input->get('filter_name'))
-		{
-			$filter_name = $this->input->get('filter_name');
-		} 
-		else 
-		{
-			$filter_name = '';
-		}
-		
-		if($this->input->get('filter_date_added'))
-		{
-			$filter_date_added = $this->input->get('filter_date_added');
-		} 
-		else 
-		{
-			$filter_date_added = '';
-		}
-		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -133,11 +115,6 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_name')) 
-		{
-			$url .= '&filter_name=' . $this->input->get('filter_name');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -162,8 +139,6 @@ class Sale extends CI_Controller {
 			'filter_sale_id'        => $filter_sale_id,
 			'filter_store_sale_id'  => $filter_store_sale_id,
 			'filter_tracking'       => $filter_tracking,
-			'filter_name'           => $filter_name,
-			'filter_date_added'     => $filter_date_added,
 			'sort'                  => $sort,
 			'order'                 => $order,
 			'start'                 => ($page - 1) * $limit,
@@ -258,11 +233,6 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_name')) 
-		{
-			$url .= '&filter_name=' . $this->input->get('filter_name');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -302,11 +272,7 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_name')) 
-		{
-			$url .= '&filter_name=' . $this->input->get('filter_name');
-		}
-			
+		
 		if ($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
@@ -390,24 +356,18 @@ class Sale extends CI_Controller {
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
-		
-		if($this->input->get('filter_name')) 
-		{
-			$url .= '&filter_name=' . $this->input->get('filter_name');
-		}
-		
+			
 		$data['add'] = base_url() . 'sale/sale/add' . $url;
+		$data['reload'] = base_url() . 'sale/sale/reload' . $url;
 		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['page']  = $page;
 		$data['limit'] = $limit;
 		
-		$data['filter_sale_id']   		= $filter_sale_id;
-		$data['filter_store_sale_id']   = $filter_store_sale_id;
-		$data['filter_tracking']        = $filter_tracking;
-		$data['filter_name']            = $filter_name;
-		$data['filter_date_added']      = $filter_date_added;		
+		$data['filter_sale_id']   	  = $filter_sale_id;
+		$data['filter_store_sale_id'] = $filter_store_sale_id;
+		$data['filter_tracking']      = $filter_tracking;
 		
 		return $data;
 	}

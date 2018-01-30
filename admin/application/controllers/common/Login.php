@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-	private $error = array();
 
 	function __construct()
 	{
@@ -31,7 +30,16 @@ class Login extends CI_Controller {
 		{	
 			if($this->auth->login($data['username'], $data['password']))
 			{
-				redirect(base_url().'common/dashboard', 'refresh');
+				$redirect_url = $this->session->userdata('redirect_url');
+				
+				if(isset($redirect_url))
+				{
+					redirect($redirect_url, 'refresh');
+				}
+				else
+				{
+					redirect(base_url() . 'common/dashboard', 'refresh');
+				}				
 			} 
 			else 
 			{
