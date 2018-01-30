@@ -3,10 +3,8 @@
 // Text
 $lang['text_sale'] 	  	                 = 'Sale';
 $lang['text_name'] 	  	                 = 'name';
-$lang['text_add'] 	  	                 = 'add';
-$lang['text_edit'] 	  	                 = 'edit';
-$lang['text_save'] 	  	                 = 'save';
-$lang['text_delete'] 	  	             = 'delete';
+$lang['text_add'] 	  	                 = 'add customer';
+$lang['text_save'] 	  	                 = 'save customer';
 $lang['text_cancel'] 	  	             = 'cancel';
 $lang['text_company'] 	  	             = 'company';
 $lang['text_email'] 	  	             = 'email';

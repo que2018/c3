@@ -67,6 +67,7 @@ $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triang
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';
 $lang['tab_product'] 	  	             		= 'Product';
+$lang['tab_label'] 	  	             		    = 'Label';
 $lang['tab_fee'] 	  	                 		= 'Fee';
 $lang['tab_store'] 	  	                 		= 'Store';
 
@@ -103,6 +104,7 @@ $lang['column_order_id'] 	  	     		    = 'Order Id';
 $lang['column_store_order_id'] 	  	     		= 'Store Order Id';
 $lang['column_tracking'] 	  	         		= 'Tracking Number';
 $lang['column_name'] 	  	            	 	= 'Name';
+$lang['column_label'] 	  	            	 	= 'Label';
 $lang['column_customer'] 	  	                = 'Customer';
 $lang['column_amount'] 	  	            	 	= 'Amount';
 $lang['column_product_name'] 	  	     		= 'Product Name';

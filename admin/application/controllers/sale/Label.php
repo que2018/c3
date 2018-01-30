@@ -83,7 +83,12 @@ class Label extends CI_Controller {
 				if(!$this->config->item($code . '_debug_mode'))
 				{
 					//update sale
-					$this->sale_model->update_label($sale_id, $result['label_img']);
+					$label_data = array(
+						'tracking'  => $result['tracking'],
+						'path'      => $result['label_img']
+					);
+					
+					$this->sale_model->add_label($sale_id, $label_data);
 				
 					$this->sale_model->update_tracking($sale_id, $result['tracking']);
 					
@@ -171,7 +176,12 @@ class Label extends CI_Controller {
 				if(!$this->config->item($code . '_debug_mode'))
 				{
 					//update sale
-					$this->sale_model->update_label($sale_id, $result['label_img']);
+					$label_data = array(
+						'tracking'  => $result['tracking'],
+						'path'      => $result['label_img']
+					);
+					
+					$this->sale_model->add_label($sale_id, $label_data);
 					
 					$this->sale_model->update_tracking($sale_id, $result['tracking']);
 					

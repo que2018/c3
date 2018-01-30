@@ -19,6 +19,9 @@
 	color: #fff;
 	margin-right: 6px;
 }
+.btn-download {
+	margin-left: 6px;
+}
 .btn-gen:hover,
 .btn-gen:focus,
 .btn-gen:active,
@@ -61,7 +64,10 @@
     right: 30px;
 }
 .label-img {	
-    width: 250px;
+    width: 220px;
+    display: block;
+    border: 1px solid #dedede;
+    margin: 0 auto;
 }
 input[name=customer_name] {    
 	border: 5px solid #1ab394;

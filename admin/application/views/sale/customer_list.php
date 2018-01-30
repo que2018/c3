@@ -36,29 +36,29 @@
 				</th>
 				<?php } ?>
 				<?php if($sort == 'client') { ?>
-				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16.6%;" class="sorting">
+				<th style="width: 14.6%;" class="sorting">
 					<a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'customer.company') { ?>
-				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 12.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_company; ?>"><?php echo $this->lang->line('column_company'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16.6%;" class="sorting">
+				<th style="width: 12.6%;" class="sorting">
 					<a href="<?php echo $sort_company; ?>"><?php echo $this->lang->line('column_company'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'customer.email') { ?>
-				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 22.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_email; ?>"><?php echo $this->lang->line('column_email'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16.6%;" class="sorting">
+				<th style="width: 22.6%;" class="sorting">
 					<a href="<?php echo $sort_email; ?>"><?php echo $this->lang->line('column_email'); ?></a>
 				</th>
 				<?php } ?>

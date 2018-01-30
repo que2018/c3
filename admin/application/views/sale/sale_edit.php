@@ -40,6 +40,7 @@
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
 		</ul>
@@ -88,18 +89,6 @@
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_note'); ?></label>
                 <div class="col-sm-10"><textarea name="note" rows="6" cols="50" class="form-control summernote"><?php echo $note; ?></textarea></div>
               </div>
-			  <div class="hr-line-dashed"></div>
-              <div class="form-group">
-		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_label'); ?></label>
-                <div class="col-sm-10">
-				  <div class="plabel">
-				    <?php if($label) { ?>
-					  <img src="<?php echo $label; ?>" class="label-img" />
-					  <a href="<?php echo $label; ?>" class="btn btn-primary btn-label" download><i class="fa fa-download"></i></a>
-					<?php } ?>
-				  </div>  
-                </div>				  
-              </div> 
 			  <div class="hr-line-dashed"></div>			  
 			</div>
 		  </div>
@@ -295,6 +284,40 @@
 				</div>
               </div>
 			  <div class="hr-line-dashed"></div>  	
+			</div>
+		  </div>
+		  <div id="label" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="sale_label" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 30%;"><?php echo $this->lang->line('column_label') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_tracking') ?></th>							
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $sale_label_row = 0; ?>
+					<?php if($sale_labels) { ?>
+					  <?php foreach ($sale_labels as $sale_label) { ?>
+					  <tr id="sale-label-row<?php echo $sale_label_row; ?>">
+					    <td class="text-right" style="padding: 20px;">
+						  <img src="<?php echo $sale_label['link']; ?>" class="label-img" />
+						  <input type="hidden" name="sale_label[<?php echo $sale_label_row; ?>][path]" value="<?php echo $sale_label['path']; ?>"/>
+						</td>
+					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="sale_label[<?php echo $sale_label_row; ?>][tracking]" value="<?php echo $sale_label['tracking']; ?>" class="form-control" /></div></td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#sale-label-row<?php echo $sale_label_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						  <a class="btn btn-info btn-download" href="<?php echo $sale_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						</td>
+					  </tr>
+					  <?php $sale_label_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+                </table>
+              </div> 
 			</div>
 		  </div>
 		  <div id="fee" class="tab-pane">

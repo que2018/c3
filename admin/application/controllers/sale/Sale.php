@@ -475,20 +475,20 @@ class Sale extends CI_Controller {
 			
 			$data['sale_products'] = array();
 			
-			$sale_products_data = $this->input->post('sale_product');
+			$sale_products = $this->input->post('sale_product');
 			
-			if($sale_products_data)
+			if($sale_products)
 			{
-				foreach($sale_products_data as $sale_product_data)
+				foreach($sale_products as $sale_product)
 				{
-					$product_data = $this->product_model->get_product($sale_product_data['product_id']);
+					$product = $this->product_model->get_product($sale_product['product_id']);
 
 					$data['sale_products'][] = array(
-						'product_id'  => $product_data['id'],
-						'upc'         => $product_data['upc'],
-						'sku'         => $product_data['sku'],
-						'name'        => $product_data['name'],
-						'quantity'    => $sale_product_data['quantity']
+						'product_id'  => $product['id'],
+						'upc'         => $product['upc'],
+						'sku'         => $product['sku'],
+						'name'        => $product['name'],
+						'quantity'    => $sale_product['quantity']
 					);
 				}
 			}
@@ -776,6 +776,7 @@ class Sale extends CI_Controller {
 				'store_id'          => $this->input->post('store_id'),
 				'store_sale_id'     => $this->input->post('store_sale_id'),
 				'sale_products'     => $this->input->post('sale_product'),
+				'sale_labels'       => $this->input->post('sale_label'),
 				'sale_fees'         => $this->input->post('sale_fee')
 			);
 						
@@ -820,27 +821,49 @@ class Sale extends CI_Controller {
 			$data['shipping_service']   = $this->input->post('shipping_service');
 			$data['store_id']           = $this->input->post('store_id');
 			$data['store_sale_id']      = $this->input->post('store_sale_id');
+			$data['sale_labels']        = $this->input->post('sale_label');
 			$data['sale_fees']          = $this->input->post('sale_fee');
 			
+			//sale products
 			$data['sale_products'] = array();
 			
-			$sale_products_data = $this->input->post('sale_product');
+			$sale_products = $this->input->post('sale_product');
 			
-			if($sale_products_data)
+			if($sale_products)
 			{
-				foreach($sale_products_data as $sale_product_data)
+				foreach($sale_products as $sale_product)
 				{
-					$product_id = $sale_product_data['product_id'];
+					$product_id = $sale_product['product_id'];
 					
-					$product_data = $this->product_model->get_product($product_id);
+					$product = $this->product_model->get_product($product_id);
 
 					$data['sale_products'][] = array(
-						'product_id'   => $product_data['id'],
-						'upc'          => $product_data['upc'],
-						'sku'          => $product_data['sku'],
-						'name'         => $product_data['name'],
-						'quantity'     => $sale_product_data['quantity']
+						'product_id'  => $product['id'],
+						'upc'         => $product['upc'],
+						'sku'         => $product['sku'],
+						'name'        => $product['name'],
+						'quantity'    => $sale_product['quantity']
 					);
+				}
+			}
+			
+			//sale labels
+			$data['sale_labels'] = array();
+			
+			$sale_labels = $this->input->post('sale_label');
+			
+			if($sale_labels)
+			{
+				foreach($sale_labels as $sale_label)
+				{					
+					if(is_file(FCPATH . $sale_label['path'])) 
+					{
+						$data['sale_labels'][] = array(
+							'tracking'  => $sale_label['tracking'],
+							'path'      => $sale_label['path'],
+							'link'      => base_url() . $sale_label['path']
+						);
+					}
 				}
 			}
 		}
@@ -873,21 +896,41 @@ class Sale extends CI_Controller {
 			$data['store_sale_id']      = $sale['store_sale_id'];
 			
 			//sale products
-			$sale_products_data = $this->sale_model->get_sale_products($sale_id);
+			$sale_products = $this->sale_model->get_sale_products($sale_id);
 			
 			$data['sale_products'] = array();
 			
-			foreach($sale_products_data as $sale_product_data)
+			foreach($sale_products as $sale_product)
 			{
-				$product_id = $sale_product_data['product_id'];
+				$product_id = $sale_product['product_id'];
 				
 				$data['sale_products'][] = array(
 					'product_id'   => $product_id,
-					'upc'          => $sale_product_data['upc'],
-					'sku'          => $sale_product_data['sku'],
-					'name'         => $sale_product_data['name'],
-					'quantity'     => $sale_product_data['quantity']
+					'upc'          => $sale_product['upc'],
+					'sku'          => $sale_product['sku'],
+					'name'         => $sale_product['name'],
+					'quantity'     => $sale_product['quantity']
 				);
+			}
+			
+			//sale labels
+			$data['sale_labels'] = array();
+			
+			$sale_labels = $this->sale_model->get_sale_labels($sale_id);
+			
+			if($sale_labels)
+			{
+				foreach($sale_labels as $sale_label)
+				{					
+					if(is_file(FCPATH . $sale_label['path'])) 
+					{
+						$data['sale_labels'][] = array(
+							'tracking'  => $sale_label['tracking'],
+							'path'      => $sale_label['path'],
+							'link'      => base_url() . $sale_label['path']
+						);
+					}
+				}
 			}
 			
 			//sale fees
@@ -977,18 +1020,6 @@ class Sale extends CI_Controller {
 					);
 				}
 			}
-		}
-		
-		//label
-		$sale = $this->sale_model->get_sale($sale_id);
-		
-		if(is_file(FCPATH . $sale['label'])) 
-		{
-			$data['label'] = base_url() . $sale['label'];
-		}
-		else
-		{
-			$data['label'] = false;
 		}
 		
 		//store
