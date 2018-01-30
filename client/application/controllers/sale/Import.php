@@ -20,12 +20,15 @@ class Import extends CI_Controller {
 				
 		$data['stores'] = array();
 		
-		foreach($stores as $store) 
+		if($stores)
 		{
-			$data['stores'][] = array(
-				'store_id' => $store['id'],
-				'name'     => $store['name']
-			);
+			foreach($stores as $store) 
+			{
+				$data['stores'][] = array(
+					'store_id' => $store['id'],
+					'name'     => $store['name']
+				);
+			}
 		}
 	
 		$this->load->view('common/header');
