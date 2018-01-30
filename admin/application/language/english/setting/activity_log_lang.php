@@ -113,6 +113,7 @@ $lang['activity_store_store_sale_sync_upload_upload_ajax']      = 'init the stor
 $lang['activity_store_store_sync_history'] 	  	      			= 'view the store sync history page';
 $lang['activity_store_store_sync_history_detail'] 	  			= 'view the store sync history detail page';
 $lang['activity_store_store_sync_history_clear'] 	  			= 'try to clear store sync history';
+$lang['activity_store_store_sync_history_delete'] 	  			= 'try to delete store sync history';
 $lang['activity_extension_platform'] 	  	          			= 'view the platform page';
 $lang['activity_extension_platform_add'] 	  	      			= 'view the platform add page';
 $lang['activity_extension_shipping'] 	  	          			= 'view the shipping page';
