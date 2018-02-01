@@ -10,8 +10,8 @@ class Activity_log extends CI_Controller {
 		
 		$this->load->model('setting/activity_log_model');
 	}
-	
-	function index()
+		
+	public function index()
 	{
 		$data['success'] = $this->session->flashdata('success');
 		 
@@ -84,7 +84,7 @@ class Activity_log extends CI_Controller {
 		} 
 		else 
 		{
-			$limit = 10;
+			$limit = $this->config->item('config_page_limit');
 		}
 		
 		if($this->input->get('page')) 
@@ -118,12 +118,12 @@ class Activity_log extends CI_Controller {
 			foreach($activity_logs as $activity_log)
 			{
 				$data['activity_logs'][] = array(
-					'id'           => $activity_log['id'],
-					'user'         => $activity_log['user'],
-					'ip_address'   => $activity_log['ip_address'],
-					'description'  => $activity_log['description'],
-					'method'       => $activity_log['method'],
-					'date_added'   => $activity_log['date_added']
+					'activity_log_id' => $activity_log['id'],
+					'user'            => $activity_log['user'],
+					'ip_address'      => $activity_log['ip_address'],
+					'description'     => $activity_log['description'],
+					'method'          => $activity_log['method'],
+					'date_added'      => $activity_log['date_added']
 				);
 			}
 		}
@@ -173,7 +173,7 @@ class Activity_log extends CI_Controller {
 		$this->pagination->total  = $activity_log_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url() . 'setting/ctivity_log?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'setting/activity_log?page={page}'.$url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($activity_log_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($activity_log_total - $limit)) ? $activity_log_total : ((($page - 1) * $limit) + $limit), $activity_log_total, ceil($activity_log_total / $limit));
 
@@ -241,6 +241,8 @@ class Activity_log extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url() . 'setting/activity_log' . $url;
+		
+		$data['reload'] = base_url() . 'setting/activity_log/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -257,64 +259,13 @@ class Activity_log extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 	
-	function detail()
-	{
-		$store_sync_history_id = $this->input->get('store_sync_history_id');
-		
-		$store_sync_history = $this->store_sync_history_model->get_store_sync_history($store_sync_history_id);
-		
-		$data['store'] = $store_sync_history['store'];
-		
-		if($store_sync_history['type'] == 0)
-		{
-			$data['type'] = $this->lang->line('text_download');
-		}
-		else
-		{
-			$data['type'] = $this->lang->line('text_upload');
-		}
-		
-		if($store_sync_history['status'] == 1)
-		{
-			$data['status'] = $this->lang->line('text_success');
-		}
-		else
-		{
-			$data['status'] = $this->lang->line('text_fail');
-		}
-		
-		$data['date_added'] = $store_sync_history['date_added'];
-		
-		$data['messages'] = unserialize($store_sync_history['messages']);
-
-		$this->load->view('common/header');
-		$this->load->view('setting/activity_log_detail', $data);
-		$this->load->view('common/footer');
-	}
-	
-	public function delete()
-	{
-		if($this->input->get('id'))
-		{
-			$id = $this->input->get('id');
-			
-			$this->store_sync_history_model->delete_store_sync_history($id);
-
-			$outdata = array(
-				'success'   => true
-			);
-			
-			echo json_encode($outdata);
-		}
-	}
-	
 	public function clear()
 	{
-		$this->store_sync_history_model->clear_store_sync_history();
+		$this->activity_log_model->clear_log_activity();
 		
 		$this->session->set_flashdata('success', $this->lang->line('text_store_sync_clear_success'));
 			
-		redirect(base_url() . 'setting/log/activity_log', 'refresh');
+		redirect(base_url() . 'setting/activity_log', 'refresh');
 	}
 }
 

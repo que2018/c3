@@ -282,14 +282,16 @@ class Product extends CI_Controller
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 	
-		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_add_sku');
+		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_edit_sku');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('price', $this->lang->line('text_price'), 'required');
-		$this->form_validation->set_rules('length', $this->lang->line('text_length'), 'required');
-		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
-		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
+		$this->form_validation->set_rules('price',$this->lang->line('error_price_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('length',$this->lang->line('error_length_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('width',$this->lang->line('error_width_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 
 		$data = array(
 			'upc'                => $this->input->post('upc'),
@@ -425,15 +427,19 @@ class Product extends CI_Controller
 	
 		$product_id = $this->input->get('product_id');
 	
+		$this->form_validation->set_message('regex_match', '%s');
+
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_edit_sku');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('price', $this->lang->line('text_price'), 'required');
-		$this->form_validation->set_rules('length', $this->lang->line('text_length'), 'required');
-		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
-		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
-
+		$this->form_validation->set_rules('price',$this->lang->line('error_price_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('length',$this->lang->line('error_length_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('width',$this->lang->line('error_width_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		
 		if($this->form_validation->run() == true)
 		{
 			$data = array(

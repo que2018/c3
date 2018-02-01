@@ -37,42 +37,41 @@
 				</th>
 				<?php } ?>
 				<?php if($sort == 'activity_log.ip_address') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_ip_address; ?>"><?php echo $this->lang->line('column_ip_address'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 				  <a href="<?php echo $sort_ip_address; ?>"><?php echo $this->lang->line('column_ip_address'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'activity_log.description') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 25%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_description; ?>"><?php echo $this->lang->line('column_description'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 25%;" class="sorting">
 				  <a href="<?php echo $sort_description; ?>"><?php echo $this->lang->line('column_description'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'activity_log.method') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_method; ?>"><?php echo $this->lang->line('column_method'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 15%;" class="sorting">
 				  <a href="<?php echo $sort_method; ?>"><?php echo $this->lang->line('column_method'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'activity_log.date_added') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } ?>
-				<th style="width: 16%;"><center><?php echo $this->lang->line('column_action'); ?></center></th>
 			  </thead>
 			  <tbody>
 				<?php if($activity_logs) { ?>
@@ -82,11 +81,7 @@
 					  <td><?php echo $activity_log['ip_address']; ?></td>
 					  <td><?php echo $activity_log['description']; ?></td>
 					  <td><?php echo $activity_log['method']; ?></td>
-					  <td><?php echo $activity_log['date_added']; ?></td>
-					  <td style="text-align: center">
-						<a href="<?php echo base_url(); ?>setting/activity_log/detail?store_sync_history_id=<?php echo $activity_log['id']; ?>" class="btn btn-primary" data="<?php echo $activity_log['id']; ?>"><i class="fa fa-eye"></i></a>
-					  	<button class="btn btn-danger btn-delete" data="<?php echo $activity_log['id']; ?>"><i class="fa fa-trash"></i></button>
-					  </td>				
+					  <td><?php echo $activity_log['date_added']; ?></td>			
 					</tr>
 				  <?php } ?>
 				<?php } ?>
@@ -98,7 +93,6 @@
 				  <th class="filter-td"><input type="text" class="filter-input" name="description" placeholder="<?php echo $this->lang->line('column_description'); ?>" value="<?php echo $filter_description; ?>" /></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="method" placeholder="<?php echo $this->lang->line('column_method'); ?>" value="<?php echo $filter_method; ?>" /></th> 
 				  <th class="filter-td"><input type="text" class="filter-input" name="date_added" placeholder="<?php echo $this->lang->line('column_date_added'); ?>" value="<?php echo $filter_date_added; ?>" /></th>
-				  <th></th>
 				</tr>
 			  </tfoot>
 		    </table>
@@ -146,31 +140,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-<script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		handler = $(this);
-		id = $(this).attr('data');
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>store/store_sync_history/delete?id=' + id,
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType: "json",
-			beforeSend: function() {
-				handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {					
-				if(json.success) 
-					handler.closest('tr').remove();
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	});
-});
-</script>
-		
+
+
 		

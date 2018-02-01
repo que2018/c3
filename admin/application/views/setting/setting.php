@@ -98,6 +98,21 @@
 		  </div>
 		  <div id="localization" class="tab-pane">
 			<div class="panel-body">
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_language'); ?></label>
+			    <div class="col-sm-10">
+				  <select name="config_idiom" class="form-control">
+				    <?php foreach($languages as $language) { ?>
+					<?php if($language['code'] == $config_idiom) { ?>
+					<option value="<?php echo $language['code']; ?>" selected><?php echo $language['name']; ?></option>
+					<?php } else { ?>
+					<option value="<?php echo $language['code']; ?>"><?php echo $language['name']; ?></option>					
+					<?php } ?>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
 		      <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_length_class'); ?></label>
 			    <div class="col-sm-10">

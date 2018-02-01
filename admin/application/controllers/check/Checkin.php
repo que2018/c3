@@ -277,7 +277,8 @@ class Checkin extends CI_Controller {
 		$this->load->model('catalog/product_model');
 		
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
-		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
+		//$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
+		$this->form_validation->set_rules('tracking','dffdfdfda','regex_match[/[a-zA-Z]|\s/]');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
 
 		$data = array(

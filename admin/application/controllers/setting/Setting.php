@@ -15,10 +15,11 @@ class Setting extends CI_Controller {
 	public function index()
 	{	
 		$this->load->library('form_validation');
-		
-		$this->load->model('extension/shipping_model');
+	
+		$this->load->model('setting/language_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+		$this->load->model('extension/shipping_model');
 
 		$this->form_validation->set_rules('config_time_zone', $this->lang->line('text_time_zone'), 'required');
 		$this->form_validation->set_rules('config_page_limit', $this->lang->line('text_page_limit'), 'required');
@@ -26,6 +27,7 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('config_dashboard_activity_limit', $this->lang->line('text_dashboard_activity_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_order_limit', $this->lang->line('text_dashboard_order_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_store_sync_limit', $this->lang->line('text_dashboard_store_sync_limit'), 'required');
+		$this->form_validation->set_rules('config_idiom', $this->lang->line('text_language'), 'required');
 		$this->form_validation->set_rules('config_length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('config_weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('config_autocomplete_limit', $this->lang->line('text_autocomplete_limit'), 'required');
@@ -87,6 +89,7 @@ class Setting extends CI_Controller {
 				'config_printnode_width'   					=> $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_printer_id'   		    => $this->input->post('config_printnode_printer_id'),
+				'config_idiom'      			            => $this->input->post('config_idiom'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
@@ -138,6 +141,7 @@ class Setting extends CI_Controller {
 				'config_printnode_width'      			    => $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_printer_id'  			    => $this->input->post('config_printnode_printer_id'),
+				'config_idiom'      			            => $this->input->post('config_idiom'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
@@ -181,6 +185,7 @@ class Setting extends CI_Controller {
 			$data['config_printnode_width']     		        = $this->config->item('config_printnode_width');
 			$data['config_printnode_api_key']     		        = $this->config->item('config_printnode_api_key');
 			$data['config_printnode_printer_id']     		    = $this->config->item('config_printnode_printer_id');
+			$data['config_idiom']     		                    = $this->config->item('config_idiom');
 			$data['config_length_class_id']     		        = $this->config->item('config_length_class_id');
 			$data['config_weight_class_id']     		        = $this->config->item('config_weight_class_id');
 			$data['config_default_order_shipping_provider'] 	= $this->config->item('config_default_order_shipping_provider');
@@ -191,6 +196,22 @@ class Setting extends CI_Controller {
 			$data['config_smtp_port']                           = $this->config->item('config_smtp_port');
 			$data['config_smtp_timeout']                   		= $this->config->item('config_smtp_timeout');
 			$data['config_google_key']             			    = $this->config->item('config_google_key');
+		}
+		
+		//languages
+		$languages = $this->language_model->get_languages();
+		
+		$data['languages'] = array();
+		
+		if($languages) 
+		{
+			foreach($languages as $language)
+			{
+				$data['languages'][] = array(
+					'code'     => $language['code'],
+					'name'     => $language['name']
+				);
+			}
 		}
 		
 		//length classes

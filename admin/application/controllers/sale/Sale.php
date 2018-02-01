@@ -2,17 +2,10 @@
 
 class Sale extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-		
+	public function index()
+	{		
 		$this->lang->load('sale/sale');
-		
-		$this->load->model('sale/sale_model');
-	}
-	
-	function index()
-	{			
+
 		$data = $this->get_list();
 			
 		$this->load->view('common/header');
@@ -20,15 +13,16 @@ class Sale extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 	
-	function reload()
+	public function reload()
 	{
 		$data = $this->get_list();
 			
 		$this->load->view('sale/sale_list_table', $data);
 	}
 	
-	function get_list()
+	protected function get_list()
 	{
+		$this->load->model('sale/sale_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
@@ -376,6 +370,7 @@ class Sale extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		
+		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -679,6 +674,7 @@ class Sale extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		
+		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
@@ -1104,6 +1100,8 @@ class Sale extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('sale/sale_model');
+		
 		if($this->input->get('sale_id'))
 		{
 			$sale_id = $this->input->get('sale_id');
@@ -1120,6 +1118,8 @@ class Sale extends CI_Controller {
 	
 	function validate_add_tracking($tracking)
 	{
+		$this->load->model('sale/sale_model');
+		
 		if($tracking)
 		{
 			$result = $this->sale_model->get_sale_by_tracking($tracking);
@@ -1143,6 +1143,8 @@ class Sale extends CI_Controller {
 	
 	function validate_edit_tracking($tracking)
 	{
+		$this->load->model('sale/sale_model');
+		
 		if($tracking)
 		{
 			$result = $this->sale_model->get_sale_by_tracking($tracking);
@@ -1175,6 +1177,8 @@ class Sale extends CI_Controller {
 	
 	function adjust_shipping($sale_id)
 	{
+		$this->load->model('sale/sale_model');
+		
 		$sale = $this->sale_model->get_sale($sale_id);
 		
 		if(empty($sale['shipping_provider']) || empty($sale['shipping_service']))

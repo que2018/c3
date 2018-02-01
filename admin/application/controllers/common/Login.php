@@ -2,16 +2,13 @@
 
 class Login extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();		
-	}
-
 	public function index()
 	{
 		$this->lang->load('common/login');
 		
 		$this->load->library('form_validation');
+		
+		$this->load->model('setting/language_model');
 				
 		if($this->auth->is_logged()) 
 		{
@@ -23,13 +20,16 @@ class Login extends CI_Controller {
 
 		$data = array(
 			'username'  => $this->input->post('username'),
-			'password'  => $this->input->post('password')
+			'password'  => $this->input->post('password'),
+			'idiom'     => $this->input->post('idiom')
 		);
 		
 		if($this->form_validation->run() == true)
 		{	
 			if($this->auth->login($data['username'], $data['password']))
 			{
+				$this->session->set_userdata('idiom', $data['idiom']);
+
 				$redirect_url = $this->session->userdata('redirect_url');
 				
 				if(isset($redirect_url))
@@ -46,9 +46,18 @@ class Login extends CI_Controller {
 				$data['error'] = $this->lang->line('error_invalid_username_or_password');
 			}				
 		}
-		else 
+		
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{	
+			$data['username']  = $this->input->post('username');
+			$data['password']  = $this->input->post('password');
+			$data['idiom']     = $this->input->post('idiom');
+		}
+		else
 		{
-			$data['error'] = validation_errors();
+			$data['username']  = '';
+			$data['password']  = '';
+			$data['idiom']     = $this->config->item('config_idiom');
 		}
 		
 		if($this->input->get('redirect')) 
@@ -60,6 +69,24 @@ class Login extends CI_Controller {
 			$data['redirect'] = '';
 		}
 		
+		//languages
+		$languages = $this->language_model->get_languages();
+		
+		$data['languages'] = array();
+		
+		if($languages) 
+		{
+			foreach($languages as $language)
+			{
+				$data['languages'][] = array(
+					'code'     => $language['code'],
+					'name'     => $language['name']
+				);
+			}
+		}
+		
+		$data['error'] = validation_errors();
+				
 		$this->load->view('common/login', $data);
 	}
 }

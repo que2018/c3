@@ -157,6 +157,7 @@
               </li>
 			  <li><a href="#"><?php echo $this->lang->line('menu_localization'); ?></a>     
 				<ul class="nav nav-third-level">
+				  <li><a href="<?php echo base_url(); ?>setting/language"><?php echo $this->lang->line('menu_language'); ?></a></li>
 				  <li><a href="<?php echo base_url(); ?>setting/length_class"><?php echo $this->lang->line('menu_length_class'); ?></a></li>
 			      <li><a href="<?php echo base_url(); ?>setting/weight_class"><?php echo $this->lang->line('menu_weight_class'); ?></a></li>
 				</ul>

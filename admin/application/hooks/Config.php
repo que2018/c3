@@ -6,7 +6,7 @@ class Config
 	{
 		$CI =& get_instance();
 		
-		$q = $CI->db->query("SELECT * FROM setting");	
+		$q = $CI->db->query('SELECT * FROM setting');	
 		
 		if($q->num_rows() > 0)
 		{

@@ -20,7 +20,7 @@ class Activity
 			'method'      => $CI->input->server('REQUEST_METHOD')
 		);
 		
-		$CI->activity_log_model->write($data);
+		$CI->activity_log_model->add_activity_log($data);
     }
 }
 

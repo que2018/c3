@@ -87,6 +87,19 @@ class CI_Lang {
 	 */
 	public function load($langfile, $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '')
 	{
+		$CI =& get_instance();
+		
+		$CI->load->library('session');
+				
+		if($CI->session->userdata('idiom'))
+		{
+			$idiom = $CI->session->userdata('idiom');
+		}
+		else if($CI->config->item('config_idiom'))
+		{
+			$idiom = $CI->config->item('config_idiom');
+		}
+		
 		if (is_array($langfile))
 		{
 			foreach ($langfile as $value)
