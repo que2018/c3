@@ -89,7 +89,7 @@ $lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-
 $lang['error_checkin_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin record is not found';
 $lang['error_tracking_is_used']                  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The tracking number <strong>%s</strong> has been used';
 $lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin product is required';
-$lang['error_checkin_product_quantity_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> has quantity unfilled';
+$lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> quantity is not a positive number';
 $lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> has location unfilled';
 $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkin is already completed';
 

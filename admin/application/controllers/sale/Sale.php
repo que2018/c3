@@ -4,8 +4,6 @@ class Sale extends CI_Controller {
 
 	public function index()
 	{		
-		$this->lang->load('sale/sale');
-
 		$data = $this->get_list();
 			
 		$this->load->view('common/header');
@@ -21,7 +19,9 @@ class Sale extends CI_Controller {
 	}
 	
 	protected function get_list()
-	{
+	{	
+		$this->lang->load('sale/sale');
+	
 		$this->load->model('sale/sale_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
@@ -205,6 +205,7 @@ class Sale extends CI_Controller {
 					'shipping'        => $shipping,
 					'date_added'      => $sale['date_added'],
 					'sale_products'   => $sale_products,
+					'checkout'        => base_url() . 'check/checkout_sale?sale_id=' . $sale['id'],
 					'edit'            => base_url() . 'sale/sale/edit?sale_id=' . $sale['id'] . $url
 				);	
 			}
@@ -368,6 +369,8 @@ class Sale extends CI_Controller {
 
 	public function add() 
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->library('form_validation');
 		
 		$this->load->model('sale/sale_model');
@@ -672,6 +675,8 @@ class Sale extends CI_Controller {
 	
 	public function edit() 
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->library('form_validation');
 		
 		$this->load->model('sale/sale_model');

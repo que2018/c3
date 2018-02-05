@@ -13,9 +13,62 @@ class Checkout_sale extends CI_Controller
 	
 	public function index()
 	{
-		$this->load->view('common/header');
-		$this->load->view('check/checkout_sale');
-		$this->load->view('common/footer');	
+		$this->load->model('sale/sale_model');
+		$this->load->model('inventory/inventory_model');
+		
+		if($this->input->get('sale_id'))
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$sale_products = $this->sale_model->get_sale_products($sale_id);
+			
+			$data['sale_id']       = $sale['id'];
+			$data['store_sale_id'] = $sale['store_sale_id'];
+			$data['tracking']      = $sale['tracking'];
+
+			$data['checkout_products'] = array();
+			
+			foreach($sale_products as $sale_product)
+			{
+				$product_id = $sale_product['product_id'];
+				
+				$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);
+					
+				if($inventories_data)
+				{
+					foreach($inventories_data as $inventory_data)
+					{
+						$inventories[] = array(
+							'location_id'   => $inventory_data['location_id'],
+							'location_name' => $inventory_data['location_name'],
+							'quantity'      => $inventory_data['quantity']
+						);
+					}
+				}
+				
+				$data['checkout_products'][] = array(
+					'product_id'      => $sale_product['product_id'],
+					'name'            => $sale_product['name'],
+					'upc'             => $sale_product['upc'],
+					'sku'             => $sale_product['sku'],
+					'quantity'        => $sale_product['quantity'],
+					'multi_location'  => (count($inventories) > 1)?true:false,
+					'inventories'     => $inventories
+				);
+			}
+
+			$this->load->view('common/header');
+			$this->load->view('check/checkout_sale', $data);
+			$this->load->view('common/footer');
+		}
+		else
+		{
+			$this->load->view('common/header');
+			$this->load->view('check/checkout_sale_empty');
+			$this->load->view('common/footer');	
+		}
 	}
 
 	function get_sale()

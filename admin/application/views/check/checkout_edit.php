@@ -48,7 +48,7 @@
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
-			<div class="panel-body">
+			<div class="panel-body tab-panel">
 			  <div class="container-fluid">
 			    <div class="row">
 				  <div class="col-lg-7">

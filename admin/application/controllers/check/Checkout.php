@@ -3,17 +3,12 @@
 
 class Checkout extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-		
+	function index()
+	{	
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
-	}
 	
-	function index()
-	{	
 		$data['success'] = $this->session->flashdata('success');
 		
 		if($this->input->get('filter_id'))
@@ -273,13 +268,16 @@ class Checkout extends CI_Controller {
 	
 	public function add()
 	{
+		$this->lang->load('check/checkout');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		
+
 		$this->form_validation->set_rules('sale_id', $this->lang->line('text_sale_id'), 'callback_validate_sale');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
@@ -437,8 +435,11 @@ class Checkout extends CI_Controller {
 	
 	public function edit()
 	{
+		$this->lang->load('check/checkout');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');		
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
@@ -726,6 +727,8 @@ class Checkout extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('check/checkout_model');
+		
 		if($this->input->get('checkout_id'))
 		{
 			$checkout_id = $this->input->get('checkout_id');
@@ -820,7 +823,7 @@ class Checkout extends CI_Controller {
 	}
 	
 	function validate_checkout_fee()
-	{	
+	{		
 		if($this->input->post('checkout_fee'))
 		{
 			$validated = true;
@@ -869,6 +872,8 @@ class Checkout extends CI_Controller {
 	
 	function validate_add_tracking($tracking)
 	{
+		$this->load->model('check/checkout_model');
+		
 		if($tracking)
 		{
 			$result = $this->checkout_model->get_checkout_by_tracking($tracking);
@@ -892,6 +897,8 @@ class Checkout extends CI_Controller {
 	
 	function validate_edit_tracking($tracking)
 	{
+		$this->load->model('check/checkout_model');
+		
 		if($tracking)
 		{
 			$result = $this->checkout_model->get_checkout_by_tracking($tracking);

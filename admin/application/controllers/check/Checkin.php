@@ -510,11 +510,11 @@ class Checkin extends CI_Controller {
 				$quantity     = $checkin_product['quantity'];
 				$location_id  = $checkin_product['location_id'];
 				
-				if(empty($quantity))
+				if(!preg_match("/^[1-9]\d*$/", $quantity))
 				{
 					$product = $this->product_model->get_product($product_id);
 					
-					$message .= sprintf($this->lang->line('error_checkin_product_quantity_required'), $product['name']);
+					$message .= sprintf($this->lang->line('error_checkin_product_quantity_format'), $product['name']);
 					$message .= '<br>';
 					
 					if($validated)

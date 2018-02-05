@@ -27,15 +27,9 @@
 	top: 30px;    	
 	right: 50px;
 }
-.panel-body {
-	padding-top: 25px !important;
-	min-height: 590px;
-}
-.note-editor.note-frame {
-    border: none !important;
-}
-.note-editor.note-frame .note-editing-area .note-editable {
-	color: #807d7d;
+.tab-panel {
+    min-height: 590px;
+    padding-top: 25px !important;
 }
 .pending {
     font-size: 9px;
@@ -63,6 +57,12 @@
 }
 .btn-clabel {
     margin-left: 25px;
+}
+.note-editor.note-frame {
+    border: none !important;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+	color: #807d7d;
 }
 
 

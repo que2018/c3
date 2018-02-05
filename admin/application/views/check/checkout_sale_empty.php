@@ -29,7 +29,7 @@
 		  <div class="row">
 			<div class="col-lg-12">
 			  <div class="code-box">
-				<input name="code" placeholder="<?php echo $this->lang->line('text_sale_checkout_input_hint'); ?>" value="<?php echo $sale_id; ?>">
+				<input name="code" placeholder="<?php echo $this->lang->line('text_sale_checkout_input_hint'); ?>" value="">
 		      </div>
 		    </div>
 		  </div>
@@ -40,7 +40,7 @@
 			    <div class="col-sm-9">
 			      <div class="input-group">
 				   <span class="input-group-addon">#</span>
-				   <input name="v_sale_id" value="<?php echo $sale_id; ?>" class="form-control" disabled>
+				   <input name="v_sale_id" value="" class="form-control" disabled>
 				   <input type="hidden" name="sale_id" value="">
 				  </div>
 			    </div>
@@ -52,7 +52,7 @@
 			    <div class="col-sm-9">
 				  <div class="input-group">
 				   <span class="input-group-addon">#</span>
-				   <input name="v_store_sale_id" value="<?php echo $store_sale_id; ?>" class="form-control" disabled>
+				   <input name="v_store_sale_id" value="" class="form-control" disabled>
 				  </div>
                 </div>				  
 			  </div>
@@ -63,7 +63,7 @@
 			    <div class="col-sm-10">
 				  <div class="input-group">
 				   <span class="input-group-addon">#</span>
-				   <input name="v_tracking" value="<?php echo $tracking; ?>" class="form-control" disabled>
+				   <input name="v_tracking" value="" class="form-control" disabled>
 				  </div>
 				</div>
 			  </div>
@@ -99,30 +99,6 @@
 				  </tr>
 			    </thead>
 			    <tbody>
-				  <?php foreach($checkout_products as $checkout_product) { ?>
-				    <tr>
-					  <td><?php echo $checkout_product['name']; ?></td>
-					  <td><?php echo $checkout_product['upc']; ?></td>
-					  <td><?php echo $checkout_product['sku']; ?></td>
-					  <td><?php echo $checkout_product['quantity']; ?></td>
-					  <td>
-					    <div class="input-group">
-					    <?php if($checkout_product['inventories']) { ?>
-						  <?php if($checkout_product['multi_location']) { ?>
-						  <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-						  <?php } else { ?>
-						  <span class="input-group-addon"><i class="fa fa-cube"></i></span>
-						  <?php } ?>
-						  <select name="checkout_product[][location_id]" class="form-control">
-						  <?php foreach($checkout_product['inventories'] as $inventory) { ?>
-						  <option value="<?php echo $inventory['location_id']; ?>"><?php echo $inventory['location_name'] . ' [qty ' . $inventory['quantity'] . ']'; ?></option>
-                          <?php } ?>
-						  </select>
-						<?php } ?>
-						</div>
-					  </td>
-					</tr>
-				  <?php } ?>
 			    </tbody>
 			  </table>  
 			</div>
