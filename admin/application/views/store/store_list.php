@@ -18,6 +18,7 @@
 	  <?php if($success) { ?>
 	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
 	  <?php } ?>
+	  <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_store_list_description'); ?></h5>
@@ -127,9 +128,25 @@ $(document).ready(function() {
 				beforeSend: function() {
 					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 				},
+				complete: function() {
+					handler.html('<i class="fa fa-trash"></i>');
+				},
 				success: function(json) {					
 					if(json.success) 
+					{
 						handler.closest('tr').remove();
+					}
+					else 
+					{
+						html = '';
+						
+						$.each(json.messages, function(i, message) {
+							html += message + '<br>';
+						});
+						
+						$('#alert-error span').html(html);		
+						$('#alert-error').show();
+					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
 					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

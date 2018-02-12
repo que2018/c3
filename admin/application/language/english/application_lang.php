@@ -45,6 +45,7 @@ $lang['menu_localization']	         = 'Localization';
 $lang['menu_length_class']	         = 'Length Class';
 $lang['menu_weight_class']	         = 'Weight Class';
 $lang['menu_store']	                 = 'Store';
+$lang['menu_employee']	             = 'Employee';
 $lang['menu_store_sync']	         = 'Store Sync';
 $lang['menu_product_sync']	 		 = 'Product Sync';
 $lang['menu_inventory_sync']		 = 'Inventory Sync';

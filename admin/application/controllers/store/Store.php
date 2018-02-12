@@ -3,17 +3,12 @@
 
 class Store extends CI_Controller {
 
-	function __construct()
+	function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('store/store');
 		
 		$this->load->model('store/store_model');
-	}
-	
-	function index()
-	{
+		
 		$data['success'] = $this->session->flashdata('success');
 		                   	
 		if($this->input->get('filter_name'))
@@ -216,8 +211,11 @@ class Store extends CI_Controller {
 	
 	public function add() 
 	{
+		$this->lang->load('store/store');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('store/store_model');
 		$this->load->model('client/client_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('extension/extension_model');
@@ -346,11 +344,13 @@ class Store extends CI_Controller {
 	
 	public function edit() 
 	{
+		$this->lang->load('store/store');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('store/store_model');
 		$this->load->model('client/client_model');
 		$this->load->model('extension/shipping_model');
-		$this->load->model('warehouse/warehouse_model');
 		$this->load->model('extension/extension_model');
 	
 		$store_id = $this->input->get('store_id');
@@ -511,15 +511,43 @@ class Store extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->lang->load('store/store');
+
+		$this->load->model('store/store_model');
+		$this->load->model('store/employee_model');
+
 		if($this->input->get('store_id'))
 		{
+			$validated = true;
+			
+			$messages = array();
+			
 			$store_id = $this->input->get('store_id');
 			
-			$this->store_model->delete_store($store_id);
+			$employees = $this->employee_model->get_employees_by_store($store_id);
+			
+			if($employees)
+			{	
+				$validated = false;
+		
+				$messages[] = $this->lang->line('error_store_employee_in_use');
+			}
+			
+			if($validated)
+			{
+				$this->store_model->delete_store($store_id);
 
-			$outdata = array(
-				'success'   => true
-			);
+				$outdata = array(
+					'success'   => true
+				);
+			}
+			else 
+			{
+				$outdata = array(
+					'success'   => false,
+					'messages'  => $messages
+				);
+			}
 			
 			echo json_encode($outdata);
 		}

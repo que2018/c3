@@ -180,7 +180,7 @@ class Store_model extends CI_Model
 		return false;
 	}
 	
-	public function get_stores($data) 
+	public function get_stores($data = array()) 
 	{			
 		$this->db->select("store.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('store');
@@ -261,7 +261,7 @@ class Store_model extends CI_Model
 		}
 	}
 	
-	function get_store_total($data)
+	function get_store_total($data = array())
 	{
 		$this->db->select("COUNT(store.id) AS total, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('store');

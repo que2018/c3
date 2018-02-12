@@ -18,7 +18,7 @@
 	  <?php if($success) { ?>
 	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
 	  <?php } ?>
-	  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
+	  <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_warehouse_list_description'); ?></h5>
@@ -94,8 +94,8 @@
 					  <td><?php echo $warehouse['country']; ?></td>
 					  <td><?php echo $warehouse['zipcode']; ?></td>
 					  <td style="text-align: center">
-					    <a href="<?php echo base_url(); ?>warehouse/warehouse/edit?id=<?php echo $warehouse['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-					  	<button class="btn btn-danger btn-delete" data="<?php echo $warehouse['id']; ?>"><i class="fa fa-trash"></i></button>
+					    <a href="<?php echo base_url(); ?>warehouse/warehouse/edit?warehouse_id=<?php echo $warehouse['warehouse_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+					  	<button class="btn btn-danger btn-delete" data="<?php echo $warehouse['warehouse_id']; ?>"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -124,16 +124,19 @@ $(document).ready(function() {
 	$('.btn-delete').click(function() {
 		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 			handler = $(this);
-			id = $(this).attr('data');
+			warehouse_id = $(this).attr('data');
 			
 			$.ajax({
-				url: '<?php echo base_url(); ?>warehouse/warehouse/delete?id=' + id,
+				url: '<?php echo base_url(); ?>warehouse/warehouse/delete?warehouse_id=' + warehouse_id,
 				cache: false,
 				contentType: false,
 				processData: false,
 				dataType: "json",
 				beforeSend: function() {
 					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+				},
+				complete: function() {
+					handler.html('<i class="fa fa-trash"></i>');
 				},
 				success: function(json) {				
 					if(json.success) 
@@ -142,10 +145,14 @@ $(document).ready(function() {
 					}
 					else 
 					{
-						$('#alert-error span').html(json.msg);		
-						$('#alert-error').show();
+						html = '';
 						
-						handler.html('<i class="fa fa-trash"></i>');
+						$.each(json.messages, function(i, message) {
+							html += message + '<br>';
+						});
+						
+						$('#alert-error span').html(html);		
+						$('#alert-error').show();
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {

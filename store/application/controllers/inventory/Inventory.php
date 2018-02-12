@@ -236,10 +236,7 @@ class Inventory extends CI_Controller {
 				);	
 			}
 		}
-		
-		//edit permission
-		$data['modifiable'] = $this->auth->has_permission('modify', 'inventory');
-		
+				
 		$this->load->view('common/header');
 		$this->load->view('inventory/inventory_list', $data);
 		$this->load->view('common/footer');

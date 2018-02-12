@@ -2,43 +2,35 @@
 
 class Auth
 {
-	private $user_id;
-	
-	private $username;
+	private $employee_id;
 	
 	private $firstname;
 	
 	private $lastname;
 	
-	private $permission = array();
-
+	private $store_id;
+	
+	private $warehouse_id;
+	
 	public function __construct()
 	{
 		$this->load->library('session');
 		
-		$this->load->model('user/user_model');
-		$this->load->model('user/user_group_model');
+		$this->load->model('store/employee_model');
 		
-		if($this->session->userdata('user_id')) 
+		if($this->session->userdata('employee_id')) 
 		{
-			$session_user_id = $this->session->userdata('user_id');
+			$session_employee_id = $this->session->userdata('employee_id');
 			
-			$user = $this->user_model->get_user($session_user_id);
+			$employee = $this->employee_model->get_employee($session_employee_id);
 			
-			if($user)
+			if($employee)
 			{
-				$this->user_id = $user['id'];
-				$this->username = $user['username'];
-				$this->firstname = $user['firstname'];
-				$this->lastname = $user['lastname'];
-				$this->user_group_id = $user['user_group_id'];
-				
-				//$data = array();
-				//$this->user_model->update_user($user_id, $data);
-				
-				$user_group = $this->user_group_model->get_user_group($user['user_group_id']);
-				
-				$this->permission = $user_group['permission'];
+				$this->employee_id   = $employee['employee_id'];
+				$this->firstname     = $employee['firstname'];
+				$this->lastname      = $employee['lastname'];
+				$this->store_id      = $employee['store_id'];
+				$this->warehouse_id  = $employee['warehouse_id'];
 			}
 			else
 			{
@@ -47,23 +39,19 @@ class Auth
 		}
 	}
 	
-	public function login($username, $password) 
+	public function login($email, $password) 
 	{
-		$user = $this->user_model->get_user_by_name_password($username, $password);
+		$employee = $this->employee_model->get_employee_by_email_password($email, $password);
 		
-		if($user)
+		if($employee)
 		{
-			$this->session->set_userdata('user_id', $user['id']);
+			$this->session->set_userdata('employee_id', $employee['employee_id']);
 			
-			$this->user_id = $user['id'];
-			$this->username = $user['username'];
-			$this->firstname = $user['firstname'];
-			$this->lastname = $user['lastname'];
-			$this->user_group_id = $user['user_group_id'];
-			
-			$user_group = $this->user_group_model->get_user_group($user['user_group_id']);
-				
-			$this->permission = $user_group['permission'];
+			$this->employee_id   = $employee['employee_id'];
+			$this->firstname     = $employee['firstname'];
+			$this->lastname      = $employee['lastname'];
+			$this->store_id      = $employee['store_id'];
+			$this->warehouse_id  = $employee['warehouse_id'];
 				
 			return true;
 		}
@@ -75,43 +63,38 @@ class Auth
 
 	public function logout() 
 	{
-		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('employee_id');
 		
-		$this->user_id = '';
-		$this->username = '';
+		$this->employee_id = '';
+		$this->employeename = '';
 		$this->permission = '';
+		$this->store_id = '';
+		$this->warehouse_id = '';
 	}
 
-	public function has_permission($key, $value) 
-	{
-		if(isset($this->permission[$key])) 
-		{
-			return in_array($value, $this->permission[$key]);
-		} 
-		else 
-		{
-			return false;
-		}
-	}
-	
 	public function is_logged() 
 	{
-		return $this->user_id;
+		return $this->employee_id;
 	}
 
-	public function get_user_id() 
+	public function get_employee_id() 
 	{
-		return $this->user_id;
+		return $this->employee_id;
 	}
-
-	public function get_username() 
+	
+	public function get_firstname() 
 	{
-		return $this->username;
+		return $this->firstname;
 	}
-
-	public function get_group_Id() 
+	
+	public function get_store_id() 
 	{
-		return $this->user_group_id;
+		return $this->store_id;
+	}
+	
+	public function get_warehouse_id() 
+	{
+		return $this->warehouse_id;
 	}
 	
 	//Enables the use of CI super-global without having to define an extra variable.

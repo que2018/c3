@@ -129,13 +129,13 @@ class Warehouse extends CI_Controller {
 			foreach($warehouses as $warehouse)
 			{	
 				$data['warehouses'][] = array(
-					'id'       => $warehouse['id'],
-					'name'     => $warehouse['name'],
-					'street'   => $warehouse['street'],
-					'city'     => $warehouse['city'],
-					'state'    => $warehouse['state'],
-					'country'  => $warehouse['country'],
-					'zipcode'  => $warehouse['zipcode']
+					'warehouse_id'  => $warehouse['id'],
+					'name'     		=> $warehouse['name'],
+					'street'   		=> $warehouse['street'],
+					'city'     		=> $warehouse['city'],
+					'state'    		=> $warehouse['state'],
+					'country'  		=> $warehouse['country'],
+					'zipcode'  		=> $warehouse['zipcode']
 				);
 			}
 		}
@@ -369,28 +369,48 @@ class Warehouse extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('store/employee_model');
 		$this->load->model('warehouse/location_model');
 		
-		if($this->input->get('id'))
+		if($this->input->get('warehouse_id'))
 		{
-			$id = $this->input->get('id');
+			$validated = true;
 			
-			$result = $this->location_model->get_locations_by_warehouse($id);
+			$messages = array();
 			
-			if($result)
-			{				
+			$warehouse_id = $this->input->get('warehouse_id');
+			
+			$locations = $this->location_model->get_locations_by_warehouse($warehouse_id);
+			
+			if($locations)
+			{	
+				$validated = false;
+		
+				$messages[] = $this->lang->line('error_warehouse_location_in_use');
+			}
+			
+			$employees = $this->employee_model->get_employees_by_warehouse($warehouse_id);
+			
+			if($employees)
+			{		
+				$validated = false;
+		
+				$messages[] = $this->lang->line('error_warehouse_employee_in_use');
+			}
+			
+			if($validated)
+			{
+				$this->warehouse_model->delete_warehouse($warehouse_id);
+		
 				$outdata = array(
-					'success'  => false,
-					'msg'      => $this->lang->line('error_warehouse_in_use')  
-
+					'success'   => true
 				);
 			}
 			else 
 			{
-				$this->warehouse_model->delete_warehouse($id);
-		
 				$outdata = array(
-					'success'   => false
+					'success'   => false,
+					'messages'  => $messages
 				);
 			}
 			

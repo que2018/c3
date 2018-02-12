@@ -21,7 +21,7 @@
       <?php } ?>
 	  <form class="m-t" role="form" action="<?php echo base_url(); ?>common/login" method="post" enctype="multipart/form-data">
 		<div class="form-group">
-		  <input type="text" name="username" value="<?php echo $username; ?>" class="form-control" placeholder="<?php echo $this->lang->line('text_username'); ?>">
+		  <input type="text" name="email" value="<?php echo $email; ?>" class="form-control" placeholder="<?php echo $this->lang->line('text_email'); ?>">
 		</div>
 		<div class="form-group">
 		  <input type="password" name="password" value="<?php echo $password; ?>" class="form-control" placeholder="<?php echo $this->lang->line('text_password'); ?>">

@@ -638,6 +638,7 @@ class Sale_model extends CI_Model
 	{
 		$this->db->select('sale.*', false);
 		$this->db->from('sale');
+		$this->db->where('sale.store_id', $this->auth->get_store_id());
 		$this->db->group_by('sale.id');
 		
 		if(!empty($data['filter_sale_id'])) 
@@ -730,6 +731,7 @@ class Sale_model extends CI_Model
 	{
 		$this->db->select("COUNT(sale.id) AS total", false);
 		$this->db->from('sale');
+		$this->db->where('sale.store_id', $this->auth->get_store_id());
 		
 		if(!empty($data['filter_sale_id'])) 
 		{			

@@ -50,8 +50,9 @@ $lang['entry_sync_warehouse'] 	  	     		= 'Sync Warehouse';
 $lang['tab_setting'] 	  	             		= 'Setting';
 $lang['tab_inventory_sync'] 	  	     		= 'Inventory Sync';
 
-
 // Button
 $lang['button_add_product'] 	  	     		= 'Add Product';
 
+// Error
+$lang['error_store_employee_in_use']            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This store is in use for employee and can not be deleted';
 

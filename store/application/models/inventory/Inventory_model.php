@@ -296,6 +296,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->where('warehouse.id', $this->auth->get_warehouse_id());
 		$this->db->group_by('inventory.id');
 		
 		if(!empty($data['filter_product'])) 
@@ -398,6 +399,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->where('warehouse.id', $this->auth->get_warehouse_id());
 		
 		if(!empty($data['filter_product'])) 
 		{			

@@ -145,11 +145,7 @@
 					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
 					  <td><?php echo $inventory['warehouse']; ?></td>
-					  <?php if($modifiable) { ?>
-					  <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
-					  <?php } else { ?>
 					  <td><?php echo $inventory['quantity']; ?></td>
-					  <?php } ?>
 					  <td><?php echo $inventory['date_modified']; ?></td>
 					  <td class="text-center">
 					    <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>

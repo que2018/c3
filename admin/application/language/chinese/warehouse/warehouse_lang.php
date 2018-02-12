@@ -37,4 +37,6 @@ $lang['entry_country'] 	  	              = 'Country';
 $lang['entry_zipcode'] 	  	              = 'Zipcode';
 
 // Error
-$lang['error_warehouse_in_use'] 	  	  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This warehouse is in use and can not be deleted';
+$lang['error_warehouse_location_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This warehouse is in use for locations and can not be deleted';
+$lang['error_warehouse_employee_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This warehouse is in use for employees and can not be deleted';
+

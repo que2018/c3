@@ -47,13 +47,6 @@
 			</ul>
 		  </li>
 		  <li>
-			<a><i class="fa fa-recycle"></i><span class="nav-label"><?php echo $this->lang->line('menu_return'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>refund/refund"><?php echo $this->lang->line('menu_return_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>refund/refund/add"><?php echo $this->lang->line('menu_return_add'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
 			<a><i class="fa fa-shopping-cart"></i><span class="nav-label"><?php echo $this->lang->line('menu_order'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>sale/sale_unsolved"><?php echo $this->lang->line('menu_unsolved_order'); ?></a></li>
@@ -78,90 +71,6 @@
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_import"><?php echo $this->lang->line('menu_import_inventory'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/transfer"><?php echo $this->lang->line('menu_transfer_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/damage"><?php echo $this->lang->line('menu_damage_list'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-cubes"></i><span class="nav-label"><?php echo $this->lang->line('menu_warehouse'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>warehouse/location"><?php echo $this->lang->line('menu_location'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>warehouse/location_import"><?php echo $this->lang->line('menu_location_import'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>warehouse/warehouse"><?php echo $this->lang->line('menu_warehouse'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-university"></i><span class="nav-label"><?php echo $this->lang->line('menu_store'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>store/store"><?php echo $this->lang->line('menu_store'); ?></a></li>
-			  <li><a href="#"><?php echo $this->lang->line('menu_store_sync'); ?></a>     
-				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>store/store_sale_sync"><?php echo $this->lang->line('menu_order_sync'); ?></a></li>
-				</ul>
-              </li>        
-			  <li><a href="<?php echo base_url(); ?>store/store_sync_history"><?php echo $this->lang->line('menu_sync_history'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-puzzle-piece"></i><span class="nav-label"><?php echo $this->lang->line('menu_extension'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-		      <li><a href="<?php echo base_url(); ?>extension/platform"><?php echo $this->lang->line('menu_platform'); ?></a></li>	
-			  <li><a href="<?php echo base_url(); ?>extension/shipping"><?php echo $this->lang->line('menu_shipping'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>extension/payment"><?php echo $this->lang->line('menu_payment'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-usd"></i><span class="nav-label"><?php echo $this->lang->line('menu_finance'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-		      <li><a href="<?php echo base_url(); ?>finance/balance"><?php echo $this->lang->line('menu_balance'); ?></a></li>	
-			  <li><a href="<?php echo base_url(); ?>finance/recharge"><?php echo $this->lang->line('menu_recharge'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>finance/transaction"><?php echo $this->lang->line('menu_transaction'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-bar-chart"></i><span class="nav-label"><?php echo $this->lang->line('menu_report'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="#"><?php echo $this->lang->line('menu_sale'); ?></a>
-			    <ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>report/sale/order"><?php echo $this->lang->line('menu_order'); ?></a></li>
-				  <li><a href="<?php echo base_url(); ?>report/sale/product"><?php echo $this->lang->line('menu_product'); ?></a></li>
-				</ul>
-			  </li>	  
-			  <li><a href="#"><?php echo $this->lang->line('menu_purchase'); ?></a>     
-				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>report/purchase/alert"><?php echo $this->lang->line('menu_alert_list'); ?></a></li>
-				</ul>
-              </li>   
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-address-card"></i><span class="nav-label"><?php echo $this->lang->line('menu_client'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>client/client"><?php echo $this->lang->line('menu_client_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>client/client/add"><?php echo $this->lang->line('menu_client_add'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa fa-user-circle-o"></i><span class="nav-label"><?php echo $this->lang->line('menu_user'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>user/user"><?php echo $this->lang->line('menu_user'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>user/user_group"><?php echo $this->lang->line('menu_user_group'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
-			<a><i class="fa fa-cog"></i><span class="nav-label"><?php echo $this->lang->line('menu_system'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>setting/setting"><?php echo $this->lang->line('menu_setting'); ?></a></li>
-			  <li><a href="#"><?php echo $this->lang->line('menu_log'); ?></a>     
-				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>setting/activity_log"><?php echo $this->lang->line('menu_activity_log'); ?></a></li>
-				</ul>
-              </li>
-			  <li><a href="#"><?php echo $this->lang->line('menu_localization'); ?></a>     
-				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>setting/language"><?php echo $this->lang->line('menu_language'); ?></a></li>
-				  <li><a href="<?php echo base_url(); ?>setting/length_class"><?php echo $this->lang->line('menu_length_class'); ?></a></li>
-			      <li><a href="<?php echo base_url(); ?>setting/weight_class"><?php echo $this->lang->line('menu_weight_class'); ?></a></li>
-				</ul>
-              </li>			
 			</ul>
 		  </li>
 		</ul>

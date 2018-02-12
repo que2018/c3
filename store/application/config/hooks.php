@@ -20,13 +20,13 @@ $hook['post_controller_constructor'][] = array(
 	'params'    => ''
 );
 
-$hook['post_controller_constructor'][] = array(
+/* $hook['post_controller_constructor'][] = array(
 	'class'     => 'Permission',
 	'function'  => 'run',
 	'filename'  => 'Permission.php',
 	'filepath'  => 'hooks',
 	'params'    => ''
-);
+); */
 
 $hook['post_controller_constructor'][] = array(
 	'class'     => 'Config',
@@ -36,10 +36,10 @@ $hook['post_controller_constructor'][] = array(
 	'params'    => ''
 );
 
-$hook['post_controller_constructor'][] = array(
+/* $hook['post_controller_constructor'][] = array(
 	'class'    => 'Activity',
 	'function' => 'run',
 	'filename' => 'Activity.php',
 	'filepath' => 'hooks',
 	'params'   => ''
-);
+); */

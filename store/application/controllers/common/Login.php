@@ -15,31 +15,33 @@ class Login extends CI_Controller {
 			redirect(base_url() . 'common/dashboard', 'refresh');
 		}
 		
-		$this->form_validation->set_rules('username', $this->lang->line('text_username'), 'required');
+		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required');
 		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');
 
 		$data = array(
-			'username'  => $this->input->post('username'),
+			'email'     => $this->input->post('email'),
 			'password'  => $this->input->post('password'),
 			'idiom'     => $this->input->post('idiom')
 		);
 		
 		if($this->form_validation->run() == true)
 		{	
-			if($this->auth->login($data['username'], $data['password']))
+			if($this->auth->login($data['email'], $data['password']))
 			{
 				$this->session->set_userdata('idiom', $data['idiom']);
 
 				$redirect_url = $this->session->userdata('redirect_url');
 				
-				if(isset($redirect_url))
+				/* if(isset($redirect_url))
 				{
 					redirect($redirect_url, 'refresh');
 				}
 				else
 				{
 					redirect(base_url() . 'common/dashboard', 'refresh');
-				}				
+				} */			
+				
+				redirect(base_url() . 'common/dashboard', 'refresh');
 			} 
 			else 
 			{
@@ -49,13 +51,13 @@ class Login extends CI_Controller {
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{	
-			$data['username']  = $this->input->post('username');
+			$data['email']     = $this->input->post('email');
 			$data['password']  = $this->input->post('password');
 			$data['idiom']     = $this->input->post('idiom');
 		}
 		else
 		{
-			$data['username']  = '';
+			$data['email']     = '';
 			$data['password']  = '';
 			$data['idiom']     = $this->config->item('config_idiom');
 		}
