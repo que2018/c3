@@ -1,0 +1,19 @@
+.panel-body {
+	min-height: 500px;
+	padding-top: 25px !important;
+}
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.button-group {	
+	position: absolute;    
+	top: 30px;    
+	right: 50px;
+}
+.control-label-small {
+	font-weight: normal;
+    padding-top: 2px !important;
+}
