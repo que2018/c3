@@ -31,6 +31,12 @@ input:focus {
 .page-heading {
 	position: relative;
 }
+.pagination-block {
+	min-height: 33px;
+}
+.pagination {
+	margin: 0px;
+}
 .btn-edit {
     margin-right: 8px;
 }

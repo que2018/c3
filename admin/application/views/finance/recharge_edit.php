@@ -24,7 +24,7 @@
   <div class="row">
     <div class="col-lg-12">
 	  <div class="ibox-content">
-	    <form method="post" class="form-horizontal">
+	    <form method="post" action="<?php echo base_url(); ?>finance/recharge/edit?recharge_id=<?php echo $recharge_id; ?>" class="form-horizontal">
 		  <div class="row">
 			<div class="col-lg-12">
 			  <div class="form-group">

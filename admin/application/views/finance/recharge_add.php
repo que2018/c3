@@ -33,10 +33,10 @@
 				  <select name="client_id" class="form-control">
 				    <option value=""></option>
 				    <?php foreach($clients as $client) { ?>
-					<?php if($client['id'] == $client_id) { ?>
-					<option value="<?php echo $client['id']; ?>" selected><?php echo $client['name']; ?></option>
+					<?php if($client['client_id'] == $client_id) { ?>
+					<option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
 					<?php } else { ?>
-					<option value="<?php echo $client['id']; ?>"><?php echo $client['name']; ?></option>
+					<option value="<?php echo $client['client_id']; ?>"><?php echo $client['name']; ?></option>
 					<?php } ?>
 					<?php } ?>
 				  </select>

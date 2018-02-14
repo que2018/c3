@@ -5,12 +5,12 @@ $lang['text_inventory'] 	  	           = 'Inventory';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = 'product';
 $lang['text_location'] 	  	         	   = 'location';
-$lang['text_add'] 	  	         	   	   = 'add';
-$lang['text_edit'] 	  	         	   	   = 'edit';
-$lang['text_delete'] 	  	         	   = 'delete';
-$lang['text_save'] 	  	         	   	   = 'save';
+$lang['text_add'] 	  	         	   	   = '添加库存';
+$lang['text_edit'] 	  	         	   	   = '编辑库存';
+$lang['text_delete'] 	  	         	   = '删除库存';
+$lang['text_save'] 	  	         	   	   = '保存库存';
 $lang['text_cancel'] 	  	         	   = 'cancel';
-$lang['text_export'] 	  	         	   = 'export';
+$lang['text_export'] 	  	         	   = '导出库存';
 $lang['text_quantity'] 	  	               = 'quantity';
 $lang['text_search'] 	  	               = 'Search';
 $lang['text_download_sample'] 	  	       = 'download sample';
@@ -49,14 +49,13 @@ $lang['entry_location'] 	  	           = 'Location';
 $lang['entry_warehouse'] 	  	           = 'Warehouse';
 $lang['entry_sku'] 	  	                   = 'SKU';
 
-
 // Error
-$lang['error_row_sku_empty'] 	  	       = 'row%s: sku is empty';
-$lang['error_row_quantity_empty'] 	  	   = 'row%s: quantity s empty';
-$lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> is not found';
-$lang['error_update_quantity_error'] 	   = 'Update quantity fail';
-$lang['error_row_location_not_found'] 	   = 'row%s: location <strong>%s</strong> is not found';
-$lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same product and location';
+$lang['error_row_sku_empty'] 	  	       = '<i class="fa fa-exclamation-triangle"></i>row%s: sku is empty';
+$lang['error_row_quantity_empty'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: quantity s empty';
+$lang['error_row_sku_not_found'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: sku <strong>%s</strong> is not found';
+$lang['error_update_quantity_error'] 	   = '<i class="fa fa-exclamation-triangle"></i>Update quantity fail';
+$lang['error_row_location_not_found'] 	   = '<i class="fa fa-exclamation-triangle"></i>row%s: location <strong>%s</strong> is not found';
+$lang['error_row_duplicated_data'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: inventory data duplicated: thare are more than one row of same product and location';
 
 
 

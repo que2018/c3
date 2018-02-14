@@ -140,9 +140,9 @@ class Recharge_model extends CI_Model
 		$this->db->from('recharge');
 		$this->db->join('client', 'client.id = recharge.client_id', 'left');
 		
-		if(!empty($data['filter_client'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->like("CONCAT(client.firstname, ' ', client.lastname)", $data['filter_client'], 'both');
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_payment_method'])) 
@@ -231,9 +231,9 @@ class Recharge_model extends CI_Model
 		$this->db->from('recharge');
 		$this->db->join('client', 'client.id = recharge.client_id', 'left');
 		
-		if(!empty($data['filter_client'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->like('client.id', $data['filter_client'], 'both');
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_payment_method'])) 

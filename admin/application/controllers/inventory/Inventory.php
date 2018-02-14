@@ -256,7 +256,7 @@ class Inventory extends CI_Controller {
 	
 		$this->form_validation->set_rules('product_id', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('location_id', $this->lang->line('text_location'), 'required');
-		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required');
+		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 	
 		$data = array(
 			'product_id'     => $this->input->post('product_id'),
@@ -330,7 +330,7 @@ class Inventory extends CI_Controller {
 	
 		$this->form_validation->set_rules('product_id', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('location_id', $this->lang->line('text_location'), 'required');
-		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required');
+		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 		
 		if($this->form_validation->run() == true)
 		{

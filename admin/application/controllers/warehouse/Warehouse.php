@@ -240,12 +240,12 @@ class Warehouse extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_name']      = base_url().'warehouse/warehouse?sort=name'.$url;
-		$data['sort_street']    = base_url().'warehouse/warehouse?sort=street'.$url;
-		$data['sort_city']      = base_url().'warehouse/warehouse?sort=city'.$url;
-		$data['sort_state']     = base_url().'warehouse/warehouse?sort=state'.$url;
-		$data['sort_country']   = base_url().'warehouse/warehouse?sort=country'.$url;		
-		$data['sort_zipcode']   = base_url().'warehouse/warehouse?sort=zipcode'.$url;
+		$data['sort_name']      = base_url() . 'warehouse/warehouse?sort=name' . $url;
+		$data['sort_street']    = base_url() . 'warehouse/warehouse?sort=street' . $url;
+		$data['sort_city']      = base_url() . 'warehouse/warehouse?sort=city' . $url;
+		$data['sort_state']     = base_url() . 'warehouse/warehouse?sort=state' . $url;
+		$data['sort_country']   = base_url() . 'warehouse/warehouse?sort=country' . $url;		
+		$data['sort_zipcode']   = base_url() . 'warehouse/warehouse?sort=zipcode' . $url;
 
 		$url = '';
 		
@@ -290,7 +290,7 @@ class Warehouse extends CI_Controller {
 		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
 		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
 		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
-		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required');
+		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
 
 		$data = array(
 			'name'         => $this->input->post('name'),
@@ -328,7 +328,7 @@ class Warehouse extends CI_Controller {
 		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
 		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
 		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
-		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required');
+		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
 
 		if($this->form_validation->run() == true)
 		{
