@@ -64,7 +64,7 @@ class Postpony_model extends CI_Model
 		$data['authorized_key'] = $this->config->item('postpony_authorized_key');
 				
 		$response = $this->send_request($data);
-		
+				
 		$label_data = $response->LableData->base64Binary;
 		
 		//$tracking = $response->TrackNo;

@@ -44,6 +44,7 @@ $lang['text_loading'] 	  	        		 	= '下载中 ...';
 $lang['text_pending'] 	  	     		        = '未完成';
 $lang['text_completed'] 	  	     		    = '完成';
 $lang['text_bulk_print'] 	  	                = '批量打印';
+$lang['text_print_pdf'] 	  	                = '批量PDF';
 $lang['text_packing_list_title'] 	  	        = '订单(#%s)';
 $lang['text_note_sale_checkout'] 	  	        = 'checkout for order(#%s)';
 $lang['text_code_hint'] 	  	    	 		= 'UPC / SKU / ASIN / Proudct Name';
@@ -65,11 +66,11 @@ $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"><
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows are imported</strong>';
 
 // Tab
-$lang['tab_customer'] 	  	             		= 'Customer';
-$lang['tab_product'] 	  	             		= 'Product';
-$lang['tab_label'] 	  	             		    = 'Label';
-$lang['tab_fee'] 	  	                 		= 'Fee';
-$lang['tab_store'] 	  	                 		= 'Store';
+$lang['tab_customer'] 	  	             		= '客户';
+$lang['tab_product'] 	  	             		= '产品';
+$lang['tab_label'] 	  	             		    = '标签';
+$lang['tab_fee'] 	  	                 		= '费用';
+$lang['tab_store'] 	  	                 		= '店铺';
 
 // Entry
 $lang['entry_select'] 	  	         		    = 'Select';
