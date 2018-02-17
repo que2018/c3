@@ -59,33 +59,82 @@ class Postpony_model extends CI_Model
 		
 		$weight_class = $this->weight_class_model->get_weight_class($sale['weight_class_id']);
 			
-		$data['key'] = 	$this->config->item('postpony_key');
-		$data['pwd'] = 	$this->config->item('postpony_pwd');
-		$data['authorized_key'] = $this->config->item('postpony_authorized_key');
-				
-		$response = $this->send_request($data);
-				
-		$label_data = $response->LableData->base64Binary;
+		$data['key'] = $this->config->item('postpony_key');
+		$data['pwd'] = $this->config->item('postpony_pwd');
+		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
+		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
+		$data['owner'] = $this->config->item('postpony_owner');
+		$data['company'] = $this->config->item('postpony_company');
+		$data['street'] = $this->config->item('postpony_street');
+		$data['street2'] = $this->config->item('postpony_street2');
+		$data['city'] = $this->config->item('postpony_city');
+		$data['state'] = $this->config->item('postpony_state');
+		$data['postcode'] = $this->config->item('postpony_postcode');
+		$data['country'] = $this->config->item('postpony_country');
+		$data['phone'] = $this->config->item('postpony_phone');
 		
-		//$tracking = $response->TrackNo;
+		//service 
+		$shipping_service = $this->get_service($sale['shipping_service']);
 		
-		//$amount = $response->TotalFreight;
+		$data['method'] = $shipping_service['method'];
 		
-		$label_img = 'img/shipping_label/ted.png';
+		//recipient
+		$data['to_name'] = $sale['name'];
+		$data['to_company'] = '';
+		$data['to_phone'] = $sale['phone'];
 		
-		if(@file_put_contents($label_img, base64_decode($label_data)))
-		{					
-			$result = array(
-				'tracking'   => $tracking,
-				'label_img'  => $label_img,
-				'amount'     => $amount
-			);
+		if($sale['street2'])
+		{
+			$data['to_street'] = $sale['street'] .' '. $sale['street2'];
+		}
+		else
+		{
+			$data['to_street'] = $sale['street'];
 		}
 		
+		$data['to_city'] = $sale['city'];		
+		$data['to_state'] = $this->get_state_short($sale['state']);
+		$data['to_postcode'] = $this->get_clean_zipcode($sale['zipcode']);
+		
+		//length & weight
+		$data['length'] = $sale['length'];
+		$data['width'] = $sale['width'];
+		$data['height'] = $sale['height'];
+		$data['weight'] = $sale['weight'];
+		
+		$response = $this->send_request($data);
+						
+		if($response->Sucess == 'true')
+		{
+			$amount = $response->TotalFreight;
+			
+			$tracking = $response->MainTrackingNum;
+			
+			$label_data = $response->LableData->base64Binary;
+						
+			$label_img = 'img/shipping_label/' . $tracking . '.png';
+			
+			if(@file_put_contents($label_img, base64_decode($label_data)))
+			{					
+				$result = array(
+					'tracking'   => $tracking,
+					'label_img'  => $label_img,
+					'amount'     => $amount
+				);
+			}
+		}
+		else
+		{
+			$result['error'] = $response->Msg;
+		}
+			
 		return $result;
 	}
 	
-	public function generate_checkout_label($checkout_id){}
+	public function generate_checkout_label($checkout_id)
+	{
+		
+	}
 	
 	protected function get_state_short($state)
 	{	
@@ -116,49 +165,56 @@ class Postpony_model extends CI_Model
 	
 	protected function send_request($data)
 	{	
-		$url = 'https://apitest.postpony.com/api/Ship';
-		
+		if($data['debug_mode'])
+		{
+			$url = 'https://apitest.postpony.com/api/Ship';
+		}
+		else
+		{
+			$url = 'https://api.postpony.com/api/Ratep';
+		}
+			
 		$xml  = '<?xml version="1.0" encoding="utf-8" ?>';
 		$xml .= '<ShipRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
 		$xml .= '<UserCredential>';
-		$xml .= '<Key>PY</Key>';
-		$xml .= '<Pwd>pypypypypy</Pwd>';
+		$xml .= '<Key>'.$data['key'].'</Key>';
+		$xml .= '<Pwd>'.$data['pwd'].'</Pwd>';
 		$xml .= '</UserCredential>';
-		$xml .= '<AuthorizedKey>TESTTOKEN-ske39De3mkC39d</AuthorizedKey>';
+		$xml .= '<AuthorizedKey>'.$data['authorized_key'].'</AuthorizedKey>';
 		$xml .= '<LabelFormatType>PNG</LabelFormatType>';
 		$xml .= '<RequstInfo>';
  		$xml .= '<Shipper>';
-		$xml .= '<PersonName>my name</PersonName>';
-		$xml .= '<CompanyName>shenma</CompanyName>';
-		$xml .= '<PhoneNumber>2025551212</PhoneNumber>';
+		$xml .= '<PersonName>'.$data['owner'].'</PersonName>';
+		$xml .= '<CompanyName>'.$data['company'].'</CompanyName>';
+		$xml .= '<PhoneNumber>'.$data['phone'].'</PhoneNumber>';
 		$xml .= '<StreetLines>';
-		$xml .= '<string>475 L Enfant Plaza SW</string>';
-		$xml .= '<string>#4</string>';
+		$xml .= '<string>'.$data['street'].'</string>';
+		$xml .= '<string>'.$data['street2'].'</string>';
 		$xml .= '</StreetLines>';
-		$xml .= '<City>Washington</City>';
-		$xml .= '<StateOrProvinceCode>DC</StateOrProvinceCode>';
-		$xml .= '<PostalCode>20260</PostalCode>';
-		$xml .= '<CountryCode>US</CountryCode>';
-		$xml .= '<CountryName>United States of America</CountryName>';
+		$xml .= '<City>'.$data['city'].'</City>';
+		$xml .= '<StateOrProvinceCode>'.$data['state'].'</StateOrProvinceCode>';
+		$xml .= '<PostalCode>'.$data['postcode'].'</PostalCode>';
+		$xml .= '<CountryCode>'.$data['country'].'</CountryCode>';
+		$xml .= '<CountryName>'.$data['country'].'</CountryName>';
 		$xml .= '<IsResidentialAddress xsi:nil="true" />';
 		$xml .= '</Shipper>';
 		$xml .= '<Recipient>';
-		$xml .= '<PersonName>gaa</PersonName>';
-		$xml .= '<CompanyName>shenzhou</CompanyName>';
-		$xml .= '<PhoneNumber>8005763279</PhoneNumber>';
+		$xml .= '<PersonName>'.$data['to_name'].'</PersonName>';
+		$xml .= '<CompanyName>'.$data['to_company'].'</CompanyName>';
+		$xml .= '<PhoneNumber>'.$data['to_phone'].'</PhoneNumber>';
 		$xml .= '<StreetLines>';
-		$xml .= '<string>385 Sherman Ave. </string><string />';
+		$xml .= '<string>'.$data['to_street'].'</string><string />';
 		$xml .= '</StreetLines>';
-		$xml .= '<City>Palo Alto</City>';
-		$xml .= '<StateOrProvinceCode>CA</StateOrProvinceCode>';
-		$xml .= '<PostalCode>94306</PostalCode>';
+		$xml .= '<City>'.$data['to_city'].'</City>';
+		$xml .= '<StateOrProvinceCode>'.$data['to_state'].'</StateOrProvinceCode>';
+		$xml .= '<PostalCode>'.$data['to_postcode'].'</PostalCode>';
 		$xml .= '<CountryCode>US</CountryCode>';
 		$xml .= '<CountryName>United States of America</CountryName>';
 		$xml .= '<IsResidentialAddress>false</IsResidentialAddress>';
 		$xml .= '</Recipient>';
 		$xml .= '<Package>';
 		$xml .= '<LabelId>0</LabelId>';
-		$xml .= '<Weight>0</Weight>';
+		$xml .= '<Weight>'.$data['weight'].'</Weight>';
 		$xml .= '<ShipDate>2016-05-04T10:18:19.8642674+08:00</ShipDate>';
 		$xml .= '<FTRCode>30.37 (a) </FTRCode>';
 		$xml .= '<ContentsType>Gift</ContentsType>';
@@ -168,11 +224,12 @@ class Postpony_model extends CI_Model
 		$xml .= '<PackageItems>';
 		$xml .= '<PackageItemInfo>';
 		$xml .= '<PackageId>0</PackageId>';
-		$xml .= '<Length>1</Length>';
-		$xml .= '<Width>1</Width>';
-		$xml .= '<Height>1</Height>';
-		$xml .= '<Weight>1</Weight>';
-		$xml .= '<WeightOz>0</WeightOz><Insurance>1</Insurance>';
+		$xml .= '<Length>'.$data['length'].'</Length>';
+		$xml .= '<Width>'.$data['width'].'</Width>';
+		$xml .= '<Height>'.$data['height'].'</Height>';
+		$xml .= '<Weight>'.$data['weight'].'</Weight>';
+		$xml .= '<WeightOz>0</WeightOz>';
+		$xml .= '<Insurance>1</Insurance>';
 		$xml .= '<UspsMailpiece>None</UspsMailpiece>';
 		$xml .= '<IsOurInsurance>false</IsOurInsurance>';
 		$xml .= '</PackageItemInfo>';
@@ -182,7 +239,7 @@ class Postpony_model extends CI_Model
 		$xml .= '<Quantity>1</Quantity>';
 		$xml .= '<UnitPrice>1</UnitPrice>';
 		$xml .= '<Description>teste</Description>';
-		$xml .= '<Weight>1</Weight>';
+		$xml .= '<Weight>'.$data['weight'].'</Weight>';
 		$xml .= '<CustomsValue>1</CustomsValue>';
 		$xml .= '<CountryOfOrigin>CN</CountryOfOrigin>';
 		$xml .= '</CustomsItem>';
@@ -190,9 +247,9 @@ class Postpony_model extends CI_Model
  		$xml .= '<LbSize>S4X6</LbSize>';
 		$xml .= '<Signature>None</Signature>';
 		$xml .= '</RequstInfo>'; 
-		$xml .= '<ShipType>FedEx2Day</ShipType>';
-		$xml .= '</ShxipRequest>';
-		
+		$xml .= '<ShipType>'.$data['method'].'</ShipType>';
+		$xml .= '</ShipRequest>';
+				
 		$headers = array(
 			'Content-type: text/xml',
 			'Content-length: ' . strlen($xml),
@@ -209,7 +266,7 @@ class Postpony_model extends CI_Model
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 		$response = curl_exec($ch); 
-				
+						
 		$result = simplexml_load_string($response);
 		
 		return $result;

@@ -24,7 +24,6 @@ class Postpony extends CI_Controller {
 		$this->form_validation->set_rules('postpony_phone', $this->lang->line('text_phone'), 'required');
 		$this->form_validation->set_rules('postpony_length_unit', $this->lang->line('text_length_unit'), 'required');
 		$this->form_validation->set_rules('postpony_weight_unit', $this->lang->line('text_weight_unit'), 'required');
-		$this->form_validation->set_rules('postpony_image_type', $this->lang->line('text_image_type'), 'required');
 		$this->form_validation->set_rules('postpony_debug_mode', $this->lang->line('text_debug_mode'), 'required');
 		$this->form_validation->set_rules('postpony_status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('postpony_sort_order', $this->lang->line('text_sort_order'), 'required');
@@ -49,7 +48,6 @@ class Postpony extends CI_Controller {
 				'postpony_phone'    	     => $this->input->post('postpony_phone'),	
 				'postpony_length_unit'    	 => $this->input->post('postpony_length_unit'),	
 				'postpony_weight_unit'    	 => $this->input->post('postpony_weight_unit'),	
-				'postpony_image_type'    	 => $this->input->post('postpony_image_type'),	
 				'postpony_debug_mode'    	 => $this->input->post('postpony_debug_mode'),	
 				'postpony_status'   	     => $this->input->post('postpony_status'),
 				'postpony_sort_order'  		 => $this->input->post('postpony_sort_order'),
@@ -83,7 +81,6 @@ class Postpony extends CI_Controller {
 			$data['postpony_phone']    	     	= $this->input->post('postpony_phone');
 			$data['postpony_length_unit']    	= $this->input->post('postpony_length_unit');	
 			$data['postpony_weight_unit']       = $this->input->post('postpony_weight_unit');	
-			$data['postpony_image_type']    	= $this->input->post('postpony_image_type');	
 			$data['ostpony_debug_mode']    	 	= $this->input->post('postpony_debug_mode');	
 			$data['postpony_status']   	     	= $this->input->post('postpony_status');
 			$data['postpony_sort_order']  		= $this->input->post('postpony_sort_order');
@@ -110,7 +107,6 @@ class Postpony extends CI_Controller {
 			$data['postpony_phone'] 			= $this->config->item('postpony_phone');
 			$data['postpony_length_unit'] 		= $this->config->item('postpony_length_unit');
 			$data['postpony_weight_unit'] 		= $this->config->item('postpony_weight_unit');
-			$data['postpony_image_type'] 		= $this->config->item('postpony_image_type');
 			$data['postpony_debug_mode'] 		= $this->config->item('postpony_debug_mode');
 			$data['postpony_status'] 			= $this->config->item('postpony_status');
 			$data['postpony_sort_order'] 		= $this->config->item('postpony_sort_order');
@@ -162,10 +158,6 @@ class Postpony extends CI_Controller {
 		$data['postpony_weight_units'] = array(
 			'KG'    =>  $this->lang->line('text_kg'),
 			'LB'    =>  $this->lang->line('text_lb')
-		);
-		
-		$data['postpony_image_types'] = array(
-			'PNG'  =>  $this->lang->line('text_png')
 		);
 		
 		$data['error'] = validation_errors();
