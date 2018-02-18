@@ -41,7 +41,7 @@
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_authorizedkey'); ?></label>
-			      <div class="col-sm-10"><input name="postpony_authorizedkey" value="<?php echo $postpony_authorizedkey; ?>" class="form-control"></div>
+			      <div class="col-sm-10"><input name="postpony_authorized_key" value="<?php echo $postpony_authorized_key; ?>" class="form-control"></div>
 				</div>
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
@@ -112,22 +112,6 @@
 					  <option value=""></option>
 					  <?php foreach($postpony_weight_units as $key => $value) { ?>
 					  <?php if($key == $postpony_weight_unit) { ?>
-					  <option value="<?php echo $key; ?>" selected><?php echo $value; ?></option>
-					  <?php } else { ?>
-					  <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
-					  <?php } ?>
-					  <?php } ?>
-					</select>
-				  </div>
-				</div>
-				<div class="hr-line-dashed"></div>
-				<div class="form-group">
-				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_image_type'); ?></label>
-			      <div class="col-sm-10">
-					<select name="postpony_image_type" class="form-control">
-					  <option value=""></option>
-					  <?php foreach($postpony_image_types as $key => $value) { ?>
-					  <?php if($key == $postpony_image_type) { ?>
 					  <option value="<?php echo $key; ?>" selected><?php echo $value; ?></option>
 					  <?php } else { ?>
 					  <option value="<?php echo $key; ?>"><?php echo $value; ?></option>

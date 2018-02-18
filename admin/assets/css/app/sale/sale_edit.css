@@ -13,7 +13,7 @@
 .btn-commit {
 	margin-right: 6px;
 }
-.btn-gen {
+.btn-print {
 	background: #f5e14d;
     border-color: #f5e14d;
 	color: #fff;
@@ -22,15 +22,18 @@
 .btn-download {
 	margin-left: 6px;
 }
-.btn-gen:hover,
-.btn-gen:focus,
-.btn-gen:active,
-.btn-gen.active,
-.btn-gen:active:focus,
-.btn-gen:active:hover,
-.btn-gen.active:hover,
-.btn-gen.active:focus {
+.btn-print:hover,
+.btn-print:focus,
+.btn-print:active,
+.btn-print.active,
+.btn-print:active:focus,
+.btn-print:active:hover,
+.btn-print.active:hover,
+.btn-print.active:focus {
   color: #fff;
+}
+.btn-gen {
+	margin-right: 4px;
 }
 .panel-body {
 	min-height: 650px;
