@@ -1,20 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Product extends CI_Controller 
 {
-	function __construct()
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('catalog/product');
 		
-		$this->load->model('catalog/product_model');
-	}
-	
-	function index()
-	{
 		$this->load->model('client/client_model');
+		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -277,12 +270,11 @@ class Product extends CI_Controller
 	
 	public function add() 
 	{
+		$this->lang->load('catalog/product');
+		
 		$this->load->library('form_validation');
 		
-		$this->load->library('predis');
-		
-		$this->predis->test();
-
+		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 	
@@ -422,8 +414,11 @@ class Product extends CI_Controller
 	
 	public function edit() 
 	{
+		$this->lang->load('catalog/product');
+
 		$this->load->library('form_validation');
 		
+		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
@@ -632,9 +627,11 @@ class Product extends CI_Controller
 	
 	public function delete()
 	{
-		$this->load->model('inventory/inventory_model');
-		
+		$this->lang->load('catalog/product');
+
+		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/transfer_model');
+		$this->load->model('inventory/inventory_model');
 		
 		if($this->input->get('product_id'))
 		{
@@ -672,8 +669,12 @@ class Product extends CI_Controller
 		}
 	}
 	
-	function validate_add_sku($sku)
+	private function validate_add_sku($sku)
 	{
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('catalog/product_model');
+		
 		$result = $this->product_model->get_product_by_sku($sku);
 		
 		if($result)
@@ -688,8 +689,12 @@ class Product extends CI_Controller
 		}
 	}
 	
-	function validate_edit_sku($sku)
+	private function validate_edit_sku($sku)
 	{
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('catalog/product_model');
+		
 		$result = $this->product_model->get_product_by_sku($sku);
 		
 		if($result && $this->input->get('product_id'))

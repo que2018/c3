@@ -15,6 +15,7 @@ class Setting_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('setting');
 		$this->db->where('code', $code);
+		
 		$q = $this->db->get();
 
 		if($q->num_rows() > 0) 
@@ -41,7 +42,7 @@ class Setting_model extends CI_Model
 		
 		foreach($data as $key => $value) 
 		{
-			if(substr($key, 0, strlen($code)) == $code) 
+			if(isset($value) && (substr($key, 0, strlen($code)) == $code)) 
 			{
 				if(!is_array($value))
 				{

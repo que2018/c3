@@ -18,7 +18,7 @@ class Postpony extends CI_Controller {
 		$this->form_validation->set_rules('postpony_street', $this->lang->line('text_street'), 'required');
 		$this->form_validation->set_rules('postpony_city', $this->lang->line('text_city'), 'required');
 		$this->form_validation->set_rules('postpony_state', $this->lang->line('text_state'), 'required');
-		$this->form_validation->set_rules('postpony_postcode', $this->lang->line('text_postcode'), 'required');
+		$this->form_validation->set_rules('postpony_postcode',$this->lang->line('text_postcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
 		$this->form_validation->set_rules('postpony_country', $this->lang->line('text_country'), 'required');
 		$this->form_validation->set_rules('postpony_owner', $this->lang->line('text_owner'), 'required');
 		$this->form_validation->set_rules('postpony_phone', $this->lang->line('text_phone'), 'required');
@@ -26,10 +26,10 @@ class Postpony extends CI_Controller {
 		$this->form_validation->set_rules('postpony_weight_unit', $this->lang->line('text_weight_unit'), 'required');
 		$this->form_validation->set_rules('postpony_debug_mode', $this->lang->line('text_debug_mode'), 'required');
 		$this->form_validation->set_rules('postpony_status', $this->lang->line('text_status'), 'required');
-		$this->form_validation->set_rules('postpony_sort_order', $this->lang->line('text_sort_order'), 'required');
+		$this->form_validation->set_rules('postpony_sort_order', $this->lang->line('text_sort_order'), 'required|regex_match[/^\d+$/]');
 		$this->form_validation->set_rules('postpony_service[]', $this->lang->line('text_service'), 'required');
 		$this->form_validation->set_rules('postpony_fee_type', $this->lang->line('text_fee_type'), 'required');
-		$this->form_validation->set_rules('postpony_fee_value', $this->lang->line('text_fee_value'), 'required');
+		$this->form_validation->set_rules('postpony_fee_value', $this->lang->line('text_fee_value'), 'required|regex_match[/^\d+$/]');
 		
 		if($this->form_validation->run() == true)
 		{

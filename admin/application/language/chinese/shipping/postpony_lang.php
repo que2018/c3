@@ -25,6 +25,7 @@ $lang['text_debug_mode'] 	  	     	 	= 'Debug Mode';
 $lang['text_sort_order'] 	  	         	= 'sort order';
 $lang['text_status'] 	  	             	= 'status';
 $lang['text_service'] 	  	         	 	= 'service';
+$lang['text_state_mapping'] 	  	        = 'state mapping';
 $lang['text_cm'] 	  	        		 	= 'cm';
 $lang['text_inch'] 	  	 				 	= 'inch';
 $lang['text_kg'] 	  	 				 	= 'kg';
@@ -34,7 +35,7 @@ $lang['text_fixed'] 	  			     	= 'fixed';
 $lang['text_ratio'] 	  			     	= 'ratio';
 $lang['text_fee_value'] 	  				= 'fee value';
 $lang['text_save_setting'] 	  				= 'save setting';
-$lang['text_postpony_edit_success'] 	  	= 'Postpony is successfully edited';
+$lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;edit postpony success';
 
 // Tab
 $lang['tab_service'] 	  	             	= 'Service';
