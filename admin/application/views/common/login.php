@@ -27,12 +27,12 @@
 		  <input type="password" name="password" value="<?php echo $password; ?>" class="form-control" placeholder="<?php echo $this->lang->line('text_password'); ?>">
 		</div>
 	    <div class="form-group">
-		  <select name="idiom" class="form-control">
+		  <select name="language_id" class="form-control">
 			<?php foreach($languages as $language) { ?>
-			<?php if($language['code'] == $idiom) { ?>
-			<option value="<?php echo $language['code']; ?>" selected><?php echo $language['name']; ?></option>
+			<?php if($language['language_id'] == $language_id) { ?>
+			<option value="<?php echo $language['language_id']; ?>" selected><?php echo $language['name']; ?></option>
 			<?php } else { ?>
-			<option value="<?php echo $language['code']; ?>"><?php echo $language['name']; ?></option>					
+			<option value="<?php echo $language['language_id']; ?>"><?php echo $language['name']; ?></option>					
 			<?php } ?>
 			<?php } ?>
 		  </select>

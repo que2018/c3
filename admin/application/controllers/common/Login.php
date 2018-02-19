@@ -19,16 +19,16 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');
 
 		$data = array(
-			'username'  => $this->input->post('username'),
-			'password'  => $this->input->post('password'),
-			'idiom'     => $this->input->post('idiom')
+			'username'    => $this->input->post('username'),
+			'password'    => $this->input->post('password'),
+			'language_id' => $this->input->post('language_id')
 		);
 		
 		if($this->form_validation->run() == true)
 		{	
 			if($this->auth->login($data['username'], $data['password']))
 			{
-				$this->session->set_userdata('idiom', $data['idiom']);
+				$this->session->set_userdata('language_id', $data['language_id']);
 
 				$redirect_url = $this->session->userdata('redirect_url');
 				
@@ -79,8 +79,8 @@ class Login extends CI_Controller {
 			foreach($languages as $language)
 			{
 				$data['languages'][] = array(
-					'code'     => $language['code'],
-					'name'     => $language['name']
+					'language_id'  => $language['language_id'],
+					'name'         => $language['name']
 				);
 			}
 		}

@@ -41,6 +41,7 @@ $lang['menu_shipping']	             = 'Shipping';
 $lang['menu_payment']	             = 'Payment';
 $lang['menu_system']	             = 'System';
 $lang['menu_setting']	             = 'Setting';
+$lang['menu_information']	         = 'Information';
 $lang['menu_localization']	         = 'Localization';
 $lang['menu_length_class']	         = 'Length Class';
 $lang['menu_weight_class']	         = 'Weight Class';

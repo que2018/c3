@@ -17,6 +17,7 @@ class Setting extends CI_Controller {
 		$this->load->library('form_validation');
 	
 		$this->load->model('setting/language_model');
+		$this->load->model('setting/information_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		$this->load->model('extension/shipping_model');
@@ -27,7 +28,8 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('config_dashboard_activity_limit', $this->lang->line('text_dashboard_activity_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_order_limit', $this->lang->line('text_dashboard_order_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_store_sync_limit', $this->lang->line('text_dashboard_store_sync_limit'), 'required');
-		$this->form_validation->set_rules('config_idiom', $this->lang->line('text_language'), 'required');
+		$this->form_validation->set_rules('config_language_id', $this->lang->line('text_language'), 'required');
+		$this->form_validation->set_rules('config_information_front_id', $this->lang->line('text_information_front'), 'required');
 		$this->form_validation->set_rules('config_length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('config_weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('config_autocomplete_limit', $this->lang->line('text_autocomplete_limit'), 'required');
@@ -89,7 +91,9 @@ class Setting extends CI_Controller {
 				'config_printnode_width'   					=> $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_printer_id'   		    => $this->input->post('config_printnode_printer_id'),
-				'config_idiom'      			            => $this->input->post('config_idiom'),
+				'config_language_id'      			        => $this->input->post('config_language_id'),
+				'config_information_id'      			    => $this->input->post('config_information_id'),
+				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
@@ -141,7 +145,9 @@ class Setting extends CI_Controller {
 				'config_printnode_width'      			    => $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_printer_id'  			    => $this->input->post('config_printnode_printer_id'),
-				'config_idiom'      			            => $this->input->post('config_idiom'),
+				'config_language_id'        			    => $this->input->post('config_language_id'),
+				'config_information_id'      			    => $this->input->post('config_information_id'),
+				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
@@ -185,7 +191,9 @@ class Setting extends CI_Controller {
 			$data['config_printnode_width']     		        = $this->config->item('config_printnode_width');
 			$data['config_printnode_api_key']     		        = $this->config->item('config_printnode_api_key');
 			$data['config_printnode_printer_id']     		    = $this->config->item('config_printnode_printer_id');
-			$data['config_idiom']     		                    = $this->config->item('config_idiom');
+			$data['config_language_id']     		            = $this->config->item('config_language_id');
+			$data['config_information_id']     		            = $this->config->item('config_information_id');
+			$data['config_information_front_id']     		    = $this->config->item('config_information_front_id');
 			$data['config_length_class_id']     		        = $this->config->item('config_length_class_id');
 			$data['config_weight_class_id']     		        = $this->config->item('config_weight_class_id');
 			$data['config_default_order_shipping_provider'] 	= $this->config->item('config_default_order_shipping_provider');
@@ -199,25 +207,41 @@ class Setting extends CI_Controller {
 		}
 		
 		//languages
-		$languages = $this->language_model->get_languages();
-		
 		$data['languages'] = array();
+		
+		$languages = $this->language_model->get_languages();
 		
 		if($languages) 
 		{
 			foreach($languages as $language)
 			{
 				$data['languages'][] = array(
-					'code'     => $language['code'],
-					'name'     => $language['name']
+					'language_id' => $language['language_id'],
+					'name'        => $language['name']
+				);
+			}
+		}
+		
+		//informations
+		$data['informations'] = array();
+		
+		$informations = $this->information_model->get_informations();
+		
+		if($informations) 
+		{
+			foreach($informations as $information)
+			{
+				$data['informations'][] = array(
+					'information_id' => $information['information_id'],
+					'title'          => $information['title']
 				);
 			}
 		}
 		
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
-		
 		$data['length_classes'] = array();
+		
+		$length_classes = $this->length_class_model->get_all_length_classes();
 		
 		if($length_classes) 
 		{
@@ -231,9 +255,9 @@ class Setting extends CI_Controller {
 		}
 			
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
-		
 		$data['weight_classes'] = array();
+		
+		$weight_classes = $this->weight_class_model->get_all_weight_classes();
 		
 		if($weight_classes) 
 		{
@@ -247,10 +271,10 @@ class Setting extends CI_Controller {
 		}
 		
 		//shipping providers
-		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
-				
 		$data['shipping_providers'] = array();
 		
+		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
+				
 		foreach($shipping_providers_data as $shipping_provider_data) 
 		{
 			$code = $shipping_provider_data['code'];
@@ -282,8 +306,6 @@ class Setting extends CI_Controller {
 			}
 		}
 		
-		
-
 		$data['success'] = $this->session->flashdata('success');
 		
 		$data['error'] = validation_errors();
