@@ -19,6 +19,7 @@ class Information extends CI_Controller {
 				{
 					$data['informations'][] = array(
 						'information_id'  => $information['information_id'],
+						'redirect'        => $information['redirect'],
 						'title'       	  => $information['title'],
 					);
 				}
@@ -31,7 +32,7 @@ class Information extends CI_Controller {
 		}
 		else
 		{
-			$information_id = $this->config->item('config_information_front_id');
+			$information_id = $this->config->item('config_information_id');
 		}
 		
 		$information = $this->information_model->get_information($information_id);	

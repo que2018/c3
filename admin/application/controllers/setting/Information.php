@@ -250,6 +250,7 @@ class Information extends CI_Controller {
 		$data = array(
 			'content'   => $this->input->post('content'),
 			'front'     => $this->input->post('front'),
+			'redirect'  => $this->input->post('redirect'),
 			'status'    => $this->input->post('status')
 		);
 		
@@ -300,6 +301,7 @@ class Information extends CI_Controller {
 			$data = array(
 				'content'   => $this->input->post('content'),
 				'front'     => $this->input->post('front'),
+				'redirect'  => $this->input->post('redirect'),
 				'status'    => $this->input->post('status')
 			);
 			
@@ -314,15 +316,17 @@ class Information extends CI_Controller {
 		{
 			$data['title']    = $this->input->post('title');
 			$data['content']  = $this->input->post('content');
-			$data['front']    = $this->input->post(front);
+			$data['front']    = $this->input->post('front');
+			$data['redirect'] = $this->input->post('redirect');
 			$data['status']   = $this->input->post('status');
 		}
 		else
 		{
 			$information = $this->information_model->get_information($information_id);
 
-			$data['front']   = $information['front'];
-			$data['status']  = $information['status'];
+			$data['front']    = $information['front'];
+			$data['redirect'] = $information['redirect'];
+			$data['status']   = $information['status'];
 			
 			$contents = $this->information_model->get_information_contents($information_id);
 			

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2018 at 03:44 AM
+-- Generation Time: Feb 20, 2018 at 09:47 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `c0`
+-- Database: `temp`
 --
 
 -- --------------------------------------------------------
@@ -319,6 +319,7 @@ CREATE TABLE `fee` (
 CREATE TABLE `information` (
   `information_id` int(11) NOT NULL,
   `front` tinyint(4) NOT NULL,
+  `redirect` varchar(1024) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `sort_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -327,8 +328,8 @@ CREATE TABLE `information` (
 -- Dumping data for table `information`
 --
 
-INSERT INTO `information` (`information_id`, `front`, `status`, `sort_order`) VALUES
-(4, 1, 1, 0);
+INSERT INTO `information` (`information_id`, `front`, `redirect`, `status`, `sort_order`) VALUES
+(4, 1, '', 1, 0);
 
 -- --------------------------------------------------------
 

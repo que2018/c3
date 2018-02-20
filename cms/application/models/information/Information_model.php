@@ -8,7 +8,7 @@ class Information_model extends CI_Model
 		$this->db->from('information');
 		$this->db->join('information_content', 'information_content.information_id = information.information_id', 'left');
 		$this->db->where('information.information_id', $information_id);
-		$this->db->where('information_content.language_id', 4);
+		$this->db->where('information_content.language_id', $this->config->item('config_language_id'));
 		
 		$q = $this->db->get();
 		
@@ -25,7 +25,7 @@ class Information_model extends CI_Model
 		$this->db->select('information.*, information_content.title, information_content.content', false);
 		$this->db->from('information');
 		$this->db->join('information_content', 'information_content.information_id = information.information_id', 'left');
-		$this->db->where('information_content.language_id', 4);
+		$this->db->where('information_content.language_id', $this->config->item('config_language_id'));
 		$this->db->group_by('information.information_id');
 			
 		$sort_data = array(

@@ -79,6 +79,11 @@
               </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
+		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_redirect'); ?></label>
+                <div class="col-sm-10"><input name="redirect" value="<?php echo $redirect; ?>" class="form-control"></div>
+              </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
                 <div class="col-sm-10">
 			      <select name="status" class="form-control">
