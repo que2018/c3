@@ -29,7 +29,6 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('config_dashboard_order_limit', $this->lang->line('text_dashboard_order_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_store_sync_limit', $this->lang->line('text_dashboard_store_sync_limit'), 'required');
 		$this->form_validation->set_rules('config_language_id', $this->lang->line('text_language'), 'required');
-		$this->form_validation->set_rules('config_information_front_id', $this->lang->line('text_information_front'), 'required');
 		$this->form_validation->set_rules('config_length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('config_weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('config_autocomplete_limit', $this->lang->line('text_autocomplete_limit'), 'required');

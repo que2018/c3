@@ -669,7 +669,7 @@ class Product extends CI_Controller
 		}
 	}
 	
-	private function validate_add_sku($sku)
+	public function validate_add_sku($sku)
 	{
 		$this->lang->load('catalog/product');
 		
@@ -689,7 +689,7 @@ class Product extends CI_Controller
 		}
 	}
 	
-	private function validate_edit_sku($sku)
+	public function validate_edit_sku($sku)
 	{
 		$this->lang->load('catalog/product');
 		

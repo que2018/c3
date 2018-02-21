@@ -103,15 +103,17 @@ class Postpony_model extends CI_Model
 		$data['weight'] = $sale['weight'];
 		
 		$response = $this->send_request($data);
-						
+								
 		if($response->Sucess == 'true')
-		{
-			$amount = $response->TotalFreight;
-			
-			$tracking = $response->MainTrackingNum;
-			
+		{			
 			$label_data = $response->LableData->base64Binary;
+			
+			$response_array = @json_decode(@json_encode($response), 1);
+			
+			$amount = $response_array['TotalFreight'];
 						
+			$tracking = $response_array['MainTrackingNum'];
+												
 			$label_img = 'img/shipping_label/' . $tracking . '.png';
 			
 			if(@file_put_contents($label_img, base64_decode($label_data)))
@@ -131,10 +133,7 @@ class Postpony_model extends CI_Model
 		return $result;
 	}
 	
-	public function generate_checkout_label($checkout_id)
-	{
-		
-	}
+	public function generate_checkout_label($checkout_id){}
 	
 	protected function get_state_short($state)
 	{	
@@ -266,7 +265,7 @@ class Postpony_model extends CI_Model
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 		$response = curl_exec($ch); 
-						
+								
 		$result = simplexml_load_string($response);
 		
 		return $result;
