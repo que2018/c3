@@ -347,8 +347,8 @@ class Setting extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
-	}
+		echo json_encode($outdata); 
+	} 
 }
 
 

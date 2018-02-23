@@ -507,7 +507,6 @@ $(document).ready(function() {
 			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
-
 });
 </script>
 <script>

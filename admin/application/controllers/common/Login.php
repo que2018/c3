@@ -85,6 +85,8 @@ class Login extends CI_Controller {
 			}
 		}
 		
+		$data['language_id'] = $this->config->item('config_language_id');
+		
 		$data['error'] = validation_errors();
 				
 		$this->load->view('common/login', $data);

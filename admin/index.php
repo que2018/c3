@@ -34,6 +34,7 @@
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
+ * @version 1.52
  */
 
 /*

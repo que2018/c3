@@ -220,7 +220,6 @@ class Store extends CI_Controller {
 		$this->load->model('extension/shipping_model');
 		$this->load->model('extension/extension_model');
 	
-		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');
 		$this->form_validation->set_rules('platform', $this->lang->line('text_platform'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('default_sale_status_id', $this->lang->line('text_default_sale_status_id'), 'required');
@@ -355,7 +354,6 @@ class Store extends CI_Controller {
 	
 		$store_id = $this->input->get('store_id');
 	
-		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');
 		$this->form_validation->set_rules('platform', $this->lang->line('text_platform'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('default_sale_status_id', $this->lang->line('text_default_sale_status_id'), 'required');

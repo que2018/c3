@@ -13,7 +13,8 @@ class Store_model extends CI_Model
 		$this->db->trans_begin();
 		
 		//store data
-		$store_data = array(		
+		$store_data = array(	
+			'client_id'	     		         => $data['client_id'],		
 			'platform'	     		         => $data['platform'],
 			'name'	         		  		 => $data['name'],
 			'setting'	      		  		 => serialize($data['setting']),
@@ -25,17 +26,7 @@ class Store_model extends CI_Model
 		$this->db->insert('store', $store_data); 
 			
 		$store_id = $this->db->insert_id();	
-			
-		if($data['client_id'])
-		{
-			$store_data = array(		
-				'client_id'  => $data['client_id']
-			);
-			
-			$this->db->where('id', $store_id);
-			$this->db->update('store', $store_data); 
-		}
-			
+				
 		//store sync data
 		$store_sync_data = array(		
 			'store_id'	  => $store_id,
@@ -72,7 +63,8 @@ class Store_model extends CI_Model
 		$this->db->trans_begin();
 		
 		//store data
-		$store_data = array(		
+		$store_data = array(	
+			'client_id'	     		         => $data['client_id'],				
 			'platform'	              		 => $data['platform'],
 			'name'	                  		 => $data['name'],
 			'setting'	              		 => serialize($data['setting']),
@@ -83,16 +75,6 @@ class Store_model extends CI_Model
 		
 		$this->db->where('id', $store_id);
 		$this->db->update('store', $store_data); 
-		
-		if($data['client_id'])
-		{
-			$store_data = array(		
-				'client_id'  => $data['client_id']
-			);
-			
-			$this->db->where('id', $store_id);
-			$this->db->update('store', $store_data); 
-		}
 		
 		//store sync data
 		$store_sync_data = array(		
