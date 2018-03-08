@@ -314,13 +314,18 @@ class Sale_model extends CI_Model
 		
 		if($q->num_rows() > 0)
 		{
-			$sale_detail = '\n';
+			$sale_detail = '';
 			
 			$results = $q->result_array();
 			
-			foreach($results as $result) 
+			$count = count($results);
+			
+			foreach($results as $i => $result) 
 			{
-				$sale_detail .= $result['sku'] . ':  ' . $result['quantity'] . '\n';
+				$sale_detail .= $result['sku'] . ':  ' . $result['quantity'];
+				
+				if($i < ($count - 1))
+					$sale_detail .= ', ';
 			}
 			
 			return $sale_detail;
