@@ -95,17 +95,17 @@ class Location_import extends CI_Controller
 		$sheet = $obj_phpexcel->getSheet(0);
 		$total = $sheet->getHighestDataRow();
 				
-		$locations = array();
-	
+		$validated = true;		
+				
 		$messages = array();
 		
-		$validated = true;
+		$locations = array();
 		
 		for($i = 2; $i <= $total; $i++)
 		{ 
 			$row = $sheet->rangeToArray('A' . $i, null, true, false);
 
-			$name  = $row[0][0];
+			$name = $row[0][0];
 			
 			$flag = true;
 					
@@ -115,9 +115,12 @@ class Location_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_name'), $i);
 			
 				$flag = false;
+				
+				if($validated) 
+					$validated = false;
 			}
 			
-			//name is used
+			//name is used in database
 			$location = $this->location_model->get_location_by_name($name);	
 				
 			if($location)
@@ -127,6 +130,17 @@ class Location_import extends CI_Controller
 				$flag = false;
 			}	
 			
+			//name is used in array
+			foreach($locations as $location)
+			{
+				if($location['name'] == $name)
+				{
+					$messages[] = sprintf($this->lang->line('error_row_name_used'), $i, $name);
+				
+					$flag = false;
+				}
+			}
+			
 			if($flag)
 			{				
 				$locations[] = array(
@@ -134,11 +148,6 @@ class Location_import extends CI_Controller
 					'code'          => $name . '000000',
 					'warehouse_id'  => $warehouse_id
 				);
-			}
-			else 
-			{
-				if($validated) 
-					$validated = false;
 			}
 		}
 		

@@ -121,7 +121,7 @@
 					  <?php if($modifiable) { ?>
 					  <td>
 					    <span><?php echo $product['name']; ?></span>
-					    <div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
+					    <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table">
 						    <thead>
 							  <th style="width: 25%;"><?php echo $this->lang->line('column_length_short'); ?></th>

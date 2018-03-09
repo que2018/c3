@@ -28,7 +28,7 @@ $lang['text_inventory_add_success'] 	   = '<i class="fa fa-check-circle-o"></i>&
 $lang['text_inventory_edit_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory edit success';
 $lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory delete success';
 $lang['text_rows_imported'] 	           = '<strong>Total %s rows are imported</strong>';
-$lang['text_no_row_imported'] 	           = '<strong>No row is imported</strong>';
+$lang['text_no_rows_imported'] 	           = '<strong>No row is imported</strong>';
 
 
 // Column
@@ -50,12 +50,14 @@ $lang['entry_warehouse'] 	  	           = 'Warehouse';
 $lang['entry_sku'] 	  	                   = 'SKU';
 
 // Error
-$lang['error_row_sku_empty'] 	  	       = '<i class="fa fa-exclamation-triangle"></i>row%s: sku is empty';
-$lang['error_row_quantity_empty'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: quantity s empty';
-$lang['error_row_sku_not_found'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: sku <strong>%s</strong> is not found';
-$lang['error_update_quantity_error'] 	   = '<i class="fa fa-exclamation-triangle"></i>Update quantity fail';
-$lang['error_row_location_not_found'] 	   = '<i class="fa fa-exclamation-triangle"></i>row%s: location <strong>%s</strong> is not found';
-$lang['error_row_duplicated_data'] 	  	   = '<i class="fa fa-exclamation-triangle"></i>row%s: inventory data duplicated: thare are more than one row of same product and location';
+$lang['error_row_sku_empty'] 	  	       = 'row%s: sku is empty';
+$lang['error_row_location_empty'] 	  	   = 'row%s: location is empty';
+$lang['error_row_quantity_empty'] 	  	   = 'row%s: quantity is empty';
+$lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> is not found';
+$lang['error_update_quantity_error'] 	   = 'Update quantity fail';
+$lang['error_row_location_not_found'] 	   = 'row%s: location <strong>%s</strong> is not found';
+$lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same product and location';
+
 
 
 

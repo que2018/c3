@@ -136,6 +136,18 @@ class Product_model extends CI_Model
 		return false;
 	}
 
+	public function get_product_by_name($name) 
+	{
+		$q = $this->db->get_where('product', array('name' => $name), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_product_by_upc($upc) 
 	{
 		$q = $this->db->get_where('product', array('upc' => $upc), 1); 
@@ -163,18 +175,6 @@ class Product_model extends CI_Model
 	public function get_product_by_asin($asin) 
 	{
 		$q = $this->db->get_where('product', array('asin' => $asin), 1); 
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->row_array();
-		} 
-		
-		return false;
-	}
-	
-	public function get_product_by_name($name) 
-	{
-		$q = $this->db->get_where('product', array('name' => $name), 1); 
 		
 		if($q->num_rows() > 0)
 		{

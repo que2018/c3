@@ -109,16 +109,14 @@ class Inventory_import extends CI_Controller {
 			$sku       = $row[0][0];
 			$name      = $row[0][1];
 			$quantity  = $row[0][2];
-					
+								
 			//sku empty
-			if(!$sku)
+			if(!isset($sku) || empty($sku))
 			{
 				$messages[] = sprintf($this->lang->line('error_row_sku_empty'), $i);
 				
 				if($validated)
 					$validated = false;
-				
-				continue;
 			}
 				
 			//sku not found	
@@ -130,10 +128,17 @@ class Inventory_import extends CI_Controller {
 				
 				if($validated)
 					$validated = false;
-				
-				continue;
 			}	
 
+			//location empty
+			if(!isset($name) || empty($name))
+			{
+				$messages[] = sprintf($this->lang->line('error_row_locatoin_empty'), $i);
+				
+				if($validated)
+					$validated = false;
+			}
+			
 			//location not found			
 			$location = $this->location_model->get_location_by_name($name);	
 				
@@ -143,10 +148,19 @@ class Inventory_import extends CI_Controller {
 				
 				if($validated)
 					$validated = false;
-			}	
+			}
+
+			//quantity empty
+			if(!isset($quantity))
+			{
+				$messages[] = sprintf($this->lang->line('error_row_quantity_empty'), $i);
+				
+				if($validated)
+					$validated = false;
+			}
 			
 			//duplicate data
-			foreach($inventories as $inventory)
+			/* foreach($inventories as $inventory)
 			{
 				if(($inventory['product_id'] == $product['id']) && ($inventory['location_id'] == $location['id']))
 				{
@@ -155,7 +169,7 @@ class Inventory_import extends CI_Controller {
 					if($validated)
 						$validated = false;
 				}
-			}
+			} */
 			
 			if($validated)
 			{
@@ -171,13 +185,12 @@ class Inventory_import extends CI_Controller {
 		{
 			foreach($inventories as $inventory)
 			{
-				$product_id = $inventory['product_id'];
+				//$product_id = $inventory['product_id'];
+				//$location_id = $inventory['location_id'];
+				//$this->inventory_model->delete_inventory_by_location_product($location_id, $product_id);
+				//$this->inventory_model->set_inventory($inventory);
 				
-				$location_id = $inventory['location_id'];
-				
-				$this->inventory_model->delete_inventory_by_location_product($location_id, $product_id);
-	
-				$this->inventory_model->set_inventory($inventory);
+				$this->inventory_model->add_inventory($inventory);
 			}
 			
 			$total = sizeof($inventories);

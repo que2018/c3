@@ -162,6 +162,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_name'), $i);
 			
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error upc
@@ -170,6 +172,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_upc'), $i);
 
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error sku
@@ -178,17 +182,9 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_sku'), $i);
 			
 				$flag = false;
+				
+				$validated = false;
 			}
-			
-			//sku exist
-			$product_info = $this->product_model->get_product_by_sku($sku);	
-					
-			if($product_info)
-			{
-				$messages[] = sprintf($this->lang->line('error_row_sku_exist'), $i, $sku);
-			
-				$flag = false;
-			}	
 			
 			//error price
 			if(!isset($price))
@@ -196,6 +192,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_price'), $i);
 				
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error length
@@ -204,6 +202,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_length'), $i);
 					
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error width
@@ -212,6 +212,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_width'), $i);
 				
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error height
@@ -220,6 +222,8 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_height'), $i);
 
 				$flag = false;
+				
+				$validated = false;
 			}
 			
 			//error weight
@@ -228,7 +232,84 @@ class Product_import extends CI_Controller
 				$messages[] = sprintf($this->lang->line('error_row_weight'), $i);
 
 				$flag = false;
+				
+				$validated = false;
 			}
+			
+			//name exist in database
+			$product_info = $this->product_model->get_product_by_name($name);	
+					
+			if($product_info)
+			{
+				$messages[] = sprintf($this->lang->line('error_row_name_exist'), $i, $name);
+			
+				$flag = false;
+				
+				$validated = false;
+			}	
+			
+			//name exist in array
+			foreach($products as $product)
+			{
+				if($product['name'] == $name)
+				{
+					$messages[] = sprintf($this->lang->line('error_row_name_exist'), $i, $name);
+			
+					$flag = false;
+					
+					break;
+				}
+			}
+			
+			//sku exist in database
+			$product_info = $this->product_model->get_product_by_sku($sku);	
+					
+			if($product_info)
+			{
+				$messages[] = sprintf($this->lang->line('error_row_sku_exist'), $i, $sku);
+			
+				$flag = false;
+				
+				$validated = false;
+			}
+
+			//sku exist in array
+			foreach($products as $product)
+			{
+				if($product['sku'] == $sku)
+				{
+					$messages[] = sprintf($this->lang->line('error_row_sku_exist'), $i, $sku);
+			
+					$flag = false;
+					
+					break;
+				}
+			}			
+			
+			//upc exist in database
+			$product_info = $this->product_model->get_product_by_upc($upc);	
+					
+			if($product_info)
+			{
+				$messages[] = sprintf($this->lang->line('error_row_upc_exist'), $i, $upc);
+			
+				$flag = false;
+				
+				$validated = false;
+			}
+			
+			//upc exist in array
+			foreach($products as $product)
+			{
+				if($product['upc'] == $upc)
+				{
+					$messages[] = sprintf($this->lang->line('error_row_upc_exist'), $i, $upc);
+			
+					$flag = false;
+					
+					break;
+				}
+			}	
 			
 			if($flag)
 			{				
@@ -247,15 +328,10 @@ class Product_import extends CI_Controller
 					'weight'             => $weight,
 					'length_class_id'    => $length_class_id,
 					'weight_class_id'    => $weight_class_id,
-					'shipping_provider'  => '',
-					'shipping_service'   => '',
+					'shipping_provider'  => $this->config->item('config_default_order_shipping_provider'),
+					'shipping_service'   => $this->config->item('config_default_order_shipping_service'),
 					'alert_quantity'     => 0
 				);
-			}
-			else 
-			{
-				if($validated) 
-					$validated = false;
 			}
 		}
 		
