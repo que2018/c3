@@ -45,6 +45,20 @@ input:focus {
 	top: 30px;    	
 	right: 50px;
 }
+.pending {	
+	font-size: 9px;    
+	background: #f5e14d;    
+	color: #fff;    
+	border-radius: 2px;    
+	padding: 4px 5px;
+}
+.completed {	
+	font-size: 9px;    
+	background: #3bbf7c;    
+	color: #fff;    
+	border-radius: 2px;    
+	padding: 4px 5px;
+}
 
 
 

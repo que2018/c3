@@ -1,19 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Checkout_sale extends CI_Controller 
 {
 	function __construct()
 	{
-		parent::__construct();
-		
-		$this->lang->load('check/checkout');
-		
-		$this->load->model('check/checkout_model');
+		parent::__construct();	
 	}
 	
 	public function index()
 	{
+		$this->lang->load('check/checkout');
+		
 		$this->load->model('sale/sale_model');
+		$this->load->model('check/checkout_model');
 		$this->load->model('inventory/inventory_model');
 		
 		if($this->input->get('sale_id'))
@@ -71,16 +71,19 @@ class Checkout_sale extends CI_Controller
 		}
 	}
 
-	function get_sale()
+	public function get_sale()
 	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('inventory/inventory_model');
+		
 		if($this->input->get('code'))
 		{
 			$code = $this->input->get('code');
 		
 			$code = rtrim($code);
 			
-			$this->load->model('sale/sale_model');
-			$this->load->model('inventory/inventory_model');
 			
 			if(is_numeric($code))
 			{
@@ -167,12 +170,14 @@ class Checkout_sale extends CI_Controller
 		die();
 	}
 	
-	function add_checkout()
-	{		
+	public function add_checkout()
+	{	
+		$this->lang->load('check/checkout');
+		
 		$this->load->model('sale/sale_model');
 		
 		$this->load->library('form_validation');
-				
+		
 		$this->form_validation->set_rules('sale_id', $this->lang->line('text_sale_id'), 'callback_validate_sale');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_tracking');
@@ -232,6 +237,10 @@ class Checkout_sale extends CI_Controller
 	
 	function validate_sale($sale_id)
 	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('check/checkout_model');
+
 		if($sale_id)
 		{
 			$result = $this->checkout_model->get_sale_checkout($sale_id);
@@ -256,7 +265,11 @@ class Checkout_sale extends CI_Controller
 	}
 	
 	function validate_tracking($tracking)
-	{		
+	{	
+		$this->lang->load('check/checkout');
+	
+		$this->load->model('check/checkout_model');
+	
 		if($tracking)
 		{
 			$result = $this->checkout_model->get_checkout_by_tracking($tracking);
@@ -279,13 +292,15 @@ class Checkout_sale extends CI_Controller
 	}
 
 	function validate_checkout_product($checkout_products)
-	{		
+	{
+		$this->lang->load('check/checkout');
+	
+		$this->load->model('catalog/product_model');
+		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/inventory_model');
+	
 		if($this->input->post('checkout_product'))
 		{
-			$this->load->model('catalog/product_model');
-			$this->load->model('warehouse/location_model');
-			$this->load->model('inventory/inventory_model');
-
 			$validated = true;
 			
 			$checkout_products = $this->input->post('checkout_product');

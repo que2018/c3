@@ -152,10 +152,19 @@
 							  <tr>
 							    <td colspan=4 class="text-right">
 							      <?php if($sale['shipping']) { ?>
-							        <span class="shipping"><?php echo $sale['shipping']; ?></span>
+							      <span class="shipping"><?php echo $sale['shipping']; ?></span>
 								  <?php } ?>
 							      <?php if($sale['store_name']) { ?>
-							        <span class="store"><?php echo $sale['store_name']; ?></span>
+							      <span class="store"><?php echo $sale['store_name']; ?></span>
+								  <?php } ?>
+								  <?php if(!$sale['checkout']) { ?>
+							      <span class="checkout"><?php echo $this->lang->line('text_no_checkout'); ?></span>
+								  <?php } else { ?>
+								  <?php if($sale['checkout']['status'] == 1) { ?>
+								  <span class="checkout"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+								  <?php } else { ?>
+								  <span class="checkout"><?php echo $this->lang->line('text_checked_out'); ?></span>
+								  <?php } ?>
 								  <?php } ?>
 								  <?php if($sale['status_id'] == 1) { ?>
 								  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
@@ -178,7 +187,7 @@
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-						<a href="<?php echo $sale['checkout']; ?>" target="_blank" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
+						<a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale['sale_id']; ?>" target="_blank" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>

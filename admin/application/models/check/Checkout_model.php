@@ -681,7 +681,7 @@ class Checkout_model extends CI_Model
 		}
 	}
 
-	function get_checkout_total($data)
+	public function get_checkout_total($data)
 	{		
 		$this->db->select('COUNT(checkout.id) AS total', false);
 		$this->db->from('checkout');
@@ -715,7 +715,7 @@ class Checkout_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function delete_checkout($checkout_id)
+	public function delete_checkout($checkout_id)
 	{
 		$this->db->trans_begin();
 		
@@ -757,7 +757,7 @@ class Checkout_model extends CI_Model
 		}	
 	}
 
-	function update_tracking($checkout_id, $tracking) 
+	public function update_tracking($checkout_id, $tracking) 
 	{
 		$this->db->trans_begin();
 		
@@ -778,7 +778,7 @@ class Checkout_model extends CI_Model
 		}
 	}
 	
-	function update_label($checkout_id, $label) 
+	public function update_label($checkout_id, $label) 
 	{
 		$this->db->trans_begin();
 		

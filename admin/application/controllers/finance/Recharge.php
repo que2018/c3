@@ -19,7 +19,7 @@ class Recharge extends CI_Controller {
 		$this->load->view('finance/recharge_list_table', $data);
 	}
 	
-	function get_list()
+	protected function get_list()
 	{	
 		$this->load->library('form_validation');
 		
@@ -110,14 +110,7 @@ class Recharge extends CI_Controller {
 		if($recharges) 
 		{
 			foreach($recharges as $recharge)
-			{	
-				//status
-				if($recharge['status'] == 1)
-					$status = $this->lang->line('text_pending');
-				
-				if($recharge['status'] == 2)
-					$status = $this->lang->line('text_completed');
-				
+			{				
 				//payment method
 				$payment_code = $recharge['payment_method'];
 				
@@ -130,7 +123,7 @@ class Recharge extends CI_Controller {
 					'client'         => $recharge['name'],
 					'payment_method' => $payement_method,
 					'amount'         => $recharge['amount'],
-					'status'         => $status,
+					'status'         => $recharge['status'],
 					'date_added'     => $recharge['date_added']
 				);
 			}
@@ -430,10 +423,10 @@ class Recharge extends CI_Controller {
 		{
 			$recharge_id = $this->input->get('recharge_id');
 			
-			$this->recharge_model->delete_recharge($recharge_id);
+			$result = $this->recharge_model->delete_recharge($recharge_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);

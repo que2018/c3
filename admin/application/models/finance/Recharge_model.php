@@ -2,13 +2,8 @@
 
 
 class Recharge_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	function add_recharge($data)
+{		
+	public function add_recharge($data)
 	{
 		$recharge_data = array(					
 			'client_id'		  => $data['client_id'],
@@ -23,9 +18,14 @@ class Recharge_model extends CI_Model
 		
 		$this->db->insert('recharge', $recharge_data); 
 		
-		$this->db->where('client_id', $data['client_id']);
-		$this->db->set('amount', 'amount+'.$data['amount'], false);
-		$this->db->update('balance');	
+		$recharge_id = $this->db->insert_id();
+		
+		if($data['status'] == 2)
+		{
+			$this->db->where('client_id', $data['client_id']);
+			$this->db->set('amount', 'amount+' . $data['amount'], false);
+			$this->db->update('balance');	
+		}
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -37,30 +37,43 @@ class Recharge_model extends CI_Model
 		{
 			$this->db->trans_commit();
 
-			return true;
+			return $recharge_id;
 		}
 	}	
 	
-	function edit_recharge($id, $data)
+	public function edit_recharge($recharge_id, $data)
 	{
 		$this->db->trans_begin();
 		
-		$this->db->select("*", false);
-		$this->db->from('recharge');
-		$this->db->where('id', $id);
-
-		$q = $this->db->get();
+		$q = $this->db->get_where('recharge', array('id' => $recharge_id));
 		
 		$row = $q->row_array();
 		
-		$this->db->where('client_id', $row['client_id']);
-		$this->db->set('amount', 'amount-'.$row['amount'], false);
-		$this->db->update('balance');	
+		if(($row['status'] == 1) && ($data['status'] == 2))
+		{		
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount+'.$data['amount'], false);
+			$this->db->update('balance');
+		}
 		
-		$this->db->where('client_id', $row['client_id']);
-		$this->db->set('amount', 'amount+'.$data['amount'], false);
-		$this->db->update('balance');
+		if(($row['status'] == 2) && ($data['status'] == 2))
+		{
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount-'.$row['amount'], false);
+			$this->db->update('balance');	
 		
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount+'.$data['amount'], false);
+			$this->db->update('balance');
+		}
+		
+		if(($row['status'] == 2) && ($data['status'] == 1))
+		{
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount-'.$row['amount'], false);
+			$this->db->update('balance');	
+		}
+	
 		$recharge_data = array(					
 		    'payment_method'  => $data['payment_method'],
 		    'amount'   		  => $data['amount'],
@@ -68,7 +81,7 @@ class Recharge_model extends CI_Model
 			'date_modified'   => date('Y-m-d H:i:s')	
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $recharge_id);
 		$this->db->update('recharge', $recharge_data);
 		
 		if($this->db->trans_status() === false) 
@@ -85,12 +98,12 @@ class Recharge_model extends CI_Model
 		}
 	}		
 		
-	public function get_recharge($id) 
+	public function get_recharge($recharge_id) 
 	{	
 		$this->db->select("recharge.*, CONCAT(client.firstname, ' ', client.lastname) AS client_name", false);
 		$this->db->from('recharge');
 		$this->db->join('client', 'client.id = recharge.client_id', 'left');
-		$this->db->where('recharge.id', $id);
+		$this->db->where('recharge.id', $recharge_id);
 
 		$q = $this->db->get();
 		
@@ -102,23 +115,22 @@ class Recharge_model extends CI_Model
 		return false;
 	}
 		
-	function delete_recharge($id)
+	public function delete_recharge($recharge_id)
 	{
 		$this->db->trans_begin();
 		
-		$this->db->select("*", false);
-		$this->db->from('recharge');
-		$this->db->where('id', $id);
-
-		$q = $this->db->get();
+		$q = $this->db->get_where('recharge', array('id' => $recharge_id));
 		
 		$row = $q->row_array();
 		
-		$this->db->where('client_id', $row['client_id']);
-		$this->db->set('amount', 'amount-'.$row['amount'], false);
-		$this->db->update('balance');
-		
-		$this->db->delete('recharge', array('id' => $id));
+		if($row['status'] == 2)
+		{
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount-' . $row['amount'], false);
+			$this->db->update('balance');
+		}
+	
+		$this->db->delete('recharge', array('id' => $recharge_id));
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -225,9 +237,9 @@ class Recharge_model extends CI_Model
 		}
 	}
 	
-	function get_recharge_total($data)
+	public function get_recharge_total($data)
 	{
-		$this->db->select("COUNT(recharge.id) AS total", false);
+		$this->db->select('COUNT(recharge.id) AS total', false);
 		$this->db->from('recharge');
 		$this->db->join('client', 'client.id = recharge.client_id', 'left');
 		

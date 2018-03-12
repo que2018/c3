@@ -11,7 +11,7 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate'); ?>" class="btn btn-primary btn-generate" onclick="submit()"><i class="fa fa-play"></i></button>
+	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate'); ?>" class="btn btn-primary btn-generate"><i class="fa fa-play"></i></button>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -41,15 +41,15 @@
 			      <div class="input-group">
 				   <span class="input-group-addon">#</span>
 				   <input name="v_sale_id" value="<?php echo $sale_id; ?>" class="form-control" disabled>
-				   <input type="hidden" name="sale_id" value="">
+				   <input type="hidden" name="sale_id" value="<?php echo $sale_id; ?>">
 				  </div>
 			    </div>
 			  </div>
 			</div>
 		    <div class="col-lg-4">     
 		      <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_store_sale_id'); ?></label>
-			    <div class="col-sm-9">
+			    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_store_sale_id'); ?></label>
+			    <div class="col-sm-8">
 				  <div class="input-group">
 				   <span class="input-group-addon">#</span>
 				   <input name="v_store_sale_id" value="<?php echo $store_sale_id; ?>" class="form-control" disabled>
@@ -99,12 +99,16 @@
 				  </tr>
 			    </thead>
 			    <tbody>
+				  <?php $checkout_product_row = 0; ?>
 				  <?php foreach($checkout_products as $checkout_product) { ?>
 				    <tr>
-					  <td><?php echo $checkout_product['name']; ?></td>
+					  <td>
+					  <?php echo $checkout_product['name']; ?>
+					  <input name="checkout_product[<?php echo $checkout_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkout_product['product_id']; ?>">
+					  </td>
 					  <td><?php echo $checkout_product['upc']; ?></td>
 					  <td><?php echo $checkout_product['sku']; ?></td>
-					  <td><?php echo $checkout_product['quantity']; ?></td>
+					  <td><input type="text" name="checkout_product[<?php echo $checkout_product_row; ?>][quantity]" value="<?php echo $checkout_product['quantity']; ?>" class="form-control text-center"></td>
 					  <td>
 					    <div class="input-group">
 					    <?php if($checkout_product['inventories']) { ?>
@@ -113,7 +117,7 @@
 						  <?php } else { ?>
 						  <span class="input-group-addon"><i class="fa fa-cube"></i></span>
 						  <?php } ?>
-						  <select name="checkout_product[][location_id]" class="form-control">
+						  <select name="checkout_product[<?php echo $checkout_product_row; ?>][location_id]" class="form-control">
 						  <?php foreach($checkout_product['inventories'] as $inventory) { ?>
 						  <option value="<?php echo $inventory['location_id']; ?>"><?php echo $inventory['location_name'] . ' [qty ' . $inventory['quantity'] . ']'; ?></option>
                           <?php } ?>
@@ -122,6 +126,7 @@
 						</div>
 					  </td>
 					</tr>
+					<?php $checkout_product_row++; ?>
 				  <?php } ?>
 			    </tbody>
 			  </table>  
@@ -184,10 +189,12 @@ $(document).ready(function() {
 						checkout_product_row++;
 					});	
 										
-					$("#checkout-products tbody").html(html);					
+					$('#checkout-products tbody').html(html);					
 				}
 				else
 				{
+					$('#checkout-products tbody').html('');		
+					
 					$('#alert-error span').html(json.message);		
 					$('#alert-error').show();
 				}
@@ -238,12 +245,6 @@ $(document).ready(function() {
 			$('.btn-generate').trigger('click');
 		}
 	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$('body').toggleClass("mini-navbar");
-    SmoothlyMenu(); 
 });
 </script>
 

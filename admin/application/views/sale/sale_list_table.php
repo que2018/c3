@@ -120,10 +120,19 @@
 				    <tr>
 					  <td colspan=4 class="text-right">
 					    <?php if($sale['shipping']) { ?>
-						  <span class="shipping"><?php echo $sale['shipping']; ?></span>
+					    <span class="shipping"><?php echo $sale['shipping']; ?></span>
 					    <?php } ?>
 					    <?php if($sale['store_name']) { ?>
-						  <span class="store"><?php echo $sale['store_name']; ?></span>
+					    <span class="store"><?php echo $sale['store_name']; ?></span>
+					    <?php } ?>
+					    <?php if(!$sale['checkout']) { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_no_checkout'); ?></span>
+					    <?php } else { ?>
+					    <?php if($sale['checkout']['status'] == 1) { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+					    <?php } else { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_checked_out'); ?></span>
+					    <?php } ?>
 					    <?php } ?>
 					    <?php if($sale['status_id'] == 1) { ?>
 					    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>

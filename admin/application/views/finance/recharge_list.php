@@ -142,7 +142,11 @@
 					  <td><?php echo $recharge['client']; ?></td>
 					  <td><?php echo $recharge['payment_method']; ?></td>
 					  <td><?php echo $recharge['amount']; ?></td>
-					  <td><?php echo $recharge['status']; ?></td>
+					  <?php if($recharge['status'] == 1) { ?>
+					  <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+					  <?php } else { ?>
+					  <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+					  <?php } ?>
 					  <td><?php echo $recharge['date_added']; ?></td>
 					  <td>
 					    <center>

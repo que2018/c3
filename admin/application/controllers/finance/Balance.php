@@ -3,17 +3,14 @@
 
 class Balance extends CI_Controller {
 
-	function __construct()
+	function index()
 	{
-		parent::__construct();
+		$this->load->library('currency');
 		
 		$this->lang->load('finance/balance');
 		
 		$this->load->model('finance/balance_model');
-	}
 	
-	function index()
-	{		                 	
  		if($this->input->get('filter_client'))
 		{
 			$filter_client = $this->input->get('filter_client');
@@ -87,9 +84,9 @@ class Balance extends CI_Controller {
 			foreach($balances as $balance)
 			{	
 				$data['balances'][] = array(
-					'id'        => $balance['id'],
-					'name' 		=> $balance['name'],
-					'amount'    => $balance['amount']
+					'id'     => $balance['id'],
+					'name'   => $balance['name'],
+					'amount' => $this->currency->format($balance['amount'])
 				);
 			}
 		}

@@ -23,6 +23,7 @@ class Sale extends CI_Controller {
 		$this->lang->load('sale/sale');
 	
 		$this->load->model('sale/sale_model');
+		$this->load->model('check/checkout_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
@@ -139,8 +140,8 @@ class Sale extends CI_Controller {
 			'limit'                 => $limit
 		);
 		
-		$sales       = $this->sale_model->get_sales($filter_data);
-		$sale_total  = $this->sale_model->get_sale_total($filter_data);
+		$sales = $this->sale_model->get_sales($filter_data);
+		$sale_total = $this->sale_model->get_sale_total($filter_data);
 		
 		$data['sales'] = array();
 		
@@ -157,6 +158,9 @@ class Sale extends CI_Controller {
 				
 				$store_name = $store['name'];	
 
+				//checkout
+				$checkout = $this->checkout_model->get_sale_checkout($sale['id']);	
+					
 				//sale products
 				$sale_products = array();
 				
@@ -205,7 +209,7 @@ class Sale extends CI_Controller {
 					'shipping'        => $shipping,
 					'date_added'      => $sale['date_added'],
 					'sale_products'   => $sale_products,
-					'checkout'        => base_url() . 'check/checkout_sale?sale_id=' . $sale['id'],
+					'checkout'        => $checkout,
 					'edit'            => base_url() . 'sale/sale/edit?sale_id=' . $sale['id'] . $url
 				);	
 			}

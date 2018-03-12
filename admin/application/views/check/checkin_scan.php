@@ -199,12 +199,6 @@ function submit() {
 	});
 }
 </script>
-<script>
-$(document).ready(function() {
-	$('body').toggleClass("mini-navbar");
-    SmoothlyMenu(); 
-});
-</script>
 
 
 
