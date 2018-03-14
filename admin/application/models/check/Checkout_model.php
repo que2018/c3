@@ -628,9 +628,9 @@ class Checkout_model extends CI_Model
 			$this->db->where('sale_to_checkout.sale_id', $data['filter_sale_id']);
 		}
 		
-		if(!empty($data['filter_note'])) 
+		if(!empty($data['filter_status'])) 
 		{			
-			$this->db->like('checkout.note', $data['filter_note'], 'both');
+			$this->db->where('checkout.status', $data['filter_status']);
 		}
 		
 		if(!empty($data['filter_date_added'])) 
@@ -697,9 +697,9 @@ class Checkout_model extends CI_Model
 			$this->db->where('sale_to_checkout.sale_id', $data['filter_sale_id']);
 		}
 		
-		if(!empty($data['filter_note'])) 
+		if(!empty($data['filter_status'])) 
 		{			
-			$this->db->like('checkout.note', $data['filter_note'], 'both');
+			$this->db->where('checkout.status', $data['filter_status']);
 		}
 		
 		if(!empty($data['filter_date_added'])) 

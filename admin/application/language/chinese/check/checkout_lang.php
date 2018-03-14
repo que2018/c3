@@ -12,9 +12,10 @@ $lang['text_save'] 	  	        	 	  				= 'save checkout';
 $lang['text_cancel'] 	  	        	 	  	        = 'cancel';
 $lang['text_delete'] 	  	        	 	  			= 'delete';
 $lang['text_remove'] 	  	        	 	  			= 'remove';
-$lang['text_print'] 	  	        	 	  			= 'print';
+$lang['text_print'] 	  	        	 	  			= 'print checkout';
 $lang['text_run'] 	  	        	 	  				= 'run';
 $lang['text_status'] 	  	        	 	  			= 'status';
+$lang['text_Status'] 	  	        	 	  			= 'Status';
 $lang['text_sale_id'] 	  	        	 	  			= 'order ID';
 $lang['text_tracking'] 	  	        	 	  			= 'tracking';
 $lang['text_length'] 	  	             	  			= 'length';
@@ -40,6 +41,11 @@ $lang['text_canceled'] 	  	        	 	  			= 'Canceled';
 $lang['text_pending'] 	  	        		  			= 'Pending';
 $lang['text_completed'] 	  	    		  			= 'Completed';
 $lang['text_canceled'] 	  	        		  			= 'Canceled';
+$lang['text_search'] 	  	        		  			= 'Search';
+$lang['text_checkout_id'] 	  	        		        = 'Checkout ID(#)';
+$lang['text_sale_id'] 	  	        		        	= 'Order ID(#)';
+$lang['text_date_added'] 	  	        		        = 'Date Added';
+$lang['text_bulk_print'] 	  	        		        = 'bulk print';
 $lang['text_loading'] 	  	        	 	  			= 'loading ...';
 $lang['text_loading_locations'] 	  	 	  			= 'loading locations ...';
 $lang['text_loading_product'] 	  	    	  			= 'loading product ...';
@@ -141,7 +147,8 @@ $lang['error_shipping_provider_not_set'] 				= '<i class="fa fa-exclamation-tria
 $lang['error_shipping_method_not_set']   				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;shipping method is not set';
 $lang['error_checkout_not_related_to_sale']   			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkout is not related to order so label is not able to be printed';
 $lang['error_checkout_sale_empty']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order information is empty';
-$lang['error_sale_checkout_completed']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is completed';
+$lang['error_checkout_id_empty']   			            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Please check at least one checkout first';
+$lang['error_sale_checkout_completed']   			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is completed';
 
 
 

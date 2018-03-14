@@ -3,17 +3,12 @@
 
 class Checkout_print extends CI_Controller {
 
-	function __construct()
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
-	}
-	
-	function index()
-	{
+		
 		$checkout_id = $this->input->get('checkout_id');
 				
 		$this->load->model('warehouse/location_model');
@@ -55,6 +50,49 @@ class Checkout_print extends CI_Controller {
 		$data['checkout_id'] = $checkout_id;
 			
 		$this->load->view('check/checkout_print', $data);
+	}
+	
+	public function bulk_print_d() 
+	{
+		$this->load->library('pdf');
+
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('check/checkout_model');
+
+		if($this->input->post('checkout_id'))
+		{
+			$checkout_ids = $this->input->post('checkout_id');
+			
+			$pdf = new FPDF();
+			
+			$pdf->AddPage();
+			
+			foreach($checkout_ids as $i => $checkout_id)
+			{
+				$checkout = $this->checkout_model->get_checkout($checkout_id);	
+				
+				$pdf->Cell(40,10 * $i, $checkout['id']);
+			}
+			
+			$dest_path = 'C:\xampp\htdocs\c3\admin\assets\pdf\checkout.pdf';
+			
+			$pdf->Output('F', $dest_path);
+			
+			$outdata = array(
+				'success' => true
+			);
+		}
+		else 
+		{
+			$outdata = array(
+				'success' => false,
+				'message' => $this->lang->line('error_checkout_id_empty')
+			);
+		}
+		
+		echo json_encode($outdata);
+		die();
 	}
 }
 

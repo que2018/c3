@@ -26,6 +26,9 @@ a:focus, a:hover {
 .btn-print {
 	margin-right: 5px;
 }
+.btn-bulk-print {
+    margin-right: 8px;
+}
 .btn-edit {
 	margin-right: 5px;
 }

@@ -3,7 +3,23 @@
 
 class Checkout extends CI_Controller {
 
-	function index()
+	public function index()
+	{		
+		$data = $this->get_list();
+			
+		$this->load->view('common/header');
+		$this->load->view('check/checkout_list', $data);
+		$this->load->view('common/footer');
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('check/checkout_list_table', $data);
+	}
+
+	protected function get_list()
 	{	
 		$this->lang->load('check/checkout');
 		
@@ -235,7 +251,7 @@ class Checkout extends CI_Controller {
 	
 		$url = '';
 		
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '?limit='.$this->input->get('limit');
 		}
@@ -248,8 +264,10 @@ class Checkout extends CI_Controller {
 		{
 			$url .= '&sort='.$this->input->get('sort');
 		}
+				
+		$data['filter_url'] = base_url() . 'check/checkout' . $url;
 		
-		$data['filter_url'] = base_url().'check/checkout'.$url;
+		$data['reload'] = base_url() . 'check/checkout/reload' . $url;
 	
 		$data['sort']   = $sort;
 		$data['order']  = $order;
@@ -261,9 +279,7 @@ class Checkout extends CI_Controller {
 		$data['filter_status']      = $filter_status;
 		$data['filter_date_added']  = $filter_date_added;
 				
-		$this->load->view('common/header');
-		$this->load->view('check/checkout_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add()
