@@ -13,8 +13,15 @@ class Printnode
 		$CI =& get_instance();
 		
 		$this->api_key = $CI->config->item('config_printnode_api_key');
-		$this->printer_id = $CI->config->item('config_printnode_printer_id');
+		$this->printer_id = $CI->config->item('config_printnode_label_printer_id');
     }
+	
+	public function set_printer_id($printer_id)
+	{
+		$this->printer_id = $printer_id;
+	}
+		
+		
 		
 	public function get_printers()
 	{
@@ -77,7 +84,7 @@ class Printnode
 			return false;
 		}
 	}
-	
+
 	protected function get_active_printer()
 	{
 		$credentials = new PrintNode\Credentials();

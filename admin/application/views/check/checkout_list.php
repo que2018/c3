@@ -138,7 +138,7 @@
 					  </td>
 					  <td>
 					    <span>#<?php echo $checkout['checkout_id']; ?></span>
-						<div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
+						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table">
 						    <thead>
 							  <th style="width: 50%;"><?php echo $this->lang->line('column_name'); ?></th>
@@ -327,9 +327,11 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-	$('td:first-child').hover(function() {
+	$(document).on('mouseenter', 'td:nth-child(2)', function() {
 		$(this).find('.detail').show();
-	}, function() {
+	});
+	
+	$(document).on('mouseleave', 'td:nth-child(2)', function() {
 		$(this).find('.detail').hide();
 	});
 });

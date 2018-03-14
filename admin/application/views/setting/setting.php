@@ -333,9 +333,17 @@
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_printnode_active_printer'); ?></label>
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_printnode_active_label_printer'); ?></label>
 			    <div class="col-sm-10">
-				  <select name="config_printnode_printer_id" class="form-control">
+				  <select name="config_printnode_label_printer_id" class="form-control">
+				  </select>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_printnode_active_general_printer'); ?></label>
+			    <div class="col-sm-10">
+				  <select name="config_printnode_general_printer_id" class="form-control">
 				  </select>
 				</div>
 			  </div>
@@ -490,17 +498,35 @@ $(document).ready(function() {
 		success: function(json) {					
 			if(json.success) 
 			{	
-				printer_html = '';
+				label_printer_html = '';
 			
  				$.each(json.printers, function(index, printer) {	
-                   if(printer.id == <?php echo $config_printnode_printer_id; ?>) {
-						printer_html += '<option value="'+ printer.id +'" selected>' + printer.name + '</option>';
-				   } else {
-						printer_html += '<option value="'+ printer.id +'">' + printer.name + '</option>';
-				   }
+					<?php if($config_printnode_label_printer_id) { ?>
+					if(printer.id == <?php echo $config_printnode_label_printer_id; ?>)
+						label_printer_html += '<option value="'+ printer.id +'" selected>' + printer.name + '</option>';
+					else
+						label_printer_html += '<option value="'+ printer.id +'">' + printer.name + '</option>';
+				   <?php } else { ?>
+						label_printer_html += '<option value="'+ printer.id +'">' + printer.name + '</option>';
+				   <?php } ?>
 				});
 		
-				$('select[name=\'config_printnode_printer_id\']').html(printer_html);
+				$('select[name=\'config_printnode_label_printer_id\']').html(label_printer_html);
+				
+				general_printer_html = '';
+			
+ 				$.each(json.printers, function(index, printer) {	
+					<?php if($config_printnode_general_printer_id) { ?>
+					if(printer.id == <?php echo $config_printnode_general_printer_id; ?>)
+						general_printer_html += '<option value="'+ printer.id +'" selected>' + printer.name + '</option>';
+					else
+						general_printer_html += '<option value="'+ printer.id +'">' + printer.name + '</option>';
+				   <?php } else { ?>
+						general_printer_html += '<option value="'+ printer.id +'">' + printer.name + '</option>';
+				   <?php } ?>
+				});
+		
+				$('select[name=\'config_printnode_general_printer_id\']').html(general_printer_html);
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {

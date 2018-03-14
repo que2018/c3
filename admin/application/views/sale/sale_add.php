@@ -144,11 +144,10 @@
 			    <table id="sale-product" class="table table-bordered table-product">
 				  <thead>
 				    <tr>
-					  <th style="width: 18%"><?php echo $this->lang->line('column_product_name'); ?></th>
-				      <th style="width: 18%"><?php echo $this->lang->line('column_upc'); ?></th>
-				      <th style="width: 18%"><?php echo $this->lang->line('column_sku'); ?></th>
-				      <th style="width: 12%"><?php echo $this->lang->line('column_quantity'); ?></th>
-					  <th style="width: 20%"><?php echo $this->lang->line('column_checkout_location'); ?></th>
+					  <th style="width: 25%"><?php echo $this->lang->line('column_product_name'); ?></th>
+				      <th style="width: 20%"><?php echo $this->lang->line('column_upc'); ?></th>
+				      <th style="width: 20%"><?php echo $this->lang->line('column_sku'); ?></th>
+				      <th style="width: 15%"><?php echo $this->lang->line('column_quantity'); ?></th>
 					  <th></th>
 			        </tr>
 				  </thead>
@@ -161,7 +160,6 @@
 				      <td class="text-left"><?php echo $sale_product['upc']; ?></td>
 				      <td class="text-left"><?php echo $sale_product['sku']; ?></td>
 				      <td><input name="sale_product[<?php echo $sale_product_row; ?>][quantity]" class="form-control text-center quantity" value="<?php echo $sale_product['quantity']; ?>" onClick="this.select();"></td>
-				      <td></td>
 					  <td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $sale_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
 				      <?php $sale_product_row++; ?>
 				      <?php } ?>
@@ -453,7 +451,6 @@ $(document).ready(function() {
 				html += '<td class="text-left">' + product.upc + '</div></td>';
 				html += '<td class="text-left">' + product.sku + '</div></td>';
 				html += '<td><input name="sale_product[' + sale_product_row + '][quantity]" class="form-control text-center quantity" type="text" value="1" onClick="this.select();"></td>';
-				html += '<td></td>';
 				html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
 			
 				new_tr.html(html);

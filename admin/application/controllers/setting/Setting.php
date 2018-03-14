@@ -54,7 +54,8 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('config_printnode_position_y', $this->lang->line('text_printnode_position_y'), 'required');
 		$this->form_validation->set_rules('config_printnode_width', $this->lang->line('text_printnode_width'), 'required');
 		$this->form_validation->set_rules('config_printnode_api_key', $this->lang->line('text_printnode_api_key'), 'required');
-		$this->form_validation->set_rules('config_printnode_printer_id', $this->lang->line('text_printnode_active_printer'), 'required');
+		$this->form_validation->set_rules('config_printnode_label_printer_id', $this->lang->line('text_printnode_active_label_printer'), 'required');
+		$this->form_validation->set_rules('config_printnode_general_printer_id', $this->lang->line('text_printnode_active_general_printer'), 'required');
 		$this->form_validation->set_rules('config_default_order_shipping_provider', $this->lang->line('text_default_order_shipping_provider'), 'required');
 		$this->form_validation->set_rules('config_default_order_shipping_service', $this->lang->line('text_default_order_shipping_service'), 'required');
 		
@@ -89,7 +90,8 @@ class Setting extends CI_Controller {
 				'config_printnode_position_y'   		    => $this->input->post('config_printnode_position_y'),
 				'config_printnode_width'   					=> $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
-				'config_printnode_printer_id'   		    => $this->input->post('config_printnode_printer_id'),
+				'config_printnode_label_printer_id'   		=> $this->input->post('config_printnode_label_printer_id'),
+				'config_printnode_general_printer_id'       => $this->input->post('config_printnode_general_printer_id'),
 				'config_language_id'      			        => $this->input->post('config_language_id'),
 				'config_information_id'      			    => $this->input->post('config_information_id'),
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
@@ -143,7 +145,8 @@ class Setting extends CI_Controller {
 				'config_printnode_position_y'  			    => $this->input->post('config_printnode_position_y'),
 				'config_printnode_width'      			    => $this->input->post('config_printnode_width'),
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
-				'config_printnode_printer_id'  			    => $this->input->post('config_printnode_printer_id'),
+				'config_printnode_label_printer_id'         => $this->input->post('config_printnode_label_printer_id'),
+				'config_printnode_general_printer_id'       => $this->input->post('config_printnode_general_printer_id'),
 				'config_language_id'        			    => $this->input->post('config_language_id'),
 				'config_information_id'      			    => $this->input->post('config_information_id'),
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
@@ -189,7 +192,8 @@ class Setting extends CI_Controller {
 			$data['config_printnode_position_y']     		    = $this->config->item('config_printnode_position_y');
 			$data['config_printnode_width']     		        = $this->config->item('config_printnode_width');
 			$data['config_printnode_api_key']     		        = $this->config->item('config_printnode_api_key');
-			$data['config_printnode_printer_id']     		    = $this->config->item('config_printnode_printer_id');
+			$data['config_printnode_label_printer_id']     		= $this->config->item('config_printnode_label_printer_id');
+			$data['config_printnode_general_printer_id']        = $this->config->item('config_printnode_general_printer_id');
 			$data['config_language_id']     		            = $this->config->item('config_language_id');
 			$data['config_information_id']     		            = $this->config->item('config_information_id');
 			$data['config_information_front_id']     		    = $this->config->item('config_information_front_id');

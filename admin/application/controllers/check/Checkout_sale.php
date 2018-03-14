@@ -34,6 +34,8 @@ class Checkout_sale extends CI_Controller
 			{
 				$product_id = $sale_product['product_id'];
 				
+				$inventories = array();
+				
 				$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);
 					
 				if($inventories_data)

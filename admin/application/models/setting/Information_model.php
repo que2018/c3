@@ -136,7 +136,7 @@ class Information_model extends CI_Model
 		$this->db->from('information');
 		$this->db->join('information_content', 'information_content.information_id = information.information_id', 'left');
 		$this->db->where('information_content.language_id', $this->config->item('config_language_id'));
-		$this->db->group_by('information.information_id');
+		//$this->db->group_by('information.information_id');
 		
 		if(!empty($data['filier_title'])) 
 		{			
@@ -197,7 +197,7 @@ class Information_model extends CI_Model
 		$this->db->select('COUNT(information.information_id) AS total', false);
 		$this->db->from('information');
 		$this->db->join('information_content', 'information_content.information_id = information.information_id', 'left');
-		$this->db->group_by('information.information_id');
+		//$this->db->group_by('information.information_id');
 
 		if(!empty($data['filier_title'])) 
 		{			
