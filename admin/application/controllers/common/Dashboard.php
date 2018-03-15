@@ -96,7 +96,7 @@ class Dashboard extends CI_Controller {
 		
 		//------------------------------------------ total activity log ----------------------------------------
 		
-		$this->load->model('setting/log/activity_log_model');
+		$this->load->model('setting/activity_log_model');
 		
 		$yesterday_datetime = $this->datetimer->yesterday_datetime();
 		

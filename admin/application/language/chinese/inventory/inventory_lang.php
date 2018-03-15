@@ -32,6 +32,7 @@ $lang['text_no_rows_imported'] 	           = '<strong>No row is imported</strong
 
 
 // Column
+$lang['column_name'] 	  	               = 'Name';
 $lang['column_upc'] 	  	               = 'UPC';
 $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = 'Name';
@@ -48,6 +49,7 @@ $lang['entry_quantity'] 	  	           = 'Quantity';
 $lang['entry_location'] 	  	           = 'Location';
 $lang['entry_warehouse'] 	  	           = 'Warehouse';
 $lang['entry_sku'] 	  	                   = 'SKU';
+$lang['entry_upc'] 	  	                   = 'UPC';
 
 // Error
 $lang['error_row_sku_empty'] 	  	       = 'row%s: sku is empty';

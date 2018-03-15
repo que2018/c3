@@ -3,18 +3,30 @@
 
 class Inventory extends CI_Controller {
 
-	function __construct()
+	public function index()
+	{		
+		$data = $this->get_list();
+			
+		$this->load->view('common/header');
+		$this->load->view('inventory/inventory_list', $data);
+		$this->load->view('common/footer');
+	}
+	
+	public function reload()
 	{
-		parent::__construct();
+		$data = $this->get_list();
+			
+		$this->load->view('inventory/inventory_list_table', $data);
+	}
+
+	protected function get_list()
+	{
+		$this->load->library('phpexcel');
 		
 		$this->lang->load('inventory/inventory');
 		
-		$this->load->model('inventory/inventory_model');
-	}
-	
-	function index()
-	{
 		$this->load->model('warehouse/warehouse_model');
+		$this->load->model('inventory/inventory_model');
 		
 		$data['success'] = $this->session->flashdata('success');
 		                   	
@@ -43,6 +55,15 @@ class Inventory extends CI_Controller {
 		else 
 		{
 			$filter_sku = '';
+		}
+		
+		if($this->input->get('filter_upc'))
+		{
+			$filter_upc = $this->input->get('filter_upc');
+		} 
+		else 
+		{
+			$filter_upc = '';
 		}
 		
 		if($this->input->get('sort')) 
@@ -85,6 +106,7 @@ class Inventory extends CI_Controller {
 			'filter_warehouse_id'  => $filter_warehouse_id,
 			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
+			'filter_upc'    	   => $filter_upc,
 			'sort'                 => $sort,
 			'order'                => $order,
 			'start'                => ($page - 1) * $limit,
@@ -118,6 +140,50 @@ class Inventory extends CI_Controller {
 			}
 		}
 		
+		//excel export begin
+		$objPHPExcel = new PHPExcel();	
+		$objPHPExcel->createSheet();
+		$objPHPExcel->setActiveSheetIndex(0);
+		
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_location'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_quantity'));
+		
+		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
+
+		$i = 2;
+		
+		if($inventories) 
+		{
+			foreach($inventories as $inventory)
+			{	
+				$product_info = $this->product_model->get_product($inventory['product_id']);	
+			
+				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $product_info['name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $product_info['upc']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_info['sku']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['location_name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['quantity']);
+			
+				$i++;
+			}
+		}
+		
+		PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+		
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		$objWriter->save(FCPATH  . 'assets/file/export/inventory.xlsx');
+		//excel export end
+		
 		$url = '';
 		
 		if($this->input->get('filter_warehouse_id')) 
@@ -133,6 +199,11 @@ class Inventory extends CI_Controller {
 		if($this->input->get('filter_sku')) 
 		{
 			$url .= '&filter_sku=' . $this->input->get('filter_sku');
+		}
+		
+		if($this->input->get('filter_upc')) 
+		{
+			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
 			
 		if($this->input->get('sort')) 
@@ -173,6 +244,11 @@ class Inventory extends CI_Controller {
 		{
 			$url .= '&filter_sku=' . $this->input->get('filter_sku');
 		}
+		
+		if($this->input->get('filter_upc')) 
+		{
+			$url .= '&filter_upc=' . $this->input->get('filter_upc');
+		}
 				
 		if($this->input->get('limit')) 
 		{
@@ -189,6 +265,7 @@ class Inventory extends CI_Controller {
 		}
 		
 		$data['sort_product']        = base_url() . 'inventory/inventory?sort=product.name' . $url;
+		$data['sort_upc']        	 = base_url() . 'inventory/inventory?sort=product.upc' . $url;
 		$data['sort_sku']        	 = base_url() . 'inventory/inventory?sort=product.sku' . $url;
 		$data['sort_location']       = base_url() . 'inventory/inventory?sort=location.name' . $url;
 		$data['sort_warehouse']  	 = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
@@ -212,7 +289,8 @@ class Inventory extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url() . 'inventory/inventory' . $url;
-	
+		$data['reload'] = base_url() . 'inventory/inventory/reload' . $url;
+
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
@@ -220,6 +298,7 @@ class Inventory extends CI_Controller {
 		$data['filter_warehouse_id']    = $filter_warehouse_id;
 		$data['filter_location']        = $filter_location;
 		$data['filter_sku']         	= $filter_sku;
+		$data['filter_upc']         	= $filter_upc;
 		
 		//client
 		$data['warehouses'] = array();
@@ -240,20 +319,20 @@ class Inventory extends CI_Controller {
 		//edit permission
 		$data['modifiable'] = $this->auth->has_permission('modify', 'inventory');
 		
-		$this->load->view('common/header');
-		$this->load->view('inventory/inventory_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
 		$this->load->library('form_validation');
 		
+		$this->lang->load('inventory/inventory');
+		
 		$this->load->model('catalog/product_model');
-		$this->load->model('inventory/inventory_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
-	
+		$this->load->model('inventory/inventory_model');
+
 		$this->form_validation->set_rules('product_id', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('location_id', $this->lang->line('text_location'), 'required');
 		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
@@ -321,10 +400,12 @@ class Inventory extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		
+		$this->lang->load('inventory/inventory');
+		
 		$this->load->model('catalog/product_model');
-		$this->load->model('inventory/inventory_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
+		$this->load->model('inventory/inventory_model');
 		
 		$inventory_id = $this->input->get('inventory_id');
 	
@@ -418,14 +499,16 @@ class Inventory extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('inventory/inventory_model');
+
 		if($this->input->get('inventory_id'))
 		{
 			$inventory_id = $this->input->get('inventory_id');
 			
-			$this->inventory_model->delete_inventory($inventory_id);
+			$result = $this->inventory_model->delete_inventory($inventory_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);

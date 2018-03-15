@@ -113,7 +113,7 @@ class Activity_log_model extends CI_Model
 	
 	public function get_total_activity($data) 
 	{		
-		$this->db->select('COUNT(activity_log.id) AS total, CONCAT(user.firstname, " ", user.lastname) AS user', false);
+		$this->db->select('COUNT(activity_log.id) AS total', false);
 		$this->db->from('activity_log');
 		$this->db->join('user', 'user.id = activity_log.user_id', 'left');
 
