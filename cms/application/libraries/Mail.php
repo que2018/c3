@@ -26,8 +26,6 @@ class Mail
 				$this->$key = $value;
 			}
 		}
-		
-		$this->ci =& get_instance();
 	}
 
 	public function setTo($to) {
@@ -35,7 +33,7 @@ class Mail
 	}
 
 	public function setFrom($from) {
-		$this->from = html_entity_decode($from, ENT_QUOTES, 'UTF-8');
+		$this->from = html_entity_decode($this->smtp_username, ENT_QUOTES, 'UTF-8');
 	}
 
 	public function setSender($sender) {
@@ -112,8 +110,7 @@ class Mail
 		$header .= 'Reply-To: =?UTF-8?B?' . base64_encode($this->replyto) . '?=' . ' <' . $this->from . '>' . $this->newline;
 		$header .= 'Return-Path: ' . $this->from . $this->newline;
 		$header .= 'X-Mailer: PHP/' . phpversion() . $this->newline;
-		//$header .= 'Content-Type: multipart/related; boundary="' . $boundary . '"' . $this->newline . $this->newline;
-		$header .= 'Content-Type: multipart/alternative; boundary="' . $boundary . '_alt"' . $this->newline . $this->newline;
+		$header .= 'Content-Type: multipart/related; boundary="' . $boundary . '"' . $this->newline . $this->newline;
 
 		if (!$this->html) {
 			$message  = '--' . $boundary . $this->newline;
