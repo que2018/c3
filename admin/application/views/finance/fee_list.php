@@ -8,7 +8,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_fee'); ?></strong></li>
 	</ol>
   </div>
-  <a href="<?php echo base_url(); ?>finance/fee/add" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+   <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>finance/fee/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
@@ -52,9 +54,9 @@
 					  <td><?php echo $fee['amount']; ?></td>
 					  <td>
 					    <center>
-						  <a href="<?php echo base_url(); ?>finance/fee/edit?id=<?php echo $fee['id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						  <button class="btn btn-danger btn-delete" data="<?php echo $fee['id']; ?>"><i class="fa fa-trash"></i></button>
-					    </center>
+						  <a href="<?php echo base_url(); ?>finance/fee/edit?fee_id=<?php echo $fee['fee_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+					      <button class="btn btn-danger btn-delete" onclick="delete_fee(this, <?php echo $fee['fee_id']; ?>)"><i class="fa fa-trash"></i></button>
+						</center>
 					  </td>
 					</tr>
 				  <?php } ?>
@@ -69,8 +71,63 @@
 			  </tfoot>
 		    </table>
 		  </div>
+		  <div class="pagination-block">
+			<div class="pull-left"><?php echo $results; ?></div>
+		    <div class="pull-right"><?php echo $pagination; ?></div>
+		  </div>
 	    </div>
 	  </div>
     </div>
   </div>
 </div>
+<script>
+function delete_fee(handle, fee_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>finance/fee/delete?fee_id=' + fee_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
+</script>
+<script>
+$(document).ready(function() {
+	$(document).keypress(function (e) {
+		if(e.which == 13)  
+		{
+			name    = $('input[name=\'name\']').val();
+			amount  = $('input[name=\'amount\']').val();
+
+			url = '<?php echo $filter_url; ?>';
+			
+			if(name)
+				url += '&filter_name=' + name;
+			
+			if(amount)
+				url += '&filter_amount=' + amount;
+				
+			window.location.href = url;
+		}
+	});
+});
+</script>

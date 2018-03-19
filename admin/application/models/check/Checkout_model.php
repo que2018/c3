@@ -66,11 +66,10 @@ class Checkout_model extends CI_Model
 		{
 			$checkout_fees = array();
 						
-			foreach($data['checkout_fees'] as $checkout_fee){					
+			foreach($data['checkout_fees'] as $fee_id){					
 				$checkout_fees[] = array(
 					'checkout_id'  => $checkout_id,
-					'name' 	       => $checkout_fee['name'],
-					'amount'       => $checkout_fee['amount']
+					'fee_id' 	   => $fee_id
 				);
 			}
 			
@@ -105,10 +104,14 @@ class Checkout_model extends CI_Model
 			if(($data['status'] == 2) && isset($data['checkout_fees']))
 			{	
 				$amount = 0;
-			
-				foreach($data['checkout_fees'] as $checkout_fee) 
+				
+				foreach($data['checkout_fees'] as $fee_id) 
 				{
-					$amount += $checkout_fee['amount'];
+					$q = $this->db->get_where('fee', array('id' => $fee_id));
+
+					$row = $q->row_array();
+					
+					$amount += $row['amount'];
 				}
 				
 				$transaction_data = array(					
@@ -121,7 +124,7 @@ class Checkout_model extends CI_Model
 					'comment'         => sprintf($this->lang->line('text_checkout_transaction_note'), $checkout_id)
 				);
 								
-				$this->transaction_model->add_transaction($transaction_data);							
+				$this->transaction_model->add_transaction($transaction_data); 							
 			}
 		}
 		
@@ -222,9 +225,13 @@ class Checkout_model extends CI_Model
 			{
 				$amount = 0;
 				
-				foreach($data['checkout_fees'] as $checkout_fee) 
+				foreach($data['checkout_fees'] as $fee_id) 
 				{
-					$amount += $checkout_fee['amount'];
+					$q = $this->db->get_where('fee', array('id' => $fee_id));
+
+					$row = $q->row_array();
+					
+					$amount += $row['amount'];
 				}
 				
 				$transaction_data = array(					
@@ -244,9 +251,13 @@ class Checkout_model extends CI_Model
 			{
 				$amount = 0;
 								
-				foreach($data['checkout_fees'] as $checkout_fee) 
+				foreach($data['checkout_fees'] as $fee_id) 
 				{
-					$amount += $checkout_fee['amount'];
+					$q = $this->db->get_where('fee', array('id' => $fee_id));
+
+					$row = $q->row_array();
+					
+					$amount += $row['amount'];
 				}
 				
 				$transaction_data = array(					
@@ -259,16 +270,16 @@ class Checkout_model extends CI_Model
 					'comment'         => sprintf($this->lang->line('text_checkout_transaction_note'), $checkout_id)
 				);
 				
-				$this->transaction_model->delete_transaction_by_type('checkout', $transaction_id);				   
+				$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id);				   
 								
 				$this->transaction_model->add_transaction($transaction_data);
 			}
 				
 			if(($checkout['status'] == 2) && ($data['status'] == 1))
 			{
-				$this->transaction_model->delete_transaction_by_type('checkout', $transaction_id);				   
+				$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id);				   
 			}
-		}
+		} 
 		
 		//checkout data
 		$checkout_data = array(
@@ -324,11 +335,10 @@ class Checkout_model extends CI_Model
 		{
 			$checkout_fees = array();
 						
-			foreach($data['checkout_fees'] as $checkout_fee){					
+			foreach($data['checkout_fees'] as $fee_id){					
 				$checkout_fees[] = array(
 					'checkout_id'  => $checkout_id,
-					'name' 	       => $checkout_fee['name'],
-					'amount'       => $checkout_fee['amount']
+					'fee_id' 	   => $fee_id
 				);
 			}
 			

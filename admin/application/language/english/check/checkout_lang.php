@@ -132,7 +132,7 @@ $lang['error_checkout_not_found']             			= '<i class="fa fa-exclamation-
 $lang['error_sale_not_found']                 			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order is not found';
 $lang['error_checkout_product_required']      			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product is required';
 $lang['error_checkout_product_no_location']             = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product <strong>%s</strong> has no location selected or available';
-$lang['error_checkout_fee_name_required']             	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> requires name';
+$lang['error_checkout_fee_row_required']             	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is required';
 $lang['error_checkout_fee_amount_required']             = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> requires amount';
 $lang['error_product_location_empty']      			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Product <strong>%s</strong> has no available locaitons or the location is not selected, does it has sufficient inventory?';
 $lang['error_sale_is_used']               				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The order <strong>#%s</strong> has been used in other checkout';

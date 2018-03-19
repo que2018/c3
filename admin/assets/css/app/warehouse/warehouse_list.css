@@ -11,7 +11,8 @@ a:focus, a:hover {
 }
 .filter-td {
 }
-.filter-input {	border: none;
+.filter-input {	
+	border: none;
 	line-height: 20px;
 }
 .filter-select {
@@ -26,12 +27,22 @@ input:focus {
 .page-heading {
 	position: relative;
 }
-.button-group {		position: absolute;    	top: 30px;    	right: 50px;}
+.button-group {		
+	position: absolute;    	
+	top: 30px;    	
+	right: 50px;
+}
 .btn-edit {
 	margin-right: 5px;
 }
 .btn-delete {
 	margin-left: 5px;
+}
+.pagination-block {
+	min-height: 33px;
+}
+.pagination {
+	margin: 0px;
 }
 
 

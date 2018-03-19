@@ -286,8 +286,10 @@ class Checkout extends CI_Controller {
 	{
 		$this->lang->load('check/checkout');
 		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
+		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -433,6 +435,23 @@ class Checkout extends CI_Controller {
 			}
 		}
 		
+		//fees
+		$fees = $this->fee_model->get_fees();
+		
+		$data['fees'] = array();
+		
+		if($fees) 
+		{
+			foreach($fees as $fee)
+			{
+				$data['fees'][] = array(
+					'fee_id'  => $fee['id'],
+					'name'    => $fee['name'],
+					'amount'  => $this->currency->format($fee['amount'])
+				);
+			}
+		}
+		
 		if($this->form_validation->run() == true)
 		{
 			$this->checkout_model->add_checkout($data);
@@ -453,8 +472,10 @@ class Checkout extends CI_Controller {
 	{
 		$this->lang->load('check/checkout');
 		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
+		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');		
 		$this->load->model('extension/shipping_model');
@@ -497,23 +518,6 @@ class Checkout extends CI_Controller {
 			
 			$this->checkout_model->edit_checkout($checkout_id, $data);
 			
-			//udpate sale status
-			/* $sale = $this->checkout_model->get_checkout_sale($checkout_id);
-					
-			if($sale) 
-			{
-				$this->load->model('sale/sale_model');
-				
-				if($data['status'] == 1)
-				{
-					$this->sale_model->update_status($sale['id'], 1);
-				}
-				else
-				{
-					$this->sale_model->update_status($sale['id'], 2);
-				}
-			} */
-			
 			$this->session->set_flashdata('success', $this->lang->line('text_checkout_edit_success'));
 			
 			redirect(base_url() . 'check/checkout', 'refresh');
@@ -528,6 +532,7 @@ class Checkout extends CI_Controller {
 			$data['length']          	= $this->input->post('length');
 			$data['width']          	= $this->input->post('width');
 			$data['height']          	= $this->input->post('height');
+			$data['weight']          	= $this->input->post('weight');
 			$data['length_class_id']    = $this->input->post('length_class_id');
 			$data['weight_class_id']    = $this->input->post('weight_class_id');
 			$data['shipping_provider']  = $this->input->post('shipping_provider');
@@ -637,14 +642,14 @@ class Checkout extends CI_Controller {
 
 			$data['checkout_fees'] = array();
 			
-			$checkout_fees_data = $this->checkout_model->get_checkout_fees($checkout_id);	
+			$checkout_fees = $this->checkout_model->get_checkout_fees($checkout_id);	
 			
-			if($checkout_fees_data) 
+			if($checkout_fees) 
 			{
-				foreach($checkout_fees_data as $checkout_fee_data) {
+				foreach($checkout_fees as $checkout_fee) 
+				{
 					$data['checkout_fees'][] = array(
-						'name'   => $checkout_fee_data['name'],
-						'amount' => $checkout_fee_data['amount']
+						'fee_id'  => $checkout_fee['fee_id']
 					);
 				}
 			}
@@ -717,7 +722,24 @@ class Checkout extends CI_Controller {
 				);
 			}
 		}
-			
+		
+		//fees
+		$fees = $this->fee_model->get_fees();
+		
+		$data['fees'] = array();
+		
+		if($fees) 
+		{
+			foreach($fees as $fee)
+			{
+				$data['fees'][] = array(
+					'fee_id'  => $fee['id'],
+					'name'    => $fee['name'],
+					'amount'  => $this->currency->format($fee['amount'])
+				);
+			}
+		}
+		
 		//label
 		$checkout = $this->checkout_model->get_checkout($checkout_id);
 		
@@ -850,18 +872,9 @@ class Checkout extends CI_Controller {
 			
 			foreach($checkout_fees as $row => $checkout_fee)
 			{
-				if(empty($checkout_fee['name']))
+				if(!$checkout_fee)
 				{
-					$error_message .= sprintf($this->lang->line('error_checkout_fee_name_required'), ($row + 1));
-					$error_message .= '<br>';
-					
-					if($validated) 
-						$validated = false;
-				}
-				
-				if(empty($checkout_fee['amount']))
-				{
-					$error_message .= sprintf($this->lang->line('error_checkout_fee_amount_required'), ($row + 1));
+					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_required'), ($row + 1));
 					$error_message .= '<br>';
 					
 					if($validated) 

@@ -1,19 +1,32 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Fee extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('finance/fee');
-		
-		$this->load->model('finance/fee_model');
+class Fee extends CI_Controller
+{
+	public function index()
+	{		
+		$data = $this->get_list();
+			
+		$this->load->view('common/header');
+		$this->load->view('finance/fee_list', $data);
+		$this->load->view('common/footer');
 	}
 	
-	function index()
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('finance/fee_list_table', $data);
+	}
+	
+	public function get_list()
 	{	
+		$this->load->library('currency');
+	
+		$this->lang->load('finance/fee');
+	
+		$this->load->model('finance/fee_model');
+		
 		$data['success'] = $this->session->flashdata('success');
 	
 		if($this->input->get('filter_name'))
@@ -89,9 +102,9 @@ class Fee extends CI_Controller {
 			foreach($fees as $fee)
 			{	
 				$data['fees'][] = array(
-					'id'          => $fee['id'],
-					'name'        => $fee['name'],
-					'amount'      => $fee['amount']
+					'fee_id'     => $fee['id'],
+					'name'       => $fee['name'],
+					'amount'     => $this->currency->format($fee['amount'])
 				);
 			}
 		}
@@ -161,8 +174,8 @@ class Fee extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_name']      = base_url().'finance/fee?sort=name' . $url;
-		$data['sort_amount']    = base_url().'finance/fee?sort=amount' . $url;
+		$data['sort_name']   = base_url().'finance/fee?sort=name' . $url;
+		$data['sort_amount'] = base_url().'finance/fee?sort=amount' . $url;
 		
 		$url = '';
 		
@@ -181,25 +194,29 @@ class Fee extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url().'finance/fee'.$url;
-	
+		
+		$data['reload'] = base_url() . 'finance/fee/reload' . $url;
+
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_name'] 	  = $filter_name;
-		$data['filter_amount'] 	  = $filter_amount;
+		$data['filter_name']   = $filter_name;
+		$data['filter_amount'] = $filter_amount;
 		
-		$this->load->view('common/header');
-		$this->load->view('finance/fee_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add()
 	{
+		$this->lang->load('finance/fee');
+	
+		$this->load->model('finance/fee_model');
+		
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
+		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
 		
 		$data = array(
 			'name'      => $this->input->post('name'),
@@ -224,12 +241,16 @@ class Fee extends CI_Controller {
 	
 	public function edit()
 	{
-		$this->load->library('form_validation');
+		$this->lang->load('finance/fee');
+	
+		$this->load->model('finance/fee_model');
 		
-		$id = $this->input->get('id');
+		$this->load->library('form_validation');
+				
+		$fee_id = $this->input->get('fee_id');
 		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
+		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
 		
 		if($this->form_validation->run() == true)
 		{
@@ -238,7 +259,7 @@ class Fee extends CI_Controller {
 				'amount'    => $this->input->post('amount')
 			);
 				
-			$this->fee_model->edit_fee($id, $data);
+			$this->fee_model->edit_fee($fee_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_fee_edit_success'));
 			
@@ -252,13 +273,13 @@ class Fee extends CI_Controller {
 		}
 		else
 		{
-			$fee = $this->fee_model->get_fee($id);	
+			$fee = $this->fee_model->get_fee($fee_id);	
 			
 			$data['name']     = $fee['name'];				
 			$data['amount']   = $fee['amount'];	
 		}
 	
-		$data['id'] = $this->input->get('id');	
+		$data['fee_id'] = $this->input->get('fee_id');	
 				
 		$data['error'] = validation_errors();
 		
@@ -269,14 +290,16 @@ class Fee extends CI_Controller {
 	
 	public function delete()
 	{
-		if($this->input->get('id'))
+		$this->load->model('finance/fee_model');
+		
+		if($this->input->get('fee_id'))
 		{
-			$id = $this->input->get('id');
+			$fee_id = $this->input->get('fee_id');
 			
-			$this->fee_model->delete_fee($id);
+			$result = $this->fee_model->delete_fee($fee_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);

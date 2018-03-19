@@ -9,9 +9,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_add_fee'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <button class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>finance/fee" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+  <div class="button-group tooltip-demo">
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+    <a href="<?php echo base_url(); ?>finance/fee" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

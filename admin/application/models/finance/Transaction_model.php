@@ -2,13 +2,8 @@
 
 
 class Transaction_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	function add_transaction($data)
+{		
+	public function add_transaction($data)
 	{
 		$transaction_data = array(					
 			'client_id'		  => $data['client_id'],
@@ -44,7 +39,7 @@ class Transaction_model extends CI_Model
 		}
 	}
 
-	function edit_transaction($id, $data)
+	public function edit_transaction($id, $data)
 	{
 		$this->db->trans_begin();
 		
@@ -217,7 +212,7 @@ class Transaction_model extends CI_Model
 		}
 	}
 	
-	function get_transaction_total($data)
+	public function get_transaction_total($data)
 	{
 		$this->db->select("COUNT(transaction.id) AS total", false);
 		$this->db->from('transaction');
@@ -275,7 +270,7 @@ class Transaction_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function delete_transaction($transaction_id)
+	public function delete_transaction($transaction_id)
 	{
 		$this->db->trans_begin();
 		
@@ -307,19 +302,22 @@ class Transaction_model extends CI_Model
 		}
 	}	
 	
-	function delete_transaction_by_type($type, $type_id)
+	public function delete_transaction_by_type($type, $type_id)
 	{
 		$this->db->trans_begin();
 		
 		$q = $this->db->get_where('transaction', array('type' => $type, 'type_id' => $type_id));		
 		
-		$row = $q->row_array();
-				
-		$this->db->where('client_id', $row['client_id']);
-		$this->db->set('amount', 'amount+' . $row['amount'], false);
-		$this->db->update('balance');
-		
-		$this->db->delete('transaction', array('type' => $type, 'type_id' => $type_id));
+		if($q->num_rows() > 0)
+		{
+			$row = $q->row_array();
+					
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount+' . $row['amount'], false);
+			$this->db->update('balance');
+			
+			$this->db->delete('transaction', array('type' => $type, 'type_id' => $type_id));
+		}
 		
 		if($this->db->trans_status() === false) 
 		{

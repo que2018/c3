@@ -112,6 +112,7 @@
 		  <li>
 			<a><i class="fa fa-usd"></i><span class="nav-label"><?php echo $this->lang->line('menu_finance'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
+		      <li><a href="<?php echo base_url(); ?>finance/fee"><?php echo $this->lang->line('menu_fee'); ?></a></li>	
 		      <li><a href="<?php echo base_url(); ?>finance/balance"><?php echo $this->lang->line('menu_balance'); ?></a></li>	
 			  <li><a href="<?php echo base_url(); ?>finance/recharge"><?php echo $this->lang->line('menu_recharge'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>finance/transaction"><?php echo $this->lang->line('menu_transaction'); ?></a></li>

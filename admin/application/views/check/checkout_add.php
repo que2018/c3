@@ -2,7 +2,7 @@
 <link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">  
 <link href="<?php echo base_url(); ?>assets/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkout_add.css" rel="stylesheet"> 
+<link href="<?php echo base_url(); ?>assets/css/app/check/checkout_edit.css" rel="stylesheet"> 
 <script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/summernote/summernote.min.js"></script>
@@ -32,7 +32,7 @@
   <div class="row">
     <div class="col-lg-12">
 	<form method="post" class="form-horizontal">
-	  <div class="tabs-container">
+      <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
@@ -40,9 +40,9 @@
 		  <li class=""><a data-toggle="tab" href="#note"><?php echo $this->lang->line('tab_note'); ?></a></li>
 		</ul>
 		<div class="tab-content">
-		  <div id="general" class="tab-panel active">
+		  <div id="general" class="tab-pane active">
 			<div class="panel-body tab-panel">
-	          <div class="container-fluid">
+			  <div class="container-fluid">
 			    <div class="row">
 				  <div class="col-lg-7">
 				    <div class="form-group">
@@ -55,11 +55,11 @@
 					  </div>
 				    </div>
 				    <div class="hr-line-dashed"></div>
-					<div class="form-group">
+				    <div class="form-group">
 					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
 					  <div class="col-sm-10"><input name="tracking" value="<?php echo $tracking; ?>" class="form-control" ></div>
 				    </div>
-					<div class="hr-line-dashed"></div>
+				    <div class="hr-line-dashed"></div>
 					<div class="form-group">
 					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 					  <div class="col-sm-10">
@@ -108,16 +108,16 @@
 						  <td class="text-left"><?php echo $checkout_product['sku']; ?></td>
 						  <td><input class="form-control text-center quantity" name="checkout_product[<?php echo $checkout_product_row; ?>][quantity]" value="<?php echo $checkout_product['quantity']; ?>" onClick="this.select();"></td>
 						  <td>
-						    <select class="form-control">
+						    <select name="checkout_product[<?php echo $checkout_product_row; ?>][location_id]" class="form-control">
 							  <?php foreach($checkout_product['locations'] as $location) { ?>
-							    <?php if($location['locaton_id'] == $checkout_product['location_id']) { ?>
+							    <?php if($location['location_id'] == $checkout_product['location_id']) { ?>
 								<option value="<?php echo $location['location_id']; ?>" selected><?php echo $location['name']; ?></option>
 								<?php } else { ?>
 								<option value="<?php echo $location['location_id']; ?>"><?php echo $location['name']; ?></option>
 								<?php } ?>
 							  <?php } ?>
 							</select>
-						  </td>
+						  </td> 
 						  <td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $checkout_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
 						  <?php $checkout_product_row ++; ?>
 						  <?php } ?>
@@ -125,7 +125,7 @@
 					  </tbody>
 				    </table>  
 				  </div>
-		        </div>
+		        </div> 
               </div>
             </div>	
           </div>
@@ -241,28 +241,39 @@
                 <table id="checkout_fees" class="table table-striped table-bordered table-hover">
 				  <thead>
 					<tr>
-					<td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_name') ?></td>
-					<td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_amount') ?></td>							
+					<td class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></td>
 					<td></td>
 					</tr>
 				  </thead>
 				  <tbody>
-					<?php $checkout_fee_row = 0; ?>
+				    <?php $checkout_fee_row = 0; ?>
 					<?php if($checkout_fees) { ?>
 					  <?php foreach ($checkout_fees as $checkout_fee) { ?>
 					  <tr id="checkout-fee-row<?php echo $checkout_fee_row; ?>">
-					    <td class="text-right"><input type="text" name="checkout_fee[<?php echo $checkout_fee_row; ?>][value]" value="<?php echo $checkout_fee['name']; ?>" class="form-control" /></td>
-					    <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="checkout_fee[<?php echo $checkout_fee_row; ?>][class_id]" value="<?php echo $checkout_fee['amount']; ?>" class="form-control" /></div></td>
-					    <td class="text-left"><button type="button" onclick="$('#checkout-fee-row<?php echo $checkout_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+					    <td class="text-right">
+					      <select name="checkout_fee[<?php echo $checkout_fee_row; ?>]" class="form-control">
+						  <option value=""></option>
+						  <?php if($fees) { ?>
+						  <?php foreach($fees as $fee) { ?>
+						  <?php if($fee['fee_id'] == $checkout_fee['fee_id']) { ?>
+						  <option value="<?php echo $fee['fee_id']; ?>" selected><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>
+						  <?php } else { ?>
+						  <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>
+						  <?php } ?>
+						  <?php } ?>
+						  <?php } ?>
+						</select>
+						</td>
+						<td class="text-left"><button type="button" onclick="$('#checkout-fee-row<?php echo $checkout_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
 					  </tr>
-					  <?php $checkout_fee_row++; ?>
+					  <?php $checkout_fee_row ++; ?>
 					  <?php } ?>
 					<?php } ?>
 				  </tbody>
 				  <tfoot>
 					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_checkout_fee('', 0);" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  <td colspan="1"></td>
+					  <td class="text-left"><button type="button" onclick="add_checkout_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
 					</tr>
 				  </tfoot>
                 </table>
@@ -277,8 +288,8 @@
 		      <div class="hr-line-dashed"></div>
 		    </div>
 		  </div>		  
-        </div>
-	  </div>	  
+	    </div>
+	  </div>
 	</form>
 	</div>
   </div>  
@@ -348,9 +359,16 @@ checkout_fee_row = <?php echo $checkout_fee_row; ?>;
 
 function add_checkout_fee(name, amount) {
 	html  = '<tr id="checkout-fee-row' + checkout_fee_row + '">';
-	html += '  <td class="text-right"><input type="text" name="checkout_fee[' + checkout_fee_row + '][name]" value="' + name + '" class="form-control" /></td>';
-	html += '  <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="checkout_fee[' + checkout_fee_row + '][amount]" value="' + amount + '" class="form-control" /></div></td>';
-	html += '  <td class="text-left"><button type="button" onclick="$(\'#checkout-fee-row' + checkout_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '<td class="text-right">';
+	html += '<select name="checkout_fee[' + checkout_fee_row + ']" class="form-control">';
+	html += '<option value=""></option>';
+	
+	<?php foreach($fees as $fee) { ?>
+	html += '<option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>';
+	<?php } ?>
+	
+	html += '</select>';
+	html += '<td class="text-left"><button type="button" onclick="$(\'#checkout-fee-row' + checkout_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
 	$('#checkout_fees tbody').append(html);
@@ -504,9 +522,3 @@ $(document).ready(function() {
 	});
 });
 </script>
-
-
-
-
-		
-		
