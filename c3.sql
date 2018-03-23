@@ -1,25 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.1.12
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2018 at 09:47 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Mar 24, 2018 at 12:12 AM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `temp`
+-- Database: `c3`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +26,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity_log`
 --
 
-CREATE TABLE `activity_log` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `activity_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `ip_address` varchar(100) DEFAULT NULL,
   `uri` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `method` varchar(50) NOT NULL,
-  `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44677 ;
 
 -- --------------------------------------------------------
 
@@ -44,11 +43,12 @@ CREATE TABLE `activity_log` (
 -- Table structure for table `balance`
 --
 
-CREATE TABLE `balance` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `balance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) DEFAULT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
@@ -56,15 +56,17 @@ CREATE TABLE `balance` (
 -- Table structure for table `checkin`
 --
 
-CREATE TABLE `checkin` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `note` text NOT NULL,
   `status` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -72,12 +74,13 @@ CREATE TABLE `checkin` (
 -- Table structure for table `checkin_fee`
 --
 
-CREATE TABLE `checkin_fee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkin_fee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkin_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -85,11 +88,12 @@ CREATE TABLE `checkin_fee` (
 -- Table structure for table `checkin_file`
 --
 
-CREATE TABLE `checkin_file` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkin_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkin_id` int(11) NOT NULL,
-  `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -97,13 +101,16 @@ CREATE TABLE `checkin_file` (
 -- Table structure for table `checkin_product`
 --
 
-CREATE TABLE `checkin_product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkin_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkin_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `location_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `purchase_id` (`checkin_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -111,8 +118,8 @@ CREATE TABLE `checkin_product` (
 -- Table structure for table `checkout`
 --
 
-CREATE TABLE `checkout` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkout` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `location_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
@@ -128,8 +135,11 @@ CREATE TABLE `checkout` (
   `note` text NOT NULL,
   `description` text NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  `code` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -137,12 +147,13 @@ CREATE TABLE `checkout` (
 -- Table structure for table `checkout_fee`
 --
 
-CREATE TABLE `checkout_fee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkout_fee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkout_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -150,11 +161,12 @@ CREATE TABLE `checkout_fee` (
 -- Table structure for table `checkout_file`
 --
 
-CREATE TABLE `checkout_file` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkout_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkout_id` int(11) DEFAULT NULL,
-  `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -162,13 +174,16 @@ CREATE TABLE `checkout_file` (
 -- Table structure for table `checkout_product`
 --
 
-CREATE TABLE `checkout_product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `checkout_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkout_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `location_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `purchase_id` (`checkout_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -176,13 +191,13 @@ CREATE TABLE `checkout_product` (
 -- Table structure for table `client`
 --
 
-CREATE TABLE `client` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `client` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varbinary(16) NOT NULL,
   `password` varchar(40) NOT NULL,
   `salt` varchar(40) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `status` tinyint(1) UNSIGNED DEFAULT '1',
+  `status` tinyint(1) unsigned DEFAULT '1',
   `firstname` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
@@ -191,8 +206,9 @@ CREATE TABLE `client` (
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `phone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -200,8 +216,8 @@ CREATE TABLE `client` (
 -- Table structure for table `customer`
 --
 
-CREATE TABLE `customer` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `customer` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -212,8 +228,9 @@ CREATE TABLE `customer` (
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `zipcode` varchar(255) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `phone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1031 ;
 
 -- --------------------------------------------------------
 
@@ -221,14 +238,19 @@ CREATE TABLE `customer` (
 -- Table structure for table `damage`
 --
 
-CREATE TABLE `damage` (
-  `damage_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `damage` (
+  `damage_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`damage_id`),
+  KEY `product_id` (`product_id`),
+  KEY `id` (`damage_id`),
+  KEY `product_id_2` (`product_id`),
+  KEY `location_id` (`location_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -236,8 +258,8 @@ CREATE TABLE `damage` (
 -- Table structure for table `employee`
 --
 
-CREATE TABLE `employee` (
-  `employee_id` mediumint(8) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `employee` (
+  `employee_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `password` varchar(40) NOT NULL,
   `salt` varchar(40) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
@@ -246,8 +268,9 @@ CREATE TABLE `employee` (
   `phone` varchar(20) DEFAULT NULL,
   `store_id` int(11) NOT NULL,
   `warehouse_id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`employee_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -255,11 +278,12 @@ CREATE TABLE `employee` (
 -- Table structure for table `extension`
 --
 
-CREATE TABLE `extension` (
-  `extension_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `extension` (
+  `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
-  `code` varchar(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `code` varchar(32) NOT NULL,
+  PRIMARY KEY (`extension_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
 --
 -- Dumping data for table `extension`
@@ -304,11 +328,12 @@ INSERT INTO `extension` (`extension_id`, `type`, `code`) VALUES
 -- Table structure for table `fee`
 --
 
-CREATE TABLE `fee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -316,13 +341,14 @@ CREATE TABLE `fee` (
 -- Table structure for table `information`
 --
 
-CREATE TABLE `information` (
-  `information_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `information` (
+  `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `front` tinyint(4) NOT NULL,
   `redirect` varchar(1024) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `sort_order` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `sort_order` int(11) NOT NULL,
+  PRIMARY KEY (`information_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `information`
@@ -337,7 +363,7 @@ INSERT INTO `information` (`information_id`, `front`, `redirect`, `status`, `sor
 -- Table structure for table `information_content`
 --
 
-CREATE TABLE `information_content` (
+CREATE TABLE IF NOT EXISTS `information_content` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
@@ -350,14 +376,19 @@ CREATE TABLE `information_content` (
 -- Table structure for table `inventory`
 --
 
-CREATE TABLE `inventory` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `inventory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `id` (`id`),
+  KEY `product_id_2` (`product_id`),
+  KEY `location_id` (`location_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2350 ;
 
 -- --------------------------------------------------------
 
@@ -365,11 +396,12 @@ CREATE TABLE `inventory` (
 -- Table structure for table `language`
 --
 
-CREATE TABLE `language` (
-  `language_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `language` (
+  `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(16) NOT NULL,
-  `code` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `code` varchar(16) NOT NULL,
+  PRIMARY KEY (`language_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `language`
@@ -385,12 +417,13 @@ INSERT INTO `language` (`language_id`, `name`, `code`) VALUES
 -- Table structure for table `length_class`
 --
 
-CREATE TABLE `length_class` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `length_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit` varchar(16) NOT NULL,
   `unit_short` varchar(16) NOT NULL,
-  `value` decimal(15,8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `value` decimal(15,8) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `length_class`
@@ -406,14 +439,16 @@ INSERT INTO `length_class` (`id`, `unit`, `unit_short`, `value`) VALUES
 -- Table structure for table `location`
 --
 
-CREATE TABLE `location` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `location` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `code` varchar(255) NOT NULL,
   `warehouse_id` int(11) DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
-  `date_modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `warehouse_id` (`warehouse_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2229 ;
 
 -- --------------------------------------------------------
 
@@ -421,12 +456,13 @@ CREATE TABLE `location` (
 -- Table structure for table `location_to_client`
 --
 
-CREATE TABLE `location_to_client` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `location_to_client` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `location_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -434,11 +470,12 @@ CREATE TABLE `location_to_client` (
 -- Table structure for table `location_unit`
 --
 
-CREATE TABLE `location_unit` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `location_unit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
-  `price` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `price` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -446,8 +483,8 @@ CREATE TABLE `location_unit` (
 -- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `upc` varchar(50) NOT NULL,
   `sku` varchar(50) NOT NULL,
   `asin` varchar(255) NOT NULL,
@@ -466,8 +503,13 @@ CREATE TABLE `product` (
   `shipping_service` varchar(32) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`),
+  KEY `id_2` (`id`),
+  KEY `id_3` (`id`),
+  KEY `id_4` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93316 ;
 
 -- --------------------------------------------------------
 
@@ -475,13 +517,14 @@ CREATE TABLE `product` (
 -- Table structure for table `product_fee`
 --
 
-CREATE TABLE `product_fee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `product_fee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` int(11) NOT NULL DEFAULT '1',
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -489,16 +532,17 @@ CREATE TABLE `product_fee` (
 -- Table structure for table `recharge`
 --
 
-CREATE TABLE `recharge` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `recharge` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `payment_method` varchar(100) NOT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   `date_paid` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_added` datetime DEFAULT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -506,15 +550,17 @@ CREATE TABLE `recharge` (
 -- Table structure for table `refund`
 --
 
-CREATE TABLE `refund` (
-  `refund_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `refund` (
+  `refund_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `note` text NOT NULL,
   `status` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`refund_id`),
+  KEY `id` (`refund_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -522,13 +568,16 @@ CREATE TABLE `refund` (
 -- Table structure for table `refund_product`
 --
 
-CREATE TABLE `refund_product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `refund_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `refund_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `location_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `purchase_id` (`refund_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -536,8 +585,8 @@ CREATE TABLE `refund_product` (
 -- Table structure for table `sale`
 --
 
-CREATE TABLE `sale` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sale` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `store_sale_id` varchar(55) NOT NULL,
   `name` varchar(55) NOT NULL,
@@ -562,8 +611,10 @@ CREATE TABLE `sale` (
   `status_id` int(11) NOT NULL DEFAULT '1',
   `note` text NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=944 ;
 
 -- --------------------------------------------------------
 
@@ -571,12 +622,13 @@ CREATE TABLE `sale` (
 -- Table structure for table `sale_fee`
 --
 
-CREATE TABLE `sale_fee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sale_fee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sale_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `amount` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -584,12 +636,13 @@ CREATE TABLE `sale_fee` (
 -- Table structure for table `sale_label`
 --
 
-CREATE TABLE `sale_label` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sale_label` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sale_id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `tracking` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tracking` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -597,13 +650,16 @@ CREATE TABLE `sale_label` (
 -- Table structure for table `sale_product`
 --
 
-CREATE TABLE `sale_product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sale_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sale_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `store_sale_product_id` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `store_sale_product_id` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sale_id` (`sale_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1197 ;
 
 -- --------------------------------------------------------
 
@@ -611,7 +667,7 @@ CREATE TABLE `sale_product` (
 -- Table structure for table `sale_to_checkout`
 --
 
-CREATE TABLE `sale_to_checkout` (
+CREATE TABLE IF NOT EXISTS `sale_to_checkout` (
   `sale_id` int(11) DEFAULT NULL,
   `checkout_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -622,13 +678,14 @@ CREATE TABLE `sale_to_checkout` (
 -- Table structure for table `setting`
 --
 
-CREATE TABLE `setting` (
-  `setting_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `setting` (
+  `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(32) NOT NULL,
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL,
-  `serialized` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `serialized` tinyint(1) NOT NULL,
+  PRIMARY KEY (`setting_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22466 ;
 
 --
 -- Dumping data for table `setting`
@@ -646,30 +703,30 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (16737, 'alipay', 'alipay_partner', '850025472000772009660', 0),
 (21475, 'usps', 'usps_fee_type', '0', 0),
 (21476, 'usps', 'usps_fee_value', '3', 0),
-(21477, 'usps', 'usps_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
+(21477, 'usps', 'usps_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"18";}}', 1),
 (15438, 'system', 'system_google_map_api_key', 'AIzaSyAc05thWPUV50Wuz-ain57oVv4NU5sme_Y', 0),
 (16740, 'alipay', 'alipay_sort_order', '0', 0),
 (16472, 'authorize', 'authorize_id', '744fRQNwM', 0),
 (16470, 'paypal', 'paypal_email', 'freeshopping.us@gmail.com', 0),
-(21474, 'usps', 'usps_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:11:\"First Class\";s:4:\"code\";s:2:\"fc\";s:6:\"method\";s:5:\"US-FC\";s:7:\"package\";s:7:\"Package\";}i:1;a:4:{s:4:\"name\";s:8:\"Priority\";s:4:\"code\";s:2:\"pr\";s:6:\"method\";s:5:\"US-PM\";s:7:\"package\";s:7:\"Package\";}}', 1),
-(16475, 'finance', 'finance_fee_type', 'a:4:{i:0;a:4:{s:4:\"code\";s:9:\"label_fee\";s:4:\"text\";s:13:\"Label Fee($2)\";s:6:\"static\";s:1:\"1\";s:6:\"amount\";s:3:\"0.5\";}i:1;a:4:{s:4:\"code\";s:12:\"shipping_fee\";s:4:\"text\";s:12:\"Shipping Fee\";s:6:\"static\";s:1:\"0\";s:6:\"amount\";s:0:\"\";}i:2;a:4:{s:4:\"code\";s:12:\"location_fee\";s:4:\"text\";s:12:\"Location Fee\";s:6:\"static\";s:1:\"0\";s:6:\"amount\";s:0:\"\";}i:3;a:4:{s:4:\"code\";s:10:\"handle_fee\";s:4:\"text\";s:14:\"Label Fee($10)\";s:6:\"static\";s:1:\"1\";s:6:\"amount\";s:2:\"10\";}}', 1),
+(21474, 'usps', 'usps_service', 'a:2:{i:0;a:4:{s:4:"name";s:11:"First Class";s:4:"code";s:2:"fc";s:6:"method";s:5:"US-FC";s:7:"package";s:7:"Package";}i:1;a:4:{s:4:"name";s:8:"Priority";s:4:"code";s:2:"pr";s:6:"method";s:5:"US-PM";s:7:"package";s:7:"Package";}}', 1),
+(16475, 'finance', 'finance_fee_type', 'a:4:{i:0;a:4:{s:4:"code";s:9:"label_fee";s:4:"text";s:13:"Label Fee($2)";s:6:"static";s:1:"1";s:6:"amount";s:3:"0.5";}i:1;a:4:{s:4:"code";s:12:"shipping_fee";s:4:"text";s:12:"Shipping Fee";s:6:"static";s:1:"0";s:6:"amount";s:0:"";}i:2;a:4:{s:4:"code";s:12:"location_fee";s:4:"text";s:12:"Location Fee";s:6:"static";s:1:"0";s:6:"amount";s:0:"";}i:3;a:4:{s:4:"code";s:10:"handle_fee";s:4:"text";s:14:"Label Fee($10)";s:6:"static";s:1:"1";s:6:"amount";s:2:"10";}}', 1),
 (16471, 'paypal', 'paypal_payment_name', 'Shipping Charge', 0),
-(17123, 'wish', 'wish_field', 'a:1:{i:0;s:5:\"token\";}', 1),
-(16484, 'filter', 'filter_state', 'a:50:{i:0;a:2:{s:5:\"input\";s:7:\"alabama\";s:6:\"output\";s:2:\"AL\";}i:1;a:2:{s:5:\"input\";s:6:\"alaska\";s:6:\"output\";s:2:\"AK\";}i:2;a:2:{s:5:\"input\";s:7:\"arizona\";s:6:\"output\";s:2:\"AZ\";}i:3;a:2:{s:5:\"input\";s:8:\"arkansas\";s:6:\"output\";s:2:\"AR\";}i:4;a:2:{s:5:\"input\";s:10:\"california\";s:6:\"output\";s:2:\"CA\";}i:5;a:2:{s:5:\"input\";s:8:\"colorado\";s:6:\"output\";s:2:\"CO\";}i:6;a:2:{s:5:\"input\";s:11:\"connecticut\";s:6:\"output\";s:2:\"CT\";}i:7;a:2:{s:5:\"input\";s:8:\"delaware\";s:6:\"output\";s:2:\"DE\";}i:8;a:2:{s:5:\"input\";s:7:\"florida\";s:6:\"output\";s:2:\"FL\";}i:9;a:2:{s:5:\"input\";s:7:\"georgia\";s:6:\"output\";s:2:\"GA\";}i:10;a:2:{s:5:\"input\";s:6:\"hawaii\";s:6:\"output\";s:2:\"HI\";}i:11;a:2:{s:5:\"input\";s:5:\"idaho\";s:6:\"output\";s:2:\"ID\";}i:12;a:2:{s:5:\"input\";s:8:\"illinois\";s:6:\"output\";s:2:\"IL\";}i:13;a:2:{s:5:\"input\";s:7:\"indiana\";s:6:\"output\";s:2:\"IN\";}i:14;a:2:{s:5:\"input\";s:4:\"iowa\";s:6:\"output\";s:2:\"IA\";}i:15;a:2:{s:5:\"input\";s:6:\"kansas\";s:6:\"output\";s:2:\"KS\";}i:16;a:2:{s:5:\"input\";s:8:\"kentucky\";s:6:\"output\";s:2:\"KY\";}i:17;a:2:{s:5:\"input\";s:9:\"louisiana\";s:6:\"output\";s:2:\"LA\";}i:18;a:2:{s:5:\"input\";s:5:\"maine\";s:6:\"output\";s:2:\"ME\";}i:19;a:2:{s:5:\"input\";s:8:\"maryland\";s:6:\"output\";s:2:\"MD\";}i:20;a:2:{s:5:\"input\";s:13:\"massachusetts\";s:6:\"output\";s:2:\"MA\";}i:21;a:2:{s:5:\"input\";s:8:\"michigan\";s:6:\"output\";s:2:\"MI\";}i:22;a:2:{s:5:\"input\";s:9:\"minnesota\";s:6:\"output\";s:2:\"MN\";}i:23;a:2:{s:5:\"input\";s:12:\"mississippi \";s:6:\"output\";s:2:\"MS\";}i:24;a:2:{s:5:\"input\";s:8:\"missouri\";s:6:\"output\";s:2:\"MO\";}i:25;a:2:{s:5:\"input\";s:7:\"montana\";s:6:\"output\";s:2:\"MT\";}i:26;a:2:{s:5:\"input\";s:8:\"nebraska\";s:6:\"output\";s:2:\"NE\";}i:27;a:2:{s:5:\"input\";s:6:\"nevada\";s:6:\"output\";s:2:\"NV\";}i:28;a:2:{s:5:\"input\";s:13:\"new hampshire\";s:6:\"output\";s:2:\"NH\";}i:29;a:2:{s:5:\"input\";s:10:\"new jersey\";s:6:\"output\";s:2:\"NJ\";}i:30;a:2:{s:5:\"input\";s:10:\"new mexico\";s:6:\"output\";s:2:\"NM\";}i:31;a:2:{s:5:\"input\";s:8:\"new york\";s:6:\"output\";s:2:\"NY\";}i:32;a:2:{s:5:\"input\";s:14:\"north carolina\";s:6:\"output\";s:2:\"NC\";}i:33;a:2:{s:5:\"input\";s:12:\"north dakota\";s:6:\"output\";s:2:\"ND\";}i:34;a:2:{s:5:\"input\";s:4:\"ohio\";s:6:\"output\";s:2:\"OH\";}i:35;a:2:{s:5:\"input\";s:8:\"oklahoma\";s:6:\"output\";s:2:\"OK\";}i:36;a:2:{s:5:\"input\";s:6:\"oregon\";s:6:\"output\";s:2:\"OR\";}i:37;a:2:{s:5:\"input\";s:12:\"pennsylvania\";s:6:\"output\";s:2:\"PA\";}i:38;a:2:{s:5:\"input\";s:12:\"rhode island\";s:6:\"output\";s:2:\"RI\";}i:39;a:2:{s:5:\"input\";s:14:\"south carolina\";s:6:\"output\";s:2:\"SC\";}i:40;a:2:{s:5:\"input\";s:12:\"south dakota\";s:6:\"output\";s:2:\"SD\";}i:41;a:2:{s:5:\"input\";s:9:\"tennessee\";s:6:\"output\";s:2:\"TN\";}i:42;a:2:{s:5:\"input\";s:5:\"texas\";s:6:\"output\";s:2:\"TX\";}i:43;a:2:{s:5:\"input\";s:4:\"utah\";s:6:\"output\";s:2:\"UT\";}i:44;a:2:{s:5:\"input\";s:7:\"vermont\";s:6:\"output\";s:2:\"VT\";}i:45;a:2:{s:5:\"input\";s:8:\"virginia\";s:6:\"output\";s:2:\"VA\";}i:46;a:2:{s:5:\"input\";s:10:\"washington\";s:6:\"output\";s:2:\"WA\";}i:47;a:2:{s:5:\"input\";s:13:\"west virginia\";s:6:\"output\";s:2:\"WV\";}i:48;a:2:{s:5:\"input\";s:9:\"wisconsin\";s:6:\"output\";s:2:\"WI\";}i:49;a:2:{s:5:\"input\";s:7:\"wyoming\";s:6:\"output\";s:2:\"WY\";}}', 1),
-(17126, 'ebay', 'ebay_field', 'a:6:{i:0;s:6:\"Dev Id\";i:1;s:6:\"App Id\";i:2;s:7:\"Cert Id\";i:3;s:8:\"Username\";i:4;s:7:\"Site Id\";i:5;s:5:\"Token\";}', 1),
+(17123, 'wish', 'wish_field', 'a:1:{i:0;s:5:"token";}', 1),
+(16484, 'filter', 'filter_state', 'a:50:{i:0;a:2:{s:5:"input";s:7:"alabama";s:6:"output";s:2:"AL";}i:1;a:2:{s:5:"input";s:6:"alaska";s:6:"output";s:2:"AK";}i:2;a:2:{s:5:"input";s:7:"arizona";s:6:"output";s:2:"AZ";}i:3;a:2:{s:5:"input";s:8:"arkansas";s:6:"output";s:2:"AR";}i:4;a:2:{s:5:"input";s:10:"california";s:6:"output";s:2:"CA";}i:5;a:2:{s:5:"input";s:8:"colorado";s:6:"output";s:2:"CO";}i:6;a:2:{s:5:"input";s:11:"connecticut";s:6:"output";s:2:"CT";}i:7;a:2:{s:5:"input";s:8:"delaware";s:6:"output";s:2:"DE";}i:8;a:2:{s:5:"input";s:7:"florida";s:6:"output";s:2:"FL";}i:9;a:2:{s:5:"input";s:7:"georgia";s:6:"output";s:2:"GA";}i:10;a:2:{s:5:"input";s:6:"hawaii";s:6:"output";s:2:"HI";}i:11;a:2:{s:5:"input";s:5:"idaho";s:6:"output";s:2:"ID";}i:12;a:2:{s:5:"input";s:8:"illinois";s:6:"output";s:2:"IL";}i:13;a:2:{s:5:"input";s:7:"indiana";s:6:"output";s:2:"IN";}i:14;a:2:{s:5:"input";s:4:"iowa";s:6:"output";s:2:"IA";}i:15;a:2:{s:5:"input";s:6:"kansas";s:6:"output";s:2:"KS";}i:16;a:2:{s:5:"input";s:8:"kentucky";s:6:"output";s:2:"KY";}i:17;a:2:{s:5:"input";s:9:"louisiana";s:6:"output";s:2:"LA";}i:18;a:2:{s:5:"input";s:5:"maine";s:6:"output";s:2:"ME";}i:19;a:2:{s:5:"input";s:8:"maryland";s:6:"output";s:2:"MD";}i:20;a:2:{s:5:"input";s:13:"massachusetts";s:6:"output";s:2:"MA";}i:21;a:2:{s:5:"input";s:8:"michigan";s:6:"output";s:2:"MI";}i:22;a:2:{s:5:"input";s:9:"minnesota";s:6:"output";s:2:"MN";}i:23;a:2:{s:5:"input";s:12:"mississippi ";s:6:"output";s:2:"MS";}i:24;a:2:{s:5:"input";s:8:"missouri";s:6:"output";s:2:"MO";}i:25;a:2:{s:5:"input";s:7:"montana";s:6:"output";s:2:"MT";}i:26;a:2:{s:5:"input";s:8:"nebraska";s:6:"output";s:2:"NE";}i:27;a:2:{s:5:"input";s:6:"nevada";s:6:"output";s:2:"NV";}i:28;a:2:{s:5:"input";s:13:"new hampshire";s:6:"output";s:2:"NH";}i:29;a:2:{s:5:"input";s:10:"new jersey";s:6:"output";s:2:"NJ";}i:30;a:2:{s:5:"input";s:10:"new mexico";s:6:"output";s:2:"NM";}i:31;a:2:{s:5:"input";s:8:"new york";s:6:"output";s:2:"NY";}i:32;a:2:{s:5:"input";s:14:"north carolina";s:6:"output";s:2:"NC";}i:33;a:2:{s:5:"input";s:12:"north dakota";s:6:"output";s:2:"ND";}i:34;a:2:{s:5:"input";s:4:"ohio";s:6:"output";s:2:"OH";}i:35;a:2:{s:5:"input";s:8:"oklahoma";s:6:"output";s:2:"OK";}i:36;a:2:{s:5:"input";s:6:"oregon";s:6:"output";s:2:"OR";}i:37;a:2:{s:5:"input";s:12:"pennsylvania";s:6:"output";s:2:"PA";}i:38;a:2:{s:5:"input";s:12:"rhode island";s:6:"output";s:2:"RI";}i:39;a:2:{s:5:"input";s:14:"south carolina";s:6:"output";s:2:"SC";}i:40;a:2:{s:5:"input";s:12:"south dakota";s:6:"output";s:2:"SD";}i:41;a:2:{s:5:"input";s:9:"tennessee";s:6:"output";s:2:"TN";}i:42;a:2:{s:5:"input";s:5:"texas";s:6:"output";s:2:"TX";}i:43;a:2:{s:5:"input";s:4:"utah";s:6:"output";s:2:"UT";}i:44;a:2:{s:5:"input";s:7:"vermont";s:6:"output";s:2:"VT";}i:45;a:2:{s:5:"input";s:8:"virginia";s:6:"output";s:2:"VA";}i:46;a:2:{s:5:"input";s:10:"washington";s:6:"output";s:2:"WA";}i:47;a:2:{s:5:"input";s:13:"west virginia";s:6:"output";s:2:"WV";}i:48;a:2:{s:5:"input";s:9:"wisconsin";s:6:"output";s:2:"WI";}i:49;a:2:{s:5:"input";s:7:"wyoming";s:6:"output";s:2:"WY";}}', 1),
+(17126, 'ebay', 'ebay_field', 'a:6:{i:0;s:6:"Dev Id";i:1;s:6:"App Id";i:2;s:7:"Cert Id";i:3;s:8:"Username";i:4;s:7:"Site Id";i:5;s:5:"Token";}', 1),
 (17128, 'ebay', 'ebay_status', '1', 0),
 (16739, 'alipay', 'alipay_key', 'dffvsdmmmdilxzawil22206', 0),
 (16738, 'alipay', 'alipay_seller_id', '850025472000772009660', 0),
 (17215, 'square', 'square_sort_order', '5', 0),
 (17121, 'opencart', 'opencart_sort_order', '1', 0),
-(17120, 'opencart', 'opencart_field', 'a:1:{i:0;s:5:\"token\";}', 1),
+(17120, 'opencart', 'opencart_field', 'a:1:{i:0;s:5:"token";}', 1),
 (21473, 'usps', 'usps_stamps_wsdl_file', 'assets/file/stamps/stamps.prod.xml', 0),
 (21472, 'usps', 'usps_stamps_integration_id', 'e13dde83-59b9-4b45-9a51-3f83016fd883', 0),
 (17122, 'opencart', 'opencart_status', '1', 0),
 (17125, 'wish', 'wish_status', '1', 0),
 (17127, 'ebay', 'ebay_sort_order', '0', 0),
 (17124, 'wish', 'wish_sort_order', '2', 0),
-(17214, 'square', 'square_field', 'a:1:{i:0;s:5:\"token\";}', 1),
+(17214, 'square', 'square_field', 'a:1:{i:0;s:5:"token";}', 1),
 (17216, 'square', 'square_status', '1', 0),
 (21471, 'usps', 'usps_stamps_password', 'Proline9910', 0),
 (21988, 'ups', 'ups_fee_value', '3', 0),
@@ -692,13 +749,13 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (21982, 'ups', 'ups_debug_mode', '1', 0),
 (21983, 'ups', 'ups_status', '1', 0),
 (21984, 'ups', 'ups_sort_order', '0', 0),
-(21985, 'ups', 'ups_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:10:\"UPS Ground\";s:4:\"code\";s:2:\"gr\";s:6:\"method\";s:2:\"03\";s:7:\"package\";s:2:\"04\";}i:1;a:4:{s:4:\"name\";s:15:\"UPS 2nd Day Air\";s:4:\"code\";s:4:\"2nda\";s:6:\"method\";s:2:\"02\";s:7:\"package\";s:2:\"04\";}}', 1),
-(21986, 'ups', 'ups_state_mapping', 'a:48:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:12:\"mississippi \";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new jersey\";s:11:\"state_short\";s:2:\"NJ\";}i:28;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:29;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:30;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:31;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:32;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:33;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:34;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:35;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:36;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:37;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:38;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:39;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:40;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:41;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:42;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:43;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:44;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:45;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:46;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:47;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
+(21985, 'ups', 'ups_service', 'a:2:{i:0;a:4:{s:4:"name";s:10:"UPS Ground";s:4:"code";s:2:"gr";s:6:"method";s:2:"03";s:7:"package";s:2:"04";}i:1;a:4:{s:4:"name";s:15:"UPS 2nd Day Air";s:4:"code";s:4:"2nda";s:6:"method";s:2:"02";s:7:"package";s:2:"04";}}', 1),
+(21986, 'ups', 'ups_state_mapping', 'a:48:{i:0;a:2:{s:10:"state_long";s:7:"alabama";s:11:"state_short";s:2:"AL";}i:1;a:2:{s:10:"state_long";s:6:"alaska";s:11:"state_short";s:2:"AK";}i:2;a:2:{s:10:"state_long";s:7:"arizona";s:11:"state_short";s:2:"AZ";}i:3;a:2:{s:10:"state_long";s:8:"arkansas";s:11:"state_short";s:2:"AR";}i:4;a:2:{s:10:"state_long";s:10:"california";s:11:"state_short";s:2:"CA";}i:5;a:2:{s:10:"state_long";s:8:"colorado";s:11:"state_short";s:2:"CO";}i:6;a:2:{s:10:"state_long";s:11:"connecticut";s:11:"state_short";s:2:"CT";}i:7;a:2:{s:10:"state_long";s:8:"delaware";s:11:"state_short";s:2:"DE";}i:8;a:2:{s:10:"state_long";s:7:"florida";s:11:"state_short";s:2:"FL";}i:9;a:2:{s:10:"state_long";s:7:"georgia";s:11:"state_short";s:2:"GA";}i:10;a:2:{s:10:"state_long";s:6:"hawaii";s:11:"state_short";s:2:"HI";}i:11;a:2:{s:10:"state_long";s:5:"idaho";s:11:"state_short";s:2:"ID";}i:12;a:2:{s:10:"state_long";s:8:"illinois";s:11:"state_short";s:2:"IN";}i:13;a:2:{s:10:"state_long";s:4:"iowa";s:11:"state_short";s:2:"IA";}i:14;a:2:{s:10:"state_long";s:6:"kansas";s:11:"state_short";s:2:"KS";}i:15;a:2:{s:10:"state_long";s:8:"kentucky";s:11:"state_short";s:2:"KY";}i:16;a:2:{s:10:"state_long";s:9:"louisiana";s:11:"state_short";s:2:"LA";}i:17;a:2:{s:10:"state_long";s:5:"maine";s:11:"state_short";s:2:"ME";}i:18;a:2:{s:10:"state_long";s:8:"maryland";s:11:"state_short";s:2:"MD";}i:19;a:2:{s:10:"state_long";s:13:"massachusetts";s:11:"state_short";s:2:"MA";}i:20;a:2:{s:10:"state_long";s:8:"michigan";s:11:"state_short";s:2:"MI";}i:21;a:2:{s:10:"state_long";s:9:"minnesota";s:11:"state_short";s:2:"MN";}i:22;a:2:{s:10:"state_long";s:12:"mississippi ";s:11:"state_short";s:2:"MS";}i:23;a:2:{s:10:"state_long";s:8:"missouri";s:11:"state_short";s:2:"MO";}i:24;a:2:{s:10:"state_long";s:7:"montana";s:11:"state_short";s:2:"NE";}i:25;a:2:{s:10:"state_long";s:6:"nevada";s:11:"state_short";s:2:"NV";}i:26;a:2:{s:10:"state_long";s:13:"new hampshire";s:11:"state_short";s:2:"NH";}i:27;a:2:{s:10:"state_long";s:10:"new jersey";s:11:"state_short";s:2:"NJ";}i:28;a:2:{s:10:"state_long";s:10:"new mexico";s:11:"state_short";s:2:"NM";}i:29;a:2:{s:10:"state_long";s:8:"new york";s:11:"state_short";s:2:"NY";}i:30;a:2:{s:10:"state_long";s:14:"north carolina";s:11:"state_short";s:2:"NC";}i:31;a:2:{s:10:"state_long";s:12:"north dakota";s:11:"state_short";s:2:"ND";}i:32;a:2:{s:10:"state_long";s:4:"ohio";s:11:"state_short";s:2:"OH";}i:33;a:2:{s:10:"state_long";s:8:"oklahoma";s:11:"state_short";s:2:"OK";}i:34;a:2:{s:10:"state_long";s:6:"oregon";s:11:"state_short";s:2:"OR";}i:35;a:2:{s:10:"state_long";s:12:"pennsylvania";s:11:"state_short";s:2:"PA";}i:36;a:2:{s:10:"state_long";s:12:"rhode island";s:11:"state_short";s:2:"RI";}i:37;a:2:{s:10:"state_long";s:14:"south carolina";s:11:"state_short";s:2:"SC";}i:38;a:2:{s:10:"state_long";s:12:"south dakota";s:11:"state_short";s:2:"SD";}i:39;a:2:{s:10:"state_long";s:9:"tennessee";s:11:"state_short";s:2:"TN";}i:40;a:2:{s:10:"state_long";s:5:"texas";s:11:"state_short";s:2:"TX";}i:41;a:2:{s:10:"state_long";s:4:"utah";s:11:"state_short";s:2:"UT";}i:42;a:2:{s:10:"state_long";s:7:"vermont";s:11:"state_short";s:2:"VT";}i:43;a:2:{s:10:"state_long";s:8:"virginia";s:11:"state_short";s:2:"VA";}i:44;a:2:{s:10:"state_long";s:10:"washington";s:11:"state_short";s:2:"WA";}i:45;a:2:{s:10:"state_long";s:13:"west virginia";s:11:"state_short";s:2:"WV";}i:46;a:2:{s:10:"state_long";s:9:"wisconsin";s:11:"state_short";s:2:"WI";}i:47;a:2:{s:10:"state_long";s:7:"wyoming";s:11:"state_short";s:2:"WY";}}', 1),
 (21470, 'usps', 'usps_stamps_username', 'prolineds', 0),
 (21469, 'usps', 'usps_sort_order', '0', 0),
 (21468, 'usps', 'usps_status', '1', 0),
 (21467, 'usps', 'usps_postcode', '91731', 0),
-(17647, 'amazon', 'amazon_field', 'a:6:{i:0;s:6:\"Dev Id\";i:1;s:6:\"App Id\";i:2;s:7:\"Cert Id\";i:3;s:8:\"Username\";i:4;s:7:\"Site Id\";i:5;s:5:\"Token\";}', 1),
+(17647, 'amazon', 'amazon_field', 'a:6:{i:0;s:6:"Dev Id";i:1;s:6:"App Id";i:2;s:7:"Cert Id";i:3;s:8:"Username";i:4;s:7:"Site Id";i:5;s:5:"Token";}', 1),
 (17648, 'amazon', 'amazon_status', '0', 0),
 (17649, 'amazon', 'amazon_sort_order', '0', 0),
 (22373, 'config', 'config_google_key', '', 0),
@@ -725,14 +782,14 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (22354, 'config', 'config_location_barcode_batch_name_size', '60', 0),
 (22091, 'fedex', 'fedex_fee_type', '0', 0),
 (22092, 'fedex', 'fedex_fee_value', '3', 0),
-(22093, 'fedex', 'fedex_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
+(22093, 'fedex', 'fedex_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"18";}}', 1),
 (22084, 'fedex', 'fedex_weight_unit', 'LB', 0),
 (22085, 'fedex', 'fedex_image_type', 'PNG', 0),
 (22086, 'fedex', 'fedex_debug_mode', '1', 0),
 (22087, 'fedex', 'fedex_status', '1', 0),
 (22088, 'fedex', 'fedex_sort_order', '0', 0),
-(22089, 'fedex', 'fedex_service', 'a:1:{i:0;a:4:{s:4:\"name\";s:19:\"Fedex Home Delivery\";s:4:\"code\";s:3:\"ghd\";s:6:\"method\";s:20:\"GROUND_HOME_DELIVERY\";s:7:\"package\";s:14:\"YOUR_PACKAGING\";}}', 1),
-(22090, 'fedex', 'fedex_state_mapping', 'a:47:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:11:\"mississippi\";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:28;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:29;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:30;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:31;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:32;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:33;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:34;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:35;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:36;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:37;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:38;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:39;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:40;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:41;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:42;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:43;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:44;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:45;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:46;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
+(22089, 'fedex', 'fedex_service', 'a:1:{i:0;a:4:{s:4:"name";s:19:"Fedex Home Delivery";s:4:"code";s:3:"ghd";s:6:"method";s:20:"GROUND_HOME_DELIVERY";s:7:"package";s:14:"YOUR_PACKAGING";}}', 1),
+(22090, 'fedex', 'fedex_state_mapping', 'a:47:{i:0;a:2:{s:10:"state_long";s:7:"alabama";s:11:"state_short";s:2:"AL";}i:1;a:2:{s:10:"state_long";s:6:"alaska";s:11:"state_short";s:2:"AK";}i:2;a:2:{s:10:"state_long";s:7:"arizona";s:11:"state_short";s:2:"AZ";}i:3;a:2:{s:10:"state_long";s:8:"arkansas";s:11:"state_short";s:2:"AR";}i:4;a:2:{s:10:"state_long";s:10:"california";s:11:"state_short";s:2:"CA";}i:5;a:2:{s:10:"state_long";s:8:"colorado";s:11:"state_short";s:2:"CO";}i:6;a:2:{s:10:"state_long";s:11:"connecticut";s:11:"state_short";s:2:"CT";}i:7;a:2:{s:10:"state_long";s:8:"delaware";s:11:"state_short";s:2:"DE";}i:8;a:2:{s:10:"state_long";s:7:"florida";s:11:"state_short";s:2:"FL";}i:9;a:2:{s:10:"state_long";s:7:"georgia";s:11:"state_short";s:2:"GA";}i:10;a:2:{s:10:"state_long";s:6:"hawaii";s:11:"state_short";s:2:"HI";}i:11;a:2:{s:10:"state_long";s:5:"idaho";s:11:"state_short";s:2:"ID";}i:12;a:2:{s:10:"state_long";s:8:"illinois";s:11:"state_short";s:2:"IN";}i:13;a:2:{s:10:"state_long";s:4:"iowa";s:11:"state_short";s:2:"IA";}i:14;a:2:{s:10:"state_long";s:6:"kansas";s:11:"state_short";s:2:"KS";}i:15;a:2:{s:10:"state_long";s:8:"kentucky";s:11:"state_short";s:2:"KY";}i:16;a:2:{s:10:"state_long";s:9:"louisiana";s:11:"state_short";s:2:"LA";}i:17;a:2:{s:10:"state_long";s:5:"maine";s:11:"state_short";s:2:"ME";}i:18;a:2:{s:10:"state_long";s:8:"maryland";s:11:"state_short";s:2:"MD";}i:19;a:2:{s:10:"state_long";s:13:"massachusetts";s:11:"state_short";s:2:"MA";}i:20;a:2:{s:10:"state_long";s:8:"michigan";s:11:"state_short";s:2:"MI";}i:21;a:2:{s:10:"state_long";s:9:"minnesota";s:11:"state_short";s:2:"MN";}i:22;a:2:{s:10:"state_long";s:11:"mississippi";s:11:"state_short";s:2:"MS";}i:23;a:2:{s:10:"state_long";s:8:"missouri";s:11:"state_short";s:2:"MO";}i:24;a:2:{s:10:"state_long";s:7:"montana";s:11:"state_short";s:2:"NE";}i:25;a:2:{s:10:"state_long";s:6:"nevada";s:11:"state_short";s:2:"NV";}i:26;a:2:{s:10:"state_long";s:13:"new hampshire";s:11:"state_short";s:2:"NH";}i:27;a:2:{s:10:"state_long";s:10:"new mexico";s:11:"state_short";s:2:"NM";}i:28;a:2:{s:10:"state_long";s:8:"new york";s:11:"state_short";s:2:"NY";}i:29;a:2:{s:10:"state_long";s:14:"north carolina";s:11:"state_short";s:2:"NC";}i:30;a:2:{s:10:"state_long";s:12:"north dakota";s:11:"state_short";s:2:"ND";}i:31;a:2:{s:10:"state_long";s:4:"ohio";s:11:"state_short";s:2:"OH";}i:32;a:2:{s:10:"state_long";s:8:"oklahoma";s:11:"state_short";s:2:"OK";}i:33;a:2:{s:10:"state_long";s:6:"oregon";s:11:"state_short";s:2:"OR";}i:34;a:2:{s:10:"state_long";s:12:"pennsylvania";s:11:"state_short";s:2:"PA";}i:35;a:2:{s:10:"state_long";s:12:"rhode island";s:11:"state_short";s:2:"RI";}i:36;a:2:{s:10:"state_long";s:14:"south carolina";s:11:"state_short";s:2:"SC";}i:37;a:2:{s:10:"state_long";s:12:"south dakota";s:11:"state_short";s:2:"SD";}i:38;a:2:{s:10:"state_long";s:9:"tennessee";s:11:"state_short";s:2:"TN";}i:39;a:2:{s:10:"state_long";s:5:"texas";s:11:"state_short";s:2:"TX";}i:40;a:2:{s:10:"state_long";s:4:"utah";s:11:"state_short";s:2:"UT";}i:41;a:2:{s:10:"state_long";s:7:"vermont";s:11:"state_short";s:2:"VT";}i:42;a:2:{s:10:"state_long";s:8:"virginia";s:11:"state_short";s:2:"VA";}i:43;a:2:{s:10:"state_long";s:10:"washington";s:11:"state_short";s:2:"WA";}i:44;a:2:{s:10:"state_long";s:13:"west virginia";s:11:"state_short";s:2:"WV";}i:45;a:2:{s:10:"state_long";s:9:"wisconsin";s:11:"state_short";s:2:"WI";}i:46;a:2:{s:10:"state_long";s:7:"wyoming";s:11:"state_short";s:2:"WY";}}', 1),
 (21466, 'usps', 'usps_country', 'US', 0),
 (21465, 'usps', 'usps_state', 'CA', 0),
 (21455, 'usps', 'usps_user_id', '609FREES0002', 0),
@@ -774,7 +831,7 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (22070, 'fedex', 'fedex_key', 'UOLSEeKVrlJSMEKb', 0),
 (22069, 'fedex', 'fedex_meter_number', '119000362', 0),
 (22068, 'fedex', 'fedex_account_number', '510087720', 0),
-(21989, 'ups', 'ups_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
+(21989, 'ups', 'ups_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"18";}}', 1),
 (22346, 'config', 'config_location_barcode_posx', '1', 0),
 (22345, 'config', 'config_location_barcode_height', '400', 0),
 (22344, 'config', 'config_location_barcode_width', '6', 0),
@@ -790,10 +847,10 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (22334, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
 (22463, 'postpony', 'postpony_fee_type', '0', 0),
 (22464, 'postpony', 'postpony_fee_value', '0', 0),
-(22465, 'postpony', 'postpony_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:2:\"18\";}}', 1),
+(22465, 'postpony', 'postpony_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"18";}}', 1),
 (22460, 'postpony', 'postpony_sort_order', '0', 0),
-(22461, 'postpony', 'postpony_service', 'a:1:{i:0;a:4:{s:4:\"name\";s:21:\"Postpony Fedex Ground\";s:4:\"code\";s:3:\"pfg\";s:6:\"method\";s:12:\"FEDEX_GROUND\";s:7:\"package\";s:12:\"YOUR_PACKAGE\";}}', 1),
-(22462, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:\"state_long\";s:0:\"\";s:11:\"state_short\";s:0:\"\";}}', 1),
+(22461, 'postpony', 'postpony_service', 'a:1:{i:0;a:4:{s:4:"name";s:21:"Postpony Fedex Ground";s:4:"code";s:3:"pfg";s:6:"method";s:12:"FEDEX_GROUND";s:7:"package";s:12:"YOUR_PACKAGE";}}', 1),
+(22462, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:"state_long";s:0:"";s:11:"state_short";s:0:"";}}', 1),
 (22459, 'postpony', 'postpony_status', '1', 0),
 (22458, 'postpony', 'postpony_debug_mode', '0', 0),
 (22457, 'postpony', 'postpony_image_type', 'PNG', 0),
@@ -818,8 +875,8 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 -- Table structure for table `store`
 --
 
-CREATE TABLE `store` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `store` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `platform` varchar(32) NOT NULL,
@@ -831,8 +888,9 @@ CREATE TABLE `store` (
   `active_upload` tinyint(4) NOT NULL DEFAULT '0',
   `sync_inventory` tinyint(4) NOT NULL DEFAULT '1',
   `sync_single_warehouse` int(11) NOT NULL DEFAULT '0',
-  `sync_warehouse_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `sync_warehouse_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -840,13 +898,14 @@ CREATE TABLE `store` (
 -- Table structure for table `store_sync`
 --
 
-CREATE TABLE `store_sync` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `store_sync` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) DEFAULT NULL,
   `enabled` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL,
-  `active` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `active` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -854,14 +913,15 @@ CREATE TABLE `store_sync` (
 -- Table structure for table `store_sync_history`
 --
 
-CREATE TABLE `store_sync_history` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `store_sync_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
-  `messages` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `messages` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7940 ;
 
 -- --------------------------------------------------------
 
@@ -869,8 +929,8 @@ CREATE TABLE `store_sync_history` (
 -- Table structure for table `transaction`
 --
 
-CREATE TABLE `transaction` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `type` varchar(32) DEFAULT NULL,
   `type_id` int(11) DEFAULT NULL,
@@ -879,8 +939,9 @@ CREATE TABLE `transaction` (
   `amount` decimal(15,2) DEFAULT '0.00',
   `comment` varchar(255) NOT NULL,
   `date_added` datetime DEFAULT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=700 ;
 
 -- --------------------------------------------------------
 
@@ -888,7 +949,7 @@ CREATE TABLE `transaction` (
 -- Table structure for table `transaction_to_type`
 --
 
-CREATE TABLE `transaction_to_type` (
+CREATE TABLE IF NOT EXISTS `transaction_to_type` (
   `type` varchar(16) NOT NULL,
   `type_id` int(11) NOT NULL,
   `transaction_id` int(11) NOT NULL
@@ -900,15 +961,16 @@ CREATE TABLE `transaction_to_type` (
 -- Table structure for table `transfer`
 --
 
-CREATE TABLE `transfer` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transfer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `tracking` varchar(255) NOT NULL,
   `note` text NOT NULL,
   `from_location_id` int(11) DEFAULT NULL,
   `to_location_id` int(11) DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
-  `date_modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -916,12 +978,15 @@ CREATE TABLE `transfer` (
 -- Table structure for table `transfer_product`
 --
 
-CREATE TABLE `transfer_product` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transfer_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `transfer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `transfer_id` (`transfer_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -929,8 +994,8 @@ CREATE TABLE `transfer_product` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL,
@@ -942,8 +1007,9 @@ CREATE TABLE `user` (
   `code` varchar(40) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user`
@@ -960,21 +1026,22 @@ INSERT INTO `user` (`id`, `user_group_id`, `username`, `password`, `salt`, `firs
 -- Table structure for table `user_group`
 --
 
-CREATE TABLE `user_group` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `description` text NOT NULL,
-  `permission` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `permission` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `user_group`
 --
 
 INSERT INTO `user_group` (`id`, `name`, `description`, `permission`) VALUES
-(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"]}'),
-(12, 'Clerk', 'The clerk user group', '{\"access\":[\"inventory\"]}'),
-(13, 'Client', '', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"setting\"]}');
+(1, 'Administrator', 'The administrator user group', '{"access":["check","catalog","inventory","warehouse","sale","store","extension","finance","platform","shipping","payment","report","client","user","setting"],"modify":["check","catalog","inventory","warehouse","sale","store","extension","finance","platform","shipping","payment","report","client","user","setting"]}'),
+(12, 'Clerk', 'The clerk user group', '{"access":["inventory"]}'),
+(13, 'Client', '', '{"access":["check","catalog","inventory","warehouse","sale","store","extension","finance","platform","shipping","payment","report","setting"]}');
 
 -- --------------------------------------------------------
 
@@ -982,8 +1049,8 @@ INSERT INTO `user_group` (`id`, `name`, `description`, `permission`) VALUES
 -- Table structure for table `warehouse`
 --
 
-CREATE TABLE `warehouse` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `warehouse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `street` varchar(255) NOT NULL,
   `city` varchar(55) NOT NULL,
@@ -991,8 +1058,10 @@ CREATE TABLE `warehouse` (
   `country` varchar(50) NOT NULL,
   `zipcode` varchar(50) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -1000,11 +1069,12 @@ CREATE TABLE `warehouse` (
 -- Table structure for table `weight_class`
 --
 
-CREATE TABLE `weight_class` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `weight_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit` varchar(16) NOT NULL,
-  `value` decimal(15,4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `value` decimal(15,4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `weight_class`
@@ -1016,515 +1086,6 @@ INSERT INTO `weight_class` (`id`, `unit`, `value`) VALUES
 (5, 'lb', '2.2046'),
 (6, 'oz', '35.7400');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `activity_log`
---
-ALTER TABLE `activity_log`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `balance`
---
-ALTER TABLE `balance`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `checkin`
---
-ALTER TABLE `checkin`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `checkin_fee`
---
-ALTER TABLE `checkin_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `checkin_file`
---
-ALTER TABLE `checkin_file`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `checkin_product`
---
-ALTER TABLE `checkin_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_id` (`checkin_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `checkout`
---
-ALTER TABLE `checkout`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `checkout_fee`
---
-ALTER TABLE `checkout_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `checkout_file`
---
-ALTER TABLE `checkout_file`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `checkout_product`
---
-ALTER TABLE `checkout_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_id` (`checkout_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `damage`
---
-ALTER TABLE `damage`
-  ADD PRIMARY KEY (`damage_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `id` (`damage_id`),
-  ADD KEY `product_id_2` (`product_id`),
-  ADD KEY `location_id` (`location_id`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`employee_id`);
-
---
--- Indexes for table `extension`
---
-ALTER TABLE `extension`
-  ADD PRIMARY KEY (`extension_id`);
-
---
--- Indexes for table `fee`
---
-ALTER TABLE `fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `information`
---
-ALTER TABLE `information`
-  ADD PRIMARY KEY (`information_id`);
-
---
--- Indexes for table `inventory`
---
-ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `product_id_2` (`product_id`),
-  ADD KEY `location_id` (`location_id`);
-
---
--- Indexes for table `language`
---
-ALTER TABLE `language`
-  ADD PRIMARY KEY (`language_id`);
-
---
--- Indexes for table `length_class`
---
-ALTER TABLE `length_class`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `location`
---
-ALTER TABLE `location`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `warehouse_id` (`warehouse_id`);
-
---
--- Indexes for table `location_to_client`
---
-ALTER TABLE `location_to_client`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `location_unit`
---
-ALTER TABLE `location_unit`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`),
-  ADD KEY `id_3` (`id`),
-  ADD KEY `id_4` (`id`);
-
---
--- Indexes for table `product_fee`
---
-ALTER TABLE `product_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `recharge`
---
-ALTER TABLE `recharge`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `refund`
---
-ALTER TABLE `refund`
-  ADD PRIMARY KEY (`refund_id`),
-  ADD KEY `id` (`refund_id`);
-
---
--- Indexes for table `refund_product`
---
-ALTER TABLE `refund_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_id` (`refund_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `sale`
---
-ALTER TABLE `sale`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `sale_fee`
---
-ALTER TABLE `sale_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sale_label`
---
-ALTER TABLE `sale_label`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sale_product`
---
-ALTER TABLE `sale_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sale_id` (`sale_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `setting`
---
-ALTER TABLE `setting`
-  ADD PRIMARY KEY (`setting_id`);
-
---
--- Indexes for table `store`
---
-ALTER TABLE `store`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `store_sync`
---
-ALTER TABLE `store_sync`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `store_sync_history`
---
-ALTER TABLE `store_sync_history`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transfer`
---
-ALTER TABLE `transfer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transfer_product`
---
-ALTER TABLE `transfer_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `transfer_id` (`transfer_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_group`
---
-ALTER TABLE `user_group`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `warehouse`
---
-ALTER TABLE `warehouse`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `weight_class`
---
-ALTER TABLE `weight_class`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity_log`
---
-ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44677;
---
--- AUTO_INCREMENT for table `balance`
---
-ALTER TABLE `balance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `checkin`
---
-ALTER TABLE `checkin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `checkin_fee`
---
-ALTER TABLE `checkin_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `checkin_file`
---
-ALTER TABLE `checkin_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `checkin_product`
---
-ALTER TABLE `checkin_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `checkout`
---
-ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `checkout_fee`
---
-ALTER TABLE `checkout_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `checkout_file`
---
-ALTER TABLE `checkout_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `checkout_product`
---
-ALTER TABLE `checkout_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `client`
---
-ALTER TABLE `client`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1031;
---
--- AUTO_INCREMENT for table `damage`
---
-ALTER TABLE `damage`
-  MODIFY `damage_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `employee_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `extension`
---
-ALTER TABLE `extension`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
---
--- AUTO_INCREMENT for table `fee`
---
-ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `information`
---
-ALTER TABLE `information`
-  MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `inventory`
---
-ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2350;
---
--- AUTO_INCREMENT for table `language`
---
-ALTER TABLE `language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `length_class`
---
-ALTER TABLE `length_class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `location`
---
-ALTER TABLE `location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2229;
---
--- AUTO_INCREMENT for table `location_to_client`
---
-ALTER TABLE `location_to_client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `location_unit`
---
-ALTER TABLE `location_unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93316;
---
--- AUTO_INCREMENT for table `product_fee`
---
-ALTER TABLE `product_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `recharge`
---
-ALTER TABLE `recharge`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `refund`
---
-ALTER TABLE `refund`
-  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `refund_product`
---
-ALTER TABLE `refund_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sale`
---
-ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=944;
---
--- AUTO_INCREMENT for table `sale_fee`
---
-ALTER TABLE `sale_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sale_label`
---
-ALTER TABLE `sale_label`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `sale_product`
---
-ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1197;
---
--- AUTO_INCREMENT for table `setting`
---
-ALTER TABLE `setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22466;
---
--- AUTO_INCREMENT for table `store`
---
-ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `store_sync`
---
-ALTER TABLE `store_sync`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `store_sync_history`
---
-ALTER TABLE `store_sync_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7940;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=700;
---
--- AUTO_INCREMENT for table `transfer`
---
-ALTER TABLE `transfer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `transfer_product`
---
-ALTER TABLE `transfer_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `user_group`
---
-ALTER TABLE `user_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `warehouse`
---
-ALTER TABLE `warehouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `weight_class`
---
-ALTER TABLE `weight_class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -1540,7 +1101,6 @@ ALTER TABLE `inventory`
 --
 ALTER TABLE `location`
   ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

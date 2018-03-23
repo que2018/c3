@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-
 class Checkout_print extends CI_Controller {
-
 	public function index()
 	{
 		$this->lang->load('check/checkout');
@@ -19,9 +16,7 @@ class Checkout_print extends CI_Controller {
 		$data['tracking']      = $checkout['tracking'];
 		$data['note']          = $checkout['note'];
 		$data['status']        = $checkout['status'];
-
 		$data['title'] = sprintf($this->lang->line('text_print_title'), $checkout_id);
-
 		$data['checkout_products'] = array();
 		
 		$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);	
@@ -29,7 +24,6 @@ class Checkout_print extends CI_Controller {
 		foreach($checkout_products as $checkout_product) 
 		{
 			$location_id = $checkout_product['location_id'];
-
 			$location = $this->location_model->get_location($location_id);	
 			
 			if($location)
@@ -55,13 +49,13 @@ class Checkout_print extends CI_Controller {
 	public function bulk_print_d() 
 	{
 		$this->load->library('pdf');
+		$this->load->library('barcoder');
 		$this->load->library('printnode');
-
+		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
 		$this->load->model('warehouse/location_model');
-
 		if($this->input->post('checkout_id'))
 		{
 			//get data
@@ -80,7 +74,6 @@ class Checkout_print extends CI_Controller {
 				foreach($checkout_products_data as $checkout_product_data) 
 				{
 					$location_id = $checkout_product_data['location_id'];
-
 					$location = $this->location_model->get_location($location_id);	
 					
 					$location_name = ($location)?$location['name']:'';
@@ -93,8 +86,15 @@ class Checkout_print extends CI_Controller {
 					);
 				}
 				
+				$path = 'assets/image/barcode/' . $checkout_id . '.gif';		
+						
+				$params['path'] = $path;
+								
+				$this->barcoder->generate($checkout['code'], $params);
+				
 				$checkouts[] = array(
 					'checkout_id'       => $checkout_id,
+					'path'              => $path,
 					'checkout_products' => $checkout_products
 				);
 			}
@@ -104,12 +104,19 @@ class Checkout_print extends CI_Controller {
 			
 			$pdf->AddPage();
 			
-			foreach($checkouts as $checkout)
+			$pdf->SetY(10);
+			
+			foreach($checkouts as $i => $checkout)
 			{
 				$title = sprintf($this->lang->line('text_print_title'), $checkout['checkout_id']);
 				
 				$pdf->SetFont('Arial','B', 15);
 				$pdf->Cell(40, 10, $title, 0);
+				
+				$y = $pdf->GetY() - 3;
+				
+				$pdf->Image($checkout['path'], 140, $y, 35);
+				
 				$pdf->Ln();
 				
 				//header
@@ -139,6 +146,8 @@ class Checkout_print extends CI_Controller {
 				}
 				
 				$pdf->Ln();
+				
+				$pdf->SetY(($i + 1) * 50 + 10);
 			}
 			
 			$dest_path = FCPATH . 'assets/pdf/checkout_' . $checkout_id . '.pdf';
@@ -166,5 +175,3 @@ class Checkout_print extends CI_Controller {
 		die();
 	}
 }
-
-

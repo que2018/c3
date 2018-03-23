@@ -35,6 +35,12 @@ class Checkout_model extends CI_Model
 					
 		$checkout_id = $this->db->insert_id();
 		
+		//generate code
+		$code = '10000000000000' . $checkout_id;
+		
+		$this->db->where('id', $checkout_id);
+		$this->db->update('checkout', array('code' => $code)); 
+		
 		//sale checkout
 		if($data['sale_id'])
 		{
