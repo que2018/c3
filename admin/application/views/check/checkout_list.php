@@ -38,7 +38,7 @@
 			      <div class="col-sm-6"><input name="id" class="form-control" value="<?php echo $filter_id; ?>"></div>
 				</div>
 			  </div>
-			  <div class="col-md-3">
+			  <div class="col-md-2">
 			    <div class="form-group">
 			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
 			      <div class="col-sm-7"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
@@ -181,7 +181,6 @@
 					  <?php } ?>
 					  <td><?php echo $checkout['date_added']; ?></td>
 					  <td class="text-center">
-					    <button onclick="print_label(this)" class="btn btn-info btn-print"><i class="fa fa-print"></i></button>
 						<a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $checkout['checkout_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_checkout(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>

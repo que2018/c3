@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2018 at 12:12 AM
+-- Generation Time: Mar 28, 2018 at 02:32 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
   `method` varchar(50) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44677 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47393 ;
 
 -- --------------------------------------------------------
 
@@ -48,7 +48,18 @@ CREATE TABLE IF NOT EXISTS `balance` (
   `client_id` int(11) DEFAULT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `balance`
+--
+
+INSERT INTO `balance` (`id`, `client_id`, `amount`) VALUES
+(16, 19, '0.00'),
+(17, 20, '0.00'),
+(18, 21, '0.00'),
+(19, 22, '0.00'),
+(20, 23, '-20.00');
 
 -- --------------------------------------------------------
 
@@ -66,7 +77,16 @@ CREATE TABLE IF NOT EXISTS `checkin` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `checkin`
+--
+
+INSERT INTO `checkin` (`id`, `client_id`, `tracking`, `note`, `status`, `date_added`, `date_modified`) VALUES
+(2, 0, '54552552052011', '', 1, '2018-03-09 19:19:30', '2018-03-09 19:19:30'),
+(4, 0, '54552552052000', '', 1, '2018-03-27 22:02:14', '2018-03-27 22:02:14'),
+(5, 0, '54552552052099', '', 1, '2018-03-27 22:19:56', '2018-03-27 22:19:56');
 
 -- --------------------------------------------------------
 
@@ -77,10 +97,9 @@ CREATE TABLE IF NOT EXISTS `checkin` (
 CREATE TABLE IF NOT EXISTS `checkin_fee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkin_id` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `amount` decimal(15,2) DEFAULT NULL,
+  `fee_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -110,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `checkin_product` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`checkin_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 -- --------------------------------------------------------
 
@@ -120,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `checkin_product` (
 
 CREATE TABLE IF NOT EXISTS `checkout` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
   `location_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
@@ -136,10 +156,16 @@ CREATE TABLE IF NOT EXISTS `checkout` (
   `description` text NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
-  `code` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`id`, `code`, `location_id`, `tracking`, `status`, `width`, `length`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `label`, `note`, `description`, `date_added`, `date_modified`) VALUES
+(24, '1000000000000024', 0, '', 2, '0.00', '0.00', '0.00', '0.00', 1, 5, 'postpony', 'pfg', '', '', '', '2018-03-28 02:18:54', '2018-03-28 02:18:54');
 
 -- --------------------------------------------------------
 
@@ -150,10 +176,9 @@ CREATE TABLE IF NOT EXISTS `checkout` (
 CREATE TABLE IF NOT EXISTS `checkout_fee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `checkout_id` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `amount` decimal(15,2) DEFAULT NULL,
+  `fee_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -183,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `checkout_product` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`checkout_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 -- --------------------------------------------------------
 
@@ -208,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `postal_code` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -230,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `zipcode` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1031 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1032 ;
 
 -- --------------------------------------------------------
 
@@ -333,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `name` varchar(255) NOT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -388,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   KEY `id` (`id`),
   KEY `product_id_2` (`product_id`),
   KEY `location_id` (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2350 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5432 ;
 
 -- --------------------------------------------------------
 
@@ -448,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `date_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `warehouse_id` (`warehouse_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2229 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2527 ;
 
 -- --------------------------------------------------------
 
@@ -509,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   KEY `id_2` (`id`),
   KEY `id_3` (`id`),
   KEY `id_4` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93316 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93914 ;
 
 -- --------------------------------------------------------
 
@@ -524,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `product_fee` (
   `type` int(11) NOT NULL DEFAULT '1',
   `amount` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -614,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `sale` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=944 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=948 ;
 
 -- --------------------------------------------------------
 
@@ -659,7 +684,7 @@ CREATE TABLE IF NOT EXISTS `sale_product` (
   PRIMARY KEY (`id`),
   KEY `sale_id` (`sale_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1197 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1227 ;
 
 -- --------------------------------------------------------
 
@@ -685,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22466 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22872 ;
 
 --
 -- Dumping data for table `setting`
@@ -758,28 +783,15 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (17647, 'amazon', 'amazon_field', 'a:6:{i:0;s:6:"Dev Id";i:1;s:6:"App Id";i:2;s:7:"Cert Id";i:3;s:8:"Username";i:4;s:7:"Site Id";i:5;s:5:"Token";}', 1),
 (17648, 'amazon', 'amazon_status', '0', 0),
 (17649, 'amazon', 'amazon_sort_order', '0', 0),
-(22373, 'config', 'config_google_key', '', 0),
-(22372, 'config', 'config_smtp_timeout', '', 0),
-(22371, 'config', 'config_smtp_port', '', 0),
-(22370, 'config', 'config_smtp_password', '', 0),
-(22369, 'config', 'config_smtp_username', '', 0),
-(22368, 'config', 'config_smtp_hostname', '', 0),
-(22367, 'config', 'config_default_order_shipping_service', 'gr', 0),
-(22366, 'config', 'config_default_order_shipping_provider', 'ups', 0),
-(22365, 'config', 'config_weight_class_id', '5', 0),
-(22364, 'config', 'config_length_class_id', '1', 0),
-(22363, 'config', 'config_idiom', 'english', 0),
-(22362, 'config', 'config_printnode_printer_id', '329118', 0),
+(22858, 'config', 'config_printnode_api_key', '042f4d55c23fbc64ea98b5bb6d0a85a4caae5cbc', 0),
+(22857, 'config', 'config_printnode_width', '180', 0),
 (18696, 'offline', 'offline_status', '1', 0),
 (18695, 'offline', 'offline_sort_order', '0', 0),
-(22360, 'config', 'config_printnode_width', '180', 0),
-(22361, 'config', 'config_printnode_api_key', '0b81619dd08e61c9f9bd5c3a567f4cb5d7d93de1', 0),
-(22359, 'config', 'config_printnode_position_y', '20', 0),
-(22355, 'config', 'config_location_barcode_batch_code_size', '20', 0),
-(22358, 'config', 'config_printnode_position_x', '14', 0),
-(22357, 'config', 'config_location_barcode_batch_page_item', '1', 0),
-(22356, 'config', 'config_location_barcode_batch_margin', '200', 0),
-(22354, 'config', 'config_location_barcode_batch_name_size', '60', 0),
+(22856, 'config', 'config_printnode_position_y', '20', 0),
+(22855, 'config', 'config_printnode_position_x', '14', 0),
+(22854, 'config', 'config_location_barcode_batch_page_item', '1', 0),
+(22853, 'config', 'config_location_barcode_batch_margin', '200', 0),
+(22852, 'config', 'config_location_barcode_batch_code_size', '20', 0),
 (22091, 'fedex', 'fedex_fee_type', '0', 0),
 (22092, 'fedex', 'fedex_fee_value', '3', 0),
 (22093, 'fedex', 'fedex_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"18";}}', 1),
@@ -808,13 +820,9 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (21963, 'ups', 'ups_password', 'Proline2017', 0),
 (21962, 'ups', 'ups_username', 'proline18', 0),
 (21961, 'ups', 'ups_access_key', '7D3678D352FE879D', 0),
-(22353, 'config', 'config_location_barcode_batch_posy', '20', 0),
-(22351, 'config', 'config_location_barcode_batch_height', '300', 0),
-(22352, 'config', 'config_location_barcode_batch_posx', '10', 0),
-(22350, 'config', 'config_location_barcode_batch_width', '630', 0),
-(22349, 'config', 'config_location_barcode_code_size', '80', 0),
-(22348, 'config', 'config_location_barcode_name_size', '200', 0),
-(22347, 'config', 'config_location_barcode_posy', '200', 0),
+(22851, 'config', 'config_location_barcode_batch_name_size', '60', 0),
+(22850, 'config', 'config_location_barcode_batch_posy', '20', 0),
+(22849, 'config', 'config_location_barcode_batch_posx', '10', 0),
 (22083, 'fedex', 'fedex_length_unit', 'IN', 0),
 (22082, 'fedex', 'fedex_phone', '6263008400', 0),
 (22081, 'fedex', 'fedex_owner', 'Tony', 0),
@@ -832,42 +840,58 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (22069, 'fedex', 'fedex_meter_number', '119000362', 0),
 (22068, 'fedex', 'fedex_account_number', '510087720', 0),
 (21989, 'ups', 'ups_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"3";s:9:"client_id";s:2:"18";}}', 1),
-(22346, 'config', 'config_location_barcode_posx', '1', 0),
-(22345, 'config', 'config_location_barcode_height', '400', 0),
-(22344, 'config', 'config_location_barcode_width', '6', 0),
-(22343, 'config', 'config_label_posy', '0', 0),
-(22342, 'config', 'config_label_width', '60', 0),
-(22341, 'config', 'config_label_width_type', '0', 0),
-(22340, 'config', 'config_autocomplete_limit', '5', 0),
-(22339, 'config', 'config_dashboard_store_sync_limit', '8', 0),
-(22338, 'config', 'config_dashboard_order_limit', '7', 0),
-(22337, 'config', 'config_dashboard_activity_limit', '8', 0),
-(22336, 'config', 'config_sale_product_page_limit', '15', 0),
-(22335, 'config', 'config_page_limit', '10', 0),
-(22334, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
-(22463, 'postpony', 'postpony_fee_type', '0', 0),
-(22464, 'postpony', 'postpony_fee_value', '0', 0),
-(22465, 'postpony', 'postpony_client_fee', 'a:9:{i:0;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"10";}i:1;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"11";}i:2;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"12";}i:3;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"13";}i:4;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"14";}i:5;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"15";}i:6;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"16";}i:7;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"17";}i:8;a:2:{s:3:"fee";s:1:"0";s:9:"client_id";s:2:"18";}}', 1),
-(22460, 'postpony', 'postpony_sort_order', '0', 0),
-(22461, 'postpony', 'postpony_service', 'a:1:{i:0;a:4:{s:4:"name";s:21:"Postpony Fedex Ground";s:4:"code";s:3:"pfg";s:6:"method";s:12:"FEDEX_GROUND";s:7:"package";s:12:"YOUR_PACKAGE";}}', 1),
-(22462, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:"state_long";s:0:"";s:11:"state_short";s:0:"";}}', 1),
-(22459, 'postpony', 'postpony_status', '1', 0),
-(22458, 'postpony', 'postpony_debug_mode', '0', 0),
-(22457, 'postpony', 'postpony_image_type', 'PNG', 0),
-(22456, 'postpony', 'postpony_weight_unit', 'LB', 0),
-(22455, 'postpony', 'postpony_length_unit', 'IN', 0),
-(22454, 'postpony', 'postpony_phone', '9098956073', 0),
-(22453, 'postpony', 'postpony_owner', 'SHAN SUN', 0),
-(22452, 'postpony', 'postpony_country', 'US', 0),
-(22451, 'postpony', 'postpony_postcode', '91733', 0),
-(22450, 'postpony', 'postpony_state', 'CA', 0),
-(22448, 'postpony', 'postpony_street2', '', 0),
-(22449, 'postpony', 'postpony_city', 'South El Monte', 0),
-(22447, 'postpony', 'postpony_street', '1467 Lidcombe Ave', 0),
-(22446, 'postpony', 'postpony_company', 'intadat Inc', 0),
-(22443, 'postpony', 'postpony_key', 'PY', 0),
-(22444, 'postpony', 'postpony_pwd', 'pypypypypy', 0),
-(22445, 'postpony', 'postpony_authorized_key', 'TESTTOKEN-ske39De3mkC39d', 0);
+(22848, 'config', 'config_location_barcode_batch_height', '300', 0),
+(22847, 'config', 'config_location_barcode_batch_width', '630', 0),
+(22846, 'config', 'config_location_barcode_code_size', '80', 0),
+(22845, 'config', 'config_location_barcode_name_size', '200', 0),
+(22844, 'config', 'config_location_barcode_posy', '200', 0),
+(22788, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:"state_long";s:0:"";s:11:"state_short";s:0:"";}}', 1),
+(22789, 'postpony', 'postpony_fee_type', '0', 0),
+(22787, 'postpony', 'postpony_service', 'a:4:{i:0;a:4:{s:4:"name";s:21:"Postpony Fedex Ground";s:4:"code";s:3:"pfg";s:6:"method";s:11:"FedExGround";s:7:"package";s:12:"YOUR_PACKAGE";}i:1;a:4:{s:4:"name";s:19:"Postpony UPS Ground";s:4:"code";s:3:"pug";s:6:"method";s:9:"UpsGround";s:7:"package";s:7:"PACKAGE";}i:2;a:4:{s:4:"name";s:25:"Postpony USPS First Class";s:4:"code";s:5:"pusfc";s:6:"method";s:18:"UspsFirstClassMail";s:7:"package";s:7:"PACKAGE";}i:3;a:4:{s:4:"name";s:22:"Postpony USPS Priority";s:4:"code";s:4:"pusp";s:6:"method";s:16:"UspsPriorityMail";s:7:"package";s:7:"PACKAGE";}}', 1),
+(22786, 'postpony', 'postpony_sort_order', '0', 0),
+(22785, 'postpony', 'postpony_status', '1', 0),
+(22784, 'postpony', 'postpony_debug_mode', '1', 0),
+(22783, 'postpony', 'postpony_weight_unit', 'LB', 0),
+(22782, 'postpony', 'postpony_length_unit', 'IN', 0),
+(22781, 'postpony', 'postpony_phone', '9098956073', 0),
+(22779, 'postpony', 'postpony_country', 'US', 0),
+(22780, 'postpony', 'postpony_owner', 'SHAN SUN', 0),
+(22777, 'postpony', 'postpony_state', 'CA', 0),
+(22778, 'postpony', 'postpony_postcode', '91733', 0),
+(22776, 'postpony', 'postpony_city', 'South El Monte', 0),
+(22775, 'postpony', 'postpony_street2', '', 0),
+(22774, 'postpony', 'postpony_street', '1467 Lidcombe Ave', 0),
+(22773, 'postpony', 'postpony_company', 'intadat Inc', 0),
+(22843, 'config', 'config_location_barcode_posx', '1', 0),
+(22842, 'config', 'config_location_barcode_height', '400', 0),
+(22841, 'config', 'config_location_barcode_width', '6', 0),
+(22840, 'config', 'config_label_posy', '0', 0),
+(22839, 'config', 'config_label_width', '60', 0),
+(22838, 'config', 'config_label_width_type', '0', 0),
+(22772, 'postpony', 'postpony_authorized_key', 'TESTTOKEN-ske39De3mkC39d', 0),
+(22771, 'postpony', 'postpony_pwd', 'pypypypypy', 0),
+(22770, 'postpony', 'postpony_key', 'PY', 0),
+(22790, 'postpony', 'postpony_fee_value', '0', 0),
+(22837, 'config', 'config_autocomplete_limit', '5', 0),
+(22836, 'config', 'config_dashboard_store_sync_limit', '8', 0),
+(22835, 'config', 'config_dashboard_order_limit', '7', 0),
+(22834, 'config', 'config_dashboard_activity_limit', '8', 0),
+(22833, 'config', 'config_sale_product_page_limit', '15', 0),
+(22832, 'config', 'config_page_limit', '10', 0),
+(22831, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
+(22859, 'config', 'config_printnode_label_printer_id', '356900', 0),
+(22860, 'config', 'config_printnode_general_printer_id', '356900', 0),
+(22861, 'config', 'config_language_id', '5', 0),
+(22862, 'config', 'config_length_class_id', '1', 0),
+(22863, 'config', 'config_weight_class_id', '5', 0),
+(22864, 'config', 'config_default_order_shipping_provider', 'postpony', 0),
+(22865, 'config', 'config_default_order_shipping_service', 'pfg', 0),
+(22866, 'config', 'config_smtp_hostname', '', 0),
+(22867, 'config', 'config_smtp_username', '', 0),
+(22868, 'config', 'config_smtp_password', '', 0),
+(22869, 'config', 'config_smtp_port', '', 0),
+(22870, 'config', 'config_smtp_timeout', '', 0),
+(22871, 'config', 'config_google_key', '', 0);
 
 -- --------------------------------------------------------
 
@@ -890,7 +914,7 @@ CREATE TABLE IF NOT EXISTS `store` (
   `sync_single_warehouse` int(11) NOT NULL DEFAULT '0',
   `sync_warehouse_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -905,7 +929,7 @@ CREATE TABLE IF NOT EXISTS `store_sync` (
   `type` int(11) NOT NULL,
   `active` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -921,7 +945,7 @@ CREATE TABLE IF NOT EXISTS `store_sync_history` (
   `date_added` datetime NOT NULL,
   `messages` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7940 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7987 ;
 
 -- --------------------------------------------------------
 
@@ -941,7 +965,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `date_added` datetime DEFAULT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=700 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=711 ;
 
 -- --------------------------------------------------------
 
@@ -1009,16 +1033,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', '95068e04a290a228e40ea96aff17d52c73d436c9', '300', 'Sam', 'Shao', 'admin@jiusite.com', '', '', '::1', 1, '2017-02-13 11:42:29'),
-(2, 12, 'avwc', '433815068e533a10a5d78d3b0ab0796c85606a9e', '135', 'Raymond', 'Liu', 'raymond@ohmash.com', '', '', '', 1, '0000-00-00 00:00:00'),
-(4, 12, 'ava', '5be1565b1ded53aaee6ed3135471b668fc280a9e', '360', 'Steven', 'Luu', 'steven@ohmash.com', '', '', '', 1, '0000-00-00 00:00:00');
+(1, 1, 'tio', 'c588c75ad4b91b1dc350239ee9615cefe29b3de3', '864', 'Tio', 'Cong', 'admin@http://intawarehouse.com', '', '', '::1', 1, '2017-02-13 11:42:29'),
+(11, 13, 'wwtradingcorpus', '91549f66b7d054f9736df27ed493bb32163d5899', '193', 'WW', 'WW', 'wwtradingcorpus@outlook.com', '', '', '', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1061,7 +1084,7 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 

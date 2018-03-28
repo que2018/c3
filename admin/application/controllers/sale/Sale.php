@@ -57,6 +57,15 @@ class Sale extends CI_Controller {
 			$filter_tracking = '';
 		}
 		
+		if($this->input->get('filter_status'))
+		{
+			$filter_status = $this->input->get('filter_status');
+		} 
+		else 
+		{
+			$filter_status = '';
+		}
+		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -110,6 +119,11 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -134,6 +148,7 @@ class Sale extends CI_Controller {
 			'filter_sale_id'        => $filter_sale_id,
 			'filter_store_sale_id'  => $filter_store_sale_id,
 			'filter_tracking'       => $filter_tracking,
+			'filter_status'         => $filter_status,
 			'sort'                  => $sort,
 			'order'                 => $order,
 			'start'                 => ($page - 1) * $limit,
@@ -232,6 +247,11 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -271,6 +291,10 @@ class Sale extends CI_Controller {
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
 		
 		if ($this->input->get('limit')) 
 		{
@@ -294,7 +318,7 @@ class Sale extends CI_Controller {
 		$data['sort_sale_id']   	  = base_url().'sale/sale?sort=sale.id' . $url;
 		$data['sort_store_sale_id']   = base_url().'sale/sale?sort=sale.store_sale_id' . $url;
 		$data['sort_tracking']        = base_url().'sale/sale?sort=sale.tracking' . $url;
-		$data['sort_name']            = base_url().'sale/sale?sort=sale.name' . $url;
+		$data['sort_status']          = base_url().'sale/sale?sort=sale.status_id' . $url;
 		$data['sort_date_added']      = base_url().'sale/sale?sort=sale.date_added' . $url;
 
 		$url = '';
@@ -355,9 +379,15 @@ class Sale extends CI_Controller {
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
 			
 		$data['add'] = base_url() . 'sale/sale/add' . $url;
-		$data['reload'] = base_url() . 'sale/sale/reload' . $url;
+		
+		$data['reload_url'] = base_url() . 'sale/sale/reload_url' . $url;
 		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -367,6 +397,7 @@ class Sale extends CI_Controller {
 		$data['filter_sale_id']   	  = $filter_sale_id;
 		$data['filter_store_sale_id'] = $filter_store_sale_id;
 		$data['filter_tracking']      = $filter_tracking;
+		$data['filter_status']        = $filter_status;
 		
 		return $data;
 	}

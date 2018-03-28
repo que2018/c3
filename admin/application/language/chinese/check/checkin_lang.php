@@ -2,6 +2,7 @@
 
 // Text
 $lang['text_title'] 	  	        			 = '入库列表';
+$lang['text_search'] 	  	        			 = '搜索';
 $lang['text_checkin'] 	  	        			 = '入库';
 $lang['text_location'] 	  	    				 = '库位';
 $lang['text_status'] 	  	    				 = '状态';
@@ -80,6 +81,7 @@ $lang['entry_location'] 	  	    	 		 = '库位';
 $lang['entry_tracking'] 	  	    	 		 = '追踪号';
 $lang['entry_status'] 	  	        	 		 = '状态';
 $lang['entry_note'] 	  	        	 		 = '笔记';
+$lang['entry_date_added'] 	  	        	     = '添加日期';
 
 // Error 
 $lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;代码为空';
@@ -92,6 +94,7 @@ $lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-
 $lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品<strong>%s</strong>数量不是一个正整数';
 $lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品<strong>%s</strong>库位没有填写';
 $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库已经完成';
+$lang['error_checkin_fee_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库费用在<strong>%s</strong>行是必须的';
 
 
 

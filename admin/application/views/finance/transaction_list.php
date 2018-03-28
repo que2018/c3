@@ -19,9 +19,12 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
+	  <?php if($success) { ?>
+	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
+	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
-		  <h5><?php echo $this->lang->line("text_transaction_list_description"); ?></h5>
+		  <h5><?php echo $this->lang->line('text_transaction_list_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">

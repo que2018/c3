@@ -4,16 +4,15 @@
 <link href="<?php echo base_url(); ?>assets/css/app/sale/sale_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
-	<h2><?php echo $this->lang->line('text_order'); ?></h2>
+	<h2><?php echo $this->lang->line('text_unsolved_order'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
 	  <li><a href="<?php echo base_url(); ?>sale/sale"><?php echo $this->lang->line('text_order'); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line('text_order_list'); ?></strong></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_unsolved_order_list'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_print'); ?>" class="btn btn-info btn-bulk-print"><i class="fa fa-print"></i></button>
-    <a href="<?php echo $add; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -27,46 +26,26 @@
 	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
-		  <h5><?php echo $this->lang->line('text_order_list_description'); ?></h5>
+		  <h5><?php echo $this->lang->line('text_unsolved_order_list_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
 		    <div class="row">
-		      <div class="col-md-2">
+		      <div class="col-md-3">
 			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_order_id'); ?></label>
-			      <div class="col-sm-7"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
+			      <div class="col-sm-9"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
 				</div>
 			  </div>
 			  <div class="col-md-3">
 			    <div class="form-group">
-			      <label class="col-sm-6 control-label"><?php echo $this->lang->line('entry_store_order_id'); ?></label>
-			      <div class="col-sm-6"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
-			    </div>
-			  </div>
-			  <div class="col-md-2">
-			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
-			      <div class="col-sm-7">
-				    <select name="status" class="form-control">
-					  <option value=""></option>
-					  <?php if($filter_status == 1) { ?>
-					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else if($filter_status == 2) { ?>
-					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else { ?>
-					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } ?>
-					</select>
-				  </div>
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_store_sale_id'); ?></label>
+			      <div class="col-sm-8"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
 			    </div>
 			  </div>
 			  <div class="col-md-3">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_tracking'); ?></label>
 			      <div class="col-sm-9"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
 			    </div>
 			  </div>
@@ -350,7 +329,6 @@ $(document).ready(function() {
 	$(document).on('click', '#btn-search', function() {
 		sale_id     	= $('input[name=\'sale_id\']').val();
 		store_sale_id   = $('input[name=\'store_sale_id\']').val();
-		status          = $('select[name=\'status\']').val();
 		tracking        = $('input[name=\'tracking\']').val();
 
 		url = '<?php echo $filter_url; ?>';
@@ -360,9 +338,6 @@ $(document).ready(function() {
 		
 		if(store_sale_id)
 			url += '&filter_store_sale_id=' + store_sale_id;
-		
-		if(status)
-			url += '&filter_status=' + status;
 		
 		if(tracking)
 			url += '&filter_tracking=' + tracking;

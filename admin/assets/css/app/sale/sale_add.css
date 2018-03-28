@@ -13,8 +13,7 @@
 .btn-commit {
 	margin-right: 6px;
 }
-
-.panel-body {
+.tab-pane > .panel-body {
 	min-height: 650px;
 	padding-top: 25px !important;
 }

@@ -21,6 +21,17 @@ class Transaction_model extends CI_Model
 		
 		$transaction_id = $this->db->insert_id();
 		
+		if(isset($data['type']) && isset($data['type_id']))
+		{
+			$transaction_data = array(		
+				'type'     => $data['type'],
+				'type_id'  => $data['type_id']
+			);
+			
+			$this->db->where('id', $transaction_id);
+			$this->db->update('transaction', $transaction_data);
+		}
+		
 		$this->db->where('client_id', $data['client_id']);
 		$this->db->set('amount', 'amount-'.$data['amount'], false);
 		$this->db->update('balance');	
@@ -39,15 +50,11 @@ class Transaction_model extends CI_Model
 		}
 	}
 
-	public function edit_transaction($id, $data)
+	public function edit_transaction($transaction_id, $data)
 	{
 		$this->db->trans_begin();
 		
-		$this->db->select("*", false);
-		$this->db->from('transaction');
-		$this->db->where('id', $id);
-
-		$q = $this->db->get();
+		$q = $this->db->get_where('transaction', array('id' => $transaction_id));
 		
 		$row = $q->row_array();
 		
@@ -59,17 +66,34 @@ class Transaction_model extends CI_Model
 		$this->db->set('amount', 'amount-'.$data['amount'], false);
 		$this->db->update('balance');
 		
-		$transaction_data = array(		
-			'cost'            => $data['cost'],
-			'markup'          => $data['markup'],		
-		    'amount'   		  => $data['amount'],
-			'comment'         => $data['comment'],
-			'date_modified'   => date('Y-m-d H:i:s')		
-		);
+		if(isset($data['type']) && isset($data['type_id']))
+		{	
+			$transaction_data = array(		
+				'type'          => $data['type'],
+				'type_id'       => $data['type_id'],
+				'cost'          => $data['cost'],
+				'markup'        => $data['markup'],		
+				'amount'   		=> $data['amount'],
+				'comment'       => $data['comment'],
+				'date_modified' => date('Y-m-d H:i:s')		
+			);	
+		}
+		else
+		{
+			$transaction_data = array(		
+				'type'          => null,
+				'type_id'       => null,
+				'cost'          => $data['cost'],
+				'markup'        => $data['markup'],		
+				'amount'   		=> $data['amount'],
+				'comment'       => $data['comment'],
+				'date_modified' => date('Y-m-d H:i:s')		
+			);	
+		}
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $transaction_id);
 		$this->db->update('transaction', $transaction_data);
-		
+	
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -84,14 +108,10 @@ class Transaction_model extends CI_Model
 		}
 	}
 	
-	public function get_transaction($id) 
-	{	
-		$this->db->select("transaction.*", false);
-		$this->db->from('transaction');
-		$this->db->where('transaction.id', $id);
+	public function get_transaction($transaction_id) 
+	{			
+		$q = $this->db->get_where('transaction', array('id' => $transaction_id));
 
-		$q = $this->db->get();
-		
 		if($q->num_rows() > 0)
 		{
 			return $q->row_array();

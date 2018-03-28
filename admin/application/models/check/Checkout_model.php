@@ -2,12 +2,7 @@
 
 
 class Checkout_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
+{		
 	public function add_checkout($data)
 	{
 		$this->lang->load('check/checkout');
@@ -98,7 +93,7 @@ class Checkout_model extends CI_Model
 			}	
 		}
 		
-		//if completed, add fees
+		//transaction
 		$this->load->model('finance/transaction_model');
 		
 		$sale = $this->get_checkout_sale($checkout_id);
@@ -131,6 +126,24 @@ class Checkout_model extends CI_Model
 				);
 								
 				$this->transaction_model->add_transaction($transaction_data); 							
+			}
+		}
+		
+		//order status
+		if($sale)
+		{
+			if($data['status'] == 1)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 1, false);
+				$this->db->update('sale');
+			}
+			
+			if($data['status'] == 2)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 2, false);
+				$this->db->update('sale');
 			}
 		}
 		
@@ -223,7 +236,7 @@ class Checkout_model extends CI_Model
 		
 		$sale = $this->get_checkout_sale($checkout_id);
 		
-		if($sale['client_id'] && $data['checkout_fees'])
+		if($sale['client_id'] && isset($data['checkout_fees']))
 		{
 			$client_id = $sale['client_id'];
 			
@@ -286,6 +299,24 @@ class Checkout_model extends CI_Model
 				$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id);				   
 			}
 		} 
+		
+		//order status
+		if($sale)
+		{
+			if($data['status'] == 1)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 1, false);
+				$this->db->update('sale');
+			}
+			
+			if($data['status'] == 2)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 2, false);
+				$this->db->update('sale');
+			}
+		}
 		
 		//checkout data
 		$checkout_data = array(

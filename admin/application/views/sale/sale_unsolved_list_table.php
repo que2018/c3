@@ -1,40 +1,20 @@
 <div class="form-horizontal">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
 	  <div class="form-group">
-	    <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_order_id'); ?></label>
-	    <div class="col-sm-7"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
+	    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
+	    <div class="col-sm-9"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
 	  </div>
     </div>
     <div class="col-md-3">
 	  <div class="form-group">
-	    <label class="col-sm-6 control-label"><?php echo $this->lang->line('entry_store_order_id'); ?></label>
-	    <div class="col-sm-6"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
-	  </div>
-    </div>
-    <div class="col-md-2">
-	  <div class="form-group">
-	    <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
-	    <div class="col-sm-7">
-		  <select name="status" class="form-control">
-		    <option value=""></option>
-		    <?php if($filter_status == 1) { ?>
-		    <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
-		    <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-		    <?php } else if($filter_status == 2) { ?>
-		    <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-		    <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
-		    <?php } else { ?>
-		    <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-		    <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-		    <?php } ?>
-		  </select>
-	    </div>
+	    <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_store_sale_id'); ?></label>
+	    <div class="col-sm-8"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>"></div>
 	  </div>
     </div>
     <div class="col-md-3">
 	  <div class="form-group">
-	    <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
+	    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_tracking'); ?></label>
 	    <div class="col-sm-9"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
 	  </div>
     </div>
@@ -145,20 +125,20 @@
 					    <?php if($sale['store_name']) { ?>
 					    <span class="store"><?php echo $sale['store_name']; ?></span>
 					    <?php } ?>
-					   <?php if(!$sale['checkout']) { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_no_checkout'); ?></span>
-					   <?php } else { ?>
-					   <?php if($sale['checkout']['status'] == 1) { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
-					   <?php } else { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_checked_out'); ?></span>
-					   <?php } ?>
-					   <?php } ?>
-					   <?php if($sale['status_id'] == 1) { ?>
-					   <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-					   <?php } else { ?>
-					   <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
-					   <?php } ?>
+					    <?php if(!$sale['checkout']) { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_no_checkout'); ?></span>
+					    <?php } else { ?>
+					    <?php if($sale['checkout']['status'] == 1) { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+					    <?php } else { ?>
+					    <span class="checkout"><?php echo $this->lang->line('text_checked_out'); ?></span>
+					    <?php } ?>
+					    <?php } ?>
+					    <?php if($sale['status_id'] == 1) { ?>
+					    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+					    <?php } else { ?>
+					    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+					    <?php } ?>
 					  </td>
 				    </tr>
 				  </tbody>
@@ -171,17 +151,17 @@
 			    <span class="tracking"><?php echo $sale['tracking']; ?></span>
 			  <?php } ?>
 		    </td>
-		    <td>
+			<td>
 			  <?php if($sale['status_id'] == 1) { ?>
 			  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
 			  <?php } else { ?>
 			  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 			  <?php } ?>
-		    </td>
+			</td>
 		    <td><?php echo $sale['date_added']; ?></td>
 		    <td class="text-center">
 			  <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-			  <a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale['sale_id']; ?>" target="_blank" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
+		      <a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale['sale_id']; ?>" target="_blank" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
 			  <a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>
@@ -197,4 +177,3 @@
   <div class="pull-left"><?php echo $results; ?></div>
   <div class="pull-right"><?php echo $pagination; ?></div>
 </div>
-	    

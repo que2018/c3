@@ -61,6 +61,7 @@ $lang['text_sale_checkout_transaction_note'] 	  	    = 'transaction for order ID
 $lang['text_checkout_complete_hint'] 	  	     	 	= 'Checkout ID / Tracking Number / Order ID';
 $lang['text_sale_checkout_add_success']		 			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout add success. <a href="%s"><strong>view the checkout</strong></a>';
 $lang['text_sale_checkout_edit_success']		 	  	= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success. <a href="%s"><strong>view checkout</strong></a>';
+$lang['text_checkout_edit_success']    	  			    = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success';
 $lang['text_checkout_delete_success']    	  			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout delete success';
 $lang['text_checkout_generate_success']    	  			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout generate successs';
 $lang['text_checkout_is_completed']    	      			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout is completed';
@@ -148,6 +149,7 @@ $lang['error_shipping_method_not_set']   				= '<i class="fa fa-exclamation-tria
 $lang['error_checkout_not_related_to_sale']   			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkout is not related to order so label is not able to be printed';
 $lang['error_checkout_sale_empty']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order information is empty';
 $lang['error_checkout_id_empty']   			            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Please check at least one checkout first';
+$lang['error_sale_checkout_exist']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is exist';
 $lang['error_sale_checkout_completed']   			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is completed';
 
 

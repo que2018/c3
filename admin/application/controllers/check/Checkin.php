@@ -1,19 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkin extends CI_Controller {
-
-	function __construct()
+class Checkin extends CI_Controller 
+{
+	public function index()
+	{		
+		$data = $this->get_list();
+			
+		$this->load->view('common/header');
+		$this->load->view('check/checkin_list', $data);
+		$this->load->view('common/footer');
+	}
+	
+	public function reload()
 	{
-		parent::__construct();
-		
+		$data = $this->get_list();
+			
+		$this->load->view('check/checkin_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
 		$this->lang->load('check/checkin');
 		
 		$this->load->model('check/checkin_model');
-	}
 	
-	function index()
-	{	
 		$data['success'] = $this->session->flashdata('success');
 		
 		if($this->input->get('filter_id'))
@@ -255,6 +266,8 @@ class Checkin extends CI_Controller {
 		
 		$data['filter_url'] = base_url() . 'check/checkin' . $url;
 	
+		$data['reload_url'] = base_url() . 'check/checkin/reload' . $url;
+
 		$data['sort']   = $sort;
 		$data['order']  = $order;
 		$data['limit']  = $limit;
@@ -265,25 +278,29 @@ class Checkin extends CI_Controller {
 		$data['filter_status']       = $filter_status;
 		$data['filter_date_added']   = $filter_date_added;
 				
-		$this->load->view('common/header');
-		$this->load->view('check/checkin_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add()
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
-		$this->load->model('catalog/product_model');
-		
+		$this->load->model('finance/fee_model');
+		$this->load->model('check/checkin_model');
+		$this->load->model('catalog/product_model');		
+
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
-		//$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
-		$this->form_validation->set_rules('tracking','dffdfdfda','regex_match[/[a-zA-Z]|\s/]');
+		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
+		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
 
 		$data = array(
 			'tracking'          => $this->input->post('tracking'),
 			'status'            => $this->input->post('status'),
+			'checkin_fees'  	=> $this->input->post('checkin_fee'),
 			'note'              => $this->input->post('note')
 		);
 		
@@ -310,6 +327,23 @@ class Checkin extends CI_Controller {
 				);
 			}
 		}
+		
+		//fees
+		$data['fees'] = array();
+		
+		$fees = $this->fee_model->get_fees();
+		
+		if($fees) 
+		{
+			foreach($fees as $fee)
+			{
+				$data['fees'][] = array(
+					'fee_id'  => $fee['id'],
+					'name'    => $fee['name'],
+					'amount'  => $this->currency->format($fee['amount'])
+				);
+			}
+		}
 
 		if($this->form_validation->run() == true)
 		{
@@ -329,23 +363,30 @@ class Checkin extends CI_Controller {
 	
 	public function edit()
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
-		$this->load->model('catalog/product_model');
+		$this->load->model('finance/fee_model');
+		$this->load->model('check/checkin_model');
+		$this->load->model('catalog/product_model');		
 		
 		$checkin_id = $this->input->get('checkin_id');
 		
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
+		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
 
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
 				'tracking'          => $this->input->post('tracking'),
 				'status'            => $this->input->post('status'),
-				'note'              => $this->input->post('note'),
-				'checkin_products'  => $this->input->post('checkin_product')
+				'checkin_products'  => $this->input->post('checkin_product'),
+				'checkin_fees'     => $this->input->post('checkin_fee'),
+				'note'              => $this->input->post('note')		
 			);
 				
 			$this->checkin_model->edit_checkin($checkin_id, $data);
@@ -408,14 +449,43 @@ class Checkin extends CI_Controller {
 					'location_name'  => $checkin_product['location_name']
 				);
 			}
+			
+			$data['checkin_fees'] = array();
+			
+			$checkin_fees = $this->checkin_model->get_checkin_fees($checkin_id);	
+			
+			if($checkin_fees) 
+			{
+				foreach($checkin_fees as $checkin_fee) 
+				{
+					$data['checkin_fees'][] = array(
+						'fee_id'  => $checkin_fee['fee_id']
+					);
+				}
+			}
+		}
+		
+		//fees
+		$data['fees'] = array();
+		
+		$fees = $this->fee_model->get_fees();
+		
+		if($fees) 
+		{
+			foreach($fees as $fee)
+			{
+				$data['fees'][] = array(
+					'fee_id'  => $fee['id'],
+					'name'    => $fee['name'],
+					'amount'  => $this->currency->format($fee['amount'])
+				);
+			}
 		}
 			
-		$data['checkin_edit_title'] = sprintf($this->lang->line('text_checkin_edit_title'), $checkin_id);
-			
+		$data['error'] = validation_errors();	
+						
 		$data['checkin_id'] = $this->input->get('checkin_id');	
-							
-		$data['error'] = validation_errors();
-		
+									
 		$this->load->view('common/header');
 		$this->load->view('check/checkin_edit', $data);
 		$this->load->view('common/footer');
@@ -423,14 +493,16 @@ class Checkin extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('check/checkin_model');
+		
 		if($this->input->get('checkin_id'))
 		{
 			$checkin_id = $this->input->get('checkin_id');
 			
-			$this->checkin_model->delete_checkin($checkin_id);
+			$result = $this->checkin_model->delete_checkin($checkin_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);
@@ -439,6 +511,10 @@ class Checkin extends CI_Controller {
 	
 	function validate_add_tracking($tracking)
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+
 		if($tracking)
 		{
 			$result = $this->checkin_model->get_checkin_by_tracking($tracking);
@@ -462,6 +538,10 @@ class Checkin extends CI_Controller {
 	
 	function validate_edit_tracking($tracking)
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+
 		if($tracking)
 		{
 			$result = $this->checkin_model->get_checkin_by_tracking($tracking);
@@ -494,6 +574,9 @@ class Checkin extends CI_Controller {
 
 	function validate_checkin_product($checkin_products)
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 	
 		if($this->input->post('checkin_product'))
@@ -545,6 +628,49 @@ class Checkin extends CI_Controller {
 			$this->form_validation->set_message('validate_checkin_product', $this->lang->line('error_checkin_product_required'));
 			
 			return false;
+		}	
+	}
+	
+	function validate_checkin_fee()
+	{	
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+		
+		if($this->input->post('checkin_fee'))
+		{
+			$validated = true;
+			
+			$error_message = '';
+			
+			$checkin_fees = $this->input->post('checkin_fee');
+			
+			foreach($checkin_fees as $row => $checkin_fee)
+			{
+				if(!$checkin_fee)
+				{
+					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_required'), ($row + 1));
+					$error_message .= '<br>';
+					
+					if($validated) 
+						$validated = false;
+				}
+			}
+			
+			if(!$validated)
+			{
+				$this->form_validation->set_message('validate_checkin_fee', $error_message);
+				
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		else
+		{			
+			return true;
 		}	
 	}
 }

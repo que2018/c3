@@ -34,6 +34,8 @@ class Transaction extends CI_Controller {
 		
 		$this->load->model('client/client_model');
 
+		$data['success'] = $this->session->flashdata('success');
+		
 		if($this->input->get('filter_client'))
 		{
 			$filter_client = $this->input->get('filter_client');

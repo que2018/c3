@@ -48,8 +48,8 @@
 			</div>
 		    <div class="col-lg-4">     
 		      <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_store_sale_id'); ?></label>
-			    <div class="col-sm-9">
+			    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_store_sale_id'); ?></label>
+			    <div class="col-sm-8">
 				  <div class="input-group">
 				   <span class="input-group-addon">#</span>
 				   <input name="v_store_sale_id" value="" class="form-control" disabled>
@@ -81,8 +81,8 @@
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 			    <div class="col-sm-10">
 			       <select name="status" class="form-control">
-				     <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-				     <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
+				     <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
+				     <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
 				  </select>
 			    </div>
 			  </div>
@@ -160,10 +160,19 @@ $(document).ready(function() {
 						checkout_product_row++;
 					});	
 										
-					$("#checkout-products tbody").html(html);					
+					$('#checkout-products tbody').html(html);	
+					
+					$('#alert-error').hide();				
 				}
 				else
 				{
+					$('input[name=\'sale_id\']').val('');	
+					$('input[name=\'v_sale_id\']').val('');	
+					$('input[name=\'v_store_sale_id\']').val('');	
+					$('input[name=\'v_tracking\']').val('');	
+					
+					$('#checkout-products tbody').html('');		
+					
 					$('#alert-error span').html(json.message);		
 					$('#alert-error').show();
 				}
@@ -216,12 +225,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<script>
-$(document).ready(function() {
-	$('body').toggleClass("mini-navbar");
-    SmoothlyMenu(); 
-});
-</script>
+
 
 
 

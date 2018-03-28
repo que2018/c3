@@ -26,6 +26,51 @@
 		  <h5><?php echo $this->lang->line('text_checkin_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
+		  <div class="form-horizontal">
+		    <div class="row">
+		      <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-6 control-label"><?php echo $this->lang->line('entry_checkin_id'); ?></label>
+			      <div class="col-sm-6"><input name="id" class="form-control" value="<?php echo $filter_id; ?>"></div>
+				</div>
+			  </div>
+			  <div class="col-md-3">
+				<div class="form-group">
+				  <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
+				  <div class="col-sm-7"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
+				</div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
+			      <div class="col-sm-7">
+				    <select name="status" class="form-control">
+					  <option value=""></option>
+					  <?php if($filter_status == 1) { ?>
+					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
+					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
+					  <?php } else if($filter_status == 2) { ?>
+					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
+					  <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
+					  <?php } else { ?>
+					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
+					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
+					  <?php } ?>
+					</select>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <div class="form-group">
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_date_added'); ?></label>
+			      <div class="col-sm-8"><input name="date_added" class="form-control" value="<?php echo $filter_date_added; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+			  </div>
+		    </div>
+		  </div>
 		  <div class="table-responsive">
 		    <div id="detail" style="display:none;"></div>
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
@@ -77,7 +122,7 @@
 					<tr>
 					  <td>
 					    <span>#<?php echo $checkin['checkin_id']; ?></span>
-					    <div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
+					    <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table">
 						    <thead>
 							  <th style="width: 50%;"><?php echo $this->lang->line('column_name'); ?></th>
@@ -96,7 +141,11 @@
 						  </table>
 						</div>
 					  </td>
-					  <td><?php echo $checkin['tracking']; ?></td>
+					  <td>
+					    <?php if($checkin['tracking']) { ?>
+						  <span class="tracking"><?php echo $checkin['tracking']; ?></span></td>
+						<?php } ?>
+					  </td>
 					  <?php if($checkin['status'] == 1) { ?>
 					  <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
 					  <?php } else { ?>
@@ -105,38 +154,13 @@
 					  <td><?php echo $checkin['date_added']; ?></td>
 					   <td class="text-center">
 						<a href="<?php echo base_url(); ?>check/checkin/edit?checkin_id=<?php echo $checkin['checkin_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $checkin['checkin_id']; ?>"><i class="fa fa-trash"></i></button>
+						<button class="btn btn-danger btn-delete" onclick="delete_checkin(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
 					</tr>
 					<?php $offset++; ?>
 				  <?php } ?>
 			    <?php } ?>
 			  </tbody>
-			  <tfoot>
-			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="id" placeholder="<?php echo $this->lang->line('column_checkin_id'); ?>" value="<?php echo $filter_id; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="tracking" placeholder="<?php echo $this->lang->line('column_tracking'); ?>" value="<?php echo $filter_tracking; ?>" /></th>
-				  <th>
-					<select class="filter-select" name="status" onchange="javascript:location.href = this.value;">
-					  <?php if($filter_status == 1) { ?>
-					  <option value="<?php echo $filter_url; ?>"></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=1" selected><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=2"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else if($filter_status == 2) {?>
-					  <option value="<?php echo $filter_url; ?>"></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=2" selected><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else { ?>
-					  <option value="<?php echo $filter_url; ?>"></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="<?php echo $filter_url; ?>&filter_status=2"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } ?>
-					</select>
-				  </th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="date_added" placeholder="<?php echo $this->lang->line('column_date_added'); ?>" value="<?php echo $filter_date_added; ?>" /></th>
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 		  <div class="pagination-block">
@@ -149,62 +173,75 @@
   </div>
 </div>
 <script>
+function delete_checkin(handle, checkin_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>check/checkin/delete?checkin_id=' + checkin_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
+</script>
+<script>
 $(document).ready(function() {
 	//filter
+	$(document).on('click', '#btn-search', function() {
+		id          = $('input[name=\'id\']').val();
+		tracking    = $('input[name=\'tracking\']').val();
+		status      = $('select[name=\'status\']').val();
+		date_added  = $('input[name=\'date_added\']').val();
+				
+		url = '<?php echo $filter_url; ?>';
+			
+		if(id)
+			url += '&filter_id=' + id;
+	
+		if(tracking)
+			url += '&filter_tracking=' + tracking;
+		
+		if(status)
+			url += '&filter_status=' + status;
+		
+		if(date_added)
+			url += '&filter_date_added=' + date_added;
+		
+		window.location.href = url;
+	});
+	
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
-			id          = $('input[name=\'id\']').val();
-			tracking    = $('input[name=\'tracking\']').val();
-			date_added  = $('input[name=\'date_added\']').val();
-
-			url = '<?php echo $filter_url; ?>';
-			
-			if(id)
-				url += '&filter_id=' + id;
-		
-			if(tracking)
-				url += '&filter_tracking=' + tracking;
-			
-			if(date_added)
-				url += '&filter_date_added=' + date_added;
-			
-			window.location.href = url;
+			$('#btn-search').trigger('click');
 		}
-	});
-	
-	//date picker
-	$("input[name='date_added']").datetimepicker({
-		pickTime: false,
-		format: 'YYYY-MM-DD'
 	});
 });
 </script>
 <script>
 $(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			checkin_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>check/checkin/delete?checkin_id=' + checkin_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-						handler.closest('tr').remove();
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-				}
-			});
-		}
+	//date picker
+	$("input[name='date_added']").datetimepicker({
+		pickTime: false,
+		format: 'YYYY-MM-DD'
 	});
 });
 </script>

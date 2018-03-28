@@ -61,6 +61,7 @@ $lang['text_sale_checkout_transaction_note'] 	  	    = 'transaction for order ID
 $lang['text_checkout_complete_hint'] 	  	     	 	= 'Checkout ID / Tracking Number / Order ID';
 $lang['text_sale_checkout_add_success']		 			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout add success. <a href="%s"><strong>view the checkout</strong></a>';
 $lang['text_sale_checkout_edit_success']		 	  	= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success. <a href="%s"><strong>view checkout</strong></a>';
+$lang['text_checkout_edit_success']    	  			    = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success';
 $lang['text_checkout_delete_success']    	  			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout delete success';
 $lang['text_checkout_generate_success']    	  			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout generate successs';
 $lang['text_checkout_is_completed']    	      			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout is completed';
@@ -132,7 +133,7 @@ $lang['error_checkout_not_found']             			= '<i class="fa fa-exclamation-
 $lang['error_sale_not_found']                 			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order is not found';
 $lang['error_checkout_product_required']      			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product is required';
 $lang['error_checkout_product_no_location']             = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product <strong>%s</strong> has no location selected or available';
-$lang['error_checkout_fee_row_required']             	    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is required';
+$lang['error_checkout_fee_row_required']             	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is required';
 $lang['error_checkout_fee_amount_required']             = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> requires amount';
 $lang['error_product_location_empty']      			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Product <strong>%s</strong> has no available locaitons or the location is not selected, does it has sufficient inventory?';
 $lang['error_sale_is_used']               				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The order <strong>#%s</strong> has been used in other checkout';
@@ -148,6 +149,7 @@ $lang['error_shipping_method_not_set']   				= '<i class="fa fa-exclamation-tria
 $lang['error_checkout_not_related_to_sale']   			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkout is not related to order so label is not able to be printed';
 $lang['error_checkout_sale_empty']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order information is empty';
 $lang['error_checkout_id_empty']   			            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Please check at least one checkout first';
+$lang['error_sale_checkout_exist']   			        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is exist';
 $lang['error_sale_checkout_completed']   			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is completed';
 
 

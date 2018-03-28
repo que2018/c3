@@ -32,7 +32,6 @@
 			<a><i class="fa fa-arrow-circle-o-right"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkin'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('menu_checkin_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>check/checkin/add"><?php echo $this->lang->line('menu_checkin_add'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkin_scan"><?php echo $this->lang->line('menu_checkin_scan'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkin_rapid"><?php echo $this->lang->line('menu_checkin_rapid'); ?></a></li>
 			</ul>
@@ -43,7 +42,6 @@
 			  <li><a href="<?php echo base_url(); ?>check/checkout"><?php echo $this->lang->line('menu_checkout_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout_scan"><?php echo $this->lang->line('menu_checkout_scan'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout_sale"><?php echo $this->lang->line('menu_checkout_order'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>check/checkout_complete"><?php echo $this->lang->line('menu_checkout_complete'); ?></a></li>
 			</ul>
 		  </li>
 		  <li>

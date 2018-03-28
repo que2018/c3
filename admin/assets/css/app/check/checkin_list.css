@@ -54,7 +54,7 @@ a:focus, a:hover {
 	background: #f5e14d;    
 	color: #fff;    
 	border-radius: 2px;    
-	padding: 4px 5px;
+	padding: 4px 11px;
 }
 .completed {	
 	font-size: 9px;    
@@ -67,6 +67,12 @@ a:focus, a:hover {
 	position: absolute;    
 	top: 30px;    
 	right: 50px;
+}
+.tracking {
+    background: #23c6c8;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
 }
 
 

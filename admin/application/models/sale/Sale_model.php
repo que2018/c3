@@ -690,7 +690,7 @@ class Sale_model extends CI_Model
 			'sale.id',
 			'sale.store_sale_id',
 			'sale.tracking',
-			'sale.name',
+			'sale.status_id',
 			'sale.date_added'
 		);
 		

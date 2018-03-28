@@ -35,7 +35,7 @@
 .btn-gen {
 	margin-right: 4px;
 }
-.panel-body {
+.tab-pane > .panel-body {
 	min-height: 650px;
 	padding-top: 25px !important;
 }

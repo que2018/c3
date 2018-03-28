@@ -36,8 +36,8 @@
 		  <div class="row">
 		    <div class="col-lg-3">     
 		      <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_sale_id'); ?></label>
-			    <div class="col-sm-9">
+			    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_sale_id'); ?></label>
+			    <div class="col-sm-8">
 			      <div class="input-group">
 				   <span class="input-group-addon">#</span>
 				   <input name="v_sale_id" value="<?php echo $sale_id; ?>" class="form-control" disabled>
@@ -190,11 +190,18 @@ $(document).ready(function() {
 							
 						checkout_product_row++;
 					});	
-										
-					$('#checkout-products tbody').html(html);					
+							
+					$('#checkout-products tbody').html(html);	
+					
+					$('#alert-error').hide();					
 				}
 				else
 				{
+					$('input[name=\'sale_id\']').val('');	
+					$('input[name=\'v_sale_id\']').val('');	
+					$('input[name=\'v_store_sale_id\']').val('');	
+					$('input[name=\'v_tracking\']').val('');
+					
 					$('#checkout-products tbody').html('');		
 					
 					$('#alert-error span').html(json.message);		

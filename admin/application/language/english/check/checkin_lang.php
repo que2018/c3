@@ -2,6 +2,7 @@
 
 // Text
 $lang['text_title'] 	  	        			 = 'Checkin List';
+$lang['text_search'] 	  	        			 = 'Search';
 $lang['text_checkin'] 	  	        			 = 'Checkin';
 $lang['text_location'] 	  	    				 = 'location';
 $lang['text_status'] 	  	    				 = 'status';
@@ -33,7 +34,7 @@ $lang['text_loading_product'] 	  	    		 = 'loading product ...';
 $lang['text_loading_checkin'] 	  	    		 = 'loading checkin ...';
 $lang['text_print_title']            		     = 'Checkin ID(#%s)';
 $lang['text_checkin_rapid_hint'] 	  	         = 'Checkin ID / Tracking Number';
-$lang['text_checkin_edit_title'] 	  	         = 'Checkin Edit(#%s)';
+$lang['text_checkin_edit_title'] 	  	         = 'Edit Checkin(#%s)';
 $lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / Proudct Name';
 $lang['text_checkin_description']				 = 'Display all the checkin records';
 $lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin add success';
@@ -80,6 +81,7 @@ $lang['entry_location'] 	  	    	 		 = 'Location';
 $lang['entry_tracking'] 	  	    	 		 = 'Tracking';
 $lang['entry_status'] 	  	        	 		 = 'Status';
 $lang['entry_note'] 	  	        	 		 = 'Note';
+$lang['entry_date_added'] 	  	        	     = 'Date Added';
 
 // Error 
 $lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Code is empty';
@@ -92,7 +94,8 @@ $lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-
 $lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> quantity is not a positive number';
 $lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> has location unfilled';
 $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkin is already completed';
-
+$lang['error_checkin_fee_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> is required';
+$lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> requires amount';
 
 
 

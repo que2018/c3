@@ -3,11 +3,6 @@
 
 class Checkout_sale extends CI_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();	
-	}
-	
 	public function index()
 	{
 		$this->lang->load('check/checkout');
@@ -247,7 +242,13 @@ class Checkout_sale extends CI_Controller
 		{
 			$result = $this->checkout_model->get_sale_checkout($sale_id);
 	
-			if($result && ($result['status'] == 2))
+			if($result && ($result['status'] == 1))
+			{
+				$this->form_validation->set_message('validate_sale', sprintf($this->lang->line('error_sale_checkout_exist'), $sale_id));
+			
+				return false;
+			}
+			else if($result && ($result['status'] == 2))
 			{
 				$this->form_validation->set_message('validate_sale', sprintf($this->lang->line('error_sale_checkout_completed'), $sale_id));
 			

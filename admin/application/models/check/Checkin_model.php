@@ -39,6 +39,21 @@ class Checkin_model extends CI_Model
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);	
 		
+		//checkin fee
+		if(isset($data['checkin_fees']) && $data['checkin_fees'])
+		{
+			$checkin_fees = array();
+						
+			foreach($data['checkin_fees'] as $fee_id){					
+				$checkin_fees[] = array(
+					'checkin_id'   => $checkin_id,
+					'fee_id' 	   => $fee_id
+				);
+			}
+			
+			$this->db->insert_batch('checkin_fee', $checkin_fees);
+		}
+		
 		//if completed, change inventory
 		if($data['status'] == 2)
 		{		
@@ -210,6 +225,23 @@ class Checkin_model extends CI_Model
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);
 
+		//checkin fee
+		$this->db->delete('checkin_fee', array('checkin_id' => $checkin_id));
+		
+		if(isset($data['checkin_fees']) && $data['checkin_fees'])
+		{
+			$checkin_fees = array();
+						
+			foreach($data['checkin_fees'] as $fee_id){					
+				$checkin_fees[] = array(
+					'checkin_id'  => $checkin_id,
+					'fee_id' 	   => $fee_id
+				);
+			}
+			
+			$this->db->insert_batch('checkin_fee', $checkin_fees);
+		}	
+		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -315,6 +347,18 @@ class Checkin_model extends CI_Model
 		$this->db->where('checkin_product.checkin_id', $checkin_id);
 
 		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_checkin_fees($checkin_id) 
+	{	
+		$q = $this->db->get_where('checkin_fee', array('checkin_id' => $checkin_id));
 		
 		if($q->num_rows() > 0)
 		{
