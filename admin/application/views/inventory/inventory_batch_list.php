@@ -22,6 +22,8 @@
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_inventory_list_description'); ?></h5>
+		  <button id="batch" onclick="reload()"><?php echo $this->lang->line('text_download'); ?></button>
+		  <button id="non-batch" onclick="reload_batch()"><?php echo $this->lang->line('text_download'); ?></button>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
@@ -116,6 +118,15 @@
 			      <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 				</th>
 				<?php } ?>
+				<?php if($sort == 'inventory.batch') { ?>
+				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				  <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+				</th>
+				<?php } else { ?>
+				<th style="width: 12%;" class="sorting">
+				  <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+				</th>
+				<?php } ?>
 				<?php if($sort == 'inventory.quantity') { ?>
 				<th style="width: 10%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
@@ -123,15 +134,6 @@
 				<?php } else { ?>
 				<th style="width: 10%;" class="sorting">
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'inventory.date_modified') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_date_modified; ?>"><?php echo $this->lang->line('column_date_modified'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
-				  <a href="<?php echo $sort_date_modified; ?>"><?php echo $this->lang->line('column_date_modified'); ?></a>
 				</th>
 				<?php } ?>
 				<th><center><?php echo $this->lang->line('column_action'); ?></center></th>
@@ -162,12 +164,12 @@
 					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
 					  <td><?php echo $inventory['warehouse']; ?></td>
+					  <td><?php echo $inventory['batch']; ?></td>
 					  <?php if($modifiable) { ?>
 					  <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
 					  <?php } else { ?>
 					  <td><?php echo $inventory['quantity']; ?></td>
 					  <?php } ?>
-					  <td><?php echo $inventory['date_modified']; ?></td>
 					  <td class="text-center">
 					    <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
@@ -203,7 +205,7 @@ function delete_inventory(handle, inventory_id) {
 			success: function(json) {					
 				if(json.success) {
 					$.ajax({
-						url: '<?php echo $reload; ?>',
+						url: '<?php echo $reload_url; ?>',
 						dataType: 'html',
 						success: function(html) {					
 							$('.ibox-content').html(html);
@@ -251,6 +253,27 @@ function update_quantity(handle) {
 		error: function(xhr, ajaxOptions, thrownError) {
 			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
+	});
+}
+</script>
+<script>
+function reload() {	
+	$.ajax({
+		url: '<?php echo base_url(); ?>inventory/inventory/reload',
+		dataType: 'html',
+		success: function(html) {					
+			$('.ibox-content').html(html);
+		},
+	});
+}
+
+function reload_batch() {	
+	$.ajax({
+		url: '<?php echo base_url(); ?>inventory/inventory/reload_batch',
+		dataType: 'html',
+		success: function(html) {					
+			$('.ibox-content').html(html);
+		},
 	});
 }
 </script>

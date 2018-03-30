@@ -90,6 +90,15 @@
 	    <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 	  </th>
 	  <?php } ?>
+	  <?php if($sort == 'inventory.batch') { ?>
+	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	    <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+	  </th>
+	  <?php } else { ?>
+	  <th style="width: 12%;" class="sorting">
+	    <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+	  </th>
+	  <?php } ?>
 	  <?php if($sort == 'inventory.quantity') { ?>
 	  <th style="width: 10%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
@@ -127,7 +136,12 @@
 		    <td><?php echo $inventory['sku']; ?></td>
 		    <td><?php echo $inventory['location']; ?></td>
 		    <td><?php echo $inventory['warehouse']; ?></td>
+			<td><?php echo $inventory['batch']; ?></td>
+		    <?php if($modifiable) { ?>
+		    <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
+		    <?php } else { ?>
 		    <td><?php echo $inventory['quantity']; ?></td>
+		    <?php } ?>
 		    <td class="text-center">
 			  <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>

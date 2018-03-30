@@ -11,11 +11,12 @@ $lang['text_delete'] 	  	         	   = 'delete inventory';
 $lang['text_save'] 	  	         	   	   = 'save inventory';
 $lang['text_cancel'] 	  	         	   = 'cancel';
 $lang['text_export'] 	  	         	   = 'export inventory';
+$lang['text_batch'] 	  	               = 'batch';
 $lang['text_quantity'] 	  	               = 'quantity';
 $lang['text_search'] 	  	               = 'Search';
 $lang['text_download_sample'] 	  	       = 'download sample';
-$lang['text_inventory_add'] 	  	       = 'Inventory Add';
-$lang['text_inventory_edit'] 	  	       = 'Inventory Edit';
+$lang['text_inventory_add'] 	  	       = 'Add Inventory';
+$lang['text_inventory_edit'] 	  	       = 'Edit Inventory';
 $lang['text_import_inventory'] 	  	       = 'Import Inventory';
 $lang['text_confirm_delete'] 	  	       = 'Are you sure to delete this inventory?';
 $lang['text_inventory_list_description']   = 'Display All Inventories';
@@ -30,7 +31,6 @@ $lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></
 $lang['text_rows_imported'] 	           = '<strong>Total %s rows are imported</strong>';
 $lang['text_no_rows_imported'] 	           = '<strong>No row is imported</strong>';
 
-
 // Column
 $lang['column_name'] 	  	               = 'Name';
 $lang['column_upc'] 	  	               = 'UPC';
@@ -38,6 +38,7 @@ $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = 'Name';
 $lang['column_location'] 	  	           = 'Location';
 $lang['column_warehouse'] 	  	           = 'Warehouse';
+$lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_quantity'] 	  	           = 'Quantity';
 $lang['column_date_added'] 	  	           = 'Date Added';
 $lang['column_date_modified'] 	  	       = 'Date Modified';
@@ -47,6 +48,7 @@ $lang['entry_client'] 	  	               = 'Client';
 $lang['entry_product'] 	  	               = 'Product';
 $lang['entry_quantity'] 	  	           = 'Quantity';
 $lang['entry_location'] 	  	           = 'Location';
+$lang['entry_batch'] 	  	           	   = 'Batch';
 $lang['entry_warehouse'] 	  	           = 'Warehouse';
 $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
@@ -59,6 +61,8 @@ $lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> is not
 $lang['error_update_quantity_error'] 	   = 'Update quantity fail';
 $lang['error_row_location_not_found'] 	   = 'row%s: location <strong>%s</strong> is not found';
 $lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same product and location';
+$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Inventory with same product, location and batch has been used';
+
 
 
 

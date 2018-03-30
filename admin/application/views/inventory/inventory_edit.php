@@ -33,7 +33,7 @@
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_product'); ?></label>
 			    <div class="col-sm-10">
-				  <input name="product_name" value="<?php echo $product_name; ?>" class="form-control">
+				  <input name="product_name" value="<?php echo $product_name; ?>" class="form-control" disabled>
 				  <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 				</div>
 			  </div>
@@ -41,7 +41,7 @@
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_warehouse'); ?></label>
 			    <div class="col-sm-10">
-				  <select name="warehouse_id" class="form-control">
+				  <select name="warehouse_id" class="form-control" disabled>
 					<?php if($warehouses) { ?>
 				      <?php foreach($warehouses as $warehouse) { ?>
 					  <?php if($warehouse['id'] == $warehouse_id) { ?>
@@ -58,8 +58,15 @@
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_location'); ?></label>
 			    <div class="col-sm-10">
-				  <input name="location_name" value="<?php echo $location_name; ?>" class="form-control">
+				  <input name="location_name" value="<?php echo $location_name; ?>" class="form-control" disabled>
 				  <input type="hidden" name="location_id" value="<?php echo $location_id; ?>">
+			    </div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_batch'); ?></label>
+			    <div class="col-sm-10">
+				  <input name="batch" value="<?php echo $batch; ?>" class="form-control">
 			    </div>
 			  </div>
 			  <div class="hr-line-dashed"></div>

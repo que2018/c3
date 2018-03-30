@@ -185,11 +185,6 @@ class Inventory_import extends CI_Controller {
 		{
 			foreach($inventories as $inventory)
 			{
-				//$product_id = $inventory['product_id'];
-				//$location_id = $inventory['location_id'];
-				//$this->inventory_model->delete_inventory_by_location_product($location_id, $product_id);
-				//$this->inventory_model->set_inventory($inventory);
-				
 				$this->inventory_model->add_inventory($inventory);
 			}
 			

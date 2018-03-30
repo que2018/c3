@@ -11,6 +11,7 @@ $lang['text_delete'] 	  	         	   = '删除库存';
 $lang['text_save'] 	  	         	   	   = '保存库存';
 $lang['text_cancel'] 	  	         	   = 'cancel';
 $lang['text_export'] 	  	         	   = '导出库存';
+$lang['text_batch'] 	  	               = 'batch';
 $lang['text_quantity'] 	  	               = 'quantity';
 $lang['text_search'] 	  	               = 'Search';
 $lang['text_download_sample'] 	  	       = 'download sample';
@@ -30,7 +31,6 @@ $lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></
 $lang['text_rows_imported'] 	           = '<strong>Total %s rows are imported</strong>';
 $lang['text_no_rows_imported'] 	           = '<strong>No row is imported</strong>';
 
-
 // Column
 $lang['column_name'] 	  	               = 'Name';
 $lang['column_upc'] 	  	               = 'UPC';
@@ -38,6 +38,7 @@ $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = 'Name';
 $lang['column_location'] 	  	           = 'Location';
 $lang['column_warehouse'] 	  	           = 'Warehouse';
+$lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_quantity'] 	  	           = 'Quantity';
 $lang['column_date_added'] 	  	           = 'Date Added';
 $lang['column_date_modified'] 	  	       = 'Date Modified';
@@ -47,6 +48,7 @@ $lang['entry_client'] 	  	               = 'Client';
 $lang['entry_product'] 	  	               = 'Product';
 $lang['entry_quantity'] 	  	           = 'Quantity';
 $lang['entry_location'] 	  	           = 'Location';
+$lang['entry_batch'] 	  	           	   = 'Batch';
 $lang['entry_warehouse'] 	  	           = 'Warehouse';
 $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
@@ -59,6 +61,8 @@ $lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> is not
 $lang['error_update_quantity_error'] 	   = 'Update quantity fail';
 $lang['error_row_location_not_found'] 	   = 'row%s: location <strong>%s</strong> is not found';
 $lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same product and location';
+$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Inventory with same product, location and batch has been used';
+
 
 
 
