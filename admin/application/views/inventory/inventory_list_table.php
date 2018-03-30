@@ -43,63 +43,62 @@
   </div>
 </div>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover dataTables-example" >
+  <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
     <thead>
 	  <?php if($sort == 'product.name') { ?>
-	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 14%;" class="sorting">
+	  <th style="width: 16%;" class="sorting">
 	    <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'product.upc') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 14%;" class="sorting">
 	    <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'product.sku') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 14%;" class="sorting">
 	    <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'location.name') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 14%;" class="sorting">
 	    <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'warehouse.name') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 14%;" class="sorting">
 	    <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'inventory.quantity') { ?>
-	  <th style="width: 10%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 10%;" class="sorting">
+	  <th style="width: 12%;" class="sorting">
 	    <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 	  </th>
 	  <?php } ?>
-	  <th><center><?php echo $this->lang->line('column_action'); ?></center></th>
     </thead>
     <tbody>
 	  <?php if($inventories) { ?>
@@ -127,11 +126,7 @@
 		    <td><?php echo $inventory['sku']; ?></td>
 		    <td><?php echo $inventory['location']; ?></td>
 		    <td><?php echo $inventory['warehouse']; ?></td>
-		    <td><?php echo $inventory['quantity']; ?></td>
-		    <td class="text-center">
-			  <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-			  <button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
-		    </td>				
+		    <td><?php echo $inventory['quantity']; ?></td>			
 		  </tr>
 		  <?php $offset++; ?>
 	    <?php } ?>

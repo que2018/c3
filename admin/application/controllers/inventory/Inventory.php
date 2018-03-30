@@ -12,6 +12,15 @@ class Inventory extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 	
+	public function load()
+	{		
+		$data = $this->get_list();
+			
+		$this->load->view('common/header');
+		$this->load->view('inventory/inventory_list', $data);
+		$this->load->view('common/footer');
+	}
+	
 	public function reload()
 	{
 		$data = $this->get_list();
@@ -231,7 +240,7 @@ class Inventory extends CI_Controller {
 		$this->pagination->total  = $inventory_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url() . 'inventory/inventory?page={page}' . $url;
+		$this->pagination->url    = base_url() . 'inventory/inventory/load?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($inventory_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($inventory_total - $limit)) ? $inventory_total : ((($page - 1) * $limit) + $limit), $inventory_total, ceil($inventory_total / $limit));
 
@@ -590,13 +599,13 @@ class Inventory extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_product']        = base_url() . 'inventory/inventory?sort=product.name' . $url;
-		$data['sort_upc']        	 = base_url() . 'inventory/inventory?sort=product.upc' . $url;
-		$data['sort_sku']        	 = base_url() . 'inventory/inventory?sort=product.sku' . $url;
-		$data['sort_location']       = base_url() . 'inventory/inventory?sort=location.name' . $url;
-		$data['sort_warehouse']  	 = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
-		$data['sort_batch']          = base_url() . 'inventory/inventory?sort=inventory.batch' . $url;
-		$data['sort_quantity']       = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
+		$data['sort_product']     = base_url() . 'inventory/inventory?sort=product.name' . $url;
+		$data['sort_upc']         = base_url() . 'inventory/inventory?sort=product.upc' . $url;
+		$data['sort_sku']         = base_url() . 'inventory/inventory?sort=product.sku' . $url;
+		$data['sort_location']    = base_url() . 'inventory/inventory?sort=location.name' . $url;
+		$data['sort_warehouse']   = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
+		$data['sort_batch']       = base_url() . 'inventory/inventory?sort=inventory.batch' . $url;
+		$data['sort_quantity']    = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
 		
 		$url = '';
 		

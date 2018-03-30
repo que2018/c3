@@ -43,6 +43,10 @@ $lang['column_quantity'] 	  	           = 'Quantity';
 $lang['column_date_added'] 	  	           = 'Date Added';
 $lang['column_date_modified'] 	  	       = 'Date Modified';
 
+// Button
+$lang['button_batch'] 	  	               = 'batch';
+$lang['button_non_batch'] 	  	           = 'non batch';
+
 // Entry
 $lang['entry_client'] 	  	               = 'Client';
 $lang['entry_product'] 	  	               = 'Product';

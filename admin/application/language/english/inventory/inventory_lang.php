@@ -31,6 +31,10 @@ $lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></
 $lang['text_rows_imported'] 	           = '<strong>Total %s rows are imported</strong>';
 $lang['text_no_rows_imported'] 	           = '<strong>No row is imported</strong>';
 
+// Button
+$lang['button_batch'] 	  	               = 'batch';
+$lang['button_non_batch'] 	  	           = 'non batch';
+
 // Column
 $lang['column_name'] 	  	               = 'Name';
 $lang['column_upc'] 	  	               = 'UPC';

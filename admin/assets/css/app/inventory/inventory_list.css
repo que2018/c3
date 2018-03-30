@@ -58,4 +58,26 @@ a:focus, a:hover {
 .detail table {
 	margin-bottom: 0px;
 }
+.btn-batch {
+	color: #fff;
+    font-size: 10px;
+    padding: 2px 5px;
+	float: right;
+}
+.btn-batch:hover {
+	color: #fff;
+}
+#batch {
+	background: #ccc;
+	border: 1px solid #ccc;
+}
+#non-batch {
+	margin-left: 6px;
+	background: #9c9c9c;
+	border: 1px solid #9c9c9c;
+}
+.table-non-batch td {
+	line-height: 34px !important;
+}
+
 

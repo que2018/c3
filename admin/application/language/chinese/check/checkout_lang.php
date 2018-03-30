@@ -54,6 +54,7 @@ $lang['text_print_title']            		  			= 'Checkout ID(#%s)';
 $lang['text_checkout_edit_title']             			= 'Checkout ID(#%s)';
 $lang['text_note_sale_checkout']		 	  			= 'Checkout for Order %s';
 $lang['text_checkout_sale_hint'] 	  	      			= 'Order ID / Store Order ID';
+$lang['text_checkout_location_name'] 	  	            = '%s [%s]';
 $lang['text_code_hint'] 	  	    	 	  			= 'UPC / SKU / ASIN / Proudct Name';
 $lang['text_checkout_description']		 	  			= 'Display all the checkout records';
 $lang['text_sale_checkout_input_hint'] 	  	            = 'Order ID / Store Order ID / Tracking';

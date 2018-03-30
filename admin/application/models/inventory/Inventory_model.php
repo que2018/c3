@@ -435,13 +435,13 @@ class Inventory_model extends CI_Model
 	
 	public function get_inventory_total($data)
 	{
-		$this->db->select('COUNT(inventory.id) AS total', false);
+		$this->db->select('inventory.*', false);
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id', 'inventory.batch'));
-		
+
 		if(!empty($data['filter_product'])) 
 		{			
 			$this->db->like('product.name', $data['filter_product'], 'left');
@@ -490,10 +490,8 @@ class Inventory_model extends CI_Model
 		}
 		
 		$q = $this->db->get();
-		
-		$result = $q->row_array();
-		
-		return $result['total'];
+						
+		return $q->num_rows();
 	}
 	
 	public function get_batch_inventory_total($data)

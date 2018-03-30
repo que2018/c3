@@ -136,6 +136,7 @@ class Checkin extends CI_Controller
 				foreach($checkin_products_data as $checkin_product_data) {
 					$checkin_products[] = array(
 						'name'        => $checkin_product_data['name'],
+						'batch'       => $checkin_product_data['batch'],
 						'quantity'    => $checkin_product_data['quantity'],
 						'location'    => $checkin_product_data['location_name']
 					);
@@ -321,6 +322,7 @@ class Checkin extends CI_Controller
 					'name'           => $product_info['name'],
 					'upc'            => $product_info['upc'],
 					'sku'            => $product_info['sku'],
+					'batch'          => $checkin_product['batch'],
 					'quantity'       => $checkin_product['quantity'],
 					'location_id'    => $checkin_product['location_id'],
 					'location_name'  => $checkin_product['location_name']
@@ -419,6 +421,7 @@ class Checkin extends CI_Controller
 						'name'           => $product_info['name'],
 						'upc'            => $product_info['upc'],
 						'sku'            => $product_info['sku'],
+						'batch'          => $checkin_product['batch'],
 						'quantity'       => $checkin_product['quantity'],
 						'location_id'    => $checkin_product['location_id'],
 						'location_name'  => $checkin_product['location_name']
@@ -444,6 +447,7 @@ class Checkin extends CI_Controller
 					'name'           => $checkin_product['name'],
 					'upc'            => $checkin_product['upc'],
 					'sku'            => $checkin_product['sku'],
+					'batch'          => $checkin_product['batch'],
 					'quantity'       => $checkin_product['quantity'],
 					'location_id'    => $checkin_product['location_id'],
 					'location_name'  => $checkin_product['location_name']

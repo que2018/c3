@@ -72,6 +72,7 @@ $lang['column_action'] 	  	        			 = 'Action';
 $lang['column_product_name'] 	    			 = 'Product Name';
 $lang['column_upc'] 	    					 = 'UPC';
 $lang['column_sku'] 	    					 = 'SKU';
+$lang['column_batch'] 	    				 	 = 'Batch';
 $lang['column_quantity'] 	    				 = 'Quantity';
 $lang['column_file'] 	    		    		 = 'File';
 

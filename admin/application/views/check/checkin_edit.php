@@ -87,11 +87,12 @@
 					  <table id="checkin-product" class="table table-bordered">
 					    <thead>
 						  <tr>
-						    <th style="width: 22%"><?php echo $this->lang->line('column_product_name'); ?></th>
-						    <th style="width: 15%"><?php echo $this->lang->line('column_upc'); ?></th>
-						    <th style="width: 15%"><?php echo $this->lang->line('column_sku'); ?></th>
-						    <th style="width: 12%"><?php echo $this->lang->line('column_quantity'); ?></th>
-						    <th style="width: 18%"><?php echo $this->lang->line('column_location'); ?></th>
+						    <th style="width: 14%"><?php echo $this->lang->line('column_product_name'); ?></th>
+						    <th style="width: 14%"><?php echo $this->lang->line('column_upc'); ?></th>
+						    <th style="width: 14%"><?php echo $this->lang->line('column_sku'); ?></th>
+							<th style="width: 14%"><?php echo $this->lang->line('column_batch'); ?></th>
+						    <th style="width: 14%"><?php echo $this->lang->line('column_quantity'); ?></th>
+						    <th style="width: 14%"><?php echo $this->lang->line('column_location'); ?></th>
 							<th></th>
 						  </tr>
 					    </thead>
@@ -103,6 +104,7 @@
 						    <td class="text-left"><input name="checkin_product[<?php echo $checkin_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkin_product['product_id']; ?>"><div class="text-left"><?php echo $checkin_product['name']; ?></div></td>
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
+						    <td><input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][batch]" value="<?php echo $checkin_product['batch']; ?>"></td>							
 						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
 							<td>
 							  <input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][location_name]" value="<?php echo $checkin_product['location_name']; ?>">
@@ -257,6 +259,7 @@ $(document).ready(function() {
 			html  = '<td><input class="product_id" name="checkin_product[' + checkin_product_row + '][product_id]" type="hidden" value="' + product.product_id + '"><div class="text-left">' + product.name + '</div></td>';
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
+			html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text" value=""></td>';
 			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control">';

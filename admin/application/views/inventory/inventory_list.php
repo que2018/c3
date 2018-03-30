@@ -71,72 +71,62 @@
 		    </div>
 		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.upc') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.sku') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'location.name') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'warehouse.name') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'inventory.batch') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
-				  <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'inventory.quantity') { ?>
-				<th style="width: 10%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 10%;" class="sorting">
+				<th style="width: 12%;" class="sorting">
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } ?>
-				<th><center><?php echo $this->lang->line('column_action'); ?></center></th>
 			  </thead>
 			  <tbody>
 				<?php if($inventories) { ?>
@@ -164,16 +154,7 @@
 					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
 					  <td><?php echo $inventory['warehouse']; ?></td>
-					  <td><?php echo $inventory['batch']; ?></td>
-					  <?php if($modifiable) { ?>
-					  <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
-					  <?php } else { ?>
-					  <td><?php echo $inventory['quantity']; ?></td>
-					  <?php } ?>
-					  <td class="text-center">
-					    <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
-					  </td>				
+					  <td><?php echo $inventory['quantity']; ?></td>	
 					</tr>
 					<?php $offset++; ?>
 				  <?php } ?>
@@ -190,72 +171,6 @@
     </div>
   </div>
 </div>
-<script>
-function delete_inventory(handle, inventory_id) {
-	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-		$.ajax({
-			url: '<?php echo base_url(); ?>inventory/inventory/delete?inventory_id=' + inventory_id,
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType: 'json',
-			beforeSend: function() {
-				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {					
-				if(json.success) {
-					$.ajax({
-						url: '<?php echo $reload_url; ?>',
-						dataType: 'html',
-						success: function(html) {					
-							$('.ibox-content').html(html);
-						},
-					});
-				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}
-}
-</script>
-<script>
-function active_quantity(handle) {	
-	if(!$(handle).find('input').length) 
-	{
-		quantity = $(handle).html();
-		
-		html = '<input type="text" value="'+ quantity +'" onblur="update_quantity(this)" class="form-control" onfocus="this.value = this.value;" />';
-		
-		$(handle).html(html);	
-		
-		$(handle).find('input').focus();
-	}
-}
-
-function update_quantity(handle) {	
-	inventory_id = $(handle).closest('tr').find('.btn-delete').attr('data');
-		
-	quantity = $(handle).val();
-	
-	$(handle).closest('td').html(quantity);
-
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory_ajax/update_quantity',
-		data: 'inventory_id=' + inventory_id + '&quantity=' + quantity,
-		type: 'POST',
-		dataType: "json",
-		success: function (json) {
-			if(!json.success)
-				alert('<?php echo $this->lang->line('error_update_quantity_error'); ?>');
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
-</script>
 <script>
 function reload() {	
 	$.ajax({

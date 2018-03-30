@@ -541,7 +541,7 @@ class Checkout_model extends CI_Model
 	
 	public function get_checkout_products($checkout_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkout_product.quantity, checkout_product.location_id, location.name AS location_name', false);
+		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkout_product.batch, checkout_product.quantity, checkout_product.location_id, location.name AS location_name', false);
 		$this->db->from('checkout_product');
 		$this->db->join('product', 'product.id = checkout_product.product_id', 'left');
 		$this->db->join('location', 'location.id = checkout_product.location_id', 'left');

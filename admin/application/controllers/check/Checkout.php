@@ -341,6 +341,7 @@ class Checkout extends CI_Controller {
 						'name'         => $product_data['name'],
 						'upc'          => $product_data['upc'],
 						'sku'          => $product_data['sku'],
+						'batch'        => $checkout_product['batch'],
 						'quantity'     => $checkout_product['quantity'],
 						'location_id'  => $checkout_product['location_id']
 					);
@@ -562,7 +563,7 @@ class Checkout extends CI_Controller {
 						{
 							$locations[] = array(
 								'location_id' => $inventory_data['location_id'],
-								'name'        => $inventory_data['location_name']
+								'name'        => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
 							);
 						}
 					}
@@ -624,7 +625,7 @@ class Checkout extends CI_Controller {
 					{
 						$locations[] = array(
 							'location_id' => $inventory_data['location_id'],
-							'name'        => $inventory_data['location_name']
+							'name'        => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
 						);
 					}
 				}
