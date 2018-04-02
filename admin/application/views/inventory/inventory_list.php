@@ -10,7 +10,7 @@
   </div>
   <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>assets/file/export/inventory.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
-    <a href="<?php echo base_url(); ?>inventory/inventory/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+    <a href="<?php echo base_url(); ?>inventory/inventory_batch/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -173,27 +173,6 @@
     </div>
   </div>
 </div>
-<script>
-function reload() {	
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory/reload',
-		dataType: 'html',
-		success: function(html) {					
-			$('.ibox-content').html(html);
-		},
-	});
-}
-
-function reload_batch() {	
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory/reload_batch',
-		dataType: 'html',
-		success: function(html) {					
-			$('.ibox-content').html(html);
-		},
-	});
-}
-</script>
 <script>
 function filter() {	
 	warehouse_id  = $('select[name=\'warehouse_id\']').val();

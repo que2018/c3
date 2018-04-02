@@ -10,7 +10,7 @@
   </div>
   <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>assets/file/export/inventory.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
-    <a href="<?php echo base_url(); ?>inventory/inventory/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+    <a href="<?php echo base_url(); ?>inventory/inventory_batch/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -179,7 +179,7 @@
 					  <td><?php echo $inventory['quantity']; ?></td>
 					  <?php } ?>
 					  <td class="text-center">
-					    <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+					    <a href="<?php echo base_url(); ?>inventory/inventory_batch/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
@@ -202,7 +202,7 @@
 function delete_inventory(handle, inventory_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 		$.ajax({
-			url: '<?php echo base_url(); ?>inventory/inventory/delete?inventory_id=' + inventory_id,
+			url: '<?php echo base_url(); ?>inventory/inventory_batch/delete?inventory_id=' + inventory_id,
 			cache: false,
 			contentType: false,
 			processData: false,

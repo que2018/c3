@@ -1,23 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory_import extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('inventory/inventory');
-		
-		$this->load->model('inventory/inventory_model');
-	}
-	
+class Inventory_import extends CI_Controller 
+{
 	public function index() 
 	{	
+		$this->lang->load('inventory/inventory');
+			
+		$this->load->model('warehouse/location_model');
+
 		$data['locations'] = array();
 	
-		$this->load->model('warehouse/location_model');
-			
 		$locations = $this->location_model->get_all_locations();	
 
 		if($locations)
@@ -39,7 +32,9 @@ class Inventory_import extends CI_Controller {
 	public function upload() 
 	{
 		$this->lang->load('inventory/inventory');
-				
+		
+		$this->load->model('inventory/inventory_model');
+			
 		if(!empty($_FILES)) 
 		{	
 			$temp_file = $_FILES['file']['tmp_name'];    
@@ -88,6 +83,8 @@ class Inventory_import extends CI_Controller {
 	{
 		$this->load->library('phpexcel');
 		
+		$this->lang->load('inventory/inventory');
+				
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/inventory_model');
@@ -104,11 +101,12 @@ class Inventory_import extends CI_Controller {
 		
 		for($i = 2; $i <= $rows; $i++)
 		{ 
-			$row = $sheet->rangeToArray('A' . $i . ':C' . $i, null, true, false);
+			$row = $sheet->rangeToArray('A' . $i . ':D' . $i, null, true, false);
 
 			$sku       = $row[0][0];
 			$name      = $row[0][1];
-			$quantity  = $row[0][2];
+			$batch     = $row[0][2];
+			$quantity  = $row[0][3];
 								
 			//sku empty
 			if(!isset($sku) || empty($sku))
@@ -149,6 +147,12 @@ class Inventory_import extends CI_Controller {
 				if($validated)
 					$validated = false;
 			}
+			
+			//fix batch
+			if(!isset($batch))
+			{
+				$batch = '';
+			}
 
 			//quantity empty
 			if(!isset($quantity))
@@ -160,22 +164,26 @@ class Inventory_import extends CI_Controller {
 			}
 			
 			//duplicate data
-			/* foreach($inventories as $inventory)
+			foreach($inventories as $inventory)
 			{
-				if(($inventory['product_id'] == $product['id']) && ($inventory['location_id'] == $location['id']))
+				if(($inventory['product_id'] == $product['id']) && 
+				   ($inventory['location_id'] == $location['id']) && 
+				   ($inventory['batch'] == $batch)
+				)
 				{
 					$messages[] = sprintf($this->lang->line('error_row_duplicated_data'), $i);
 				
 					if($validated)
 						$validated = false;
 				}
-			} */
+			} 
 			
 			if($validated)
 			{
 				$inventories[] = array(
 					'product_id'   => $product['id'],
 					'quantity'     => $quantity,
+					'batch'        => $batch,
 					'location_id'  => $location['id']
 				);
 			}
@@ -183,6 +191,8 @@ class Inventory_import extends CI_Controller {
 		
 		if($validated) 
 		{
+			$this->inventory_model->clear_inventory();
+			
 			foreach($inventories as $inventory)
 			{
 				$this->inventory_model->add_inventory($inventory);

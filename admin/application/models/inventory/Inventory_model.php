@@ -229,6 +229,16 @@ class Inventory_model extends CI_Model
 		return false;
 	}	
 	
+	public function clear_inventory()
+	{
+		if($this->db->empty_table('inventory')) 
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public function get_inventories($data) 
 	{			
 		$this->db->select('inventory.*, SUM(inventory.quantity) AS quantity, product.name AS product_name, product.sku, location.name AS location_name, warehouse.name AS warehouse_name', false);
@@ -236,7 +246,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
-		$this->db->group_by(array('inventory.product_id', 'inventory.location_id', 'inventory.batch'));
+		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 		
 		if(!empty($data['filter_product'])) 
 		{			
@@ -446,7 +456,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
-		$this->db->group_by(array('inventory.product_id', 'inventory.location_id', 'inventory.batch'));
+		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 
 		if(!empty($data['filter_product'])) 
 		{			

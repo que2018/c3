@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory_batch extends CI_Controller {
-
+class Inventory_batch extends CI_Controller 
+{
 	public function index()
 	{		
 		$data = $this->get_list_batch();
@@ -156,20 +156,24 @@ class Inventory_batch extends CI_Controller {
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setBold(true);
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_location'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_quantity'));
-		
+		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_warehouse'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_location'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_batch'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('G1', $this->lang->line('column_quantity'));
+
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);	
 
 		$i = 2;
 		
@@ -182,9 +186,11 @@ class Inventory_batch extends CI_Controller {
 				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $product_info['name']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $product_info['upc']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_info['sku']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['location_name']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['quantity']);
-			
+				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['warehouse_name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['location_name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $inventory['batch']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('G'.$i, $inventory['quantity']);
+
 				$i++;
 			}
 		}
