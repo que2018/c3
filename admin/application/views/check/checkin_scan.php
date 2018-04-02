@@ -29,7 +29,7 @@
 		  <div class="row">
 			<div class="col-lg-12">
 			  <div class="code-box">
-				<input name="code" value="" placeholder="<?php echo $this->lang->line('text_checkout_sale_hint'); ?>">
+				<input name="code" value="" placeholder="<?php echo $this->lang->line('text_checkin_scan_hint'); ?>">
 		      </div>
 		    </div>
 		  </div>
@@ -45,8 +45,8 @@
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 			    <div class="col-sm-10">
 			       <select name="status" class="form-control">
-				     <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-				     <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
+				     <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
+				     <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
 				  </select>
 			    </div>
 			  </div>
@@ -55,11 +55,12 @@
 			  <table id="ptable" class="table table-bordered">
 			    <thead>
 				  <tr>
-				    <th style="width: 22%"><?php echo $this->lang->line('column_product_name'); ?></th>
-				    <th style="width: 15%"><?php echo $this->lang->line('column_upc'); ?></th>
-					<th style="width: 15%"><?php echo $this->lang->line('column_sku'); ?></th>
-					<th style="width: 12%"><?php echo $this->lang->line('column_quantity'); ?></th>
-					<th style="width: 18%"><?php echo $this->lang->line('column_location'); ?></th>
+				    <th style="width: 20%"><?php echo $this->lang->line('column_product_name'); ?></th>
+				    <th style="width: 14%"><?php echo $this->lang->line('column_upc'); ?></th>
+					<th style="width: 14%"><?php echo $this->lang->line('column_sku'); ?></th>
+					<th style="width: 14%"><?php echo $this->lang->line('column_batch'); ?></th>
+					<th style="width: 8%"><?php echo $this->lang->line('column_quantity'); ?></th>
+					<th style="width: 14%"><?php echo $this->lang->line('column_location'); ?></th>
 					<th></th>
 				  </tr>
 			    </thead>
@@ -135,6 +136,7 @@ $(document).ready(function() {
 						html  = '<td><input class="product_id" name="checkin_product[' + checkin_product_row + '][product_id]" type="hidden" value="' + json.product.product_id + '"><div class="text-left">' + json.product.name + '</div></td>';
 						html += '<td class="text-left">' + json.product.upc + '</div></td>';
 						html += '<td class="text-left">' + json.product.sku + '</div></td>';
+						html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text"></td>';
 						html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 						html += '<td>';
 						html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control location-name">';

@@ -37,8 +37,14 @@
 	    <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
 	  </div>
     </div>
-    <div class="col-md-3">
-	  <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+	<div class="col-md-2">
+	  <div class="form-group">
+	    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_batch'); ?></label>
+	    <div class="col-sm-8"><input name="batch" class="form-control" value="<?php echo $filter_batch; ?>"></div>
+	  </div>
+    </div>
+    <div class="col-md-2">
+	  <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
     </div>
   </div>
 </div>

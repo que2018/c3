@@ -22,8 +22,10 @@
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_inventory_list_description'); ?></h5>
-		  <button id="non-batch" class="btn btn-primary btn-batch" onclick="reload()"><?php echo $this->lang->line('button_non_batch'); ?></button>
-		  <button id="batch" class="btn btn-primary btn-batch" onclick="reload_batch()"><?php echo $this->lang->line('button_batch'); ?></button>
+		  <div class="btn-group batch-options">
+			<a href="#" class="btn btn-batch btn-batch-select btn-secondary"><?php echo $this->lang->line('button_batch'); ?></a>	 
+		    <a href="<?php echo $non_batch_url; ?>" class="btn btn-batch btn-secondary"><?php echo $this->lang->line('button_non_batch'); ?></a>
+		  </div>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
@@ -65,8 +67,14 @@
 			      <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
 			    </div>
 			  </div>
-			  <div class="col-md-3">
-                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_batch'); ?></label>
+			      <div class="col-sm-8"><input name="batch" class="form-control" value="<?php echo $filter_batch; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+                <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
 			  </div>
 		    </div>
 		  </div>
@@ -257,52 +265,35 @@ function update_quantity(handle) {
 }
 </script>
 <script>
-function reload() {	
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory/reload',
-		dataType: 'html',
-		success: function(html) {					
-			$('.ibox-content').html(html);
-		},
-	});
-}
+function filter() {	
+	warehouse_id  = $('select[name=\'warehouse_id\']').val();
+	loaction      = $('input[name=\'location\']').val();
+	sku           = $('input[name=\'sku\']').val();	
+	upc           = $('input[name=\'upc\']').val();	
+	batch         = $('input[name=\'batch\']').val();	
 
-function reload_batch() {	
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory/reload_batch',
-		dataType: 'html',
-		success: function(html) {					
-			$('.ibox-content').html(html);
-		},
-	});
+	url = '<?php echo $filter_url; ?>';
+	
+	if(warehouse_id)
+		url += '&filter_warehouse_id=' + warehouse_id;
+	
+	if(loaction)
+		url += '&filter_location=' + loaction;
+
+	if(sku)
+		url += '&filter_sku=' + sku;
+	
+	if(upc)
+		url += '&filter_upc=' + upc;
+	
+	if(batch)
+		url += '&filter_batch=' + batch;
+	
+	window.location.href = url;
 }
 </script>
 <script>
 $(document).ready(function() {
-	//filter
-	$('#btn-search').click(function() {
-		warehouse_id  = $('select[name=\'warehouse_id\']').val();
-		loaction      = $('input[name=\'location\']').val();
-		sku           = $('input[name=\'sku\']').val();	
-		upc           = $('input[name=\'upc\']').val();	
-
-		url = '<?php echo $filter_url; ?>';
-		
-		if(warehouse_id)
-			url += '&filter_warehouse_id=' + warehouse_id;
-		
-		if(loaction)
-			url += '&filter_location=' + loaction;
-	
-		if(sku)
-			url += '&filter_sku=' + sku;
-		
-		if(upc)
-			url += '&filter_upc=' + upc;
-		
-		window.location.href = url;
-	});
-	
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{

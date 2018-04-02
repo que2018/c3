@@ -58,21 +58,20 @@ a:focus, a:hover {
 .detail table {
 	margin-bottom: 0px;
 }
+.batch-options {
+	float: right;
+}
 .btn-batch {
 	color: #fff;
+	background: #ccc;
     font-size: 10px;
     padding: 2px 5px;
-	float: right;
+	border: 1px solid #ccc;
 }
 .btn-batch:hover {
 	color: #fff;
 }
-#batch {
-	background: #ccc;
-	border: 1px solid #ccc;
-}
-#non-batch {
-	margin-left: 6px;
+.btn-batch-select {
 	background: #9c9c9c;
 	border: 1px solid #9c9c9c;
 }

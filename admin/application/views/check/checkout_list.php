@@ -141,15 +141,17 @@
 						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table">
 						    <thead>
-							  <th style="width: 50%;"><?php echo $this->lang->line('column_name'); ?></th>
-							  <th style="width: 20%;"><?php echo $this->lang->line('column_loc'); ?></th>
-							  <th style="width: 30%;"><?php echo $this->lang->line('column_qty'); ?></th>
+							  <th style="width: 30%;"><?php echo $this->lang->line('column_name'); ?></th>
+							  <th style="width: 25%;"><?php echo $this->lang->line('column_loc'); ?></th>
+							  <th style="width: 25%;"><?php echo $this->lang->line('column_batch'); ?></th>
+							  <th style="width: 20%;"><?php echo $this->lang->line('column_qty'); ?></th>
 							</thead>
 							<tbody>
 							  <?php foreach($checkout['checkout_products'] as $checkout_product) { ?>
 							  <tr>
 							    <td><?php echo $checkout_product['name']; ?></td>
 							    <td><?php echo $checkout_product['location']; ?></td>
+								<td><?php echo $checkout_product['batch']; ?></td>
 							    <td><?php echo $checkout_product['quantity']; ?></td>
 							  </tr>
 							  <?php } ?>

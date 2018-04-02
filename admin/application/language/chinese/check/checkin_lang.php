@@ -36,6 +36,7 @@ $lang['text_print_title']            		     = '入库ID(#%s)';
 $lang['text_checkin_rapid_hint'] 	  	         = '入库ID / 追踪号';
 $lang['text_checkin_edit_title'] 	  	         = '入库编辑(#%s)';
 $lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / 产品名称';
+$lang['text_checkin_scan_hint'] 	  	         = 'UPC / SKU / ASIN / 产品名称';
 $lang['text_checkin_description']				 = '显示所有入库列表';
 $lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库添加成功';
 $lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库编辑成功';

@@ -36,6 +36,7 @@ $lang['text_print_title']            		     = 'Checkin ID(#%s)';
 $lang['text_checkin_rapid_hint'] 	  	         = 'Checkin ID / Tracking Number';
 $lang['text_checkin_edit_title'] 	  	         = 'Edit Checkin(#%s)';
 $lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / Proudct Name';
+$lang['text_checkin_scan_hint'] 	  	         = 'UPC / SKU / ASIN / Proudct Name';
 $lang['text_checkin_description']				 = 'Display all the checkin records';
 $lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin add success';
 $lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin edit success';

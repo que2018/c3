@@ -1,33 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Checkin_scan extends CI_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('check/checkin');
-		
-		$this->load->model('check/checkin_model');
-	}
-	
 	public function index()
 	{
+		$this->lang->load('check/checkin');
+			
 		$this->load->view('common/header');
 		$this->load->view('check/checkin_scan');
 		$this->load->view('common/footer');	
 	}
 
-	function get_product_or_location()
+	public function get_product_or_location()
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+		$this->load->model('catalog/product_model');
+		$this->load->model('warehouse/location_model');
+		
 		if($this->input->post('code'))
 		{
 			$code = $this->input->post('code');
 		
 			$code = trim($code);		
-			
-			$this->load->model('catalog/product_model');
-			$this->load->model('warehouse/location_model');
 			
 			$is_product = false;
 			$is_location = false;
@@ -124,10 +121,14 @@ class Checkin_scan extends CI_Controller
 		}			
 	}
 	
-	function add_checkin()
+	public function add_checkin()
 	{
+		$this->lang->load('check/checkin');
+		
 		$this->load->library('form_validation');
-				
+		
+		$this->load->model('check/checkin_model');
+			
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_checkin_product'), 'callback_validate_checkin_product');
@@ -163,6 +164,10 @@ class Checkin_scan extends CI_Controller
 	
 	function validate_tracking($tracking)
 	{
+		$this->lang->load('check/checkin');
+				
+		$this->load->model('check/checkin_model');
+		
 		if($tracking)
 		{
 			$result = $this->checkin_model->get_checkin_by_tracking($tracking);
@@ -185,9 +190,14 @@ class Checkin_scan extends CI_Controller
 	}
 
 	function validate_checkin_product($checkin_products)
-	{		
+	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');		
+		$this->load->model('catalog/product_model');			
+		
 		if($this->input->post('checkin_product'))
-		{			$this->load->model('catalog/product_model');			
+		{
 			$validated = true;
 			
 			$checkin_products = $this->input->post('checkin_product');
@@ -195,10 +205,13 @@ class Checkin_scan extends CI_Controller
 			$error_message = '';
 			
 			foreach($checkin_products as $checkin_product)
-			{				$product_id   = $checkin_product['product_id'];
+			{	
+				$product_id   = $checkin_product['product_id'];
 				$quantity 	  = $checkin_product['quantity'];
 				$location_id  = $checkin_product['location_id'];
-								$product_info = $this->product_model->get_product($product_id);				
+				
+				$product_info = $this->product_model->get_product($product_id);	
+				
 				if(!$quantity)
 				{
 					$error_message .= sprintf($this->lang->line('error_checkin_product_quantity_required'), $product_info['name']);

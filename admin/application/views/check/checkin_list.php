@@ -36,8 +36,8 @@
 			  </div>
 			  <div class="col-md-3">
 				<div class="form-group">
-				  <label class="col-sm-5 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
-				  <div class="col-sm-7"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
+				  <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
+				  <div class="col-sm-9"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>"></div>
 				</div>
 			  </div>
 			  <div class="col-md-2">

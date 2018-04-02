@@ -22,8 +22,10 @@
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_inventory_list_description'); ?></h5>
-		  <button id="non-batch" class="btn btn-primary btn-batch" onclick="reload()"><?php echo $this->lang->line('button_non_batch'); ?></button>
-		  <button id="batch" class="btn btn-primary btn-batch" onclick="reload_batch()"><?php echo $this->lang->line('button_batch'); ?></button>
+		  <div class="btn-group batch-options">
+			<a href="<?php echo $batch_url; ?>" class="btn btn-batch btn-secondary"><?php echo $this->lang->line('button_batch'); ?></a>	 
+		    <a href="#" class="btn btn-batch btn-secondary btn-batch-select"><?php echo $this->lang->line('button_non_batch'); ?></a>
+		  </div>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
@@ -66,7 +68,7 @@
 			    </div>
 			  </div>
 			  <div class="col-md-3">
-                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+                <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
 			  </div>
 		    </div>
 		  </div>
@@ -193,31 +195,31 @@ function reload_batch() {
 }
 </script>
 <script>
-$(document).ready(function() {
-	//filter
-	$('#btn-search').click(function() {
-		warehouse_id  = $('select[name=\'warehouse_id\']').val();
-		loaction      = $('input[name=\'location\']').val();
-		sku           = $('input[name=\'sku\']').val();	
-		upc           = $('input[name=\'upc\']').val();	
+function filter() {	
+	warehouse_id  = $('select[name=\'warehouse_id\']').val();
+	loaction      = $('input[name=\'location\']').val();
+	sku           = $('input[name=\'sku\']').val();	
+	upc           = $('input[name=\'upc\']').val();	
 
-		url = '<?php echo $filter_url; ?>';
-		
-		if(warehouse_id)
-			url += '&filter_warehouse_id=' + warehouse_id;
-		
-		if(loaction)
-			url += '&filter_location=' + loaction;
+	url = '<?php echo $filter_url; ?>';
 	
-		if(sku)
-			url += '&filter_sku=' + sku;
-		
-		if(upc)
-			url += '&filter_upc=' + upc;
-		
-		window.location.href = url;
-	});
+	if(warehouse_id)
+		url += '&filter_warehouse_id=' + warehouse_id;
 	
+	if(loaction)
+		url += '&filter_location=' + loaction;
+
+	if(sku)
+		url += '&filter_sku=' + sku;
+	
+	if(upc)
+		url += '&filter_upc=' + upc;
+	
+	window.location.href = url;
+}
+</script>
+<script>
+$(document).ready(function() {
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{

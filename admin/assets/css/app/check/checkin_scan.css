@@ -70,6 +70,21 @@ button.close {
     right: 15px;
 	position: absolute;
 }
+input[name=code]::-webkit-input-placeholder {
+color: #b7b7b7 !important;
+}
+ 
+input[name=code]:-moz-placeholder { /* Firefox 18- */
+color: #b7b7b7 !important;  
+}
+ 
+input[name=code]::-moz-placeholder {  /* Firefox 19+ */
+color: #b7b7b7 !important;  
+}
+ 
+input[name=code]:-ms-input-placeholder {  
+color: #b7b7b7 !important;  
+}
 
 
 

@@ -38,7 +38,7 @@
 	  </div>
     </div>
     <div class="col-md-3">
-	  <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+	  <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
     </div>
   </div>
 </div>

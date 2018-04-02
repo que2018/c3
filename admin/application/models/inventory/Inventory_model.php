@@ -370,6 +370,11 @@ class Inventory_model extends CI_Model
 			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
 		}
 		
+		if(!empty($data['filter_batch'])) 
+		{			
+			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
+		}
+		
 		if(!empty($data['filter_quantity'])) 
 		{			
 			$this->db->where('inventory.quantity', $data['filter_quantity']);
@@ -392,6 +397,7 @@ class Inventory_model extends CI_Model
 			'product.sku',
 			'location.name',
 			'warehouse.name',
+			'inventory.batch',
 			'inventory.quantity',
 			'inventory.date_added',
 			'inventory.date_modified'
@@ -530,6 +536,11 @@ class Inventory_model extends CI_Model
 		if(!empty($data['filter_warehouse_id'])) 
 		{			
 			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
+		}
+		
+		if(!empty($data['filter_batch'])) 
+		{			
+			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
 		}
 		
 		if(!empty($data['filter_quantity'])) 
