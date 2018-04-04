@@ -21,10 +21,11 @@ class Recharge extends CI_Controller {
 	
 	protected function get_list()
 	{	
+		$this->load->library('currency');
 		$this->load->library('form_validation');
-		
+	
 		$this->lang->load('finance/recharge');
-		
+	
 		$this->load->model('client/client_model');
 		$this->load->model('finance/recharge_model');
 		$this->load->model('extension/payment_model');
@@ -122,7 +123,7 @@ class Recharge extends CI_Controller {
 					'recharge_id'    => $recharge['id'],
 					'client'         => $recharge['name'],
 					'payment_method' => $payement_method,
-					'amount'         => $recharge['amount'],
+					'amount'         => $this->currency->format($recharge['amount']),
 					'status'         => $recharge['status'],
 					'date_added'     => $recharge['date_added']
 				);

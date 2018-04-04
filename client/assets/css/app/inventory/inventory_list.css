@@ -29,13 +29,11 @@ a:focus, a:hover {
 .btn-delete {
 	margin-left: 5px;
 }
+.btn-download {
+    margin-right: 8px;
+}
 .page-heading {
 	position: relative;
-}
-.btn-add {
-	position: absolute;
-    top: 30px;
-    right: 40px;
 }
 .pagination-block {
 	min-height: 33px;
@@ -43,4 +41,42 @@ a:focus, a:hover {
 .pagination {
 	margin: 0px;
 }
+.button-group {	
+	position: absolute;    
+	top: 30px;    
+	right: 50px;
+}
+.detail {
+	width: 300px;
+    left: 100px;
+    background: #ffffff;
+    position: absolute;
+    display: none;
+    padding: 20px 15px;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+.detail table {
+	margin-bottom: 0px;
+}
+.batch-options {
+	float: right;
+}
+.btn-batch {
+	color: #fff;
+	background: #ccc;
+    font-size: 10px;
+    padding: 2px 5px;
+	border: 1px solid #ccc;
+}
+.btn-batch:hover {
+	color: #fff;
+}
+.btn-batch-select {
+	background: #9c9c9c;
+	border: 1px solid #9c9c9c;
+}
+.table-non-batch td {
+	line-height: 34px !important;
+}
+
 

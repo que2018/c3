@@ -115,12 +115,12 @@
 						  <td class="text-left"><?php echo $checkout_product['sku']; ?></td>
 						  <td><input class="form-control text-center quantity" name="checkout_product[<?php echo $checkout_product_row; ?>][quantity]" value="<?php echo $checkout_product['quantity']; ?>" onClick="this.select();"></td>
 						  <td>
-						    <select name="checkout_product[<?php echo $checkout_product_row; ?>][location_id]" class="form-control">
-							  <?php foreach($checkout_product['locations'] as $location) { ?>
-							    <?php if($location['location_id'] == $checkout_product['location_id']) { ?>
-								<option value="<?php echo $location['location_id']; ?>" selected><?php echo $location['name']; ?></option>
+						    <select name="checkout_product[<?php echo $checkout_product_row; ?>][inventory_id]" class="form-control">
+							  <?php foreach($checkout_product['inventories'] as $inventory) { ?>
+							    <?php if($inventory['inventory_id'] == $checkout_product['inventory_id']) { ?>
+								<option value="<?php echo $inventory['inventory_id']; ?>" selected><?php echo $inventory['location_name']; ?></option>
 								<?php } else { ?>
-								<option value="<?php echo $location['location_id']; ?>"><?php echo $location['name']; ?></option>
+								<option value="<?php echo $inventory['inventory_id']; ?>"><?php echo $inventory['location_name']; ?></option>
 								<?php } ?>
 							  <?php } ?>
 							</select>
@@ -420,13 +420,13 @@ $(document).ready(function() {
 					{
 						response($.map(json.products, function(item) {					
 							return {
-								label:      item['label'],
-								product_id: item['product_id'],
-								upc:        item['upc'],
-								sku:        item['sku'],
-								name:       item['name'],
-								fees:       item['fees'],
-								locations:  item['locations']
+								label:       item['label'],
+								product_id:  item['product_id'],
+								upc:         item['upc'],
+								sku:         item['sku'],
+								name:        item['name'],
+								fees:        item['fees'],
+								inventories: item['inventories']
 							}
 						}));
 					}
@@ -449,10 +449,10 @@ $(document).ready(function() {
 				html += '<td class="text-left">' + product.upc + '</div></td>';
 				html += '<td class="text-left">' + product.sku + '</div></td>';
 				html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
-				html += '<td><select name="checkout_product[' + checkout_product_row + '][location_id]" class="form-control">';
+				html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
 				
-				$.each(product.locations, function(index, location) {
-					html += '<option value="' + location.location_id + '">' + location.name + '</optioin>';
+				$.each(product.inventories, function(index, inventory) {
+					html += '<option value="' + inventory.inventory_id + '">' + inventory.location_name + '</optioin>';
 				});
 				
 				html += '</select></td>';

@@ -3,11 +3,6 @@
 
 class Store_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function get_store($store_id) 
 	{
 		$this->db->select('*', false);
@@ -48,7 +43,7 @@ class Store_model extends CI_Model
 		return false;
 	}
 	
-	public function get_stores($data) 
+	public function get_stores($data = array()) 
 	{			
 		$this->db->select('*', false);
 		$this->db->from('store');
@@ -106,21 +101,7 @@ class Store_model extends CI_Model
 		}
 	}
 	
-	function get_all_stores()
-	{
-		$q = $this->db->get_where('store', array('client_id' => $this->auth->get_client_id()));
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		else 
-		{
-			return false;
-		}
-	}
-	
-	function get_store_total($data)
+	public function get_store_total($data = array())
 	{
 		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('store');

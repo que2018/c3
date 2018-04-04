@@ -122,7 +122,7 @@
 				    </tr>
 				    <?php } ?>
 				    <tr>
-					  <td colspan=3 class="text-right">
+					  <td colspan=4 class="text-right">
 					    <?php if($checkout['shipping_provider']) { ?>
 						  <span class="shipping"><?php echo $checkout['shipping_provider']; ?></span>
 					    <?php } ?>
@@ -143,9 +143,19 @@
 			  <?php } ?>
 		    </td>	  
 		    <?php if($checkout['status'] == 1) { ?>
-		    <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+		    <td>
+			  <div class="input-group">
+			    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>				        
+			    <span class="btn-checkout" onclick="change_checkout_status(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-refresh"></i></span>
+			  </div>
+		    </td>
 		    <?php } else { ?>
-		    <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+		    <td>
+			  <div class="input-group">
+			    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+			    <span class="btn-checkout" onclick="change_checkout_status(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-refresh"></i></span>
+			  </div>
+		    </td>
 		    <?php } ?>
 		    <td><?php echo $checkout['date_added']; ?></td>
 		    <td class="text-center">

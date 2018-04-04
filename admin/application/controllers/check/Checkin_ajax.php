@@ -1,19 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkin_ajax extends CI_Controller {
-
-	function __construct()
+class Checkin_ajax extends CI_Controller
+{
+	public function get_product()
 	{
-		parent::__construct();
-		
 		$this->lang->load('check/checkin');
 		
 		$this->load->model('check/checkin_model');
-	}
-	
-	function get_product()
-	{
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/inventory_model');
 		
@@ -97,14 +91,16 @@ class Checkin_ajax extends CI_Controller {
 		echo json_encode($outdata);
 	}
 	
-	function get_locations()
+	public function get_locations()
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('warehouse/location_model');
+
 		if($this->input->get('client_id'))
 		{
 			$client_id = $this->input->get('client_id');
 			
-			$this->load->model('warehouse/location_model');
-
 			$locations_data = $this->location_model->get_locations_by_client($client_id);
 		
 			if($locations_data) 
@@ -136,8 +132,12 @@ class Checkin_ajax extends CI_Controller {
 		}
 	}
 	
-	function get_checkin_by_tracking()
+	public function get_checkin_by_tracking()
 	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+		
 		if($this->input->post('tracking'))
 		{
 			$tracking = $this->input->post('tracking');
@@ -196,7 +196,42 @@ class Checkin_ajax extends CI_Controller {
 		}
 	}
 	
-	function upload_file()
+	public function change_status()
+	{
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+
+		if($this->input->get('checkin_id'))
+		{
+			$checkin_id = $this->input->get('checkin_id');
+			
+			$checkin = $this->checkin_model->get_checkin($checkin_id);
+
+			if($checkin['status'] == 1) 
+			{
+				$result = $this->checkin_model->complete_checkin($checkin_id);
+				
+				$status = 2;
+			}
+			
+			if($checkin['status'] == 2)
+			{
+				$result = $this->checkin_model->uncomplete_checkin($checkin_id);
+				
+				$status = 1;
+			}
+
+			$outdata = array(
+				'success'   => ($result)?true:false,
+				'status'    => $status
+			);
+					
+			echo json_encode($outdata);
+		}
+	}
+	
+	public function upload_file()
 	{	 
 		$temp_file = $_FILES['file']['tmp_name'];   
 		

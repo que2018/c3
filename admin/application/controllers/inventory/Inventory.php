@@ -267,12 +267,12 @@ class Inventory extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_product']        = base_url() . 'inventory/inventory?sort=product.name' . $url;
-		$data['sort_upc']        	 = base_url() . 'inventory/inventory?sort=product.upc' . $url;
-		$data['sort_sku']        	 = base_url() . 'inventory/inventory?sort=product.sku' . $url;
-		$data['sort_location']       = base_url() . 'inventory/inventory?sort=location.name' . $url;
-		$data['sort_warehouse']  	 = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
-		$data['sort_quantity']       = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
+		$data['sort_product']    = base_url() . 'inventory/inventory?sort=product.name' . $url;
+		$data['sort_upc']        = base_url() . 'inventory/inventory?sort=product.upc' . $url;
+		$data['sort_sku']        = base_url() . 'inventory/inventory?sort=product.sku' . $url;
+		$data['sort_location']   = base_url() . 'inventory/inventory?sort=location.name' . $url;
+		$data['sort_warehouse']  = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
+		$data['sort_quantity']   = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
 		
 		$url = '';
 		

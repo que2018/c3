@@ -1,19 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Sale extends CI_Controller {
-
-	function __construct()
+class Sale extends CI_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
-	}
-	
-	function index()
-	{
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -293,8 +287,11 @@ class Sale extends CI_Controller {
 
 	public function add() 
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -443,7 +440,7 @@ class Sale extends CI_Controller {
 		//store
 		$data['stores'] = array();
 		
-		$stores = $this->store_model->get_all_stores();
+		$stores = $this->store_model->get_stores();
 		
 		if($stores)
 		{
@@ -465,15 +462,17 @@ class Sale extends CI_Controller {
 	
 	public function edit() 
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
-		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		
+	
 		$sale_id = $this->input->get('sale_id');
 	
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -728,7 +727,7 @@ class Sale extends CI_Controller {
 		//store
 		$data['stores'] = array();
 		
-		$stores = $this->store_model->get_all_stores();
+		$stores = $this->store_model->get_stores();
 		
 		if($stores)
 		{
@@ -750,6 +749,9 @@ class Sale extends CI_Controller {
 	
 	public function view() 
 	{
+		$this->lang->load('sale/sale');
+	
+		$this->load->model('sale/sale_model');		
 		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
@@ -900,7 +902,7 @@ class Sale extends CI_Controller {
 		//store
 		$data['stores'] = array();
 		
-		$stores = $this->store_model->get_all_stores();
+		$stores = $this->store_model->get_stores();
 		
 		if($stores)
 		{
@@ -921,23 +923,27 @@ class Sale extends CI_Controller {
 	}
 	
 	public function delete()
-	{
+	{		
+		$this->load->model('sale/sale_model');
+		
 		if($this->input->get('sale_id'))
 		{
 			$sale_id = $this->input->get('sale_id');
 			
-			$this->sale_model->delete_sale($sale_id);
+			$result = $this->sale_model->delete_sale($sale_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);
 		}
 	}
 	
-	function adjust_shipping($sale_id)
+	private function adjust_shipping($sale_id)
 	{
+		$this->load->model('sale/sale_model');
+		
 		$sale = $this->sale_model->get_sale($sale_id);
 		
 		if(empty($sale['shipping_provider']) || empty($sale['shipping_service']))
@@ -951,7 +957,7 @@ class Sale extends CI_Controller {
 		}
 	}
 	
-	function suggest_checkout_locations($product_id) 
+	private function suggest_checkout_locations($product_id) 
 	{
 		$this->load->model('inventory/inventory_model');
 		

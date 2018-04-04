@@ -54,9 +54,8 @@ class Checkout_model extends CI_Model
 		{					
 			$checkout_products[] = array(
 				'checkout_id'	=> $checkout_id,
-				'product_id' 	=> $checkout_product['product_id'],
-				'quantity' 		=> $checkout_product['quantity'],
-				'location_id'   => $checkout_product['location_id']
+				'inventory_id'  => $checkout_product['inventory_id'],
+				'quantity' 		=> $checkout_product['quantity']
 			);
 		}
 		
@@ -82,13 +81,11 @@ class Checkout_model extends CI_Model
 		{
 			foreach($data['checkout_products'] as $checkout_product)
 			{
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}	
 		}
@@ -174,13 +171,11 @@ class Checkout_model extends CI_Model
 		{
 			foreach($data['checkout_products'] as $checkout_product)
 			{
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
@@ -191,25 +186,21 @@ class Checkout_model extends CI_Model
 			
 			foreach($checkout_products as $checkout_product) 
 			{	
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 			
 			foreach($data['checkout_products'] as $checkout_product)
 			{	
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
@@ -220,13 +211,11 @@ class Checkout_model extends CI_Model
 			
 			foreach($checkout_products as $checkout_product) 
 			{
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
@@ -357,9 +346,8 @@ class Checkout_model extends CI_Model
 		foreach($data['checkout_products'] as $checkout_product){
 			$checkout_products[] = array(
 				'checkout_id'  => $checkout_id,
-				'product_id'   => $checkout_product['product_id'],
-				'quantity' 	   => $checkout_product['quantity'],
-				'location_id'  => $checkout_product['location_id']
+				'inventory_id' => $checkout_product['inventory_id'],
+				'quantity' 	   => $checkout_product['quantity']
 			);
 		}
 		
@@ -410,13 +398,11 @@ class Checkout_model extends CI_Model
 			
 			foreach($checkout_products as $checkout_product)
 			{
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 			
@@ -425,35 +411,86 @@ class Checkout_model extends CI_Model
 			
 			if($sale['client_id'])
 			{
-				$client_id = $sale['client_id'];
-				
 				$checkout_fees = $this->get_checkout_fees($checkout_id);
 				
-				$amount = 0;
-					
-				foreach($checkout_fees as $checkout_fee) 
+				if($checkout_fees)
 				{
-					$amount += $checkout_fee['amount'];
-				}
-				
-				$transaction_data = array(					
-					'client_id'		  => $client_id,
-					'type'		      => 'checkout',
-					'type_id'         => $checkout_id,
-					'cost'   		  => 0,
-					'markup'   		  => $amount,
-					'amount'   		  => $amount,
-					'comment'         => sprintf($this->lang->line('text_checkout_transaction_note'), $checkout_id)
-				);
-				
-				$this->load->model('finance/transaction_model');
-				
-				$this->transaction_model->add_transaction($transaction_data); 								
+					$amount = 0;
+					
+					foreach($checkout_fees as $checkout_fee) 
+						$amount += $checkout_fee['amount'];
+					
+					$transaction_data = array(					
+						'client_id'		  => $sale['client_id'],
+						'type'		      => 'checkout',
+						'type_id'         => $checkout_id,
+						'cost'   		  => 0,
+						'markup'   		  => $amount,
+						'amount'   		  => $amount,
+						'comment'         => sprintf($this->lang->line('text_checkout_transaction_note'), $checkout_id)
+					);
+					
+					$this->load->model('finance/transaction_model');
+					
+					$this->transaction_model->add_transaction($transaction_data); 		
+				}						
 			}
 			
 			//checkout data
 			$this->db->where('id', $checkout_id);
 			$this->db->update('checkout', array('status' => 2));
+		}
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+			return true;
+		}	
+	}
+	
+	public function uncomplete_checkout($checkout_id)
+	{
+		$this->lang->load('check/checkout');
+		
+		$this->db->trans_begin();
+		
+		$checkout = $this->get_checkout($checkout_id);
+		
+		if($checkout['status'] == 2)
+		{
+			//inventory data
+			$checkout_products = $this->get_checkout_products($checkout_id);
+			
+			foreach($checkout_products as $checkout_product)
+			{
+				$this->db->where('id', $checkout_product['inventory_id']);
+				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
+				$this->db->update('inventory');
+				
+				$this->db->where('id', $checkout_product['inventory_id']);
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+			}
+			
+			//checkout fee data
+			$sale = $this->get_checkout_sale($checkout_id);
+			
+			if($sale['client_id'])
+			{
+				$this->load->model('finance/transaction_model');
+				
+				$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id); 								
+			}
+			
+			//checkout data
+			$this->db->where('id', $checkout_id);
+			$this->db->update('checkout', array('status' => 1));
 		}
 		
 		if($this->db->trans_status() === false) 
@@ -541,10 +578,11 @@ class Checkout_model extends CI_Model
 	
 	public function get_checkout_products($checkout_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkout_product.batch, checkout_product.quantity, checkout_product.location_id, location.name AS location_name', false);
+		$this->db->select('checkout_product.inventory_id, checkout_product.quantity, product.*, product.id AS product_id, product.name AS product_name, location.name AS location_name, inventory.batch', false);
 		$this->db->from('checkout_product');
-		$this->db->join('product', 'product.id = checkout_product.product_id', 'left');
-		$this->db->join('location', 'location.id = checkout_product.location_id', 'left');
+		$this->db->join('inventory', 'inventory.id = checkout_product.inventory_id', 'left');
+		$this->db->join('product', 'product.id = inventory.product_id', 'left');
+		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->where('checkout_product.checkout_id', $checkout_id);
 
 		$q = $this->db->get();
@@ -774,13 +812,11 @@ class Checkout_model extends CI_Model
 		{
 			foreach($checkout_products as $checkout_product) 
 			{	
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
 				$this->db->update('inventory');
 				
-				$this->db->where('product_id', $checkout_product['product_id']);
-				$this->db->where('location_id', $checkout_product['location_id']);
+				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}

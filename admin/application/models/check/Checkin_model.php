@@ -274,25 +274,28 @@ class Checkin_model extends CI_Model
 			
 			foreach($checkin_products as $checkin_product)
 			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id']));
+				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id'], 'batch' => $checkin_product['batch']));
 
 				if($q->num_rows() > 0)
 				{
 					$this->db->where('product_id', $checkin_product['product_id']);
 					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
 					$this->db->set('quantity', 'quantity+'.$checkin_product['quantity'], false);
 					$this->db->update('inventory');
 					
 					$this->db->where('product_id', $checkin_product['product_id']);
 					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
 					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 				}
 				else
 				{
 					$inventory_data = array(
 						'product_id' 	 => $checkin_product['product_id'],
-						'quantity' 		 => $checkin_product['quantity'],
 						'location_id' 	 => $checkin_product['location_id'],
+						'batch' 	     => $checkin_product['batch'],
+						'quantity' 		 => $checkin_product['quantity'],
 						'date_added'     => date('Y-m-d H:i:s'),
 						'date_modified'  => date('Y-m-d H:i:s')			
 					);
@@ -304,6 +307,55 @@ class Checkin_model extends CI_Model
 			//checkin data
 			$this->db->where('id', $checkin_id);
 			$this->db->update('checkin', array('status'  => 2));
+		}
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+			return true;
+		}	
+	}
+	
+	public function uncomplete_checkin($checkin_id)
+	{
+		$this->db->trans_begin();
+		
+		$checkin = $this->get_checkin($checkin_id);
+		
+		if($checkin['status'] == 2)
+		{
+			//inventory data
+			$checkin_products = $this->get_checkin_products($checkin_id);
+			
+			foreach($checkin_products as $checkin_product)
+			{	
+				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id'], 'batch' => $checkin_product['batch']));
+
+				if($q->num_rows() > 0)
+				{
+					$this->db->where('product_id', $checkin_product['product_id']);
+					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
+					$this->db->set('quantity', 'quantity-'.$checkin_product['quantity'], false);
+					$this->db->update('inventory');
+					
+					$this->db->where('product_id', $checkin_product['product_id']);
+					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
+					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				}
+			}
+			
+			//checkin data
+			$this->db->where('id', $checkin_id);
+			$this->db->update('checkin', array('status'  => 1));
 		}
 		
 		if($this->db->trans_status() === false) 

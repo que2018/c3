@@ -34,7 +34,7 @@
 		  <li>
 			<a><i class="fa fa-bars"></i><span class="nav-label"><?php echo $this->lang->line('menu_inventory'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>inventory/inventory"><?php echo $this->lang->line('menu_inventory_list'); ?></a></li>
+			  <li><a href="<?php echo base_url(); ?>inventory/inventory_batch"><?php echo $this->lang->line('menu_inventory_list'); ?></a></li>
 			</ul>
 		  </li>
 		  <li>

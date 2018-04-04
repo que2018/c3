@@ -78,7 +78,7 @@
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
-			    <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 			    <?php if($sort == 'sale.id') { ?>
 				<th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>

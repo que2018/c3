@@ -1,22 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Import extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
+class Import extends CI_Controller 
+{	
+	public function index() 
+	{	
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
-	}
-	
-	public function index() 
-	{	
 		$this->load->model('store/store_model');
 	
-		$stores = $this->store_model->get_all_stores();
+		$stores = $this->store_model->get_stores();
 				
 		$data['stores'] = array();
 		
@@ -39,7 +33,9 @@ class Import extends CI_Controller {
 	public function upload() 
 	{
 		$this->lang->load('sale/sale');
-				
+		
+		$this->load->model('sale/sale_model');
+						
 		if(!empty($_FILES)) 
 		{	
 			$temp_file = $_FILES['file']['tmp_name'];    
@@ -102,6 +98,8 @@ class Import extends CI_Controller {
 	
 	protected function import_excel($store_id, $file) 
 	{
+		$this->lang->load('sale/sale');
+				
 		$this->load->library('phpexcel');
 		
 		$this->load->model('sale/sale_model');

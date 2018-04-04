@@ -66,7 +66,7 @@
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_batch'); ?></label>
 			    <div class="col-sm-10">
-				  <input name="batch" value="<?php echo $batch; ?>" class="form-control">
+				  <input name="batch" value="<?php echo $batch; ?>" class="form-control" disabled>
 			    </div>
 			  </div>
 			  <div class="hr-line-dashed"></div>

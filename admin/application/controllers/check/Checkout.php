@@ -141,7 +141,7 @@ class Checkout extends CI_Controller {
 						'location'    => $checkout_product_data['location_name']
 					);
 				}
-			
+			 
 				$data['checkouts'][] = array(
 					'checkout_id'        => $checkout['id'],
 					'sale_id'       	 => $checkout['sale_id'],
@@ -294,6 +294,7 @@ class Checkout extends CI_Controller {
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
+		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 
@@ -327,24 +328,41 @@ class Checkout extends CI_Controller {
 				'note'           	=> $this->input->post('note')
 			);
 			
-			$checkout_products = $this->input->post('checkout_product');
-				
 			$data['checkout_products'] = array();
+			
+			$checkout_products = $this->input->post('checkout_product');
 				
 			if($checkout_products)
 			{	
 				foreach($checkout_products as $checkout_product) 
 				{
-					$product_data = $this->product_model->get_product($checkout_product['product_id']);	
+					$product_id = $checkout_product['product_id'];
 					
+					$product_data = $this->product_model->get_product($product_id);	
+					
+					$inventories = array();
+					
+					$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);	
+				
+					if($inventories_data)
+					{
+						foreach($inventories_data as $inventory_data)
+						{
+							$inventories[] = array(
+								'inventory_id'  => $inventory_data['id'],
+								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+							);
+						}
+					}
+						
 					$data['checkout_products'][] = array(
-						'product_id'   => $product_data['id'],
-						'name'         => $product_data['name'],
-						'upc'          => $product_data['upc'],
-						'sku'          => $product_data['sku'],
-						'batch'        => $checkout_product['batch'],
-						'quantity'     => $checkout_product['quantity'],
-						'location_id'  => $checkout_product['location_id']
+						'product_id'    => $product_data['id'],
+						'name'          => $product_data['name'],
+						'upc'           => $product_data['upc'],
+						'sku'           => $product_data['sku'],
+						'quantity'      => $checkout_product['quantity'],
+						'inventory_id'  => $checkout_product['inventory_id'],
+						'inventories'   => $inventories
 					);
 				}
 			}
@@ -479,11 +497,11 @@ class Checkout extends CI_Controller {
 		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
-		$this->load->model('catalog/product_model');		
+		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
+		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		$this->load->model('inventory/inventory_model');
 		
 		$checkout_id = $this->input->get('checkout_id');
 		
@@ -547,14 +565,14 @@ class Checkout extends CI_Controller {
 			$data['checkout_products'] = array();
 						
 			if($checkout_products)
-		    {	
+			{	
 				foreach($checkout_products as $checkout_product) 
 				{
-					$locations = array();
-					
 					$product_id = $checkout_product['product_id'];
 					
 					$product_data = $this->product_model->get_product($product_id);	
+					
+					$inventories = array();
 					
 					$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);	
 				
@@ -562,33 +580,24 @@ class Checkout extends CI_Controller {
 					{
 						foreach($inventories_data as $inventory_data)
 						{
-							$locations[] = array(
-								'location_id' => $inventory_data['location_id'],
-								'name'        => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+							$inventories[] = array(
+								'inventory_id'  => $inventory_data['id'],
+								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
 							);
 						}
 					}
 						
-					if(isset($checkout_product['location_id']))	
-					{
-						$location_id = $checkout_product['location_id'];
-					}
-					else
-					{
-						$location_id = '';
-					}
-						
 					$data['checkout_products'][] = array(
-						'product_id'   => $product_data['id'],
-						'name'         => $product_data['name'],
-						'upc'          => $product_data['upc'],
-						'sku'          => $product_data['sku'],
-						'quantity'     => $checkout_product['quantity'],
-						'location_id'  => $location_id,
-						'locations'    => $locations
+						'product_id'    => $product_data['id'],
+						'name'          => $product_data['name'],
+						'upc'           => $product_data['upc'],
+						'sku'           => $product_data['sku'],
+						'quantity'      => $checkout_product['quantity'],
+						'inventory_id'  => $checkout_product['inventory_id'],
+						'inventories'   => $inventories
 					);
 				}
-			}						
+			}
 		}
 		else
 		{
@@ -610,36 +619,41 @@ class Checkout extends CI_Controller {
 			
 			$data['checkout_products'] = array();
 			
-			$chekout_products = $this->checkout_model->get_checkout_products($checkout_id);	
+			$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);	
 			
-			foreach($chekout_products as $chekout_product) 
-			{
-				$locations = array();
-				
-				$product_id = $chekout_product['product_id'];
-								
-				$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);	
-				
-				if($inventories_data)
+			if($checkout_products)
+			{	
+				foreach($checkout_products as $checkout_product) 
 				{
-					foreach($inventories_data as $inventory_data)
-					{
-						$locations[] = array(
-							'location_id' => $inventory_data['location_id'],
-							'name'        => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
-						);
-					}
-				}
+					$product_id = $checkout_product['product_id'];
+					
+					$product_data = $this->product_model->get_product($product_id);	
+					
+					$inventories = array();
+					
+					$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);	
 				
-				$data['checkout_products'][] = array(
-					'product_id'  => $product_id,
-					'name'        => $chekout_product['name'],
-					'upc'         => $chekout_product['upc'],
-					'sku'         => $chekout_product['sku'],
-					'quantity'    => $chekout_product['quantity'],
-					'location_id' => $chekout_product['location_id'],
-					'locations'   => $locations
-				);
+					if($inventories_data)
+					{
+						foreach($inventories_data as $inventory_data)
+						{
+							$inventories[] = array(
+								'inventory_id'  => $inventory_data['id'],
+								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+							);
+						}
+					}
+						
+					$data['checkout_products'][] = array(
+						'product_id'    => $product_data['id'],
+						'name'          => $product_data['name'],
+						'upc'           => $product_data['upc'],
+						'sku'           => $product_data['sku'],
+						'quantity'      => $checkout_product['quantity'],
+						'inventory_id'  => $checkout_product['inventory_id'],
+						'inventories'   => $inventories
+					);
+				}
 			}
 
 			$data['checkout_fees'] = array();
@@ -773,10 +787,10 @@ class Checkout extends CI_Controller {
 		{
 			$checkout_id = $this->input->get('checkout_id');
 			
-			$this->checkout_model->delete_checkout($checkout_id);
+			$reusult = $this->checkout_model->delete_checkout($checkout_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($reusult)?true:false
 			);
 			
 			echo json_encode($outdata);
@@ -799,7 +813,7 @@ class Checkout extends CI_Controller {
 			
 			foreach($checkout_products as $checkout_product)
 			{
-				if(!isset($checkout_product['location_id']) && empty($checkout_product['location_id']))
+				if(!isset($checkout_product['inventory_id']) && empty($checkout_product['inventory_id']))
 				{
 					$product_id = $checkout_product['product_id'];
 					
@@ -813,9 +827,9 @@ class Checkout extends CI_Controller {
 				}
 				else
 				{
-					$product_id = $checkout_product['product_id'];
-					$location_id  = $checkout_product['location_id'];
-					$quantity     = $checkout_product['quantity'];
+					$product_id    = $checkout_product['product_id'];
+					$inventory_id  = $checkout_product['inventory_id'];
+					$quantity      = $checkout_product['quantity'];
 					
 					$product_info = $this->product_model->get_product($product_id);
 
@@ -828,13 +842,15 @@ class Checkout extends CI_Controller {
 							$validated = false;
 					}
 					
-					$inventory = $this->inventory_model->get_inventory_by_location_product($location_id, $product_id);
+					$inventory = $this->inventory_model->get_inventory($inventory_id);
 					
 					if($inventory['quantity'] < $quantity)
 					{
+						$location_id = $inventory['location_id'];
+						
 						$location_info = $this->location_model->get_location($location_id);
 						
-						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['quantity']);
+						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['batch'], $inventory['quantity']);
 						$error_message .= '<br>';
 						
 						if($validated)

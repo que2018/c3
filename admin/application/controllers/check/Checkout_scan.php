@@ -1,33 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Checkout_scan extends CI_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('check/checkout');
-		
-		$this->load->model('check/checkout_model');
-	}
-	
 	public function index()
 	{
+		$this->lang->load('check/checkout');
+				
 		$this->load->view('common/header');
 		$this->load->view('check/checkout_scan');
 		$this->load->view('common/footer');	
 	}
 
-	function get_product()
+	public function get_product()
 	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('check/checkout_model');
+		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/inventory_model');
+		
 		if($this->input->post('code'))
 		{
 			$code = $this->input->post('code');
 		
 			$code = trim($code);		
-			
-			$this->load->model('catalog/product_model');
-			$this->load->model('inventory/inventory_model');
 			
 			$result = $this->product_model->get_product_by_upc($code);
 			
@@ -68,23 +65,29 @@ class Checkout_scan extends CI_Controller
 				}
 				else
 				{
-					$checkout_locations = array();
-					
-					foreach($inventories as $inventory)
+					$inventories = array();
+				
+					$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);
+						
+					if($inventories_data)
 					{
-						$checkout_locations[] = array(
-							'location_id'    => $inventory['location_id'],
-							'location_name'  => $inventory['location_name']
-						);
+						foreach($inventories_data as $inventory_data)
+						{
+							$inventories[] = array(
+								'inventory_id'  => $inventory_data['id'],
+								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch']),
+								'quantity'      => $inventory_data['quantity']
+							);
+						}
 					}
-					
+						
 					$product = array(
-						'product_id'  		 => $result['id'],
-						'upc'         		 => $result['upc'],
-						'sku'         		 => $result['sku'],
-						'asin'        		 => $result['asin'],
-						'name'        		 => $result['name'],
-						'checkout_locations' => $checkout_locations
+						'product_id'   => $result['id'],
+						'upc'          => $result['upc'],
+						'sku'          => $result['sku'],
+						'asin'         => $result['asin'],
+						'name'         => $result['name'],
+						'inventories'  => $inventories
 					);
 					
 					$outdata = array(
@@ -106,18 +109,22 @@ class Checkout_scan extends CI_Controller
 		die();
 	}
 	
-	function add_checkout()
+	public function add_checkout()
 	{
+		$this->lang->load('check/checkout');
+		
 		$this->load->library('form_validation');
-				
+		
+		$this->load->model('check/checkout_model');
+		
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_tracking');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
 			
 		$data = array(
-			'tracking'          => $this->input->post('tracking'),
-			'status'            => $this->input->post('status'),
-			'note'              => '',
+			'tracking'           => $this->input->post('tracking'),
+			'status'             => $this->input->post('status'),
+			'note'               => '',
 			'checkout_products'  => $this->input->post('checkout_product'),
 			'checkout_fees'      => array(),
 		);
@@ -145,6 +152,10 @@ class Checkout_scan extends CI_Controller
 	
 	function validate_tracking($tracking)
 	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('check/checkout_model');
+		
 		if($tracking)
 		{
 			$result = $this->checkout_model->get_checkout_by_tracking($tracking);
@@ -167,13 +178,15 @@ class Checkout_scan extends CI_Controller
 	}
 
 	function validate_checkout_product($checkout_products)
-	{		
+	{
+		$this->lang->load('check/checkout');
+	
+		$this->load->model('catalog/product_model');
+		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/inventory_model');
+	
 		if($this->input->post('checkout_product'))
 		{
-			$this->load->model('catalog/product_model');
-			$this->load->model('warehouse/location_model');
-			$this->load->model('inventory/inventory_model');
-
 			$validated = true;
 			
 			$checkout_products = $this->input->post('checkout_product');
@@ -182,13 +195,14 @@ class Checkout_scan extends CI_Controller
 			
 			foreach($checkout_products as $checkout_product)
 			{
-				$product_id   = $checkout_product['product_id'];
-				$quantity     = $checkout_product['quantity'];
-				$location_id  = $checkout_product['location_id'];
+				$inventory_id  = $checkout_product['inventory_id'];
+				$quantity      = $checkout_product['quantity'];
 				
-				$product = $this->product_model->get_product($product_id);
+				$inventory = $this->inventory_model->get_inventory($inventory_id);
 				
-				if(!$quantity || !$location_id || ($quantity < 0))
+				$product = $this->product_model->get_product($inventory['product_id']);
+				
+				if(!$quantity || ($quantity < 0) || !$inventory_id)
 				{
 					if(!$quantity)
 					{
@@ -203,29 +217,32 @@ class Checkout_scan extends CI_Controller
 						$error_message .= sprintf($this->lang->line('error_checkout_product_quantity_negative'), $product['name']);
 						$error_message .= '<br>';
 						
-						if($validated) $validated = false;
+						if($validated) 
+							$validated = false;
 					}
 					
-					if(!$location_id)
+					if(!$inventory_id)
 					{
 						$error_message .= $this->lang->line('error_checkout_product_location_required');
 						$error_message .= '<br>';
 						
-						if($validated) $validated = false;
+						if($validated) 
+							$validated = false;
 					}
 				}
 				else
 				{
-					$inventory = $this->inventory_model->get_inventory_by_location_product($location_id, $product_id);
+					$inventory = $this->inventory_model->get_inventory($inventory_id);
 					
 					if($inventory['quantity'] < $quantity)
 					{
-						$location = $this->location_model->get_location($location_id);
+						$location = $this->location_model->get_location($inventory['location_id']);
 
-						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product['name'], $location['name'], $inventory['quantity']);
+						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product['name'], $location['name'], $inventory['batch'], $inventory['quantity']);
 						$error_message .= '<br>';
 						
-						if($validated) $validated = false;
+						if($validated) 
+							$validated = false;
 					}
 				}
 			}

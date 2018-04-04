@@ -9,6 +9,7 @@ $lang['text_add'] 	  	         	   	   = '添加库存';
 $lang['text_edit'] 	  	         	   	   = '编辑库存';
 $lang['text_delete'] 	  	         	   = '删除库存';
 $lang['text_save'] 	  	         	   	   = '保存库存';
+$lang['text_bulk_delete'] 	  	           = '批量删除库存';
 $lang['text_cancel'] 	  	         	   = 'cancel';
 $lang['text_export'] 	  	         	   = '导出库存';
 $lang['text_batch'] 	  	               = 'batch';

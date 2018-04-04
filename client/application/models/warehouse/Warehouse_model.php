@@ -67,48 +67,48 @@ class Warehouse_model extends CI_Model
 		return false;
 	}	
 		
-	public function get_warehouses($data) 
+	public function get_warehouses($data = array()) 
 	{			
-		$this->db->select("warehouse.*", FALSE);
+		$this->db->select("warehouse.*", false);
 		$this->db->from('warehouse');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('warehouse.name', $data['filter_name'], 'both');
+			$this->db->like('name', $data['filter_name'], 'both');
 		}
 		
 		if(!empty($data['filter_street'])) 
 		{			
-			$this->db->where('warehouse.street', $data['filter_street']);
+			$this->db->where('street', $data['filter_street']);
 		}
 		
 		if(!empty($data['filter_city'])) 
 		{			
-			$this->db->where('warehouse.city', $data['filter_city']);
+			$this->db->where('city', $data['filter_city']);
 		}
 		
 		if(!empty($data['filter_state'])) 
 		{			
-			$this->db->where('warehouse.state', $data['filter_state']);
+			$this->db->where('state', $data['filter_state']);
 		}
 		
 		if(!empty($data['filter_country'])) 
 		{			
-			$this->db->where('warehouse.country', $data['filter_country']);
+			$this->db->where('country', $data['filter_country']);
 		}
 		
 		if(!empty($data['filter_zipcode'])) 
 		{			
-			$this->db->where('warehouse.zipcode', $data['filter_zipcode']);
+			$this->db->where('zipcode', $data['filter_zipcode']);
 		}
 		
 		$sort_data = array(
-			'warehouse.name',
-			'warehouse.street',
-			'warehouse.city',
-			'warehouse.state',
-			'warehouse.country',
-			'warehouse.zipcode'
+			'name',
+			'street',
+			'city',
+			'state',
+			'country',
+			'zipcode'
 		);
 		
 		if(isset($data['start']) || isset($data['limit'])) {
@@ -143,43 +143,43 @@ class Warehouse_model extends CI_Model
 		} 
 		else 
 		{
-			return FALSE;
+			return false;
 		}
 	}
 	
-	function get_warehouse_total($data)
+	function get_warehouse_total($data = array())
 	{
-		$this->db->select("COUNT(warehouse.id) AS total", FALSE);
+		$this->db->select("COUNT(id) AS total", false);
 		$this->db->from('warehouse');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('warehouse.name', $data['filter_name'], 'both');
+			$this->db->like('name', $data['filter_name'], 'both');
 		}
 		
 		if(!empty($data['filter_street'])) 
 		{			
-			$this->db->where('warehouse.street', $data['filter_street']);
+			$this->db->where('street', $data['filter_street']);
 		}
 		
 		if(!empty($data['filter_city'])) 
 		{			
-			$this->db->where('warehouse.city', $data['filter_city']);
+			$this->db->where('city', $data['filter_city']);
 		}
 		
 		if(!empty($data['filter_state'])) 
 		{			
-			$this->db->where('warehouse.state', $data['filter_state']);
+			$this->db->where('state', $data['filter_state']);
 		}
 		
 		if(!empty($data['filter_country'])) 
 		{			
-			$this->db->where('warehouse.country', $data['filter_country']);
+			$this->db->where('country', $data['filter_country']);
 		}
 		
 		if(!empty($data['filter_zipcode'])) 
 		{			
-			$this->db->where('warehouse.zipcode', $data['filter_zipcode']);
+			$this->db->where('zipcode', $data['filter_zipcode']);
 		}
 		
 		$q = $this->db->get();
@@ -200,4 +200,20 @@ class Warehouse_model extends CI_Model
 		
 		return false;
 	}	
+	
+	public function search_warehouse($key) 
+	{
+		$this->db->select('*', false);
+		$this->db->from('warehouse'); 
+		$this->db->like('name', $key, 'left');  
+		
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
 }

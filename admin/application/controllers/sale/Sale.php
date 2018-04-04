@@ -387,7 +387,7 @@ class Sale extends CI_Controller {
 			
 		$data['add'] = base_url() . 'sale/sale/add' . $url;
 		
-		$data['reload_url'] = base_url() . 'sale/sale/reload_url' . $url;
+		$data['reload_url'] = base_url() . 'sale/sale/reload' . $url;
 		
 		$data['sort']  = $sort;
 		$data['order'] = $order;

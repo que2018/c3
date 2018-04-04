@@ -10,8 +10,6 @@
   </div>
   <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>assets/file/export/inventory.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
-    <a href="<?php echo base_url(); ?>inventory/inventory_batch/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
-    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_delete'); ?>" class="btn btn-danger btn-bulk-delete" onClick="bulk_delete_inventory(this)"><i class="fa fa-trash"></i></button>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -82,7 +80,6 @@
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
-			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 				<?php if($sort == 'product.name') { ?>
 				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
@@ -153,9 +150,6 @@
 				  <?php $offset = 0; ?>
 				  <?php foreach($inventories as $inventory) { ?>
 					<tr>
-					  <td class="text-center">
-					    <input type="checkbox" name="selected[]" value="<?php echo $inventory['inventory_id']; ?>" />
-					  </td>
 					  <td>
 					    <a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?></a>
 						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
@@ -178,14 +172,9 @@
 					  <td><?php echo $inventory['location']; ?></td>
 					  <td><?php echo $inventory['warehouse']; ?></td>
 					  <td><?php echo $inventory['batch']; ?></td>
-					  <?php if($modifiable) { ?>
-					  <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
-					  <?php } else { ?>
 					  <td><?php echo $inventory['quantity']; ?></td>
-					  <?php } ?>
 					  <td class="text-center">
-					    <a href="<?php echo base_url(); ?>inventory/inventory_batch/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $inventory['inventory_id']; ?>" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
+					    <a href="<?php echo base_url(); ?>inventory/inventory/view?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
 					  </td>				
 					</tr>
 					<?php $offset++; ?>
@@ -203,115 +192,6 @@
     </div>
   </div>
 </div>
-<script>
-function delete_inventory(handle, inventory_id) {
-	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-		$.ajax({
-			url: '<?php echo base_url(); ?>inventory/inventory_batch/delete?inventory_id=' + inventory_id,
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType: 'json',
-			beforeSend: function() {
-				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {					
-				if(json.success) {
-					$.ajax({
-						url: '<?php echo $reload_url; ?>',
-						dataType: 'html',
-						success: function(html) {					
-							$('.ibox-content').html(html);
-						},
-					});
-				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}
-}
-</script>
-<script>
-function bulk_delete_inventory(handle) {
-	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-		data = new FormData();
-		
-		$('input[name*=\'selected\']').each(function(index) {
-			if($(this).is(':checked')) {
-				inventory_id = $(this).val();				
-				data.append('inventory_ids[]', inventory_id);
-			}			
-		});
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>inventory/inventory_batch/bulk_delete',
-			type: 'post',
-			data: data,
-			dataType: 'json',
-			cache: false,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {		
-				$(handle).html('<i class="fa fa-trash"></i>');
-			
-				if(json.success) {
-					$.ajax({
-						url: '<?php echo $reload_url; ?>',
-						dataType: 'html',
-						success: function(html) {					
-							$('.ibox-content').html(html);
-						},
-					});
-				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}
-}
-</script>
-<script>
-function active_quantity(handle) {	
-	if(!$(handle).find('input').length) 
-	{
-		quantity = $(handle).html();
-		
-		html = '<input type="text" value="'+ quantity +'" onblur="update_quantity(this)" class="form-control" onfocus="this.value = this.value;" />';
-		
-		$(handle).html(html);	
-		
-		$(handle).find('input').focus();
-	}
-}
-
-function update_quantity(handle) {	
-	inventory_id = $(handle).closest('tr').find('.btn-delete').attr('data');
-		
-	quantity = $(handle).val();
-	
-	$(handle).closest('td').html(quantity);
-
-	$.ajax({
-		url: '<?php echo base_url(); ?>inventory/inventory_ajax/update_quantity',
-		data: 'inventory_id=' + inventory_id + '&quantity=' + quantity,
-		type: 'POST',
-		dataType: "json",
-		success: function (json) {
-			if(!json.success)
-				alert('<?php echo $this->lang->line('error_update_quantity_error'); ?>');
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
-</script>
 <script>
 function filter() {	
 	warehouse_id  = $('select[name=\'warehouse_id\']').val();

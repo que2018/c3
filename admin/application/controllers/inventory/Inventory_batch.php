@@ -588,6 +588,32 @@ class Inventory_batch extends CI_Controller
 		}
 	}
 	
+	public function bulk_delete()
+	{
+		$this->load->model('inventory/inventory_model');
+
+		if($this->input->post('inventory_ids'))
+		{
+			$inventory_ids = $this->input->post('inventory_ids');
+			
+			$success = true;
+			
+			foreach($inventory_ids as $inventory_id)
+			{
+				if(!$this->inventory_model->delete_inventory($inventory_id))
+				{
+					$success = false;
+				}
+			}
+				
+			$outdata = array(
+				'success'     => ($success)?true:false
+			);
+			
+			echo json_encode($outdata);
+		}
+	}
+	
 	function validate_inventory_add_unique()
 	{
 		$this->load->model('inventory/inventory_model');

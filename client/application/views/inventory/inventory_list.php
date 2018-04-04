@@ -1,6 +1,3 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="<?php echo base_url(); ?>assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/app/inventory/inventory_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -10,6 +7,9 @@
 	  <li><a href="<?php echo base_url(); ?>inventory/inventory"><?php echo $this->lang->line('text_inventory'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_inventory'); ?></strong></li>
 	</ol>
+  </div>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>assets/file/export/inventory.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -21,18 +21,84 @@
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_inventory_list_description'); ?></h5>
+		  <div class="btn-group batch-options">
+			<a href="<?php echo $batch_url; ?>" class="btn btn-batch btn-secondary"><?php echo $this->lang->line('button_batch'); ?></a>	 
+		    <a href="#" class="btn btn-batch btn-secondary btn-batch-select"><?php echo $this->lang->line('button_non_batch'); ?></a>
+		  </div>
 	    </div>
 	    <div class="ibox-content">
+		  <div class="form-horizontal">
+		    <div class="row">
+		      <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_warehouse'); ?></label>
+			      <div class="col-sm-8">
+				    <select name="warehouse_id" class="form-control">
+				      <?php if($warehouses) { ?>
+					    <option value=""></option>
+					    <?php foreach($warehouses as $warehouse) { ?>
+					      <?php if($warehouse['warehouse_id'] == $filter_warehouse_id) { ?>
+						  <option value="<?php echo $warehouse['warehouse_id']; ?>" selected><?php echo $warehouse['name']; ?></option>
+						  <?php } else { ?>
+						  <option value="<?php echo $warehouse['warehouse_id']; ?>"><?php echo $warehouse['name']; ?></option>
+						  <?php } ?>
+					    <?php } ?>
+					  <?php } ?>
+				    </select>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_location'); ?></label>
+			      <div class="col-sm-8"><input name="location" class="form-control" value="<?php echo $filter_location; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_sku'); ?></label>
+			      <div class="col-sm-9"><input name="sku" class="form-control" value="<?php echo $filter_sku; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_upc'); ?></label>
+			      <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
+			    </div>
+			  </div>
+			  <div class="col-md-3">
+                <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+			  </div>
+		    </div>
+		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 22%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 22%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
+				</th>
+				<?php } ?>
+				<?php if($sort == 'product.upc') { ?>
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
+				</th>
+				<?php } else { ?>
+				<th style="width: 14%;" class="sorting">
+			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
+				</th>
+				<?php } ?>
+				<?php if($sort == 'product.sku') { ?>
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
+				</th>
+				<?php } else { ?>
+				<th style="width: 14%;" class="sorting">
+			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'location.name') { ?>
@@ -62,43 +128,39 @@
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } ?>
-				<?php if($sort == 'inventory.date_modified') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_date_modified; ?>"><?php echo $this->lang->line('column_date_modified'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
-				  <a href="<?php echo $sort_date_modified; ?>"><?php echo $this->lang->line('column_date_modified'); ?></a>
-				</th>
-				<?php } ?>
-				<th style="width: 10%;" style="width: 10%;"><center><?php echo $this->lang->line('column_action'); ?></center></th>
 			  </thead>
 			  <tbody>
 				<?php if($inventories) { ?>
+				  <?php $offset = 0; ?>
 				  <?php foreach($inventories as $inventory) { ?>
 					<tr>
-					  <td><a href="<?php echo base_url(); ?>catalog/product/edit?id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?></a></td>
+					  <td>
+					    <a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?></a>
+						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
+						  <table class="table">
+						    <thead>
+							  <th style="width: 50%;"><?php echo $this->lang->line('column_upc'); ?></th>
+							  <th style="width: 50%;"><?php echo $this->lang->line('column_sku'); ?></th>
+							</thead>
+							<tbody>
+							  <tr>
+							    <td><?php echo $inventory['upc']; ?></td>
+							    <td><?php echo $inventory['sku']; ?></td>
+							  </tr>
+							</tbody>
+						  </table>
+						</div>
+					  </td>
+					  <td><?php echo $inventory['upc']; ?></td>
+					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
 					  <td><?php echo $inventory['warehouse']; ?></td>
-					  <td><?php echo $inventory['quantity']; ?></td>
-					  <td><?php echo $inventory['date_modified']; ?></td>
-					  <td style="text-align: center">
-					    <a href="<?php echo base_url(); ?>inventory/inventory/view?id=<?php echo $inventory['id']; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-					  </td>				
+					  <td><?php echo $inventory['quantity']; ?></td>	
 					</tr>
+					<?php $offset++; ?>
 				  <?php } ?>
 				<?php } ?>
 			  </tbody>			  
-			  <tfoot>
-			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="product" placeholder="<?php echo $this->lang->line('column_product'); ?>" value="<?php echo $filter_product; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="location" placeholder="<?php echo $this->lang->line('column_location'); ?>" value="<?php echo $filter_location; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="warehouse" placeholder="<?php echo $this->lang->line('column_warehouse'); ?>" value="<?php echo $filter_warehouse; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="quantity" placeholder="<?php echo $this->lang->line('column_quantity'); ?>" value="<?php echo $filter_quantity; ?>" ondblclick="active_quantity(this)" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="date_modified" placeholder="<?php echo $this->lang->line('column_date_modified'); ?>" value="<?php echo $filter_date_modified; ?>" /></th>
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 		  <div class="pagination-block">
@@ -111,42 +173,45 @@
   </div>
 </div>
 <script>
+function filter() {	
+	warehouse_id  = $('select[name=\'warehouse_id\']').val();
+	loaction      = $('input[name=\'location\']').val();
+	sku           = $('input[name=\'sku\']').val();	
+	upc           = $('input[name=\'upc\']').val();	
+
+	url = '<?php echo $filter_url; ?>';
+	
+	if(warehouse_id)
+		url += '&filter_warehouse_id=' + warehouse_id;
+	
+	if(loaction)
+		url += '&filter_location=' + loaction;
+
+	if(sku)
+		url += '&filter_sku=' + sku;
+	
+	if(upc)
+		url += '&filter_upc=' + upc;
+	
+	window.location.href = url;
+}
+</script>
+<script>
 $(document).ready(function() {
-	//filter
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
-			product        = $('input[name=\'product\']').val();	
-			loaction       = $('input[name=\'location\']').val();
-			warehouse      = $('input[name=\'warehouse\']').val();
-			quantity       = $('input[name=\'quantity\']').val();
-			date_modified  = $('input[name=\'date_modified\']').val();
-
-			url = '<?php echo $filter_url; ?>';
-			
-			if(product)
-				url += '&filter_product=' + product;
-			
-			if(loaction)
-				url += '&filter_location=' + loaction;
-		
-			if(warehouse)
-				url += '&filter_warehouse=' + warehouse;
-			
-			if(quantity)
-				url += '&filter_quantity=' + quantity;
-			
-			if(date_modified)
-				url += '&filter_date_modified=' + date_modified;
-			
-			window.location.href = url;
+			$('#btn-search').trigger('click');
 		}
 	});
-	
-	//date picker
-	$("input[name='date_modified']").datetimepicker({
-		pickTime: false,
-		format: 'YYYY-MM-DD'
+});
+</script>
+<script>
+$(document).ready(function() {
+	$('td:first-child').hover(function() {
+		$(this).find('.detail').show();
+	}, function() {
+		$(this).find('.detail').hide();
 	});
 });
 </script>

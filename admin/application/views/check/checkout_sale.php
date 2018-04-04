@@ -117,10 +117,10 @@
 						  <?php } else { ?>
 						  <span class="input-group-addon"><i class="fa fa-cube"></i></span>
 						  <?php } ?>
-						  <select name="checkout_product[<?php echo $checkout_product_row; ?>][location_id]" class="form-control">
+						  <select name="checkout_product[<?php echo $checkout_product_row; ?>][inventory_id]" class="form-control">
 						  <?php if($checkout_product['inventories']) {?>
 						    <?php foreach($checkout_product['inventories'] as $inventory) { ?>
-						    <option value="<?php echo $inventory['location_id']; ?>"><?php echo $inventory['location_name'] . ' [qty ' . $inventory['quantity'] . ']'; ?></option>
+						    <option value="<?php echo $inventory['inventory_id']; ?>"><?php echo $inventory['location_name'] . ' - [qty ' . $inventory['quantity'] . ']'; ?></option>
                             <?php } ?>
 						  <?php } ?>
 						  </select>
@@ -177,10 +177,10 @@ $(document).ready(function() {
 						else
 							html += '<span class="input-group-addon"><i class="fa fa-cube"></i></span>';
 						
-						html += '<select name="checkout_product[' + checkout_product_row + '][location_id]" class="form-control">';
+						html += '<select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
 						
 						$.each(checkout_product.inventories, function(index, inventory) {							
-							html += '<option value="'+ inventory.location_id +'">' + inventory.location_name + '   [ qty: ' + inventory.quantity + ' ]' + '</option>';
+							html += '<option value="'+ inventory.inventory_id +'">' + inventory.location_name + ' - [ qty: ' + inventory.quantity + ' ]' + '</option>';
 						});
 						
 						html += '</select>';

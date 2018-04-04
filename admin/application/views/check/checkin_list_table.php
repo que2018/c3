@@ -120,10 +120,20 @@
 			    <span class="tracking"><?php echo $checkin['tracking']; ?></span></td>
 			  <?php } ?>
 		    </td>
-		    <?php if($checkin['status'] == 1) { ?>
-		    <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+		     <?php if($checkin['status'] == 1) { ?>
+		    <td>
+			  <div class="input-group">
+			    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>				        
+			    <span class="btn-checkin"><i class="fa fa-refresh"></i></span>
+			  </div>
+		    </td>
 		    <?php } else { ?>
-		    <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+		    <td>
+			  <div class="input-group">
+			    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+			    <span class="btn-checkin"><i class="fa fa-refresh"></i></span>
+			  </div>
+		    </td>
 		    <?php } ?>
 		    <td><?php echo $checkin['date_added']; ?></td>
 		     <td class="text-center">

@@ -1,19 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkout_ajax extends CI_Controller {
-
-	function __construct()
+class Checkout_ajax extends CI_Controller 
+{
+	public function get_product()
 	{
-		parent::__construct();
-		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
-	}
-	
-	function get_product()
-	{
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/inventory_model');
@@ -75,8 +69,6 @@ class Checkout_ajax extends CI_Controller {
 			{
 				foreach($product_fees as $product_fee)
 				{
-					file_put_contents("log.txt", $product_fee['type'] . "\n", FILE_APPEND);
-					
 					if($product_fee['type'] == 2)
 					{
 						$fees[] = array(
@@ -92,13 +84,13 @@ class Checkout_ajax extends CI_Controller {
 			
 			if($product_inventories)
 			{
-				$locations = array();
+				$inventories = array();
 				
 				foreach($product_inventories as $product_inventory)
 				{
-					$locations[] = array(
-						'location_id' => $product_inventory['location_id'],
-						'name'        => $product_inventory['location_name']
+					$inventories[] = array(
+						'inventory_id'  => $product_inventory['id'],
+						'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $product_inventory['location_name'], $product_inventory['batch'])
 					);
 				}
 				
@@ -110,7 +102,7 @@ class Checkout_ajax extends CI_Controller {
 					'asin'        => $product['asin'],
 					'name'        => $product['name'],
 					'fees'        => $fees,
-					'locations'   => $locations
+					'inventories' => $inventories
 				);
 			}
 		}
@@ -123,8 +115,10 @@ class Checkout_ajax extends CI_Controller {
 		echo json_encode($outdata);
 	}
 	
-	function get_locations()
+	public function get_locations()
 	{
+		$this->lang->load('check/checkout');
+		
 		if($this->input->get('client_id'))
 		{
 			$client_id = $this->input->get('client_id');
@@ -162,8 +156,10 @@ class Checkout_ajax extends CI_Controller {
 		}
 	}
 	
-	function check_inventory()
+	public function check_inventory()
 	{
+		$this->lang->load('check/checkout');
+				
 		$this->load->model('inventory/inventory_model');
 		
 		$product_id   = $this->input->post('product_id');
@@ -188,6 +184,41 @@ class Checkout_ajax extends CI_Controller {
 		}
 		
 		echo json_encode($outdata);	
+	}
+	
+	public function change_status()
+	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('check/checkout_model');
+
+		if($this->input->get('checkout_id'))
+		{
+			$checkout_id = $this->input->get('checkout_id');
+			
+			$checkout = $this->checkout_model->get_checkout($checkout_id);
+
+			if($checkout['status'] == 1) 
+			{
+				$result = $this->checkout_model->complete_checkout($checkout_id);
+				
+				$status = 2;
+			}
+			
+			if($checkout['status'] == 2)
+			{
+				$result = $this->checkout_model->uncomplete_checkout($checkout_id);
+				
+				$status = 1;
+			}
+
+			$outdata = array(
+				'success'   => ($result)?true:false,
+				'status'    => $status
+			);
+					
+			echo json_encode($outdata);
+		}
 	}
 }
 

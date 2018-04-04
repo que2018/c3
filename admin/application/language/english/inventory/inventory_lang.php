@@ -9,6 +9,7 @@ $lang['text_add'] 	  	         	   	   = 'add inventory';
 $lang['text_edit'] 	  	         	   	   = 'edit inventory';
 $lang['text_delete'] 	  	         	   = 'delete inventory';
 $lang['text_save'] 	  	         	   	   = 'save inventory';
+$lang['text_bulk_delete'] 	  	           = 'bulk delete inventory';
 $lang['text_cancel'] 	  	         	   = 'cancel';
 $lang['text_export'] 	  	         	   = 'export inventory';
 $lang['text_batch'] 	  	               = 'batch';

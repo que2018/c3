@@ -29,6 +29,9 @@ a:focus, a:hover {
 .btn-delete {
 	margin-left: 5px;
 }
+.btn-add {
+    margin-right: 8px;
+}
 .btn-download {
     margin-right: 8px;
 }

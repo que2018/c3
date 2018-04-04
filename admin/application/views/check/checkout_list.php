@@ -156,7 +156,7 @@
 							  </tr>
 							  <?php } ?>
 							  <tr>
-							    <td colspan=3 class="text-right">
+							    <td colspan=4 class="text-right">
 							      <?php if($checkout['shipping_provider']) { ?>
 							        <span class="shipping"><?php echo $checkout['shipping_provider']; ?></span>
 								  <?php } ?>
@@ -177,9 +177,19 @@
 						<?php } ?>
 					  </td>	  
 					  <?php if($checkout['status'] == 1) { ?>
-					  <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+					  <td>
+					    <div class="input-group">
+						  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>				        
+						  <span class="btn-checkout" onclick="change_checkout_status(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						</div>
+					  </td>
 					  <?php } else { ?>
-					  <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+					  <td>
+					    <div class="input-group">
+						  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						  <span class="btn-checkout" onclick="change_checkout_status(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						</div>
+					  </td>
 					  <?php } ?>
 					  <td><?php echo $checkout['date_added']; ?></td>
 					  <td class="text-center">
@@ -203,6 +213,40 @@
     </div>
   </div>
 </div>
+<script>
+function change_checkout_status(handle, checkout_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>check/checkout_ajax/change_status?checkout_id=' + checkout_id,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		success: function(json) {
+			if(json.success) {
+				label = $(handle).closest('.input-group').find('span').eq(0);
+				
+				label.removeClass();
+				
+				if(json.status == 1) {
+					label.addClass('pending');
+					label.text('<?php echo $this->lang->line('text_pending'); ?>');
+				} else {
+					label.addClass('completed');
+					label.text('<?php echo $this->lang->line('text_completed'); ?>');
+				}
+				
+				$(handle).html('<i class="fa fa fa-refresh"></i>');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
 <script>
 function delete_checkout(handle, checkout_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {

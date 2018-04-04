@@ -149,12 +149,22 @@
 						<?php } ?>
 					  </td>
 					  <?php if($checkin['status'] == 1) { ?>
-					  <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+					  <td>
+					    <div class="input-group">
+						  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>				        
+						  <span class="btn-checkin" onclick="change_checkin_status(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						</div>
+					  </td>
 					  <?php } else { ?>
-					  <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+					  <td>
+					    <div class="input-group">
+						  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						  <span class="btn-checkin" onclick="change_checkin_status(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						</div>
+					  </td>
 					  <?php } ?>
 					  <td><?php echo $checkin['date_added']; ?></td>
-					   <td class="text-center">
+					  <td class="text-center">
 						<a href="<?php echo base_url(); ?>check/checkin/edit?checkin_id=<?php echo $checkin['checkin_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_checkin(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
@@ -174,6 +184,40 @@
     </div>
   </div>
 </div>
+<script>
+function change_checkin_status(handle, checkin_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>check/checkin_ajax/change_status?checkin_id=' + checkin_id,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		success: function(json) {
+			if(json.success) {
+				label = $(handle).closest('.input-group').find('span').eq(0);
+				
+				label.removeClass();
+				
+				if(json.status == 1) {
+					label.addClass('pending');
+					label.text('<?php echo $this->lang->line('text_pending'); ?>');
+				} else {
+					label.addClass('completed');
+					label.text('<?php echo $this->lang->line('text_completed'); ?>');
+				}
+				
+				$(handle).html('<i class="fa fa fa-refresh"></i>');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
 <script>
 function delete_checkin(handle, checkin_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {

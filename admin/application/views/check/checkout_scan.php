@@ -29,7 +29,7 @@
 		  <div class="row">
 			<div class="col-lg-12">
 			  <div class="code-box">
-				<input name="code" value="">
+				<input name="code" value="" placeholder="<?php echo $this->lang->line('text_code_hint'); ?>" >
 		      </div>
 		    </div>
 		  </div>
@@ -45,8 +45,8 @@
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 			    <div class="col-sm-10">
 			       <select name="status" class="form-control">
-				     <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-				     <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
+				     <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
+				     <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
 				  </select>
 			    </div>
 			  </div>
@@ -105,10 +105,10 @@ $(document).ready(function() {
 					html += '<td class="text-left">' + json.product.sku + '</div></td>';
 					html += '<td><input class="form-control text-center" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 					html += '<td>';
-					html += '<select name="checkout_product[' + checkout_product_row + '][location_id]" class="form-control">';
+					html += '<select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
 					
-					$.each(json.product.checkout_locations, function(index, checkout_location) {							
-						html += '<option value="'+ checkout_location.location_id +'">' + checkout_location.location_name + '</option>';
+					$.each(json.product.inventories, function(index, inventory) {							
+						html += '<option value="'+ inventory.inventory_id +'">' + inventory.location_name + '</option>';
 					});
 					
 					html += '</select>';

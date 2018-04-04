@@ -1,25 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory extends CI_Controller 
+class Inventory_batch extends CI_Controller 
 {
 	public function index()
 	{		
-		$data = $this->get_list();
+		$data = $this->get_list_batch();
 			
 		$this->load->view('common/header');
-		$this->load->view('inventory/inventory_list', $data);
+		$this->load->view('inventory/inventory_batch_list', $data);
 		$this->load->view('common/footer');
 	}
 	
 	public function reload()
 	{
-		$data = $this->get_list();
+		$data = $this->get_list_batch();
 			
-		$this->load->view('inventory/inventory_list_table', $data);
+		$this->load->view('inventory/inventory_batch_list_table', $data);
 	}
 	
-	protected function get_list()
+	protected function get_list_batch()
 	{
 		$this->load->library('phpexcel');
 		
@@ -66,6 +66,15 @@ class Inventory extends CI_Controller
 			$filter_upc = '';
 		}
 		
+		if($this->input->get('filter_batch'))
+		{
+			$filter_batch = $this->input->get('filter_batch');
+		} 
+		else 
+		{
+			$filter_batch = '';
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$sort = $this->input->get('sort');
@@ -107,14 +116,15 @@ class Inventory extends CI_Controller
 			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
 			'filter_upc'    	   => $filter_upc,
+			'filter_batch'    	   => $filter_batch,
 			'sort'                 => $sort,
 			'order'                => $order,
 			'start'                => ($page - 1) * $limit,
 			'limit'                => $limit
 		);
 		
-		$inventories = $this->inventory_model->get_inventories($filter_data);	
-		$inventory_total = $this->inventory_model->get_inventory_total($filter_data);
+		$inventories = $this->inventory_model->get_batch_inventories($filter_data);	
+		$inventory_total = $this->inventory_model->get_batch_inventory_total($filter_data);
 		
 		$data['inventories'] = array();
 		
@@ -134,6 +144,7 @@ class Inventory extends CI_Controller
 					'sku'       	=> $product_info['sku'],
 					'location'      => $inventory['location_name'],
 					'warehouse'     => $inventory['warehouse_name'],
+					'batch'         => $inventory['batch'],
 					'quantity'      => $inventory['quantity'],
 					'date_modified' => $inventory['date_modified']
 				);
@@ -145,23 +156,25 @@ class Inventory extends CI_Controller
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setBold(true);
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_warehouse'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_location'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_quantity'));
-		
+		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_batch'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('G1', $this->lang->line('column_quantity'));
+
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
-		
+		$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);	
+
 		$i = 2;
 		
 		if($inventories) 
@@ -175,8 +188,9 @@ class Inventory extends CI_Controller
 				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_info['sku']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['warehouse_name']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['location_name']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $inventory['quantity']);
-			
+				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $inventory['batch']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('G'.$i, $inventory['quantity']);
+
 				$i++;
 			}
 		}
@@ -209,6 +223,11 @@ class Inventory extends CI_Controller
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
 		
+		if($this->input->get('filter_batch')) 
+		{
+			$url .= '&filter_batch=' . $this->input->get('filter_batch');
+		}
+			
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -227,10 +246,10 @@ class Inventory extends CI_Controller
 		$this->pagination->total  = $inventory_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url() . 'inventory/inventory/load?page={page}' . $url;
+		$this->pagination->url    = base_url() . 'inventory/inventory_batch?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($inventory_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($inventory_total - $limit)) ? $inventory_total : ((($page - 1) * $limit) + $limit), $inventory_total, ceil($inventory_total / $limit));
-				
+		
 		$url = '';
 		
 		if($this->input->get('filter_warehouse_id')) 
@@ -252,7 +271,12 @@ class Inventory extends CI_Controller
 		{
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
-			
+		
+		if($this->input->get('filter_batch')) 
+		{
+			$url .= '&filter_batch=' . $this->input->get('filter_batch');
+		}
+				
 		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
@@ -267,12 +291,13 @@ class Inventory extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_product']        = base_url() . 'inventory/inventory?sort=product.name' . $url;
-		$data['sort_upc']        	 = base_url() . 'inventory/inventory?sort=product.upc' . $url;
-		$data['sort_sku']        	 = base_url() . 'inventory/inventory?sort=product.sku' . $url;
-		$data['sort_location']       = base_url() . 'inventory/inventory?sort=location.name' . $url;
-		$data['sort_warehouse']  	 = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
-		$data['sort_quantity']       = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
+		$data['sort_product']     = base_url() . 'inventory/inventory_batch?sort=product.name' . $url;
+		$data['sort_upc']         = base_url() . 'inventory/inventory_batch?sort=product.upc' . $url;
+		$data['sort_sku']         = base_url() . 'inventory/inventory_batch?sort=product.sku' . $url;
+		$data['sort_location']    = base_url() . 'inventory/inventory_batch?sort=location.name' . $url;
+		$data['sort_warehouse']   = base_url() . 'inventory/inventory_batch?sort=warehouse.name' . $url;
+		$data['sort_batch']       = base_url() . 'inventory/inventory_batch?sort=inventory.batch' . $url;
+		$data['sort_quantity']    = base_url() . 'inventory/inventory_batch?sort=inventory.quantity' . $url;
 		
 		$url = '';
 		
@@ -290,8 +315,10 @@ class Inventory extends CI_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'inventory/inventory' . $url;
+		$data['filter_url'] = base_url() . 'inventory/inventory_batch' . $url;
 		
+		$data['reload_url'] = base_url() . 'inventory/inventory_batch/reload' . $url;
+
 		$url = '';
 				
 		if ($this->input->get('limit')) 
@@ -333,7 +360,7 @@ class Inventory extends CI_Controller
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
 		
-		$data['batch_url']  = base_url() . 'inventory/inventory_batch' . $url;
+		$data['non_batch_url']  = base_url() . 'inventory/inventory' . $url;
 		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -343,6 +370,7 @@ class Inventory extends CI_Controller
 		$data['filter_location']       = $filter_location;
 		$data['filter_sku']            = $filter_sku;
 		$data['filter_upc']            = $filter_upc;
+		$data['filter_batch']          = $filter_batch;
 		
 		//warehouses
 		$data['warehouses'] = array();
@@ -363,25 +391,6 @@ class Inventory extends CI_Controller
 		return $data;
 	}
 	
-	public function view() 
-	{	
-		$this->lang->load('inventory/inventory');
-		
-		$this->load->model('inventory/inventory_model');
-	
-		$inventory_id = $this->input->get('inventory_id');
-	
-		$inventory = $this->inventory_model->get_inventory($inventory_id);
-		
-		$data['product_name']   = $inventory['product_name'];
-		$data['warehouse_name'] = $inventory['warehouse_name'];
-		$data['location_name']  = $inventory['location_name'];
-		$data['quantity']       = $inventory['quantity'];
-		
-		$this->load->view('common/header');
-		$this->load->view('inventory/inventory_view', $data);
-		$this->load->view('common/footer');
-	}
 }
 
 
