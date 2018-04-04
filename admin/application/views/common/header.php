@@ -39,7 +39,7 @@
 			<a><i class="fa fa-arrow-circle-o-left"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkout'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>check/checkout"><?php echo $this->lang->line('menu_checkout_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>check/checkout_scan"><?php echo $this->lang->line('menu_checkout_scan'); ?></a></li>
+			  <!--<li><a href="<?php echo base_url(); ?>check/checkout_scan"><?php echo $this->lang->line('menu_checkout_scan'); ?></a></li>-->
 			  <li><a href="<?php echo base_url(); ?>check/checkout_sale"><?php echo $this->lang->line('menu_checkout_order'); ?></a></li>
 			</ul>
 		  </li>

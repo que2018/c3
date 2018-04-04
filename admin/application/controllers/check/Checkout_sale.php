@@ -128,10 +128,20 @@ class Checkout_sale extends CI_Controller
 					{
 						foreach($inventories_data as $inventory_data)
 						{
+							if($inventory_data['batch'])
+							{
+								$location_name = sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch']);
+							}
+							else
+							{
+								$location_name = $inventory_data['location_name'];
+							}
+							
 							$inventories[] = array(
-								'location_id'   => $inventory_data['location_id'],
-								'location_name' => $inventory_data['location_name'],
-								'quantity'      => $inventory_data['quantity']
+								'inventory_id'   => $inventory_data['id'],
+								'location_id'    => $inventory_data['location_id'],
+								'location_name'  => $location_name,
+								'quantity'       => $inventory_data['quantity']
 							);
 						}
 					}
@@ -306,9 +316,9 @@ class Checkout_sale extends CI_Controller
 		{
 			$validated = true;
 			
-			$checkout_products = $this->input->post('checkout_product');
-			
 			$error_message = '';
+			
+			$checkout_products = $this->input->post('checkout_product');
 			
 			foreach($checkout_products as $checkout_product)
 			{
@@ -317,12 +327,12 @@ class Checkout_sale extends CI_Controller
 				
 				$inventory = $this->inventory_model->get_inventory($inventory_id);
 				
-				$product = $this->product_model->get_product($inventory['product_id']);
-				
-				if(!$quantity || ($quantity < 0) || !$inventory_id)
+				if(!$quantity || !$inventory_id || ($quantity < 0))
 				{
 					if(!$quantity)
 					{
+						$product = $this->product_model->get_product($inventory['product_id']);
+						
 						$error_message .= sprintf($this->lang->line('error_checkout_product_quantity_required'), $product['name']);
 						$error_message .= '<br>';
 						
@@ -331,6 +341,8 @@ class Checkout_sale extends CI_Controller
 					
 					if($quantity < 0)
 					{
+						$product = $this->product_model->get_product($inventory['product_id']);
+						
 						$error_message .= sprintf($this->lang->line('error_checkout_product_quantity_negative'), $product['name']);
 						$error_message .= '<br>';
 						
@@ -353,9 +365,19 @@ class Checkout_sale extends CI_Controller
 					
 					if($inventory['quantity'] < $quantity)
 					{
+						$product = $this->product_model->get_product($inventory['product_id']);
+						
 						$location = $this->location_model->get_location($inventory['location_id']);
 
-						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product['name'], $location['name'], $inventory['batch'], $inventory['quantity']);
+						if($inventory['batch'])
+						{
+							$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product['name'], $location['name'], $inventory['batch'], $inventory['quantity']);
+						}
+						else
+						{
+							$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient_non_batch'), $product['name'], $location['name'], $inventory['quantity']);
+						}
+						
 						$error_message .= '<br>';
 						
 						if($validated) 

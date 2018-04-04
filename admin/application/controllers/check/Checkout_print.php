@@ -1,35 +1,47 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Checkout_print extends CI_Controller {
+
+
+class Checkout_print extends CI_Controller 
+{
 	public function index()
 	{
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
+		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/inventory_model');
 		
 		$checkout_id = $this->input->get('checkout_id');
 				
-		$this->load->model('warehouse/location_model');
-		
 		$checkout = $this->checkout_model->get_checkout($checkout_id);	
 		
-		$data['location_id']   = $checkout['location_id'];
-		$data['tracking']      = $checkout['tracking'];
-		$data['note']          = $checkout['note'];
-		$data['status']        = $checkout['status'];
+		$data['location_id']  = $checkout['location_id'];
+		$data['tracking']     = $checkout['tracking'];
+		$data['note']         = $checkout['note'];
+		$data['status']       = $checkout['status'];
+		
 		$data['title'] = sprintf($this->lang->line('text_print_title'), $checkout_id);
-		$data['checkout_products'] = array();
+		
+		$data['checkout_products']  = array();
 		
 		$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);	
 		
 		foreach($checkout_products as $checkout_product) 
 		{
-			$location_id = $checkout_product['location_id'];
-			$location = $this->location_model->get_location($location_id);	
+			$inventory_id = $checkout_product['inventory_id'];
 			
-			if($location)
+			$inventory = $this->inventory_model->get_inventory($inventory_id);	
+			
+			$location = $this->location_model->get_location($inventory['location_id']);	
+			
+			if($inventory['batch'])
+			{
+				$location_name = sprintf($this->lang->line('text_location_batch'), $location['name'], $inventory['batch']);
+			}
+			else
+			{
 				$location_name = $location['name'];
-			else 
-				$location_name = '';
+			}
 			
 			$data['checkout_products'][] = array(
 				'product_id'    => $checkout_product['product_id'],
@@ -74,6 +86,7 @@ class Checkout_print extends CI_Controller {
 				foreach($checkout_products_data as $checkout_product_data) 
 				{
 					$location_id = $checkout_product_data['location_id'];
+					
 					$location = $this->location_model->get_location($location_id);	
 					
 					$location_name = ($location)?$location['name']:'';

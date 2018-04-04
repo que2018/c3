@@ -39,8 +39,9 @@ class Checkin_print extends CI_Controller {
 				'name'          => $checkin_product['name'],
 				'upc'           => $checkin_product['upc'],
 				'sku'           => $checkin_product['sku'],
-				'quantity'      => $checkin_product['quantity'],
-				'location_name' => $checkin_product['location_name']
+				'location_name' => $checkin_product['location_name'],
+				'batch' 		=> $checkin_product['batch'],
+				'quantity'      => $checkin_product['quantity']
 			);
 		}
 		
