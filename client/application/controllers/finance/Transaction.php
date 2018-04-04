@@ -1,38 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Transaction extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('finance/transaction');
-		
-		$this->load->model('finance/transaction_model');
-	}
-	
-	function index()
+class Transaction extends CI_Controller 
+{
+	public function index()
 	{	
 		$this->load->library('currency');
 		$this->load->library('phpexcel');
 		
-		if($this->input->get('filter_cost'))
-		{
-			$filter_cost = $this->input->get('filter_cost');
-		} 
-		else 
-		{
-			$filter_cost = '';
-		}
+		$this->lang->load('finance/transaction');
 		
-		if($this->input->get('filter_markup'))
-		{
-			$filter_markup = $this->input->get('filter_markup');
-		} 
-		else 
-		{
-			$filter_markup = '';
-		}
+		$this->load->model('finance/transaction_model');
 		
 		if($this->input->get('filter_amount'))
 		{
@@ -107,8 +85,6 @@ class Transaction extends CI_Controller {
 		}
 		
 		$filter_data = array(
-			'filter_cost'          => $filter_cost,
-			'filter_markup'        => $filter_markup,
 			'filter_amount'        => $filter_amount,
 			'filter_comment'       => $filter_comment,
 			'filter_date_from'     => $filter_date_from,
@@ -130,8 +106,6 @@ class Transaction extends CI_Controller {
 			{	
 				$data['transactions'][] = array(
 					'transaction_id'  => $transaction['id'],
-					'cost'            => $this->currency->format($transaction['cost']),
-					'markup'          => $this->currency->format($transaction['markup']),
 					'amount'          => $this->currency->format($transaction['amount']),
 					'comment'         => $transaction['comment'],
 					'date_added'      => $transaction['date_added']
@@ -140,17 +114,14 @@ class Transaction extends CI_Controller {
 		}
 		
 		//excel export begin
-		$objPHPExcel = new PHPExcel();	
+		/* $objPHPExcel = new PHPExcel();	
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
 		$objPHPExcel->getActiveSheet()->mergeCells('A1:C1');
-		$objPHPExcel->getActiveSheet()->mergeCells('D1:E1');
 		
 		$objPHPExcel->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
-		$objPHPExcel->getActiveSheet()->getStyle('D1:E1')->getFont()->setBold(true);
 		$objPHPExcel->getActiveSheet()->getStyle('A1:C1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('D1:E1')->getFont()->setSize(12);
 		
 		$objPHPExcel->getActiveSheet()->getStyle('D1:E1') ->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
 
@@ -171,19 +142,15 @@ class Transaction extends CI_Controller {
 		else
 		{
 			$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('text_all_the_date'));
-		}
+		} 
 				
-		$objPHPExcel->getActiveSheet()->SetCellValue('A2', $this->lang->line('column_cost'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('B2', $this->lang->line('column_markup'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('C2', $this->lang->line('column_amount'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('column_comment'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('E2', $this->lang->line('column_date_added'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('A2', $this->lang->line('column_amount'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('B2', $this->lang->line('column_comment'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('C2', $this->lang->line('column_date_added'));
 		
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
-		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);	
-		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
 
 		$total_amount = 0;
 		
@@ -200,11 +167,9 @@ class Transaction extends CI_Controller {
 		{
 			foreach($transactions as $transaction)
 			{				
-				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $this->currency->format($transaction['cost']));
-				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $this->currency->format($transaction['markup']));
-				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $this->currency->format($transaction['amount']));
-				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $transaction['comment']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $transaction['date_added']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $this->currency->format($transaction['amount']));
+				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $this->currency->format($transaction['comment']));
+				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $this->currency->format($transaction['date_added']));
 				
 				$total_amount += $transaction['amount'];
 				
@@ -219,27 +184,16 @@ class Transaction extends CI_Controller {
 
 		
 		$objPHPExcel->getActiveSheet()->SetCellValue('D'.($i+2), $this->lang->line('text_total_amount'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('E'.($i+2), $this->currency->format($total_amount));
+		$objPHPExcel->getActiveSheet()->SetCellValue('E'.($i+2), $this->currency->format($total_amount)); 
 		
 		PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
 		
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save(FCPATH  . 'assets/file/export/transaction.xlsx');
-		
+		$objWriter->save(FCPATH  . 'assets/file/export/transaction.xlsx'); */
 		//excel export end
 		
 		$url = '';
 		
-		if($this->input->get('filter_cost')) 
-		{
-			$url .= '&filter_cost=' . $this->input->get('filter_cost');
-		}
-		
-		if($this->input->get('filter_markup')) 
-		{
-			$url .= '&filter_markup=' . $this->input->get('filter_markup');
-		}
-	
 		if($this->input->get('filter_amount')) 
 		{
 			$url .= '&filter_amount=' . $this->input->get('filter_amount');
@@ -284,16 +238,6 @@ class Transaction extends CI_Controller {
 
 		$url = '';
 		
-		if($this->input->get('filter_cost')) 
-		{
-			$url .= '&filter_cost=' . $this->input->get('filter_cost');
-		}
-		
-		if($this->input->get('filter_markup')) 
-		{
-			$url .= '&filter_markup=' . $this->input->get('filter_markup');
-		}
-		
 		if($this->input->get('filter_amount')) 
 		{
 			$url .= '&filter_amount=' . $this->input->get('filter_amount');
@@ -328,8 +272,6 @@ class Transaction extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_cost']        = base_url() . 'finance/transaction?sort=transaction.cost' . $url;
-		$data['sort_markup']      = base_url() . 'finance/transaction?sort=transaction.markup' . $url;
 		$data['sort_amount']      = base_url() . 'finance/transaction?sort=transaction.amount' . $url;
 		$data['sort_comment']     = base_url() . 'finance/transaction?sort=transaction.comment' . $url;
 		$data['sort_date_added']  = base_url() . 'finance/transaction?sort=transaction.date_added' . $url;
@@ -356,8 +298,6 @@ class Transaction extends CI_Controller {
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_cost']		= $filter_cost;
-		$data['filter_markup'] 	    = $filter_markup;
 		$data['filter_amount'] 	    = $filter_amount;
 		$data['filter_comment'] 	= $filter_comment;
 		$data['filter_date_from']   = $filter_date_from;

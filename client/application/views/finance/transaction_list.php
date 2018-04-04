@@ -45,49 +45,30 @@
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
-				<?php if($sort == 'transaction.cost') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
-				  <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
-				</th>
-				<?php } ?>
-				
-				<?php if($sort == 'transaction.markup') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
-				  <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
-				</th>
-				<?php } ?>
 				<?php if($sort == 'transaction.amount') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 35%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 35%;" class="sorting">
 				  <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'transaction.comment') { ?>
-				<th style="width: 36%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 35%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 36%;" class="sorting">
+				<th style="width: 35%;" class="sorting">
 				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'transaction.date_added') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 30%;" class="sorting">
 				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } ?>
@@ -96,8 +77,6 @@
 				<?php if($transactions) { ?>
 				  <?php foreach($transactions as $transaction) { ?>
 					<tr>
-					  <td><?php echo $transaction['cost']; ?></td>
-					  <td><?php echo $transaction['markup']; ?></td>
 					  <td><?php echo $transaction['amount']; ?></td>
 					  <td><?php echo $transaction['comment']; ?></td>
 					  <td><?php echo $transaction['date_added']; ?></td>
@@ -107,8 +86,6 @@
 			  </tbody>			  
 			  <tfoot>
 			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="cost" placeholder="<?php echo $this->lang->line('column_cost'); ?>" value="<?php echo $filter_cost; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="markup" placeholder="<?php echo $this->lang->line('column_markup'); ?>" value="<?php echo $filter_markup; ?>" /></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="amount" placeholder="<?php echo $this->lang->line('column_amount'); ?>" value="<?php echo $filter_amount; ?>" /></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="comment" placeholder="<?php echo $this->lang->line('column_comment'); ?>" value="<?php echo $filter_comment; ?>" /></th>
                   <th></th>
@@ -129,20 +106,12 @@
 $(document).ready(function() {
 	//filter
 	$('#btn-search').click(function() {
-		cost        = $('input[name=\'cost\']').val();
-		markup      = $('input[name=\'markup\']').val();
 		amount      = $('input[name=\'amount\']').val();
 		comment     = $('input[name=\'comment\']').val();
 		date_from   = $('input[name=\'date_from\']').val();
 		date_to     = $('input[name=\'date_to\']').val();
 
 		url = '<?php echo $filter_url; ?>';
-	
-		if(cost)
-			url += '&filter_cost=' + cost;	
-		
-		if(markup)
-			url += '&filter_markup=' + markup;	
 	
 		if(amount)
 			url += '&filter_amount=' + amount;	
