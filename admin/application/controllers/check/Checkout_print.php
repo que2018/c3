@@ -22,25 +22,21 @@ class Checkout_print extends CI_Controller
 		
 		$data['title'] = sprintf($this->lang->line('text_print_title'), $checkout_id);
 		
-		$data['checkout_products']  = array();
+		$data['checkout_products'] = array();
 		
 		$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);	
 		
 		foreach($checkout_products as $checkout_product) 
 		{
-			$inventory_id = $checkout_product['inventory_id'];
-			
-			$inventory = $this->inventory_model->get_inventory($inventory_id);	
-			
-			$location = $this->location_model->get_location($inventory['location_id']);	
-			
+			$inventory = $this->inventory_model->get_inventory($checkout_product['inventory_id']);	
+						
 			if($inventory['batch'])
 			{
-				$location_name = sprintf($this->lang->line('text_location_batch'), $location['name'], $inventory['batch']);
+				$location_name = sprintf($this->lang->line('text_location_batch'), $inventory['location_name'], $inventory['batch']);
 			}
 			else
 			{
-				$location_name = $location['name'];
+				$location_name = $inventory['location_name'];
 			}
 			
 			$data['checkout_products'][] = array(
@@ -67,7 +63,8 @@ class Checkout_print extends CI_Controller
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
-		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/inventory_model');
+
 		if($this->input->post('checkout_id'))
 		{
 			//get data
@@ -85,11 +82,16 @@ class Checkout_print extends CI_Controller
 				
 				foreach($checkout_products_data as $checkout_product_data) 
 				{
-					$location_id = $checkout_product_data['location_id'];
+					$inventory = $this->inventory_model->get_inventory($checkout_product_data['inventory_id']);	
 					
-					$location = $this->location_model->get_location($location_id);	
-					
-					$location_name = ($location)?$location['name']:'';
+					if($inventory['batch'])
+					{
+						$location_name = sprintf($this->lang->line('text_location_batch'), $inventory['location_name'], $inventory['batch']);
+					}
+					else
+					{
+						$location_name = $inventory['location_name'];
+					}
 					
 					$checkout_products[] = array(
 						'name'          => $checkout_product_data['name'],

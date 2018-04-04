@@ -155,6 +155,7 @@ $lang['error_checkout_sale_empty']   			        			= '<i class="fa fa-exclamatio
 $lang['error_checkout_id_empty']   			            			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Please check at least one checkout first';
 $lang['error_sale_checkout_exist']   			        			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is exist';
 $lang['error_sale_checkout_completed']   			    			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout for order <strong>#%s</strong> is completed';
+$lang['error_checkout_product_location_required']   			    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout location at <strong>row%s</strong> is required';
 
 
 

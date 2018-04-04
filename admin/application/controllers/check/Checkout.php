@@ -580,9 +580,18 @@ class Checkout extends CI_Controller {
 					{
 						foreach($inventories_data as $inventory_data)
 						{
+							if($inventory_data['batch'])
+							{
+								$location_name = sprintf($this->lang->line('text_location_batch'), $inventory_data['location_name'], $inventory_data['batch']);
+							}
+							else
+							{
+								$location_name = $inventory_data['location_name'];
+							}
+					
 							$inventories[] = array(
 								'inventory_id'  => $inventory_data['id'],
-								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+								'location_name' => $location_name
 							);
 						}
 					}
@@ -637,9 +646,18 @@ class Checkout extends CI_Controller {
 					{
 						foreach($inventories_data as $inventory_data)
 						{
+							if($inventory_data['batch'])
+							{
+								$location_name = sprintf($this->lang->line('text_location_batch'), $inventory_data['location_name'], $inventory_data['batch']);
+							}
+							else
+							{
+								$location_name = $inventory_data['location_name'];
+							}
+							
 							$inventories[] = array(
 								'inventory_id'  => $inventory_data['id'],
-								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+								'location_name' => $location_name
 							);
 						}
 					}

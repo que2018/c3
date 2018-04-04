@@ -91,8 +91,6 @@ class Checkout_model extends CI_Model
 		}
 		
 		//transaction
-		$this->load->model('finance/transaction_model');
-		
 		$sale = $this->get_checkout_sale($checkout_id);
 		
 		if($sale['client_id'])
@@ -112,6 +110,8 @@ class Checkout_model extends CI_Model
 					$amount += $row['amount'];
 				}
 				
+				$this->load->model('finance/transaction_model');
+				
 				$transaction_data = array(					
 					'client_id'		  => $client_id,
 					'type'		      => 'checkout',
@@ -121,7 +121,7 @@ class Checkout_model extends CI_Model
 					'amount'   		  => $amount,
 					'comment'         => sprintf($this->lang->line('text_checkout_transaction_note'), $checkout_id)
 				);
-								
+				
 				$this->transaction_model->add_transaction($transaction_data); 							
 			}
 		}
@@ -161,6 +161,8 @@ class Checkout_model extends CI_Model
 	public function edit_checkout($checkout_id, $data)
 	{
 		$this->lang->load('check/checkout');
+		
+		$this->load->model('finance/transaction_model');
 		
 		$this->db->trans_begin();
 		
@@ -220,12 +222,10 @@ class Checkout_model extends CI_Model
 			}
 		}
 		
-		//transaction
-		$this->load->model('finance/transaction_model');
-		
+		//transaction		
 		$sale = $this->get_checkout_sale($checkout_id);
 		
-		if($sale['client_id'] && isset($data['checkout_fees']))
+		if($sale && $sale['client_id'] && isset($data['checkout_fees']))
 		{
 			$client_id = $sale['client_id'];
 			
@@ -409,7 +409,7 @@ class Checkout_model extends CI_Model
 			//checkout fee data
 			$sale = $this->get_checkout_sale($checkout_id);
 			
-			if($sale['client_id'])
+			if($sale && $sale['client_id'])
 			{
 				$checkout_fees = $this->get_checkout_fees($checkout_id);
 				
@@ -417,8 +417,10 @@ class Checkout_model extends CI_Model
 				{
 					$amount = 0;
 					
-					foreach($checkout_fees as $checkout_fee) 
+					foreach($checkout_fees as $checkout_fee)
+					{
 						$amount += $checkout_fee['amount'];
+					}
 					
 					$transaction_data = array(					
 						'client_id'		  => $sale['client_id'],
@@ -434,6 +436,14 @@ class Checkout_model extends CI_Model
 					
 					$this->transaction_model->add_transaction($transaction_data); 		
 				}						
+			}
+			
+			//order status
+			if($sale)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 2, false);
+				$this->db->update('sale');
 			}
 			
 			//checkout data
@@ -481,11 +491,19 @@ class Checkout_model extends CI_Model
 			//checkout fee data
 			$sale = $this->get_checkout_sale($checkout_id);
 			
-			if($sale['client_id'])
+			if($sale && $sale['client_id'])
 			{
 				$this->load->model('finance/transaction_model');
 				
 				$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id); 								
+			}
+			
+			//order status
+			if($sale)
+			{
+				$this->db->where('id', $sale['id']);
+				$this->db->set('status_id', 1, false);
+				$this->db->update('sale');
 			}
 			
 			//checkout data
@@ -597,8 +615,9 @@ class Checkout_model extends CI_Model
 	
 	public function get_checkout_fees($checkout_id) 
 	{	
-		$this->db->select('*', false);
+		$this->db->select('checkout_fee.*, fee.name, fee.amount', false);
 		$this->db->from('checkout_fee');
+		$this->db->join('fee', 'fee.id = checkout_fee.fee_id', 'left');
 		$this->db->where('checkout_id', $checkout_id);
 
 		$q = $this->db->get();

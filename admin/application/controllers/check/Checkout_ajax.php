@@ -88,9 +88,18 @@ class Checkout_ajax extends CI_Controller
 				
 				foreach($product_inventories as $product_inventory)
 				{
+					if($product_inventory['batch'])
+					{
+						$location_name = sprintf($this->lang->line('text_location_batch'), $product_inventory['location_name'], $product_inventory['batch']);
+					}
+					else
+					{
+						$location_name = $product_inventory['location_name'];
+					}
+					
 					$inventories[] = array(
 						'inventory_id'  => $product_inventory['id'],
-						'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $product_inventory['location_name'], $product_inventory['batch'])
+						'location_name' => $location_name
 					);
 				}
 				
