@@ -170,7 +170,7 @@ class Postpony_model extends CI_Model
 		}
 		else
 		{
-			$url = 'https://api.postpony.com/api/Ratep';
+			$url = 'https://api.postpony.com/api/Ship';
 		}
 			
 		$xml  = '<?xml version="1.0" encoding="utf-8" ?>';

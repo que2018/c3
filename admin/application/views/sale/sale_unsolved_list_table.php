@@ -87,13 +87,15 @@
 			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 			    <table class="table table-product">
 				  <thead>
-				    <th style="width: 70%;"><?php echo $this->lang->line('column_name'); ?></th>
+				    <th style="width: 35%;"><?php echo $this->lang->line('column_name'); ?></th>
+					<th style="width: 35%;"><?php echo $this->lang->line('column_sku'); ?></th>
 				    <th style="width: 30%;"><?php echo $this->lang->line('column_qty'); ?></th>
 				  </thead>
 				  <tbody>
 				    <?php foreach($sale['sale_products'] as $sale_product) { ?>
 				    <tr>
 					  <td><?php echo $sale_product['name']; ?></td>
+					  <td><?php echo $sale_product['sku']; ?></td>
 					  <td><?php echo $sale_product['quantity']; ?></td>
 				    </tr>
 				    <?php } ?>

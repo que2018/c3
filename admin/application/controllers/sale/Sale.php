@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sale extends CI_Controller {
 
+class Sale extends CI_Controller
+{
 	public function index()
 	{		
 		$data = $this->get_list();
@@ -23,6 +24,7 @@ class Sale extends CI_Controller {
 		$this->lang->load('sale/sale');
 	
 		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
@@ -161,18 +163,12 @@ class Sale extends CI_Controller {
 		$data['sales'] = array();
 		
 		if($sales)
-		{
-			$this->load->model('store/store_model');
-			
+		{			
 			foreach($sales as $sale)
 			{
 				//store
-				$store_id = $sale['store_id'];
-
-				$store = $this->store_model->get_store($store_id);	
-				
-				$store_name = $store['name'];	
-
+				$store = $this->store_model->get_store($sale['store_id']);	
+			
 				//checkout
 				$checkout = $this->checkout_model->get_sale_checkout($sale['id']);	
 					
@@ -185,6 +181,7 @@ class Sale extends CI_Controller {
 				{
 					$sale_products[] = array(
 						'name'      => $sale_product_data['name'],
+						'sku'       => $sale_product_data['sku'],
 						'quantity'  => $sale_product_data['quantity']
 					);
 				}
@@ -197,7 +194,7 @@ class Sale extends CI_Controller {
 				if($sale['shipping_provider'] && $sale['shipping_service'])
 				{
 					$shipping_provider = $sale['shipping_provider'];
-					$shipping_service_code  = $sale['shipping_service'];
+					$shipping_service_code = $sale['shipping_service'];
 					
 					$shipping_service = $this->shipping_model->get_shipping_service($shipping_provider, $shipping_service_code);
 					
@@ -210,7 +207,7 @@ class Sale extends CI_Controller {
 				
 				$data['sales'][] = array(
 					'sale_id'         => $sale['id'],
-					'store_name'      => $store_name,
+					'store_name'      => $store['name'],
 					'store_sale_id'   => $sale['store_sale_id'],
 					'tracking'        => $sale['tracking'],
 					'status_id'       => $sale['status_id'],

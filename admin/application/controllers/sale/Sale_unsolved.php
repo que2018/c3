@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sale_unsolved extends CI_Controller {
 
+class Sale_unsolved extends CI_Controller 
+{
 	public function index()
 	{		
 		$data = $this->get_list();
@@ -23,6 +24,7 @@ class Sale_unsolved extends CI_Controller {
 		$this->lang->load('sale/sale');
 	
 		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
@@ -163,17 +165,11 @@ class Sale_unsolved extends CI_Controller {
 		
 		if($sales)
 		{
-			$this->load->model('store/store_model');
-			
 			foreach($sales as $sale)
 			{
 				//store
-				$store_id = $sale['store_id'];
-
-				$store = $this->store_model->get_store($store_id);	
+				$store = $this->store_model->get_store($sale['store_id']);	
 				
-				$store_name = $store['name'];	
-
 				//checkout
 				$checkout = $this->checkout_model->get_sale_checkout($sale['id']);	
 					
@@ -186,6 +182,7 @@ class Sale_unsolved extends CI_Controller {
 				{
 					$sale_products[] = array(
 						'name'      => $sale_product_data['name'],
+						'sku'       => $sale_product_data['sku'],
 						'quantity'  => $sale_product_data['quantity']
 					);
 				}
@@ -211,7 +208,7 @@ class Sale_unsolved extends CI_Controller {
 				
 				$data['sales'][] = array(
 					'sale_id'         => $sale['id'],
-					'store_name'      => $store_name,
+					'store_name'      => $store['name'],
 					'store_sale_id'   => $sale['store_sale_id'],
 					'tracking'        => $sale['tracking'],
 					'status_id'       => $sale['status_id'],
