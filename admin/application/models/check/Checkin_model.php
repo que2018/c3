@@ -55,7 +55,7 @@ class Checkin_model extends CI_Model
 		{		
 			foreach($data['checkin_products'] as $checkin_product)
 			{
-				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id']));
+				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id'], 'batch' => $checkin_product['batch']));
 		
 				if($q->num_rows() > 0)
 				{
@@ -111,7 +111,7 @@ class Checkin_model extends CI_Model
 		{
 			foreach($data['checkin_products'] as $checkin_product)
 			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id']));
+				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id'], 'batch' => $checkin_product['batch']));
 
 				if($q->num_rows() > 0)
 				{
@@ -123,6 +123,7 @@ class Checkin_model extends CI_Model
 					
 					$this->db->where('product_id', $checkin_product['product_id']);
 					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
 					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 				}
 				else
@@ -156,7 +157,7 @@ class Checkin_model extends CI_Model
 			
 			foreach($data['checkin_products'] as $checkin_product)
 			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id']));
+				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id'], 'batch' => $checkin_product['batch']));
 			
 				if($q->num_rows() > 0)
 				{
@@ -168,6 +169,7 @@ class Checkin_model extends CI_Model
 					
 					$this->db->where('product_id', $checkin_product['product_id']);
 					$this->db->where('location_id', $checkin_product['location_id']);
+					$this->db->where('batch', $checkin_product['batch']);
 					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 				}
 				else
@@ -200,6 +202,7 @@ class Checkin_model extends CI_Model
 				
 				$this->db->where('product_id', $checkin_product['product_id']);
 				$this->db->where('location_id', $checkin_product['location_id']);
+				$this->db->where('batch', $checkin_product['batch']);
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
