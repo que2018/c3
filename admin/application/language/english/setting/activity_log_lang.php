@@ -94,6 +94,7 @@ $lang['activity_warehouse_location_print'] 	  	      			= 'try to print location
 $lang['activity_warehouse_location_import'] 	  	            = 'try to import locations';
 $lang['activity_warehouse_location_ajax_autocomplete'] 	  		= 'try to add warehouse location';
 $lang['activity_sale_sale'] 	  	                  			= 'view the order page';
+$lang['activity_sale_sale_reload'] 	  	                  		= 'try to reload order page';
 $lang['activity_sale_sale_add'] 	  	              			= 'view the order add page';
 $lang['activity_sale_sale_edit'] 	  	              			= 'view the order edit page';
 $lang['activity_sale_sale_delete'] 	  	              			= 'try to delete an order';
