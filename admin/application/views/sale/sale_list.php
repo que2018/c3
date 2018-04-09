@@ -215,7 +215,7 @@
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-						<a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale['sale_id']; ?>" target="_blank" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
+						<button onclick="checkout(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
@@ -236,6 +236,33 @@
     </div>
   </div>
 </div>
+<script>
+function checkout(handle, sale_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>check/checkout_sale/add_checkout_ajax?sale_id=' + sale_id,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-refresh fa-spin"></i>');
+		},
+		complete: function() {
+			$(handle).html('<i class="fa fa-refresh"></i>');
+		},
+		success: function(json) {					
+			if(json.success) {
+				
+			} else {
+				window.open('<?php echo base_url(); ?>check/checkout_sale?sale_id=' + sale_id, '_blank');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
 <script>
 function delete_sale(handle, sale_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {

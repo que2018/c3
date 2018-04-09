@@ -251,6 +251,17 @@ class Checkout_sale extends CI_Controller
 		die();
 	}
 	
+	public function add_checkout_ajax()
+	{
+		
+		$outdata = array(
+			'success'   => false
+		);
+		
+		echo json_encode($outdata);
+		die();
+	}
+	
 	function validate_sale($sale_id)
 	{
 		$this->lang->load('check/checkout');
