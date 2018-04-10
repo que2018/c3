@@ -3,11 +3,6 @@
 
 class Postpony_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
 	public function install(){}
 	
 	public function uninstall() 
@@ -44,21 +39,15 @@ class Postpony_model extends CI_Model
 	
 	public function generate_sale_label($sale_id)
 	{
-		$this->lang->load('shipping/postpony');
-	
 		$this->load->model('sale/sale_model');
-		$this->load->model('setting/length_class_model');
-		$this->load->model('setting/weight_class_model');
-						
+		
+		$this->lang->load('shipping/postpony');
+				
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);
 		
-		$sale_products = $this->sale_model->get_sale_products($sale_id);
-		
-		$length_class = $this->length_class_model->get_length_class($sale['length_class_id']);
-		
-		$weight_class = $this->weight_class_model->get_weight_class($sale['weight_class_id']);
-			
+		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
+	
 		$data['key'] = $this->config->item('postpony_key');
 		$data['pwd'] = $this->config->item('postpony_pwd');
 		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
@@ -214,10 +203,11 @@ class Postpony_model extends CI_Model
 		$xml .= '<Package>';
 		$xml .= '<LabelId>0</LabelId>';
 		$xml .= '<Weight>'.$data['weight'].'</Weight>';
-		$xml .= '<ShipDate>2016-05-04T10:18:19.8642674+08:00</ShipDate>';
+		$xml .= '<ShipDate>2018-04-10T10:18:19.8642674+08:00</ShipDate>';
 		$xml .= '<FTRCode>30.37 (a) </FTRCode>';
 		$xml .= '<ContentsType>Gift</ContentsType>';
 		$xml .= '<ElectronicExportType>NoEEISED</ElectronicExportType>';
+		$xml .= '<ShippingNotes>'.$data['sale_detail'].'</ShippingNotes>';
 		$xml .= '</Package>';
 		$xml .= '<CustomsValue>1</CustomsValue>';
 		$xml .= '<PackageItems>';
@@ -228,7 +218,7 @@ class Postpony_model extends CI_Model
 		$xml .= '<Height>'.$data['height'].'</Height>';
 		$xml .= '<Weight>'.$data['weight'].'</Weight>';
 		$xml .= '<WeightOz>0</WeightOz>';
-		$xml .= '<Insurance>1</Insurance>';
+		$xml .= '<Insurance>0</Insurance>';
 		$xml .= '<UspsMailpiece>None</UspsMailpiece>';
 		$xml .= '<IsOurInsurance>false</IsOurInsurance>';
 		$xml .= '</PackageItemInfo>';

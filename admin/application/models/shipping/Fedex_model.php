@@ -81,7 +81,6 @@ class Fedex_model extends CI_Model
 		$config->setDefault('fedex', 'key', $this->config->item('fedex_key'));
 		$config->setDefault('fedex', 'password', $this->config->item('fedex_password'));
 
-		
 		$config->setDefault('fedex', 'referenceCode', "CUSTOMER_REFERENCE");	
 		$config->setDefault('fedex', 'referenceValue', $sale_detail);	
 		
