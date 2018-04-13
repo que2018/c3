@@ -50,6 +50,7 @@ $lang['activity_check_checkout_rapid_get_checkout'] 	  		= 'get checkout';
 $lang['activity_check_checkout_print'] 	  						= 'try to print checkout';
 $lang['activity_check_checkout_print_bulk_print_d'] 	  		= 'try to bulk print checkout';
 $lang['activity_check_checkout_ajax_change_status'] 	  		= 'try to change checkout status';
+$lang['activity_check_checkout_sale_add_checkout_ajax'] 	    = 'try to add checkout for order';
 $lang['activity_refund_refund'] 	  	          				= 'view the refund page';
 $lang['activity_refund_refund_add'] 	  	          			= 'view the refund add page';
 $lang['activity_refund_refund_edit'] 	  	          			= 'view the refund edit page';
