@@ -49,6 +49,7 @@ $lang['text_print_pdf'] 	  	                = 'print PDF';
 $lang['text_packing_list_title'] 	  	        = 'Order(#%s)';
 $lang['text_no_checkout'] 	  	                = 'no checkout';
 $lang['text_checkout_pending'] 	  	            = 'checkout pending';
+$lang['text_checkout_complete'] 	  	        = 'checkout complete';
 $lang['text_checked_out'] 	  	                = 'checked out';
 $lang['text_note_sale_checkout'] 	  	        = 'checkout for order(#%s)';
 $lang['text_code_hint'] 	  	    	 		= 'UPC / SKU / ASIN / Proudct Name';

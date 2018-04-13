@@ -312,11 +312,11 @@ class Sale extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_sale_id']   	  = base_url().'sale/sale?sort=sale.id' . $url;
-		$data['sort_store_sale_id']   = base_url().'sale/sale?sort=sale.store_sale_id' . $url;
-		$data['sort_tracking']        = base_url().'sale/sale?sort=sale.tracking' . $url;
-		$data['sort_status']          = base_url().'sale/sale?sort=sale.status_id' . $url;
-		$data['sort_date_added']      = base_url().'sale/sale?sort=sale.date_added' . $url;
+		$data['sort_sale_id']   	 = base_url().'sale/sale?sort=sale.id' . $url;
+		$data['sort_store_sale_id']  = base_url().'sale/sale?sort=sale.store_sale_id' . $url;
+		$data['sort_tracking']       = base_url().'sale/sale?sort=sale.tracking' . $url;
+		$data['sort_status']         = base_url().'sale/sale?sort=sale.status_id' . $url;
+		$data['sort_date_added']     = base_url().'sale/sale?sort=sale.date_added' . $url;
 
 		$url = '';
 		
@@ -1143,10 +1143,10 @@ class Sale extends CI_Controller
 		{
 			$sale_id = $this->input->get('sale_id');
 			
-			$this->sale_model->delete_sale($sale_id);
+			$result = $this->sale_model->delete_sale($sale_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);
