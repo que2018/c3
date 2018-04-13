@@ -141,26 +141,24 @@
 				  <tbody>
 				    <tr>
 					  <td colspan=4 class="text-right">
-					    <?php if($sale['shipping']) { ?>
-					    <span class="shipping"><?php echo $sale['shipping']; ?></span>
-					    <?php } ?>
-					    <?php if($sale['store_name']) { ?>
-					    <span class="store"><?php echo $sale['store_name']; ?></span>
-					    <?php } ?>
-					   <?php if(!$sale['checkout']) { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_no_checkout'); ?></span>
-					   <?php } else { ?>
-					   <?php if($sale['checkout']['status'] == 1) { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
-					   <?php } else { ?>
-					   <span class="checkout"><?php echo $this->lang->line('text_checked_out'); ?></span>
-					   <?php } ?>
-					   <?php } ?>
-					   <?php if($sale['status_id'] == 1) { ?>
-					   <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-					   <?php } else { ?>
-					   <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
-					   <?php } ?>
+						<?php if($sale['shipping']) { ?>
+						<span class="shipping"><?php echo $sale['shipping']; ?></span>
+						<?php } ?>
+						<?php if($sale['store_name']) { ?>
+						<span class="store"><?php echo $sale['store_name']; ?></span>
+						<?php } ?>
+						<?php if($sale['checkout']) { ?>
+						<?php if($sale['checkout']['status'] == 1) { ?>
+						<span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+						<?php } else { ?>
+						<span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
+						<?php } ?>
+						<?php } ?>
+						<?php if($sale['status_id'] == 1) { ?>
+						<span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+						<?php } else { ?>
+						<span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+						<?php } ?>
 					  </td>
 				    </tr>
 				  </tbody>
@@ -173,17 +171,29 @@
 			    <span class="tracking"><?php echo $sale['tracking']; ?></span>
 			  <?php } ?>
 		    </td>
-		    <td>
+		    <td class="status">
 			  <?php if($sale['status_id'] == 1) { ?>
 			  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
 			  <?php } else { ?>
 			  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 			  <?php } ?>
+			  &nbsp;
+			  <?php if($sale['checkout']) { ?>      
+			  <?php if($sale['checkout']['status'] == 1) { ?>
+			  <span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+			  <?php } else { ?>
+			  <span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
+			  <?php } ?>
+			  <?php } ?>
 		    </td>
 		    <td><?php echo $sale['date_added']; ?></td>
 		    <td class="text-center">
 			  <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
+			  <?php if(!$sale['checkout']) { ?>
 			  <button onclick="checkout(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
+			  <?php } else { ?>
+			  <button class="btn btn-info btn-checkout-disable"><i class="fa fa-refresh"></i></button>
+			  <?php } ?>
 			  <a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>

@@ -39,6 +39,23 @@ input:focus {
 .btn-checkout {
 	margin-right: 8px;
 }
+.btn-checkout-disable {
+	margin-right: 8px;
+    background-color: #b7b7b7;
+    border-color: #b7b7b7;
+}
+.btn-checkout-disable:hover, 
+.btn-checkout-disable:focus, 
+.btn-checkout-disable:active, 
+.btn-checkout-disable.active, 
+.open .dropdown-toggle.btn-checkout-disable, 
+.btn-checkout-disable:active:focus, 
+.btn-checkout-disable:active:hover, 
+.btn-checkout-disable.active:hover, 
+.btn-checkout-disable.active:focus {
+	background-color: #b7b7b7;
+    border-color: #b7b7b7;
+}
 .btn-print-d {
 	margin-right: 8px;
 }
@@ -102,7 +119,15 @@ input:focus {
     padding: 4px 5px;
 	margin-right: 5px;
 }
-.checkout {
+.checkout-pending {
+    font-size: 9px;
+    background: #fd895b;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	margin-right: 5px;
+}
+.checkout-complete {
     font-size: 9px;
     background: #21b9bb;
     color: #fff;
