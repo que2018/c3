@@ -251,7 +251,8 @@ $(document).ready(function() {
 	$('select[name=\'shipping_provider\']').on('change', function() {
 		code = $(this).val();
 	
-		if(code) {
+		if(code) 
+		{
 			$.ajax({
 				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_services?code=' + code,
 				dataType: "json",
@@ -279,7 +280,12 @@ $(document).ready(function() {
 					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
 			});
+		} 
+		else 
+		{
+			$('select[name=\'shipping_service\']').html('');
 		}
+			
 	});
 });
 </script>

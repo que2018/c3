@@ -31,6 +31,7 @@ $lang['text_product_edit'] 	  	         	  	= 'Edit Product';
 $lang['text_length_class'] 	  	         	  	= 'length class';
 $lang['text_weight_class'] 	  	         	  	= 'weight　class';
 $lang['text_shipping_provider'] 	  	 	  	= 'shipping provider';
+$lang['text_shipping_service'] 	  	 	  		= 'shipping service';
 $lang['text_shipping_method'] 	  	     	  	= 'shipping method';
 $lang['text_add_new_product'] 	  	     	  	= 'Add a new product';
 $lang['text_import_product_description'] 	  	= 'Import product from excel';

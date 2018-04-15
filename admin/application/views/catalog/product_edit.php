@@ -233,16 +233,14 @@
 </div>
 <script>
 $(document).ready(function() {
-	$('select[name=\'shipping_provider\']').on('change', function() {
-		
-		$('select[name=\'shipping_method\']').html('');
-		
+	$('select[name=\'shipping_provider\']').on('change', function() {		
 		code = $(this).val();
 	
-		if(code) {
+		if(code) 
+		{
 			$.ajax({
 				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_services?code=' + code,
-				dataType: "json",
+				dataType: 'json',
 				beforeSend: function() {
 					$('#alert-error').hide();
 				},
@@ -252,7 +250,7 @@ $(document).ready(function() {
 						shipping_service_html = '';
 					
 						$.each(json.shipping_services, function(index, shipping_serivce) {							
-							shipping_service_html += '<option value="'+ shipping_serivce.method +'">' + shipping_serivce.name + '</option>';
+							shipping_service_html += '<option value="'+ shipping_serivce.code +'">' + shipping_serivce.name + '</option>';
 						});
 				
 						$('select[name=\'shipping_service\']').html(shipping_service_html);
@@ -267,6 +265,10 @@ $(document).ready(function() {
 					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
 			});
+		}
+		else
+		{
+			$('select[name=\'shipping_service\']').html('');
 		}
 	});
 });

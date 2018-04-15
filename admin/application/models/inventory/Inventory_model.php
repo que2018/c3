@@ -120,7 +120,7 @@ class Inventory_model extends CI_Model
 	
 	public function get_inventories_by_product($product_id) 
 	{		
-		$this->db->select('inventory.*, warehouse.name AS warehouse_name, location.name AS location_name, location.id AS location_id', false);
+		$this->db->select('inventory.*, warehouse.name AS warehouse_name, location.id AS location_id, location.name AS location_name', false);
 		$this->db->from('inventory');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
@@ -582,7 +582,7 @@ class Inventory_model extends CI_Model
 		$this->db->select('SUM(quantity) AS quantity', false);
 		$this->db->from('inventory');
 		$this->db->where('product_id', $product_id);
-
+		
 		$q = $this->db->get();
 		
 		if($q->num_rows() > 0)

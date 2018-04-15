@@ -118,7 +118,6 @@
 				  <?php $offset = 0; ?>
 				  <?php foreach($products as $product) { ?>
 					<tr>
-					  <?php if($modifiable) { ?>
 					  <td>
 					    <span><?php echo $product['name']; ?></span>
 					    <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
@@ -143,16 +142,13 @@
 						  </table>
 					    </div>
 					  </td>
-					  <?php } else { ?>
-					  <td><?php echo $product['name']; ?></td>
-					  <?php } ?>
 					  <td><?php echo $product['client']; ?></td>
-					  <?php if($modifiable) { ?>
+					  <?php if($editable) { ?>
 					  <td ondblclick="active_field('upc', this)"><?php echo $product['upc']; ?></td>
 					  <?php } else { ?>
 					  <td><?php echo $product['upc']; ?></td>
 				      <?php } ?>
-					  <?php if($modifiable) { ?>
+					  <?php if($editable) { ?>
 					  <td ondblclick="active_field('sku', this)"><?php echo $product['sku']; ?></td>
 					  <?php } else { ?>
 					  <td><?php echo $product['sku']; ?></td>

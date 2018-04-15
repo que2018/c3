@@ -36,6 +36,7 @@ $lang['menu_unsolved_order']	     = 'Unsolved Order';
 $lang['menu_order_add']	             = 'Add Order';
 $lang['menu_order_import']	         = 'Import Order';
 $lang['menu_extension']	             = 'Extension';
+$lang['menu_fee']	             	 = 'Fee';
 $lang['menu_platform']	             = 'Platform';
 $lang['menu_shipping']	             = 'Shipping';
 $lang['menu_payment']	             = 'Payment';

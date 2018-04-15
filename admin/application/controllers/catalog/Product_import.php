@@ -19,7 +19,7 @@ class Product_import extends CI_Controller
 		
 		$this->load->model('client/client_model');
 		
-		$clients = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 				
 		if($clients)
 		{
