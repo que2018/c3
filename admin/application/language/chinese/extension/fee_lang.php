@@ -5,7 +5,7 @@ $lang['text_title'] 	  	             = 'Fee';
 $lang['text_fee'] 	  	                 = 'Fee';
 $lang['text_extension'] 	  	         = 'Extension';
 $lang['text_no_fees'] 	  	             = 'No fees';
-$lang['text_fee_description'] 	  	     = 'Display all shippings';
+$lang['text_fee_description'] 	  	     = 'Display All Fees';
 $lang['text_install_success'] 	  	     = '<i class="fa fa-check-circle-o"></i>&nbsp;fee install success';
 $lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;fee uninstall success';
 
