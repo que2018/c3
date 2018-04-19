@@ -3,23 +3,16 @@
 
 class Location_import extends CI_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('warehouse/location');
-		
-		$this->load->model('warehouse/location_model');
-	}
-	
 	public function index() 
 	{	
+		$this->lang->load('warehouse/location');
+		
 		$this->load->model('warehouse/warehouse_model');
 	
 		//warehouse
 		$data['warehouses'] = array();
 				
-		$warehouses = $this->warehouse_model->get_all_warehouses();
+		$warehouses = $this->warehouse_model->get_warehouses();
 				
 		if($warehouses)
 		{
@@ -38,7 +31,9 @@ class Location_import extends CI_Controller
 	}
 	
 	public function upload() 
-	{				
+	{	
+		$this->lang->load('warehouse/location');
+			
 		if(!empty($_FILES)) 
 		{	
 			$temp_file = $_FILES['file']['tmp_name'];    
@@ -65,20 +60,10 @@ class Location_import extends CI_Controller
 									
 			$result = $this->import_excel($target_file);
 			
-			if($result['success'])
-			{
-				$outdata = array(
-					'success'   => true,
-					'messages'  => $result['messages']
-				);	
-			}
-			else
-			{
-				$outdata = array(
-					'success'   => false,
-					'messages'  => $result['messages']
-				);
-			}
+			$outdata = array(
+				'success'   => $result['success']?true:false,
+				'messages'  => $result['messages']
+			);
 			
 			echo json_encode($outdata);
 			die();
@@ -88,7 +73,11 @@ class Location_import extends CI_Controller
 	protected function import_excel($file) 
 	{
 		$this->load->library('phpexcel');
-				
+		
+		$this->lang->load('warehouse/location');
+		
+		$this->load->model('warehouse/location_model');
+			
 		$warehouse_id = $this->input->post('warehouse_id');
 		
 		$obj_phpexcel = PHPExcel_IOFactory::load($file);		

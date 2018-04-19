@@ -3,11 +3,6 @@
 
 class Location_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function add_location($data)
 	{
 		$this->db->trans_begin();
@@ -53,22 +48,6 @@ class Location_model extends CI_Model
 		
 		$this->db->update('location', $location_data);
 		
-		if(isset($data['location_clients']))
-		{
-			$this->db->delete('location_client', array('location_id' => $location_id));
-			
-			$location_client_data = array();
-			
-			foreach($data['location_clients'] as $location_client){					
-				$location_client_data[] = array(
-					'location_id'	=> $location_id,
-					'client_id' 	=> $location_client['client_id'],
-				);
-			}
-			
-			$this->db->insert_batch('location_client', $location_client_data);		
-		}
-		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -78,6 +57,7 @@ class Location_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}

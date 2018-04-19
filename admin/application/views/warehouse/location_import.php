@@ -10,8 +10,8 @@
 	  <li><a href="<?php echo base_url(); ?>warehouse/location"><?php echo $this->lang->line('text_warehouse'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_import_location'); ?></strong></li>
 	</ol>
-	<div class="button-group">
-      <a href="<?php echo base_url(); ?>assets/file/excel/location_import_sample.xlsx" class="btn btn-primary btn-download" download><i class="fa fa-download"></i></a>
+	<div class="button-group tooltip-demo">
+      <a href="<?php echo base_url(); ?>assets/file/excel/location_import_sample.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download_sample'); ?>" class="btn btn-primary btn-download" download><i class="fa fa-download"></i></a>
     </div>
   </div>
 </div>
@@ -56,7 +56,6 @@ Dropzone.options.dropzoneForm = {
 
 	sending: function(file, xhr, formData){
 		warehouse_id = $('select[name=\'warehouse_id\']').val();
-		
 		formData.append('warehouse_id', warehouse_id);
     },
 	

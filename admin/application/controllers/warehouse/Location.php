@@ -242,7 +242,7 @@ class Location extends CI_Controller {
 		//warehouse
 		$this->load->model('warehouse/warehouse_model');
 		
-		$warehouses = $this->warehouse_model->get_all_warehouses();
+		$warehouses = $this->warehouse_model->get_warehouses();
 				
 		$data['warehouses'] = array();
 		
@@ -308,7 +308,7 @@ class Location extends CI_Controller {
 		//warehouse
 		$this->load->model('warehouse/warehouse_model');
 	
-		$warehouses = $this->warehouse_model->get_all_warehouses();
+		$warehouses = $this->warehouse_model->get_warehouses();
 				
 		$data['warehouses'] = array();
 		
