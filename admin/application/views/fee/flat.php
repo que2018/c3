@@ -7,7 +7,9 @@
 	  <li><a href="<?php echo base_url(); ?>extension/fee"><?php echo $this->lang->line('text_fee'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_flat'); ?></strong></li>
 	</ol>
-	<button type="button" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></a>
+	<div class="button-group tooltip-demo">
+	  <button type="button" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></a>
+	</div>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -29,6 +31,21 @@
 			      <div class="col-sm-10"><input name="flat_amount" value="<?php echo $flat_amount; ?>" class="form-control"></div>
 				</div>
 				<div class="hr-line-dashed"></div>	
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
+				  <div class="col-sm-10">
+				    <select name="flat_status" class="form-control">
+					  <?php if($flat_status) { ?>
+					    <option value="1" selected><?php echo $this->lang->line('text_enabled'); ?></option>
+						<option value="0"><?php echo $this->lang->line('text_disabled'); ?></option>
+					  <?php } else { ?>
+					    <option value="1"><?php echo $this->lang->line('text_enabled'); ?></option>
+						<option value="0" selected><?php echo $this->lang->line('text_disabled'); ?></option>
+					  <?php } ?>
+					</select>
+				  </div>
+                </div>
+				<div class="hr-line-dashed"></div>
 			  </div>
 		    </div>
 		  </div>

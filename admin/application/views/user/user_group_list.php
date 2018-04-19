@@ -42,7 +42,7 @@
 					<tr>
 					  <td><?php echo $user_group['name']; ?></td>
 					  <td style="text-align: center">
-					    <a href="<?php echo base_url(); ?>user/user_group/edit?id=<?php echo $user_group['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+					    <a href="<?php echo base_url(); ?>user/user_group/edit?user_group_id=<?php echo $user_group['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" data="<?php echo $user_group['id']; ?>"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>

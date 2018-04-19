@@ -249,7 +249,7 @@ class User extends CI_Controller {
 		
 		$data['user_groups'] = array();
 		
-		$user_groups = $this->user_group_model->get_all_user_groups();
+		$user_groups = $this->user_group_model->get_user_groups();
 		
 		foreach($user_groups as $user_group)
 		{
@@ -332,7 +332,7 @@ class User extends CI_Controller {
 		
 		$data['user_groups'] = array();
 		
-		$user_groups = $this->user_group_model->get_all_user_groups();
+		$user_groups = $this->user_group_model->get_user_groups();
 		
 		foreach($user_groups as $user_group)
 		{

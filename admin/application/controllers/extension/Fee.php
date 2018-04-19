@@ -94,6 +94,21 @@ class Fee extends CI_Controller
 			redirect(base_url() . 'extension/fee', 'refresh');
 		}
 	}
+	
+	public function run()
+	{
+		$files = glob(APPPATH . '/controllers/fee/*.php', GLOB_BRACE);
+
+		if($files) {
+			foreach ($files as $file) {
+				$code = strtolower(basename($file, '.php'));
+
+				$this->load->model('fee/'. $code .'_model');
+
+				$this->{$code . '_model'}->run();
+			}
+		}
+	}
 }
 
 
