@@ -53,19 +53,24 @@ class Fee extends CI_Controller
 	
 	public function install() 
 	{
+		$this->lang->load('extension/fee');
+		
 		$this->load->model('extension/extension_model');
 		
-		$code = $this->input->get('code');
-		
-		$this->extension_model->install('fee', $code);
-		
-		$this->load->model('fee/'. $code .'_model');
+		if($this->input->get('code'))
+		{
+			$code = $this->input->get('code');
+			
+			$this->extension_model->install('fee', $code);
+			
+			$this->load->model('fee/'. $code .'_model');
 
-		$this->{$code . '_model'}->install();
-		
-		$this->session->set_flashdata('success', $this->lang->line('text_install_success'));
+			$this->{$code . '_model'}->install();
+			
+			$this->session->set_flashdata('success', $this->lang->line('text_install_success'));
 
-		redirect(base_url() . 'extension/fee', 'refresh');
+			redirect(base_url() . 'extension/fee', 'refresh');
+		}
 	}
 	
 	public function uninstall() 
@@ -74,17 +79,20 @@ class Fee extends CI_Controller
 		
 		$this->load->model('extension/extension_model');
 		
-		$code = $this->input->get('code');
+		if($this->input->get('code'))
+		{
+			$code = $this->input->get('code');
 		
-		$this->extension_model->uninstall('fee', $code);
+			$this->extension_model->uninstall('fee', $code);
 
-		$this->load->model('fee/'. $code .'_model');
+			$this->load->model('fee/'. $code .'_model');
 
-		$this->{$code . '_model'}->uninstall();
-		
-		$this->session->set_flashdata('success', $this->lang->line('text_uninstall_success'));
+			$this->{$code . '_model'}->uninstall();
+			
+			$this->session->set_flashdata('success', $this->lang->line('text_uninstall_success'));
 
-		redirect(base_url() . 'extension/fee', 'refresh');
+			redirect(base_url() . 'extension/fee', 'refresh');
+		}
 	}
 }
 
