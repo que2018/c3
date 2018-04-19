@@ -89,13 +89,16 @@
 						<?php } else { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="extension"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_extension'); ?></label></div>
 						<?php } ?>
-						<!--add bu Neil start-->
 						<?php if(isset($permission['access']) && in_array('finance', $permission['access'])) { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="finance" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_finance'); ?></label></div>
 						<?php } else { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="finance"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_finance'); ?></label></div>
 						<?php } ?>
-						<!--add bu Neil end-->
+					    <?php if(isset($permission['access']) && in_array('fee', $permission['access'])) { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="fee" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_fee'); ?></label></div>
+						<?php } else { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="fee"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_fee'); ?></label></div>
+						<?php } ?>
 						<?php if(isset($permission['access']) && in_array('platform', $permission['access'])) { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="platform" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_platform'); ?></label></div>
 						<?php } else { ?>
@@ -172,13 +175,16 @@
 					  <?php } else { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="extension"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_extension'); ?></label></div>
 					  <?php } ?>
-					  <!--add bu Neil start-->
 					  <?php if(isset($permission['modify']) && in_array('finance', $permission['modify'])) { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="finance" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_finance'); ?></label></div>
 					  <?php } else { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="finance"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_finance'); ?></label></div>
 					  <?php } ?>
-					  <!--add bu Neil end-->
+					  <?php if(isset($permission['modify']) && in_array('fee', $permission['modify'])) { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="fee" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_fee'); ?></label></div>
+					  <?php } else { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="fee"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_fee'); ?></label></div>
+					  <?php } ?>
 					  <?php if(isset($permission['modify']) && in_array('platform', $permission['modify'])) { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="platform" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_platform'); ?></label></div>
 					  <?php } else { ?>

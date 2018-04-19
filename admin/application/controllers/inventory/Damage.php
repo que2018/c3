@@ -320,7 +320,7 @@ class Damage extends CI_Controller {
 		
 		$this->load->model('warehouse/warehouse_model');
 		
-		$warehouses = $this->warehouse_model->get_all_warehouses();	
+		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
 		{
@@ -419,7 +419,7 @@ class Damage extends CI_Controller {
 		//warehouse
 		$data['warehouses'] = array();
 				
-		$warehouses = $this->warehouse_model->get_all_warehouses();	
+		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
 		{

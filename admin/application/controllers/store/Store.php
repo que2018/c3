@@ -271,7 +271,7 @@ class Store extends CI_Controller {
 		}
 		
 		//client
-		$clients = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 	
 		$data['clients'] = array();
 		
@@ -435,7 +435,7 @@ class Store extends CI_Controller {
 		}
 		
 		//client
-		$clients = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 	
 		$data['clients'] = array();
 		

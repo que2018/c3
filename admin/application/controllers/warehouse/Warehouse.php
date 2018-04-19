@@ -418,11 +418,11 @@ class Warehouse extends CI_Controller {
 		}
 	}
 	
-	public function get_all_warehouses()
+	public function get_warehouses()
 	{
 		$warehouses = array();
 		
-		$wareshouses_data = $this->warehouse_model->get_all_warehouses();
+		$wareshouses_data = $this->warehouse_model->get_warehouses();
 			
 		foreach($wareshouses_data as $wareshouse_data)
 		{

@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Product extends CI_Controller 
 {
 	public function index()
@@ -8,6 +9,7 @@ class Product extends CI_Controller
 		
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -97,6 +99,7 @@ class Product extends CI_Controller
 		);
 		
 		$products = $this->product_model->get_products($filter_data);	
+		
 		$product_total = $this->product_model->get_product_total($filter_data);
 		
 		$data['products'] = array();
@@ -104,9 +107,7 @@ class Product extends CI_Controller
 		if($products) 
 		{
 			foreach($products as $product)
-			{	
-				$this->load->model('inventory/inventory_model');
-			
+			{				
 				$quantity = $this->inventory_model->get_product_quantity($product['id']);	
 
 				$length_class = $this->length_class_model->get_length_class($product['length_class_id']);
@@ -171,7 +172,7 @@ class Product extends CI_Controller
 		$this->pagination->total  = $product_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'catalog/product?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'catalog/product?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 
@@ -233,24 +234,21 @@ class Product extends CI_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url().'catalog/product'  .$url;
+		$data['filter_url'] = base_url() . 'catalog/product'  .$url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_client_id']     = $filter_client_id;
-		$data['filter_upc']           = $filter_upc;
-		$data['filter_sku']           = $filter_sku;
-		$data['filter_quantity']      = $filter_quantity;
-		
-		//edit permission
-		$data['modifiable'] = $this->auth->has_permission('modify', 'catalog');
+		$data['filter_client_id']   = $filter_client_id;
+		$data['filter_upc']         = $filter_upc;
+		$data['filter_sku']         = $filter_sku;
+		$data['filter_quantity']    = $filter_quantity;
 		
 		//client
 		$data['clients'] = array();
 		
-		$clients = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 		
 		if($clients)
 		{
@@ -263,6 +261,9 @@ class Product extends CI_Controller
 			}
 		}
 		
+		//edit permission
+		$data['editable'] = $this->auth->has_permission('modify', 'catalog');
+		
 		$this->load->view('common/header');
 		$this->load->view('catalog/product_list', $data);
 		$this->load->view('common/footer');
@@ -274,7 +275,9 @@ class Product extends CI_Controller
 		
 		$this->load->library('form_validation');
 		
+		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
+		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 	
@@ -288,7 +291,9 @@ class Product extends CI_Controller
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
-
+		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
+		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
+		
 		$data = array(
 			'upc'                => $this->input->post('upc'),
 			'sku'                => $this->input->post('sku'),
@@ -318,9 +323,9 @@ class Product extends CI_Controller
 		}
 				
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
-		
 		$data['length_classes'] = array();
+		
+		$length_classes = $this->length_class_model->get_all_length_classes();
 		
 		if($length_classes) 
 		{
@@ -334,9 +339,9 @@ class Product extends CI_Controller
 		}
 			
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
-		
 		$data['weight_classes'] = array();
+		
+		$weight_classes = $this->weight_class_model->get_all_weight_classes();
 		
 		if($weight_classes) 
 		{
@@ -349,13 +354,11 @@ class Product extends CI_Controller
 			}
 		}
 		
-		//shipping providers
-		$this->load->model('extension/shipping_model');
+		//shipping providers		
+		$data['shipping_providers'] = array();
 		
 		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
 				
-		$data['shipping_providers'] = array();
-		
 		foreach($shipping_providers_data as $shipping_provider_data) 
 		{
 			$code = $shipping_provider_data['code'];
@@ -370,12 +373,12 @@ class Product extends CI_Controller
 		}
 		
 		//shipping services		
+		$data['shipping_services'] = array();
+		
 		$shipping_provider = $data['shipping_provider'];
 		
 		$shipping_services_data = $this->shipping_model->get_shipping_services($shipping_provider);
 				
-		$data['shipping_services'] = array();
-		
 		if($shipping_services_data) 
 		{
 			foreach($shipping_services_data as $shipping_service_data) 
@@ -390,9 +393,7 @@ class Product extends CI_Controller
 		//clients
 		$data['clients'] = array();
 		
-		$this->load->model('client/client_model');
-		
-		$clients = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 				
 		if($clients)
 		{
@@ -418,6 +419,7 @@ class Product extends CI_Controller
 
 		$this->load->library('form_validation');
 		
+		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('inventory/inventory_model');
@@ -426,8 +428,6 @@ class Product extends CI_Controller
 	
 		$product_id = $this->input->get('product_id');
 	
-		$this->form_validation->set_message('regex_match', '%s');
-
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_edit_sku');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
@@ -438,6 +438,8 @@ class Product extends CI_Controller
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
+		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
+		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		
 		if($this->form_validation->run() == true)
 		{
@@ -530,10 +532,10 @@ class Product extends CI_Controller
 		$data['quantity'] = ($quantity)?$quantity:0;
 		
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
-		
 		$data['length_classes'] = array();
 		
+		$length_classes = $this->length_class_model->get_all_length_classes();
+	
 		if($length_classes) 
 		{
 			foreach($length_classes as $length_class)
@@ -546,9 +548,9 @@ class Product extends CI_Controller
 		}
 		
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
-		
 		$data['weight_classes'] = array();
+		
+		$weight_classes = $this->weight_class_model->get_all_weight_classes();
 		
 		if($weight_classes) 
 		{
@@ -561,11 +563,11 @@ class Product extends CI_Controller
 			}
 		}
 		
-		//shipping providers			
-		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
-				
+		//shipping providers	
 		$data['shipping_providers'] = array();
 		
+		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
+				
 		foreach($shipping_providers_data as $shipping_provider_data) 
 		{
 			$code = $shipping_provider_data['code'];
@@ -603,17 +605,15 @@ class Product extends CI_Controller
 		//clients
 		$data['clients'] = array();
 		
-		$this->load->model('client/client_model');
-		
-		$clients_data = $this->client_model->get_all_clients();
+		$clients = $this->client_model->get_clients();
 				
-		if($clients_data)
+		if($clients)
 		{
-			foreach($clients_data as $client_data) 
+			foreach($clients as $client) 
 			{
 				$data['clients'][] = array(
-					'id'    => $client_data['id'],
-					'name'  => $client_data['name']
+					'id'    => $client['id'],
+					'name'  => $client['name']
 				);
 			}
 		}
@@ -643,25 +643,25 @@ class Product extends CI_Controller
 			
 			if($transfer || $inventory)
 			{
-				$msgs = [];
+				$messages = [];
 				
 				if($transfer) 
-					$msgs[] = $this->lang->line('error_can_not_delete_transfer_exist');
+					$messages[] = $this->lang->line('error_can_not_delete_transfer_exist');
 
 				if($inventory) 
-					$msgs[] = $this->lang->line('error_can_not_delete_inventory_exist');
+					$messages[] = $this->lang->line('error_can_not_delete_inventory_exist');
 
 				$outdata = array(
-					'success' => false,
-					'msgs'    => $msgs
+					'success'    => false,
+					'messages'   => $messages
 				);
 			}
 			else
 			{
-				$this->product_model->delete_product($product_id);
+				$result = $this->product_model->delete_product($product_id);
 
 				$outdata = array(
-					'success' => true
+					'success' => ($result)?true:false
 				);
 			}
 				

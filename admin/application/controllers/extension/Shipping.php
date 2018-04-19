@@ -3,15 +3,10 @@
 
 class Shipping extends CI_Controller {
 
-	function __construct()
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('extension/shipping');
-	}
-	
-	function index()
-	{
+
 		$this->load->model('extension/extension_model');
 		
 		$data['success'] = $this->session->flashdata('success');
@@ -75,6 +70,8 @@ class Shipping extends CI_Controller {
 	
 	public function uninstall() 
 	{
+		$this->lang->load('extension/shipping');
+		
 		$this->load->model('extension/extension_model');
 		
 		$code = $this->input->get('code');
@@ -92,6 +89,8 @@ class Shipping extends CI_Controller {
 	
 	public function get_shipping_services() 
 	{
+		$this->lang->load('extension/shipping');
+
 		if($this->input->get('code'))
 		{
 			$code = $this->input->get('code');
@@ -129,6 +128,8 @@ class Shipping extends CI_Controller {
 	
 	public function get_shipping_rate() 
 	{
+		$this->lang->load('extension/shipping');
+
 		$shipping_method   = $this->input->post('shipping_method');
 		$postal_code       = $this->input->post('postal_code');	
 		$products          = $this->input->post('product');

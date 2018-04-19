@@ -3,17 +3,12 @@
 
 class User_group extends CI_Controller {
 
-	function __construct()
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('user/user_group');
 		
 		$this->load->model('user/user_group_model');
-	}
-	
-	function index()
-	{
+		
 		$data['success'] = $this->session->flashdata('success');
 		                   	
 		if($this->input->get('filter_name'))
@@ -186,8 +181,12 @@ class User_group extends CI_Controller {
 	
 	public function add() 
 	{
+		$this->lang->load('user/user_group');
+		
 		$this->load->library('form_validation');
-	
+		
+		$this->load->model('user/user_group_model');
+		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 
 		$data = array(
@@ -214,10 +213,14 @@ class User_group extends CI_Controller {
 	
 	public function edit() 
 	{
-		$id = $this->input->get('id');
+		$this->lang->load('user/user_group');
 		
 		$this->load->library('form_validation');
 		
+		$this->load->model('user/user_group_model');
+		
+		$user_group_id = $this->input->get('user_group_id');
+				
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 
 		if($this->form_validation->run() == true)
@@ -228,7 +231,7 @@ class User_group extends CI_Controller {
 				'permission'   => $this->input->post('permission')
 			);
 			
-			$this->user_group_model->edit_user_group($id, $data);
+			$this->user_group_model->edit_user_group($user_group_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_user_group_edit_success'));
 			
@@ -243,7 +246,7 @@ class User_group extends CI_Controller {
 		}
 		else
 		{
-			$user_group = $this->user_group_model->get_user_group($id);
+			$user_group = $this->user_group_model->get_user_group($user_group_id);
 			
 			$data['name']      	  = $user_group['name'];
 			$data['description']  = $user_group['description'];
@@ -259,7 +262,10 @@ class User_group extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->lang->load('user/user_group');
+		
 		$this->load->model('user/user_model');
+		$this->load->model('user/user_group_model');
 		
 		if($this->input->get('id'))
 		{

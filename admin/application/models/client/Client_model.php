@@ -2,12 +2,7 @@
 
 
 class Client_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
+{		
 	public function add_client($data)
 	{
 		$this->db->trans_begin();
@@ -311,20 +306,5 @@ class Client_model extends CI_Model
 		$result = $q->row_array();
 		
 		return $result['total'];
-	}
-	
-	public function get_all_clients() 
-	{
-		$this->db->select("*, CONCAT(firstname, ' ', lastname) AS name", false);
-		$this->db->from('client');
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0) 
-		{
-			return $q->result_array();
-		}
-		
-		return false;
 	}
 }

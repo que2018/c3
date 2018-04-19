@@ -13,6 +13,7 @@ $lang['text_inventory'] 	  	          = 'Inventory';
 $lang['text_location_add'] 	  	          = 'Add Location';
 $lang['text_location_edit'] 	  	      = 'Edit Location';
 $lang['text_import_location'] 	  	      = 'Import Location';
+$lang['text_download_sample'] 	  	      = 'download sample';
 $lang['text_confirm_delete'] 	  	      = 'Are you sure to delete this location?';
 $lang['text_location_add_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;Location add success';
 $lang['text_import_location_description'] = 'Import locations form excel file';
@@ -23,7 +24,6 @@ $lang['text_confirm_delete']              = 'Are you sure to delete this locatio
 $lang['text_drop_file_and_upload'] 	      = 'Drop files here or click to upload';
 $lang['text_only_excel_will_accepted'] 	  = '( only Excel file will be accepted )';
 $lang['text_rows_imported'] 	 	  	  = '<strong>Total %s rows are imported</strong>';
-
 
 // Column
 $lang['column_name'] 	  	              = 'Name';

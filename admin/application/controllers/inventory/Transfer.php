@@ -312,7 +312,7 @@ class Transfer extends CI_Controller {
 		
 		$this->load->model('warehouse/warehouse_model');
 		
-		$warehouses = $this->warehouse_model->get_all_warehouses();	
+		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
 		{
@@ -465,7 +465,7 @@ class Transfer extends CI_Controller {
 		
 		$this->load->model('warehouse/warehouse_model');
 		
-		$warehouses = $this->warehouse_model->get_all_warehouses();	
+		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
 		{

@@ -3,11 +3,6 @@
 
 class Warehouse_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
 	public function add_warehouse($data = array())
 	{
 		$warehouse_data = array(		
@@ -188,18 +183,6 @@ class Warehouse_model extends CI_Model
 		
 		return $result['total'];
 	}
-	
-	public function get_all_warehouses() 
-	{
-		$q = $this->db->get('warehouse');
-		
-		if($q->num_rows() > 0) 
-		{
-			return $q->result_array();
-		}
-		
-		return false;
-	}	
 	
 	public function search_warehouse($key) 
 	{

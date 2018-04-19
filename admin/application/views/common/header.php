@@ -101,6 +101,7 @@
 		  <li>
 			<a><i class="fa fa-puzzle-piece"></i><span class="nav-label"><?php echo $this->lang->line('menu_extension'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
+			  <li><a href="<?php echo base_url(); ?>extension/fee"><?php echo $this->lang->line('menu_fee'); ?></a></li>	
 		      <li><a href="<?php echo base_url(); ?>extension/platform"><?php echo $this->lang->line('menu_platform'); ?></a></li>	
 			  <li><a href="<?php echo base_url(); ?>extension/shipping"><?php echo $this->lang->line('menu_shipping'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>extension/payment"><?php echo $this->lang->line('menu_payment'); ?></a></li>
