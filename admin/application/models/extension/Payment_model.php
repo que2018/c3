@@ -1,10 +1,18 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Payment_model extends CI_Model
 {
-	public function __construct()
-	{
-		parent::__construct();
+	public function get_payment_method($code) 
+	{	
+		$this->lang->load('payment/' . $code);
+		
+		$payment_method = array(
+			'code'     => $code,
+			'name'     => $this->lang->line('text_' . $code)
+		);
+		
+		return $payment_method;
 	}
 	
 	public function get_payment_methods() 
@@ -21,7 +29,7 @@ class Payment_model extends CI_Model
 
 			$payment_methods[] = array(
 				'code'     => $code,
-				'name'     => $this->lang->line('text_title')
+				'name'     => $this->lang->line('text_' . $code)
 			);
 		}
 		

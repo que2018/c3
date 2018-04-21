@@ -59,7 +59,7 @@
 	  </div>
     </div>
     <div class="col-md-2">
-	  <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+      <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
     </div>
   </div>
 </div>
@@ -120,8 +120,14 @@
 		    <td><?php echo $recharge['client']; ?></td>
 		    <td><?php echo $recharge['payment_method']; ?></td>
 		    <td><?php echo $recharge['amount']; ?></td>
-		    <td><?php echo $recharge['status']; ?></td>
-		    <td><?php echo $recharge['date_added']; ?></td>
+			<td>
+			  <?php if($recharge['status'] == 1) { ?>
+			  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+			  <?php } else { ?>
+			  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+			  <?php } ?>
+			</td>
+			<td><?php echo $recharge['date_added']; ?></td>
 		    <td>
 			  <center>
 			    <a href="<?php echo base_url(); ?>finance/recharge/edit?recharge_id=<?php echo $recharge['recharge_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>

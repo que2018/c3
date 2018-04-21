@@ -81,7 +81,7 @@
 			    </div>
 			  </div>
 			  <div class="col-md-2">
-                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
+                <button id="btn-search" class="btn btn-success" onclick="filter()"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
 			  </div>
 		    </div>
 		  </div>
@@ -142,11 +142,13 @@
 					  <td><?php echo $recharge['client']; ?></td>
 					  <td><?php echo $recharge['payment_method']; ?></td>
 					  <td><?php echo $recharge['amount']; ?></td>
-					  <?php if($recharge['status'] == 1) { ?>
-					  <td><span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
-					  <?php } else { ?>
-					  <td><span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
-					  <?php } ?>
+					  <td>
+						<?php if($recharge['status'] == 1) { ?>
+						<span class="pending"><?php echo $this->lang->line('text_pending'); ?></span></td>
+						<?php } else { ?>
+						<span class="completed"><?php echo $this->lang->line('text_completed'); ?></span></td>
+						<?php } ?>
+					  </td>
 					  <td><?php echo $recharge['date_added']; ?></td>
 					  <td>
 					    <center>
@@ -200,27 +202,27 @@ function delete_recharge(handle, recharge_id) {
 }
 </script>
 <script>
+function filter() {
+	client_id       = $('select[name=\'client_id\']').val();
+	payment_method  = $('select[name=\'payment_method\']').val();
+	status          = $('select[name=\'status\']').val();
+
+	url = '<?php echo $filter_url; ?>';
+
+	if(client_id)
+		url += '&filter_client_id=' + client_id;
+
+	if(payment_method)
+		url += '&filter_payment_method=' + payment_method;
+	
+	if(status)
+		url += '&filter_status=' + status;
+	
+	window.location.href = url;
+}
+</script>
+<script>
 $(document).ready(function() {
-	//filter
-	$('#btn-search').click(function() {
-		client_id       = $('select[name=\'client_id\']').val();
-		payment_method  = $('select[name=\'payment_method\']').val();
-		status          = $('select[name=\'status\']').val();
-
-		url = '<?php echo $filter_url; ?>';
-	
-		if(client_id)
-			url += '&filter_client_id=' + client_id;
-
-		if(payment_method)
-			url += '&filter_payment_method=' + payment_method;
-		
-		if(status)
-			url += '&filter_status=' + status;
-		
-		window.location.href = url;
-	});
-	
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
@@ -229,3 +231,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+
+
+
+
+
+
+
+

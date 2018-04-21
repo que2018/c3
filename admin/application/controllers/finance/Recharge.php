@@ -103,7 +103,8 @@ class Recharge extends CI_Controller {
 			'limit'                  => $limit
 		);
 		
-		$recharges = $this->recharge_model->get_recharges($filter_data);	
+		$recharges = $this->recharge_model->get_recharges($filter_data);
+		
 		$recharge_total = $this->recharge_model->get_recharge_total($filter_data);
 		
 		$data['recharges'] = array();
@@ -115,14 +116,12 @@ class Recharge extends CI_Controller {
 				//payment method
 				$payment_code = $recharge['payment_method'];
 				
-				$this->lang->load('payment/' . $payment_code);
+				$payment_method = $this->payment_model->get_payment_method($payment_code);	
 
-				$payement_method = $this->lang->line('text_title');
-				
 				$data['recharges'][] = array(
 					'recharge_id'    => $recharge['id'],
 					'client'         => $recharge['name'],
-					'payment_method' => $payement_method,
+					'payment_method' => $payment_method['name'],
 					'amount'         => $this->currency->format($recharge['amount']),
 					'status'         => $recharge['status'],
 					'date_added'     => $recharge['date_added']
