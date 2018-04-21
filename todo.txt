@@ -3,3 +3,5 @@
 2. location fee
 3. redis faster loading
 4. HMVC
+5. transaction删除没有提示
+6. filter not working after relist

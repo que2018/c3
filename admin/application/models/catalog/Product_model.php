@@ -29,7 +29,7 @@ class Product_model extends CI_Model
 		
 		$this->db->insert('product', $product_data);
 		
-		$id = $this->db->insert_id();
+		$product_id = $this->db->insert_id();
 		
 		if(isset($data['product_fees']))
 		{
@@ -57,11 +57,11 @@ class Product_model extends CI_Model
 		{
 			$this->db->trans_commit();
 			
-			return true;
+			return $product_id;
 		}
 	}
 	
-	public function edit_product($id, $data)
+	public function edit_product($product_id, $data)
 	{
 		$this->db->trans_begin();
 		
@@ -84,12 +84,12 @@ class Product_model extends CI_Model
 			'date_modified'      => date('Y-m-d H:i:s')
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $product_id);
 		
 		$this->db->update('product', $product_data);
 		
 		//product fee
-		$this->db->delete('product_fee', array('product_id' => $id));
+		$this->db->delete('product_fee', array('product_id' => $product_id));
 		
 		if(isset($data['product_fees']))
 		{
@@ -97,7 +97,7 @@ class Product_model extends CI_Model
 						
 			foreach($data['product_fees'] as $product_fee){					
 				$product_fees[] = array(
-					'product_id'  => $id,
+					'product_id'  => $product_id,
 					'name' 	      => $product_fee['name'],
 					'type' 	      => $product_fee['type'],
 					'amount'      => $product_fee['amount']
@@ -116,6 +116,7 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}
@@ -194,7 +195,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_upc($upc) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('upc', $upc, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
@@ -211,7 +212,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_sku($sku) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('sku', $sku, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
@@ -228,7 +229,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_asin($asin) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('asin', $asin, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));

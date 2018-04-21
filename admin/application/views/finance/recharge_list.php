@@ -4,7 +4,7 @@
 	<h2><?php echo $this->lang->line('text_recharge'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>/catalog/product"><?php echo $this->lang->line('text_finance'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>catalog/product"><?php echo $this->lang->line('text_finance'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_recharge'); ?></strong></li>
 	</ol>
   </div>

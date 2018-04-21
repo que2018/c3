@@ -99,13 +99,18 @@ class Fee extends CI_Controller
 	{
 		$files = glob(APPPATH . '/controllers/fee/*.php', GLOB_BRACE);
 
-		if($files) {
-			foreach ($files as $file) {
+		if($files) 
+		{
+			foreach ($files as $file) 
+			{
 				$code = strtolower(basename($file, '.php'));
 
-				$this->load->model('fee/'. $code .'_model');
+				if($this->config->item($code . '_status'))
+				{
+					$this->load->model('fee/'. $code .'_model');
 
-				$this->{$code . '_model'}->run();
+					$this->{$code . '_model'}->run();
+				}
 			}
 		}
 	}
