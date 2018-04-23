@@ -139,7 +139,7 @@ class Fee extends CI_Controller
 		$this->pagination->total  = $fee_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'finance/fee?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'finance/fee?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($fee_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($fee_total - $limit)) ? $fee_total : ((($page - 1) * $limit) + $limit), $fee_total, ceil($fee_total / $limit));
 

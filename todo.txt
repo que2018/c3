@@ -5,3 +5,4 @@
 4. HMVC
 5. transaction删除没有提示
 6. filter not working after relist
+7. success auto remove

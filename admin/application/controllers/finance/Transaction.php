@@ -1,16 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Transaction extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('finance/transaction');
-		
-		$this->load->model('finance/transaction_model');
-	}
-	
+class Transaction extends CI_Controller 
+{
 	public function index()
 	{	
 		$data = $this->get_list();
@@ -32,7 +24,10 @@ class Transaction extends CI_Controller {
 		$this->load->library('currency');
 		$this->load->library('phpexcel');
 		
+		$this->lang->load('finance/transaction');
+		
 		$this->load->model('client/client_model');
+		$this->load->model('finance/transaction_model');
 
 		$data['success'] = $this->session->flashdata('success');
 		
@@ -452,6 +447,10 @@ class Transaction extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		
+		$this->lang->load('finance/transaction');
+		
+		$this->load->model('finance/transaction_model');
+		
 		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');		
 		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
 		
@@ -500,6 +499,10 @@ class Transaction extends CI_Controller {
 	public function edit()
 	{
 		$this->load->library('form_validation');
+		
+		$this->lang->load('finance/transaction');
+		
+		$this->load->model('finance/transaction_model');
 		
 		$transaction_id = $this->input->get('transaction_id');
 		
@@ -560,14 +563,16 @@ class Transaction extends CI_Controller {
 	
 	public function delete()
 	{
+		$this->load->model('finance/transaction_model');
+		
 		if($this->input->get('transaction_id'))
 		{
 			$transaction_id = $this->input->get('transaction_id');
 			
-			$this->transaction_model->delete_transaction($transaction_id);
+			$result = $this->transaction_model->delete_transaction($transaction_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)true:false
 			);
 			
 			echo json_encode($outdata);
