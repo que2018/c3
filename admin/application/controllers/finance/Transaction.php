@@ -572,7 +572,7 @@ class Transaction extends CI_Controller
 			$result = $this->transaction_model->delete_transaction($transaction_id);
 
 			$outdata = array(
-				'success'   => ($result)true:false
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);

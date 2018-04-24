@@ -11,7 +11,7 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate'); ?>" class="btn btn-primary btn-generate"><i class="fa fa-play"></i></button>
+	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_checkout'); ?>" class="btn btn-primary btn-generate"><i class="fa fa-play"></i></button>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -94,8 +94,8 @@
 				    <th style="width: 20%"><?php echo $this->lang->line('column_product_name'); ?></th>
 				    <th style="width: 20%"><?php echo $this->lang->line('column_upc'); ?></th>
 					<th style="width: 20%"><?php echo $this->lang->line('column_sku'); ?></th>
-					<th style="width: 15%"><?php echo $this->lang->line('column_quantity'); ?></th>
-					<th style="width: 25%"><?php echo $this->lang->line('column_location'); ?></th>
+					<th style="width: 10%"><?php echo $this->lang->line('column_quantity'); ?></th>
+					<th style="width: 30%"><?php echo $this->lang->line('column_location'); ?></th>
 				  </tr>
 			    </thead>
 			    <tbody>

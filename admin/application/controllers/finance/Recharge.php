@@ -30,6 +30,8 @@ class Recharge extends CI_Controller {
 		$this->load->model('finance/recharge_model');
 		$this->load->model('extension/payment_model');
 
+		$data['success'] = $this->session->flashdata('success');
+		
 		if($this->input->get('filter_client_id'))
 		{
 			$filter_client_id = $this->input->get('filter_client_id');

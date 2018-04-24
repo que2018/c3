@@ -21,6 +21,7 @@ $lang['text_completed'] 	  	         = 'completed';
 $lang['text_search'] 	  	         	 = 'Search';
 $lang['text_recharge_list_description']  = 'Display recharge history';
 $lang['text_confirm_delete'] 	  	     = 'Are you sure to delete this recharge?';
+$lang['text_recharge_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;recharge edit success';
 
 // Entry
 $lang['entry_client'] 	  	             = 'Client';
