@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends MX_Controller  {
 	
 	function __construct()
 	{
@@ -13,6 +13,9 @@ class Dashboard extends CI_Controller {
 	
 	public function index() 
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+
 		$this->load->library('currency');
 		$this->load->library('datetimer');		
 		
@@ -309,8 +312,9 @@ class Dashboard extends CI_Controller {
 			}
 		}
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('common/dashboard', $data);
-		$this->load->view('common/footer');
 	}
 }

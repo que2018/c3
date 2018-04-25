@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <script src="<?php echo base_url(); ?>assets/js/plugins/flot/jquery.flot.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/flot/jquery.flot.tooltip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/flot/jquery.flot.spline.js" type="text/javascript"></script>
@@ -368,3 +369,4 @@ $(document).ready(function() {
 
 });
 </script>
+<?php echo $footer; ?>
