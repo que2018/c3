@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Dashboard extends MX_Controller  
 {	
 	public function index() 
@@ -7,127 +8,32 @@ class Dashboard extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 		
-				$this->load->module('sale_income');
-
-
 		$this->load->library('currency');
 		$this->load->library('datetimer');		
 		
 		$this->lang->load('common/dashboard');		
 		
-		// -------------------------------------------- sale income --------------------------------------------
-		
 		$this->load->model('sale/sale_model');
 		
-		$first_date_this_month = $this->datetimer->first_date_this_month();
+		//sale income
+		$this->load->module('sale_income');
 		
-		$filter_data = array(
-			'filter_date_added_since' => $first_date_this_month
-		);
+		$data['sale_income'] = Modules::run('module/sale_income/index');
 		
-		$sale_income = $this->sale_model->get_period_sale_income($filter_data);
+		//sale total
+		$this->load->module('sale_total');
+	
+		$data['sale_total'] = Modules::run('module/sale_total/index');
 		
-		$current_datetime = $this->datetimer->current_datetime();
+		//activity
+		$this->load->module('activity');
+	
+		$data['activity'] = Modules::run('module/activity/index');
 		
-		$first_date_last_month = $this->datetimer->first_date_last_month();
-		
-		$date_difference = $this->datetimer->diff_days($current_datetime, $first_date_this_month);
-		
-		$relative_date_last_month = $this->datetimer->plus_days($first_date_last_month, $date_difference);
-		
-		$filter_data = array(
-			'filter_date_added_from' => $first_date_last_month,
-			'filter_date_added_to'   => $relative_date_last_month
-		);
-		
-		$sale_income_last_month = $this->sale_model->get_period_sale_income($filter_data);
-		
-		if($sale_income_last_month > 0)
-		{
-			$sale_income_trend = ($sale_income - $sale_income_last_month) / $sale_income_last_month * 100;
-		}
-		else 
-		{
-			$sale_income_trend  = 100;
-		}
-		
-		$data['sale_income_trend'] = number_format($sale_income_trend);
-		
-		$data['sale_income'] = $this->currency->format($sale_income);
-				
-		// -------------------------------------------- sale total --------------------------------------------
-		
-		$first_date_this_month = $this->datetimer->first_date_this_month();
-		
-		$current_datetime = $this->datetimer->current_datetime();
-		
-		$filter_data = array(
-			'filter_date_added_since' => $first_date_this_month
-		);
-		
-		$sale_total = $this->sale_model->get_period_sale_total($filter_data);
-		
-		$first_date_last_month = $this->datetimer->first_date_last_month();
-		
-		$date_difference = $this->datetimer->diff_days($current_datetime, $first_date_this_month);
-		
-		$relative_date_last_month = $this->datetimer->plus_days($first_date_last_month, $date_difference);
-		
-		$filter_data = array(
-			'filter_date_added_from' => $first_date_last_month,
-			'filter_date_added_to'   => $relative_date_last_month
-		);
-		
-		$sale_total_last_month = $this->sale_model->get_period_sale_total($filter_data);
-		
-		if($sale_total_last_month > 0)
-		{
-			$sale_total_trend = ($sale_total - $sale_total_last_month) / $sale_total_last_month * 100;
-		}
-		else 
-		{
-			$sale_total_trend = 100;
-		}
-		
-		$data['sale_total_trend'] = number_format($sale_total_trend);
-		
-		$data['sale_total'] = $sale_total;
-		
-		//------------------------------------------ total activity log ----------------------------------------
-		
-		$this->load->model('setting/activity_log_model');
-		
-		$yesterday_datetime = $this->datetimer->yesterday_datetime();
-		
-		$filter_data = array(
-			'filter_date_added' => $yesterday_datetime
-		);
-		
-		$data['total_activity'] = $this->activity_log_model->get_total_activity($filter_data);
-		
-		// ------------------------------------------ total alert -----------------------------------------------
-		
-		$this->load->model('catalog/product_model');
-		
-		$this->load->model('inventory/inventory_model');
-		
-		$data['alert_quantity'] = 0;
-		
-		$products = $this->product_model->get_all_products();
-		
-		if($products)
-		{
-			foreach($products as $product)
-			{
-				$product_id = $product['id'];
-				$alert_quantity = $product['alert_quantity'];
-				
-				$quantity = $this->inventory_model->get_product_quantity($product_id);
-
-				if($quantity < $alert_quantity)
-					$data['alert_quantity']++;
-			}
-		}
+		//total alert
+		$this->load->module('total_alert');
+	
+		$data['total_alert'] = Modules::run('module/total_alert/index');
 		
 		// ----------------------------------------- recent activities ------------------------------------------
 		
@@ -237,6 +143,8 @@ class Dashboard extends MX_Controller
 		
 		$filter_date_added_to = $this->datetimer->current_datetime();
 		
+		$current_datetime = $this->datetimer->current_datetime();
+		
 		$filter_date_added_from = $this->datetimer->mins_days($current_datetime, 30);
 		
 		$filter_data = array(
@@ -310,9 +218,6 @@ class Dashboard extends MX_Controller
 		
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
-		
-		Modules::run('module/sale_income/index');
-
 		
 		$this->load->view('common/dashboard', $data);
 	}

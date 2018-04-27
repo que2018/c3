@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/user/user_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -8,7 +9,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_user'); ?></strong></li>
 	</ol>
   </div>
-  <a href="<?php echo base_url(); ?>user/user/add" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>user/user/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
@@ -110,5 +113,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>
+
 		
 		

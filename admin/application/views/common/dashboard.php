@@ -7,77 +7,13 @@
 <script src="<?php echo base_url(); ?>assets/js/plugins/flot/jquery.flot.symbol.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/flot/jquery.flot.time.js" type="text/javascript"></script>
 <link href="<?php echo base_url(); ?>assets/css/app/common/dashboard.css" rel="stylesheet"> 
+<link href="<?php echo base_url(); ?>assets/css/app/common/dashboard.css" rel="stylesheet"> 
 <div class="wrapper wrapper-content">
   <div class="row">
-    <div class="col-lg-3">
-	  <a href="<?php echo base_url(); ?>report/sale/product">
-	    <div class="ibox float-e-margins">
-		  <div class="ibox-title">
-		    <span class="label label-success pull-right"><?php echo $this->lang->line('text_monthly'); ?></span>
-		    <h5><?php echo $this->lang->line('text_income'); ?></h5> 
-		  </div>
-		  <div class="ibox-content">
-		    <h1 class="no-margins"><?php echo $sale_income; ?></h1>
-		    <div class="stat-percent font-bold text-success"><?php echo $sale_income_trend; ?>%
-		    <?php if($sale_income_trend >= 0) { ?>
-		    <i class="fa fa-level-up"></i>
-		    <?php } else { ?>
-		    <i class="fa fa-level-down"></i>
-		    <?php } ?>
-		    </div> 
-		    <small><?php echo $this->lang->line('text_total_income'); ?></small> 
-	      </div>
-	    </div>
-	  </a>
-    </div>
-	<div class="col-lg-3">
-	  <a href="<?php echo base_url(); ?>sale/sale">
-	    <div class="ibox float-e-margins">
-		  <div class="ibox-title"> 
-		    <span class="label label-info pull-right"><?php echo $this->lang->line('text_monthly'); ?></span>
-		    <h5><?php echo $this->lang->line('text_orders'); ?></h5> 
-		  </div>
-		  <div class="ibox-content">
-		    <h1 class="no-margins"><?php echo $sale_total; ?></h1>
-		    <div class="stat-percent font-bold text-info"><?php echo $sale_total_trend; ?>%
-		    <?php if($sale_total_trend >= 0) { ?>
-		    <i class="fa fa-level-up"></i>
-		    <?php } else { ?>
-		    <i class="fa fa-level-down"></i>
-		    <?php } ?>
-		    </div> 
-		    <small><?php echo $this->lang->line('text_new_orders'); ?></small> 
-		  </div>
-	    </div>
-	  </a>
-	</div>
-	<div class="col-lg-3">
-	  <a href="<?php echo base_url(); ?>setting/log/activity_log">
-	    <div class="ibox float-e-margins">
-	      <div class="ibox-title"><span class="label label-primary pull-right"><?php echo $this->lang->line('text_today'); ?></span>
-	        <h5><?php echo $this->lang->line('text_visits'); ?></h5> 
-		  </div>
-	      <div class="ibox-content">
-		    <h1 class="no-margins"><?php echo $total_activity; ?></h1>
-		    <div class="stat-percent font-bold text-navy">44%<i class="fa fa-level-up"></i></div> 
-		    <small><?php echo $this->lang->line('text_new_activities'); ?></small> 
-		  </div>
-	    </div>
-	  </a>
-	</div>
-	<div class="col-lg-3">
-	  <a href="<?php echo base_url(); ?>inventory/inventory_alert">
-	    <div class="ibox float-e-margins">
-		  <div class="ibox-title"> <span class="label label-danger pull-right"><?php echo $this->lang->line('text_real_time'); ?></span>
-	        <h5><?php echo $this->lang->line('text_alert'); ?></h5> 
-		  </div>
-		  <div class="ibox-content">
-	        <h1 class="no-margins"><?php echo $alert_quantity; ?></h1>
-		    <small><?php echo $this->lang->line('text_items_need_attention'); ?></small> 
-		  </div>
-	    </div>
-	  </a>
-	</div>
+    <div class="col-lg-3"><?php echo $sale_income; ?></div>
+	<div class="col-lg-3"><?php echo $sale_total; ?></div>
+	<div class="col-lg-3"><?php echo $activity; ?></div>
+	<div class="col-lg-3"><?php echo $total_alert; ?></div>
   </div>
     <div class="row">
 	  <div class="col-lg-12">
@@ -116,7 +52,7 @@
 					</div>
 				  </li>
 				  <li>
-				    <h2 class="no-margins "><?php echo $sale_income; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
+				    <h2 class="no-margins "><?php //echo $sale_income; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
 				    <div class="stat-percent"><?php echo $sale_income_trend; ?>% <i class="fa fa-level-up text-navy"></i></div>
 				    <div class="progress progress-mini">
 				      <div style="width: 22%;" class="progress-bar"></div>

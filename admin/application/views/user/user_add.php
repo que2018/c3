@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/user/user_add.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -87,5 +88,6 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
 		
 		

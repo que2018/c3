@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/user/user_edit.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -7,9 +8,9 @@
 	  <li><a href="<?php echo base_url(); ?>user/user"><?php echo $this->lang->line('text_user'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_user_edit'); ?></strong></li>
 	</ol>
-	<div class="button-group">
-      <button class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-      <a href="<?php echo base_url(); ?>user/user" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+	<div class="button-group tooltip-demo">
+      <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>"onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+      <a href="<?php echo base_url(); ?>user/user" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
     </div>
   </div>
 </div>
@@ -87,5 +88,7 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
+
 		
 		

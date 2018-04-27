@@ -1,10 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class User extends CI_Controller 
+class User extends MX_Controller 
 {
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('user/user');
 		
 		$this->load->model('user/user_model');
@@ -176,13 +179,17 @@ class User extends CI_Controller
 		$data['filter_username']    = $filter_username;
 		$data['filter_group_name']  = $filter_group_name;
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('user/user');
 		
 		$this->load->library('form_validation');
@@ -233,13 +240,17 @@ class User extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('user/user');
 		
 		$this->load->library('form_validation');
@@ -317,12 +328,12 @@ class User extends CI_Controller
 		
 		$data['user_id'] = $user_id;
 
-		
 		$data['error'] = validation_errors();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
