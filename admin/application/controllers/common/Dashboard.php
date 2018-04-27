@@ -1,23 +1,19 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Dashboard extends MX_Controller  {
-	
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('common/dashboard');		
-	}
-	
+class Dashboard extends MX_Controller  
+{	
 	public function index() 
 	{	
 		$this->load->module('header');
 		$this->load->module('footer');
+		
+				$this->load->module('sale_income');
+
 
 		$this->load->library('currency');
 		$this->load->library('datetimer');		
+		
+		$this->lang->load('common/dashboard');		
 		
 		// -------------------------------------------- sale income --------------------------------------------
 		
@@ -314,6 +310,9 @@ class Dashboard extends MX_Controller  {
 		
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
+		
+		Modules::run('module/sale_income/index');
+
 		
 		$this->load->view('common/dashboard', $data);
 	}

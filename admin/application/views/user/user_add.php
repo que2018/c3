@@ -60,12 +60,12 @@
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_password'); ?></label>
-			<div class="col-sm-10"><input type="text" name="password" value="<?php echo $password; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="password" value="<?php echo $password; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_confirm'); ?></label>
-			<div class="col-sm-10"><input type="text" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">

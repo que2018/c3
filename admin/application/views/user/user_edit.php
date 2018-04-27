@@ -21,7 +21,7 @@
     <?php } ?>
 	<div class="ibox">
 	  <div class="ibox-content">
-		<form method="post" action="<?php echo base_url(); ?>user/user/edit?id=<?php echo $id; ?>" class="form-horizontal">
+		<form method="post" action="<?php echo base_url(); ?>user/user/edit?user_id=<?php echo $user_id; ?>" class="form-horizontal">
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_username'); ?></label>
 			<div class="col-sm-10"><input type="text" name="username" value="<?php echo $username; ?>" class="form-control"></div>
@@ -60,12 +60,12 @@
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_password'); ?></label>
-			<div class="col-sm-10"><input type="text" name="password" value="<?php echo $password; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="password" value="<?php echo $password; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_confirm'); ?></label>
-			<div class="col-sm-10"><input type="text" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
