@@ -179,6 +179,8 @@ class User extends MX_Controller
 		$data['filter_username']    = $filter_username;
 		$data['filter_group_name']  = $filter_group_name;
 		
+		$this->header->set_title($this->lang->line('text_user'));
+		
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
