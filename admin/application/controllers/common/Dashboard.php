@@ -35,32 +35,10 @@ class Dashboard extends MX_Controller
 	
 		$data['total_alert'] = Modules::run('module/total_alert/index');
 		
-		// ----------------------------------------- recent activities ------------------------------------------
-		
-		$data['recent_activity_logs'] = array();
-		
-		$filter_data = array(
-			'start'      => 0,
-			'limit'      => $this->config->item('config_dashboard_activity_limit'),
-			'sort'       => 'activity_log.date_added',
-			'order'      => 'DESC'
-		);
-		
-		$activity_logs = $this->activity_log_model->get_activity_logs($filter_data);
-		
-		foreach($activity_logs as $activity_log) 
-		{	
-			if($activity_log['user'])
-				$user = $activity_log['user'];
-			else 
-				$user = $this->lang->line('text_a_user');
-		
-			$data['recent_activity_logs'][] = array(
-				'user'        => $user,
-				'description' => $activity_log['description'],
-				'date_added'  => $activity_log['date_added']
-			);
-		}
+		//recent activity
+		$this->load->module('recent_activity');
+	
+		$data['recent_activity'] = Modules::run('module/recent_activity/index');
 		
 		// ------------------------------------------ recent sales ---------------------------------------------
 		
