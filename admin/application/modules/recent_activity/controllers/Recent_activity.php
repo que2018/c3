@@ -5,7 +5,7 @@ class Recent_activity extends MX_Controller
 {
 	public function index()
 	{
-		$this->load->model('recent_activity_model');
+		$this->load->model('setting/activity_log_model');
 		
 		$data['recent_activity_logs'] = array();
 		
@@ -16,7 +16,7 @@ class Recent_activity extends MX_Controller
 			'order'      => 'DESC'
 		);
 		
-		$activity_logs = $this->recent_activity_model->get_activity_logs($filter_data);
+		$activity_logs = $this->activity_log_model->get_activity_logs($filter_data);
 		
 		if($activity_logs)
 		{

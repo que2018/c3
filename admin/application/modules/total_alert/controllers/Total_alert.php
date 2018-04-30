@@ -5,11 +5,12 @@ class Total_alert extends MX_Controller
 {
 	public function index()
 	{
-		$this->load->model('total_alert_model');
+		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/inventory_model');
 		
 		$data['alert_quantity'] = 0;
 		
-		$products = $this->total_alert_model->get_all_products();
+		$products = $this->product_model->get_products();
 		
 		if($products)
 		{
@@ -18,7 +19,7 @@ class Total_alert extends MX_Controller
 				$product_id = $product['id'];
 				$alert_quantity = $product['alert_quantity'];
 				
-				$quantity = $this->total_alert_model->get_product_quantity($product_id);
+				$quantity = $this->inventory_model->get_product_quantity($product_id);
 
 				if($quantity < $alert_quantity)
 				{

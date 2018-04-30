@@ -5,6 +5,8 @@ class Header extends MX_Controller
 {
 	private $title = '';
 	
+	private $styles = array();
+	
 	private $scripts = array();
 	
 	public function index()
@@ -15,6 +17,8 @@ class Header extends MX_Controller
 		
 		$data['title'] = $this->title;
 		
+		$data['styles'] = $this->styles;
+		
 		$data['scripts'] = $this->scripts;
 		
 		$this->load->view('header', $data);
@@ -23,5 +27,15 @@ class Header extends MX_Controller
 	public function set_title($title)
 	{
 		$this->title = $title;
+	}
+	
+	public function add_style($style)
+	{
+		$this->styles[] = $style;
+	}
+	
+	public function add_script($script)
+	{
+		$this->scripts[] = $script;
 	}
 }

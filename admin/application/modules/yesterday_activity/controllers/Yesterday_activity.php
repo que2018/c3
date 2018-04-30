@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Activity extends MX_Controller 
+class Yesterday_activity extends MX_Controller 
 {
 	public function index()
 	{
 		$this->load->library('datetimer');		
 
-		$this->load->model('activity_model');
+		$this->load->model('setting/activity_log_model');
 		
 		$yesterday_datetime = $this->datetimer->yesterday_datetime();
 		
@@ -15,8 +15,8 @@ class Activity extends MX_Controller
 			'filter_date_added' => $yesterday_datetime
 		);
 		
-		$data['total_activity'] = $this->activity_model->get_total_activity($filter_data);
+		$data['total_activity'] = $this->activity_log_model->get_total_activity($filter_data); 
 		
-		$this->load->view('activity', $data);
+		$this->load->view('yesterday_activity', $data);
 	}
 }
