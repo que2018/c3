@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
+$lang['text_checkin'] 	  	        			 = '入库';
 $lang['text_title'] 	  	        			 = '入库列表';
 $lang['text_search'] 	  	        			 = '搜索';
 $lang['text_checkin'] 	  	        			 = '入库';

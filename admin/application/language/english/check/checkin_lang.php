@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
+$lang['text_checkin'] 	  	        			 = 'Checkin';
 $lang['text_title'] 	  	        			 = 'Checkin List';
 $lang['text_search'] 	  	        			 = 'Search';
 $lang['text_checkin'] 	  	        			 = 'Checkin';
