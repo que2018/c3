@@ -7,6 +7,7 @@ $lang['text_search'] 	  	        			 = '搜索';
 $lang['text_checkin'] 	  	        			 = '入库';
 $lang['text_location'] 	  	    				 = '库位';
 $lang['text_status'] 	  	    				 = '状态';
+$lang['text_product'] 	  	    				 = '产品';
 $lang['text_tracking'] 	  	    				 = '追踪号';
 $lang['text_add'] 	  	        	 	  	     = '增加入库';
 $lang['text_edit'] 	  	        	 	  		 = '编辑入库';

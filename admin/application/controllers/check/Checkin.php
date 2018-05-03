@@ -305,6 +305,8 @@ class Checkin extends MX_Controller
 		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
@@ -402,6 +404,8 @@ class Checkin extends MX_Controller
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
