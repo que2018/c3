@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/user/user_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -8,7 +9,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_user'); ?></strong></li>
 	</ol>
   </div>
-  <a href="<?php echo base_url(); ?>user/user/add" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>user/user/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
@@ -52,8 +55,8 @@
 					  <td><?php echo $user['username']; ?></td>
 					  <td><?php echo $user['group_name']; ?></td>
 					  <td style="text-align: center">
-					    <a href="<?php echo base_url(); ?>user/user/edit?id=<?php echo $user['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $user['id']; ?>"><i class="fa fa-trash"></i></button>
+					    <a href="<?php echo base_url(); ?>user/user/edit?user_id=<?php echo $user['user_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+						<button class="btn btn-danger btn-delete" data="<?php echo $user['user_id']; ?>"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -78,14 +81,14 @@ $(document).ready(function() {
 	$('.btn-delete').click(function() {
 		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 			handler = $(this);
-			id = $(this).attr('data');
+			user_id = $(this).attr('data');
 			
 			$.ajax({
-				url: '<?php echo base_url(); ?>user/user/delete?id=' + id,
+				url: '<?php echo base_url(); ?>user/user/delete?user_id=' + user_id,
 				cache: false,
 				contentType: false,
 				processData: false,
-				dataType: "json",
+				dataType: 'json',
 				beforeSend: function() {
 					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 				},
@@ -110,5 +113,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>
+
 		
 		

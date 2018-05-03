@@ -2,7 +2,8 @@
 1. quickbook integration
 2. location fee
 3. redis faster loading
-4. HMVC
+4. HMVC(done)
 5. transaction删除没有提示
 6. filter not working after relist
 7. success auto remove
+8. 图表(视觉化)

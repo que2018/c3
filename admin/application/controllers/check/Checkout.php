@@ -1,15 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkout extends CI_Controller {
-
+class Checkout extends MX_Controller 
+{
 	public function index()
-	{		
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('check/checkout');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkout'));
+	
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkout_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -285,10 +299,15 @@ class Checkout extends CI_Controller {
 	
 	public function add()
 	{
-		$this->lang->load('check/checkout');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('check/checkout');
 		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
@@ -297,6 +316,18 @@ class Checkout extends CI_Controller {
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_edit.css');	
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+							
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkout_add'));
 
 		$this->form_validation->set_rules('sale_id', $this->lang->line('text_sale_id'), 'callback_validate_sale');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
@@ -483,17 +514,23 @@ class Checkout extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkout_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
-		$this->lang->load('check/checkout');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('check/checkout');
 		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
@@ -502,6 +539,18 @@ class Checkout extends CI_Controller {
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_edit.css');	
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+							
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkout_edit'));
 		
 		$checkout_id = $this->input->get('checkout_id');
 		
@@ -792,9 +841,10 @@ class Checkout extends CI_Controller {
 			
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkout_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

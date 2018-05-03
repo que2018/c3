@@ -24,7 +24,7 @@ class Product_download extends CI_Controller
 		$this->phpexcel->getActiveSheet()->setCellValue('C1', $this->lang->line('column_asin'));
 		$this->phpexcel->getActiveSheet()->setCellValue('D1', $this->lang->line('column_sku'));
 
-		$products = $this->product_model->get_all_products();	
+		$products = $this->product_model->get_products();	
 		
 		$row = 2;
 		

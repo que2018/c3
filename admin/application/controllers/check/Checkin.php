@@ -1,15 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkin extends CI_Controller 
+class Checkin extends MX_Controller 
 {
 	public function index()
-	{		
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('check/checkin');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkin'));
+
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -21,8 +35,6 @@ class Checkin extends CI_Controller
 	
 	protected function get_list()
 	{
-		$this->lang->load('check/checkin');
-		
 		$this->load->model('check/checkin_model');
 	
 		$data['success'] = $this->session->flashdata('success');
@@ -109,18 +121,19 @@ class Checkin extends CI_Controller
 		}
 		
 		$filter_data = array(
-			'filter_id'             => $filter_id,
-			'filter_tracking'       => $filter_tracking,
-			'filter_note'           => $filter_note,
-			'filter_status'         => $filter_status,			
-			'filter_date_added'     => $filter_date_added,
-			'sort'                  => $sort,
-			'order'                 => $order,
-			'start'                 => ($page - 1) * $limit,
-			'limit'                 => $limit
+			'filter_id'           => $filter_id,
+			'filter_tracking'     => $filter_tracking,
+			'filter_note'         => $filter_note,
+			'filter_status'       => $filter_status,			
+			'filter_date_added'   => $filter_date_added,
+			'sort'                => $sort,
+			'order'               => $order,
+			'start'               => ($page - 1) * $limit,
+			'limit'               => $limit
 		);
 		
 		$checkins = $this->checkin_model->get_checkins($filter_data);	
+		
 		$checkin_total = $this->checkin_model->get_checkin_total($filter_data);
 		
 		$data['checkins'] = array();
@@ -243,11 +256,11 @@ class Checkin extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_id']            = base_url() . 'check/checkin?sort=id' . $url;
-		$data['sort_tracking']  	= base_url() . 'check/checkin?sort=tracking' . $url;
-		$data['sort_note']          = base_url() . 'check/checkin?sort=note' . $url;
-		$data['sort_status']        = base_url() . 'check/checkin?sort=status' . $url;
-		$data['sort_date_added']    = base_url() . 'check/checkin?sort=date_added' . $url;
+		$data['sort_id']           = base_url() . 'check/checkin?sort=id' . $url;
+		$data['sort_tracking']     = base_url() . 'check/checkin?sort=tracking' . $url;
+		$data['sort_note']         = base_url() . 'check/checkin?sort=note' . $url;
+		$data['sort_status']       = base_url() . 'check/checkin?sort=status' . $url;
+		$data['sort_date_added']   = base_url() . 'check/checkin?sort=date_added' . $url;
 	
 		$url = '';
 		
@@ -284,18 +297,36 @@ class Checkin extends CI_Controller
 	
 	public function add()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('check/checkin');
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
-		$this->load->model('catalog/product_model');		
+		$this->load->model('catalog/product_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_checkin_add'));
 
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
-		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
+		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
 
 		$data = array(
@@ -358,26 +389,45 @@ class Checkin extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('check/checkin');
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
 		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
-		$this->load->model('catalog/product_model');		
+		$this->load->model('catalog/product_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_checkin_edit'));	
 		
 		$checkin_id = $this->input->get('checkin_id');
 		
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
-		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
+		//$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
 		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
 
@@ -486,13 +536,14 @@ class Checkin extends CI_Controller
 			}
 		}
 			
+		$data['checkin_id'] = $checkin_id;		
+			
 		$data['error'] = validation_errors();	
-						
-		$data['checkin_id'] = $this->input->get('checkin_id');	
-									
-		$this->load->view('common/header');
+												
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

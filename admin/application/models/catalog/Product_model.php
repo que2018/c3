@@ -364,7 +364,7 @@ class Product_model extends CI_Model
 		}
 	}		
 		
-	public function get_products($data) 
+	public function get_products($data = array()) 
 	{					
 		$this->db->select("product.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('product');
@@ -433,21 +433,7 @@ class Product_model extends CI_Model
 		}
 	}
 	
-	public function get_all_products() 
-	{
-		$q = $this->db->get('product');
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		else 
-		{
-			return false;
-		}
-	}
-	
-	function get_product_total($data)
+	public function get_product_total($data = array())
 	{
 		$this->db->select("COUNT(product.id) AS total", false);
 		$this->db->from('product');
@@ -480,7 +466,7 @@ class Product_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_products_volume($products)
+	public function get_products_volume($products)
 	{
 		$this->load->model('setting/length_class_model');
 			
@@ -545,7 +531,7 @@ class Product_model extends CI_Model
 		return $volume;
 	}
 	
-	function get_products_weight($products)
+	public function get_products_weight($products)
 	{
 		$this->load->model('setting/weight_class_model');
 		
@@ -568,7 +554,7 @@ class Product_model extends CI_Model
 		return $weight;
 	}
 	
-	function update_product_value($id, $data) 
+	public function update_product_value($id, $data) 
 	{
 		$product_data[$data['field']] = $data['value'];
 		

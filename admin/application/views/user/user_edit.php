@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/user/user_edit.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -7,9 +8,9 @@
 	  <li><a href="<?php echo base_url(); ?>user/user"><?php echo $this->lang->line('text_user'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_user_edit'); ?></strong></li>
 	</ol>
-	<div class="button-group">
-      <button class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-      <a href="<?php echo base_url(); ?>user/user" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+	<div class="button-group tooltip-demo">
+      <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>"onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+      <a href="<?php echo base_url(); ?>user/user" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
     </div>
   </div>
 </div>
@@ -21,7 +22,7 @@
     <?php } ?>
 	<div class="ibox">
 	  <div class="ibox-content">
-		<form method="post" action="<?php echo base_url(); ?>user/user/edit?id=<?php echo $id; ?>" class="form-horizontal">
+		<form method="post" action="<?php echo base_url(); ?>user/user/edit?user_id=<?php echo $user_id; ?>" class="form-horizontal">
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_username'); ?></label>
 			<div class="col-sm-10"><input type="text" name="username" value="<?php echo $username; ?>" class="form-control"></div>
@@ -60,12 +61,12 @@
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_password'); ?></label>
-			<div class="col-sm-10"><input type="text" name="password" value="<?php echo $password; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="password" value="<?php echo $password; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_confirm'); ?></label>
-			<div class="col-sm-10"><input type="text" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
+			<div class="col-sm-10"><input type="password" name="confirm" value="<?php echo $confirm; ?>" class="form-control"></div>
 		  </div>
 		  <div class="hr-line-dashed"></div>
 		  <div class="form-group">
@@ -87,5 +88,7 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
+
 		
 		

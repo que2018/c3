@@ -276,9 +276,9 @@ class Client_model extends CI_Model
 		}
 	}
 	
-	function get_client_total($data)
+	public function get_client_total($data = array())
 	{
-		$this->db->select("COUNT(id) AS total, CONCAT(firstname, ' ', lastname) AS name", false);
+		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('client');
 		
 		if(!empty($data['filter_name'])) 

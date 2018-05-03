@@ -279,7 +279,7 @@ class Recharge extends CI_Controller {
 
 		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');
 		$this->form_validation->set_rules('payment_method', $this->lang->line('text_payment_method'), 'required');
-		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
+		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		
 		$data = array(
@@ -347,7 +347,7 @@ class Recharge extends CI_Controller {
 		$recharge_id = $this->input->get('recharge_id');
 		
 		$this->form_validation->set_rules('payment_method', $this->lang->line('text_payment_method'), 'required');
-		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
+		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		
 		if($this->form_validation->run() == true)

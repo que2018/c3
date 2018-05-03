@@ -1,14 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class User_model extends CI_Model 
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
 	public function add_user($data)
 	{
+		$this->db->trans_begin();
+		
 		$salt = rand(0,1000);
 		
 		$user_data = array(	
@@ -23,10 +21,27 @@ class User_model extends CI_Model
 		);
 		
 		$this->db->insert('user', $user_data);
+		
+		$user_id = $this->db->insert_id();
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return $user_id;
+		}
 	}
 	
-	public function edit_user($id, $data)
+	public function edit_user($user_id, $data)
 	{
+		$this->db->trans_begin();
+		
 		$salt = rand(0,1000);
 		
 		$user_data = array(	
@@ -40,19 +55,27 @@ class User_model extends CI_Model
 			'status'	      => $data['status']
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $user_id);
 		
-		if($this->db->update('user', $user_data)) 
+		$this->db->update('user', $user_data);
+		
+		if($this->db->trans_status() === false) 
 		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
 			return true;
-		} 
-		
-		return false;
+		}
 	}
 	
-	public function get_user($id)
+	public function get_user($user_id)
 	{
-		$q = $this->db->get_where('user', array('id' => $id), 1); 
+		$q = $this->db->get_where('user', array('id' => $user_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -144,7 +167,7 @@ class User_model extends CI_Model
 		}
 	}
 	
-	function get_user_total($data)
+	public function get_user_total($data)
 	{
 		$this->db->select("COUNT(user.id) AS total", false);
 		$this->db->from('user');
@@ -167,9 +190,9 @@ class User_model extends CI_Model
 		return $result['total'];
 	}
 	
-	public function delete_user($id) 
+	public function delete_user($user_id) 
 	{
-		if($this->db->delete('user', array('id' => $id))) 
+		if($this->db->delete('user', array('id' => $user_id))) 
 		{
 			return true;
 		}

@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Client extends CI_Controller {
-
+class Client extends CI_Controller 
+{
 	function __construct()
 	{
 		parent::__construct();
@@ -12,10 +12,13 @@ class Client extends CI_Controller {
 		$this->load->model('client/client_model');
 	}
 	
-	function index()
+	public function index()
 	{
 		$this->load->library('currency');
-
+		
+		$this->lang->load('client/client');
+		
+		$this->load->model('client/client_model');
 		$this->load->model('finance/balance_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/inventory_model');
@@ -282,10 +285,14 @@ class Client extends CI_Controller {
 	
 	public function add() 
 	{
+		$this->lang->load('client/client');
+		
 		$this->load->library('datetimer');
 		$this->load->library('form_validation');
-	
-		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|callback_validate_add_email');
+		
+		$this->load->model('client/client_model');
+
+		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|regex_match[/^\S+@\S+\.\S+$/]|callback_validate_add_email');
 		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');		
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
@@ -321,13 +328,16 @@ class Client extends CI_Controller {
 	
 	public function edit() 
 	{		
-		$this->load->library('datetimer');
+		$this->lang->load('client/client');
 		
+		$this->load->library('datetimer');
 		$this->load->library('form_validation');
+		
+		$this->load->model('client/client_model');
 	
 		$client_id = $this->input->get('client_id');
 	
-		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|callback_validate_edit_email');
+		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|regex_match[/^\S+@\S+\.\S+$/]|callback_validate_edit_email');
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
 		$this->form_validation->set_rules('location', $this->lang->line('text_location'), 'callback_validate_client_location');

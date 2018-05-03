@@ -1,19 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class User extends CI_Controller {
-
-	function __construct()
+class User extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('user/user');
 		
 		$this->load->model('user/user_model');
-	}
-	
-	function index()
-	{
+		
 		$data['success'] = $this->session->flashdata('success');
 		                   	
 		if($this->input->get('filter_username'))
@@ -80,6 +78,7 @@ class User extends CI_Controller {
 		);
 		
 		$users = $this->user_model->get_users($filter_data);	
+		
 		$user_total = $this->user_model->get_user_total($filter_data);
 		
 		$data['users'] = array();
@@ -89,7 +88,7 @@ class User extends CI_Controller {
 			foreach($users as $user)
 			{	
 				$data['users'][] = array(
-					'id'         => $user['id'],
+					'user_id'    => $user['id'],
 					'username'   => $user['username'],
 					'group_name' => $user['group_name']
 				);
@@ -126,37 +125,10 @@ class User extends CI_Controller {
 		$this->pagination->total  = $user_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'user/user?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'user/user?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($user_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($user_total - $limit)) ? $user_total : ((($page - 1) * $limit) + $limit), $user_total, ceil($user_total / $limit));
 
-		$url = '';
-		
-		if($this->input->get('filter_username')) 
-		{
-			$url .= '&filter_username=' . $this->input->get('filter_username');
-		}
-		
-		if($this->input->get('filter_group_name')) 
-		{
-			$url .= '&filter_group_name=' . $this->input->get('filter_group_name');
-		}
-		
-		if($this->input->get('sort')) 
-		{
-			$url .= '&sort=' . $this->input->get('sort');
-		}
-		
-		if($this->input->get('order')) 
-		{
-			$url .= '&order=' . $this->input->get('order');
-		}
-		
-		$data['limit_10']  = base_url().'user/user?limit=10'.$url;
-		$data['limit_15']  = base_url().'user/user?limit=15'.$url;
-		$data['limit_50']  = base_url().'user/user?limit=50'.$url;
-		$data['limit_100'] = base_url().'user/user?limit=100'.$url;
-	
 		$url = '';
 		
 		if($this->input->get('filter_username')) 
@@ -183,8 +155,8 @@ class User extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_username']    = base_url().'user/user?sort=user.username' . $url;
-		$data['sort_group_name']  = base_url().'user/user?sort=user.group_name' . $url;
+		$data['sort_username']    = base_url() . 'user/user?sort=user.username' . $url;
+		$data['sort_group_name']  = base_url() . 'user/user?sort=user.group_name' . $url;
 
 		$url = '';
 		
@@ -198,7 +170,7 @@ class User extends CI_Controller {
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		$data['filter_url'] = base_url().'user/user'.$url;
+		$data['filter_url'] = base_url() . 'user/user' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -207,15 +179,24 @@ class User extends CI_Controller {
 		$data['filter_username']    = $filter_username;
 		$data['filter_group_name']  = $filter_group_name;
 		
-		$this->load->view('common/header');
+		$this->header->set_title($this->lang->line('text_user'));
+		
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->lang->load('user/user');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('user/user_model');
 		$this->load->model('user/user_group_model');
 	
 		$this->form_validation->set_rules('username', $this->lang->line('text_username'), 'required');
@@ -261,18 +242,25 @@ class User extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->lang->load('user/user');
+		
 		$this->load->library('form_validation');
 		
+		$this->load->model('user/user_model');
 		$this->load->model('user/user_group_model');
 		
-		$id = $this->input->get('id');
+		$user_id = $this->input->get('user_id');
 		
 		$this->form_validation->set_rules('username', $this->lang->line('text_username'), 'required');
 		$this->form_validation->set_rules('user_group_id', $this->lang->line('text_user_group'), 'required');	
@@ -296,7 +284,7 @@ class User extends CI_Controller {
 				'status'         => $this->input->post('status')
 			);
 			
-			$this->user_model->edit_user($id, $data);
+			$this->user_model->edit_user($user_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_user_edit_success'));
 			
@@ -305,7 +293,6 @@ class User extends CI_Controller {
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['id']             = $this->input->get('id');
 			$data['username']      	= $this->input->post('username');
 			$data['firstname']      = $this->input->post('firstname');
 			$data['lastname']      	= $this->input->post('lastname');
@@ -317,9 +304,8 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			$user = $this->user_model->get_user($id);
+			$user = $this->user_model->get_user($user_id);
 			
-			$data['id']             = $user['id'];
 			$data['username']      	= $user['username'];
 			$data['firstname']      = $user['firstname'];
 			$data['lastname']      	= $user['lastname'];
@@ -342,23 +328,26 @@ class User extends CI_Controller {
 			);
 		}
 		
+		$data['user_id'] = $user_id;
+
 		$data['error'] = validation_errors();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('user/user_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
 	{		
-		if($this->input->get('id'))
+		if($this->input->get('user_id'))
 		{
-			$id = $this->input->get('id');
+			$user_id = $this->input->get('user_id');
 			
-			$this->user_model->delete_user($id);
+			$result = $this->user_model->delete_user($user_id);
 
 			$outdata = array(
-				'success' => true
+				'success' => ($result)?true:false
 			);
 
 			echo json_encode($outdata);

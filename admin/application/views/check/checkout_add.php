@@ -1,11 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkout_edit.css" rel="stylesheet"> 
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/jasny/jasny-bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/summernote/summernote.min.js"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_checkout_add'); ?></h2>
@@ -522,3 +515,4 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>
