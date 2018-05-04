@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/catalog/product_edit.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_product_edit'); ?></h2>
@@ -292,5 +292,6 @@ function add_product_fee() {
 	product_fee_row++;
 }
 </script>
+<?php echo $footer; ?>
 		
 		

@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <link href="<?php echo base_url(); ?>assets/css/app/catalog/product_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
@@ -19,7 +20,7 @@
 	  <?php if($success) { ?>
 	  <div class="alert alert-success"><?php echo $success; ?><button type="button" class="close" data-dismiss="alert">&times;</button></div>
 	  <?php } ?>
-	  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
+	  <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_product_list_description'); ?></h5>
@@ -156,7 +157,7 @@
 					  <td><?php echo $product['quantity']; ?></td>
 					  <td class="text-center">
 						<a href="<?php echo base_url().'catalog/product/edit?product_id='.$product['product_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $product['product_id']; ?>"><i class="fa fa-trash"></i></button>
+						<button class="btn btn-danger btn-delete" onclick="delete_product(this, <?php echo $product['product_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
 					  <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 					</tr>
@@ -207,48 +208,46 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			product_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>catalog/product/delete?product_id=' + product_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				complete: function() {
-					handler.html('<i class="fa fa-trash"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-					{
-						handler.closest('tr').remove();
-					} 
-					else 
-					{
-						html = '';
-						
-						$.each(json.msgs, function(index, msg) {
-							html += msg + '<br>';
-						});
-						
-						$('#alert-error span').html(html);
-						$('#alert-error').show();
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_product(handle, product_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>catalog/product/delete?product_id=' + product_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					html = '';
+					
+					$.each(json.messages, function(i, message) {				
+						html += message + '<br>';
+					});
+					
+					$('#alert-error span').html(html);
+					$('#alert-error').show();
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
 <script>
 function to_excel() {
@@ -312,13 +311,14 @@ function update_field(product_id, field, handle) {
 
 </script>
 <script>
-$(document).ready(function() {
-	$('td:first-child').hover(function() {
+$(document).on({
+	mouseenter: function () {
 		$(this).find('.detail').show();
-	}, function() {
-		$(this).find('.detail').hide();
-	});
-});
+	},
+	mouseleave: function () {
+	   $(this).find('.detail').hide();
+	}
+}, 'td:first-child');
 </script>
-		
+<?php echo $footer; ?>		
 		

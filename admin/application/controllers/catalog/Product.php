@@ -1,12 +1,38 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Product extends CI_Controller 
+class Product extends MX_Controller 
 {
 	public function index()
-	{
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('catalog/product');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/catalog/product_list.css');
+	
+		$this->header->set_title($this->lang->line('text_product_list'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('catalog/product_list', $data);
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('catalog/product_list_table', $data);
+	}
+	
+	protected function get_list()
+	{	
+		$this->lang->load('catalog/product');
+	
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/inventory_model');
@@ -212,11 +238,11 @@ class Product extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_name']       = base_url() . 'catalog/product?sort=product.name' . $url;		
-		$data['sort_client']     = base_url() . 'catalog/product?sort=client.id' . $url;
-		$data['sort_upc']        = base_url() . 'catalog/product?&sort=product.upc' . $url;
-		$data['sort_sku']        = base_url() . 'catalog/product?sort=product.sku' . $url;
-		$data['sort_quantity']   = base_url() . 'catalog/product?sort=product.quantity' . $url;
+		$data['sort_name']     = base_url() . 'catalog/product?sort=product.name' . $url;		
+		$data['sort_client']   = base_url() . 'catalog/product?sort=client.id' . $url;
+		$data['sort_upc']      = base_url() . 'catalog/product?&sort=product.upc' . $url;
+		$data['sort_sku']      = base_url() . 'catalog/product?sort=product.sku' . $url;
+		$data['sort_quantity'] = base_url() . 'catalog/product?sort=product.quantity' . $url;
 
 		$url = '';
 		
@@ -235,6 +261,8 @@ class Product extends CI_Controller
 		}
 		
 		$data['filter_url'] = base_url() . 'catalog/product'  .$url;
+	
+		$data['reload_url'] = base_url() . 'catalog/product/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -264,22 +292,29 @@ class Product extends CI_Controller
 		//edit permission
 		$data['editable'] = $this->auth->has_permission('modify', 'catalog');
 		
-		$this->load->view('common/header');
-		$this->load->view('catalog/product_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('catalog/product');
 		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/catalog/product_add.css');
+				
+		$this->header->set_title($this->lang->line('text_product_add'));
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_edit_sku');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -408,16 +443,22 @@ class Product extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('catalog/product_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('catalog/product');
 
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
@@ -427,6 +468,10 @@ class Product extends CI_Controller
 		$this->load->model('setting/weight_class_model');
 	
 		$product_id = $this->input->get('product_id');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/catalog/product_edit.css');
+				
+		$this->header->set_title($this->lang->line('text_product_edit'));
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required|callback_validate_edit_sku');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -620,9 +665,10 @@ class Product extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('catalog/product_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
