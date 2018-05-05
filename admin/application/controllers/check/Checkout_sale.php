@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkout_sale extends CI_Controller 
+class Checkout_sale extends MX_Controller 
 {
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('inventory/inventory_model');
+		
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_sale.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		
+		$this->header->set_title($this->lang->line('text_checkout_order'));
 		
 		if($this->input->get('sale_id'))
 		{
@@ -65,15 +75,17 @@ class Checkout_sale extends CI_Controller
 				);
 			}
 
-			$this->load->view('common/header');
+			$data['header'] = Modules::run('module/header/index');
+			$data['footer'] = Modules::run('module/footer/index');
+			
 			$this->load->view('check/checkout_sale', $data);
-			$this->load->view('common/footer');
 		}
 		else
 		{
-			$this->load->view('common/header');
-			$this->load->view('check/checkout_sale_empty');
-			$this->load->view('common/footer');	
+			$data['header'] = Modules::run('module/header/index');
+			$data['footer'] = Modules::run('module/footer/index');
+			
+			$this->load->view('check/checkout_sale_empty', $data);
 		}
 	}
 

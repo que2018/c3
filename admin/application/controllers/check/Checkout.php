@@ -38,9 +38,7 @@ class Checkout extends MX_Controller
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
-	
-		$data['success'] = $this->session->flashdata('success');
-		
+			
 		if($this->input->get('filter_id'))
 		{
 			$filter_id = $this->input->get('filter_id');

@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Import extends CI_Controller {
-
+class Import extends CI_Controller 
+{
 	function __construct()
 	{
 		parent::__construct();
@@ -18,7 +18,7 @@ class Import extends CI_Controller {
 			
 		$data['stores'] = array();
 		
-		$stores = $this->store_model->get_all_stores();
+		$stores = $this->store_model->get_stores();
 	
 		if($stores)
 		{

@@ -89,7 +89,6 @@
 			<a><i class="fa fa-university"></i><span class="nav-label"><?php echo $this->lang->line('menu_store'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>store/store"><?php echo $this->lang->line('menu_store'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>store/employee"><?php echo $this->lang->line('menu_employee'); ?></a></li>
 			  <li><a href="#"><?php echo $this->lang->line('menu_store_sync'); ?></a>     
 				<ul class="nav nav-third-level">
 				  <li><a href="<?php echo base_url(); ?>store/store_sale_sync"><?php echo $this->lang->line('menu_order_sync'); ?></a></li>

@@ -21,6 +21,8 @@ class Header extends MX_Controller
 		
 		$data['scripts'] = $this->scripts;
 		
+		$data['success'] = $this->session->flashdata('success');
+		
 		$this->load->view('header', $data);
 	}
 	

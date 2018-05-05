@@ -1,6 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkout_sale.css" rel="stylesheet"> 
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_checkout_order'); ?></h2>
@@ -256,7 +254,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-
+<?php echo $footer; ?>
 
 
 
