@@ -38,9 +38,7 @@ class Product extends MX_Controller
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		
-		$data['success'] = $this->session->flashdata('success');
-		
+				
 		if($this->input->get('filter_client_id'))
 		{
 			$filter_client_id = $this->input->get('filter_client_id');

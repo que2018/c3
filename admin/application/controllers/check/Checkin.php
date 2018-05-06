@@ -36,9 +36,7 @@ class Checkin extends MX_Controller
 	protected function get_list()
 	{
 		$this->load->model('check/checkin_model');
-	
-		$data['success'] = $this->session->flashdata('success');
-		
+			
 		if($this->input->get('filter_id'))
 		{
 			$filter_id = $this->input->get('filter_id');

@@ -3,6 +3,10 @@
 // Text
 $lang['text_print_label'] 	  	                = '打印标签';
 $lang['text_sale_id'] 	  	                    = '订单 ID';
+$lang['text_all_orders'] 	  	                = '所有订单';
+$lang['text_unsolved_order'] 	  	            = '未处理订单';
+$lang['text_sale_add'] 	  	                	= '添加订单';
+$lang['text_sale_edit'] 	  	               	= '编辑订单';
 $lang['text_store_sale_id'] 	  	            = '店铺订单 ID';
 $lang['text_tracking'] 	  	                    = '追踪号';
 $lang['text_search'] 	  	                    = '搜索';

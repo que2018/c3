@@ -3,6 +3,10 @@
 // Text
 $lang['text_print_label'] 	  	                = 'print label';
 $lang['text_sale_id'] 	  	                    = 'Order ID';
+$lang['text_all_orders'] 	  	                = 'All Orders';
+$lang['text_unsolved_order'] 	  	            = 'Unsolved Order';
+$lang['text_sale_add'] 	  	                	= 'Add Order';
+$lang['text_sale_edit'] 	  	               	= 'Edit Order';
 $lang['text_store_sale_id'] 	  	            = 'Store Order ID';
 $lang['text_tracking'] 	  	                    = 'Tracking';
 $lang['text_search'] 	  	                    = 'Search';

@@ -138,7 +138,10 @@ input:focus {
 .table-shipping {
 	margin-top: 15px;
 }
-
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 
 

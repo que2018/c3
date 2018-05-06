@@ -1,15 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Sale_unsolved extends CI_Controller 
+class Sale_unsolved extends MX_Controller 
 {
 	public function index()
-	{		
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('sale/sale');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+	
+		$this->header->set_title($this->lang->line('text_unsolved_order'));
+	
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');	
+		
 		$this->load->view('sale/sale_unsolved_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -29,9 +43,7 @@ class Sale_unsolved extends CI_Controller
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		
-		$data['success'] = $this->session->flashdata('success');
-	
+			
 		if($this->input->get('filter_sale_id'))
 		{
 			$filter_sale_id = $this->input->get('filter_sale_id');
