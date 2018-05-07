@@ -324,7 +324,7 @@ class Checkin extends MX_Controller
 
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
-		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'required');
+		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
 		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
 
 		$data = array(
