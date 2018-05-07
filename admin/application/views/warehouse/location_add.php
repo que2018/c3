@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/warehouse/location_add.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_location_add'); ?></h2>
@@ -86,6 +86,6 @@ function add_location_client() {
 	location_client_row++;
 }
 </script>
-		
+<?php echo $footer; ?>			
 		
 		

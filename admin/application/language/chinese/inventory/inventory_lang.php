@@ -5,6 +5,7 @@ $lang['text_inventory'] 	  	           = 'Inventory';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = 'product';
 $lang['text_location'] 	  	         	   = 'location';
+$lang['text_inventory_list'] 	  	       = '库存列表';
 $lang['text_add'] 	  	         	   	   = '添加库存';
 $lang['text_edit'] 	  	         	   	   = '编辑库存';
 $lang['text_delete'] 	  	         	   = '删除库存';

@@ -81,5 +81,9 @@ a:focus, a:hover {
 .table-non-batch td {
 	line-height: 34px !important;
 }
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 

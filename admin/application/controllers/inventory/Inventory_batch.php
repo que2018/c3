@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory_batch extends CI_Controller 
+class Inventory_batch extends MX_Controller 
 {
 	public function index()
-	{		
+	{
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('inventory/inventory');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_list.css');
+	
+		$this->header->set_title($this->lang->line('text_inventory_list'));
+	
 		$data = $this->get_list_batch();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/inventory_batch_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -396,15 +406,27 @@ class Inventory_batch extends CI_Controller
 	
 	public function add() 
 	{
-		$this->load->library('form_validation');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('inventory/inventory');
 		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+	
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
 		$this->load->model('inventory/inventory_model');
 
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_add.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+	
+		$this->header->set_title($this->lang->line('text_inventory_add'));
+		
 		$this->form_validation->set_rules('product_id', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('location_id', $this->lang->line('text_location'), 'required');
 		$this->form_validation->set_rules('batch', $this->lang->line('text_batch'), 'callback_validate_inventory_add_unique');
@@ -463,14 +485,20 @@ class Inventory_batch extends CI_Controller
 	
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/inventory_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('inventory/inventory');
 		
@@ -478,6 +506,13 @@ class Inventory_batch extends CI_Controller
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
 		$this->load->model('inventory/inventory_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+	
+		$this->header->set_title($this->lang->line('text_inventory_edit'));
 		
 		$inventory_id = $this->input->get('inventory_id');
 	
@@ -565,9 +600,10 @@ class Inventory_batch extends CI_Controller
 	
 		$data['error']  = validation_errors();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/inventory_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

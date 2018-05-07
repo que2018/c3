@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/inventory/inventory_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_inventory'); ?></h2>
@@ -17,9 +17,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_inventory_list_description'); ?></h5>
@@ -359,4 +356,5 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>	
 		

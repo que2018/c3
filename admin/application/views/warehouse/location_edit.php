@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <script src="<?php echo base_url(); ?>assets/js/plugins/barcode/jquery-barcode.js"></script>
 <link href="<?php echo base_url(); ?>assets/css/app/warehouse/location_edit.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -98,5 +99,5 @@ $(document).ready(function() {
 	$('#barcode').html('').show().barcode(value, btype, settings);	  
 });
 </script>
-		
+<?php echo $footer; ?>			
 		

@@ -1,5 +1,4 @@
 <?php echo $header; ?>
-<link href="<?php echo base_url(); ?>assets/css/app/catalog/product_list.css" rel="stylesheet"> 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_product_list'); ?></h2>

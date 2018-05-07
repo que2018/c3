@@ -1,23 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Location extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
+class Location extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('warehouse/location');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/location_list.css');
+	
+		$this->header->set_title($this->lang->line('text_location'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('warehouse/location_list', $data);
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('warehouse/location_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
 		$this->lang->load('warehouse/location');
 		
 		$this->load->model('warehouse/location_model');
-		
-		include('system/libraries/phpqrcode/qrlib.php');
-	}
-	
-	function index()
-	{
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+		            	
 		if($this->input->get('filter_name'))
 		{
 			$filter_name = $this->input->get('filter_name');
@@ -201,6 +218,8 @@ class Location extends CI_Controller {
 		
 		$data['filter_url'] = base_url() . 'warehouse/location' . $url;
 	
+		$data['reload_url'] = base_url() . 'warehouse/location/reload' . $url;
+	
 		$data['page']  = $page;
 	
 		$data['sort']  = $sort;
@@ -211,15 +230,26 @@ class Location extends CI_Controller {
 		$data['filter_code']       = $filter_code;
 		$data['filter_warehouse']  = $filter_warehouse;
 		
-		$this->load->view('common/header');
-		$this->load->view('warehouse/location_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
 	
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('warehouse/location');
+		
+		$this->load->model('warehouse/location_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/location_add.css');
+				
+		$this->header->set_title($this->lang->line('text_location_add'));
+		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required|callback_add_name_unique');
 		$this->form_validation->set_rules('code', $this->lang->line('text_code'), 'required|callback_add_code_unique');
 		$this->form_validation->set_rules('warehouse_id', $this->lang->line('text_warehouse'), 'required');
@@ -259,13 +289,31 @@ class Location extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('warehouse/location_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->load->library('form_validation');
+	
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('warehouse/location');
+		
+		$this->load->model('warehouse/location_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/location_edit.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/barcode/jquery-barcode.js');
+				
+		$this->header->set_title($this->lang->line('text_location_edit'));
+		
 		$location_id = $this->input->get('location_id');
 		
 		$this->load->library('form_validation');
@@ -327,13 +375,16 @@ class Location extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('warehouse/location_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
 	{
+		$this->load->model('warehouse/location_model');
+
 		$this->load->model('inventory/inventory_model');
 		
 		if($this->input->get('location_id'))
@@ -351,10 +402,10 @@ class Location extends CI_Controller {
 			}
 			else
 			{
-				$this->location_model->delete_location($location_id);
+				$result = $this->location_model->delete_location($location_id);
 
 				$outdata = array(
-					'success' => true
+					'success' => ($result)?true:false
 				);
 			}
 				
@@ -362,7 +413,7 @@ class Location extends CI_Controller {
 		}
 	}
 	
-	public function add_name_unique($name)
+	function add_name_unique($name)
 	{
 		$location = $this->location_model->get_location_by_name($name);
 		
@@ -378,7 +429,7 @@ class Location extends CI_Controller {
 		}
 	}
 	
-	public function add_code_unique($code)
+	function add_code_unique($code)
 	{
 		$location = $this->location_model->get_location_by_code($code);
 		
@@ -394,8 +445,7 @@ class Location extends CI_Controller {
 		}
 	}
 	
-	
-	public function edit_name_unique($name)
+	function edit_name_unique($name)
 	{
 		$location = $this->location_model->get_location_by_name($name);
 		
@@ -418,7 +468,7 @@ class Location extends CI_Controller {
 		}
 	}
 
-	public function edit_code_unique($code)
+	function edit_code_unique($code)
 	{
 		$location = $this->location_model->get_location_by_code($code);
 		

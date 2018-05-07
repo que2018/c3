@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory extends CI_Controller 
+class Inventory extends MX_Controller 
 {
 	public function index()
-	{		
+	{
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('inventory/inventory');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_list.css');
+	
+		$this->header->set_title($this->lang->line('text_inventory_list'));
+	
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/inventory_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
