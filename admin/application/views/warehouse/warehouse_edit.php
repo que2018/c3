@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/warehouse/warehouse_edit.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_warehouse_edit'); ?></h2>
@@ -21,7 +21,7 @@
     <?php } ?>
 	<div class="ibox">
 	  <div class="ibox-content">
-		<form method="post" action="<?php echo base_url(); ?>warehouse/warehouse/edit?id=<?php echo $id; ?>" class="form-horizontal">
+		<form method="post" action="<?php echo base_url(); ?>warehouse/warehouse/edit?warehouse_id=<?php echo $warehouse_id; ?>" class="form-horizontal">
 		  <div class="form-group">
 			<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_name'); ?></label>
 			<div class="col-sm-10"><input type="text" name="name" value="<?php echo $name; ?>" class="form-control"></div>
@@ -56,5 +56,5 @@
     </div>
   </div>
 </div>
-		
+<?php echo $footer; ?>		
 		

@@ -59,7 +59,10 @@ input:focus {
 	border-radius: 2px;    
 	padding: 4px 5px;
 }
-
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 
 

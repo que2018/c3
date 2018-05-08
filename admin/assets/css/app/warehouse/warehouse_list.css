@@ -44,7 +44,10 @@ input:focus {
 .pagination {
 	margin: 0px;
 }
-
+.alert-success {
+    width: 220px;
+    margin: 0 auto;
+}
 
 
 

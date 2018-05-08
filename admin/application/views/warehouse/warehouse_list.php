@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/warehouse/warehouse_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_warehouse'); ?></h2>
@@ -15,9 +15,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -95,23 +92,12 @@
 					  <td><?php echo $warehouse['zipcode']; ?></td>
 					  <td style="text-align: center">
 					    <a href="<?php echo base_url(); ?>warehouse/warehouse/edit?warehouse_id=<?php echo $warehouse['warehouse_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-					  	<button class="btn btn-danger btn-delete" data="<?php echo $warehouse['warehouse_id']; ?>"><i class="fa fa-trash"></i></button>
+						<button class="btn btn-danger btn-delete" onclick="delete_warehouse(this, <?php echo $warehouse['warehouse_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
 				<?php } ?>
 			  </tbody>			  
-			  <tfoot>
-			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="name" placeholder="<?php echo $this->lang->line('column_name'); ?>" value="<?php echo $filter_name; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="street" placeholder="<?php echo $this->lang->line('column_street'); ?>" value="<?php echo $filter_street; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="city" placeholder="<?php echo $this->lang->line('column_city'); ?>" value="<?php echo $filter_city; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="state" placeholder="<?php echo $this->lang->line('column_state'); ?>" value="<?php echo $filter_state; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="country" placeholder="<?php echo $this->lang->line('column_country'); ?>" value="<?php echo $filter_country; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="zipcode" placeholder="<?php echo $this->lang->line('column_zipcode'); ?>" value="<?php echo $filter_zipcode; ?>" /></th>
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 	    </div>
@@ -120,48 +106,46 @@
   </div>
 </div>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			warehouse_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>warehouse/warehouse/delete?warehouse_id=' + warehouse_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				complete: function() {
-					handler.html('<i class="fa fa-trash"></i>');
-				},
-				success: function(json) {				
-					if(json.success) 
-					{
-						handler.closest('tr').remove();
-					}
-					else 
-					{
-						html = '';
-						
-						$.each(json.messages, function(i, message) {
-							html += message + '<br>';
-						});
-						
-						$('#alert-error span').html(html);		
-						$('#alert-error').show();
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_warehouse(handle, warehouse_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>warehouse/warehouse/delete?warehouse_id=' + warehouse_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					html = '';
+					
+					$.each(json.messages, function(i, message) {				
+						html += message + '<br>';
+					});
+					
+					$('#alert-error span').html(html);
+					$('#alert-error').show();
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
-		
+<?php echo $footer; ?>		
 		

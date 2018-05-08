@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/finance/recharge_edit.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_edit_recharge'); ?></h2>
@@ -83,5 +83,5 @@
 	</div>
   </div>  
 </div>
-		
+<?php echo $footer; ?>		
 		

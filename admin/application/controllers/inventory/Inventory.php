@@ -37,9 +37,7 @@ class Inventory extends MX_Controller
 		
 		$this->load->model('warehouse/warehouse_model');
 		$this->load->model('inventory/inventory_model');
-		
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+				                   	
 		if($this->input->get('filter_warehouse_id'))
 		{
 			$filter_warehouse_id = $this->input->get('filter_warehouse_id');

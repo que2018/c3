@@ -1,8 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_add'] 	  	                  = 'add';
-$lang['text_save'] 	  	                  = 'save';
+$lang['text_add'] 	  	                  = 'add warehouse';
+$lang['text_save'] 	  	                  = 'save warehouse';
 $lang['text_cancel'] 	  	              = 'cancel';
 $lang['text_name'] 	  	                  = 'name';
 $lang['text_street'] 	  	              = 'street';
@@ -14,6 +14,7 @@ $lang['text_inventory'] 	  	          = 'Inventory';
 $lang['text_warehouse'] 	  	          = 'Warehouse';
 $lang['text_warehouse_add'] 	  	      = 'Add Warehouse';
 $lang['text_warehouse_edit'] 	  	      = 'Edit Warehouse';
+$lang['text_warehouse_list'] 	  	      = 'Warehouse List';
 $lang['text_warehouse_add_success']       = '<i class="fa fa-check-circle-o"></i>&nbsp;warehouse add success';
 $lang['text_warehouse_edit_success']      = '<i class="fa fa-check-circle-o"></i>&nbsp;warehouse edit success';
 $lang['text_warehouse_list_description']  = 'Display all warehouses';

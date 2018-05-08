@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/finance/recharge_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_recharge'); ?></h2>
@@ -13,9 +13,6 @@
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
-  <?php if($success) { ?>
-	<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-  <?php } ?>
   <div class="row">
 	<div class="col-lg-12">
 	  <div class="ibox float-e-margins">
@@ -234,7 +231,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-
+<?php echo $footer; ?>
 
 
 

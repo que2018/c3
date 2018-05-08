@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Recharge extends CI_Controller {
-
+class Recharge extends MX_Controller 
+{
 	public function index()
-	{		
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('finance/recharge');
+
+		$this->header->add_style(base_url(). 'assets/css/app/finance/recharge_list.css');
+
+		$this->header->set_title($this->lang->line('text_recharge'));
+
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/recharge_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -29,8 +39,6 @@ class Recharge extends CI_Controller {
 		$this->load->model('client/client_model');
 		$this->load->model('finance/recharge_model');
 		$this->load->model('extension/payment_model');
-
-		$data['success'] = $this->session->flashdata('success');
 		
 		if($this->input->get('filter_client_id'))
 		{
@@ -269,7 +277,13 @@ class Recharge extends CI_Controller {
 	
 	public function add()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('finance/recharge');
 		
@@ -277,6 +291,10 @@ class Recharge extends CI_Controller {
 		$this->load->model('finance/recharge_model');
 		$this->load->model('extension/payment_model');
 
+		$this->header->add_style(base_url(). 'assets/css/app/finance/recharge_add.css');
+		
+		$this->header->set_title($this->lang->line('text_add_recharge'));
+		
 		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');
 		$this->form_validation->set_rules('payment_method', $this->lang->line('text_payment_method'), 'required');
 		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
@@ -329,14 +347,21 @@ class Recharge extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/recharge_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->load->library('currency');
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('finance/recharge');
 		
@@ -344,6 +369,10 @@ class Recharge extends CI_Controller {
 		$this->load->model('finance/recharge_model');
 		$this->load->model('extension/payment_model');
 
+		$this->header->add_style(base_url(). 'assets/css/app/finance/recharge_edit.css');
+		
+		$this->header->set_title($this->lang->line('text_edit_recharge'));
+				
 		$recharge_id = $this->input->get('recharge_id');
 		
 		$this->form_validation->set_rules('payment_method', $this->lang->line('text_payment_method'), 'required');
@@ -406,13 +435,14 @@ class Recharge extends CI_Controller {
 			);
 		}
 		
-		$data['recharge_id'] = $this->input->get('recharge_id');	
+		$data['recharge_id'] = $recharge_id;	
 				
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/recharge_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

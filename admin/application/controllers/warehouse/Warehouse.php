@@ -1,21 +1,38 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Warehouse extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
+class Warehouse extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('warehouse/warehouse');
 		
 		$this->load->model('warehouse/warehouse_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/warehouse_list.css');
+	
+		$this->header->set_title($this->lang->line('text_warehouse_list'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('warehouse/warehouse_list', $data);
 	}
 	
-	function index()
+	public function reload()
 	{
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+		$data = $this->get_list();
+			
+		$this->load->view('warehouse/warehouse_list_table', $data);
+	}
+	
+	protected function get_list()
+	{                   	
 		if($this->input->get('filter_name'))
 		{
 			$filter_name = $this->input->get('filter_name');
@@ -120,6 +137,7 @@ class Warehouse extends CI_Controller {
 		);
 		
 		$warehouses = $this->warehouse_model->get_warehouses($filter_data);	
+		
 		$warehouse_total = $this->warehouse_model->get_warehouse_total($filter_data);
 		
 		$data['warehouses'] = array();
@@ -190,7 +208,7 @@ class Warehouse extends CI_Controller {
 		$this->pagination->total  = $warehouse_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'warehouse/warehouse?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'warehouse/warehouse?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($warehouse_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($warehouse_total - $limit)) ? $warehouse_total : ((($page - 1) * $limit) + $limit), $warehouse_total, ceil($warehouse_total / $limit));
 
@@ -251,11 +269,11 @@ class Warehouse extends CI_Controller {
 		
 		if ($this->input->get('limit')) 
 		{
-			$url .= '?limit='.$this->input->get('limit');
+			$url .= '?limit=' . $this->input->get('limit');
 		}
 		else
 		{
-			$url .= '?limit='.$this->config->item('config_page_limit');
+			$url .= '?limit=' . $this->config->item('config_page_limit');
 		}
 		
 		if($this->input->get('sort')) 
@@ -263,8 +281,10 @@ class Warehouse extends CI_Controller {
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url().'warehouse/warehouse'.$url;
+		$data['filter_url'] = base_url() . 'warehouse/warehouse' . $url;
 	
+		$data['reload_url'] = base_url() . 'warehouse/warehouse/reload' . $url;
+
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
@@ -276,15 +296,26 @@ class Warehouse extends CI_Controller {
 		$data['filter_country']   = $filter_country;
 		$data['filter_zipcode']   = $filter_zipcode;
 		
-		$this->load->view('common/header');
-		$this->load->view('warehouse/warehouse_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
-	
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('warehouse/warehouse');
+		
+		$this->load->model('warehouse/warehouse_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/warehouse_add.css');
+				
+		$this->header->set_title($this->lang->line('text_warehouse_add'));
+		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
 		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
@@ -312,16 +343,30 @@ class Warehouse extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('warehouse/warehouse_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
 		
-		$id = $this->input->get('id');
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('warehouse/warehouse');
+		
+		$this->load->model('warehouse/warehouse_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/warehouse_edit.css');
+				
+		$this->header->set_title($this->lang->line('text_warehouse_edit'));
+		
+		$warehouse_id = $this->input->get('warehouse_id');
 	
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
@@ -341,36 +386,51 @@ class Warehouse extends CI_Controller {
 				'zipcode'      => $this->input->post('zipcode')
 			);
 			
-			$this->warehouse_model->edit_warehouse($id, $data);
+			$this->warehouse_model->edit_warehouse($warehouse_id, $data);
 			
-			$this->session->set_flashdata('success', $this->lang->line("text_warehouse_edit_success"));
+			$this->session->set_flashdata('success', $this->lang->line('text_warehouse_edit_success'));
 			
 			redirect(base_url() . 'warehouse/warehouse', 'refresh');
 		}
+		
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{
+			$data['name']     = $this->input->post('name');
+			$data['street']   = $this->input->post('street');
+			$data['city']     = $this->input->post('city');
+			$data['state']    = $this->input->post('state');
+			$data['country']  = $this->input->post('country');
+			$data['zipcode']  = $this->input->post('zipcode');
+		}
 		else
 		{
-			$warehouse = $this->warehouse_model->get_warehouse($id);
+			$warehouse = $this->warehouse_model->get_warehouse($warehouse_id);
 			
-			$data['id']              = $warehouse['id'];
-			$data['name']            = $warehouse['name'];
-			$data['street']          = $warehouse['street'];
-			$data['city']            = $warehouse['city'];
-			$data['state']           = $warehouse['state'];
-			$data['country']         = $warehouse['country'];
-			$data['zipcode']         = $warehouse['zipcode'];
-
-			$data['error']   = validation_errors();
-		
-			$this->load->view('common/header');
-			$this->load->view('warehouse/warehouse_edit', $data);
-			$this->load->view('common/footer');
+			$data['name']     = $warehouse['name'];
+			$data['street']   = $warehouse['street'];
+			$data['city']     = $warehouse['city'];
+			$data['state']    = $warehouse['state'];
+			$data['country']  = $warehouse['country'];
+			$data['zipcode']  = $warehouse['zipcode'];
 		}
+		
+		$data['warehouse_id'] = $warehouse_id;
+		
+		$data['error'] = validation_errors();
+		
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
+		$this->load->view('warehouse/warehouse_edit', $data);
 	}
 	
 	public function delete()
 	{
+		$this->lang->load('warehouse/warehouse');
+		
 		$this->load->model('store/employee_model');
 		$this->load->model('warehouse/location_model');
+		$this->load->model('warehouse/warehouse_model');
 		
 		if($this->input->get('warehouse_id'))
 		{
@@ -400,10 +460,10 @@ class Warehouse extends CI_Controller {
 			
 			if($validated)
 			{
-				$this->warehouse_model->delete_warehouse($warehouse_id);
+				$result = $this->warehouse_model->delete_warehouse($warehouse_id);
 		
 				$outdata = array(
-					'success'   => true
+					'success'   => ($result)?true:false
 				);
 			}
 			else 
