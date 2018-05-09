@@ -1,16 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Store extends CI_Controller {
+class Store extends MX_Controller
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('store/store');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/store/store_list.css');
+	
+		$this->header->set_title($this->lang->line('text_store'));
 
-	function index()
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('store/store_list', $data);
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('store/store_list_table', $data);
+	}
+	
+	protected function get_list()
 	{
 		$this->lang->load('store/store');
 		
 		$this->load->model('store/store_model');
-		
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+				                   	
 		if($this->input->get('filter_name'))
 		{
 			$filter_name = $this->input->get('filter_name');
@@ -85,6 +109,7 @@ class Store extends CI_Controller {
 		);
 		
 		$stores = $this->store_model->get_stores($filter_data);	
+		
 		$store_total = $this->store_model->get_store_total($filter_data);
 		
 		$data['stores'] = array();
@@ -139,7 +164,7 @@ class Store extends CI_Controller {
 		$this->pagination->total  = $store_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'store/store?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'store/store?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($store_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($store_total - $limit)) ? $store_total : ((($page - 1) * $limit) + $limit), $store_total, ceil($store_total / $limit));
 
@@ -194,32 +219,44 @@ class Store extends CI_Controller {
 			$url .= '&sort='.$this->input->get('sort');
 		}
 				
-		$data['filter_url'] = base_url().'store/store'.$url;
+		$data['filter_url'] = base_url() . 'store/store' . $url;
+		
+		$data['reload_url'] = base_url() . 'store/store/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_name']       = $filter_name;
-		$data['filter_platform']   = $filter_platform;
-		$data['filter_client']     = $filter_client;
+		$data['filter_name']      = $filter_name;
+		$data['filter_platform']  = $filter_platform;
+		$data['filter_client']    = $filter_client;
 		
-		$this->load->view('common/header');
-		$this->load->view('store/store_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
-		$this->lang->load('store/store');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('form_validation');
+	
+		$this->form_validation->CI =& $this;
 		
+		$this->lang->load('store/store');
+				
 		$this->load->model('store/store_model');
 		$this->load->model('client/client_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('extension/extension_model');
 	
+		$this->header->add_style(base_url(). 'assets/css/app/store/store_add.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+				
+		$this->header->set_title($this->lang->line('text_store_add'));
+			
 		$this->form_validation->set_rules('platform', $this->lang->line('text_platform'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('default_sale_status_id', $this->lang->line('text_default_sale_status_id'), 'required');
@@ -336,21 +373,34 @@ class Store extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('store/store_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
-		$this->lang->load('store/store');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('form_validation');
+	
+		$this->form_validation->CI =& $this;
 		
+		$this->lang->load('store/store');
+				
 		$this->load->model('store/store_model');
 		$this->load->model('client/client_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('extension/extension_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/store/store_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+				
+		$this->header->set_title($this->lang->line('text_store_edit'));
 	
 		$store_id = $this->input->get('store_id');
 	
@@ -502,9 +552,10 @@ class Store extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('store/store_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
@@ -512,38 +563,28 @@ class Store extends CI_Controller {
 		$this->lang->load('store/store');
 
 		$this->load->model('store/store_model');
-		$this->load->model('store/employee_model');
 
 		if($this->input->get('store_id'))
 		{
+			$store_id = $this->input->get('store_id');
+			
 			$validated = true;
 			
 			$messages = array();
-			
-			$store_id = $this->input->get('store_id');
-			
-			$employees = $this->employee_model->get_employees_by_store($store_id);
-			
-			if($employees)
-			{	
-				$validated = false;
-		
-				$messages[] = $this->lang->line('error_store_employee_in_use');
-			}
-			
-			if($validated)
-			{
-				$this->store_model->delete_store($store_id);
-
-				$outdata = array(
-					'success'   => true
-				);
-			}
-			else 
+						
+			if(!$validated)
 			{
 				$outdata = array(
 					'success'   => false,
 					'messages'  => $messages
+				);
+			}
+			else 
+			{
+				$result = $this->store_model->delete_store($store_id);
+
+				$outdata = array(
+					'success'   => ($result)?true:false
 				);
 			}
 			

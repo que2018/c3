@@ -1,6 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/app/store/store_edit.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_store_edit'); ?></h2>
@@ -241,3 +239,4 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>

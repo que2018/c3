@@ -9,6 +9,7 @@ $lang['text_print'] 	  	              = 'print';
 $lang['text_cancel'] 	  	              = 'cancel';
 $lang['text_warehouse'] 	  	          = 'warehouse';
 $lang['text_location'] 	  	              = 'Location';
+$lang['text_location_import'] 	  	      = 'Location Import';
 $lang['text_inventory'] 	  	          = 'Inventory';
 $lang['text_location_add'] 	  	          = 'Add Location';
 $lang['text_location_edit'] 	  	      = 'Edit Location';

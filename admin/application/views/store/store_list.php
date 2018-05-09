@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/store/store_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_store_list'); ?></h2>
@@ -15,9 +15,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -65,7 +62,7 @@
 					  <td><?php echo $store['client']; ?></td>
 					  <td style="text-align: center">
 					    <a href="<?php echo base_url('store/store/edit?store_id=' . $store['store_id']); ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil"></i></a>
-					    <button class="btn btn-danger btn-delete" data="<?php echo $store['store_id']; ?>"><i class="fa fa-trash"></i></button>
+						<button class="btn btn-danger btn-delete" onclick="delete_store(this, <?php echo $store['store_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -80,6 +77,10 @@
 				</tr>
 			  </tfoot>
 		    </table>
+		  </div>
+		  <div class="pagination-block">
+		    <div class="pull-left"><?php echo $results; ?></div>
+		    <div class="pull-right"><?php echo $pagination; ?></div>
 		  </div>
 	    </div>
 	  </div>
@@ -113,48 +114,47 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			store_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>store/store/delete?store_id=' + store_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				complete: function() {
-					handler.html('<i class="fa fa-trash"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-					{
-						handler.closest('tr').remove();
-					}
-					else 
-					{
-						html = '';
-						
-						$.each(json.messages, function(i, message) {
-							html += message + '<br>';
-						});
-						
-						$('#alert-error span').html(html);		
-						$('#alert-error').show();
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_store(handle, store_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>store/store/delete?store_id=' + store_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					html = '';
+					
+					$.each(json.messages, function(i, message) {				
+						html += message + '<br>';
+					});
+					
+					$('#alert-error span').html(html);
+					$('#alert-error').show();
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
+<?php echo $footer; ?>
 		
 		

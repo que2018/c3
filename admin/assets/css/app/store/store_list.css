@@ -22,6 +22,12 @@ a:focus, a:hover {
 input:focus {
 	outline:0;
 }
+.pagination-block {
+	min-height: 33px;
+}
+.pagination {
+	margin: 0px;
+}
 .button-group {
 	min-height: 34px;
 }
@@ -35,6 +41,10 @@ input:focus {
 }
 .page-heading {
 	position: relative;
+}
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
 }
 
 

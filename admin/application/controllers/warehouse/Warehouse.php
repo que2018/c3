@@ -428,7 +428,6 @@ class Warehouse extends MX_Controller
 	{
 		$this->lang->load('warehouse/warehouse');
 		
-		$this->load->model('store/employee_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
 		
@@ -447,15 +446,6 @@ class Warehouse extends MX_Controller
 				$validated = false;
 		
 				$messages[] = $this->lang->line('error_warehouse_location_in_use');
-			}
-			
-			$employees = $this->employee_model->get_employees_by_warehouse($warehouse_id);
-			
-			if($employees)
-			{		
-				$validated = false;
-		
-				$messages[] = $this->lang->line('error_warehouse_employee_in_use');
 			}
 			
 			if($validated)

@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Location_import extends CI_Controller 
+class Location_import extends MX_Controller 
 {
 	public function index() 
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('warehouse/location');
 		
 		$this->load->model('warehouse/warehouse_model');
 	
-		//warehouse
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
+		$this->header->add_style(base_url(). 'assets/css/app/warehouse/location_import.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
+	
+		$this->header->set_title($this->lang->line('text_import_location'));
+	
 		$data['warehouses'] = array();
 				
 		$warehouses = $this->warehouse_model->get_warehouses();
@@ -25,9 +35,10 @@ class Location_import extends CI_Controller
 			}
 		}
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
 		$this->load->view('warehouse/location_import', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function upload() 
