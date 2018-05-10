@@ -6,6 +6,7 @@ $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = 'product';
 $lang['text_location'] 	  	         	   = 'location';
 $lang['text_inventory_list'] 	  	       = 'Inventory List';
+$lang['text_inventory_import'] 	  	       = 'Inventory Import';
 $lang['text_add'] 	  	         	   	   = 'add inventory';
 $lang['text_edit'] 	  	         	   	   = 'edit inventory';
 $lang['text_delete'] 	  	         	   = 'delete inventory';

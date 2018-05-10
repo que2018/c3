@@ -1,14 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Inventory_import extends CI_Controller 
+class Inventory_import extends MX_Controller 
 {
 	public function index() 
-	{	
+	{
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('inventory/inventory');
 			
 		$this->load->model('warehouse/location_model');
 
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_import.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
+
+		$this->header->set_title($this->lang->line('text_inventory_import'));
+		
 		$data['locations'] = array();
 	
 		$locations = $this->location_model->get_all_locations();	
@@ -24,9 +35,10 @@ class Inventory_import extends CI_Controller
 			}	
 		}
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/inventory_import', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function upload() 

@@ -1,11 +1,11 @@
-<link href="<?php echo base_url(); ?>assets/css/app/finance/balance_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
-	<h2><?php echo $this->lang->line("text_title"); ?></h2>
+	<h2><?php echo $this->lang->line('text_title'); ?></h2>
 	<ol class="breadcrumb">
-	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line("text_home"); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>/catalog/product"><?php echo $this->lang->line("text_finance"); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line("text_balance"); ?></strong></li>
+	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>/catalog/product"><?php echo $this->lang->line('text_finance'); ?></a></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_balance'); ?></strong></li>
 	</ol>
   </div>
 </div>
@@ -14,7 +14,7 @@
 	<div class="col-lg-12">
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
-		  <h5><?php echo $this->lang->line("text_balance_list_description"); ?></h5>
+		  <h5><?php echo $this->lang->line('text_balance_list_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="table-responsive">
@@ -64,12 +64,11 @@
 </div>
 <script>
 $(document).ready(function() {
-	//filter
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
-			name     = $('input[name=\'name\']').val();
-			amount      = $('input[name=\'amount\']').val();
+			name   = $('input[name=\'name\']').val();
+			amount = $('input[name=\'amount\']').val();
 
 			url = '<?php echo $filter_url; ?>';
 			
@@ -84,5 +83,6 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>
 		
 		

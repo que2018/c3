@@ -1,15 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Balance extends CI_Controller {
-
-	function index()
+class Balance extends MX_Controller 
+{
+	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('currency');
 		
 		$this->lang->load('finance/balance');
 		
 		$this->load->model('finance/balance_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/finance/balance_list.css');
+		
+		$this->header->set_title($this->lang->line('text_balance'));
 	
  		if($this->input->get('filter_client'))
 		{
@@ -136,33 +143,6 @@ class Balance extends CI_Controller {
 		{
 			$url .= '&filter_amount=' . $this->input->get('filter_amount');
 		}
-		
-		if($this->input->get('sort')) 
-		{
-			$url .= '&sort=' . $this->input->get('sort');
-		}
-		
-		if($this->input->get('order')) 
-		{
-			$url .= '&order=' . $this->input->get('order');
-		}
-		
-		$data['limit_10']  = base_url().'finance/balance?limit=10'.$url;
-		$data['limit_15']  = base_url().'finance/balance?limit=15'.$url;
-		$data['limit_50']  = base_url().'finance/balance?limit=50'.$url;
-		$data['limit_100'] = base_url().'finance/balance?limit=100'.$url;
-	
-		$url = '';
-		
-		if($this->input->get('filter_client')) 
-		{
-			$url .= '&filter_client=' . $this->input->get('filter_client');
-		}
-		
-		if($this->input->get('filter_amount')) 
-		{
-			$url .= '&filter_amount=' . $this->input->get('filter_amount');
-		}
 			
 		if($this->input->get('limit')) 
 		{
@@ -178,8 +158,8 @@ class Balance extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_client']  = base_url().'finance/balance?sort=name'.$url;
-		$data['sort_amount'] = base_url().'finance/balance?sort=balance.amount'.$url;
+		$data['sort_client']  = base_url() . 'finance/balance?sort=name' . $url;
+		$data['sort_amount'] = base_url() . 'finance/balance?sort=balance.amount' . $url;
 
 		$url = '';
 		
@@ -197,7 +177,7 @@ class Balance extends CI_Controller {
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url().'finance/balance'.$url;
+		$data['filter_url'] = base_url() . 'finance/balance' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -206,9 +186,10 @@ class Balance extends CI_Controller {
 		$data['filter_client'] = $filter_client;
 		$data['filter_amount'] = $filter_amount;
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/balance_list', $data);
-		$this->load->view('common/footer');
 	}
 }
 

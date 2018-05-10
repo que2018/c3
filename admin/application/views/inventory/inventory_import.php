@@ -1,7 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/plugins/dropzone/basic.css" rel="stylesheet"> 
-<link href="<?php echo base_url(); ?>assets/css/plugins/dropzone/dropzone.css" rel="stylesheet"> 
-<link href="<?php echo base_url(); ?>assets/css/app/inventory/inventory_import.css" rel="stylesheet"> 
-<script src="<?php echo base_url(); ?>assets/js/plugins/dropzone/dropzone.js" type="text/javascript"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_import_inventory'); ?></h2>
@@ -73,6 +70,7 @@ Dropzone.options.dropzoneForm = {
 	}
 };    
 </script>
+<?php echo $footer; ?>
 
 		
 		
