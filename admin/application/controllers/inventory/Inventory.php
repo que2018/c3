@@ -35,16 +35,16 @@ class Inventory extends MX_Controller
 		
 		$this->lang->load('inventory/inventory');
 		
-		$this->load->model('warehouse/warehouse_model');
+		$this->load->model('client/client_model');
 		$this->load->model('inventory/inventory_model');
 				                   	
-		if($this->input->get('filter_warehouse_id'))
+		if($this->input->get('filter_client_id'))
 		{
-			$filter_warehouse_id = $this->input->get('filter_warehouse_id');
+			$filter_client_id = $this->input->get('filter_client_id');
 		} 
 		else 
 		{
-			$filter_warehouse_id = '';
+			$filter_client_id = '';
 		}
 		
 		if($this->input->get('filter_location'))
@@ -111,7 +111,7 @@ class Inventory extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_warehouse_id'  => $filter_warehouse_id,
+			'filter_client_id'     => $filter_client_id,
 			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
 			'filter_upc'    	   => $filter_upc,
@@ -122,6 +122,7 @@ class Inventory extends MX_Controller
 		);
 		
 		$inventories = $this->inventory_model->get_inventories($filter_data);	
+		
 		$inventory_total = $this->inventory_model->get_inventory_total($filter_data);
 		
 		$data['inventories'] = array();
@@ -136,12 +137,12 @@ class Inventory extends MX_Controller
 			
 				$data['inventories'][] = array(
 					'inventory_id'  => $inventory['id'],
+					'client'        => $inventory['client'],
 					'product_id'    => $inventory['product_id'],
 					'product'       => $product_info['name'],
 					'upc'       	=> $product_info['upc'],
 					'sku'       	=> $product_info['sku'],
 					'location'      => $inventory['location_name'],
-					'warehouse'     => $inventory['warehouse_name'],
 					'quantity'      => $inventory['quantity'],
 					'date_modified' => $inventory['date_modified']
 				);
@@ -159,7 +160,7 @@ class Inventory extends MX_Controller
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_warehouse'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_client'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_location'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_quantity'));
 		
@@ -181,7 +182,7 @@ class Inventory extends MX_Controller
 				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $product_info['name']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $product_info['upc']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_info['sku']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['warehouse_name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $inventory['client']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['location_name']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $inventory['quantity']);
 			
@@ -197,9 +198,9 @@ class Inventory extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_warehouse_id')) 
+		if($this->input->get('filter_client_id')) 
 		{
-			$url .= '&filter_warehouse_id=' . $this->input->get('filter_warehouse_id');
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
 		}
 		
 		if($this->input->get('filter_location')) 
@@ -241,9 +242,9 @@ class Inventory extends MX_Controller
 				
 		$url = '';
 		
-		if($this->input->get('filter_warehouse_id')) 
+		if($this->input->get('filter_client_id')) 
 		{
-			$url .= '&filter_warehouse_id=' . $this->input->get('filter_warehouse_id');
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
 		}
 		
 		if($this->input->get('filter_location')) 
@@ -279,7 +280,7 @@ class Inventory extends MX_Controller
 		$data['sort_upc']        = base_url() . 'inventory/inventory?sort=product.upc' . $url;
 		$data['sort_sku']        = base_url() . 'inventory/inventory?sort=product.sku' . $url;
 		$data['sort_location']   = base_url() . 'inventory/inventory?sort=location.name' . $url;
-		$data['sort_warehouse']  = base_url() . 'inventory/inventory?sort=warehouse.name' . $url;
+		$data['sort_client']     = base_url() . 'inventory/inventory?sort=client' . $url;
 		$data['sort_quantity']   = base_url() . 'inventory/inventory?sort=inventory.quantity' . $url;
 		
 		$url = '';
@@ -321,9 +322,9 @@ class Inventory extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		if($this->input->get('filter_warehouse_id')) 
+		if($this->input->get('filter_client_id')) 
 		{
-			$url .= '&filter_warehouse_id=' . $this->input->get('filter_warehouse_id');
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
 		}
 		
 		if($this->input->get('filter_location')) 
@@ -347,23 +348,23 @@ class Inventory extends MX_Controller
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_warehouse_id']   = $filter_warehouse_id;
+		$data['filter_client_id']      = $filter_client_id;
 		$data['filter_location']       = $filter_location;
 		$data['filter_sku']            = $filter_sku;
 		$data['filter_upc']            = $filter_upc;
 		
-		//warehouses
-		$data['warehouses'] = array();
+		//clients
+		$data['clients'] = array();
 		
-		$warehouses = $this->warehouse_model->get_warehouses();
+		$clients = $this->client_model->get_clients();
 		
-		if($warehouses)
+		if($clients)
 		{
-			foreach($warehouses as $warehouse)
+			foreach($clients as $client)
 			{	
-				$data['warehouses'][] = array(
-					'warehouse_id' => $warehouse['id'],
-					'name'         => $warehouse['name']
+				$data['clients'][] = array(
+					'client_id'    => $client['id'],
+					'name'         => $client['name']
 				);	
 			}
 		}

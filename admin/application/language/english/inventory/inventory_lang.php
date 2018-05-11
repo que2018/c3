@@ -44,7 +44,7 @@ $lang['column_upc'] 	  	               = 'UPC';
 $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = 'Name';
 $lang['column_location'] 	  	           = 'Location';
-$lang['column_warehouse'] 	  	           = 'Warehouse';
+$lang['column_client'] 	  	           	   = 'Client';
 $lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_quantity'] 	  	           = 'Quantity';
 $lang['column_date_added'] 	  	           = 'Date Added';
@@ -56,7 +56,7 @@ $lang['entry_product'] 	  	               = 'Product';
 $lang['entry_quantity'] 	  	           = 'Quantity';
 $lang['entry_location'] 	  	           = 'Location';
 $lang['entry_batch'] 	  	           	   = 'Batch';
-$lang['entry_warehouse'] 	  	           = 'Warehouse';
+$lang['entry_client'] 	  	           	   = 'Client';
 $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
 

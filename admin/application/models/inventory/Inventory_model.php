@@ -239,13 +239,13 @@ class Inventory_model extends CI_Model
 		return false;
 	}
 	
-	public function get_inventories($data) 
+	public function get_inventories($data = array()) 
 	{			
-		$this->db->select('inventory.*, SUM(inventory.quantity) AS quantity, product.name AS product_name, product.sku, location.name AS location_name, warehouse.name AS warehouse_name', false);
+		$this->db->select("inventory.*, SUM(inventory.quantity) AS quantity, product.name AS product_name, product.sku, location.name AS location_name, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 		
 		if(!empty($data['filter_product'])) 
@@ -273,9 +273,9 @@ class Inventory_model extends CI_Model
 			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
-		if(!empty($data['filter_warehouse_id'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -296,6 +296,7 @@ class Inventory_model extends CI_Model
 		}
 		
 		$sort_data = array(
+			'client',
 			'product.name',
 			'product.sku',
 			'location.name',
@@ -341,13 +342,13 @@ class Inventory_model extends CI_Model
 		}
 	}
 		
-	public function get_batch_inventories($data) 
+	public function get_batch_inventories($data = array()) 
 	{			
-		$this->db->select('inventory.*, product.name AS product_name, product.sku, location.name AS location_name, warehouse.name AS warehouse_name', false);
+		$this->db->select("inventory.*, product.name AS product_name, product.sku, location.name AS location_name, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by('inventory.id');
 		
 		if(!empty($data['filter_product'])) 
@@ -375,9 +376,9 @@ class Inventory_model extends CI_Model
 			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
-		if(!empty($data['filter_warehouse_id'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_batch'])) 
@@ -403,6 +404,7 @@ class Inventory_model extends CI_Model
 		}
 		
 		$sort_data = array(
+			'client',
 			'product.name',
 			'product.sku',
 			'location.name',
@@ -455,7 +457,7 @@ class Inventory_model extends CI_Model
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 
 		if(!empty($data['filter_product'])) 
@@ -483,9 +485,9 @@ class Inventory_model extends CI_Model
 			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
-		if(!empty($data['filter_warehouse_id'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -516,7 +518,7 @@ class Inventory_model extends CI_Model
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('client', 'client.id = product.client_id', 'left');
 		
 		if(!empty($data['filter_product'])) 
 		{			
@@ -543,9 +545,9 @@ class Inventory_model extends CI_Model
 			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
-		if(!empty($data['filter_warehouse_id'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->where('warehouse.id', $data['filter_warehouse_id']);
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_batch'])) 

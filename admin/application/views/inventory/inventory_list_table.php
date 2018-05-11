@@ -2,16 +2,16 @@
   <div class="row">
     <div class="col-md-2">
 	  <div class="form-group">
-	    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_warehouse'); ?></label>
+	    <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_client'); ?></label>
 	    <div class="col-sm-8">
-		  <select name="warehouse_id" class="form-control">
-		    <?php if($warehouses) { ?>
+	      <select name="client_id" class="form-control">
+		    <?php if($clients) { ?>
 			  <option value=""></option>
-			  <?php foreach($warehouses as $warehouse) { ?>
-			  <?php if($warehouse['warehouse_id'] == $filter_warehouse_id) { ?>
-			  <option value="<?php echo $warehouse['warehouse_id']; ?>" selected><?php echo $warehouse['name']; ?></option>
+			  <?php foreach($clients as $client) { ?>
+			  <?php if($client['client_id'] == $filter_client_id) { ?>
+			  <option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
 			  <?php } else { ?>
-			  <option value="<?php echo $warehouse['warehouse_id']; ?>"><?php echo $warehouse['name']; ?></option>
+			  <option value="<?php echo $client['client_id']; ?>"><?php echo $client['name']; ?></option>
 			  <?php } ?>
 			  <?php } ?>
 		    <?php } ?>
@@ -81,13 +81,13 @@
 	    <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 	  </th>
 	  <?php } ?>
-	  <?php if($sort == 'warehouse.name') { ?>
+	  <?php if($sort == 'client') { ?>
 	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
-	    <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
+	    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 	  </th>
 	  <?php } else { ?>
 	  <th style="width: 14%;" class="sorting">
-	    <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
+	    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'inventory.quantity') { ?>
@@ -125,7 +125,7 @@
 		    <td><?php echo $inventory['upc']; ?></td>
 		    <td><?php echo $inventory['sku']; ?></td>
 		    <td><?php echo $inventory['location']; ?></td>
-		    <td><?php echo $inventory['warehouse']; ?></td>
+		    <td><?php echo $inventory['client']; ?></td>
 		    <td><?php echo $inventory['quantity']; ?></td>			
 		  </tr>
 		  <?php $offset++; ?>
