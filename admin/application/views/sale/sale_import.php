@@ -1,9 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/plugins/dropzone/basic.css" rel="stylesheet"> 
-<link href="<?php echo base_url(); ?>assets/css/plugins/dropzone/dropzone.css" rel="stylesheet"> 
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/app/sale/sale_import.css" rel="stylesheet"> 
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/dropzone/dropzone.js" type="text/javascript"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_import_order'); ?></h2>
@@ -13,8 +8,8 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_import_order'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <a href="<?php echo base_url(); ?>assets/file/excel/order_import_sample.xlsx" class="btn btn-primary btn-download" download><i class="fa fa-download"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>assets/file/excel/order_import_sample.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download_sample_file'); ?>"  class="btn btn-primary btn-download" download><i class="fa fa-download"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -81,5 +76,6 @@ Dropzone.options.dropzoneForm = {
 	}
 };    
 </script>
+<?php echo $footer; ?>
 		
 		

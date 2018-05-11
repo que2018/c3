@@ -57,6 +57,7 @@ $lang['text_checkout_complete'] 	  	        = '已出库';
 $lang['text_note_sale_checkout'] 	  	        = 'checkout for order(#%s)';
 $lang['text_code_hint'] 	  	    	 		= 'UPC / SKU / ASIN / Proudct Name';
 $lang['text_checkout_order_note'] 	  	        = 'checkout for order #%s';
+$lang['text_download_sample_file'] 	  	        = '下载模板文件';
 $lang['text_order_list_description'] 	 		= 'Display all orders';
 $lang['text_unsolved_order_list_description']  	= 'Display all unsolved orders';
 $lang['text_only_excel_will_accepted'] 	 		= '( only Excel file will be accepted )';

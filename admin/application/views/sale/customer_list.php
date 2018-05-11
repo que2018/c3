@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/sale/customer_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_customer'); ?></h2>
@@ -83,8 +83,8 @@
 					  <td><?php echo $customer['email']; ?></td>
 					  <td><?php echo $customer['phone']; ?></td>
 					  <td class="text-center">
-						<a href="<?php echo base_url(); ?>sale/customer/edit?customer_id=<?php echo $customer['id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-					    <button class="btn btn-danger btn-delete" data="<?php echo $customer['id']; ?>"><i class="fa fa-trash"></i></button>
+						<a href="<?php echo base_url(); ?>sale/customer/edit?customer_id=<?php echo $customer['customer_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+						<button class="btn btn-danger btn-delete" onclick="delete_customer(this, <?php echo $customer['customer_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -113,7 +113,6 @@
 </div>
 <script>
 $(document).ready(function() {
-	//filter
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
@@ -142,45 +141,34 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			customer_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>sale/customer/delete?customer_id=' + customer_id,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				complete: function() {
-					handler.html('<i class="fa fa-trash"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-					{
-						handler.closest('tr').remove();
-					} 
-					else 
-					{
-						html = '';
-						
-						$.each(json.msgs, function(index, msg) {
-							html += msg + '<br>';
-						});
-						
-						$('#alert-error span').html(html);
-						
-						$('#alert-error').show();
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_customer(handle, customer_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>sale/customer/delete?customer_id=' + customer_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
+<?php echo $footer; ?>
 		

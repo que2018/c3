@@ -1,21 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Customer extends CI_Controller {
+class Customer extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('sale/customer');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/customer_list.css');
+	
+		$this->header->set_title($this->lang->line('text_customer'));
 
-	function __construct()
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');	
+			
+		$this->load->view('sale/customer_list', $data);
+	}
+	
+	public function reload()
 	{
-		parent::__construct();
-		
+		$data = $this->get_list();
+			
+		$this->load->view('sale/customer_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
 		$this->lang->load('sale/customer');
 		
 		$this->load->model('sale/customer_model');
-	}
 	
-	function index()
-	{
-		$data['success'] = $this->session->flashdata('success');
-				
 		if($this->input->get('filter_name'))
 		{
 			$filter_name = $this->input->get('filter_name');
@@ -109,7 +128,8 @@ class Customer extends CI_Controller {
 			'limit'           => $limit
 		);
 		
-		$customers       = $this->customer_model->get_customers($filter_data);
+		$customers = $this->customer_model->get_customers($filter_data);
+		
 		$customer_total  = $this->customer_model->get_customer_total($filter_data);
 		
 		$data['customers'] = array();
@@ -119,12 +139,12 @@ class Customer extends CI_Controller {
 			foreach($customers as $customer)
 			{					
 				$data['customers'][] = array(
-					'id'        => $customer['id'],
-					'name'      => $customer['name'],
-					'client'    => $customer['client'],
-					'company'   => $customer['company'],
-					'email'     => $customer['email'],
-					'phone'     => $customer['phone']
+					'customer_id' => $customer['id'],
+					'name'        => $customer['name'],
+					'client'      => $customer['client'],
+					'company'     => $customer['company'],
+					'email'       => $customer['email'],
+					'phone'       => $customer['phone']
 				);	
 			}
 		}
@@ -174,7 +194,7 @@ class Customer extends CI_Controller {
 		$this->pagination->total  = $customer_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'sale/customer?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'sale/customer?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($customer_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($customer_total - $limit)) ? $customer_total : ((($page - 1) * $limit) + $limit), $customer_total, ceil($customer_total / $limit));
 		
@@ -221,11 +241,11 @@ class Customer extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_name']     = base_url().'sale/customer?sort=customer.name'.$url;
-		$data['sort_client']   = base_url().'sale/customer?sort=client'.$url;
-		$data['sort_company']  = base_url().'sale/customer?sort=customer.company'.$url;
-		$data['sort_email']    = base_url().'sale/customer?sort=customer.email'.$url;
-		$data['sort_phone']    = base_url().'sale/customer?sort=customer.phone'.$url;
+		$data['sort_name']     = base_url() . 'sale/customer?sort=customer.name' . $url;
+		$data['sort_client']   = base_url() . 'sale/customer?sort=client' . $url;
+		$data['sort_company']  = base_url() . 'sale/customer?sort=customer.company' . $url;
+		$data['sort_email']    = base_url() . 'sale/customer?sort=customer.email' . $url;
+		$data['sort_phone']    = base_url() . 'sale/customer?sort=customer.phone' . $url;
 
 		$url = '';
 		
@@ -245,24 +265,40 @@ class Customer extends CI_Controller {
 		
 		$data['filter_url'] = base_url() . 'sale/customer' . $url;
 		
+		$data['reload_url'] = base_url() . 'sale/customer/reload' . $url;
+		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_name']       = $filter_name;
-		$data['filter_client']     = $filter_client;
-		$data['filter_company']    = $filter_company;
-		$data['filter_email']      = $filter_email;
-		$data['filter_phone']      = $filter_phone;
+		$data['filter_name']     = $filter_name;
+		$data['filter_client']   = $filter_client;
+		$data['filter_company']  = $filter_company;
+		$data['filter_email']    = $filter_email;
+		$data['filter_phone']    = $filter_phone;
 		
-		$this->load->view('common/header');
-		$this->load->view('sale/customer_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
-	{
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('sale/customer');
+		
+		$this->load->model('sale/customer_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/customer_add.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+
+		$this->header->set_title($this->lang->line('text_add_customer'));
 	
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
@@ -298,14 +334,31 @@ class Customer extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('sale/customer_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('sale/customer');
+		
+		$this->load->model('sale/customer_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/customer_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+
+		$this->header->set_title($this->lang->line('text_edit_customer'));
 				
 		$customer_id = $this->input->get('customer_id');
 	
@@ -387,21 +440,24 @@ class Customer extends CI_Controller {
 			
 		$data['error'] = validation_errors();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('sale/customer_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
 	{
+		$this->load->model('sale/customer_model');
+		
 		if($this->input->get('customer_id'))
 		{
 			$customer_id = $this->input->get('customer_id');
 			
-			$this->customer_model->delete_customer($customer_id);
+			$result = $this->customer_model->delete_customer($customer_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
 			echo json_encode($outdata);
@@ -410,6 +466,10 @@ class Customer extends CI_Controller {
 	
 	public function autocomplete()
 	{
+		$this->lang->load('sale/customer');
+		
+		$this->load->model('sale/customer_model');
+		
 		$outdata = array();
 		
 		if($this->input->post('customer_name'))

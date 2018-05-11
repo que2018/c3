@@ -1,20 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Import extends CI_Controller 
+class Import extends MX_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('sale/sale');
-		
-		$this->load->model('sale/sale_model');
-	}
-	
 	public function index() 
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('sale/sale');
+		
 		$this->load->model('store/store_model');
+			
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_import.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
+	
+		$this->header->set_title($this->lang->line('text_import_order'));	
 			
 		$data['stores'] = array();
 		
@@ -31,9 +35,10 @@ class Import extends CI_Controller
 			}
 		}
 
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');	
+		
 		$this->load->view('sale/sale_import', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function upload() 
