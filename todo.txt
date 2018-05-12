@@ -7,3 +7,6 @@
 6. filter not working after relist
 7. success auto remove
 8. 图表(视觉化)
+9. product image
+10. cms front side
+11. resource independence

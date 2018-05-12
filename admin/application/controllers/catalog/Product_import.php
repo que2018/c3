@@ -1,23 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Product_import extends CI_Controller 
+class Product_import extends MX_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('catalog/product');
-		
-		$this->load->model('catalog/product_model');
-	}
-	
 	public function index() 
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('client/client_model');
+		$this->load->model('catalog/product_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
+		$this->header->add_style(base_url(). 'assets/css/app/catalog/product_import.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
+
+		$this->header->set_title($this->lang->line('text_import_product'));
+	
 		//clients
 		$data['clients'] = array();
 		
-		$this->load->model('client/client_model');
 		
 		$clients = $this->client_model->get_clients();
 				
@@ -68,15 +74,14 @@ class Product_import extends CI_Controller
 			}
 		}
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('catalog/product_import', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function upload() 
-	{
-		$this->lang->load('catalog/product');
-				
+	{				
 		if(!empty($_FILES)) 
 		{	
 			$temp_file = $_FILES['file']['tmp_name'];    

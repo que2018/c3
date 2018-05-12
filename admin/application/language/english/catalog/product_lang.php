@@ -34,6 +34,7 @@ $lang['text_shipping_provider'] 	  	 	  	= 'shipping provider';
 $lang['text_shipping_service'] 	  	 	  		= 'shipping service';
 $lang['text_shipping_method'] 	  	     	  	= 'shipping method';
 $lang['text_add_new_product'] 	  	     	  	= 'Add a new product';
+$lang['text_download_import_sample'] 	  	    = 'download import sample';
 $lang['text_import_product_description'] 	  	= 'Import product from excel';
 $lang['text_confirm_delete'] 	  	     	  	= 'Are you sure to delete this product?';
 $lang['text_product_list_description'] 		  	= 'Display All Products';
