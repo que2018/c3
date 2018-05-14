@@ -8,26 +8,26 @@ class ControllerCommonFileManager extends MX_Controller
 		$this->load->lang('common/filemanager');
 
 		// Find which protocol to use to pass the full image link back
-		if ($this->input->server['HTTPS']) {
+		if ($this->input->server('HTTPS')) {
 			$server = HTTPS_CATALOG;
 		} else {
 			$server = HTTP_CATALOG;
 		}
 
-		if (isset($this->input->get('filter_name'))) {
+		if ($this->input->get('filter_name')) {
 			$filter_name = rtrim(str_replace('*', '', $this->input->get('filter_name')), '/');
 		} else {
 			$filter_name = null;
 		}
 
 		// Make sure we have the correct directory
-		if (isset($this->input->get('directory'))) {
+		if ($this->input->get('directory')) {
 			$directory = rtrim(DIR_IMAGE . 'catalog/' . str_replace('*', '', $this->input->get('directory')), '/');
 		} else {
 			$directory = DIR_IMAGE . 'catalog';
 		}
 
-		if (isset($this->input->get('page'))) {
+		if ($this->input->get('page')) {
 			$page = $this->input->get('page');
 		} else {
 			$page = 1;
@@ -38,7 +38,7 @@ class ControllerCommonFileManager extends MX_Controller
 
 		$data['images'] = array();
 
-		$this->load->model('tool/image');
+		$this->load->model('tool/image_model');
 
 		if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(DIR_IMAGE . 'catalog')) == DIR_IMAGE . 'catalog') {
 			// Get directories
@@ -71,11 +71,11 @@ class ControllerCommonFileManager extends MX_Controller
 			if (is_dir($image)) {
 				$url = '';
 
-				if (isset($this->input->get('target'])) {
+				if ($this->input->get('target')) {
 					$url .= '&target=' . $this->input->get('target');
 				}
 
-				if (isset($this->input->get('thumb'])) {
+				if ($this->input->get('thumb')) {
 					$url .= '&thumb=' . $this->input->get('thumb');
 				}
 
@@ -88,7 +88,7 @@ class ControllerCommonFileManager extends MX_Controller
 				);
 			} elseif (is_file($image)) {
 				$data['images'][] = array(
-					'thumb' => $this->model_tool_image->resize(utf8_substr($image, utf8_strlen(DIR_IMAGE)), 100, 100),
+					'thumb' => $this->image_model->resize(utf8_substr($image, utf8_strlen(DIR_IMAGE)), 100, 100),
 					'name'  => implode(' ', $name),
 					'type'  => 'image',
 					'path'  => utf8_substr($image, utf8_strlen(DIR_IMAGE)),
@@ -114,27 +114,27 @@ class ControllerCommonFileManager extends MX_Controller
 
 		$data['token'] = $this->session->data['token'];
 
-		if (isset($this->input->get('directory'])) {
+		if ($this->input->get('directory')) {
 			$data['directory'] = urlencode($this->input->get('directory'));
 		} else {
 			$data['directory'] = '';
 		}
 
-		if (isset($this->input->get('filter_name'])) {
+		if ($this->input->get('filter_name')) {
 			$data['filter_name'] = $this->input->get('filter_name');
 		} else {
 			$data['filter_name'] = '';
 		}
 
 		// Return the target ID for the file manager to set the value
-		if (isset($this->input->get('target'])) {
+		if ($this->input->get('target')) {
 			$data['target'] = $this->input->get('target');
 		} else {
 			$data['target'] = '';
 		}
 
 		// Return the thumbnail for the file manager to show a thumbnail
-		if (isset($this->input->get('thumb'))) {
+		if ($this->input->get('thumb')) {
 			$data['thumb'] = $this->input->get('thumb');
 		} else {
 			$data['thumb'] = '';
@@ -143,7 +143,7 @@ class ControllerCommonFileManager extends MX_Controller
 		// Parent
 		$url = '';
 
-		if (isset($this->input->get('directory'))) {
+		if ($this->input->get('directory')) {
 			$pos = strrpos($this->input->get('directory'), '/');
 
 			if ($pos) {
@@ -151,12 +151,12 @@ class ControllerCommonFileManager extends MX_Controller
 			}
 		}
 
-		if (isset($this->input->get('target'])) {
-			$url .= '&target=' . $this->input->get('target'];
+		if ($this->input->get('target')) {
+			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if (isset($this->input->get('thumb'])) {
-			$url .= '&thumb=' . $this->input->get('thumb'];
+		if ($this->input->get('thumb')) {
+			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
 		$data['parent'] = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url, true);
@@ -164,15 +164,15 @@ class ControllerCommonFileManager extends MX_Controller
 		// Refresh
 		$url = '';
 
-		if (isset($this->input->get('directory'])) {
+		if ($this->input->get('directory')) {
 			$url .= '&directory=' . urlencode($this->input->get('directory'));
 		}
 
-		if (isset($this->input->get('target'])) {
+		if ($this->input->get('target')) {
 			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if (isset($this->input->get('thumb'])) {
+		if ($this->input->get('thumb')) {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
@@ -180,20 +180,20 @@ class ControllerCommonFileManager extends MX_Controller
 
 		$url = '';
 
-		if (isset($this->input->get('directory'))) {
-			$url .= '&directory=' . urlencode(html_entity_decode($this->input->get('directory'], ENT_QUOTES, 'UTF-8'));
+		if ($this->input->get('directory')) {
+			$url .= '&directory=' . urlencode(html_entity_decode($this->input->get('directory'), ENT_QUOTES, 'UTF-8'));
 		}
 
-		if (isset($this->input->get('filter_name'))) {
-			$url .= '&filter_name=' . urlencode(html_entity_decode($this->input->get('filter_name'], ENT_QUOTES, 'UTF-8'));
+		if ($this->input->get('filter_name')) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->input->get('filter_name'), ENT_QUOTES, 'UTF-8'));
 		}
 
-		if (isset($this->input->get('target'))) {
-			$url .= '&target=' . $this->input->get('target'];
+		if ($this->input->get('target')) {
+			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if (isset($this->input->get('thumb'))) {
-			$url .= '&thumb=' . $this->input->get('thumb'];
+		if ($this->input->get('thumb')) {
+			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
 		$pagination = new Pagination();
@@ -218,8 +218,8 @@ class ControllerCommonFileManager extends MX_Controller
 		}
 
 		// Make sure we have the correct directory
-		if (isset($this->input->get('directory'))) {
-			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->input->get('directory'], '/');
+		if ($this->input->get('directory')) {
+			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->input->get('directory'), '/');
 		} else {
 			$directory = DIR_IMAGE . 'catalog';
 		}
@@ -298,8 +298,11 @@ class ControllerCommonFileManager extends MX_Controller
 			$json['success'] = $this->lang->get('text_uploaded');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		//$this->response->addHeader('Content-Type: application/json');
+		//$this->response->setOutput(json_encode($json));
+		
+        $this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($json));
 	}
 
 	public function folder() {
@@ -313,8 +316,8 @@ class ControllerCommonFileManager extends MX_Controller
 		}
 
 		// Make sure we have the correct directory
-		if (isset($this->input->get('directory'])) {
-			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->input->get('directory'], '/');
+		if ($this->input->get('directory')) {
+			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->input->get('directory'), '/');
 		} else {
 			$directory = DIR_IMAGE . 'catalog';
 		}
@@ -324,9 +327,9 @@ class ControllerCommonFileManager extends MX_Controller
 			$json['error'] = $this->lang->get('error_directory');
 		}
 
-		if ($this->input->server['input_METHOD'] == 'POST') {
+		if ($this->input->server('input_METHOD') == 'POST') {
 			// Sanitize the folder name
-			$folder = basename(html_entity_decode($this->input->post['folder'], ENT_QUOTES, 'UTF-8'));
+			$folder = basename(html_entity_decode($this->input->post('folder'), ENT_QUOTES, 'UTF-8'));
 
 			// Validate the filename length
 			if ((utf8_strlen($folder) < 3) || (utf8_strlen($folder) > 128)) {
@@ -348,8 +351,11 @@ class ControllerCommonFileManager extends MX_Controller
 			$json['success'] = $this->lang->get('text_directory');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		//$this->response->addHeader('Content-Type: application/json');
+		//$this->response->setOutput(json_encode($json));
+		
+		$this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($json));
 	}
 
 	public function delete() {
@@ -362,7 +368,7 @@ class ControllerCommonFileManager extends MX_Controller
 			$json['error'] = $this->lang->get('error_permission');
 		}
 
-		if (isset($this->input->post('path'))) {
+		if ($this->input->post('path')) {
 		$paths = $this->input->post('path');
 		} else {
 			$paths = array();
@@ -428,7 +434,10 @@ class ControllerCommonFileManager extends MX_Controller
 			$json['success'] = $this->lang->get('text_delete');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		//$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+		
+		$this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($json));
 	}
 }

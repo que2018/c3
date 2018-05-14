@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/extension/platform.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_platform'); ?></h2>
@@ -12,9 +12,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_platform_description'); ?></h5>
@@ -35,7 +32,8 @@
 				<?php if ($platforms) { ?>
 				<?php foreach ($platforms as $platform) { ?>
 				<tr>
-				  <td class="text-left"><?php echo $platform['name']; ?></td>				  <td class="text-left"><img src="<?php echo base_url() . $platform['logo']; ?>" class="img-responsive img-logo" /></td>
+				  <td class="text-left"><?php echo $platform['name']; ?></td>				  
+				  <td class="text-left"><img src="<?php echo base_url() . $platform['logo']; ?>" class="img-responsive img-logo" /></td>
 				  <td class="text-left"><?php echo $platform['status']; ?></td>
 				  <td class="text-right"><?php echo $platform['sort_order']; ?></td>
 				  <td class="text-right">
@@ -64,3 +62,4 @@
 	</div>
   </div>
 </div>	
+<?php echo $footer; ?>	

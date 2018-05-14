@@ -1,27 +1,35 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Fee extends CI_Controller 
+class Fee extends MX_Controller 
 {
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('extension/fee');
 
 		$this->load->model('extension/extension_model');
 		
-		$data['success'] = $this->session->flashdata('success');
+		$this->header->add_style(base_url(). 'assets/css/app/extension/fee.css');
+		
+		$this->header->set_title($this->lang->line('text_fee'));
 		
 		$fees = $this->extension_model->get_installed('fee');
 	
-		foreach($fees as $key => $code) 
+		if($fees)
 		{
-			$file = ucfirst($code);
-			
-			if(!is_file(APPPATH . '/controllers/fee/' . $file . '.php') && !is_file(APPPATH . '/controllers/fee/' . $file . '.php')) 
+			foreach($fees as $key => $code) 
 			{
-				$this->extension_model->uninstall('fee', $file);
+				$file = ucfirst($code);
+				
+				if(!is_file(APPPATH . '/controllers/fee/' . $file . '.php') && !is_file(APPPATH . '/controllers/fee/' . $file . '.php')) 
+				{
+					$this->extension_model->uninstall('fee', $file);
 
-				unset($fees[$key]);
+					unset($fees[$key]);
+				}
 			}
 		}
 
@@ -46,9 +54,10 @@ class Fee extends CI_Controller
 			}
 		}
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
 		$this->load->view('extension/fee', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function install() 
