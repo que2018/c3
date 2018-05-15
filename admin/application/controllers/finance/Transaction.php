@@ -1,15 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Transaction extends CI_Controller 
+class Transaction extends MX_Controller 
 {
 	public function index()
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('finance/transaction');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/finance/transaction_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_transaction'));
+	
 		$data = $this->get_list();
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/transaction_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload() 
@@ -28,8 +42,6 @@ class Transaction extends CI_Controller
 		
 		$this->load->model('client/client_model');
 		$this->load->model('finance/transaction_model');
-
-		$data['success'] = $this->session->flashdata('success');
 		
 		if($this->input->get('filter_client'))
 		{
@@ -445,11 +457,20 @@ class Transaction extends CI_Controller
 	
 	public function add()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('finance/transaction');
 		
 		$this->load->model('finance/transaction_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/finance/transaction_add.css');
+
+		$this->header->set_title($this->lang->line('text_add_transaction'));
 		
 		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');		
 		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required');
@@ -491,18 +512,28 @@ class Transaction extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/transaction_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('finance/transaction');
 		
 		$this->load->model('finance/transaction_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/finance/transaction_add.css');
+
+		$this->header->set_title($this->lang->line('text_edit_transaction'));
 		
 		$transaction_id = $this->input->get('transaction_id');
 		
@@ -556,9 +587,10 @@ class Transaction extends CI_Controller
 				
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/transaction_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

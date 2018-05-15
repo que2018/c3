@@ -132,5 +132,6 @@
   <div class="pull-left"><?php echo $results; ?></div>
   <div class="pull-right"><?php echo $pagination; ?></div>
 </div>
+<?php echo $footer; ?>
 
 

@@ -4,7 +4,7 @@ class Image_model extends CI_Model
 {
 	public function resize($filename, $width, $height) 
 	{
-		if(!is_file(DIR_IMAGE . $filename)) 
+		if(!is_file(IMAGEPATH . $filename)) 
 		{
 			return;
 		}
@@ -14,7 +14,7 @@ class Image_model extends CI_Model
 		$old_image = $filename;
 		$new_image = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . $width . 'x' . $height . '.' . $extension;
 
-		if(!is_file(DIR_IMAGE . $new_image) || (filectime(DIR_IMAGE . $old_image) > filectime(DIR_IMAGE . $new_image))) 
+		if(!is_file(IMAGEPATH . $new_image) || (filectime(IMAGEPATH . $old_image) > filectime(IMAGEPATH . $new_image))) 
 		{
 			$path = '';
 
@@ -24,23 +24,23 @@ class Image_model extends CI_Model
 			{
 				$path = $path . '/' . $directory;
 
-				if(!is_dir(DIR_IMAGE . $path)) 
+				if(!is_dir(IMAGEPATH . $path)) 
 				{
-					@mkdir(DIR_IMAGE . $path, 0777);
+					@mkdir(IMAGEPATH . $path, 0777);
 				}
 			}
 
-			list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $old_image);
+			list($width_orig, $height_orig) = getimagesize(IMAGEPATH . $old_image);
 
 			if($width_orig != $width || $height_orig != $height) 
 			{
-				$image = new Image(DIR_IMAGE . $old_image);
+				$image = new Image(IMAGEPATH . $old_image);
 				$image->resize($width, $height);
-				$image->save(DIR_IMAGE . $new_image);
+				$image->save(IMAGEPATH . $new_image);
 			} 
 			else 
 			{
-				copy(DIR_IMAGE . $old_image, DIR_IMAGE . $new_image);
+				copy(IMAGEPATH . $old_image, IMAGEPATH . $new_image);
 			}
 		}
 
