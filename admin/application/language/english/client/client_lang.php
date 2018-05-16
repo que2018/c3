@@ -1,10 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_add'] 	  	        	 	  	    = 'add';
-$lang['text_edit'] 	  	        	 	  	    = 'edit';
-$lang['text_delete'] 	  	        	 	  	= 'delete';
-$lang['text_save'] 	  	        	 	  	 	= 'save';
+$lang['text_add'] 	  	        	 	  	    = 'add client';
+$lang['text_edit'] 	  	        	 	  	    = 'edit client';
+$lang['text_delete'] 	  	        	 	  	= 'delete client';
+$lang['text_save'] 	  	        	 	  	 	= 'save client';
 $lang['text_cancel'] 	  	        	 	  	= 'cancel';
 $lang['text_firstname'] 	  	         		= 'firstname';
 $lang['text_lastname'] 	  	             		= 'lastname';

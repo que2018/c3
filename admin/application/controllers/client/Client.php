@@ -1,30 +1,49 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Client extends CI_Controller 
+class Client extends MX_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('client/client');
 		
-		$this->load->model('client/client_model');
+		$this->header->add_style(base_url(). 'assets/css/app/client/client_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_client'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('client/client_list', $data);
 	}
 	
-	public function index()
+	public function reload()
 	{
+		$data = $this->get_list();
+			
+		$this->load->view('client/client_list_table', $data);
+	}
+	
+	protected function get_list()
+	{		
 		$this->load->library('currency');
 		
 		$this->lang->load('client/client');
-		
+				
 		$this->load->model('client/client_model');
 		$this->load->model('finance/balance_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
-
-		$data['success'] = $this->session->flashdata('success');
 				
 		if($this->input->get('filter_name'))
 		{
@@ -109,7 +128,8 @@ class Client extends CI_Controller
 			'limit'           => $limit
 		);
 		
-		$clients       = $this->client_model->get_clients($filter_data);
+		$clients = $this->client_model->get_clients($filter_data);
+		
 		$client_total  = $this->client_model->get_client_total($filter_data);
 		
 		$data['clients'] = array();
@@ -204,7 +224,7 @@ class Client extends CI_Controller
 		$this->pagination->total  = $client_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'client/client?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'client/client?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($client_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($client_total - $limit)) ? $client_total : ((($page - 1) * $limit) + $limit), $client_total, ceil($client_total / $limit));
 		
@@ -246,10 +266,10 @@ class Client extends CI_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_name']     = base_url().'client/client?sort=name' . $url;
-		$data['sort_company']  = base_url().'client/client?sort=company' . $url;
-		$data['sort_email']    = base_url().'client/client?sort=email' . $url;
-		$data['sort_phone']    = base_url().'client/client?sort=phone' . $url;
+		$data['sort_name']     = base_url() . 'client/client?sort=name' . $url;
+		$data['sort_company']  = base_url() . 'client/client?sort=company' . $url;
+		$data['sort_email']    = base_url() . 'client/client?sort=email' . $url;
+		$data['sort_phone']    = base_url() . 'client/client?sort=phone' . $url;
 
 		$url = '';
 		
@@ -269,6 +289,8 @@ class Client extends CI_Controller
 		
 		$data['filter_url'] = base_url() . 'client/client' . $url;
 		
+		$data['reload_url'] = base_url() . 'client/client/reload' . $url;
+		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
@@ -278,19 +300,33 @@ class Client extends CI_Controller
 		$data['filter_email']      = $filter_email;
 		$data['filter_phone']      = $filter_phone;
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('client/client_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function add() 
 	{
-		$this->lang->load('client/client');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('datetimer');
+		
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('client/client');
+
 		$this->load->model('client/client_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/client/client_add.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		
+		$this->header->set_title($this->lang->line('text_add_client'));
 
 		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|regex_match[/^\S+@\S+\.\S+$/]|callback_validate_add_email');
 		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');		
@@ -321,19 +357,33 @@ class Client extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('client/client_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{		
-		$this->lang->load('client/client');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('datetimer');
+		
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('client/client');
+
 		$this->load->model('client/client_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/client/client_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		
+		$this->header->set_title($this->lang->line('text_edit_client'));
 	
 		$client_id = $this->input->get('client_id');
 	
@@ -406,15 +456,19 @@ class Client extends CI_Controller
 		
 		$data['error'] = validation_errors();
 	
-		$this->load->view('common/header');
+		
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('client/client_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
 	{
 		if($this->input->get('client_id'))
 		{
+			$this->lang->load('client/client');
+			
 			$this->load->model('sale/sale_model');
 			$this->load->model('catalog/product_model');
 			$this->load->model('finance/recharge_model');
@@ -453,14 +507,15 @@ class Client extends CI_Controller
 			}
 			else
 			{
-				$this->client_model->delete_client($client_id);
+				$result = $this->client_model->delete_client($client_id);
 
 				$outdata = array(
-					'success'   => true
+					'success'   => ($result)?true:false
 				);
 			}
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -583,8 +638,8 @@ class Client extends CI_Controller
 			}
 		}
 		
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

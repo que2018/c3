@@ -23,6 +23,11 @@ a:focus, a:hover {
 .filter-select:focus, input:focus {
 	outline:0;
 }
+.button-group {
+	position: absolute;
+    top: 30px;
+    right: 50px;
+}
 .btn-edit {
 	margin-right: 5px;
 }
@@ -32,8 +37,13 @@ a:focus, a:hover {
 .page-heading {
 	position: relative;
 }
-.btn-add {
-	position: absolute;
-    top: 30px;
-    right: 40px;
+.pagination-block {
+	min-height: 33px;
+}
+.pagination {
+	margin: 0px;
+}
+.alert-success {
+    width: 220px;
+    margin: 0 auto;
 }

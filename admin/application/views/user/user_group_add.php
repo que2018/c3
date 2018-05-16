@@ -1,7 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/user/user_group_add.css" rel="stylesheet"> 
-<link href="<?php echo base_url(); ?>assets/css/plugins/iCheck/custom.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>assets/js/plugins/iCheck/icheck.min.js"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_user_group_add'); ?></h2>
@@ -11,9 +8,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_user_group_add'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <button class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>user/user_group" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+  <div class="button-group tooltip-demo">
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save_user_group'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+    <a href="<?php echo base_url(); ?>user/user_group" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -99,6 +96,7 @@ $(document).ready(function () {
 	});
 });
 </script>
+<?php echo $footer; ?>
 		
 		
 		

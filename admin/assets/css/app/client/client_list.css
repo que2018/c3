@@ -48,7 +48,10 @@ input:focus {
 .detail table {
 	margin-bottom: 0px;
 }
-
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 
 
