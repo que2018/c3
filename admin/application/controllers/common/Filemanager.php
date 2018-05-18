@@ -1,17 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class ControllerCommonFileManager extends MX_Controller 
+class Filemanager extends MX_Controller 
 {
 	public function index() 
 	{
-		$this->load->lang('common/filemanager');
+		$this->lang->load('common/filemanager');
 
 		// Find which protocol to use to pass the full image link back
 		if ($this->input->server('HTTPS')) {
-			$server = HTTPS_CATALOG;
+			//$server = HTTPS_CATALOG;
+			$server = $this->config->item('site_https');
 		} else {
-			$server = HTTP_CATALOG;
+			//$server = HTTP_CATALOG;
+			$server = $this->config->item('site_http');
 		}
 
 		if ($this->input->get('filter_name')) {

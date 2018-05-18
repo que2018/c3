@@ -3,16 +3,17 @@
 class Image_model extends CI_Model 
 {
 	public function resize($filename, $width, $height) 
-	{
+	{		
 		if(!is_file(IMAGEPATH . $filename)) 
-		{
+		{			
 			return;
 		}
 
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 
 		$old_image = $filename;
-		$new_image = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . $width . 'x' . $height . '.' . $extension;
+		//$new_image = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . $width . 'x' . $height . '.' . $extension;
+		$new_image = 'cache/' . substr($filename, 0, strpos($filename, '.') - 1) . '-' . $width . 'x' . $height . '.' . $extension;
 
 		if(!is_file(IMAGEPATH . $new_image) || (filectime(IMAGEPATH . $old_image) > filectime(IMAGEPATH . $new_image))) 
 		{
@@ -46,11 +47,11 @@ class Image_model extends CI_Model
 
 		if($this->input->server('HTTPS')) 
 		{
-			return $this->config->item('config_ssl') . 'image/' . $new_image;
+			return $this->config->item('site_https') . 'media/image/' . $new_image;
 		} 
 		else 
 		{
-			return $this->config->item('config_url') . 'image/' . $new_image;
+			return $this->config->item('site_http') . 'media/image/' . $new_image;
 		}
 	}
 }

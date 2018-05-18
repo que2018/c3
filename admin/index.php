@@ -365,7 +365,7 @@ switch (ENVIRONMENT)
  *---------------------------------------------------------------
  *
  */
-	define('IMAGEPATH', realpath(dirname(__FILE__) . '/../image'));	
+	define('IMAGEPATH', realpath(dirname(__FILE__) . '/../media/image') . '/');	
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
