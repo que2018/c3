@@ -8,9 +8,11 @@ $lang['text_download']  						   = 'Download';
 $lang['text_upload']    						   = 'Upload';
 $lang['text_success']                              = 'Success';
 $lang['text_fail']    							   = 'Fail';
+$lang['text_cancel']    						   = 'cancel';
+$lang['text_clear_sync_history']    		       = 'clear sync history';
 $lang['text_store_syn_history_detail']    		   = 'Store Sync History Detail';
+$lang['text_confirm_delete'] 	 	  	           = 'Are you sure to delete this history?';
 $lang['text_store_sync_clear_success']		       = '<i class="fa fa-check-circle-o"></i>&nbsp;store sync history clear success';
-
 
 // Column
 $lang['column_store'] 	  	               		   = 'Store';

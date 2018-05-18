@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/store/store_sync_history_detail.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_store_syn_history_detail'); ?></h2>
@@ -8,8 +8,8 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_store_syn_history_detail'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <a href="<?php echo base_url(); ?>store/store_sync_history" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+  <div class="button-group  tooltip-demo">
+    <a href="<?php echo base_url(); ?>store/store_sync_history" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -75,5 +75,5 @@
     </div>
   </div>
 </div>
-
+<?php echo $footer; ?>
 		
