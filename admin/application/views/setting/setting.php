@@ -1,7 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/plugins/iCheck/custom.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/app/setting/setting.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>assets/js/plugins/iCheck/icheck.min.js"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_setting'); ?></h2>
@@ -19,9 +16,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	<?php if($success) { ?>
-      <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-    <?php } ?>
 	<?php if($error) { ?>
       <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $error; ?></div>
     <?php } ?>
@@ -554,5 +548,6 @@ $(document).ready(function () {
 	});
 });
 </script>
+<?php echo $footer; ?>
 		
 		
