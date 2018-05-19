@@ -42,7 +42,7 @@ class Filemanager extends MX_Controller
 
 		$this->load->model('tool/image_model');
 
-		if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(IMAGEPATH . 'catalog')) == IMAGEPATH . 'catalog') {
+		//if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(IMAGEPATH . 'catalog')) == IMAGEPATH . 'catalog') {
 			// Get directories
 			$directories = glob($directory . '/' . $filter_name . '*', GLOB_ONLYDIR);
 
@@ -56,7 +56,7 @@ class Filemanager extends MX_Controller
 			if (!$files) {
 				$files = array();
 			}
-		}
+		//}
 
 		// Merge directories and files
 		$images = array_merge($directories, $files);
@@ -85,16 +85,16 @@ class Filemanager extends MX_Controller
 					'thumb' => '',
 					'name'  => implode(' ', $name),
 					'type'  => 'directory',
-					'path'  => utf8_substr($image, utf8_strlen(IMAGEPATH)),
-					'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode(utf8_substr($image, utf8_strlen(IMAGEPATH . 'catalog/'))) . $url, true)
+					'path'  => $this->utf8_substr($image, mb_strlen(IMAGEPATH)),
+					'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode($this->utf8_substr($image, mb_strlen(IMAGEPATH . 'catalog/'))) . $url, true)
 				);
 			} elseif (is_file($image)) {
 				$data['images'][] = array(
-					'thumb' => $this->image_model->resize(utf8_substr($image, utf8_strlen(IMAGEPATH)), 100, 100),
+					'thumb' => $this->image_model->resize($this->utf8_substr($image, mb_strlen(IMAGEPATH)), 100, 100),
 					'name'  => implode(' ', $name),
 					'type'  => 'image',
-					'path'  => utf8_substr($image, utf8_strlen(IMAGEPATH)),
-					'href'  => $server . 'image/' . utf8_substr($image, utf8_strlen(IMAGEPATH))
+					'path'  => $this->utf8_substr($image, mb_strlen(IMAGEPATH)),
+					'href'  => $server . 'image/' . $this->utf8_substr($image, mb_strlen(IMAGEPATH))
 				);
 			}
 		}
@@ -198,13 +198,13 @@ class Filemanager extends MX_Controller
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
-		$pagination = new Pagination();
-		$pagination->total = $image_total;
-		$pagination->page = $page;
-		$pagination->limit = 16;
-		$pagination->url = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		//$pagination = new Pagination();
+		$this->pagination->total = $image_total;
+		$this->pagination->page = $page;
+		$this->pagination->limit = 16;
+		$this->pagination->url = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
-		$data['pagination'] = $pagination->render();
+		$data['pagination'] = $this->pagination->render();
 
 		//$this->response->setOutput($this->load->view('common/filemanager', $data));
 		$this->load->view('common/filemanager', $data);
@@ -254,7 +254,7 @@ class Filemanager extends MX_Controller
 					$filename = basename(html_entity_decode($file['name'], ENT_QUOTES, 'UTF-8'));
 
 					// Validate the filename length
-					if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
+					if ((mb_strlen($filename) < 3) || (mb_strlen($filename) > 255)) {
 						$json['error'] = $this->lang->line('error_filename');
 					}
 					
@@ -266,7 +266,7 @@ class Filemanager extends MX_Controller
 						'png'
 					);
 	
-					if (!in_array(utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
+					if (!in_array(utf8_strtolower($this->utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
 						$json['error'] = $this->lang->line('error_filetype');
 					}
 					
@@ -334,7 +334,7 @@ class Filemanager extends MX_Controller
 			$folder = basename(html_entity_decode($this->input->post('folder'), ENT_QUOTES, 'UTF-8'));
 
 			// Validate the filename length
-			if ((utf8_strlen($folder) < 3) || (utf8_strlen($folder) > 128)) {
+			if ((mb_strlen($folder) < 3) || (mb_strlen($folder) > 128)) {
 				$json['error'] = $this->lang->line('error_folder');
 			}
 
@@ -440,5 +440,17 @@ class Filemanager extends MX_Controller
 		
 		$this->output->set_content_type('application/json');
         $this->output->set_output(json_encode($json));
+	}
+	
+	private function utf8_substr($string, $offset, $length = null) 
+	{
+		if($length === null) 
+		{
+			return mb_substr($string, $offset, mb_strlen($string));
+		} 
+		else 
+		{
+			return mb_substr($string, $offset, $length);
+		}
 	}
 }

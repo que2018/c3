@@ -1,24 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Language extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
+class Language extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('setting/language');
 		
-		$this->load->model('setting/language_model');
-	}
+		$this->header->add_style(base_url(). 'assets/css/app/setting/language_list.css');
 	
-	public function index()
-	{			
+		$this->header->set_title($this->lang->line('text_language'));
+	
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/language_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -29,9 +30,11 @@ class Language extends CI_Controller {
 	}
 	
 	protected function get_list()
-	{
-		$data['success'] = $this->session->flashdata('success');
-		                   
+	{	
+		$this->lang->load('setting/language');
+		
+		$this->load->model('setting/language_model');
+	
 		if($this->input->get('sort')) 
 		{
 			$sort = $this->input->get('sort');
@@ -75,7 +78,8 @@ class Language extends CI_Controller {
 			'limit'    => $limit
 		);
 		
-		$languages = $this->language_model->get_languages($filter_data);	
+		$languages = $this->language_model->get_languages($filter_data);
+		
 		$language_total = $this->language_model->get_language_total($filter_data);
 		
 		$data['languages'] = array();
@@ -112,7 +116,7 @@ class Language extends CI_Controller {
 		$this->pagination->total  = $language_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'setting/language?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'setting/language?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($language_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($language_total - $limit)) ? $language_total : ((($page - 1) * $limit) + $limit), $language_total, ceil($language_total / $limit));
 
@@ -162,8 +166,23 @@ class Language extends CI_Controller {
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
-	
+		
+		$this->form_validation->CI =& $this;
+
+		$this->lang->load('setting/language');
+		
+		$this->load->model('setting/language_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/language_add.css');
+				
+		$this->header->set_title($this->lang->line('text_language_add'));
+
+		$user_group_id = $this->input->get('user_group_id');
+			
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('code', $this->lang->line('text_code'), 'required');
 
@@ -183,14 +202,28 @@ class Language extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/language_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+
+		$this->lang->load('setting/language');
+		
+		$this->load->model('setting/language_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/language_edit.css');
+				
+		$this->header->set_title($this->lang->line('text_language_edit'));
 		
 		$language_id = $this->input->get('language_id');
 	
@@ -222,15 +255,16 @@ class Language extends CI_Controller {
 			
 			$data['name']  = $language['name'];
 			$data['code']  = $language['code'];
-
-			$data['language_id'] = $language_id;
-			
-			$data['error'] = validation_errors();
-		
-			$this->load->view('common/header');
-			$this->load->view('setting/language_edit', $data);
-			$this->load->view('common/footer');
 		}
+		
+		$data['language_id'] = $language_id;
+			
+		$data['error'] = validation_errors();
+	
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('setting/language_edit', $data);
 	}
 	
 	public function delete()
@@ -241,20 +275,12 @@ class Language extends CI_Controller {
 			
 			$result = $this->language_model->delete_language($language_id);
 			
-			if($result)
-			{				
-				$outdata = array(
-					'success'   => true
-				);
-			}
-			else 
-			{				
-				$outdata = array(
-					'success'   => false
-				);
-			}
+			$outdata = array(
+				'success' => ($result)?true:false
+			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

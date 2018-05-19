@@ -343,6 +343,7 @@ class Product extends MX_Controller
 			'sku'                => $this->input->post('sku'),
 			'asin'               => $this->input->post('asin'),
 			'name'               => $this->input->post('name'),
+			'image'              => $this->input->post('image'),
 			'price'              => $this->input->post('price'),
 			'alert_quantity'     => $this->input->post('alert_quantity'),
 			'length'             => $this->input->post('length'),
@@ -586,6 +587,8 @@ class Product extends MX_Controller
 		
 		//thumb
 		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		
+		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 
 		//quantity
 		$quantity = $this->inventory_model->get_product_quantity($product_id);

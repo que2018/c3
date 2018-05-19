@@ -71,7 +71,7 @@
 			  <div class="form-group">
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_image'); ?></label>
                 <div class="col-sm-10">
-				  <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>"/></a>
+				  <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a>
 				  <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />				
                 </div>
 			  </div>
