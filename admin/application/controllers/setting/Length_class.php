@@ -1,21 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Length_class extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
+class Length_class extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('setting/length_class');
 		
-		$this->load->model('setting/length_class_model');
+		$this->header->add_style(base_url(). 'assets/css/app/setting/length_class_list.css');
+	
+		$this->header->set_title($this->lang->line('text_length_class'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('setting/length_class_list', $data);
 	}
 	
-	function index()
+	public function reload()
 	{
-		$data['success'] = $this->session->flashdata('success');
-		                   
+		$data = $this->get_list();
+			
+		$this->load->view('setting/length_class_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
+		$this->lang->load('setting/length_class');
+
+		$this->load->model('setting/length_class_model');
+	
 		if($this->input->get('filter_unit'))
 		{
 			$filter_unit = $this->input->get('filter_unit');
@@ -90,6 +109,7 @@ class Length_class extends CI_Controller {
 		);
 		
 		$length_classes = $this->length_class_model->get_length_classes($filter_data);	
+		
 		$length_class_total = $this->length_class_model->get_length_class_total($filter_data);
 		
 		$data['length_classes'] = array();
@@ -142,7 +162,7 @@ class Length_class extends CI_Controller {
 		$this->pagination->total  = $length_class_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'setting/length_class?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'setting/length_class?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($length_class_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($length_class_total - $limit)) ? $length_class_total : ((($page - 1) * $limit) + $limit), $length_class_total, ceil($length_class_total / $limit));
 
@@ -172,9 +192,9 @@ class Length_class extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_unit']         = base_url() . 'setting/length_class?sort=unit' . $url;
-		$data['sort_unit_short']   = base_url() . 'setting/length_class?sort=unit_short' . $url;
-		$data['sort_value']   	   = base_url() . 'setting/length_class?sort=value' . $url;
+		$data['sort_unit']        = base_url() . 'setting/length_class?sort=unit' . $url;
+		$data['sort_unit_short']  = base_url() . 'setting/length_class?sort=unit_short' . $url;
+		$data['sort_value']   	  = base_url() . 'setting/length_class?sort=value' . $url;
 
 		$url = '';
 		
@@ -192,7 +212,9 @@ class Length_class extends CI_Controller {
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url().'setting/length_class'.$url;
+		$data['filter_url'] = base_url() . 'setting/length_class'.$url;
+		
+		$data['reload_url'] = base_url() . 'setting/length_class/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -202,14 +224,25 @@ class Length_class extends CI_Controller {
 		$data['filter_unit_short']  = $filter_unit_short;
 		$data['filter_value']  		= $filter_value;
 		
-		$this->load->view('common/header');
-		$this->load->view('setting/length_class_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+				
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('setting/length_class');
+
+		$this->load->model('setting/length_class_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/length_class_add.css');
+				
+		$this->header->set_title($this->lang->line('text_length_class_add'));
 	
 		$this->form_validation->set_rules('unit', $this->lang->line('text_unit'), 'required');
 		$this->form_validation->set_rules('unit_short', $this->lang->line('text_unit_short'), 'required');
@@ -232,14 +265,28 @@ class Length_class extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/length_class_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('setting/length_class');
+
+		$this->load->model('setting/length_class_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/length_class_edit.css');
+				
+		$this->header->set_title($this->lang->line('text_length_class_edit'));
 		
 		$length_class_id = $this->input->get('length_class_id');
 	
@@ -261,46 +308,48 @@ class Length_class extends CI_Controller {
 			
 			redirect(base_url() . 'setting/length_class', 'refresh');
 		}
+		
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{
+			$data['unit']      	 = $this->input->post('unit');
+			$data['unit_short']  = $this->input->post('unit_short');
+			$data['value']       = $this->input->post('value');
+		}
 		else
 		{
 			$length_class = $this->length_class_model->get_length_class($length_class_id);
 			
-			$data['unit']        	  = $length_class['unit'];
-			$data['unit_short']  	  = $length_class['unit_short'];
-			$data['value']            = $length_class['value'];
-
-			$data['length_class_id'] = $length_class_id;
-			
-			$data['error']   = validation_errors();
-		
-			$this->load->view('common/header');
-			$this->load->view('setting/length_class_edit', $data);
-			$this->load->view('common/footer');
+			$data['unit']        = $length_class['unit'];
+			$data['unit_short']  = $length_class['unit_short'];
+			$data['value']       = $length_class['value'];
 		}
+	
+		$data['error'] = validation_errors();
+	
+		$data['length_class_id'] = $length_class_id;
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('setting/length_class_edit', $data);
 	}
 	
 	public function delete()
 	{
+		$this->load->model('setting/length_class_model');
+		
 		if($this->input->get('length_class_id'))
 		{
 			$length_class_id = $this->input->get('length_class_id');
 			
 			$result = $this->length_class_model->delete_length_class($length_class_id);
 			
-			if($result)
-			{				
-				$outdata = array(
-					'success'   => true
-				);
-			}
-			else 
-			{				
-				$outdata = array(
-					'success'   => false
-				);
-			}
+			$outdata = array(
+				'success' => ($result)?true:false
+			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }
