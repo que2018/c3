@@ -161,7 +161,7 @@ class Filemanager extends MX_Controller
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
-		$data['parent'] = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url, true);
+		$data['parent'] = $this->url->link('common/filemanager', $url, true);
 
 		// Refresh
 		$url = '';
@@ -177,8 +177,8 @@ class Filemanager extends MX_Controller
 		if ($this->input->get('thumb')) {
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
-
-		$data['refresh'] = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url, true);
+		
+		$data['refresh'] = $this->url->link('common/filemanager', $url, true);
 
 		$url = '';
 
@@ -202,23 +202,17 @@ class Filemanager extends MX_Controller
 		$this->pagination->total = $image_total;
 		$this->pagination->page = $page;
 		$this->pagination->limit = 16;
-		$this->pagination->url = $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$this->pagination->url = $this->url->link('common/filemanager', $url . '&page={page}', true);
 
 		$data['pagination'] = $this->pagination->render();
 
-		//$this->response->setOutput($this->load->view('common/filemanager', $data));
 		$this->load->view('common/filemanager', $data);
 	}
 
 	public function upload() {
-		$this->load->lang('common/filemanager');
+		$this->lang->load('common/filemanager');
 
 		$json = array();
-
-		// Check user has permission
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->lang->line('error_permission');
-		}
 
 		// Make sure we have the correct directory
 		if ($this->input->get('directory')) {
@@ -228,9 +222,10 @@ class Filemanager extends MX_Controller
 		}
 
 		// Check its a directory
-		if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(IMAGEPATH . 'catalog')) != IMAGEPATH . 'catalog') {
+		// comment out by Sam, may be dangerous
+		/* if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(IMAGEPATH . 'catalog')) != IMAGEPATH . 'catalog') {
 			$json['error'] = $this->lang->line('error_directory');
-		}
+		} */
 
 		if (!$json) {
 			// Check if multiple files are uploaded or just one
@@ -301,21 +296,14 @@ class Filemanager extends MX_Controller
 			$json['success'] = $this->lang->line('text_uploaded');
 		}
 
-		//$this->response->addHeader('Content-Type: application/json');
-		//$this->response->setOutput(json_encode($json));
         $this->output->set_content_type('application/json');
         $this->output->set_output(json_encode($json));
 	}
 
 	public function folder() {
-		$this->load->lang('common/filemanager');
+		$this->lang->load('common/filemanager');
 
 		$json = array();
-
-		// Check user has permission
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->lang->line('error_permission');
-		}
 
 		// Make sure we have the correct directory
 		if ($this->input->get('directory')) {
@@ -325,14 +313,15 @@ class Filemanager extends MX_Controller
 		}
 
 		// Check its a directory
-		if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(IMAGEPATH . 'catalog')) != IMAGEPATH . 'catalog') {
+		// comment out by Sam, may be dangerous
+		/* if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(IMAGEPATH . 'catalog')) != IMAGEPATH . 'catalog') {
 			$json['error'] = $this->lang->line('error_directory');
-		}
+		} */
 
-		if ($this->input->server('input_METHOD') == 'POST') {
+		if($this->input->server('REQUEST_METHOD') == 'POST') {
 			// Sanitize the folder name
 			$folder = basename(html_entity_decode($this->input->post('folder'), ENT_QUOTES, 'UTF-8'));
-
+			
 			// Validate the filename length
 			if ((mb_strlen($folder) < 3) || (mb_strlen($folder) > 128)) {
 				$json['error'] = $this->lang->line('error_folder');
@@ -350,24 +339,17 @@ class Filemanager extends MX_Controller
 
 			@touch($directory . '/' . $folder . '/' . 'index.html');
 
-			$json['success'] = $this->lang->line('text_directory');
+			$json['success'] = $this->lang->line('text_success');
 		}
 
-		//$this->response->addHeader('Content-Type: application/json');
-		//$this->response->setOutput(json_encode($json));
 		$this->output->set_content_type('application/json');
         $this->output->set_output(json_encode($json));
 	}
 
 	public function delete() {
-		$this->load->lang('common/filemanager');
+		$this->lang->load('common/filemanager');
 
 		$json = array();
-
-		// Check user has permission
-		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-			$json['error'] = $this->lang->line('error_permission');
-		}
 
 		if ($this->input->post('path')) {
 		$paths = $this->input->post('path');
@@ -376,14 +358,15 @@ class Filemanager extends MX_Controller
 		}
 
 		// Loop through each path to run validations
-		foreach ($paths as $path) {
+		// comment out by Sam, may be dangerous
+		/*foreach ($paths as $path) {
 			// Check path exsists
 			if ($path == IMAGEPATH . 'catalog' || substr(str_replace('\\', '/', realpath(IMAGEPATH . $path)), 0, strlen(IMAGEPATH . 'catalog')) != IMAGEPATH . 'catalog') {
 				$json['error'] = $this->lang->line('error_delete');
 
 				break;
 			}
-		}
+		} */
 
 		if (!$json) {
 			// Loop through each path
@@ -435,9 +418,6 @@ class Filemanager extends MX_Controller
 			$json['success'] = $this->lang->line('text_delete');
 		}
 
-		//$this->response->addHeader('Content-Type: application/json');
-		//$this->response->setOutput(json_encode($json));
-		
 		$this->output->set_content_type('application/json');
         $this->output->set_output(json_encode($json));
 	}

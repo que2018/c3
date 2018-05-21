@@ -6,7 +6,9 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <div class="col-sm-5"><a href="<?php echo $parent; ?>" data-toggle="tooltip" title="<?php echo $button_parent; ?>" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="<?php echo $refresh; ?>" data-toggle="tooltip" title="<?php echo $button_refresh; ?>" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+        <div class="col-sm-5">
+		  <a href="<?php echo $parent; ?>" data-toggle="tooltip" title="<?php echo $button_parent; ?>" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> 
+		  <a href="<?php echo $refresh; ?>" data-toggle="tooltip" title="<?php echo $button_refresh; ?>" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_upload; ?>" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_folder; ?>" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -91,7 +93,7 @@ $('input[name=\'search\']').on('keydown', function(e) {
 });
 
 $('#button-search').on('click', function(e) {
-	var url = 'index.php?route=common/filemanager&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>';
+	var url = '<?php echo base_url(); ?>common/filemanager?directory=<?php echo $directory; ?>';
 
 	var filter_name = $('input[name=\'search\']').val();
 
@@ -127,7 +129,7 @@ $('#button-upload').on('click', function() {
 			clearInterval(timer);
 
 			$.ajax({
-				url: 'index.php?route=common/filemanager/upload&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>',
+				url: '<?php echo base_url(); ?>common/filemanager/upload?directory=<?php echo $directory; ?>',
 				type: 'post',
 				dataType: 'json',
 				data: new FormData($('#form-upload')[0]),
@@ -179,7 +181,7 @@ $('#button-folder').popover({
 $('#button-folder').on('shown.bs.popover', function() {
 	$('#button-create').on('click', function() {
 		$.ajax({
-			url: 'index.php?route=common/filemanager/folder&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>',
+			url: '<?php echo base_url(); ?>common/filemanager/folder?directory=<?php echo $directory; ?>',
 			type: 'post',
 			dataType: 'json',
 			data: 'folder=' + encodeURIComponent($('input[name=\'folder\']').val()),
@@ -210,7 +212,7 @@ $('#button-folder').on('shown.bs.popover', function() {
 $('#modal-image #button-delete').on('click', function(e) {
 	if (confirm('<?php echo $text_confirm; ?>')) {
 		$.ajax({
-			url: 'index.php?route=common/filemanager/delete&token=<?php echo $token; ?>',
+			url: '<?php echo base_url(); ?>common/filemanager/delete',
 			type: 'post',
 			dataType: 'json',
 			data: $('input[name^=\'path\']:checked'),
