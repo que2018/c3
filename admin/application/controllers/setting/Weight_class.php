@@ -1,20 +1,39 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Weight_class extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
+class Weight_class extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('setting/weight_class');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/weight_class_list.css');
+	
+		$this->header->set_title($this->lang->line('text_weight_class'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('setting/weight_class_list', $data);
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('setting/weight_class_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
 		$this->lang->load('setting/weight_class');
 		
 		$this->load->model('setting/weight_class_model');
-	}
-	
-	function index()
-	{
-		$data['success'] = $this->session->flashdata('success');
 		                   
 		if($this->input->get('filter_unit'))
 		{
@@ -71,8 +90,8 @@ class Weight_class extends CI_Controller {
 		}
 		
 		$filter_data = array(
-			'filter_unit'      => $filter_unit,
-			'filter_value'     => $filter_value,
+			'filter_unit'     => $filter_unit,
+			'filter_value'    => $filter_value,
 			'sort'            => $sort,
 			'order'           => $order,
 			'start'           => ($page - 1) * $limit,
@@ -80,6 +99,7 @@ class Weight_class extends CI_Controller {
 		);
 		
 		$weight_classes = $this->weight_class_model->get_weight_classes($filter_data);	
+		
 		$weight_class_total = $this->weight_class_model->get_weight_class_total($filter_data);
 		
 		$data['weight_classes'] = array();
@@ -89,9 +109,9 @@ class Weight_class extends CI_Controller {
 			foreach($weight_classes as $weight_class)
 			{	
 				$data['weight_classes'][] = array(
-					'id'         => $weight_class['id'],
-					'unit'       => $weight_class['unit'],
-					'value'      => $weight_class['value']
+					'weight_class_id' => $weight_class['id'],
+					'unit'            => $weight_class['unit'],
+					'value'           => $weight_class['value']
 				);
 			}
 		}
@@ -126,7 +146,7 @@ class Weight_class extends CI_Controller {
 		$this->pagination->total  = $weight_class_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'setting/weight_class?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'setting/weight_class?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($weight_class_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($weight_class_total - $limit)) ? $weight_class_total : ((($page - 1) * $limit) + $limit), $weight_class_total, ceil($weight_class_total / $limit));
 
@@ -156,8 +176,8 @@ class Weight_class extends CI_Controller {
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_unit']        = base_url() . 'setting/weight_class&sort=weight_classes.unit'.$url;
-		$data['sort_value']       = base_url() . 'setting/weight_class&sort=weight_classes.value'.$url;
+		$data['sort_unit']   = base_url() . 'setting/weight_class&sort=weight_classes.unit' . $url;
+		$data['sort_value']  = base_url() . 'setting/weight_class&sort=weight_classes.value' . $url;
 
 		$url = '';
 		
@@ -167,7 +187,7 @@ class Weight_class extends CI_Controller {
 		}
 		else
 		{
-			$url .= '?limit=10';
+			$url .= '?limit=' . $this->config->item('config_page_limit');
 		}
 		
 		if($this->input->get('sort')) 
@@ -176,23 +196,36 @@ class Weight_class extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url() . 'setting/weight_class' . $url;
+		
+		$data['reload_url'] = base_url() . 'setting/weight_class/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_unit']          = $filter_unit;
-		$data['filter_value']         = $filter_value;
+		$data['filter_unit']  = $filter_unit;
+		$data['filter_value'] = $filter_value;
 		
-		$this->load->view('common/header');
-		$this->load->view('setting/weight_class_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+				
 		$this->load->library('form_validation');
-	
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('setting/weight_class');
+
+		$this->load->model('setting/weight_class_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/weight_class_add.css');
+				
+		$this->header->set_title($this->lang->line('text_weight_class_add'));
+			
 		$this->form_validation->set_rules('unit', $this->lang->line('text_unit'), 'required');
 		$this->form_validation->set_rules('value', $this->lang->line('text_value'), 'required');
 
@@ -212,16 +245,30 @@ class Weight_class extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/weight_class_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+				
 		$this->load->library('form_validation');
 		
-		$id = $this->input->get('id');
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('setting/weight_class');
+
+		$this->load->model('setting/weight_class_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/weight_class_edit.css');
+				
+		$this->header->set_title($this->lang->line('text_weight_class_edit'));
+		
+		$weight_class_id = $this->input->get('weight_class_id');
 	
 		$this->form_validation->set_rules('unit', $this->lang->line('text_unit'), 'required');
 		$this->form_validation->set_rules('value', $this->lang->line('text_value'), 'required');
@@ -233,50 +280,52 @@ class Weight_class extends CI_Controller {
 				'value'      => $this->input->post('value')
 			);
 			
-			$this->weight_class_model->edit_weight_class($id, $data);
+			$this->weight_class_model->edit_weight_class($weight_class_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_weight_class_edit_success'));
 			
 			redirect(base_url() . 'setting/weight_class', 'refresh');
 		}
+		
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{
+			$data['unit']   = $this->input->post('unit');
+			$data['value']  = $this->input->post('value');
+		}
 		else
 		{
-			$weight_class = $this->weight_class_model->get_weight_class($id);
+			$weight_class = $this->weight_class_model->get_weight_class($weight_class_id);
 			
-			$data['id']           = $weight_class['id'];
-			$data['unit']         = $weight_class['unit'];
-			$data['value']        = $weight_class['value'];
-
-			$data['error']   = validation_errors();
-		
-			$this->load->view('common/header');
-			$this->load->view('setting/weight_class_edit', $data);
-			$this->load->view('common/footer');
+			$data['unit']   = $weight_class['unit'];
+			$data['value']  = $weight_class['value'];
 		}
+		
+		$data['error'] = validation_errors();
+		
+		$data['weight_class_id'] = $weight_class_id;
+		
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('setting/weight_class_edit', $data);
 	}
 	
 	public function delete()
 	{
-		if($this->input->get('id'))
+		$this->load->model('setting/weight_class_model');
+		
+		if($this->input->get('weight_class_id'))
 		{
-			$id = $this->input->get('id');
+			$weight_class_id = $this->input->get('weight_class_id');
 			
-			$result = $this->weight_class_model->delete_weight_class($id);
+			$result = $this->weight_class_model->delete_weight_class($weight_class_id);
 			
-			if($result)
-			{				
-				$outdata = array(
-					'success'   => true
-				);
-			}
-			else 
-			{				
-				$outdata = array(
-					'success'   => false
-				);
-			}
+			$outdata = array(
+				'success' => ($result)?true:false
+			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }
