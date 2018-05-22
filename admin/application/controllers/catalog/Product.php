@@ -33,6 +33,7 @@ class Product extends MX_Controller
 	{	
 		$this->lang->load('catalog/product');
 	
+		$this->load->model('tool/image_model');
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/inventory_model');
@@ -138,12 +139,22 @@ class Product extends MX_Controller
 
 				$weight_class = $this->weight_class_model->get_weight_class($product['weight_class_id']);
 
+				if(is_file(IMAGEPATH . $product['image'])) 
+				{
+					$image = $this->image_model->resize($product['image'], 40, 40);
+				} 
+				else
+				{
+					$image = $this->image_model->resize('no_image.png', 40, 40);
+				}
+				
 				$data['products'][] = array(
 					'product_id'   		=> $product['id'],
 					'client'       		=> $product['client'],
 					'upc'          		=> $product['upc'],
 					'sku'          		=> $product['sku'],
 					'name'         		=> $product['name'],
+					'image'             => $image,
 					'length'       		=> $product['length'],					
 					'width'        		=> $product['width'],
 					'height'       		=> $product['height'],
@@ -304,6 +315,7 @@ class Product extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
+		$this->load->model('tool/image_model');
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -332,6 +344,7 @@ class Product extends MX_Controller
 			'sku'                => $this->input->post('sku'),
 			'asin'               => $this->input->post('asin'),
 			'name'               => $this->input->post('name'),
+			'image'              => $this->input->post('image'),
 			'price'              => $this->input->post('price'),
 			'alert_quantity'     => $this->input->post('alert_quantity'),
 			'length'             => $this->input->post('length'),
@@ -354,6 +367,11 @@ class Product extends MX_Controller
 			
 			redirect(base_url() . 'catalog/product', 'refresh');
 		}
+		
+		//thumb
+		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		
+		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 				
 		//length classes
 		$data['length_classes'] = array();
@@ -458,6 +476,7 @@ class Product extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
+		$this->load->model('tool/image_model');
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -491,6 +510,7 @@ class Product extends MX_Controller
 				'sku'                => $this->input->post('sku'),
 				'asin'               => $this->input->post('asin'),
 				'name'               => $this->input->post('name'),
+				'image'              => $this->input->post('image'),
 				'price'              => $this->input->post('price'),
 				'length'             => $this->input->post('length'),
 				'width'              => $this->input->post('width'),
@@ -518,6 +538,7 @@ class Product extends MX_Controller
 			$data['sku']               = $this->input->post('sku');
 			$data['asin']              = $this->input->post('asin');
 			$data['name']              = $this->input->post('name');
+			$data['image']             = $this->input->post('image');
 			$data['price']             = $this->input->post('price');
 			$data['length']            = $this->input->post('length');
 			$data['width']             = $this->input->post('width');
@@ -539,6 +560,7 @@ class Product extends MX_Controller
 			$data['sku']               = $product['sku'];
 			$data['asin']              = $product['asin'];
 			$data['name']              = $product['name'];
+			$data['image']             = $product['image'];
 			$data['price']             = $product['price'];
 			$data['length']            = $product['length'];
 			$data['width']             = $product['width'];
@@ -569,6 +591,11 @@ class Product extends MX_Controller
 
 		$data['product_id'] = $product_id;
 		
+		//thumb
+		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		
+		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
+
 		//quantity
 		$quantity = $this->inventory_model->get_product_quantity($product_id);
 		

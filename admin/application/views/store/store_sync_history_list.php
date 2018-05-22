@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/store/store_sync_history_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_store_sync_history'); ?></h2>
@@ -8,16 +8,13 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_store_sync_history'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <a href="<?php echo base_url(); ?>store/store_sync_history/clear" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>store/store_sync_history/clear" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_clear_sync_history'); ?>" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_store_sync_history_list_description'); ?></h5>
@@ -73,8 +70,8 @@
 					  <td><?php echo $store_sync_history['status']; ?></td>
 					  <td><?php echo $store_sync_history['date_added']; ?></td>
 					  <td style="text-align: center">
-						<a href="<?php echo base_url(); ?>store/store_sync_history/detail?store_sync_history_id=<?php echo $store_sync_history['id']; ?>" class="btn btn-primary" data="<?php echo $store_sync_history['id']; ?>"><i class="fa fa-eye"></i></a>
-					  	<button class="btn btn-danger btn-delete" data="<?php echo $store_sync_history['id']; ?>"><i class="fa fa-trash"></i></button>
+						<a href="<?php echo base_url(); ?>store/store_sync_history/detail?store_sync_history_id=<?php echo $store_sync_history['store_sync_history_id']; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+						<button class="btn btn-danger btn-delete" onclick="delete_store_sync_history(this, <?php echo $store_sync_history['store_sync_history_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -101,30 +98,41 @@
   </div>
 </div>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		handler = $(this);
-		id = $(this).attr('data');
-		
+function delete_store_sync_history(handle, store_sync_history_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 		$.ajax({
-			url: '<?php echo base_url(); ?>store/store_sync_history/delete?id=' + id,
+			url: '<?php echo base_url(); ?>store/store_sync_history/delete?store_sync_history_id=' + store_sync_history_id,
 			cache: false,
 			contentType: false,
 			processData: false,
-			dataType: "json",
+			dataType: 'json',
 			beforeSend: function() {
-				handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
 			},
 			success: function(json) {					
-				if(json.success) 
-					handler.closest('tr').remove();
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					$('#alert-error span').html(json.message);		
+					$('#alert-error').show();
+				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
 		});
-	});
-});
+	}
+}
 </script>
+<?php echo $footer; ?>
 		
 		

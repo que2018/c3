@@ -39,12 +39,13 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover dataTables-example" >
     <thead>
+	  <th class="text-center" style="width: 8%;"><?php echo $this->lang->line('column_image'); ?></th>
 	  <?php if($sort == 'product.name') { ?>
-	  <th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 22%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 30%;" class="sorting">
+	  <th style="width: 22%;" class="sorting">
 	    <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
 	  </th>
 	  <?php } ?>
@@ -76,21 +77,22 @@
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'product.quantity') { ?>
-	  <th class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th class="sorting">
+	  <th style="width: 14%;" class="sorting">
 	    <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 	  </th>
 	  <?php } ?>
-	  <th style="width: 15%;"><center><?php echo $this->lang->line('column_action'); ?></center></th>
+	  <th><center><?php echo $this->lang->line('column_action'); ?></center></th>
     </thead>
     <tbody>
 	  <?php if($products) { ?>
 	    <?php $offset = 0; ?>
 	    <?php foreach($products as $product) { ?>
 		  <tr>
+			<td class="text-center"><img src="<?php echo $product['image']; ?>" /></td>
 		    <td>
 			  <span><?php echo $product['name']; ?></span>
 			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
@@ -129,7 +131,7 @@
 		    <td><?php echo $product['quantity']; ?></td>
 		    <td class="text-center">
 			  <a href="<?php echo base_url().'catalog/product/edit?product_id='.$product['product_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-			  <button class="btn btn-danger btn-delete" data="<?php echo $product['product_id']; ?>"><i class="fa fa-trash"></i></button>
+			  <button class="btn btn-danger btn-delete" onclick="delete_product(this, <?php echo $product['product_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>
 		    <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 		  </tr>

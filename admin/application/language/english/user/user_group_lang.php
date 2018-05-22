@@ -2,6 +2,9 @@
 
 // Text
 $lang['text_user_group'] 	  	              = 'User Group';
+$lang['text_cancel'] 	  	          		  = 'cancel';
+$lang['text_add_user_group'] 	  	          = 'add user group';
+$lang['text_save_user_group'] 	  	          = 'save user group';
 $lang['text_user_group_add'] 	  	          = 'Add User Group';
 $lang['text_user_group_edit'] 	  	          = 'Edit User Group';
 $lang['text_confirm_delete'] 	  	          = 'Are you sure to delete this user group?';

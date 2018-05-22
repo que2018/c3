@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/setting/length_class_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_title'); ?></h2>
@@ -16,9 +16,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_length_class_description'); ?></h5>
@@ -68,7 +65,7 @@
 					  <td>
 					    <center>
 						  <a href="<?php echo base_url(); ?>setting/length_class/edit?length_class_id=<?php echo $length_class['length_class_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						  <button class="btn btn-danger btn-delete" data="<?php echo $length_class['length_class_id']; ?>"><i class="fa fa-trash"></i></button>
+						  <button class="btn btn-danger btn-delete" onclick="delete_length_class(this, <?php echo $length_class['length_class_id']; ?>)"><i class="fa fa-trash"></i></button>
 					    </center>
 					  </td>
 					</tr>
@@ -121,32 +118,40 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>setting/length_class/delete?length_class_id=' + length_class_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-						handler.closest('tr').remove();
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_length_class(handle, length_class_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>setting/length_class/delete?length_class_id=' + length_class_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					$('#alert-error span').html(json.message);		
+					$('#alert-error').show();
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
-		
+<?php echo $footer; ?>		
 		

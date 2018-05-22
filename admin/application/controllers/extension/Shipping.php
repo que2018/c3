@@ -1,16 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Shipping extends CI_Controller {
-
+class Shipping extends MX_Controller 
+{
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('extension/shipping');
 
 		$this->load->model('extension/extension_model');
 		
-		$data['success'] = $this->session->flashdata('success');
-		
+		$this->header->add_style(base_url(). 'assets/css/app/extension/shipping.css');
+	
+		$this->header->set_title($this->lang->line('text_shipping'));
+				
 		$shippings = $this->extension_model->get_installed('shipping');
 	
 		foreach($shippings as $key => $code) 
@@ -46,9 +51,10 @@ class Shipping extends CI_Controller {
 			}
 		}
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('extension/shipping', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function install() 
@@ -122,7 +128,8 @@ class Shipping extends CI_Controller {
 				);
 			}
 					
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -155,7 +162,8 @@ class Shipping extends CI_Controller {
  			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

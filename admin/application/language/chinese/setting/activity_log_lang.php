@@ -4,6 +4,7 @@
 $lang['text_system'] 	  	                       				= 'System';
 $lang['text_log'] 	  	           		   		   				= 'Log';
 $lang['text_activity_log'] 	  	           		   				= 'Activity Log';
+$lang['text_clear_activity_log']             				    = 'clear activity log';
 $lang['text_activity_log_description']             				= 'Display all the activity log';
 
 // Column

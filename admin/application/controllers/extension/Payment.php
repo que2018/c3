@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Payment extends CI_Controller {
-
-	function __construct()
+class Payment extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('extension/payment');
-	}
-	
-	function index()
-	{
+		
 		$this->load->model('extension/extension_model');
 		
-		$data['success'] = $this->session->flashdata('success');
-		
+		$this->header->add_style(base_url(). 'assets/css/app/extension/payment.css');
+	
+		$this->header->set_title($this->lang->line('text_payment'));
+				
 		$payments = $this->extension_model->get_installed('payment');
 	
 		foreach($payments as $key => $code) 
@@ -51,9 +51,10 @@ class Payment extends CI_Controller {
 			}
 		}
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('extension/payment', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function install() 

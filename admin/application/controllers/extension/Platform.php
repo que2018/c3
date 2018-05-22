@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Platform extends CI_Controller {
-
-	function __construct()
+class Platform extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('extension/platform');
-	}
-	
-	function index()
-	{
+
 		$this->load->model('extension/extension_model');
 		
-		$data['success'] = $this->session->flashdata('success');
+		$this->header->add_style(base_url(). 'assets/css/app/extension/platform.css');
 		
+		$this->header->set_title($this->lang->line('text_platform'));
+				
 		$platforms = $this->extension_model->get_installed('platform');
 	
 		foreach($platforms as $key => $code) 
@@ -52,13 +52,16 @@ class Platform extends CI_Controller {
 			}
 		}
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('extension/platform', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function install() 
 	{
+		$this->lang->load('extension/platform');
+		
 		$this->load->model('extension/extension_model');
 		
 		$code = $this->input->get('code');
@@ -76,6 +79,8 @@ class Platform extends CI_Controller {
 	
 	public function uninstall() 
 	{
+		$this->lang->load('extension/platform');		
+		
 		$this->load->model('extension/extension_model');
 		
 		$code = $this->input->get('code');

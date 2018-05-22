@@ -51,6 +51,7 @@ $lang['text_rows_imported'] 	 	  	        = '<strong>Total %s rows are imported<
 $lang['tab_fee'] 	  	             	  	    = 'Fee';
 
 // Column
+$lang['column_image'] 	  	             	  	= 'Image';
 $lang['column_name'] 	  	             	  	= 'Name';
 $lang['column_client'] 	  	             	  	= 'Client';
 $lang['column_upc'] 	  	             	  	= 'UPC';
@@ -70,6 +71,7 @@ $lang['entry_upc'] 	  	                 	  	= 'UPC';
 $lang['entry_sku'] 	  	                 	  	= 'SKU';
 $lang['entry_asin'] 	  	             	  	= 'ASIN';
 $lang['entry_name'] 	  	             	  	= 'Name';
+$lang['entry_image'] 	  	             	  	= 'Image';
 $lang['entry_price'] 	  	             	  	= 'Price';
 $lang['entry_quantity'] 	  	         	  	= 'Quantity';
 $lang['entry_client'] 	  	         	  		= 'Client';

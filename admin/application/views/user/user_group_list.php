@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/user/user_group_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_user_group'); ?></h2>
@@ -8,14 +8,13 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_user_group'); ?></strong></li>
 	</ol>
   </div>
-  <a href="<?php echo base_url(); ?>user/user_group/add" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>user/user_group/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add_user_group'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	  <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" data-dismiss="alert">&times;</button></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -42,8 +41,8 @@
 					<tr>
 					  <td><?php echo $user_group['name']; ?></td>
 					  <td style="text-align: center">
-					    <a href="<?php echo base_url(); ?>user/user_group/edit?user_group_id=<?php echo $user_group['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-						<button class="btn btn-danger btn-delete" data="<?php echo $user_group['id']; ?>"><i class="fa fa-trash"></i></button>
+					    <a href="<?php echo base_url(); ?>user/user_group/edit?user_group_id=<?php echo $user_group['user_group_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+						<button class="btn btn-danger btn-delete" onclick="delete_user_group(this, <?php echo $user_group['user_group_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				
 					</tr>
 				  <?php } ?>
@@ -57,47 +56,50 @@
 			  </tfoot>
 		    </table>
 		  </div>
+		  <div class="pagination-block">
+			<div class="pull-left"><?php echo $results; ?></div>
+		    <div class="pull-right"><?php echo $pagination; ?></div>
+		  </div>
 	    </div>
 	  </div>
     </div>
   </div>
 </div>
 <script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>user/user_group/delete?id=' + id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-					{
-						handler.closest('tr').remove();
-					}
-					else 
-					{
-						$('.alert-danger span').html(json.msg);		
-						$('.alert-danger').show();
-						
-						handler.html('<i class="fa fa-trash"></i>');
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+function delete_user_group(handle, user_group_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>user/user_group/delete?user_group_id=' + user_group_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					$('#alert-error span').html(json.message);		
+					$('#alert-error').show();
 				}
-			});
-		}
-	});
-});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
-		
+<?php echo $footer; ?>		
 		

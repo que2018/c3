@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/setting/weight_class_edit.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_weight_class_edit'); ?></h2>
@@ -22,7 +22,7 @@
       <?php } ?>
 	  <div class="ibox">
 	    <div class="ibox-content">
-		  <form method="post" action="<?php echo base_url(); ?>setting/weight_class/edit?id=<?php echo $id; ?>" class="form-horizontal">
+		  <form method="post" action="<?php echo base_url(); ?>setting/weight_class/edit?weight_class_id=<?php echo $weight_class_id; ?>" class="form-horizontal">
 		    <div class="form-group">
 			  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_unit'); ?></label>
 			  <div class="col-sm-10"><input type="text" name="unit" value="<?php echo $unit; ?>" class="form-control"></div>
@@ -39,5 +39,6 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
 		
 		

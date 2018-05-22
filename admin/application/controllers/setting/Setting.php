@@ -1,26 +1,33 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Setting extends CI_Controller {
-
-	function __construct()
+class Setting extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('setting/setting');
 		
 		$this->load->model('setting/setting_model');
-	}
-	
-	public function index()
-	{	
-		$this->load->library('form_validation');
-	
 		$this->load->model('setting/language_model');
+		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/information_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-		$this->load->model('extension/shipping_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/setting.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/iCheck/icheck.min.js');
+
+		$this->header->set_title($this->lang->line('text_setting'));
 
 		$this->form_validation->set_rules('config_time_zone', $this->lang->line('text_time_zone'), 'required');
 		$this->form_validation->set_rules('config_page_limit', $this->lang->line('text_page_limit'), 'required');
@@ -316,9 +323,10 @@ class Setting extends CI_Controller {
 		$this->lang->load('setting/setting');
 		$this->load->model('setting/setting_model');
 	
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/setting', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function get_printers()
@@ -351,7 +359,8 @@ class Setting extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata); 
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	} 
 }
 

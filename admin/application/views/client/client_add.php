@@ -1,6 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/app/client/client_add.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_add_client'); ?></h2>
@@ -162,6 +160,7 @@ function locationautocomplete(location_row) {
 	});
 }
 </script>
+<?php echo $footer; ?>
 
 		
 		

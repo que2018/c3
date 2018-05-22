@@ -17,3 +17,7 @@
 	font-weight: normal;
     padding-top: 2px !important;
 }
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}

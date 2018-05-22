@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/extension/fee.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_fee'); ?></h2>
@@ -12,9 +12,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_fee_description'); ?></h5>
@@ -62,4 +59,5 @@
       </div>
 	</div>
   </div>
-</div>	
+</div>
+<?php echo $footer; ?>	

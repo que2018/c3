@@ -1,21 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Store_Sync_history extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
+class Store_Sync_history extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('store/store_sync_history');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/store/store_sync_history_list.css');
+
+		$this->header->set_title($this->lang->line('text_store_sync_history'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('store/store_sync_history_list', $data);
+	}
+	
+	public function reload()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('store/store_sync_history_list_table', $data);
+	}
+	
+	protected function get_list()
+	{
 		$this->lang->load('store/store_sync_history');
 		
 		$this->load->model('store/store_sync_history_model');
-	}
 	
-	function index()
-	{
-		$data['success'] = $this->session->flashdata('success');
-		 
 		if($this->input->get('filter_store'))
 		{
 			$filter_store = $this->input->get('filter_store');
@@ -76,7 +95,7 @@ class Store_Sync_history extends CI_Controller {
 		} 
 		else 
 		{
-			$limit = 10;
+			$limit = $this->config->item('config_page_limit');
 		}
 		
 		if($this->input->get('page')) 
@@ -99,7 +118,8 @@ class Store_Sync_history extends CI_Controller {
 			'limit'             => $limit
 		);
 		
-		$store_sync_histories = $this->store_sync_history_model->get_store_sync_histories($filter_data);	
+		$store_sync_histories = $this->store_sync_history_model->get_store_sync_histories($filter_data);
+		
 		$store_sync_history_total = $this->store_sync_history_model->get_store_sync_history_total($filter_data);
 		
 		$data['store_sync_histories'] = array();
@@ -127,11 +147,11 @@ class Store_Sync_history extends CI_Controller {
 				}
 			
 				$data['store_sync_histories'][] = array(
-					'id'           => $store_sync_history['id'],	
-					'store'        => $store_sync_history['store'],
-					'type'         => $type,
-					'status'       => $status,
-					'date_added'   => $store_sync_history['date_added']
+					'store_sync_history_id' => $store_sync_history['id'],	
+					'store'        			=> $store_sync_history['store'],
+					'type'         			=> $type,
+					'status'       			=> $status,
+					'date_added'   			=> $store_sync_history['date_added']
 				);
 			}
 		}
@@ -202,43 +222,6 @@ class Store_Sync_history extends CI_Controller {
 			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
 		}
 		
-		if($this->input->get('sort')) 
-		{
-			$url .= '&sort=' . $this->input->get('sort');
-		}
-		
-		if($this->input->get('order')) 
-		{
-			$url .= '&order=' . $this->input->get('order');
-		}
-		
-		$data['limit_10']  = base_url().'store/store_sync_history?limit=10'.$url;
-		$data['limit_15']  = base_url().'store/store_sync_history?limit=15'.$url;
-		$data['limit_50']  = base_url().'store/store_sync_history?limit=50'.$url;
-		$data['limit_100'] = base_url().'store/store_sync_history?limit=100'.$url;
-	
-		$url = '';
-		
-		if($this->input->get('filter_store')) 
-		{
-			$url .= '&filter_store=' . $this->input->get('filter_store');
-		}
-		
-		if($this->input->get('filter_type')) 
-		{
-			$url .= '&filter_type=' . $this->input->get('filter_type');
-		}
-		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
-		
-		if($this->input->get('filter_date_added')) 
-		{
-			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
-		}
-		
 		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
@@ -271,6 +254,8 @@ class Store_Sync_history extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url().'store/store_sync_history' . $url;
+		
+		$data['reload_url'] = base_url() . 'store/store_sync_history/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -281,13 +266,22 @@ class Store_Sync_history extends CI_Controller {
 		$data['filter_status']      = $filter_status;
 		$data['filter_date_added']  = $filter_date_added;
 		
-		$this->load->view('common/header');
-		$this->load->view('store/store_sync_history_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
-	function detail()
+	public function detail()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->lang->load('store/store_sync_history');
+		
+		$this->load->model('store/store_sync_history_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/store/store_sync_history_detail.css');
+		
+		$this->header->set_title($this->lang->line('text_store_syn_history_detail'));
+		
 		$store_sync_history_id = $this->input->get('store_sync_history_id');
 		
 		$store_sync_history = $this->store_sync_history_model->get_store_sync_history($store_sync_history_id);
@@ -316,29 +310,39 @@ class Store_Sync_history extends CI_Controller {
 		
 		$data['messages'] = unserialize($store_sync_history['messages']);
 
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('store/store_sync_history_detail', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
 	{
-		if($this->input->get('id'))
+		$this->lang->load('store/store_sync_history');
+		
+		$this->load->model('store/store_sync_history_model');
+		
+		if($this->input->get('store_sync_history_id'))
 		{
-			$id = $this->input->get('id');
+			$store_sync_history_id = $this->input->get('store_sync_history_id');
 			
-			$this->store_sync_history_model->delete_store_sync_history($id);
+			$result = $this->store_sync_history_model->delete_store_sync_history($store_sync_history_id);
 
 			$outdata = array(
-				'success'   => true
+				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
 	public function clear()
 	{
+		$this->lang->load('store/store_sync_history');
+		
+		$this->load->model('store/store_sync_history_model');
+		
 		$this->store_sync_history_model->clear_store_sync_history();
 		
 		$this->session->set_flashdata('success', $this->lang->line('text_store_sync_clear_success'));

@@ -70,6 +70,7 @@ class Product_model extends CI_Model
 			'sku'	             => $data['sku'],
 			'asin'	     	     => $data['asin'],
 			'name'   		     => $data['name'],
+			'image'   		     => $data['image'],
 			'price'	     	     => $data['price'],
 			'length'	         => $data['length'],
 			'height'	         => $data['height'],

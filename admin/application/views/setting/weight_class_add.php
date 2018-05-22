@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/setting/weight_class_add.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_weight_class_add'); ?></h2>
@@ -8,9 +8,9 @@
 	  <li><a href="<?php echo base_url(); ?>setting/weight_class"><?php echo $this->lang->line('text_weight_class'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_weight_class_add'); ?></strong></li>
 	</ol>
-	<div class="button-group">
-      <button class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-      <a href="<?php echo base_url(); ?>setting/weight_class" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+	<div class="button-group tooltip-demo">
+      <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+      <a href="<?php echo base_url(); ?>setting/weight_class" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
     </div>
   </div>
 </div>
@@ -39,5 +39,6 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
 		
 		
