@@ -8,34 +8,45 @@ class Filemanager extends MX_Controller
 		$this->lang->load('common/filemanager');
 
 		// Find which protocol to use to pass the full image link back
-		if ($this->input->server('HTTPS')) {
-			//$server = HTTPS_CATALOG;
+		if ($this->input->server('HTTPS')) 
+		{
 			$server = $this->config->item('site_https');
-		} else {
-			//$server = HTTP_CATALOG;
+		} 
+		else 
+		{
 			$server = $this->config->item('site_http');
 		}
 
-		if ($this->input->get('filter_name')) {
+		if($this->input->get('filter_name')) 
+		{
 			$filter_name = rtrim(str_replace('*', '', $this->input->get('filter_name')), '/');
-		} else {
+		} 
+		else 
+		{
 			$filter_name = null;
 		}
 
 		// Make sure we have the correct directory
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$directory = rtrim(IMAGEPATH . 'catalog/' . str_replace('*', '', $this->input->get('directory')), '/');
-		} else {
+		} 
+		else 
+		{
 			$directory = IMAGEPATH . 'catalog';
 		}
 
-		if ($this->input->get('page')) {
+		if($this->input->get('page')) 
+		{
 			$page = $this->input->get('page');
-		} else {
+		} 
+		else 
+		{
 			$page = 1;
 		}
 
 		$directories = array();
+		
 		$files = array();
 
 		$data['images'] = array();
@@ -67,17 +78,21 @@ class Filemanager extends MX_Controller
 		// Split the array based on current page number and max number of items per page of 10
 		$images = array_splice($images, ($page - 1) * 16, 16);
 
-		foreach ($images as $image) {
+		foreach($images as $image) 
+		{
 			$name = str_split(basename($image), 14);
 
-			if (is_dir($image)) {
+			if(is_dir($image)) 
+			{
 				$url = '';
 
-				if ($this->input->get('target')) {
+				if($this->input->get('target')) 
+				{
 					$url .= '&target=' . $this->input->get('target');
 				}
 
-				if ($this->input->get('thumb')) {
+				if($this->input->get('thumb')) 
+				{
 					$url .= '&thumb=' . $this->input->get('thumb');
 				}
 
@@ -88,7 +103,9 @@ class Filemanager extends MX_Controller
 					'path'  => $this->utf8_substr($image, mb_strlen(IMAGEPATH)),
 					'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode($this->utf8_substr($image, mb_strlen(IMAGEPATH . 'catalog/'))) . $url, true)
 				);
-			} elseif (is_file($image)) {
+			} 
+			elseif(is_file($image)) 
+			{
 				$data['images'][] = array(
 					'thumb' => $this->image_model->resize($this->utf8_substr($image, mb_strlen(IMAGEPATH)), 100, 100),
 					'name'  => implode(' ', $name),
@@ -116,48 +133,64 @@ class Filemanager extends MX_Controller
 
 		$data['token'] = $this->session->data['token'];
 
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$data['directory'] = urlencode($this->input->get('directory'));
-		} else {
+		} 
+		else 
+		{
 			$data['directory'] = '';
 		}
 
-		if ($this->input->get('filter_name')) {
+		if($this->input->get('filter_name')) 
+		{
 			$data['filter_name'] = $this->input->get('filter_name');
-		} else {
+		} 
+		else 
+		{
 			$data['filter_name'] = '';
 		}
 
 		// Return the target ID for the file manager to set the value
-		if ($this->input->get('target')) {
+		if($this->input->get('target')) 
+		{
 			$data['target'] = $this->input->get('target');
-		} else {
+		}
+		else 
+		{
 			$data['target'] = '';
 		}
 
 		// Return the thumbnail for the file manager to show a thumbnail
-		if ($this->input->get('thumb')) {
+		if($this->input->get('thumb')) 
+		{
 			$data['thumb'] = $this->input->get('thumb');
-		} else {
+		} 
+		else 
+		{
 			$data['thumb'] = '';
 		}
 
 		// Parent
 		$url = '';
 
-		if ($this->input->get('directory')) {
+		if ($this->input->get('directory')) 
+		{
 			$pos = strrpos($this->input->get('directory'), '/');
 
-			if ($pos) {
+			if($pos) 
+			{
 				$url .= '&directory=' . urlencode(substr($this->input->get('directory'), 0, $pos));
 			}
 		}
 
-		if ($this->input->get('target')) {
+		if($this->input->get('target')) 
+		{
 			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if ($this->input->get('thumb')) {
+		if($this->input->get('thumb')) 
+		{
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
@@ -166,15 +199,18 @@ class Filemanager extends MX_Controller
 		// Refresh
 		$url = '';
 
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$url .= '&directory=' . urlencode($this->input->get('directory'));
 		}
 
-		if ($this->input->get('target')) {
+		if($this->input->get('target')) 
+		{
 			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if ($this->input->get('thumb')) {
+		if($this->input->get('thumb')) 
+		{
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 		
@@ -182,19 +218,23 @@ class Filemanager extends MX_Controller
 
 		$url = '';
 
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$url .= '&directory=' . urlencode(html_entity_decode($this->input->get('directory'), ENT_QUOTES, 'UTF-8'));
 		}
 
-		if ($this->input->get('filter_name')) {
+		if($this->input->get('filter_name')) 
+		{
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->input->get('filter_name'), ENT_QUOTES, 'UTF-8'));
 		}
 
-		if ($this->input->get('target')) {
+		if($this->input->get('target')) 
+		{
 			$url .= '&target=' . $this->input->get('target');
 		}
 
-		if ($this->input->get('thumb')) {
+		if($this->input->get('thumb')) 
+		{
 			$url .= '&thumb=' . $this->input->get('thumb');
 		}
 
@@ -209,15 +249,19 @@ class Filemanager extends MX_Controller
 		$this->load->view('common/filemanager', $data);
 	}
 
-	public function upload() {
+	public function upload() 
+	{
 		$this->lang->load('common/filemanager');
 
 		$json = array();
 
 		// Make sure we have the correct directory
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$directory = rtrim(IMAGEPATH . 'catalog/' . $this->input->get('directory'), '/');
-		} else {
+		} 
+		else 
+		{
 			$directory = IMAGEPATH . 'catalog';
 		}
 
@@ -227,29 +271,35 @@ class Filemanager extends MX_Controller
 			$json['error'] = $this->lang->line('error_directory');
 		} */
 
-		if (!$json) {
+		if (!$json) 
+		{
 			// Check if multiple files are uploaded or just one
 			$files = array();
 
-			if (!empty($this->input->files['file']['name']) && is_array($this->input->files['file']['name'])) {
-				foreach (array_keys($this->input->files['file']['name']) as $key) {
+			if (!empty($_FILES['file']['name']) && is_array($_FILES['file']['name'])) {
+				foreach (array_keys($_FILES['file']['name']) as $key) {
 					$files[] = array(
-						'name'     => $this->input->files['file']['name'][$key],
-						'type'     => $this->input->files['file']['type'][$key],
-						'tmp_name' => $this->input->files['file']['tmp_name'][$key],
-						'error'    => $this->input->files['file']['error'][$key],
-						'size'     => $this->input->files['file']['size'][$key]
+						'name'     => $_FILES['file']['name'][$key],
+						'type'     => $_FILES['file']['type'][$key],
+						'tmp_name' => $_FILES['file']['tmp_name'][$key],
+						'error'    => $_FILES['file']['error'][$key],
+						'size'     => $_FILES['file']['size'][$key]
 					);
 				}
 			}
 
-			foreach ($files as $file) {
-				if (is_file($file['tmp_name'])) {
+			foreach($files as $file) 
+			{
+				if(is_file($file['tmp_name'])) 
+				{
 					// Sanitize the filename
 					$filename = basename(html_entity_decode($file['name'], ENT_QUOTES, 'UTF-8'));
 
 					// Validate the filename length
-					if ((mb_strlen($filename) < 3) || (mb_strlen($filename) > 255)) {
+					if((mb_strlen($filename) < 3) || (mb_strlen($filename) > 255)) 
+					{
+						file_put_contents("la.txt", "b0");
+						
 						$json['error'] = $this->lang->line('error_filename');
 					}
 					
@@ -261,7 +311,8 @@ class Filemanager extends MX_Controller
 						'png'
 					);
 	
-					if (!in_array(utf8_strtolower($this->utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
+					if(!in_array(strtolower($this->utf8_substr(strrchr($filename, '.'), 1)), $allowed)) 						
+					{
 						$json['error'] = $this->lang->line('error_filetype');
 					}
 					
@@ -274,25 +325,31 @@ class Filemanager extends MX_Controller
 						'image/gif'
 					);
 	
-					if (!in_array($file['type'], $allowed)) {
+					if(!in_array($file['type'], $allowed)) 
+					{
 						$json['error'] = $this->lang->line('error_filetype');
 					}
 
 					// Return any upload error
-					if ($file['error'] != UPLOAD_ERR_OK) {
+					if($file['error'] != UPLOAD_ERR_OK) 
+					{
 						$json['error'] = $this->lang->line('error_upload_' . $file['error']);
 					}
-				} else {
+				} 
+				else 
+				{
 					$json['error'] = $this->lang->line('error_upload');
 				}
 
-				if (!$json) {
+				if(!$json) 
+				{
 					move_uploaded_file($file['tmp_name'], $directory . '/' . $filename);
 				}
 			}
 		}
 
-		if (!$json) {
+		if(!$json) 
+		{
 			$json['success'] = $this->lang->line('text_uploaded');
 		}
 
@@ -300,15 +357,19 @@ class Filemanager extends MX_Controller
         $this->output->set_output(json_encode($json));
 	}
 
-	public function folder() {
+	public function folder() 
+	{
 		$this->lang->load('common/filemanager');
 
 		$json = array();
 
 		// Make sure we have the correct directory
-		if ($this->input->get('directory')) {
+		if($this->input->get('directory')) 
+		{
 			$directory = rtrim(IMAGEPATH . 'catalog/' . $this->input->get('directory'), '/');
-		} else {
+		}
+		else 
+		{
 			$directory = IMAGEPATH . 'catalog';
 		}
 
@@ -318,22 +379,26 @@ class Filemanager extends MX_Controller
 			$json['error'] = $this->lang->line('error_directory');
 		} */
 
-		if($this->input->server('REQUEST_METHOD') == 'POST') {
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{
 			// Sanitize the folder name
 			$folder = basename(html_entity_decode($this->input->post('folder'), ENT_QUOTES, 'UTF-8'));
 			
 			// Validate the filename length
-			if ((mb_strlen($folder) < 3) || (mb_strlen($folder) > 128)) {
+			if((mb_strlen($folder) < 3) || (mb_strlen($folder) > 128)) 
+			{
 				$json['error'] = $this->lang->line('error_folder');
 			}
 
 			// Check if directory already exists or not
-			if (is_dir($directory . '/' . $folder)) {
+			if(is_dir($directory . '/' . $folder)) 
+			{
 				$json['error'] = $this->lang->line('error_exists');
 			}
 		}
 
-		if (!isset($json['error'])) {
+		if(!isset($json['error'])) 
+		{
 			mkdir($directory . '/' . $folder, 0777);
 			chmod($directory . '/' . $folder, 0777);
 
@@ -346,14 +411,18 @@ class Filemanager extends MX_Controller
         $this->output->set_output(json_encode($json));
 	}
 
-	public function delete() {
+	public function delete() 
+	{
 		$this->lang->load('common/filemanager');
 
 		$json = array();
 
-		if ($this->input->post('path')) {
-		$paths = $this->input->post('path');
-		} else {
+		if ($this->input->post('path')) 
+		{
+			$paths = $this->input->post('path');
+		} 
+		else 
+		{
 			$paths = array();
 		}
 
@@ -368,9 +437,11 @@ class Filemanager extends MX_Controller
 			}
 		} */
 
-		if (!$json) {
+		if(!$json) 
+		{
 			// Loop through each path
-			foreach ($paths as $path) {
+			foreach ($paths as $path) 
+			{
 				$path = rtrim(IMAGEPATH . $path, '/');
 
 				// If path is just a file delete it
