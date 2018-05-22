@@ -176,7 +176,6 @@
 </div>
 <script>
 $(document).ready(function() {
-	//filter
 	$('#btn-search').click(function() {
 		client_id = $('select[name=\'client_id\']').val();
 		upc       = $('input[name=\'upc\']').val();

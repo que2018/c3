@@ -1,19 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Activity_log extends CI_Controller {
-
-	function __construct()
+class Activity_log extends MX_Controller
+{
+	public function index()
 	{
-		parent::__construct();
-		
+		$this->load->module('header');
+		$this->load->module('footer');
+
 		$this->lang->load('setting/activity_log');
 		
 		$this->load->model('setting/activity_log_model');
-	}
 		
-	public function index()
-	{
-		$data['success'] = $this->session->flashdata('success');
+		$this->header->add_style(base_url(). 'assets/css/app/setting/activity_log_history.css');
+	
+		$this->header->set_title($this->lang->line('text_activity_log'));
 		 
 		if($this->input->get('filter_user'))
 		{
@@ -108,7 +108,8 @@ class Activity_log extends CI_Controller {
 			'limit'               => $limit
 		);
 		
-		$activity_logs = $this->activity_log_model->get_activity_logs($filter_data);	
+		$activity_logs = $this->activity_log_model->get_activity_logs($filter_data);
+		
 		$activity_log_total = $this->activity_log_model->get_total_activity($filter_data);
 		
 		$data['activity_logs'] = array();
@@ -173,7 +174,7 @@ class Activity_log extends CI_Controller {
 		$this->pagination->total  = $activity_log_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url() . 'setting/activity_log?page={page}'.$url;
+		$this->pagination->url    = base_url() . 'setting/activity_log?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($activity_log_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($activity_log_total - $limit)) ? $activity_log_total : ((($page - 1) * $limit) + $limit), $activity_log_total, ceil($activity_log_total / $limit));
 
@@ -241,9 +242,7 @@ class Activity_log extends CI_Controller {
 		}
 		
 		$data['filter_url'] = base_url() . 'setting/activity_log' . $url;
-		
-		$data['reload'] = base_url() . 'setting/activity_log/reload' . $url;
-	
+			
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
@@ -254,13 +253,18 @@ class Activity_log extends CI_Controller {
 		$data['filter_method']       = $filter_method;
 		$data['filter_date_added']   = $filter_date_added;
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/activity_log_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function clear()
 	{
+		$this->lang->load('setting/activity_log');
+		
+		$this->load->model('setting/activity_log_model');
+		
 		$this->activity_log_model->clear_log_activity();
 		
 		$this->session->set_flashdata('success', $this->lang->line('text_store_sync_clear_success'));

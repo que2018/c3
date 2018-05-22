@@ -67,7 +67,6 @@
                 <div class="col-sm-10"><input type="text" name="name" value="<?php echo $name; ?>" class="form-control"></div>
               </div>
 			  <div class="hr-line-dashed"></div>
-			  
 			  <div class="form-group">
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_image'); ?></label>
                 <div class="col-sm-10">

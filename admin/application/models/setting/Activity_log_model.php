@@ -2,12 +2,7 @@
 
 
 class Activity_log_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
+{		
 	public function add_activity_log($data)
 	{	
 		$this->db->trans_begin();
@@ -23,6 +18,8 @@ class Activity_log_model extends CI_Model
 		
 		$this->db->insert('activity_log', $activity_log_data);	
 		
+		$activity_log_id = $this->db->insert_id();
+		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -32,7 +29,8 @@ class Activity_log_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
-			return true;
+			
+			return $activity_log_id;
 		}
 	}
 	
@@ -164,6 +162,7 @@ class Activity_log_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}

@@ -315,6 +315,7 @@ class Product extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
+		$this->load->model('tool/image_model');
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -366,6 +367,11 @@ class Product extends MX_Controller
 			
 			redirect(base_url() . 'catalog/product', 'refresh');
 		}
+		
+		//thumb
+		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		
+		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 				
 		//length classes
 		$data['length_classes'] = array();

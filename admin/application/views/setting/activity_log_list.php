@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/setting/activity_log_history.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_activity_log'); ?></h2>
@@ -9,16 +9,13 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_activity_log'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group">
-    <a href="<?php echo base_url(); ?>setting/activity_Log/clear" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
+  <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>setting/activity_Log/clear" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_clear_activity_log'); ?>" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_activity_log_description'); ?></h5>
@@ -108,7 +105,6 @@
 </div>
 <script>
 $(document).ready(function() {
-	//filter
 	$(document).keypress(function (e) {
 		if(e.which == 13)  
 		{
