@@ -34,10 +34,10 @@
 			  <select name="user_group_id" class="form-control">
 			    <option value=""></option>
 				<?php foreach($user_groups as $user_group) { ?>
-				<?php if($user_group['id'] == $user_group_id) { ?>
-				<option value="<?php echo $user_group['id']; ?>" selected><?php echo $user_group['name']; ?></option>
+				<?php if($user_group['user_group_id'] == $user_group_id) { ?>
+				<option value="<?php echo $user_group['user_group_id']; ?>" selected><?php echo $user_group['name']; ?></option>
 				<?php } else { ?>
-				<option value="<?php echo $user_group['id']; ?>"><?php echo $user_group['name']; ?></option>
+				<option value="<?php echo $user_group['user_group_id']; ?>"><?php echo $user_group['name']; ?></option>
 				<?php } ?>
 				<?php } ?>
 			  </select>

@@ -53,29 +53,29 @@
     <thead>
 	  <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 	  <?php if($sort == 'product.name') { ?>
-	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 14%;" class="sorting">
+	  <th style="width: 20%;" class="sorting">
 	    <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'product.upc') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 15%;" class="sorting">
 	    <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'product.sku') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
+	  <th style="width: 15%;" class="sorting">
 	    <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 	  </th>
 	  <?php } ?>
@@ -86,15 +86,6 @@
 	  <?php } else { ?>
 	  <th style="width: 12%;" class="sorting">
 	    <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
-	  </th>
-	  <?php } ?>
-	  <?php if($sort == 'client') { ?>
-	  <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
-	    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
-	  </th>
-	  <?php } else { ?>
-	  <th style="width: 12%;" class="sorting">
-	    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'inventory.batch') { ?>
@@ -145,7 +136,6 @@
 		    <td><?php echo $inventory['upc']; ?></td>
 		    <td><?php echo $inventory['sku']; ?></td>
 		    <td><?php echo $inventory['location']; ?></td>
-		    <td><?php echo $inventory['client']; ?></td>
 			<td><?php echo $inventory['batch']; ?></td>
 		    <?php if($modifiable) { ?>
 		    <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
@@ -153,7 +143,7 @@
 		    <td><?php echo $inventory['quantity']; ?></td>
 		    <?php } ?>
 		    <td class="text-center">
-			  <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+			  <a href="<?php echo base_url(); ?>inventory/inventory_batch/edit?inventory_id=<?php echo $inventory['inventory_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_inventory(this, <?php echo $inventory['inventory_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>				
 		  </tr>

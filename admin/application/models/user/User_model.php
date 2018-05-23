@@ -113,7 +113,7 @@ class User_model extends CI_Model
 	{			
 		$this->db->select('user.*, user_group.name AS group_name', false);
 		$this->db->from('user');
-		$this->db->join('user_group', 'user_group.id = user.user_group_id', 'left');
+		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
 		$this->db->group_by('user.id');
 		
 		if(!empty($data['filter_name'])) 
@@ -171,7 +171,7 @@ class User_model extends CI_Model
 	{
 		$this->db->select("COUNT(user.id) AS total", false);
 		$this->db->from('user');
-		$this->db->join('user_group', 'user_group.id = user.user_group_id', 'left');
+		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
 		
 		if(!empty($data['filter_name'])) 
 		{			

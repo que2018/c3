@@ -99,7 +99,7 @@ class User_group extends MX_Controller
 			foreach($user_groups as $user_group)
 			{	
 				$data['user_groups'][] = array(
-					'user_group_id'  => $user_group['id'],
+					'user_group_id'  => $user_group['user_group_id'],
 					'name'           => $user_group['name']
 				);
 			}

@@ -81,29 +81,29 @@
 			  <thead>
 			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.upc') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 15%;" class="sorting">
 			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.sku') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 15%;" class="sorting">
 			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
@@ -114,15 +114,6 @@
 				<?php } else { ?>
 				<th style="width: 12%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'client') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
-			      <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
-			      <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'inventory.batch') { ?>
@@ -173,7 +164,6 @@
 					  <td><?php echo $inventory['upc']; ?></td>
 					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
-					  <td><?php echo $inventory['client']; ?></td>
 					  <td><?php echo $inventory['batch']; ?></td>
 					  <?php if($modifiable) { ?>
 					  <td ondblclick="active_quantity(this)"><?php echo $inventory['quantity']; ?></td>
@@ -348,13 +338,14 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('td:first-child').hover(function() {
+$(document).on({
+	mouseenter: function () {
 		$(this).find('.detail').show();
-	}, function() {
-		$(this).find('.detail').hide();
-	});
-});
+	},
+	mouseleave: function () {
+	   $(this).find('.detail').hide();
+	}
+}, 'td:nth-child(2)');
 </script>
 <?php echo $footer; ?>	
 		

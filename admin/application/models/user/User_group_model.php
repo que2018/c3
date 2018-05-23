@@ -39,7 +39,7 @@ class User_group_Model extends CI_Model
 			'permission'	 => json_encode($data['permission'])
 		);
 		
-		$this->db->where('id', $user_group_id);
+		$this->db->where('user_group_id', $user_group_id);
 		
 		$this->db->update('user_group', $user_group_data); 
 		
@@ -59,7 +59,7 @@ class User_group_Model extends CI_Model
 	
 	public function get_user_group($user_group_id)
 	{
-		$q = $this->db->get_where('user_group', array('id' => $user_group_id), 1); 
+		$q = $this->db->get_where('user_group', array('user_group_id' => $user_group_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -81,7 +81,7 @@ class User_group_Model extends CI_Model
 	{
 		$this->db->trans_begin();
 		
-		$this->db->delete('user_group', array('id' => $user_group_id));
+		$this->db->delete('user_group', array('user_group_id' => $user_group_id));
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -149,7 +149,7 @@ class User_group_Model extends CI_Model
 	
 	public function get_user_group_total($data = array())
 	{
-		$this->db->select("COUNT(user_group.id) AS total", false);
+		$this->db->select("COUNT(user_group.user_group_id) AS total", false);
 		$this->db->from('user_group');
 		
 		if(!empty($data['filter_name'])) 

@@ -149,7 +149,6 @@ class Inventory_batch extends MX_Controller
 			
 				$data['inventories'][] = array(
 					'inventory_id'  => $inventory['id'],
-					'client'        => $inventory['client'],
 					'product_id'    => $inventory['product_id'],
 					'product'       => $product_info['name'],
 					'upc'       	=> $product_info['upc'],
@@ -621,7 +620,8 @@ class Inventory_batch extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -647,7 +647,8 @@ class Inventory_batch extends MX_Controller
 				'success'     => ($success)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	

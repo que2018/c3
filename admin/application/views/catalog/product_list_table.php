@@ -92,10 +92,9 @@
 	    <?php $offset = 0; ?>
 	    <?php foreach($products as $product) { ?>
 		  <tr>
-			<td class="text-center"><img src="<?php echo $product['image']; ?>" /></td>
-		    <td>
-			  <span><?php echo $product['name']; ?></span>
-			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
+			<td class="text-center">
+			  <img src="<?php echo $product['image']; ?>" class="img-thumbnail" />
+			  <div class="detail" style="top: <?php echo $offset * 67 + 170; ?>px;">
 			    <table class="table">
 				  <thead>
 				    <th style="width: 25%;"><?php echo $this->lang->line('column_length_short'); ?></th>
@@ -116,7 +115,8 @@
 				  </tbody>
 			    </table>
 			  </div>
-		    </td>
+			</td>
+		    <td><?php echo $product['name']; ?></td>
 		    <td><?php echo $product['client']; ?></td>
 		    <?php if($editable) { ?>
 		    <td ondblclick="active_field('upc', this)"><?php echo $product['upc']; ?></td>

@@ -73,29 +73,29 @@
 		    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 24%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 24%;" class="sorting">
 			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.upc') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 17%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 17%;" class="sorting">
 			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.sku') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 17%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 17%;" class="sorting">
 			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
@@ -106,15 +106,6 @@
 				<?php } else { ?>
 				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'client') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
-			      <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
-			      <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'inventory.quantity') { ?>
@@ -152,7 +143,6 @@
 					  <td><?php echo $inventory['upc']; ?></td>
 					  <td><?php echo $inventory['sku']; ?></td>
 					  <td><?php echo $inventory['location']; ?></td>
-					  <td><?php echo $inventory['warehouse']; ?></td>
 					  <td><?php echo $inventory['quantity']; ?></td>	
 					</tr>
 					<?php $offset++; ?>
@@ -205,13 +195,14 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-	$('td:first-child').hover(function() {
+$(document).on({
+	mouseenter: function () {
 		$(this).find('.detail').show();
-	}, function() {
-		$(this).find('.detail').hide();
-	});
-});
+	},
+	mouseleave: function () {
+	   $(this).find('.detail').hide();
+	}
+}, 'td:nth-child(1)');
 </script>
 <?php echo $footer; ?>	
 		

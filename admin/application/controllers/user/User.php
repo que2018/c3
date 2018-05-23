@@ -235,8 +235,8 @@ class User extends MX_Controller
 		foreach($user_groups as $user_group)
 		{
 			$data['user_groups'][] = array(
-				'id'    => $user_group['id'],
-				'name'  => $user_group['name']
+				'user_group_id' => $user_group['user_group_id'],
+				'name'          => $user_group['name']
 			);
 		}
 		
@@ -323,8 +323,8 @@ class User extends MX_Controller
 		foreach($user_groups as $user_group)
 		{
 			$data['user_groups'][] = array(
-				'id'    => $user_group['id'],
-				'name'  => $user_group['name']
+				'user_group_id' => $user_group['user_group_id'],
+				'name'          => $user_group['name']
 			);
 		}
 		
@@ -350,7 +350,8 @@ class User extends MX_Controller
 				'success' => ($result)?true:false
 			);
 
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }
