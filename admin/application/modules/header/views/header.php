@@ -90,7 +90,7 @@
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_alert"><?php echo $this->lang->line('menu_inventory_alert'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_import"><?php echo $this->lang->line('menu_import_inventory'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/transfer"><?php echo $this->lang->line('menu_transfer_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>inventory/damage"><?php echo $this->lang->line('menu_damage_list'); ?></a></li>
+			  <!--<li><a href="<?php echo base_url(); ?>inventory/damage"><?php echo $this->lang->line('menu_damage_list'); ?></a></li>-->
 			</ul>
 		  </li>
 		  <li>

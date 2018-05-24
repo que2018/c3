@@ -17,6 +17,7 @@ $lang['column_date_added'] 	  	  						    	= 'Date Added';
 // Activity
 $lang['activity_'] 	  	                              			= 'view the dashboard';
 $lang['activity_common_dashboard'] 	  	              	    	= 'view the dashboard';
+$lang['activity_common_filemanager'] 	  	              	  	= 'view the filemanager';
 $lang['activity_common_login'] 	  	                  			= 'view the login page';
 $lang['activity_common_logout'] 	  	              			= 'view the logout page';
 $lang['activity_search_search'] 	  	              	    	= 'try to search something';
@@ -60,8 +61,10 @@ $lang['activity_refund_refund_print'] 	  	          			= 'view the refund print 
 $lang['activity_refund_refund_delete'] 	  	          			= 'try to delete a refund';
 $lang['activity_refund_refund_ajax_get_product'] 	  	        = 'try to get a product from refund';
 $lang['activity_catalog_product'] 	  	              			= 'view the product page';
+$lang['activity_catalog_product_reload'] 	  	             	= 'reload the product page';
 $lang['activity_catalog_product_add'] 	  	          			= 'view the product add page';
 $lang['activity_catalog_product_edit'] 	  	          			= 'view the product edit page';
+$lang['activity_catalog_product_delete'] 	  	          		= 'try to delete a product';
 $lang['activity_catalog_product_import'] 	  	      			= 'view the product import page';
 $lang['activity_catalog_product_ajax_get_products_volume'] 	  	= 'try to get product volume';
 $lang['activity_catalog_product_ajax_get_products_weight'] 	  	= 'try to get product weight';
@@ -73,6 +76,7 @@ $lang['activity_inventory_inventory_batch_add'] 	  	        = 'view the inventor
 $lang['activity_inventory_inventory_batch_edit'] 	  	      	= 'view the inventory edit page';
 $lang['activity_inventory_inventory_batch_reload'] 	  	      	= 'reload the inventory batch page';
 $lang['activity_inventory_inventory_batch_delete'] 	  	      	= 'try to delete the inventory page';
+$lang['activity_inventory_inventory_batch_bulk_delete'] 	  	= 'try to bulk delete the inventory page';
 $lang['activity_inventory_inventory_alert'] 	  	 			= 'view the alert inventory page';
 $lang['activity_inventory_transfer'] 	  	          			= 'view the transfer page';
 $lang['activity_inventory_transfer_add'] 	  	      			= 'view the transfer add page';
@@ -179,10 +183,10 @@ $lang['activity_setting_weight_class_add'] 						= 'view the weight class add pa
 $lang['activity_setting_weight_class_edit'] 					= 'view the weight class edit page';
 $lang['activity_setting_setting_get_printers'] 					= 'setting try to get printers';
 $lang['activity_setting_language'] 					    		= 'view the language page';
+$lang['activity_setting_information'] 					        = 'view the information page';
+$lang['activity_setting_information_add'] 					   	= 'view the information add page';
+$lang['activity_setting_information_edit'] 					   	= 'view the information edit page';
 $lang['activity_setting_language_add'] 							= 'view the language add page';
 $lang['activity_setting_language_edit'] 			    		= 'view the language edit page';
 $lang['activity_setting_language_delete'] 			    		= 'try to delete a language';
 $lang['activity_setting__language_reload'] 						= 'try to reload language';
-
-
-
