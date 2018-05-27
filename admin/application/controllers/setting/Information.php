@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Information extends CI_Controller {
-
+class Information extends MX_Controller 
+{
 	public function index()
-	{		
+	{
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('setting/information');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/information_list.css');
+	
+		$this->header->set_title($this->lang->line('text_information'));
+	
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/information_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -19,14 +29,12 @@ class Information extends CI_Controller {
 		$this->load->view('setting/information_list_table', $data);
 	}
 
-	public function get_list()
+	protected function get_list()
 	{
 		$this->lang->load('setting/information');
 		
 		$this->load->model('setting/information_model');
-		
-		$data['success'] = $this->session->flashdata('success');
-		                   
+				                   
 		if($this->input->get('filter_title'))
 		{
 			$filter_title = $this->input->get('filter_title');
@@ -101,6 +109,7 @@ class Information extends CI_Controller {
 		);
 		
 		$informations = $this->information_model->get_informations($filter_data);	
+		
 		$information_total = $this->information_model->get_information_total($filter_data);
 		
 		$data['informations'] = array();
@@ -221,7 +230,7 @@ class Information extends CI_Controller {
 
 		$data['filter_url'] = base_url() . 'setting/information' . $url;
 		
-		$data['reload'] = base_url() . 'setting/information/reload' . $url;
+		$data['reload_url'] = base_url() . 'setting/information/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -236,12 +245,25 @@ class Information extends CI_Controller {
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('setting/information');
 		
 		$this->load->model('setting/language_model');
 		$this->load->model('setting/information_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/information_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_information_add'));
 		
 		$this->form_validation->set_rules('content[]', $this->lang->line('text_content'), 'required');
 		$this->form_validation->set_rules('front', $this->lang->line('text_front'), 'required');
@@ -277,25 +299,40 @@ class Information extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/information_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->lang->load('setting/information');
 		
 		$this->load->model('setting/language_model');
 		$this->load->model('setting/information_model');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/setting/information_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_information_edit'));
+		
 		$information_id = $this->input->get('information_id');
 	
 		$this->form_validation->set_rules('content[]', $this->lang->line('text_content'), 'required');
 		$this->form_validation->set_rules('front', $this->lang->line('text_front'), 'required');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
+		
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
@@ -306,6 +343,24 @@ class Information extends CI_Controller {
 			);
 			
 			$this->information_model->edit_information($information_id, $data);
+			
+			if($data['front'])
+			{
+				$ch = curl_init(); 
+				
+				$url = $this->config->item('site_url') . 'cms';
+								
+				curl_setopt($ch, CURLOPT_URL, $url); 
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);				
+				
+				$result = curl_exec($ch); 
+				
+				file_put_contents("log.txt", $result);
+				
+				curl_close($ch);    
+		
+				file_put_contents((FCPATH . '/..') . 'index.html', $result);
+			}
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_information_edit_success'));
 			
@@ -357,9 +412,10 @@ class Information extends CI_Controller {
 		
 		$data['information_id'] = $information_id;
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('setting/information_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
@@ -374,20 +430,12 @@ class Information extends CI_Controller {
 			
 			$result = $this->information_model->delete_information($information_id);
 			
-			if($result)
-			{				
-				$outdata = array(
-					'success'   => true
-				);
-			}
-			else 
-			{				
-				$outdata = array(
-					'success'   => false
-				);
-			}
+			$outdata = array(
+				'success' => ($result)?true:false
+			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }
