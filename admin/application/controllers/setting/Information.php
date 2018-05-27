@@ -280,6 +280,23 @@ class Information extends MX_Controller
 		{
 			$this->information_model->add_information($data);
 			
+			if($data['front'])
+			{
+				$ch = curl_init(); 
+				
+				$url = $this->config->item('site_url') . 'cms';
+								
+				curl_setopt($ch, CURLOPT_URL, $url); 
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+				
+				$result = curl_exec($ch); 
+				
+				curl_close($ch);    
+	
+				file_put_contents(realpath(FCPATH . '/..') . '/index.html', $result);
+			}
+			
 			$this->session->set_flashdata('success', $this->lang->line('text_information_add_success'));
 			
 			redirect(base_url() . 'setting/information', 'refresh');
@@ -351,15 +368,14 @@ class Information extends MX_Controller
 				$url = $this->config->item('site_url') . 'cms';
 								
 				curl_setopt($ch, CURLOPT_URL, $url); 
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);				
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 				
 				$result = curl_exec($ch); 
 				
-				file_put_contents("log.txt", $result);
-				
 				curl_close($ch);    
-		
-				file_put_contents((FCPATH . '/..') . 'index.html', $result);
+	
+				file_put_contents(realpath(FCPATH . '/..') . '/index.html', $result);
 			}
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_information_edit_success'));
