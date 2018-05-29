@@ -32,7 +32,7 @@ class Information extends CI_Controller {
 		}
 		else
 		{
-			$information_id = $this->config->item('config_information_id');
+			$information_id = $this->config->item('config_information_front_id');
 		}
 		
 		$information = $this->information_model->get_information($information_id);	

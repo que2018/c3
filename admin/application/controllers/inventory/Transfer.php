@@ -1,21 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Transfer extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-		
+class Transfer extends MX_Controller 
+{
+	public function index()
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('inventory/transfer');
 		
-		$this->load->model('inventory/transfer_model');
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/transfer_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+	
+		$this->header->set_title($this->lang->line('text_transfer'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('inventory/transfer_list', $data);
 	}
 	
-	function index()
+	public function reload()
 	{
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+		$data = $this->get_list();
+			
+		$this->load->view('inventory/transfer_list_table', $data);
+	}
+	
+	protected function get_list()
+	{		                   	
 		if($this->input->get('filter_from_warehouse'))
 		{
 			$filter_from_warehouse = $this->input->get('filter_from_warehouse');
@@ -109,7 +128,8 @@ class Transfer extends CI_Controller {
 			'limit'                  => $limit
 		);
 		
-		$transfers = $this->transfer_model->get_transfers($filter_data);	
+		$transfers = $this->transfer_model->get_transfers($filter_data);
+		
 		$transfer_total = $this->transfer_model->get_transfer_total($filter_data);
 		
 		$data['transfers'] = array();
@@ -253,18 +273,34 @@ class Transfer extends CI_Controller {
 		$data['filter_to_location']     = $filter_to_location;
 		$data['filter_date_added']      = $filter_date_added;
 		
-		$this->load->view('common/header');
-		$this->load->view('inventory/transfer_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 	
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
 	
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('inventory/transfer');
+		
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
-	
+		$this->load->model('inventory/transfer_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/transfer_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_transfer_add'));
+
 		$this->form_validation->set_rules('from_location_id', $this->lang->line('text_from_location'), 'required');
 		$this->form_validation->set_rules('to_location_id', $this->lang->line('text_to_location'), 'required');
 		$this->form_validation->set_rules('transfer_product[]', $this->lang->line('text_transfer_product'), 'required');
@@ -365,17 +401,36 @@ class Transfer extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/transfer_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->load->library('form_validation');
 	
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('inventory/transfer');
+		
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/transfer_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/transfer_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_transfer_edit'));
 	
 		$transfer_id = $this->input->get('transfer_id');
 	
@@ -518,9 +573,10 @@ class Transfer extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('inventory/transfer_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
@@ -529,13 +585,14 @@ class Transfer extends CI_Controller {
 		{
 			$transfer_id = $this->input->get('transfer_id');
 			
-			$this->transfer_model->delete_transfer($transfer_id);
+			$result = $this->transfer_model->delete_transfer($transfer_id);
 
 			$outdata = array(
-				'success'   => true
+				'success' => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -574,7 +631,8 @@ class Transfer extends CI_Controller {
 				);
 			}
 					
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -679,8 +737,8 @@ class Transfer extends CI_Controller {
 			}
 		}
 		
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

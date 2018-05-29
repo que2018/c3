@@ -2,12 +2,7 @@
 
 
 class Transfer_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
+{			
 	public function add_transfer($data)
 	{
 		$this->db->trans_begin();
@@ -380,6 +375,7 @@ class Transfer_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}	
