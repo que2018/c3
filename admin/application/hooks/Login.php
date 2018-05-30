@@ -2,7 +2,7 @@
 
 class Login 
 {
-    function run()	
+    public function run()	
 	{
 		$CI = & get_instance();
 		

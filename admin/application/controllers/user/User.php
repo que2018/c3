@@ -88,7 +88,7 @@ class User extends MX_Controller
 			foreach($users as $user)
 			{	
 				$data['users'][] = array(
-					'user_id'    => $user['id'],
+					'user_id'    => $user['user_id'],
 					'username'   => $user['username'],
 					'group_name' => $user['group_name']
 				);

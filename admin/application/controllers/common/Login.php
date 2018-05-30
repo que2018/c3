@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-
+class Login extends CI_Controller 
+{
 	public function index()
 	{
 		$this->lang->load('common/login');
@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 				else
 				{
 					redirect(base_url() . 'common/dashboard', 'refresh');
-				}				
+				}	
 			} 
 			else 
 			{
@@ -49,15 +49,15 @@ class Login extends CI_Controller {
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{	
-			$data['username']  = $this->input->post('username');
-			$data['password']  = $this->input->post('password');
-			$data['idiom']     = $this->input->post('idiom');
+			$data['username']     = $this->input->post('username');
+			$data['password']     = $this->input->post('password');
+			$data['language_id']  = $this->input->post('language_id');
 		}
 		else
 		{
-			$data['username']  = '';
-			$data['password']  = '';
-			$data['idiom']     = $this->config->item('config_idiom');
+			$data['username']     = '';
+			$data['password']     = '';
+			$data['language_id']  = $this->config->item('config_language_id');
 		}
 		
 		if($this->input->get('redirect')) 

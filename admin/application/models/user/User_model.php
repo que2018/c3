@@ -55,7 +55,7 @@ class User_model extends CI_Model
 			'status'	      => $data['status']
 		);
 		
-		$this->db->where('id', $user_id);
+		$this->db->where('user_id', $user_id);
 		
 		$this->db->update('user', $user_data);
 		
@@ -75,7 +75,7 @@ class User_model extends CI_Model
 	
 	public function get_user($user_id)
 	{
-		$q = $this->db->get_where('user', array('id' => $user_id), 1); 
+		$q = $this->db->get_where('user', array('user_id' => $user_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -114,7 +114,6 @@ class User_model extends CI_Model
 		$this->db->select('user.*, user_group.name AS group_name', false);
 		$this->db->from('user');
 		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
-		$this->db->group_by('user.id');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -169,7 +168,7 @@ class User_model extends CI_Model
 	
 	public function get_user_total($data)
 	{
-		$this->db->select("COUNT(user.id) AS total", false);
+		$this->db->select("COUNT(user.user_id) AS total", false);
 		$this->db->from('user');
 		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
 		
@@ -192,7 +191,7 @@ class User_model extends CI_Model
 	
 	public function delete_user($user_id) 
 	{
-		if($this->db->delete('user', array('id' => $user_id))) 
+		if($this->db->delete('user', array('user_id' => $user_id))) 
 		{
 			return true;
 		}

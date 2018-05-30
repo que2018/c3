@@ -37,24 +37,6 @@
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_warehouse'); ?></label>
-			    <div class="col-sm-10">
-				  <select name="warehouse_id" class="form-control">
-				    <option value=""></option>
-					<?php if($warehouses) { ?>
-				      <?php foreach($warehouses as $warehouse) { ?>
-					  <?php if($warehouse['id'] == $warehouse_id) { ?>
-					  <option value="<?php echo $warehouse['id']; ?>" selected><?php echo $warehouse['name']; ?></option>
-					  <?php } else { ?>
-					  <option value="<?php echo $warehouse['id']; ?>"><?php echo $warehouse['name']; ?></option>
-					  <?php } ?>
-					  <?php } ?>
-					<?php } ?>
-				  </select>
-			    </div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_location'); ?></label>
 			    <div class="col-sm-10">
 				  <input name="location_name" value="<?php echo $location_name; ?>" class="form-control">

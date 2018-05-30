@@ -27,14 +27,11 @@ class Auth
 			
 			if($user)
 			{
-				$this->user_id = $user['id'];
+				$this->user_id = $user['user_id'];
 				$this->username = $user['username'];
 				$this->firstname = $user['firstname'];
 				$this->lastname = $user['lastname'];
 				$this->user_group_id = $user['user_group_id'];
-				
-				//$data = array();
-				//$this->user_model->update_user($user_id, $data);
 				
 				$user_group = $this->user_group_model->get_user_group($user['user_group_id']);
 				
@@ -53,9 +50,9 @@ class Auth
 		
 		if($user)
 		{
-			$this->session->set_userdata('user_id', $user['id']);
+			$this->session->set_userdata('user_id', $user['user_id']);
 			
-			$this->user_id = $user['id'];
+			$this->user_id = $user['user_id'];
 			$this->username = $user['username'];
 			$this->firstname = $user['firstname'];
 			$this->lastname = $user['lastname'];

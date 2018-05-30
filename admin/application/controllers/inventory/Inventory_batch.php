@@ -435,7 +435,6 @@ class Inventory_batch extends MX_Controller
 		$data = array(
 			'product_id'     => $this->input->post('product_id'),
 			'product_name'   => $this->input->post('product_name'),
-			'warehouse_id'   => $this->input->post('warehouse_id'),
 			'location_id'    => $this->input->post('location_id'),
 			'batch'          => $this->input->post('batch'),
 			'quantity'       => $this->input->post('quantity')
@@ -457,9 +456,6 @@ class Inventory_batch extends MX_Controller
 		
 		$data['product_name'] = $product['name'];
 			
-		//warehouse	
-		$data['warehouse_id'] = $this->input->post('warehouse_id');
-	
 		//location
 		$location_id = $this->input->post('location_id');
 
@@ -467,22 +463,6 @@ class Inventory_batch extends MX_Controller
 		
 		$data['location_name'] = $location['name'];
 		
-		//warehouses
-		$data['warehouses'] = array();
-				
-		$warehouses = $this->warehouse_model->get_warehouses();	
-			
-		if($warehouses) 
-		{
-			foreach($warehouses as $warehouse)
-			{
-				$data['warehouses'][] = array(
-					'id'     => $warehouse['id'],
-					'name'   => $warehouse['name']
-				);
-			}
-		}
-	
 		$data['error'] = validation_errors();
 		
 		$data['header'] = Modules::run('module/header/index');
@@ -537,7 +517,6 @@ class Inventory_batch extends MX_Controller
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{			
 			$data['product_id']   = $this->input->post('product_id');
-			$data['warehouse_id'] = $this->input->post('warehouse_id');
 			$data['location_id']  = $this->input->post('location_id');
 			$data['batch']        = $this->input->post('batch');
 			$data['quantity']     = $this->input->post('quantity');
@@ -549,10 +528,6 @@ class Inventory_batch extends MX_Controller
 			$data['product_name'] = $product['name'];
 			
 			$location_id = $this->input->post('location_id');
-			
-			$warehouse = $this->location_model->get_location_warehouse($location_id);
-			
-			$data['warehouse_id'] = $warehouse['id'];
 			
 			$location = $this->location_model->get_location($location_id);
 			
@@ -573,29 +548,9 @@ class Inventory_batch extends MX_Controller
 			
 			$location_id = $inventory['location_id'];
 			
-			$warehouse = $this->location_model->get_location_warehouse($location_id);
-			
-			$data['warehouse_id'] = $warehouse['id'];
-			
 			$location = $this->location_model->get_location($location_id);
 			
 			$data['location_name'] = $location['name'];
-		}
-	
-		//warehouse
-		$data['warehouses'] = array();
-				
-		$warehouses = $this->warehouse_model->get_warehouses();	
-			
-		if($warehouses) 
-		{
-			foreach($warehouses as $warehouse)
-			{
-				$data['warehouses'][] = array(
-					'id'     => $warehouse['id'],
-					'name'   => $warehouse['name']
-				);
-			}
 		}
 	
 		$data['error']  = validation_errors();

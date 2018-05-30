@@ -38,7 +38,7 @@ class Activity_log_model extends CI_Model
 	{		
 		$this->db->select('activity_log.*, CONCAT(user.firstname, " ", user.lastname) AS user', false);
 		$this->db->from('activity_log');
-		$this->db->join('user', 'user.id = activity_log.user_id', 'left');
+		$this->db->join('user', 'user.user_id = activity_log.user_id', 'left');
 
 		if(!empty($data['filter_user'])) 
 		{			
@@ -113,7 +113,7 @@ class Activity_log_model extends CI_Model
 	{		
 		$this->db->select('COUNT(activity_log.id) AS total', false);
 		$this->db->from('activity_log');
-		$this->db->join('user', 'user.id = activity_log.user_id', 'left');
+		$this->db->join('user', 'user.user_id = activity_log.user_id', 'left');
 
 		if(!empty($data['filter_user'])) 
 		{			
