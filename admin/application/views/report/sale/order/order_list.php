@@ -260,7 +260,7 @@ $(document).ready(function() {
 						response($.map(json.names, function(name) {					
 							return {
 								label:	name['client_name'],
-								id: 			name['id']
+								id: name['id']
 							}
 						}));
 					}

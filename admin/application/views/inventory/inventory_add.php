@@ -31,7 +31,7 @@
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_product'); ?></label>
 			    <div class="col-sm-10">
-				  <input name="product_name" value="<?php echo $product_name; ?>" class="form-control">
+				  <input name="code" value="<?php echo $code; ?>" class="form-control">
 				  <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 				</div>
 			  </div>
@@ -63,31 +63,31 @@
   </div>  
 </div>
 <script>
-$('input[name=\'product_name\']').autocomplete({
+$('input[name=\'code\']').autocomplete({
 	'source': function(request, response) {
-		product_name = $('input[name=\'product_name\']').val();
+		code = $('input[name=\'code\']').val();
 		
 		$.ajax({
-			url: '<?php echo base_url(); ?>catalog/product_ajax/autocomplete?product_name=' + product_name,
+			url: '<?php echo base_url(); ?>catalog/product_ajax/autocomplete?code=' + code,
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
-						id: item['id'],
-						value: item['name']
+						product_id: item['product_id'],
+						label: item['label']
 					}
 				}));
 			}
 		});
 	},
 	'select': function(event, ui) {
-		$('input[name=\'product_id\']').val(ui.item.id);
+		$('input[name=\'product_id\']').val(ui.item.product_id);
 	}
 });
 </script>
 <script>
 $(document).ready(function() {
-	$('input[name=\'product_name\']').keyup(function() {
+	$('input[name=\'code\']').keyup(function() {
 		if (!this.value) {
 		   $('input[name=\'product_id\']').val('');
 		}
@@ -109,7 +109,7 @@ $('input[name=\'location_name\']').autocomplete({
 		warehouse_id = $('select[name=\'warehouse_id\']').val();
 		
 		$.ajax({
-			url: '<?php echo base_url(); ?>warehouse/location_ajax/autocomplete?location_name=' + location_name + '&warehouse_id=' + warehouse_id,
+			url: '<?php echo base_url(); ?>warehouse/location_ajax/autocomplete?location_name=' + location_name,
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json.locations, function(item) {

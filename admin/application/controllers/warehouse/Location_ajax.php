@@ -1,44 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Location_ajax extends CI_Controller {
-
-	function __construct()
+class Location_ajax extends CI_Controller 
+{
+	public function autocomplete()
 	{
-		parent::__construct();
-		
 		$this->lang->load('warehouse/location');
 		
 		$this->load->model('warehouse/location_model');
-	}
-	
-	public function autocomplete()
-	{
+		
 		$outdata = array();
 		
 		if($this->input->get('location_name'))
 		{
 			$location_name = $this->input->get('location_name');
 			
-			if($this->input->get('warehouse_id'))
-			{
-				$warehouse_id = $this->input->get('warehouse_id');
-				
-				$filter_data = array(
-					'filter_name'      => $location_name,
-					'filter_warehouse' => $warehouse_id,
-					'start'            => 0,
-					'limit'            => $this->config->item('config_autocomplete_limit')
-				);
-			}
-			else
-			{
-				$filter_data = array(
-					'filter_name'      => $location_name,
-					'start'            => 0,
-					'limit'            => $this->config->item('config_autocomplete_limit')
-				);
-			}
+			$filter_data = array(
+				'filter_name'      => $location_name,
+				'start'            => 0,
+				'limit'            => $this->config->item('config_autocomplete_limit')
+			);
 			
 			$locations_data = $this->location_model->find_locations($filter_data);
 
@@ -68,8 +49,8 @@ class Location_ajax extends CI_Controller {
 			}
 		}
 		
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

@@ -63,46 +63,6 @@
   </div>  
 </div>
 <script>
-$('input[name=\'product_name\']').autocomplete({
-	'source': function(request, response) {
-		product_name = $('input[name=\'product_name\']').val();
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>catalog/product_ajax/autocomplete?product_name=' + product_name,
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						id: item['id'],
-						value: item['name']
-					}
-				}));
-			}
-		});
-	},
-	'select': function(event, ui) {
-		$('input[name=\'product_id\']').val(ui.item.id);
-	}
-});
-</script>
-<script>
-$(document).ready(function() {
-	$('input[name=\'product_name\']').keyup(function() {
-		if (!this.value) {
-		   $('input[name=\'product_id\']').val('');
-		}
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$('select[name=\'warehouse_id\']').on('change', function() {
-		$('input[name=\'location_id\']').val('');
-		$('input[name=\'location_name\']').val('');
-	});
-});
-</script>
-<script>
 $('input[name=\'location_name\']').autocomplete({
 	'source': function(request, response) {
 		location_name = $('input[name=\'location_name\']').val();

@@ -434,7 +434,6 @@ class Inventory_batch extends MX_Controller
 	
 		$data = array(
 			'product_id'     => $this->input->post('product_id'),
-			'product_name'   => $this->input->post('product_name'),
 			'location_id'    => $this->input->post('location_id'),
 			'batch'          => $this->input->post('batch'),
 			'quantity'       => $this->input->post('quantity')
@@ -454,7 +453,7 @@ class Inventory_batch extends MX_Controller
 			
 		$product = $this->product_model->get_product($product_id);
 		
-		$data['product_name'] = $product['name'];
+		$data['code'] = $product['name'];
 			
 		//location
 		$location_id = $this->input->post('location_id');

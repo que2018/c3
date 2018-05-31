@@ -1,42 +1,56 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Product_ajax extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-				
-		$this->load->model('catalog/product_model');
-	}
-	
+class Product_ajax extends CI_Controller 
+{
 	public function autocomplete()
-	{		
+	{	
+		$this->load->model('catalog/product_model');
+	
 		$outdata = array();
 		
-		if($this->input->get('product_name'))
+		if($this->input->get('code'))
 		{
-			$product_name = $this->input->get('product_name');
+			$code = $this->input->get('code');
 			
-			$products = $this->product_model->find_product_by_name($product_name);
-
+			$key = 'name';
+						
+			$products = $this->product_model->find_product_by_name($code);
+			
+			if(!$products)
+			{
+				$key = 'upc';
+				
+				$products = $this->product_model->find_product_by_upc($code);
+			}
+			
+			if(!$products)
+			{
+				$key = 'sku';
+				
+				$products = $this->product_model->find_product_by_sku($code);
+			}
+			
 			if($products) 
 			{
 				foreach($products as $product) 
 				{
 					$outdata[] = array(
-						'id'    => $product['id'],
-						'name'  => $product['name']
+						'product_id' => $product['id'],
+						'label'      => $product[$key]
 					);
 				}
 			}
 		}
 	
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function update_value()
+	public function update_value()
 	{
+		$this->load->model('catalog/product_model');
+		
 		$product_id  = $this->input->post('product_id');
 		$field       = $this->input->post('field');
 		$value       = $this->input->post('value');
@@ -47,25 +61,18 @@ class Product_ajax extends CI_Controller {
 		);
 			
 		$result = $this->product_model->update_product_value($product_id, $data);
+			
+		$outdata = array(
+			'success'     => ($success)?true:false
+		);
 		
-		if($result)
-		{
-			$outdata = array(
-				'success'  => true
-			);
-		}
-		else
-		{
-			$outdata = array(
-				'success'  => false
-			);
-		}
-		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_products_volume()
+	public function get_products_volume()
 	{
+		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
 
 		if($this->input->post('product'))
@@ -91,11 +98,13 @@ class Product_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_products_weight()
+	public function get_products_weight()
 	{
+		$this->load->model('catalog/product_model');
 		$this->load->model('setting/weight_class_model');
 
 		if($this->input->post('product'))
@@ -117,7 +126,8 @@ class Product_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 
