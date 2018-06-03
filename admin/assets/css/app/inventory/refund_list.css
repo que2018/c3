@@ -23,10 +23,17 @@ a:focus, a:hover {
 .filter-select:focus, input:focus {
 	outline:0;
 }
-.btn-edit {	margin-right: 5px;
+.btn-edit {
+	margin-right: 5px;
 }
 .btn-delete {
 	margin-left: 5px;
+}
+.btn-add {
+    margin-right: 8px;
+}
+.btn-download {
+    margin-right: 8px;
 }
 .page-heading {
 	position: relative;
@@ -36,6 +43,11 @@ a:focus, a:hover {
 }
 .pagination {
 	margin: 0px;
+}
+.button-group {	
+	position: absolute;    
+	top: 30px;    
+	right: 50px;
 }
 .detail {
 	width: 300px;
@@ -49,39 +61,29 @@ a:focus, a:hover {
 .detail table {
 	margin-bottom: 0px;
 }
-.pending {	
-	font-size: 9px;    
-	background: #f5e14d;    
-	color: #fff;    
-	border-radius: 2px;    
-	padding: 4px 5px;
+.batch-options {
+	float: right;
 }
-.completed {	
-	font-size: 9px;    
-	background: #3bbf7c;    
-	color: #fff;    
-	border-radius: 2px;    
-	padding: 4px 5px;
+.btn-batch {
+	color: #fff;
+	background: #ccc;
+    font-size: 10px;
+    padding: 2px 5px;
+	border: 1px solid #ccc;
 }
-.damaged {	
-	font-size: 9px;    
-	background: #a5a5a5;    
-	color: #fff;    
-	border-radius: 2px;    
-	padding: 4px 5px;
+.btn-batch:hover {
+	color: #fff;
 }
-.button-group {	
-	position: absolute;    
-	top: 30px;    
-	right: 50px;
+.btn-batch-select {
+	background: #9c9c9c;
+	border: 1px solid #9c9c9c;
 }
-.tracking {
-	background: #23c6c8;
-    color: #fff;
-    border-radius: 2px;
-    padding: 4px 5px;
+.table-non-batch td {
+	line-height: 34px !important;
 }
-
-
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 

@@ -60,13 +60,6 @@
 			</ul>
 		  </li>
 		  <li>
-			<a><i class="fa fa-recycle"></i><span class="nav-label"><?php echo $this->lang->line('menu_return'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="<?php echo base_url(); ?>refund/refund"><?php echo $this->lang->line('menu_return_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>refund/refund/add"><?php echo $this->lang->line('menu_return_add'); ?></a></li>
-			</ul>
-		  </li>
-		  <li>
 			<a><i class="fa fa-shopping-cart"></i><span class="nav-label"><?php echo $this->lang->line('menu_order'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>sale/sale_unsolved"><?php echo $this->lang->line('menu_unsolved_order'); ?></a></li>
