@@ -35,28 +35,9 @@ class Refund extends MX_Controller
 		
 		$this->lang->load('inventory/refund');
 		
-		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/refund_model');
 				                   	
-		if($this->input->get('filter_client_id'))
-		{
-			$filter_client_id = $this->input->get('filter_client_id');
-		} 
-		else 
-		{
-			$filter_client_id = '';
-		}
-		
-		if($this->input->get('filter_location'))
-		{
-			$filter_location = $this->input->get('filter_location');
-		} 
-		else 
-		{
-			$filter_location = '';
-		}
-		
 		if($this->input->get('filter_sku'))
 		{
 			$filter_sku = $this->input->get('filter_sku');
@@ -75,13 +56,13 @@ class Refund extends MX_Controller
 			$filter_upc = '';
 		}
 		
-		if($this->input->get('filter_batch'))
+		if($this->input->get('filter_location'))
 		{
-			$filter_batch = $this->input->get('filter_batch');
+			$filter_location = $this->input->get('filter_location');
 		} 
 		else 
 		{
-			$filter_batch = '';
+			$filter_location = '';
 		}
 		
 		if($this->input->get('sort')) 
@@ -121,11 +102,9 @@ class Refund extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_client_id'     => $filter_client_id,
-			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
 			'filter_upc'    	   => $filter_upc,
-			'filter_batch'    	   => $filter_batch,
+			'filter_location'      => $filter_location,
 			'sort'                 => $sort,
 			'order'                => $order,
 			'start'                => ($page - 1) * $limit,
@@ -151,9 +130,7 @@ class Refund extends MX_Controller
 					'upc'       	=> $product_info['upc'],
 					'sku'       	=> $product_info['sku'],
 					'location'      => $refund['location_name'],
-					'batch'         => $refund['batch'],
-					'quantity'      => $refund['quantity'],
-					'date_modified' => $refund['date_modified']
+					'quantity'      => $refund['quantity']
 				);
 			}
 		}
@@ -210,11 +187,6 @@ class Refund extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_client_id')) 
-		{
-			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
-		}
-		
 		if($this->input->get('filter_location')) 
 		{
 			$url .= '&filter_location=' . $this->input->get('filter_location');
@@ -228,11 +200,6 @@ class Refund extends MX_Controller
 		if($this->input->get('filter_upc')) 
 		{
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
-		}
-		
-		if($this->input->get('filter_batch')) 
-		{
-			$url .= '&filter_batch=' . $this->input->get('filter_batch');
 		}
 			
 		if($this->input->get('sort')) 
@@ -259,16 +226,6 @@ class Refund extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_client_id')) 
-		{
-			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
-		}
-		
-		if($this->input->get('filter_location')) 
-		{
-			$url .= '&filter_location=' . $this->input->get('filter_location');
-		}
-		
 		if($this->input->get('filter_sku')) 
 		{
 			$url .= '&filter_sku=' . $this->input->get('filter_sku');
@@ -278,12 +235,12 @@ class Refund extends MX_Controller
 		{
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
-		
-		if($this->input->get('filter_batch')) 
+			
+		if($this->input->get('filter_location')) 
 		{
-			$url .= '&filter_batch=' . $this->input->get('filter_batch');
+			$url .= '&filter_location=' . $this->input->get('filter_location');
 		}
-				
+			
 		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
@@ -298,12 +255,9 @@ class Refund extends MX_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_product']     = base_url() . 'inventory/refund?sort=product.name' . $url;
 		$data['sort_upc']         = base_url() . 'inventory/refund?sort=product.upc' . $url;
 		$data['sort_sku']         = base_url() . 'inventory/refund?sort=product.sku' . $url;
 		$data['sort_location']    = base_url() . 'inventory/refund?sort=location.name' . $url;
-		$data['sort_client']      = base_url() . 'inventory/refund?sort=client' . $url;
-		$data['sort_batch']       = base_url() . 'inventory/refund?sort=refund.batch' . $url;
 		$data['sort_quantity']    = base_url() . 'inventory/refund?sort=refund.quantity' . $url;
 		
 		$url = '';
@@ -347,16 +301,6 @@ class Refund extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		if($this->input->get('filter_client_id')) 
-		{
-			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
-		}
-		
-		if($this->input->get('filter_location')) 
-		{
-			$url .= '&filter_location=' . $this->input->get('filter_location');
-		}
-		
 		if($this->input->get('filter_sku')) 
 		{
 			$url .= '&filter_sku=' . $this->input->get('filter_sku');
@@ -367,33 +311,18 @@ class Refund extends MX_Controller
 			$url .= '&filter_upc=' . $this->input->get('filter_upc');
 		}
 		
-		$data['non_batch_url']  = base_url() . 'inventory/refund' . $url;
+		if($this->input->get('filter_location')) 
+		{
+			$url .= '&filter_location=' . $this->input->get('filter_location');
+		}
 		
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_client_id']  = $filter_client_id;
-		$data['filter_location']   = $filter_location;
 		$data['filter_sku']        = $filter_sku;
 		$data['filter_upc']        = $filter_upc;
-		$data['filter_batch']      = $filter_batch;
-		
-		//clients
-		$data['clients'] = array();
-		
-		$clients = $this->client_model->get_clients();
-		
-		if($clients)
-		{
-			foreach($clients as $client)
-			{	
-				$data['clients'][] = array(
-					'client_id'    => $client['id'],
-					'name'         => $client['name']
-				);	
-			}
-		}
+		$data['filter_location']   = $filter_location;
 		
 		//edit permission
 		$data['modifiable'] = $this->auth->has_permission('modify', 'refund');
@@ -426,13 +355,11 @@ class Refund extends MX_Controller
 		
 		$this->form_validation->set_rules('product_id', $this->lang->line('text_product'), 'required');
 		$this->form_validation->set_rules('location_id', $this->lang->line('text_location'), 'required');
-		$this->form_validation->set_rules('batch', $this->lang->line('text_batch'), 'callback_validate_refund_add_unique');
 		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 	
 		$data = array(
 			'product_id'     => $this->input->post('product_id'),
 			'location_id'    => $this->input->post('location_id'),
-			'batch'          => $this->input->post('batch'),
 			'quantity'       => $this->input->post('quantity')
 		);
 		
@@ -479,9 +406,9 @@ class Refund extends MX_Controller
 		$this->lang->load('inventory/refund');
 		
 		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/refund_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
-		$this->load->model('inventory/refund_model');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/refund_edit.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -499,7 +426,6 @@ class Refund extends MX_Controller
 			$data = array(
 				'product_id'     => $this->input->post('product_id'),
 				'location_id'    => $this->input->post('location_id'),
-				'batch'          => $this->input->post('batch'),
 				'quantity'       => $this->input->post('quantity')
 			);
 			
@@ -514,7 +440,6 @@ class Refund extends MX_Controller
 		{			
 			$data['product_id']   = $this->input->post('product_id');
 			$data['location_id']  = $this->input->post('location_id');
-			$data['batch']        = $this->input->post('batch');
 			$data['quantity']     = $this->input->post('quantity');
 			
 			$product_id = $this->input->post('product_id');
@@ -535,7 +460,6 @@ class Refund extends MX_Controller
 		
 			$data['product_id']   = $refund['product_id'];
 			$data['location_id']  = $refund['location_id'];
-			$data['batch']        = $refund['batch'];
 			$data['quantity']     = $refund['quantity'];
 		
 			$product = $this->product_model->get_product($refund['product_id']);
