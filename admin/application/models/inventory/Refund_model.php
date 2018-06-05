@@ -239,7 +239,7 @@ class Refund_model extends CI_Model
 	
 	public function get_refunds($data = array()) 
 	{			
-		$this->db->select("refund.*, SUM(refund.quantity) AS quantity, product.name AS product_name, product.sku, location.name AS location_name", false);
+		$this->db->select("refund.*, product.name AS product_name, product.sku, location.name AS location_name", false);
 		$this->db->from('refund');
 		$this->db->join('product', 'product.id = refund.product_id', 'left');
 		$this->db->join('location', 'location.id = refund.location_id', 'left');

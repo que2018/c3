@@ -4,13 +4,13 @@
 	<h2><?php echo $this->lang->line('text_refund'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>refund/refund"><?php echo $this->lang->line('text_refund'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>inventory/refund"><?php echo $this->lang->line('text_inventory'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_refund'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>assets/file/export/refund.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
-    <a href="<?php echo base_url(); ?>refund/refund_batch/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+    <a href="<?php echo base_url(); ?>inventory/refund/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -19,33 +19,10 @@
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_refund_list_description'); ?></h5>
-		  <div class="btn-group batch-options">
-			<a href="<?php echo $batch_url; ?>" class="btn btn-batch btn-secondary"><?php echo $this->lang->line('button_batch'); ?></a>	 
-		    <a href="#" class="btn btn-batch btn-secondary btn-batch-select"><?php echo $this->lang->line('button_non_batch'); ?></a>
-		  </div>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
 		    <div class="row">
-		      <div class="col-md-2">
-			    <div class="form-group">
-			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_client'); ?></label>
-			      <div class="col-sm-8">
-				    <select name="client_id" class="form-control">
-				      <?php if($clients) { ?>
-					    <option value=""></option>
-					    <?php foreach($clients as $client) { ?>
-					      <?php if($client['client_id'] == $filter_client_id) { ?>
-						  <option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
-						  <?php } else { ?>
-						  <option value="<?php echo $client['client_id']; ?>"><?php echo $client['name']; ?></option>
-						  <?php } ?>
-					    <?php } ?>
-					  <?php } ?>
-				    </select>
-				  </div>
-			    </div>
-			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
 			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_location'); ?></label>
@@ -119,9 +96,9 @@
 				<?php } ?>
 			  </thead>
 			  <tbody>
-				<?php if($inventories) { ?>
+				<?php if($refunds) { ?>
 				  <?php $offset = 0; ?>
-				  <?php foreach($inventories as $refund) { ?>
+				  <?php foreach($refunds as $refund) { ?>
 					<tr>
 					  <td>
 					    <a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $refund['product_id']; ?>" target="_blank"><?php echo $refund['product']; ?></a>
@@ -162,15 +139,11 @@
 </div>
 <script>
 function filter() {	
-	client_id     = $('select[name=\'client_id\']').val();
 	loaction      = $('input[name=\'location\']').val();
 	sku           = $('input[name=\'sku\']').val();	
 	upc           = $('input[name=\'upc\']').val();	
 
 	url = '<?php echo $filter_url; ?>';
-	
-	if(client_id)
-		url += '&filter_client_id=' + client_id;
 	
 	if(loaction)
 		url += '&filter_location=' + loaction;

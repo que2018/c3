@@ -2,6 +2,7 @@
 
 // Text
 $lang['text_refund'] 	  	               = 'Return';
+$lang['text_inventory'] 	  	           = 'Inventory';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = 'product';
 $lang['text_location'] 	  	         	   = 'location';
