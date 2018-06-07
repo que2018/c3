@@ -1,15 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Checkin_scan extends CI_Controller 
+class Checkin_scan extends MX_Controller 
 {
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('check/checkin');
+
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_scan.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+	
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkin_scan'));
 			
-		$this->load->view('common/header');
-		$this->load->view('check/checkin_scan');
-		$this->load->view('common/footer');	
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('check/checkin_scan', $data);
 	}
 
 	public function get_product_or_location()
@@ -105,8 +116,8 @@ class Checkin_scan extends CI_Controller
 					);
 				}
 				
-				echo json_encode($outdata);
-				die();
+				$this->output->set_content_type('application/json');
+				$this->output->set_output(json_encode($outdata));
 			}
 		}
 		else
@@ -116,8 +127,8 @@ class Checkin_scan extends CI_Controller
 				'msg'       => $this->lang->line('error_code_empty')
 			);
 			
-			echo json_encode($outdata);
-			die();
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}			
 	}
 	
@@ -126,6 +137,8 @@ class Checkin_scan extends CI_Controller
 		$this->lang->load('check/checkin');
 		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->load->model('check/checkin_model');
 			
@@ -158,11 +171,11 @@ class Checkin_scan extends CI_Controller
 			);
 		}
 	
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function validate_tracking($tracking)
+	public function validate_tracking($tracking)
 	{
 		$this->lang->load('check/checkin');
 				
@@ -189,7 +202,7 @@ class Checkin_scan extends CI_Controller
 		}
 	}
 
-	function validate_checkin_product($checkin_products)
+	public function validate_checkin_product($checkin_products)
 	{
 		$this->lang->load('check/checkin');
 		

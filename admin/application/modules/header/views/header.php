@@ -123,7 +123,7 @@
 			  <li><a href="<?php echo base_url(); ?>finance/transaction"><?php echo $this->lang->line('menu_transaction'); ?></a></li>
 			</ul>
 		  </li>
-		  <li>
+		  <!--<li>
 			<a><i class="fa fa-bar-chart"></i><span class="nav-label"><?php echo $this->lang->line('menu_report'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="#"><?php echo $this->lang->line('menu_sale'); ?></a>
@@ -138,7 +138,7 @@
 				</ul>
               </li>   
 			</ul>
-		  </li>
+		  </li>-->
 		  <li>
 			<a><i class="fa fa-address-card"></i><span class="nav-label"><?php echo $this->lang->line('menu_client'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">

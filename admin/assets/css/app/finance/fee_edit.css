@@ -2,12 +2,12 @@
 	position: relative;
 }
 .btn-submit {
+	margin-right: 6px;
+}
+.button-group {
 	position: absolute;
     top: 30px;
-    right: 40px;
-}
-.ibox-content {
-    padding-top: 20px;
+    right: 50px;
 }
 .ibox-content {
     padding-top: 25px;

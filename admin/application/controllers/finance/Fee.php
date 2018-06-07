@@ -1,15 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Fee extends CI_Controller
+class Fee extends MX_Controller
 {
 	public function index()
-	{		
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('finance/fee');
+		
+		$this->header->add_style(base_url() . 'assets/css/app/finance/fee_list.css');
+	
+		$this->header->set_title($this->lang->line('text_fee'));
+
 		$data = $this->get_list();
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/fee_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function reload()
@@ -27,8 +37,6 @@ class Fee extends CI_Controller
 	
 		$this->load->model('finance/fee_model');
 		
-		$data['success'] = $this->session->flashdata('success');
-	
 		if($this->input->get('filter_name'))
 		{
 			$filter_name = $this->input->get('filter_name');
@@ -92,7 +100,8 @@ class Fee extends CI_Controller
 			'limit'          => $limit
 		);
 		
-		$fees = $this->fee_model->get_fees($filter_data);	
+		$fees = $this->fee_model->get_fees($filter_data);
+		
 		$fee_total = $this->fee_model->get_fee_total($filter_data);
 		
 		$data['fees'] = array();
@@ -209,12 +218,21 @@ class Fee extends CI_Controller
 	
 	public function add()
 	{
-		$this->lang->load('finance/fee');
-	
-		$this->load->model('finance/fee_model');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+		
+		$this->lang->load('finance/fee');
+	
+		$this->load->model('finance/fee_model');
+				
+		$this->header->add_style(base_url(). 'assets/css/app/finance/fee_add.css');
+		
+		$this->header->set_title($this->lang->line('text_add_fee'));		
+				
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('amount', $this->lang->line('text_amount'), 'required|regex_match[/^[+]?\d+([.]\d+)?$/]');
 		
@@ -234,19 +252,29 @@ class Fee extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/fee_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
 		$this->lang->load('finance/fee');
 	
 		$this->load->model('finance/fee_model');
-		
-		$this->load->library('form_validation');
 				
+		$this->header->add_style(base_url(). 'assets/css/app/finance/fee_edit.css');
+		
+		$this->header->set_title($this->lang->line('text_edit_fee'));
+					
 		$fee_id = $this->input->get('fee_id');
 		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -283,9 +311,10 @@ class Fee extends CI_Controller
 				
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('finance/fee_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()
@@ -302,7 +331,8 @@ class Fee extends CI_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }
