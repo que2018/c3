@@ -130,7 +130,7 @@ class Client extends MX_Controller
 		
 		$clients = $this->client_model->get_clients($filter_data);
 		
-		$client_total  = $this->client_model->get_client_total($filter_data);
+		$client_total = $this->client_model->get_client_total($filter_data);
 		
 		$data['clients'] = array();
 		
@@ -295,15 +295,12 @@ class Client extends MX_Controller
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 		
-		$data['filter_name']       = $filter_name;
-		$data['filter_company']    = $filter_company;
-		$data['filter_email']      = $filter_email;
-		$data['filter_phone']      = $filter_phone;
+		$data['filter_name']     = $filter_name;
+		$data['filter_company']  = $filter_company;
+		$data['filter_email']    = $filter_email;
+		$data['filter_phone']    = $filter_phone;
 		
-		$data['header'] = Modules::run('module/header/index');
-		$data['footer'] = Modules::run('module/footer/index');
-		
-		$this->load->view('client/client_list', $data);
+		return $data;
 	}
 	
 	public function add() 
@@ -456,7 +453,6 @@ class Client extends MX_Controller
 		
 		$data['error'] = validation_errors();
 	
-		
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
@@ -519,7 +515,7 @@ class Client extends MX_Controller
 		}
 	}
 	
-	function validate_client_location()
+	public function validate_client_location()
 	{		
 		if($this->input->post('location'))
 		{
@@ -561,7 +557,7 @@ class Client extends MX_Controller
 		}	
 	}
 	
-	function validate_add_email($email)
+	public function validate_add_email($email)
 	{
 		$result = $this->client_model->get_client_by_email($email);
 		
@@ -577,7 +573,7 @@ class Client extends MX_Controller
 		}
 	}
 	
-	function validate_edit_email($email)
+	public function validate_edit_email($email)
 	{		
 		$result = $this->client_model->get_client_by_email($email);
 		

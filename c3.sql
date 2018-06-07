@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2018 at 08:05 PM
+-- Generation Time: Jun 07, 2018 at 03:51 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -552,7 +552,163 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (51666, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-05-30 19:55:10'),
 (51667, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-05-30 19:57:35'),
 (51668, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-05-30 19:57:41'),
-(51669, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-05-30 20:04:39');
+(51669, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-05-30 20:04:39'),
+(51670, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-07 03:05:26'),
+(51671, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-07 03:05:31'),
+(51672, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-07 03:05:31'),
+(51673, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:05:38'),
+(51674, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-06-07 03:06:30'),
+(51675, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-06-07 03:06:32'),
+(51676, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:06:32'),
+(51677, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:10:17'),
+(51678, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:10:25'),
+(51679, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:11:07'),
+(51680, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:11:25'),
+(51681, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:12:03');
+INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
+(51682, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:12:08'),
+(51683, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:12:14'),
+(51684, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:12:18'),
+(51685, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:12:25'),
+(51686, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:12:28'),
+(51687, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:12:33'),
+(51688, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:13:27'),
+(51689, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:14:03'),
+(51690, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:14:07'),
+(51691, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:14:09'),
+(51692, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:14:16'),
+(51693, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:00'),
+(51694, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:15:01'),
+(51695, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:04'),
+(51696, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:08'),
+(51697, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:11'),
+(51698, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:15:12'),
+(51699, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:15'),
+(51700, 1, '::1', 'client/client/delete', '0', 'GET', '2018-06-07 03:15:23'),
+(51701, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:15:24'),
+(51702, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-06-07 03:17:43'),
+(51703, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-06-07 03:17:53'),
+(51704, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:17:53'),
+(51705, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-06-07 03:17:57'),
+(51706, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-07 03:17:59'),
+(51707, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:18:06'),
+(51708, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:20:57'),
+(51709, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:21:30'),
+(51710, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:22:35'),
+(51711, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:22:38'),
+(51712, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:22:40'),
+(51713, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-07 03:22:42'),
+(51714, 1, '::1', 'inventory/refund/add', '0', 'POST', '2018-06-07 03:22:46'),
+(51715, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:22:46'),
+(51716, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:22:47'),
+(51717, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:22:49'),
+(51718, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-07 03:22:52'),
+(51719, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-07 03:22:53'),
+(51720, 1, '::1', 'inventory/refund/add', '0', 'POST', '2018-06-07 03:22:57'),
+(51721, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:22:57'),
+(51722, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:25:49'),
+(51723, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:26:31'),
+(51724, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:26:35'),
+(51725, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:28:08'),
+(51726, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:29:06'),
+(51727, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:30:29'),
+(51728, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:31:53'),
+(51729, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:13'),
+(51730, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:37'),
+(51731, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:41'),
+(51732, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:42'),
+(51733, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:43'),
+(51734, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:44'),
+(51735, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:45'),
+(51736, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:46'),
+(51737, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:47'),
+(51738, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:48'),
+(51739, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:49'),
+(51740, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:50'),
+(51741, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:51'),
+(51742, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:52'),
+(51743, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:53'),
+(51744, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:54'),
+(51745, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:55'),
+(51746, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:56'),
+(51747, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:57'),
+(51748, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:58'),
+(51749, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:32:59'),
+(51750, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:00'),
+(51751, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:01'),
+(51752, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:02'),
+(51753, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:02'),
+(51754, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:03'),
+(51755, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:33:04'),
+(51756, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:34:10'),
+(51757, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:34:11'),
+(51758, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:34:12'),
+(51759, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:34:34'),
+(51760, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:35:20'),
+(51761, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:35:53'),
+(51762, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:00'),
+(51763, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:03'),
+(51764, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:06'),
+(51765, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:09'),
+(51766, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:14'),
+(51767, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:18'),
+(51768, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:24'),
+(51769, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:27'),
+(51770, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:30'),
+(51771, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:51'),
+(51772, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:36:54'),
+(51773, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:37:09'),
+(51774, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:37:11'),
+(51775, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:37:12'),
+(51776, 1, '::1', 'inventory/refund/add', '0', 'POST', '2018-06-07 03:37:14'),
+(51777, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:37:18'),
+(51778, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:37:19'),
+(51779, 1, '::1', 'inventory/refund/edit', '0', 'POST', '2018-06-07 03:37:29'),
+(51780, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:37:30'),
+(51781, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:37:57'),
+(51782, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:37:58'),
+(51783, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:05'),
+(51784, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:07'),
+(51785, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:38:08'),
+(51786, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:10'),
+(51787, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:12'),
+(51788, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:38:20'),
+(51789, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:22'),
+(51790, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:24'),
+(51791, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:26'),
+(51792, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:28'),
+(51793, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:33'),
+(51794, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:37'),
+(51795, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:38:43'),
+(51796, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:45'),
+(51797, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:55'),
+(51798, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:38:57'),
+(51799, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:39:20'),
+(51800, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:39:21'),
+(51801, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:39:25'),
+(51802, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:39:28'),
+(51803, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:39:30'),
+(51804, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:41:14'),
+(51805, 1, '::1', 'inventory/refund/delete', '0', 'GET', '2018-06-07 03:41:16'),
+(51806, 1, '::1', 'inventory/refund/reload', '0', 'GET', '2018-06-07 03:41:16'),
+(51807, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:05'),
+(51808, 1, '::1', 'inventory/refund/edit', '0', 'GET', '2018-06-07 03:44:07'),
+(51809, 1, '::1', 'inventory/refund/edit', '0', 'POST', '2018-06-07 03:44:09'),
+(51810, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:09'),
+(51811, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:44:12'),
+(51812, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:44:16'),
+(51813, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:44:18'),
+(51814, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-07 03:44:20'),
+(51815, 1, '::1', 'inventory/refund/add', '0', 'POST', '2018-06-07 03:44:25'),
+(51816, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:26'),
+(51817, 1, '::1', 'inventory/refund/add', '0', 'GET', '2018-06-07 03:44:29'),
+(51818, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-07 03:44:31'),
+(51819, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-07 03:44:33'),
+(51820, 1, '::1', 'inventory/refund/add', '0', 'POST', '2018-06-07 03:44:38'),
+(51821, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:38'),
+(51822, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:41'),
+(51823, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:46:49'),
+(51824, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:50:44');
 
 -- --------------------------------------------------------
 
@@ -2018,27 +2174,21 @@ INSERT INTO `recharge` (`id`, `client_id`, `payment_method`, `amount`, `status`,
 
 CREATE TABLE `refund` (
   `refund_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL,
-  `tracking` varchar(255) NOT NULL,
-  `note` text NOT NULL,
-  `status` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `refund_product`
+-- Dumping data for table `refund`
 --
 
-CREATE TABLE `refund_product` (
-  `id` int(11) NOT NULL,
-  `refund_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `refund` (`refund_id`, `product_id`, `location_id`, `quantity`, `date_added`, `date_modified`) VALUES
+(2, 93336, 2403, 158, '2018-06-07 03:22:57', '2018-06-07 03:44:09'),
+(3, 93444, 2407, 500, '2018-06-07 03:44:26', '2018-06-07 03:44:26'),
+(4, 93427, 2431, 250, '2018-06-07 03:44:38', '2018-06-07 03:44:38');
 
 -- --------------------------------------------------------
 
@@ -2827,15 +2977,10 @@ ALTER TABLE `recharge`
 --
 ALTER TABLE `refund`
   ADD PRIMARY KEY (`refund_id`),
-  ADD KEY `id` (`refund_id`);
-
---
--- Indexes for table `refund_product`
---
-ALTER TABLE `refund_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_id` (`refund_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `id` (`refund_id`),
+  ADD KEY `product_id_2` (`product_id`),
+  ADD KEY `location_id` (`location_id`);
 
 --
 -- Indexes for table `sale`
@@ -2941,7 +3086,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51670;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51825;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -3097,13 +3242,7 @@ ALTER TABLE `recharge`
 -- AUTO_INCREMENT for table `refund`
 --
 ALTER TABLE `refund`
-  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `refund_product`
---
-ALTER TABLE `refund_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sale`

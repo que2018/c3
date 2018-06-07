@@ -31,14 +31,14 @@
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_sku'); ?></label>
-			      <div class="col-sm-9"><input name="sku" class="form-control" value="<?php echo $filter_sku; ?>"></div>
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_upc'); ?></label>
+			      <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_upc'); ?></label>
-			      <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
+			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_sku'); ?></label>
+			      <div class="col-sm-9"><input name="sku" class="form-control" value="<?php echo $filter_sku; ?>"></div>
 			    </div>
 			  </div>
 			  <div class="col-md-3">
@@ -50,50 +50,53 @@
 		    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 24%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
+				  <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 24%;" class="sorting">
-			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
+				<th style="width: 20%;" class="sorting">
+			      <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.upc') { ?>
-				<th style="width: 17%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 17%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.sku') { ?>
-				<th style="width: 17%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 17%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'location.name') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'refund.quantity') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 16%;" class="sorting">
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } ?>
+				<th class="sorting">
+			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
+				</th>
 			  </thead>
 			  <tbody>
 				<?php if($refunds) { ?>
@@ -120,7 +123,11 @@
 					  <td><?php echo $refund['upc']; ?></td>
 					  <td><?php echo $refund['sku']; ?></td>
 					  <td><?php echo $refund['location']; ?></td>
-					  <td><?php echo $refund['quantity']; ?></td>	
+					  <td><?php echo $refund['quantity']; ?></td>
+					  <td class="text-center">
+					    <a href="<?php echo base_url(); ?>inventory/refund/edit?refund_id=<?php echo $refund['refund_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+						<button class="btn btn-danger btn-delete" data="<?php echo $refund['refund_id']; ?>" onclick="delete_refund(this, <?php echo $refund['refund_id']; ?>)"><i class="fa fa-trash"></i></button>
+					  </td>							  
 					</tr>
 					<?php $offset++; ?>
 				  <?php } ?>
@@ -166,6 +173,42 @@ $(document).ready(function() {
 		}
 	});
 });
+</script>
+<script>
+function delete_refund(handle, refund_id) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>inventory/refund/delete?refund_id=' + refund_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			complete: function() {
+				$(handle).html('<i class="fa fa-trash"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				} else {
+					$('#alert-error span').html(json.message);		
+					$('#alert-error').show();
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
 </script>
 <script>
 $(document).on({

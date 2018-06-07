@@ -121,14 +121,12 @@ class Refund extends MX_Controller
 		{			
 			foreach($refunds as $refund)
 			{	
-				$product_info = $this->product_model->get_product($refund['product_id']);	
-			
 				$data['refunds'][] = array(
 					'refund_id'     => $refund['refund_id'],
 					'product_id'    => $refund['product_id'],
-					'product'       => $product_info['name'],
-					'upc'       	=> $product_info['upc'],
-					'sku'       	=> $product_info['sku'],
+					'product'       => $refund['name'],
+					'upc'       	=> $refund['upc'],
+					'sku'       	=> $refund['sku'],
 					'location'      => $refund['location_name'],
 					'quantity'      => $refund['quantity']
 				);
@@ -136,28 +134,24 @@ class Refund extends MX_Controller
 		}
 		
 		//excel export begin
-		$objPHPExcel = new PHPExcel();	
+ 		$objPHPExcel = new PHPExcel();	
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('A1:G1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_client'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_location'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_batch'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('G1', $this->lang->line('column_quantity'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_location'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_quantity'));
 
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
-		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
-		$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);	
 
 		$i = 2;
 		
@@ -165,15 +159,11 @@ class Refund extends MX_Controller
 		{
 			foreach($refunds as $refund)
 			{	
-				$product_info = $this->product_model->get_product($refund['product_id']);	
-			
-				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $product_info['name']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $product_info['upc']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_info['sku']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $refund['client']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $refund['location_name']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $refund['batch']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('G'.$i, $refund['quantity']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $refund['name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $refund['upc']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $refund['sku']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $refund['location_name']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $refund['quantity']);
 
 				$i++;
 			}
@@ -182,7 +172,7 @@ class Refund extends MX_Controller
 		PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
 		
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save(FCPATH  . 'assets/file/export/refund.xlsx');
+		$objWriter->save(FCPATH  . 'assets/file/export/refund.xlsx'); 
 		//excel export end
 		
 		$url = '';
@@ -255,10 +245,11 @@ class Refund extends MX_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_upc']         = base_url() . 'inventory/refund?sort=product.upc' . $url;
-		$data['sort_sku']         = base_url() . 'inventory/refund?sort=product.sku' . $url;
-		$data['sort_location']    = base_url() . 'inventory/refund?sort=location.name' . $url;
-		$data['sort_quantity']    = base_url() . 'inventory/refund?sort=refund.quantity' . $url;
+		$data['sort_name']      = base_url() . 'inventory/refund?sort=product.name' . $url;
+		$data['sort_upc']       = base_url() . 'inventory/refund?sort=product.upc' . $url;
+		$data['sort_sku']       = base_url() . 'inventory/refund?sort=product.sku' . $url;
+		$data['sort_location']  = base_url() . 'inventory/refund?sort=location.name' . $url;
+		$data['sort_quantity']  = base_url() . 'inventory/refund?sort=refund.quantity' . $url;
 		
 		$url = '';
 		

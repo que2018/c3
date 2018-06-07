@@ -1,15 +1,6 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover dataTables-example" >
     <thead>
-	  <?php if($sort == 'name') { ?>
-	  <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
-		<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
-	  </th>
-	  <?php } else { ?>
-	  <th style="width: 20%;" class="sorting">
-		<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
-	  </th>
-	  <?php } ?>
 	  <?php if($sort == 'company') { ?>
 	  <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 		<a href="<?php echo $sort_company; ?>"><?php echo $this->lang->line('column_company'); ?></a>
@@ -17,6 +8,15 @@
 	  <?php } else { ?>
 	  <th style="width: 25%;" class="sorting">
 		<a href="<?php echo $sort_company; ?>"><?php echo $this->lang->line('column_company'); ?></a>
+	  </th>
+	  <?php } ?>
+	  <?php if($sort == 'name') { ?>
+	  <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
+		<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
+	  </th>
+	  <?php } else { ?>
+	  <th style="width: 20%;" class="sorting">
+		<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_name'); ?></a>
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'email') { ?>
@@ -45,7 +45,7 @@
 	    <?php foreach($clients as $client) { ?>
 		  <tr>
 		    <td>
-			  <span><?php echo $client['name']; ?></span>
+			  <span><?php echo $client['company']; ?></span>
 			  <div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
 			    <table class="table">
 				  <thead>
@@ -60,8 +60,8 @@
 				  </thead>
 			    </table>
 			  </div>
-		    </td>
-		    <td><?php echo $client['company']; ?></td>
+			</td>
+		    <td><?php echo $client['name']; ?></td>
 		    <td><?php echo $client['email']; ?></td>
 		    <td><?php echo $client['phone']; ?></td>
 		    <td style="text-align: center">
