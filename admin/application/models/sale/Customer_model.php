@@ -212,7 +212,7 @@ class Customer_model extends CI_Model
 		}
 	}
 	
-	function get_customer_total($data = array())
+	public function get_customer_total($data = array())
 	{
 		$this->db->select("COUNT(customer.id) AS total, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->join('client', 'client.id = customer.client_id', 'left');

@@ -17,7 +17,8 @@
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
 	<a href="<?php echo base_url(); ?>check/checkout_print?checkout_id=<?php echo $checkout_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print'); ?>" class="btn btn-info btn-print" target="_blank"><i class="fa fa-print"></i></a>
-    <a href="<?php echo base_url(); ?>check/checkout" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+    <a href="<?php echo base_url(); ?>assets/file/export/checkout.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
+	<a href="<?php echo base_url(); ?>check/checkout" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

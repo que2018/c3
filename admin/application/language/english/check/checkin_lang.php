@@ -14,7 +14,8 @@ $lang['text_edit'] 	  	        	 	  		 = 'edit checkin';
 $lang['text_delete'] 	  	        	 	  	 = 'delete';
 $lang['text_save'] 	  	        	 	  	 	 = 'save checkin';
 $lang['text_cancel'] 	  	        	 	  	 = 'cancel';
-$lang['text_print'] 	  	        	 	  	 = 'print checkin';
+$lang['text_search'] 	  	        			 = 'Search';
+$lang['text_download'] 	  	        			 = 'download';
 $lang['text_check_in'] 	  	        	 	  	 = 'check in';
 $lang['text_checkin_fee'] 	  	        		 = 'checkin fee';
 $lang['text_checkin_product'] 	  	    		 = 'checkin product';
@@ -31,6 +32,11 @@ $lang['text_completed'] 	  	    			 = 'Completed';
 $lang['text_canceled'] 	  	        			 = 'Canceled';
 $lang['text_loading'] 	  	        		     = 'loading ...';
 $lang['text_change'] 	  	        			 = 'Change';
+
+$lang['text_excel_tracking'] 	  	             = 'Tracking: %s';
+$lang['text_excel_pending'] 	  	             = 'Status: Pending';
+$lang['text_excel_completed'] 	  	        	 = 'Status: Completed';
+
 $lang['text_loading_locations'] 	  		     = 'loading locations ...';
 $lang['text_loading_product'] 	  	    		 = 'loading product ...';
 $lang['text_loading_checkin'] 	  	    		 = 'loading checkin ...';

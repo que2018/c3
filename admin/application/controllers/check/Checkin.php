@@ -400,6 +400,7 @@ class Checkin extends MX_Controller
 		
 		$this->lang->load('check/checkin');
 		
+		$this->load->library('phpexcel');
 		$this->load->library('currency');
 		$this->load->library('form_validation');
 		
@@ -515,6 +516,70 @@ class Checkin extends MX_Controller
 					);
 				}
 			}
+			
+			//excel export begin
+			$objPHPExcel = new PHPExcel();	
+			$objPHPExcel->createSheet();
+			$objPHPExcel->setActiveSheetIndex(0);
+			
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
+			
+			$objPHPExcel->getActiveSheet()->mergeCells('A1:F1');
+			$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle('E1:F1')->getFont()->setSize(12);
+			$objPHPExcel->getActiveSheet()->SetCellValue('A1', sprintf($this->lang->line('text_checkin_edit_title'), $checkin_id));
+			
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');
+			$objPHPExcel->getActiveSheet()->mergeCells('D2:F2');
+			$objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFont()->setSize(12);
+			$objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFont()->setBold(true);
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('A2', sprintf($this->lang->line('text_excel_tracking'), $checkin['tracking']));
+			
+			if($checkin['status']) 
+			{
+				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_pending'));
+			} 
+			else 
+			{
+				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_completed'));
+			}
+
+			$objPHPExcel->getActiveSheet()->getStyle('A3:F3')->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->SetCellValue('A3', $this->lang->line('column_name'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('B3', $this->lang->line('column_upc'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('C3', $this->lang->line('column_sku'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('D3', $this->lang->line('column_batch'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('E3', $this->lang->line('column_quantity'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('F3', $this->lang->line('column_location'));
+			
+			$i = 4;
+			
+			if($checkin_products) 
+			{
+				foreach($checkin_products as $checkin_product)
+				{					
+					$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $checkin_product['name']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $checkin_product['upc']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $checkin_product['sku']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $checkin_product['batch']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $checkin_product['quantity']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $checkin_product['location_name']);
+				
+					$i++;
+				}
+			}
+			
+			PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+			
+			$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+			$objWriter->save(FCPATH  . 'assets/file/export/checkin.xlsx');
+			//excel export end
 		}
 		
 		//fees

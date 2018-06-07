@@ -734,6 +734,81 @@ class Checkout extends MX_Controller
 					);
 				}
 			}
+			
+			//excel export begin
+			$objPHPExcel = new PHPExcel();	
+			$objPHPExcel->createSheet();
+			$objPHPExcel->setActiveSheetIndex(0);
+			
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
+			
+			$objPHPExcel->getActiveSheet()->mergeCells('A1:E1');
+			$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle('E1:E1')->getFont()->setSize(12);
+			$objPHPExcel->getActiveSheet()->SetCellValue('A1', sprintf($this->lang->line('text_checkout_edit_title'), $checkout_id));
+			
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');
+			$objPHPExcel->getActiveSheet()->mergeCells('D2:E2');
+			$objPHPExcel->getActiveSheet()->getStyle('A2:E2')->getFont()->setSize(12);
+			$objPHPExcel->getActiveSheet()->getStyle('A2:E2')->getFont()->setBold(true);
+			
+			$objPHPExcel->getActiveSheet()->SetCellValue('A2', sprintf($this->lang->line('text_excel_tracking'), $checkout['tracking']));
+			
+			if($checkout['status']) 
+			{
+				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_pending'));
+			} 
+			else 
+			{
+				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_completed'));
+			}
+
+			$objPHPExcel->getActiveSheet()->getStyle('A3:F3')->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->SetCellValue('A3', $this->lang->line('column_name'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('B3', $this->lang->line('column_upc'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('C3', $this->lang->line('column_sku'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('D3', $this->lang->line('column_quantity'));
+			$objPHPExcel->getActiveSheet()->SetCellValue('E3', $this->lang->line('column_location'));
+			
+			$i = 4;
+			
+			if($checkout_products)
+			{	
+				foreach($checkout_products as $checkout_product) 
+				{
+					$product_id = $checkout_product['product_id'];
+					
+					$product_data = $this->product_model->get_product($product_id);	
+					
+					$inventory = $this->inventory_model->get_inventory($checkout_product['inventory_id']);	
+							
+					$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $product_data['name']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $product_data['upc']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $product_data['sku']);
+					$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $checkout_product['quantity']);
+					
+					if($inventory['batch'])
+					{
+						$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['location_name'].'['.$inventory['batch'].']');
+					}
+					else
+					{
+						$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $inventory['location_name']);
+					}
+				  
+					$i++;
+				}
+			}
+			
+			PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+			
+			$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+			$objWriter->save(FCPATH  . 'assets/file/export/checkout.xlsx');
+			//excel export end
 		}
 		
 		//length classes
