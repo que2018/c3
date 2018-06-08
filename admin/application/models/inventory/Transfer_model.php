@@ -109,7 +109,7 @@ class Transfer_model extends CI_Model
 			'date_modified'     => date('Y-m-d H:i:s')
 		);
 		
-		$this->db->where('id', $transfer_id);
+		$this->db->where('transfer_id', $transfer_id);
 		$this->db->update('transfer', $transfer_data);
 		
 		//tranfer products
@@ -179,7 +179,7 @@ class Transfer_model extends CI_Model
 		$this->db->join('location l2', 'l2.id = t.to_location_id', 'left');
 		$this->db->join('warehouse w1', 'w1.id = l1.warehouse_id', 'left');
 		$this->db->join('warehouse w2', 'w2.id = l2.warehouse_id', 'left');
-		$this->db->where('t.id', $transfer_id);
+		$this->db->where('t.transfer_id', $transfer_id);
 		
 		$q = $this->db->get();
 		
@@ -225,7 +225,7 @@ class Transfer_model extends CI_Model
 		return false;
 	}
 	
-	public function get_transfers($data) 
+	public function get_transfers($data = array()) 
 	{			
 		$this->db->select('t.*, w1.name AS from_warehouse, w2.name AS to_warehouse, l1.name AS from_location, l2.name AS to_location', false);
 		$this->db->from('transfer t');
@@ -233,8 +233,7 @@ class Transfer_model extends CI_Model
 		$this->db->join('location l2', 'l2.id = t.to_location_id', 'left');
 		$this->db->join('warehouse w1', 'w1.id = l1.warehouse_id', 'left');
 		$this->db->join('warehouse w2', 'w2.id = l2.warehouse_id', 'left');
-		
-		$this->db->group_by('t.id');
+		$this->db->group_by('t.transfer_id');
 		
 		if(!empty($data['filter_from_warehouse'])) 
 		{			
@@ -300,9 +299,9 @@ class Transfer_model extends CI_Model
 		}
 	}
 	
-	function get_transfer_total($data)
+	function get_transfer_total($data = array())
 	{
-		$this->db->select('COUNT(t.id) AS total', false);
+		$this->db->select('COUNT(t.transfer_id) AS total', false);
 		$this->db->from('transfer t');
 		$this->db->join('location l1', 'l1.id = t.from_location_id', 'left');
 		$this->db->join('location l2', 'l2.id = t.to_location_id', 'left');
@@ -310,7 +309,7 @@ class Transfer_model extends CI_Model
 		$this->db->join('warehouse w2', 'w2.id = l2.warehouse_id', 'left');
 		
 		
-		$this->db->group_by('t.id');
+		$this->db->group_by('t.transfer_id');
 		
 		if(!empty($data['filter_from_warehouse'])) 
 		{			
@@ -363,7 +362,7 @@ class Transfer_model extends CI_Model
 			}
 		}
 		
-		$this->db->delete('transfer', array('id' => $transfer_id));
+		$this->db->delete('transfer', array('transfer_id' => $transfer_id));
 		$this->db->delete('transfer_product', array('transfer_id' => $transfer_id));
 		
 		if($this->db->trans_status() === false) 

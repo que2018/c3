@@ -176,7 +176,7 @@ $(document).ready(function() {
 	
 		if(from_warehouse_id) {
 			$.ajax({
-				url: '<?php echo base_url(); ?>inventory/transfer/get_locations?warehouse_id=' + from_warehouse_id,
+				url: '<?php echo base_url(); ?>inventory/transfer/get_locations?filter_inventory=1&warehouse_id=' + from_warehouse_id,
 				dataType: "json",
 				beforeSend: function() {
 					$('#alert-error').hide();
@@ -202,6 +202,8 @@ $(document).ready(function() {
 					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
 			});
+		} else {
+			$('select[name=\'from_location_id\']').html('');
 		}
 	});
 	
@@ -210,7 +212,7 @@ $(document).ready(function() {
 	
 		if(to_warehouse_id) {
 			$.ajax({
-				url: '<?php echo base_url(); ?>inventory/transfer/get_locations?warehouse_id=' + to_warehouse_id,
+				url: '<?php echo base_url(); ?>inventory/transfer/get_locations?filter_inventory=0&warehouse_id=' + to_warehouse_id,
 				dataType: "json",
 				beforeSend: function() {
 					$('#alert-error').hide();
@@ -236,6 +238,8 @@ $(document).ready(function() {
 					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
 			});
+		} else {
+			$('select[name=\'to_location_id\']').html('');
 		}
 	});
 });

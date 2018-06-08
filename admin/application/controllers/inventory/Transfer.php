@@ -34,7 +34,11 @@ class Transfer extends MX_Controller
 	}
 	
 	protected function get_list()
-	{		                   	
+	{	
+		$this->lang->load('inventory/transfer');
+		
+		$this->load->model('inventory/transfer_model');
+	
 		if($this->input->get('filter_from_warehouse'))
 		{
 			$filter_from_warehouse = $this->input->get('filter_from_warehouse');
@@ -139,7 +143,7 @@ class Transfer extends MX_Controller
 			foreach($transfers as $transfer)
 			{	
 				$data['transfers'][] = array(
-					'transfer_id'     => $transfer['id'],
+					'transfer_id'     => $transfer['transfer_id'],
 					'from_warehouse'  => $transfer['from_warehouse'],
 					'from_location'   => $transfer['from_location'],
 					'to_warehouse'    => $transfer['to_warehouse'],
@@ -290,6 +294,8 @@ class Transfer extends MX_Controller
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/transfer_model');
+		$this->load->model('inventory/inventory_model');
+		$this->load->model('warehouse/warehouse_model');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/transfer_add.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
@@ -346,8 +352,6 @@ class Transfer extends MX_Controller
 		//warehouse
 		$data['warehouses'] = array();
 		
-		$this->load->model('warehouse/warehouse_model');
-		
 		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
@@ -372,10 +376,15 @@ class Transfer extends MX_Controller
 			{
 				foreach($locations_data as $location_data)
 				{
-					$data['from_locations'][] = array(
-						'id'   => $location_data['id'],
-						'name' => $location_data['name']
-					);
+					$inventories = $this->inventory_model->get_inventory_by_location($location_data['id']);
+					
+					if($inventories)
+					{
+						$data['from_locations'][] = array(
+							'id'   => $location_data['id'],
+							'name' => $location_data['name']
+						);
+					}
 				}
 			}
 		}
@@ -421,6 +430,8 @@ class Transfer extends MX_Controller
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/transfer_model');
+		$this->load->model('inventory/inventory_model');
+		$this->load->model('warehouse/warehouse_model');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/transfer_add.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
@@ -517,9 +528,7 @@ class Transfer extends MX_Controller
 		
 		//warehouse
 		$data['warehouses'] = array();
-		
-		$this->load->model('warehouse/warehouse_model');
-		
+				
 		$warehouses = $this->warehouse_model->get_warehouses();	
 			
 		if($warehouses) 
@@ -544,10 +553,15 @@ class Transfer extends MX_Controller
 			{
 				foreach($locations_data as $location_data)
 				{
-					$data['from_locations'][] = array(
-						'id'   => $location_data['id'],
-						'name' => $location_data['name']
-					);
+					$inventories = $this->inventory_model->get_inventory_by_location($location_data['id']);
+					
+					if($inventories)
+					{
+						$data['from_locations'][] = array(
+							'id'   => $location_data['id'],
+							'name' => $location_data['name']
+						);
+					}
 				}
 			}
 		}
@@ -596,13 +610,15 @@ class Transfer extends MX_Controller
 		}
 	}
 	
-	function get_locations()
+	public function get_locations()
 	{
 		if($this->input->get('warehouse_id'))
 		{
 			$warehouse_id = $this->input->get('warehouse_id');
+			$filter_inventory = $this->input->get('filter_inventory');
 			
 			$this->load->model('warehouse/location_model');
+			$this->load->model('inventory/inventory_model');
 
 			$locations_data = $this->location_model->get_locations_by_warehouse($warehouse_id);
 		
@@ -610,12 +626,31 @@ class Transfer extends MX_Controller
 			{				
 				$locations = array();
 				
-				foreach($locations_data as $location_data)
+				if($filter_inventory)
 				{
-					$locations[] = array(
-						'id'    => $location_data['id'],
-						'name'  => $location_data['name']
-					);
+					foreach($locations_data as $location_data)
+					{
+						$inventories = $this->inventory_model->get_inventory_by_location($location_data['id']);
+						
+						if($inventories)
+						{
+							$locations[] = array(
+								'id'    => $location_data['id'],
+								'name'  => $location_data['name']
+							);
+						}
+					}
+				}
+				else
+				{
+					foreach($locations_data as $location_data)
+					{
+						$locations[] = array(
+							'id'    => $location_data['id'],
+							'name'  => $location_data['name']
+						);
+						
+					}
 				}
 				
 				$outdata = array(
