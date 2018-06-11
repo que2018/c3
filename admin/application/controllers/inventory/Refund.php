@@ -65,6 +65,15 @@ class Refund extends MX_Controller
 			$filter_location = '';
 		}
 		
+		if($this->input->get('filter_batch'))
+		{
+			$filter_batch = $this->input->get('filter_batch');
+		} 
+		else 
+		{
+			$filter_batch = '';
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$sort = $this->input->get('sort');
@@ -102,13 +111,14 @@ class Refund extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_sku'    	   => $filter_sku,
-			'filter_upc'    	   => $filter_upc,
-			'filter_location'      => $filter_location,
-			'sort'                 => $sort,
-			'order'                => $order,
-			'start'                => ($page - 1) * $limit,
-			'limit'                => $limit
+			'filter_sku'    	=> $filter_sku,
+			'filter_upc'    	=> $filter_upc,
+			'filter_location'   => $filter_location,
+			'filter_batch'   	=> $filter_batch,
+			'sort'              => $sort,
+			'order'             => $order,
+			'start'             => ($page - 1) * $limit,
+			'limit'             => $limit
 		);
 		
 		$refunds = $this->refund_model->get_refunds($filter_data);	
@@ -128,6 +138,7 @@ class Refund extends MX_Controller
 					'upc'       	=> $refund['upc'],
 					'sku'       	=> $refund['sku'],
 					'location'      => $refund['location_name'],
+					'batch'      	=> $refund['batch'],
 					'quantity'      => $refund['quantity']
 				);
 			}
@@ -138,20 +149,22 @@ class Refund extends MX_Controller
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('column_name'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', $this->lang->line('column_upc'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('column_sku'));
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('column_location'));
-		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_quantity'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('column_batch'));
+		$objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('column_quantity'));
 
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
 
 		$i = 2;
 		
@@ -163,7 +176,8 @@ class Refund extends MX_Controller
 				$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $refund['upc']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $refund['sku']);
 				$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $refund['location_name']);
-				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $refund['quantity']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $refund['batch']);
+				$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $refund['quantity']);
 
 				$i++;
 			}
@@ -249,6 +263,7 @@ class Refund extends MX_Controller
 		$data['sort_upc']       = base_url() . 'inventory/refund?sort=product.upc' . $url;
 		$data['sort_sku']       = base_url() . 'inventory/refund?sort=product.sku' . $url;
 		$data['sort_location']  = base_url() . 'inventory/refund?sort=location.name' . $url;
+		$data['sort_batch']  	= base_url() . 'inventory/refund?sort=inventory.batch' . $url;
 		$data['sort_quantity']  = base_url() . 'inventory/refund?sort=refund.quantity' . $url;
 		
 		$url = '';
@@ -349,9 +364,10 @@ class Refund extends MX_Controller
 		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 	
 		$data = array(
-			'product_id'     => $this->input->post('product_id'),
-			'location_id'    => $this->input->post('location_id'),
-			'quantity'       => $this->input->post('quantity')
+			'product_id'    => $this->input->post('product_id'),
+			'location_id'   => $this->input->post('location_id'),
+			'batch'    		=> $this->input->post('batch'),
+			'quantity'      => $this->input->post('quantity')
 		);
 		
 		if($this->form_validation->run() == true)
@@ -415,9 +431,10 @@ class Refund extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'product_id'     => $this->input->post('product_id'),
-				'location_id'    => $this->input->post('location_id'),
-				'quantity'       => $this->input->post('quantity')
+				'product_id'   => $this->input->post('product_id'),
+				'location_id'  => $this->input->post('location_id'),
+				'batch'    	   => $this->input->post('batch'),
+				'quantity'     => $this->input->post('quantity')
 			);
 			
 			$this->refund_model->edit_refund($refund_id, $data);
@@ -431,6 +448,7 @@ class Refund extends MX_Controller
 		{			
 			$data['product_id']   = $this->input->post('product_id');
 			$data['location_id']  = $this->input->post('location_id');
+			$data['batch']  	  = $this->input->post('batch');
 			$data['quantity']     = $this->input->post('quantity');
 			
 			$product_id = $this->input->post('product_id');
@@ -451,6 +469,7 @@ class Refund extends MX_Controller
 		
 			$data['product_id']   = $refund['product_id'];
 			$data['location_id']  = $refund['location_id'];
+			$data['batch']  	  = $refund['batch'];
 			$data['quantity']     = $refund['quantity'];
 		
 			$product = $this->product_model->get_product($refund['product_id']);

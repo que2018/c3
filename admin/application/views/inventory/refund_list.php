@@ -50,47 +50,56 @@
 		    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 18%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 20%;" class="sorting">
+				<th style="width: 18%;" class="sorting">
 			      <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.upc') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_upc; ?>"><?php echo $this->lang->line('column_upc'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'product.sku') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_sku; ?>"><?php echo $this->lang->line('column_sku'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'location.name') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 14%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } ?>
+				<?php if($sort == 'refund.batch') { ?>
+				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+			      <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+				</th>
+				<?php } else { ?>
+				<th style="width: 14%;" class="sorting">
+			      <a href="<?php echo $sort_batch; ?>"><?php echo $this->lang->line('column_batch'); ?></a>
+				</th>
+				<?php } ?>
 				<?php if($sort == 'refund.quantity') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 10%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
+				<th style="width: 10%;" class="sorting">
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } ?>
@@ -123,6 +132,7 @@
 					  <td><?php echo $refund['upc']; ?></td>
 					  <td><?php echo $refund['sku']; ?></td>
 					  <td><?php echo $refund['location']; ?></td>
+					  <td><?php echo $refund['batch']; ?></td>
 					  <td><?php echo $refund['quantity']; ?></td>
 					  <td class="text-center">
 					    <a href="<?php echo base_url(); ?>inventory/refund/edit?refund_id=<?php echo $refund['refund_id']; ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>

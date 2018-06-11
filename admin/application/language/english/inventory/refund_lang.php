@@ -41,6 +41,7 @@ $lang['column_upc'] 	  	               = 'UPC';
 $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = 'Name';
 $lang['column_location'] 	  	           = 'Location';
+$lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_client'] 	  	           	   = 'Client';
 $lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_quantity'] 	  	           = 'Quantity';

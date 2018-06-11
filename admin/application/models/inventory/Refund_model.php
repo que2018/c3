@@ -10,6 +10,7 @@ class Refund_model extends CI_Model
 		$refund_data = array(		
 			'product_id'	   => $data['product_id'],
 			'location_id'	   => $data['location_id'],
+			'batch'	   		   => $data['batch'],
 			'quantity'	       => $data['quantity'],
 			'date_added'   	   => date('Y-m-d H:i:s'),
 			'date_modified'    => date('Y-m-d H:i:s')
@@ -63,9 +64,10 @@ class Refund_model extends CI_Model
 	{
 		$this->db->trans_begin();
 				
-		$refund_data = array(		
-			'quantity'	       => $data['quantity'],
-			'date_modified'    => date('Y-m-d H:i:s')
+		$refund_data = array(	
+			'batch'	         => $data['batch'],
+			'quantity'	     => $data['quantity'],
+			'date_modified'  => date('Y-m-d H:i:s')
 		);
 		
 		$this->db->where('refund_id', $refund_id);
