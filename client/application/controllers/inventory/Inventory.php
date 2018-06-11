@@ -113,7 +113,8 @@ class Inventory extends CI_Controller
 			'limit'                => $limit
 		);
 		
-		$inventories = $this->inventory_model->get_inventories($filter_data);	
+		$inventories = $this->inventory_model->get_inventories($filter_data);
+		
 		$inventory_total = $this->inventory_model->get_inventory_total($filter_data);
 		
 		$data['inventories'] = array();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2018 at 03:51 AM
+-- Generation Time: Jun 12, 2018 at 01:51 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -708,7 +708,356 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (51821, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:38'),
 (51822, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:44:41'),
 (51823, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:46:49'),
-(51824, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:50:44');
+(51824, 1, '::1', 'inventory/refund', '0', 'GET', '2018-06-07 03:50:44'),
+(51825, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-07 04:49:51'),
+(51826, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-07 04:49:51'),
+(51827, 1, '::1', 'setting/information', 'view the information page', 'GET', '2018-06-07 04:49:54'),
+(51828, 1, '::1', 'setting/information/edit', 'view the information edit page', 'GET', '2018-06-07 04:50:08'),
+(51829, NULL, '127.0.0.1', '', 'view the dashboard', 'GET', '2018-06-07 22:42:13'),
+(51830, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-07 22:42:33'),
+(51831, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-07 22:42:33'),
+(51832, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 22:42:36'),
+(51833, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 22:42:38'),
+(51834, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 22:42:39'),
+(51835, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 22:42:41'),
+(51836, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 22:42:43'),
+(51837, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-06-07 22:42:44'),
+(51838, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 22:44:14'),
+(51839, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 22:46:01'),
+(51840, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 22:50:34'),
+(51841, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 22:54:14'),
+(51842, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 22:54:39'),
+(51843, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 22:55:46'),
+(51844, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 22:57:20'),
+(51845, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 23:01:02'),
+(51846, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 23:01:09'),
+(51847, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 23:01:22'),
+(51848, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:01:25'),
+(51849, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 23:02:39'),
+(51850, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-07 23:02:40'),
+(51851, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 23:02:43'),
+(51852, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:02:49'),
+(51853, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:04:27'),
+(51854, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:05:10'),
+(51855, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:05:13'),
+(51856, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:07:08'),
+(51857, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:12:15'),
+(51858, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:12:25'),
+(51859, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:21:10'),
+(51860, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:21:18'),
+(51861, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-07 23:27:55'),
+(51862, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-07 23:31:40'),
+(51863, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-07 23:31:42'),
+(51864, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-07 23:31:45'),
+(51865, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-07 23:31:48'),
+(51866, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-07 23:31:49'),
+(51867, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-07 23:31:49'),
+(51868, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-07 23:31:56'),
+(51869, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-07 23:32:01'),
+(51870, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-07 23:32:01'),
+(51871, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:32:03'),
+(51872, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:32:53'),
+(51873, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:33:18'),
+(51874, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:33:25'),
+(51875, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:33:47'),
+(51876, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:34:10'),
+(51877, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:34:12'),
+(51878, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:39:16'),
+(51879, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:39:34'),
+(51880, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:41:05'),
+(51881, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:52:15'),
+(51882, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-07 23:53:26'),
+(51883, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-07 23:54:34'),
+(51884, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-07 23:57:53'),
+(51885, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-07 23:57:57'),
+(51886, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-07 23:58:00'),
+(51887, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-07 23:58:02'),
+(51888, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-07 23:58:05'),
+(51889, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-07 23:58:10'),
+(51890, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-07 23:58:12'),
+(51891, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-07 23:59:56'),
+(51892, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-08 00:00:03'),
+(51893, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:00:06'),
+(51894, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:00:12'),
+(51895, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:00:15'),
+(51896, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:00:55'),
+(51897, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-06-08 00:01:44'),
+(51898, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:01:44'),
+(51899, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:01:46'),
+(51900, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:01:57'),
+(51901, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:02:30'),
+(51902, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:26'),
+(51903, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:30'),
+(51904, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:33'),
+(51905, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:35'),
+(51906, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:04:39'),
+(51907, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:04:45'),
+(51908, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:49'),
+(51909, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:04:51'),
+(51910, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:05:01'),
+(51911, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:05:06'),
+(51912, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-08 00:05:08'),
+(51913, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:09'),
+(51914, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:13'),
+(51915, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:14'),
+(51916, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:05:15'),
+(51917, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:05:18'),
+(51918, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:05:23'),
+(51919, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-08 00:05:24'),
+(51920, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:25'),
+(51921, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:30'),
+(51922, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:31'),
+(51923, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 00:05:41'),
+(51924, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 00:05:48'),
+(51925, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-08 00:05:49'),
+(51926, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-08 00:05:49'),
+(51927, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-08 00:05:55'),
+(51928, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:05:55'),
+(51929, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 00:05:59'),
+(51930, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:06:03'),
+(51931, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-06-08 00:06:12'),
+(51932, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:06:12'),
+(51933, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:06:18'),
+(51934, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-06-08 00:06:24'),
+(51935, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:06:26'),
+(51936, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-06-08 00:06:52'),
+(51937, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:06:53'),
+(51938, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-06-08 00:06:58'),
+(51939, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:06:58'),
+(51940, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-08 00:07:01'),
+(51941, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:07:17'),
+(51942, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-08 00:08:49'),
+(51943, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-08 00:08:49'),
+(51944, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 00:08:52'),
+(51945, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 00:08:55'),
+(51946, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-08 00:10:27'),
+(51947, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-08 00:10:28'),
+(51948, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-08 00:10:38'),
+(51949, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 00:10:39'),
+(51950, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 00:10:44'),
+(51951, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 00:10:48'),
+(51952, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-08 00:11:30'),
+(51953, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:11:45'),
+(51954, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 00:11:47'),
+(51955, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 00:11:57'),
+(51956, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-08 22:03:31'),
+(51957, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-08 22:03:35'),
+(51958, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-08 22:03:35'),
+(51959, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-08 22:03:40'),
+(51960, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:03:42'),
+(51961, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2018-06-08 22:03:52'),
+(51962, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:04:06'),
+(51963, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2018-06-08 22:04:09'),
+(51964, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:04:23'),
+(51965, 1, '::1', 'inventory/inventory_batch/edit', 'view the inventory edit page', 'GET', '2018-06-08 22:04:30'),
+(51966, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 22:04:32'),
+(51967, 1, '::1', 'extension/fee', '0', 'GET', '2018-06-08 22:04:35'),
+(51968, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 22:04:38'),
+(51969, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 22:04:42'),
+(51970, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 22:04:45'),
+(51971, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 22:04:47'),
+(51972, 1, '::1', 'setting/activity_log', 'view the activity log page', 'GET', '2018-06-08 22:05:11'),
+(51973, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 22:05:13'),
+(51974, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-08 22:05:15'),
+(51975, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-08 22:05:17'),
+(51976, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-08 22:05:26'),
+(51977, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-08 22:05:34'),
+(51978, 1, '::1', 'extension/fee', '0', 'GET', '2018-06-08 22:05:39'),
+(51979, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2018-06-08 22:05:40'),
+(51980, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-08 22:05:43'),
+(51981, 1, '::1', 'extension/payment', 'view the payment page', 'GET', '2018-06-08 22:05:44'),
+(51982, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 22:06:03'),
+(51983, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-08 22:06:05'),
+(51984, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 22:06:08'),
+(51985, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:07:11'),
+(51986, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-08 22:07:13'),
+(51987, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:07:15'),
+(51988, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-08 22:07:17'),
+(51989, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:07:19'),
+(51990, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:11:41'),
+(51991, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:13:09'),
+(51992, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:19:40'),
+(51993, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:19:46'),
+(51994, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:20:09'),
+(51995, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:21:42'),
+(51996, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:21:54'),
+(51997, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:21:55'),
+(51998, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:22:56'),
+(51999, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:23:05'),
+(52000, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:23:39'),
+(52001, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:23:48'),
+(52002, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:23:51'),
+(52003, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:23:52'),
+(52004, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:24:29'),
+(52005, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:24:31'),
+(52006, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:24:33'),
+(52007, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:24:34'),
+(52008, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:24:35'),
+(52009, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:25:02'),
+(52010, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:25:08'),
+(52011, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:25:10'),
+(52012, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:25:14'),
+(52013, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:25:15'),
+(52014, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:31:12'),
+(52015, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:31:21'),
+(52016, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:32:08'),
+(52017, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-08 22:32:10'),
+(52018, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:32:11'),
+(52019, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:32:12'),
+(52020, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:34:35'),
+(52021, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:34:43'),
+(52022, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:35:21'),
+(52023, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:35:25'),
+(52024, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:35:33'),
+(52025, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:35:36'),
+(52026, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:44:24'),
+(52027, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:44:26'),
+(52028, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:44:41'),
+(52029, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:47:08'),
+(52030, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:47:24'),
+(52031, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:47:43'),
+(52032, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:47:56'),
+(52033, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:49:01'),
+(52034, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:49:05'),
+(52035, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:49:47'),
+(52036, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:49:52'),
+(52037, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:49:53'),
+(52038, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:50:16'),
+(52039, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:50:19'),
+(52040, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'POST', '2018-06-08 22:50:23'),
+(52041, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:50:25'),
+(52042, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:50:39'),
+(52043, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:50:41'),
+(52044, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:50:42'),
+(52045, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:51:06'),
+(52046, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:51:07'),
+(52047, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:51:19'),
+(52048, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 22:51:34'),
+(52049, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-08 22:51:36'),
+(52050, 1, '::1', 'common/filemanager', 'view the filemanager', 'GET', '2018-06-08 22:51:38'),
+(52051, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-08 22:51:40'),
+(52052, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-06-08 22:51:50'),
+(52053, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-08 22:51:53'),
+(52054, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:51:56'),
+(52055, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-06-08 22:51:58'),
+(52056, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'POST', '2018-06-08 22:52:04'),
+(52057, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 22:52:14'),
+(52058, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:52:18'),
+(52059, 1, '::1', 'inventory/inventory_ajax/update_quantity', 'update inventory quantity', 'POST', '2018-06-08 22:52:30'),
+(52060, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 22:59:35'),
+(52061, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:59:38'),
+(52062, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:59:39'),
+(52063, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:59:41'),
+(52064, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 22:59:43'),
+(52065, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 22:59:56'),
+(52066, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 22:59:58'),
+(52067, 1, '::1', 'inventory/transfer', 'view the transfer page', 'GET', '2018-06-08 23:00:00'),
+(52068, 1, '::1', 'inventory/transfer/add', 'view the transfer add page', 'GET', '2018-06-08 23:01:45'),
+(52069, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 23:01:49'),
+(52070, 1, '::1', 'inventory/transfer/get_locations', 'get transfer locations', 'GET', '2018-06-08 23:01:52'),
+(52071, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 23:02:26'),
+(52072, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-08 23:02:35'),
+(52073, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-08 23:03:51'),
+(52074, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-08 23:05:50'),
+(52075, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 23:05:57'),
+(52076, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-08 23:05:59'),
+(52077, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 23:07:25'),
+(52078, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-08 23:07:26'),
+(52079, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-08 23:07:27'),
+(52080, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-08 23:07:27'),
+(52081, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-08 23:07:41'),
+(52082, 1, '::1', 'check/checkout_sale/get_sale', 'try to get order for order checkout', 'GET', '2018-06-08 23:07:47'),
+(52083, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 23:07:51'),
+(52084, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-08 23:07:57'),
+(52085, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-08 23:08:02'),
+(52086, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-08 23:08:27'),
+(52087, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-08 23:08:28'),
+(52088, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-08 23:09:05'),
+(52089, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2018-06-08 23:09:09'),
+(52090, 1, '::1', 'platform/wish', '0', 'GET', '2018-06-08 23:09:11'),
+(52091, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2018-06-08 23:09:14'),
+(52092, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-08 23:09:20'),
+(52093, 1, '::1', 'store/store/add', 'view the store add page', 'GET', '2018-06-08 23:09:21'),
+(52094, 1, '::1', 'extension/platform/get_platform_form', 'get plaform form', 'GET', '2018-06-08 23:09:30'),
+(52095, 1, '::1', 'store/store/add', 'view the store add page', 'POST', '2018-06-08 23:09:48'),
+(52096, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-08 23:09:48'),
+(52097, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-08 23:09:52'),
+(52098, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 23:21:28'),
+(52099, 1, '::1', 'inventory/inventory_batch/edit', 'view the inventory edit page', 'GET', '2018-06-08 23:21:30'),
+(52100, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 23:21:31'),
+(52101, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 23:21:33'),
+(52102, 1, '::1', 'inventory/inventory_import', 'view the inventory import page', 'GET', '2018-06-08 23:21:35'),
+(52103, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 23:21:39'),
+(52104, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 23:21:42'),
+(52105, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 23:21:43'),
+(52106, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-08 23:21:45'),
+(52107, 1, '::1', 'inventory/inventory', 'view the inventory page', 'GET', '2018-06-08 23:21:46'),
+(52108, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-08 23:49:43'),
+(52109, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-08 23:49:43'),
+(52110, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-11 23:15:03'),
+(52111, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-11 23:15:05'),
+(52112, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-11 23:15:05'),
+(52113, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-11 23:15:09'),
+(52114, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-11 23:15:14'),
+(52115, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-11 23:15:17'),
+(52116, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'POST', '2018-06-11 23:17:28'),
+(52117, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-11 23:17:32'),
+(52118, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-11 23:17:34'),
+(52119, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-11 23:17:44'),
+(52120, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-11 23:18:06'),
+(52121, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-11 23:21:10'),
+(52122, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:46:49'),
+(52123, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:00'),
+(52124, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:20'),
+(52125, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:28'),
+(52126, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:29'),
+(52127, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-12 00:55:32'),
+(52128, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:34'),
+(52129, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:55:57'),
+(52130, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-12 00:57:22'),
+(52131, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'POST', '2018-06-12 00:57:26'),
+(52132, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:57:26'),
+(52133, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-12 00:57:29'),
+(52134, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'GET', '2018-06-12 00:58:45'),
+(52135, 1, '::1', 'inventory/refund/edit', 'view the refund edit page', 'POST', '2018-06-12 00:58:54'),
+(52136, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:58:54'),
+(52137, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-12 00:59:46'),
+(52138, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 00:59:47'),
+(52139, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'GET', '2018-06-12 00:59:57'),
+(52140, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-12 01:00:00'),
+(52141, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-12 01:00:05'),
+(52142, 1, '::1', 'inventory/refund/add', 'view the refund add page', 'POST', '2018-06-12 01:00:17'),
+(52143, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 01:00:17'),
+(52144, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 01:06:47'),
+(52145, 1, '::1', 'inventory/refund/delete', 'try to delete a refund', 'GET', '2018-06-12 01:06:50'),
+(52146, 1, '::1', 'inventory/refund/reload', 'try to reload the refund page', 'GET', '2018-06-12 01:06:50'),
+(52147, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 01:07:19'),
+(52148, 1, '::1', 'inventory/refund/delete', 'try to delete a refund', 'GET', '2018-06-12 01:07:21'),
+(52149, 1, '::1', 'inventory/refund/reload', 'try to reload the refund page', 'GET', '2018-06-12 01:07:21'),
+(52150, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-12 01:09:49'),
+(52151, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:11:26'),
+(52152, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-12 01:13:25'),
+(52153, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:13:35'),
+(52154, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-12 01:15:55'),
+(52155, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:20:16'),
+(52156, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:20:18'),
+(52157, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:22:15'),
+(52158, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:24:21'),
+(52159, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:24:47'),
+(52160, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:25:42'),
+(52161, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:26:14'),
+(52162, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:26:30'),
+(52163, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-12 01:26:32'),
+(52164, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-12 01:26:33'),
+(52165, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-12 01:26:34'),
+(52166, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-12 01:27:04'),
+(52167, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-12 01:44:05'),
+(52168, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-06-12 01:44:09'),
+(52169, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-06-12 01:44:15'),
+(52170, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-12 01:44:16'),
+(52171, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-06-12 01:44:26'),
+(52172, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-06-12 01:44:34'),
+(52173, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-12 01:44:34');
 
 -- --------------------------------------------------------
 
@@ -837,6 +1186,7 @@ CREATE TABLE `checkout` (
   `code` varchar(32) NOT NULL,
   `location_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
+  `source` int(11) NOT NULL DEFAULT '2',
   `status` int(11) NOT NULL DEFAULT '1',
   `width` decimal(15,2) NOT NULL,
   `length` decimal(15,2) NOT NULL,
@@ -853,6 +1203,14 @@ CREATE TABLE `checkout` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`id`, `code`, `location_id`, `tracking`, `source`, `status`, `width`, `length`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `label`, `note`, `description`, `date_added`, `date_modified`) VALUES
+(1, '100000000000001', 0, '', 1, 2, '3.00', '2.00', '6.00', '2.00', 1, 5, 'postpony', 'pfg', '', '', '', '2018-06-07 23:32:01', '2018-06-07 23:32:01'),
+(2, '100000000000002', 0, '', 1, 2, '0.00', '0.00', '0.00', '0.00', 1, 5, 'postpony', 'pfg', '', '', '', '2018-06-08 00:05:55', '2018-06-08 00:05:55');
+
 -- --------------------------------------------------------
 
 --
@@ -864,6 +1222,15 @@ CREATE TABLE `checkout_fee` (
   `checkout_id` int(11) DEFAULT NULL,
   `fee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `checkout_fee`
+--
+
+INSERT INTO `checkout_fee` (`id`, `checkout_id`, `fee_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -889,6 +1256,14 @@ CREATE TABLE `checkout_product` (
   `inventory_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `checkout_product`
+--
+
+INSERT INTO `checkout_product` (`id`, `checkout_id`, `inventory_id`, `quantity`) VALUES
+(2, 1, 5458, 1),
+(5, 2, 5450, 1);
 
 -- --------------------------------------------------------
 
@@ -920,7 +1295,7 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`, `firstname`, `lastname`, `company`, `address`, `city`, `state`, `country`, `postal_code`, `phone`) VALUES
 (19, '', '88b9ce5ba7f69e7f995fc337fffa67e1a7683d4f', '266', 'wwtradingcorpus@outlook.com', 1, 'W', 'w', 'Haowei', '', '', '', '', '', ''),
-(20, '', '89ca578e373e349b74d0a30776d43ce7f867b73c', '780', 'easyshop_sport5@hotmail.com', 1, 'zoyo', 'zoyo', 'zoyo company', '', '', '', '', '', '6265510230'),
+(20, '', 'afbc14f074efba0eb54b0792716dbbda6be53477', '266', 'easyshop_sport5@hotmail.com', 1, 'zoyo', 'zoyo', 'zoyo company', '', '', '', '', '', '6265510230'),
 (21, '', 'cd86ecd5fca5b4a39a75a8d6f590be2aac8a0be6', '727', 'zero@compassparts.cn', 1, 'compassparts', 'compassparts', 'compassparts', '', '', '', '', '', ''),
 (22, '', 'f4f5769f679caae2d308cb5ffb53ea10e434adf8', '98', 'zejieliu@eozy.net', 1, 'zejie', 'L', 'Jm', '', '', '', '', '', ''),
 (23, '', '813253cc3067c579f3559658d66fc8139c1641b1', '255', 'info@intadat.com', 1, 'Tio', 'Tang', 'Intadat Inc', '', '', '', '', '', '(626)-520-5360');
@@ -1121,12 +1496,12 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `product_id`, `location_id`, `batch`, `quantity`, `date_added`, `date_modified`) VALUES
-(5450, 93542, 2232, 'GP500', 120, '2018-04-04 01:31:45', '2018-05-30 18:50:18'),
+(5450, 93542, 2232, 'GP500', 119, '2018-04-04 01:31:45', '2018-06-08 22:52:30'),
 (5454, 93542, 2360, '', 72, '2018-04-04 01:34:54', '2018-04-04 02:08:08'),
 (5455, 93542, 2406, '', 11, '2018-04-04 02:08:32', '2018-04-04 02:26:30'),
 (5456, 93542, 2396, 'IPP2003', 0, '2018-04-04 02:12:02', '2018-04-04 02:14:53'),
 (5457, 93542, 2406, 'MOP52600', 100, '2018-04-04 02:12:27', '2018-04-13 22:26:22'),
-(5458, 93322, 2401, 'POC25600200', 200, '2018-04-04 02:14:16', '2018-05-30 18:50:28'),
+(5458, 93322, 2401, 'POC25600200', 199, '2018-04-04 02:14:16', '2018-06-08 00:01:44'),
 (5462, 93324, 2406, 'GP2002201', 1, '2018-04-13 22:00:43', '2018-04-13 22:00:43'),
 (5463, 93322, 2406, '', 1, '2018-04-13 22:00:46', '2018-04-13 22:00:46');
 
@@ -2173,9 +2548,10 @@ INSERT INTO `recharge` (`id`, `client_id`, `payment_method`, `amount`, `status`,
 --
 
 CREATE TABLE `refund` (
-  `refund_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
+  `batch` varchar(32) NOT NULL,
   `quantity` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
@@ -2185,10 +2561,9 @@ CREATE TABLE `refund` (
 -- Dumping data for table `refund`
 --
 
-INSERT INTO `refund` (`refund_id`, `product_id`, `location_id`, `quantity`, `date_added`, `date_modified`) VALUES
-(2, 93336, 2403, 158, '2018-06-07 03:22:57', '2018-06-07 03:44:09'),
-(3, 93444, 2407, 500, '2018-06-07 03:44:26', '2018-06-07 03:44:26'),
-(4, 93427, 2431, 250, '2018-06-07 03:44:38', '2018-06-07 03:44:38');
+INSERT INTO `refund` (`id`, `product_id`, `location_id`, `batch`, `quantity`, `date_added`, `date_modified`) VALUES
+(2, 93336, 2403, '', 158, '2018-06-07 03:22:57', '2018-06-07 03:44:09'),
+(3, 93444, 2407, '', 500, '2018-06-07 03:44:26', '2018-06-07 03:44:26');
 
 -- --------------------------------------------------------
 
@@ -2537,7 +2912,8 @@ CREATE TABLE `store` (
 --
 
 INSERT INTO `store` (`id`, `client_id`, `name`, `platform`, `setting`, `default_sale_status_id`, `default_sale_shipping_provider`, `default_sale_shipping_service`, `active_download`, `active_upload`, `sync_inventory`, `sync_single_warehouse`, `sync_warehouse_id`) VALUES
-(8, 23, 'Tio Amazon', 'amazon', 'a:7:{s:11:\"merchant_id\";s:14:\"A2K7YHOK94BRZK\";s:14:\"marketplace_id\";s:13:\"ATVPDKIKX0DER\";s:13:\"access_key_id\";s:20:\"AKIAI5PGYB3KTKEQHZDQ\";s:17:\"secret_access_key\";s:40:\"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\";s:14:\"application_id\";s:1:\"0\";s:19:\"application_version\";s:1:\"2\";s:5:\"hours\";s:2:\"24\";}', 1, 'ups', 'gr', 0, 0, 1, 0, NULL);
+(8, 23, 'Tio Amazon', 'amazon', 'a:7:{s:11:\"merchant_id\";s:14:\"A2K7YHOK94BRZK\";s:14:\"marketplace_id\";s:13:\"ATVPDKIKX0DER\";s:13:\"access_key_id\";s:20:\"AKIAI5PGYB3KTKEQHZDQ\";s:17:\"secret_access_key\";s:40:\"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\";s:14:\"application_id\";s:1:\"0\";s:19:\"application_version\";s:1:\"2\";s:5:\"hours\";s:2:\"24\";}', 1, 'ups', 'gr', 0, 0, 1, 0, NULL),
+(9, 19, 'Wish Test', 'wish', 'a:5:{s:5:\"token\";s:13:\"5422200000000\";s:14:\"download_limit\";s:3:\"200\";s:12:\"upload_limit\";s:3:\"200\";s:11:\"recent_days\";s:2:\"20\";s:5:\"order\";s:0:\"\";}', 1, 'postpony', 'pfg', 0, 0, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -2559,7 +2935,9 @@ CREATE TABLE `store_sync` (
 
 INSERT INTO `store_sync` (`id`, `store_id`, `enabled`, `type`, `active`) VALUES
 (15, 8, 0, 0, 0),
-(16, 8, 0, 1, 0);
+(16, 8, 0, 1, 0),
+(17, 9, 0, 0, 0),
+(18, 9, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2674,7 +3052,7 @@ CREATE TABLE `transaction_to_type` (
 --
 
 CREATE TABLE `transfer` (
-  `id` int(11) NOT NULL,
+  `transfer_id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `note` text NOT NULL,
   `from_location_id` int(11) DEFAULT NULL,
@@ -2976,9 +3354,9 @@ ALTER TABLE `recharge`
 -- Indexes for table `refund`
 --
 ALTER TABLE `refund`
-  ADD PRIMARY KEY (`refund_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `id` (`refund_id`),
+  ADD KEY `id` (`id`),
   ADD KEY `product_id_2` (`product_id`),
   ADD KEY `location_id` (`location_id`);
 
@@ -3043,7 +3421,7 @@ ALTER TABLE `transaction`
 -- Indexes for table `transfer`
 --
 ALTER TABLE `transfer`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`transfer_id`);
 
 --
 -- Indexes for table `transfer_product`
@@ -3086,7 +3464,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51825;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52174;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -3122,13 +3500,13 @@ ALTER TABLE `checkin_product`
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkout_fee`
 --
 ALTER TABLE `checkout_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `checkout_file`
@@ -3140,7 +3518,7 @@ ALTER TABLE `checkout_file`
 -- AUTO_INCREMENT for table `checkout_product`
 --
 ALTER TABLE `checkout_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -3242,7 +3620,7 @@ ALTER TABLE `recharge`
 -- AUTO_INCREMENT for table `refund`
 --
 ALTER TABLE `refund`
-  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sale`
@@ -3278,13 +3656,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `store_sync`
 --
 ALTER TABLE `store_sync`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `store_sync_history`
@@ -3302,7 +3680,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transfer_product`
