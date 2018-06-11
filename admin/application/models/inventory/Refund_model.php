@@ -43,7 +43,7 @@ class Refund_model extends CI_Model
 			'date_modified'  => date('Y-m-d H:i:s')
 		);
 			
-		$this->db->where('refund_id', $refund_id);
+		$this->db->where('id', $refund_id);
 		$this->db->update('refund', $refund_data);
 		
 		if($this->db->trans_status() === false) 
@@ -70,7 +70,7 @@ class Refund_model extends CI_Model
 			'date_modified'  => date('Y-m-d H:i:s')
 		);
 		
-		$this->db->where('refund_id', $refund_id);
+		$this->db->where('id', $refund_id);
 		$this->db->update('refund', $refund_data);
 		
 		if($this->db->trans_status() === false) 
@@ -94,7 +94,7 @@ class Refund_model extends CI_Model
 		$this->db->join('product', 'product.id = refund.product_id', 'left');
 		$this->db->join('location', 'location.id = refund.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
-		$this->db->where('refund.refund_id', $refund_id);
+		$this->db->where('refund.id', $refund_id);
 		
 		$q = $this->db->get();
 		
@@ -124,7 +124,7 @@ class Refund_model extends CI_Model
 		$this->db->from('refund');
 		$this->db->join('location', 'location.id = refund.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
-		$this->db->where('refund.product_id', $product_id);
+		$this->db->where('refund.id', $product_id);
 		
 		$q = $this->db->get();
 		
@@ -201,7 +201,7 @@ class Refund_model extends CI_Model
 	
 	public function delete_refund($refund_id) 
 	{
-		if($this->db->delete('refund', array('refund_id' => $refund_id))) 
+		if($this->db->delete('refund', array('id' => $refund_id))) 
 		{
 			return true;
 		}
