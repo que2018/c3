@@ -14,6 +14,7 @@ $lang['text_delete'] 	  	         	   = 'delete return';
 $lang['text_save'] 	  	         	   	   = 'save return';
 $lang['text_bulk_delete'] 	  	           = 'bulk delete return';
 $lang['text_cancel'] 	  	         	   = 'cancel';
+$lang['text_download'] 	  	         	   = 'download return';
 $lang['text_export'] 	  	         	   = 'export return';
 $lang['text_batch'] 	  	               = 'batch';
 $lang['text_quantity'] 	  	               = 'quantity';

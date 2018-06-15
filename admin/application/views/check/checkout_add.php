@@ -54,24 +54,6 @@
 				    </div>
 				    <div class="hr-line-dashed"></div>
 					<div class="form-group">
-					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_source'); ?></label>
-					  <div class="col-sm-10">
-					    <select name="source" class="form-control">
-						  <?php if($source == 1) { ?>
-						  <option value="1" selected><?php echo $this->lang->line('text_inventory'); ?></option>
-						  <option value="2"><?php echo $this->lang->line('text_return'); ?></option>
-						  <?php } else if($source == 2) { ?>
-						  <option value="1"><?php echo $this->lang->line('text_inventory'); ?></option>
-						  <option value="2" selected><?php echo $this->lang->line('text_return'); ?></option>
-						  <?php } else { ?>
-						  <option value="1"><?php echo $this->lang->line('text_inventory'); ?></option>
-						  <option value="2"><?php echo $this->lang->line('text_return'); ?></option>
-						  <?php } ?>
-					    </select>
-					  </div>
-				    </div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
 					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 					  <div class="col-sm-10">
 					    <select name="status" class="form-control">

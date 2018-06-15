@@ -7,7 +7,8 @@ class Inventory_model extends CI_Model
 	{
 		$this->db->trans_begin();
 		
-		$inventory_data = array(		
+		$inventory_data = array(	
+			'type'             => 0,
 			'product_id'	   => $data['product_id'],
 			'location_id'	   => $data['location_id'],
 			'batch'	           => $data['batch'],
@@ -247,6 +248,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
+		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 
 		{			
@@ -349,6 +351,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		$this->db->group_by('inventory.id');
 		
 		if(!empty($data['filter_product'])) 
@@ -458,6 +461,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 
 		if(!empty($data['filter_product'])) 
@@ -519,6 +523,7 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 
 		{			

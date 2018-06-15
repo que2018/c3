@@ -328,9 +328,8 @@ class Checkout extends MX_Controller
 		$this->header->set_title($this->lang->line('text_checkout_add'));
 
 		$this->form_validation->set_rules('sale_id', $this->lang->line('text_sale_id'), 'callback_validate_sale');
-		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
-		$this->form_validation->set_rules('source', $this->lang->line('text_source'), 'required');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
+		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		$this->form_validation->set_rules('length', $this->lang->line('text_length'), 'required');
 		$this->form_validation->set_rules('width', $this->lang->line('text_width'), 'required');
 		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
@@ -345,7 +344,6 @@ class Checkout extends MX_Controller
 			$data = array(
 				'sale_id'        	=> $this->input->post('sale_id'),
 				'tracking'       	=> $this->input->post('tracking'),
-				'source'       		=> $this->input->post('source'),				
 				'status'         	=> $this->input->post('status'),
 				'length'            => $this->input->post('length'),
 				'width'             => $this->input->post('width'),
@@ -403,7 +401,6 @@ class Checkout extends MX_Controller
 			$data = array(
 				'sale_id'        	=> $this->input->post('sale_id'),
 				'tracking'       	=> $this->input->post('tracking'),
-				'source'       		=> $this->input->post('source'),
 				'status'         	=> $this->input->post('status'),
 				'length'            => $this->input->post('length'),
 				'width'             => $this->input->post('width'),
