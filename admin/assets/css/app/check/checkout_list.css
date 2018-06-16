@@ -52,7 +52,7 @@ a:focus, a:hover {
 	margin: 0px;
 }
 .detail {
-	width: 470px;
+	width: 550px;
     left: 100px;
     background: #ffffff;
     position: absolute;
@@ -100,7 +100,20 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
-
+.inventory {
+    font-size: 9px;
+    background: #3bbf7c;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+}
+.return {
+    font-size: 9px;
+    background: #f5e14d;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+}
 
 
 

@@ -12,7 +12,6 @@ class Checkout_model extends CI_Model
 		//checkout data
 		$checkout_data = array(
 			'tracking' 		    => $data['tracking'],
-			'source' 		    => $data['source'],
 			'status' 		    => $data['status'],
 			'length'	        => $data['length'],
 			'width'	            => $data['width'],
@@ -80,16 +79,14 @@ class Checkout_model extends CI_Model
 		//if completed, change inventory
 		if($data['status'] == 2)
 		{
-			$source_table = ($data['source'] == 1)?'inventory':'refund';
-			
 			foreach($data['checkout_products'] as $checkout_product)
 			{
 				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update($source_table);
+				$this->db->update('inventory');
 				
 				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update($source_table, array('date_modified' => date('Y-m-d H:i:s'))); 
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}	
 		}
 		
@@ -172,18 +169,16 @@ class Checkout_model extends CI_Model
 		//inventory data
 		$checkout = $this->get_checkout($checkout_id);
 		
-		$source_table = ($checkout['source'] == 1)?'inventory':'refund';
-		
 		if(($checkout['status'] == 1) && ($data['status'] == 2))
 		{
 			foreach($data['checkout_products'] as $checkout_product)
 			{
 				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update($source_table);
+				$this->db->update('inventory');
 				
 				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update($source_table, array('date_modified' => date('Y-m-d H:i:s'))); 
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
 		
@@ -195,20 +190,20 @@ class Checkout_model extends CI_Model
 			{	
 				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
-				$this->db->update($source_table);
+				$this->db->update('inventory');
 				
 				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update($source_table, array('date_modified' => date('Y-m-d H:i:s'))); 
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 			
 			foreach($data['checkout_products'] as $checkout_product)
 			{	
 				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update($source_table);
+				$this->db->update('inventory');
 				
 				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update($source_table, array('date_modified' => date('Y-m-d H:i:s'))); 
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
 		
@@ -220,10 +215,10 @@ class Checkout_model extends CI_Model
 			{
 				$this->db->where('id', $checkout_product['inventory_id']);
 				$this->db->set('quantity', 'quantity+'.$checkout_product['quantity'], false);
-				$this->db->update($source_table);
+				$this->db->update('inventory');
 				
 				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update($source_table, array('date_modified' => date('Y-m-d H:i:s'))); 
+				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
 		
@@ -601,7 +596,7 @@ class Checkout_model extends CI_Model
 	
 	public function get_checkout_products($checkout_id) 
 	{	
-		$this->db->select('checkout_product.inventory_id, checkout_product.quantity, product.*, product.id AS product_id, product.name AS product_name, location.name AS location_name, inventory.batch', false);
+		$this->db->select('checkout_product.inventory_id, checkout_product.quantity, product.*, product.id AS product_id, product.name AS product_name, location.name AS location_name, inventory.type, inventory.batch', false);
 		$this->db->from('checkout_product');
 		$this->db->join('inventory', 'inventory.id = checkout_product.inventory_id', 'left');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
@@ -642,17 +637,17 @@ class Checkout_model extends CI_Model
 		
 		if(!empty($data['filter_id'])) 
 		{			
-			$this->db->like('id', $data['filter_id'], 'left');
+			$this->db->like('id', $data['filter_id'], 'after');
 		}
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'left');
+			$this->db->like('tracking', $data['filter_tracking'], 'after');
 		}
 		
 		if(!empty($data['filter_note'])) 
 		{			
-			$this->db->like('note', $data['filter_note'], 'both');
+			$this->db->like('note', $data['filter_note'], 'after');
 		}
 		
 		if(!empty($data['filter_date_added'])) 
@@ -709,7 +704,7 @@ class Checkout_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('checkout'); 
 		$this->db->or_where('id', $key);  
-		$this->db->or_like('tracking', $key, 'left');  
+		$this->db->or_like('tracking', $key, 'after');  
 		
 		$q = $this->db->get();
 		

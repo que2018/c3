@@ -131,7 +131,7 @@ class Location_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('location');
-		$this->db->like('name', $name, 'both');
+		$this->db->like('name', $name, 'after');
 		
 		$q = $this->db->get();
 		
@@ -151,7 +151,7 @@ class Location_model extends CI_Model
 
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('location.name', $data['filter_name'], 'both');
+			$this->db->like('location.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_warehouse'])) 
@@ -203,8 +203,8 @@ class Location_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('location'); 
-		$this->db->or_like('name', $key, 'left');  
-		$this->db->or_like('code', $key, 'left');  
+		$this->db->or_like('name', $key, 'after');  
+		$this->db->or_like('code', $key, 'after');  
 		
 		$q = $this->db->get();
 		
@@ -245,22 +245,22 @@ class Location_model extends CI_Model
 	{			
 		$this->db->select('location.*, warehouse.name AS warehouse', false);
 		$this->db->from('location');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'after');
 		$this->db->group_by('location.id');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('location.name', $data['filter_name'], 'both');
+			$this->db->like('location.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_code'])) 
 		{			
-			$this->db->like('location.code', $data['filter_code'], 'both');
+			$this->db->like('location.code', $data['filter_code'], 'after');
 		}
 		
 		if(!empty($data['filter_warehouse'])) 
 		{			
-			$this->db->like('warehouse.name', $data['filter_warehouse'], 'both');
+			$this->db->like('warehouse.name', $data['filter_warehouse'], 'after');
 		}
 			
 		$sort_data = array(
@@ -309,21 +309,21 @@ class Location_model extends CI_Model
 	{
 		$this->db->select("COUNT(location.id) AS total", false);
 		$this->db->from('location');
-		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
+		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'after');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('location.name', $data['filter_name'], 'both');
+			$this->db->like('location.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_code'])) 
 		{			
-			$this->db->like('location.code', $data['filter_code'], 'both');
+			$this->db->like('location.code', $data['filter_code'], 'after');
 		}
 		
 		if(!empty($data['filter_warehouse'])) 
 		{			
-			$this->db->like('warehouse.name', $data['filter_warehouse'], 'both');
+			$this->db->like('warehouse.name', $data['filter_warehouse'], 'after');
 		}
 		
 		$q = $this->db->get();

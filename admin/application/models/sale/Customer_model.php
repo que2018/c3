@@ -145,12 +145,12 @@ class Customer_model extends CI_Model
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('customer.name', $data['filter_name'], 'both');
+			$this->db->like('customer.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_client'])) 
 		{			
-			$this->db->like('client', $data['filter_client'], 'both');
+			$this->db->like('client', $data['filter_client'], 'after');
 		}
 		
 		if(!empty($data['filter_company'])) 
@@ -220,12 +220,12 @@ class Customer_model extends CI_Model
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('customer.name', $data['filter_name'], 'both');
+			$this->db->like('customer.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_client'])) 
 		{			
-			$this->db->like('client', $data['filter_client'], 'both');
+			$this->db->like('client', $data['filter_client'], 'after');
 		}
 		
 		if(!empty($data['filter_company'])) 
@@ -254,7 +254,7 @@ class Customer_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('customer');
-		$this->db->like('name', $name, 'left');
+		$this->db->like('name', $name, 'after');
 		
 		$q = $this->db->get();
 		

@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Inventory extends MX_Controller 
 {
 	public function index()
@@ -115,6 +114,7 @@ class Inventory extends MX_Controller
 			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
 			'filter_upc'    	   => $filter_upc,
+			'filter_type'          => 0,
 			'sort'                 => $sort,
 			'order'                => $order,
 			'start'                => ($page - 1) * $limit,

@@ -148,6 +148,7 @@ class Checkout extends MX_Controller
 				foreach($checkout_products_data as $checkout_product_data) {
 					$checkout_products[] = array(
 						'name'        => $checkout_product_data['name'],
+						'type'        => $checkout_product_data['type'],
 						'batch'       => $checkout_product_data['batch'],
 						'quantity'    => $checkout_product_data['quantity'],
 						'location'    => $checkout_product_data['location_name']

@@ -121,11 +121,13 @@
 			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 			    <table class="table">
 				  <thead>
-				    <th style="width: 50%;"><?php echo $this->lang->line('column_upc'); ?></th>
-				    <th style="width: 50%;"><?php echo $this->lang->line('column_sku'); ?></th>
+				    <th style="width: 40%;"><?php echo $this->lang->line('column_client'); ?></th>
+				    <th style="width: 30%;"><?php echo $this->lang->line('column_upc'); ?></th>
+				    <th style="width: 30%;"><?php echo $this->lang->line('column_sku'); ?></th>
 				  </thead>
 				  <tbody>
 				    <tr>
+					  <td><?php echo $inventory['client']; ?></td>
 					  <td><?php echo $inventory['upc']; ?></td>
 					  <td><?php echo $inventory['sku']; ?></td>
 				    </tr>
