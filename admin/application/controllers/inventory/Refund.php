@@ -36,7 +36,7 @@ class Refund extends MX_Controller
 		
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
-		$this->load->model('inventory/inventory_model');
+		$this->load->model('inventory/refund_model');
 		              	
 		if($this->input->get('filter_client_id'))
 		{
@@ -124,7 +124,6 @@ class Refund extends MX_Controller
 			'filter_location'  => $filter_location,
 			'filter_sku'       => $filter_sku,
 			'filter_upc'       => $filter_upc,
-			'filter_type'      => 1,
 			'filter_batch'     => $filter_batch,
 			'sort'             => $sort,
 			'order'            => $order,
@@ -132,9 +131,9 @@ class Refund extends MX_Controller
 			'limit'            => $limit
 		);
 		
-		$refunds = $this->inventory_model->get_batch_inventories($filter_data);	
+		$refunds = $this->refund_model->get_refunds($filter_data);	
 		
-		$refund_total = $this->inventory_model->get_batch_inventory_total($filter_data);
+		$refund_total = $this->refund_model->get_refund_total($filter_data);
 		
 		$data['refunds'] = array();
 		
@@ -147,7 +146,6 @@ class Refund extends MX_Controller
 				$data['refunds'][] = array(
 					'refund_id'     => $refund['id'],
 					'product_id'    => $refund['product_id'],
-					'client'        => $product_info['client'],
 					'product'       => $product_info['name'],
 					'upc'       	=> $product_info['upc'],
 					'sku'       	=> $product_info['sku'],
@@ -416,7 +414,7 @@ class Refund extends MX_Controller
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
-		$this->load->model('inventory/inventory_model');
+		$this->load->model('inventory/refund_model');
 
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/refund_add.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -431,16 +429,15 @@ class Refund extends MX_Controller
 		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 	
 		$data = array(
-			'type'         => 1,
-			'product_id'   => $this->input->post('product_id'),
-			'location_id'  => $this->input->post('location_id'),
-			'batch'        => $this->input->post('batch'),
-			'quantity'     => $this->input->post('quantity')
+			'product_id'     => $this->input->post('product_id'),
+			'location_id'    => $this->input->post('location_id'),
+			'batch'          => $this->input->post('batch'),
+			'quantity'       => $this->input->post('quantity')
 		);
 		
 		if($this->form_validation->run() == true)
 		{
-			$this->inventory_model->add_inventory($data);
+			$this->refund_model->add_refund($data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_refund_add_success'));
 			
@@ -483,7 +480,7 @@ class Refund extends MX_Controller
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('warehouse/warehouse_model');
-		$this->load->model('inventory/inventory_model');
+		$this->load->model('inventory/refund_model');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/refund_edit.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -505,7 +502,7 @@ class Refund extends MX_Controller
 				'quantity'       => $this->input->post('quantity')
 			);
 			
-			$this->inventory_model->edit_inventory($refund_id, $data);
+			$this->refund_model->edit_refund($refund_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_refund_edit_success'));
 			
@@ -533,7 +530,7 @@ class Refund extends MX_Controller
 		}
 		else
 		{
-			$refund = $this->inventory_model->get_inventory($refund_id);	
+			$refund = $this->refund_model->get_refund($refund_id);	
 		
 			$data['product_id']   = $refund['product_id'];
 			$data['location_id']  = $refund['location_id'];
@@ -561,13 +558,13 @@ class Refund extends MX_Controller
 	
 	public function delete()
 	{
-		$this->load->model('inventory/inventory_model');
+		$this->load->model('inventory/refund_model');
 
 		if($this->input->get('refund_id'))
 		{
 			$refund_id = $this->input->get('refund_id');
 			
-			$result = $this->inventory_model->delete_inventory($refund_id);
+			$result = $this->refund_model->delete_refund($refund_id);
 
 			$outdata = array(
 				'success'   => ($result)?true:false
@@ -580,7 +577,7 @@ class Refund extends MX_Controller
 	
 	public function bulk_delete()
 	{
-		$this->load->model('inventory/inventory_model');
+		$this->load->model('inventory/refund_model');
 
 		if($this->input->post('refund_ids'))
 		{
@@ -590,7 +587,7 @@ class Refund extends MX_Controller
 			
 			foreach($refund_ids as $refund_id)
 			{
-				if(!$this->inventory_model->delete_inventory($refund_id))
+				if(!$this->refund_model->delete_refund($refund_id))
 				{
 					$success = false;
 				}

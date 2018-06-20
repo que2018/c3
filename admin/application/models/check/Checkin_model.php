@@ -483,12 +483,12 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_id'])) 
 		{						
-			$this->db->like('id', $data['filter_id'], 'after');			
+			$this->db->like('id', $data['filter_id'], 'left');			
 		}
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'after');
+			$this->db->like('tracking', $data['filter_tracking'], 'left');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -550,7 +550,7 @@ class Checkin_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('checkin'); 
 		$this->db->or_where('id', $key);  
-		$this->db->or_like('tracking', $key, 'after');  
+		$this->db->or_like('tracking', $key, 'left');  
 		
 		$q = $this->db->get();
 		
@@ -574,7 +574,7 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'after');
+			$this->db->like('tracking', $data['filter_tracking'], 'left');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -643,7 +643,7 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'after');
+			$this->db->like('tracking', $data['filter_tracking'], 'left');
 		}
 		
 		if(!empty($data['filter_status'])) 

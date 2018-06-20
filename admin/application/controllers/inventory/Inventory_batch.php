@@ -34,9 +34,8 @@ class Inventory_batch extends MX_Controller
 		$this->load->library('phpexcel');
 		
 		$this->lang->load('inventory/inventory');
-
+		
 		$this->load->model('client/client_model');
-		$this->load->model('catalog/product_model');
 		$this->load->model('inventory/inventory_model');
 		
 		$data['success'] = $this->session->flashdata('success');
@@ -127,7 +126,6 @@ class Inventory_batch extends MX_Controller
 			'filter_location'      => $filter_location,
 			'filter_sku'    	   => $filter_sku,
 			'filter_upc'    	   => $filter_upc,
-			'filter_type'          => 0,
 			'filter_batch'    	   => $filter_batch,
 			'sort'                 => $sort,
 			'order'                => $order,
@@ -142,7 +140,9 @@ class Inventory_batch extends MX_Controller
 		$data['inventories'] = array();
 		
 		if($inventories) 
-		{			
+		{
+			$this->load->model('catalog/product_model');
+			
 			foreach($inventories as $inventory)
 			{	
 				$product_info = $this->product_model->get_product($inventory['product_id']);	
@@ -150,7 +150,6 @@ class Inventory_batch extends MX_Controller
 				$data['inventories'][] = array(
 					'inventory_id'  => $inventory['id'],
 					'product_id'    => $inventory['product_id'],
-					'client'        => $inventory['client'],
 					'product'       => $product_info['name'],
 					'upc'       	=> $product_info['upc'],
 					'sku'       	=> $product_info['sku'],
@@ -434,7 +433,6 @@ class Inventory_batch extends MX_Controller
 		$this->form_validation->set_rules('quantity', $this->lang->line('text_quantity'), 'required|regex_match[/^[0-9]*[1-9][0-9]*$/]');
 	
 		$data = array(
-			'type'           => 0,
 			'product_id'     => $this->input->post('product_id'),
 			'location_id'    => $this->input->post('location_id'),
 			'batch'          => $this->input->post('batch'),

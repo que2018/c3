@@ -45,6 +45,10 @@ input:focus {
 .page-heading {
 	position: relative;
 }
+.alert-success {
+    width: 270px;
+    margin: 0 auto;
+}
 
 
 

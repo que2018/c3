@@ -3,9 +3,15 @@
 
 class Volume_model extends CI_Model
 {		
-	public function install(){}
+	public function install()
+	{
+		
+	}
 	
-	public function uninstall(){}
+	public function uninstall() 
+	{
+		
+	}
 	
 	public function run()
 	{

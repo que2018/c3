@@ -42,22 +42,33 @@ class User_model extends CI_Model
 	{
 		$this->db->trans_begin();
 		
-		$salt = rand(0,1000);
-		
 		$user_data = array(	
 			'username'	      => $data['username'],
 			'user_group_id'	  => $data['user_group_id'],
 			'firstname'	      => $data['firstname'],
 			'lastname'	      => $data['lastname'],
 			'email'	          => $data['email'],
-			'salt'	          => $salt,
-			'password'        => sha1($salt . sha1($salt . sha1($data['password']))),
 			'status'	      => $data['status']
 		);
 		
 		$this->db->where('user_id', $user_id);
 		
 		$this->db->update('user', $user_data);
+		
+		//update password
+		if($data['password'])
+		{
+			$salt = rand(0, 1000);
+	
+			$user_data = array(
+				'salt'	    => $salt,
+				'password'  => sha1($salt . sha1($salt . sha1($data['password'])))
+			);
+			
+			$this->db->where('user_id', $user_id);
+		
+			$this->db->update('user', $user_data); 
+		}
 		
 		if($this->db->trans_status() === false) 
 		{

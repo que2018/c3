@@ -7,7 +7,7 @@ $lang['text_logo_name']		      			 = 'IN+';
 $lang['text_username']		      			 = '用户名';
 $lang['text_password']		      			 = '密码';
 $lang['text_password_forget']      			 = '忘记密码?';
-$lang['text_pround_product']                 = 'NI+ 来自 JIUsite Inc.';
+$lang['text_pround_product']                 = 'NI+ 来自 JIUTech Inc.';
 
 // text
 $lang['button_login']		                 = '登录';

@@ -19,6 +19,9 @@
 	  <?php if($error) { ?>
         <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $error; ?></div>
       <?php } ?>
+	  <?php if(isset($login_error)) { ?>
+        <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $login_error; ?></div>
+      <?php } ?>
 	  <form class="m-t" role="form" action="<?php echo base_url(); ?>common/login" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		  <input type="text" name="username" value="<?php echo $username; ?>" class="form-control" placeholder="<?php echo $this->lang->line('text_username'); ?>">

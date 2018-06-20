@@ -37,3 +37,7 @@ a:focus, a:hover {
     top: 30px;
     right: 40px;
 }
+.alert-success {
+    width: 220px;
+    margin: 0 auto;
+}

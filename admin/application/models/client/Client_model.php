@@ -82,7 +82,7 @@ class Client_model extends CI_Model
 		
 		if($data['password'])
 		{
-			$salt = rand(0,1000);
+			$salt = rand(0, 1000);
 	
 			$client_data = array(
 				'salt'	    => $salt,

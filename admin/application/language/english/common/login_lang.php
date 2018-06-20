@@ -7,7 +7,7 @@ $lang['text_logo_name']		      			 = 'IN+';
 $lang['text_username']		      			 = 'username';
 $lang['text_password']		      			 = 'password';
 $lang['text_password_forget']      			 = 'Forgot password?';
-$lang['text_pround_product']                 = 'NI+ is a pround product of JIUsite Inc.';
+$lang['text_pround_product']                 = 'NI+ is a pround product of JIUTech Inc.';
 
 // text
 $lang['button_login']		                 = 'Login';

@@ -369,7 +369,14 @@ class Product extends MX_Controller
 		}
 		
 		//thumb
-		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		if(is_file(IMAGEPATH . $data['image'])) 
+		{
+			$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		} 
+		else
+		{
+			$data['thumb'] = $this->image_model->resize('no_image.jpg', 100, 100);
+		}
 		
 		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 				
@@ -592,7 +599,14 @@ class Product extends MX_Controller
 		$data['product_id'] = $product_id;
 		
 		//thumb
-		$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		if(is_file(IMAGEPATH . $data['image'])) 
+		{
+			$data['thumb'] = $this->image_model->resize($data['image'], 100, 100);
+		} 
+		else
+		{
+			$data['thumb'] = $this->image_model->resize('no_image.jpg', 100, 100);
+		}
 		
 		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 

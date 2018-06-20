@@ -16,9 +16,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	  <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" data-dismiss="alert">&times;</button></div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">

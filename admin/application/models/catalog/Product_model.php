@@ -124,12 +124,7 @@ class Product_model extends CI_Model
 	
 	public function get_product($product_id) 
 	{
-		$this->db->select("product.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
-		$this->db->from('product');
-		$this->db->join('client', 'client.id = product.client_id', 'left');
-		$this->db->where('product.id', $product_id);
-		
-		$q = $this->db->get();
+		$q = $this->db->get_where('product', array('id' => $product_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -203,7 +198,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('upc', $upc, 'after');
+		$this->db->like('upc', $upc, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -220,7 +215,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('sku', $sku, 'after');
+		$this->db->like('sku', $sku, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -237,7 +232,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('asin', $asin, 'after');
+		$this->db->like('asin', $asin, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -270,7 +265,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('name', $name, 'after');
+		$this->db->like('name', $name, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -287,9 +282,9 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->or_like('name', $key, 'after');  
-		$this->db->or_like('upc', $key, 'after');  
-		$this->db->or_like('sku', $key, 'after');  
+		$this->db->or_like('name', $key, 'left');  
+		$this->db->or_like('upc', $key, 'left');  
+		$this->db->or_like('sku', $key, 'left');  
 		
 		$q = $this->db->get();
 		
@@ -335,7 +330,6 @@ class Product_model extends CI_Model
 		$this->db->trans_begin();
 		
 		$this->db->where('client_id', $client_id);
-		
 		$this->db->delete('product');
 
 		if($this->db->trans_status() === false) 

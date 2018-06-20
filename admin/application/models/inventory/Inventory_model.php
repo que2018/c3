@@ -8,7 +8,7 @@ class Inventory_model extends CI_Model
 		$this->db->trans_begin();
 		
 		$inventory_data = array(	
-			'type'             => $data['type'],
+			'type'             => 0,
 			'product_id'	   => $data['product_id'],
 			'location_id'	   => $data['location_id'],
 			'batch'	           => $data['batch'],
@@ -179,26 +179,6 @@ class Inventory_model extends CI_Model
 		
 		return false;
 	}
-	
-	public function get_product_quantity($product_id)
-	{
-		$this->db->select('SUM(quantity) AS quantity', false);
-		$this->db->from('inventory');
-		$this->db->where('product_id', $product_id);
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			$result = $q->row_array();
-			
-			return $result['quantity'];
-		} 
-		else 
-		{
-			return false;
-		}
-	}
 		
 	public function search_inventory($key) 
 	{
@@ -206,8 +186,8 @@ class Inventory_model extends CI_Model
 		$this->db->from('inventory'); 
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
-		$this->db->or_like('product.name', $key, 'after');  
-		$this->db->or_like('location.name', $key, 'after');  
+		$this->db->or_like('product.name', $key, 'left');  
+		$this->db->or_like('location.name', $key, 'left');  
 		$this->db->or_where('inventory.quantity', $key); 
 		
 		$q = $this->db->get();
@@ -268,40 +248,36 @@ class Inventory_model extends CI_Model
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
+		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'after');
+			$this->db->like('product.name', $data['filter_product'], 'left');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'after');
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'after');
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'after');
+			$this->db->like('product.asin', $data['filter_asin'], 'left');
 		}
 		
 		if(!empty($data['filter_location'])) 
 		{			
-			$this->db->like('location.name', $data['filter_location'], 'after');
+			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
 		if(!empty($data['filter_client_id'])) 
 		{			
 			$this->db->where('client.id', $data['filter_client_id']);
-		}
-		
-		if(isset($data['filter_type'])) 
-		{			
-			$this->db->where('inventory.type', $data['filter_type']);
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -327,7 +303,6 @@ class Inventory_model extends CI_Model
 			'product.sku',
 			'location.name',
 			'warehouse.name',
-			'inventory.type',
 			'inventory.quantity',
 			'inventory.date_added',
 			'inventory.date_modified'
@@ -376,31 +351,32 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		$this->db->group_by('inventory.id');
 		
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'after');
+			$this->db->like('product.name', $data['filter_product'], 'left');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'after');
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'after');
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'after');
+			$this->db->like('product.asin', $data['filter_asin'], 'left');
 		}
 		
 		if(!empty($data['filter_location'])) 
 		{			
-			$this->db->like('location.name', $data['filter_location'], 'after');
+			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
 		if(!empty($data['filter_client_id'])) 
@@ -410,12 +386,7 @@ class Inventory_model extends CI_Model
 		
 		if(!empty($data['filter_batch'])) 
 		{			
-			$this->db->like('inventory.batch', $data['filter_batch'], 'after');
-		}
-		
-		if(isset($data['filter_type'])) 
-		{			
-			$this->db->where('inventory.type', $data['filter_type']);
+			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -441,7 +412,6 @@ class Inventory_model extends CI_Model
 			'product.sku',
 			'location.name',
 			'warehouse.name',
-			'inventory.type',
 			'inventory.batch',
 			'inventory.quantity',
 			'inventory.date_added',
@@ -484,48 +454,44 @@ class Inventory_model extends CI_Model
 		}
 	}
 	
-	public function get_inventory_total($data = array())
+	public function get_inventory_total($data)
 	{
 		$this->db->select('inventory.*', false);
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
 
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'after');
+			$this->db->like('product.name', $data['filter_product'], 'left');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'after');
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'after');
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'after');
+			$this->db->like('product.asin', $data['filter_asin'], 'left');
 		}
 		
 		if(!empty($data['filter_location'])) 
 		{			
-			$this->db->like('location.name', $data['filter_location'], 'after');
+			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
 		if(!empty($data['filter_client_id'])) 
 		{			
 			$this->db->where('client.id', $data['filter_client_id']);
-		}
-		
-		if(isset($data['filter_type'])) 
-		{			
-			$this->db->where('inventory.type', $data['filter_type']);
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -550,54 +516,50 @@ class Inventory_model extends CI_Model
 		return $q->num_rows();
 	}
 	
-	public function get_batch_inventory_total($data = array())
+	public function get_batch_inventory_total($data)
 	{
 		$this->db->select('COUNT(inventory.id) AS total', false);
 		$this->db->from('inventory');
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
+		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'after');
+			$this->db->like('product.name', $data['filter_product'], 'left');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'after');
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'after');
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'after');
+			$this->db->like('product.asin', $data['filter_asin'], 'left');
 		}
 		
 		if(!empty($data['filter_location'])) 
 		{			
-			$this->db->like('location.name', $data['filter_location'], 'after');
+			$this->db->like('location.name', $data['filter_location'], 'both');
 		}
 		
 		if(!empty($data['filter_client_id'])) 
 		{			
 			$this->db->where('client.id', $data['filter_client_id']);
 		}
-	
-		if(isset($data['filter_type'])) 
-		{			
-			$this->db->where('inventory.type', $data['filter_type']);
-		}
-	
+		
 		if(!empty($data['filter_batch'])) 
 		{			
-			$this->db->like('inventory.batch', $data['filter_batch'], 'after');
+			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
 		}
-	
+		
 		if(!empty($data['filter_quantity'])) 
 		{			
 			$this->db->where('inventory.quantity', $data['filter_quantity']);
@@ -620,5 +582,25 @@ class Inventory_model extends CI_Model
 		$result = $q->row_array();
 		
 		return $result['total'];
+	}
+	
+	public function get_product_quantity($product_id)
+	{
+		$this->db->select('SUM(quantity) AS quantity', false);
+		$this->db->from('inventory');
+		$this->db->where('product_id', $product_id);
+		
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			$result = $q->row_array();
+			
+			return $result['quantity'];
+		} 
+		else 
+		{
+			return false;
+		}
 	}
 }

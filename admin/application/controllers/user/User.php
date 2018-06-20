@@ -267,8 +267,6 @@ class User extends MX_Controller
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');	
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
 		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required');
-		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');
-		$this->form_validation->set_rules('confirm', $this->lang->line('text_confirm'), 'required');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 
 		if($this->form_validation->run() == true)

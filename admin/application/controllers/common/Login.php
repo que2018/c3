@@ -43,7 +43,7 @@ class Login extends CI_Controller
 			} 
 			else 
 			{
-				$data['error'] = $this->lang->line('error_invalid_username_or_password');
+				$data['login_error'] = $this->lang->line('error_invalid_username_or_password');
 			}				
 		}
 		
