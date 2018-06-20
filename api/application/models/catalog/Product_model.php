@@ -2,12 +2,7 @@
 
 
 class Product_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
+{		
 	public function add_product($data)
 	{
 		$this->db->trans_begin();
@@ -34,7 +29,7 @@ class Product_model extends CI_Model
 		
 		$this->db->insert('product', $product_data);
 		
-		$id = $this->db->insert_id();
+		$product_id = $this->db->insert_id();
 		
 		if(isset($data['product_fees']))
 		{
@@ -61,11 +56,12 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
-			return true;
+			
+			return $product_id;
 		}
 	}
 	
-	public function edit_product($id, $data)
+	public function edit_product($product_id, $data)
 	{
 		$this->db->trans_begin();
 		
@@ -74,6 +70,7 @@ class Product_model extends CI_Model
 			'sku'	             => $data['sku'],
 			'asin'	     	     => $data['asin'],
 			'name'   		     => $data['name'],
+			'image'   		     => $data['image'],
 			'price'	     	     => $data['price'],
 			'length'	         => $data['length'],
 			'height'	         => $data['height'],
@@ -88,12 +85,12 @@ class Product_model extends CI_Model
 			'date_modified'      => date('Y-m-d H:i:s')
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $product_id);
 		
 		$this->db->update('product', $product_data);
 		
 		//product fee
-		$this->db->delete('product_fee', array('product_id' => $id));
+		$this->db->delete('product_fee', array('product_id' => $product_id));
 		
 		if(isset($data['product_fees']))
 		{
@@ -101,7 +98,7 @@ class Product_model extends CI_Model
 						
 			foreach($data['product_fees'] as $product_fee){					
 				$product_fees[] = array(
-					'product_id'  => $id,
+					'product_id'  => $product_id,
 					'name' 	      => $product_fee['name'],
 					'type' 	      => $product_fee['type'],
 					'amount'      => $product_fee['amount']
@@ -120,6 +117,7 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}
@@ -136,6 +134,18 @@ class Product_model extends CI_Model
 		return false;
 	}
 
+	public function get_product_by_name($name) 
+	{
+		$q = $this->db->get_where('product', array('name' => $name), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_product_by_upc($upc) 
 	{
 		$q = $this->db->get_where('product', array('upc' => $upc), 1); 
@@ -172,18 +182,6 @@ class Product_model extends CI_Model
 		return false;
 	}
 	
-	public function get_product_by_name($name) 
-	{
-		$q = $this->db->get_where('product', array('name' => $name), 1); 
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->row_array();
-		} 
-		
-		return false;
-	}
-	
 	public function get_products_by_client($client_id) 
 	{
 		$q = $this->db->get_where('product', array('client_id' => $client_id)); 
@@ -198,7 +196,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_upc($upc) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('upc', $upc, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
@@ -215,7 +213,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_sku($sku) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('sku', $sku, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
@@ -232,7 +230,7 @@ class Product_model extends CI_Model
 	
 	public function find_product_by_asin($asin) 
 	{
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('product'); 
 		$this->db->like('asin', $asin, 'left');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
@@ -367,7 +365,7 @@ class Product_model extends CI_Model
 		}
 	}		
 		
-	public function get_products($data) 
+	public function get_products($data = array()) 
 	{					
 		$this->db->select("product.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('product');
@@ -378,19 +376,19 @@ class Product_model extends CI_Model
 			$this->db->like('product.name', $data['filter_name'], 'both');
 		}
 		
-		if(!empty($data['filter_client'])) 
+		if(!empty($data['filter_client_id'])) 
 		{			
-			$this->db->like("CONCAT(client.firstname, ' ', client.lastname)", $data['filter_client'], 'both');
+			$this->db->where('client.id', $data['filter_client_id']);
 		}
 		
 		if(!empty($data['filter_upc'])) 
-		{			
-			$this->db->where('product.upc', $data['filter_upc']);
+		{						
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
 		}
 	
 		if(!empty($data['filter_sku'])) 
-		{			
-			$this->db->where('product.sku', $data['filter_sku']);
+		{						
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		$sort_data = array(
@@ -436,43 +434,30 @@ class Product_model extends CI_Model
 		}
 	}
 	
-	public function get_all_products() 
+	public function get_product_total($data = array())
 	{
-		$q = $this->db->get('product');
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		else 
-		{
-			return false;
-		}
-	}
-	
-	function get_product_total($data)
-	{
-		$this->db->select("COUNT(id) AS total", false);
+		$this->db->select("COUNT(product.id) AS total", false);
 		$this->db->from('product');
+		$this->db->join('client', 'client.id = product.client_id', 'left');
 		
-		if(!empty($data['filter_upc'])) 
-		{			
-			$this->db->where('upc', $data['filter_upc']);
-		}
-		
-		if(!empty($data['filter_sku'])) 
-		{			
-			$this->db->where('sku', $data['filter_sku']);
-		}
-		
-		if(!empty($data['filter_asin'])) 
-		{			
-			$this->db->where('asin', $data['filter_asin']);
-		}
-	
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('name', $data['filter_name'], 'both');
+			$this->db->like('product.name', $data['filter_name'], 'both');
+		}
+		
+		if(!empty($data['filter_client_id'])) 
+		{			
+			$this->db->where('client.id', $data['filter_client_id']);
+		}
+		
+		if(!empty($data['filter_upc'])) 
+		{						
+			$this->db->like('product.upc', $data['filter_upc'], 'left');
+		}
+	
+		if(!empty($data['filter_sku'])) 
+		{						
+			$this->db->like('product.sku', $data['filter_sku'], 'left');
 		}
 		
 		$q = $this->db->get();
@@ -482,7 +467,7 @@ class Product_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_products_volume($products)
+	public function get_products_volume($products)
 	{
 		$this->load->model('setting/length_class_model');
 			
@@ -547,7 +532,7 @@ class Product_model extends CI_Model
 		return $volume;
 	}
 	
-	function get_products_weight($products)
+	public function get_products_weight($products)
 	{
 		$this->load->model('setting/weight_class_model');
 		
@@ -570,7 +555,7 @@ class Product_model extends CI_Model
 		return $weight;
 	}
 	
-	function update_product_value($id, $data) 
+	public function update_product_value($id, $data) 
 	{
 		$product_data[$data['field']] = $data['value'];
 		

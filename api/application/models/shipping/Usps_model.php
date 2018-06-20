@@ -178,7 +178,7 @@ class Usps_model extends CI_Model
 						if(file_put_contents($label_img_path, file_get_contents($response->URL)))
 						{
 							$result['amount']    = $response->Rate->Amount;
-							$result['img']       = base_url(). $label_img;	
+							$result['label_img'] = $label_img;	
 							$result['tracking']  = $response->TrackingNumber;	
 
 							$this->sale_model->update_label($sale_id, $label_img);

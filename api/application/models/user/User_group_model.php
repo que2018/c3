@@ -1,44 +1,65 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class User_group_Model extends CI_Model 
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function add_user_group($data)
 	{
+		$this->db->trans_begin();
+		
 		$user_group_data = array(	
-			'name'	         => $data['name'],
-			'description'	 => $data['description'],
-			'permission'	 => json_encode($data['permission'])
+			'name'	        => $data['name'],
+			'description'	=> $data['description'],
+			'permission'	=> json_encode($data['permission'])
 		);
 		
 		$this->db->insert('user_group', $user_group_data);
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return $user_group_id;
+		}
 	}
 	
-	public function edit_user_group($id, $data)
+	public function edit_user_group($user_group_id, $data)
 	{
+		$this->db->trans_begin();
+		
 		$user_group_data = array(		
 			'name'	         => $data['name'],
 			'description'	 => $data['description'],
 			'permission'	 => json_encode($data['permission'])
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('user_group_id', $user_group_id);
 		
-		if($this->db->update('user_group', $user_group_data)) 
+		$this->db->update('user_group', $user_group_data); 
+		
+		if($this->db->trans_status() === false) 
 		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
 			return true;
-		} 
-		
-		return false;
+		}	
 	}
 	
-	public function get_user_group($id)
+	public function get_user_group($user_group_id)
 	{
-		$q = $this->db->get_where('user_group', array('id' => $id), 1); 
+		$q = $this->db->get_where('user_group', array('user_group_id' => $user_group_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -56,17 +77,27 @@ class User_group_Model extends CI_Model
 		return false;
 	}
 	
-	public function delete_user_group($id) 
+	public function delete_user_group($user_group_id) 
 	{
-		if($this->db->delete('user_group', array('id' => $id))) 
-		{
-			return true;
-		}
+		$this->db->trans_begin();
 		
-		return false;
+		$this->db->delete('user_group', array('user_group_id' => $user_group_id));
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+			return true;
+		}	
 	}
 	
-	public function get_user_groups($data) 
+	public function get_user_groups($data = array()) 
 	{			
 		$this->db->select('user_group.*', false);
 		$this->db->from('user_group');
@@ -116,9 +147,9 @@ class User_group_Model extends CI_Model
 		}
 	}
 	
-	function get_user_group_total($data)
+	public function get_user_group_total($data = array())
 	{
-		$this->db->select("COUNT(user_group.id) AS total", false);
+		$this->db->select("COUNT(user_group.user_group_id) AS total", false);
 		$this->db->from('user_group');
 		
 		if(!empty($data['filter_name'])) 
@@ -132,16 +163,4 @@ class User_group_Model extends CI_Model
 		
 		return $result['total'];
 	}
-	
-	public function get_all_user_groups() 
-	{
-		$q = $this->db->get('user_group');
-		
-		if($q->num_rows() > 0) 
-		{
-			return $q->result_array();
-		}
-		
-		return false;
-	}	
 }

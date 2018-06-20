@@ -2,14 +2,11 @@
 
 
 class Activity_log_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	public function write($data)
-	{			
+{		
+	public function add_activity_log($data)
+	{	
+		$this->db->trans_begin();
+	
 		$activity_log_data = array(
 			'user_id'	   => $data['user_id'],
 			'ip_address'   => $data['ip_address'],
@@ -20,13 +17,28 @@ class Activity_log_model extends CI_Model
 		);
 		
 		$this->db->insert('activity_log', $activity_log_data);	
+		
+		$activity_log_id = $this->db->insert_id();
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return $activity_log_id;
+		}
 	}
 	
 	public function get_activity_logs($data) 
-	{
+	{		
 		$this->db->select('activity_log.*, CONCAT(user.firstname, " ", user.lastname) AS user', false);
 		$this->db->from('activity_log');
-		$this->db->join('user', 'user.id = activity_log.user_id', 'left');
+		$this->db->join('user', 'user.user_id = activity_log.user_id', 'left');
 
 		if(!empty($data['filter_user'])) 
 		{			
@@ -51,7 +63,7 @@ class Activity_log_model extends CI_Model
 		if(!empty($data['filter_date_added'])) 
 		{			
 			$this->db->where('activity_log.date_added >=', $data['filter_date_added'] . " 00:00:00");
-		}
+		} 
 		
 		$sort_data = array(
 			'user',
@@ -98,11 +110,10 @@ class Activity_log_model extends CI_Model
 	}
 	
 	public function get_total_activity($data) 
-	{
-		$this->db->select('COUNT(activity_log.id) AS total, CONCAT(user.firstname, " ", user.lastname) AS user', false);
+	{		
+		$this->db->select('COUNT(activity_log.id) AS total', false);
 		$this->db->from('activity_log');
-		$this->db->join('user', 'user.id = activity_log.user_id', 'left');
-		$this->db->group_by('activity_log.id'); 
+		$this->db->join('user', 'user.user_id = activity_log.user_id', 'left');
 
 		if(!empty($data['filter_user'])) 
 		{			
@@ -134,5 +145,25 @@ class Activity_log_model extends CI_Model
 		$result = $q->row_array();
 		
 		return $result['total'];
+	}
+		
+	public function clear_log_activity() 
+	{
+		$this->db->trans_begin();
+		
+		$this->db->empty_table('activity_log');
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
 	}
 }

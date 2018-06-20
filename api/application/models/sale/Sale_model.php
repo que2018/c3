@@ -98,9 +98,7 @@ class Sale_model extends CI_Model
 			$this->customer_model->add_customer($customer_data);
 		}
 		
-		//sale products	
-		$this->db->delete('sale_product', array('sale_id' => $sale_id));
-		
+		//sale products			
 		$sale_products_data = array();
 					
 		foreach($data['sale_products'] as $sale_product)
@@ -240,9 +238,28 @@ class Sale_model extends CI_Model
 				'quantity'    => $sale_product['quantity']
 			);
 		}
-				
+		
 		$this->db->insert_batch('sale_product', $sale_products_data); 
 		
+		//sale label
+		$this->db->delete('sale_label', array('sale_id' => $sale_id)); 
+					
+		if(isset($data['sale_labels']))
+		{
+			$sale_labels_data = array();
+			
+			foreach($data['sale_labels'] as $sale_label)
+			{
+				$sale_labels_data[] = array(
+					'sale_id'     => $sale_id,
+					'path'        => $sale_label['path'],
+					'tracking'    => $sale_label['tracking']
+				);
+			}
+					
+			$this->db->insert_batch('sale_label', $sale_labels_data); 
+		}
+			
 		//sale fee
 		$this->db->delete('sale_fee', array('sale_id' => $sale_id));
 		
@@ -297,13 +314,18 @@ class Sale_model extends CI_Model
 		
 		if($q->num_rows() > 0)
 		{
-			$sale_detail = '\n';
+			$sale_detail = '';
 			
 			$results = $q->result_array();
 			
-			foreach($results as $result) 
+			$count = count($results);
+			
+			foreach($results as $i => $result) 
 			{
-				$sale_detail .= $result['sku'] . ':  ' . $result['quantity'] . '\n';
+				$sale_detail .= $result['sku'] . ':  ' . $result['quantity'];
+				
+				if($i < ($count - 1))
+					$sale_detail .= ', ';
 			}
 			
 			return $sale_detail;
@@ -331,6 +353,22 @@ class Sale_model extends CI_Model
 		if($q->num_rows() > 0)
 		{
 			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_sale_labels($sale_id) 
+	{	
+		$this->db->select('*', false);
+		$this->db->from('sale_label');
+		$this->db->where('sale_id', $sale_id);
+
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
 		} 
 		
 		return false;
@@ -626,6 +664,11 @@ class Sale_model extends CI_Model
 		{			
 			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
 		}
+		
+		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 
+		{			
+			$this->db->where('sale.tracking !=', '');
+		}
 				
 		if(!empty($data['filter_name'])) 
 		{			
@@ -647,7 +690,7 @@ class Sale_model extends CI_Model
 			'sale.id',
 			'sale.store_sale_id',
 			'sale.tracking',
-			'sale.name',
+			'sale.status_id',
 			'sale.date_added'
 		);
 		
@@ -711,6 +754,11 @@ class Sale_model extends CI_Model
 		if(!empty($data['filter_tracking'])) 
 		{			
 			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
+		}
+		
+		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 
+		{			
+			$this->db->where('sale.tracking !=', '');
 		}
 			
 		if(!empty($data['filter_name'])) 
@@ -819,8 +867,35 @@ class Sale_model extends CI_Model
 		
 		$this->db->delete('sale', array('id' => $sale_id));
 		$this->db->delete('sale_product', array('sale_id' => $sale_id));
+		$this->db->delete('sale_label', array('sale_id' => $sale_id));
 		$this->db->delete('sale_fee', array('sale_id' => $sale_id));
 		$this->db->delete('sale_to_checkout', array('sale_id' => $sale_id));
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
+	}
+
+	function add_label($sale_id, $data) 
+	{
+		$this->db->trans_begin();
+		
+		$label_data = array(	
+			'sale_id'	=> $sale_id,
+			'tracking'	=> $data['tracking'],
+			'path'	    => $data['path']
+		);
+		
+		$this->db->insert('sale_label', $label_data);
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -842,27 +917,6 @@ class Sale_model extends CI_Model
 		
 		$this->db->where('id', $sale_id);
 		$this->db->update('sale', array('tracking' => $tracking)); 
-		
-		if($this->db->trans_status() === false) 
-		{
-			$this->db->trans_rollback();
-			
-			return false;
-		}
-		else
-		{
-			$this->db->trans_commit();
-			
-			return true;
-		}
-	}
-	
-	function update_label($sale_id, $label) 
-	{
-		$this->db->trans_begin();
-		
-		$this->db->where('id', $sale_id);
-		$this->db->update('sale', array('label' => $label)); 
 		
 		if($this->db->trans_status() === false) 
 		{

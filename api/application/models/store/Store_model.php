@@ -3,17 +3,13 @@
 
 class Store_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function add_store($data)
 	{
 		$this->db->trans_begin();
 		
 		//store data
-		$store_data = array(		
+		$store_data = array(	
+			'client_id'	     		         => $data['client_id'],		
 			'platform'	     		         => $data['platform'],
 			'name'	         		  		 => $data['name'],
 			'setting'	      		  		 => serialize($data['setting']),
@@ -25,17 +21,7 @@ class Store_model extends CI_Model
 		$this->db->insert('store', $store_data); 
 			
 		$store_id = $this->db->insert_id();	
-			
-		if($data['client_id'])
-		{
-			$store_data = array(		
-				'client_id'  => $data['client_id']
-			);
-			
-			$this->db->where('id', $store_id);
-			$this->db->update('store', $store_data); 
-		}
-			
+				
 		//store sync data
 		$store_sync_data = array(		
 			'store_id'	  => $store_id,
@@ -72,7 +58,8 @@ class Store_model extends CI_Model
 		$this->db->trans_begin();
 		
 		//store data
-		$store_data = array(		
+		$store_data = array(	
+			'client_id'	     		         => $data['client_id'],				
 			'platform'	              		 => $data['platform'],
 			'name'	                  		 => $data['name'],
 			'setting'	              		 => serialize($data['setting']),
@@ -83,16 +70,6 @@ class Store_model extends CI_Model
 		
 		$this->db->where('id', $store_id);
 		$this->db->update('store', $store_data); 
-		
-		if($data['client_id'])
-		{
-			$store_data = array(		
-				'client_id'  => $data['client_id']
-			);
-			
-			$this->db->where('id', $store_id);
-			$this->db->update('store', $store_data); 
-		}
 		
 		//store sync data
 		$store_sync_data = array(		
@@ -180,7 +157,7 @@ class Store_model extends CI_Model
 		return false;
 	}
 	
-	public function get_stores($data) 
+	public function get_stores($data = array()) 
 	{			
 		$this->db->select("store.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('store');
@@ -244,26 +221,9 @@ class Store_model extends CI_Model
 		}
 	}
 	
-	public function get_all_stores() 
-	{	
-		$this->db->select("store.*", false);
-		$this->db->from('store');
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		else 
-		{
-			return false;
-		}
-	}
-	
-	function get_store_total($data)
+	public function get_store_total($data = array())
 	{
-		$this->db->select("COUNT(store.id) AS total, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
+		$this->db->select('COUNT(store.id) AS total', false);
 		$this->db->from('store');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
 		
@@ -279,7 +239,7 @@ class Store_model extends CI_Model
 		
 		if(!empty($data['filter_client'])) 
 		{			
-			$this->db->like('client', $data['filter_client'], 'both');
+			$this->db->like("CONCAT(client.firstname, ' ', client.lastname)", $data['filter_client'], 'both');
 		}
 		
 		$q = $this->db->get();

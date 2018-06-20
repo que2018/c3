@@ -1,14 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class User_model extends CI_Model 
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
 	public function add_user($data)
 	{
+		$this->db->trans_begin();
+		
 		$salt = rand(0,1000);
 		
 		$user_data = array(	
@@ -23,11 +21,26 @@ class User_model extends CI_Model
 		);
 		
 		$this->db->insert('user', $user_data);
+		
+		$user_id = $this->db->insert_id();
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return $user_id;
+		}
 	}
 	
-	public function edit_user($id, $data)
+	public function edit_user($user_id, $data)
 	{
-		$salt = rand(0,1000);
+		$this->db->trans_begin();
 		
 		$user_data = array(	
 			'username'	      => $data['username'],
@@ -35,24 +48,45 @@ class User_model extends CI_Model
 			'firstname'	      => $data['firstname'],
 			'lastname'	      => $data['lastname'],
 			'email'	          => $data['email'],
-			'salt'	          => $salt,
-			'password'        => sha1($salt . sha1($salt . sha1($data['password']))),
 			'status'	      => $data['status']
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('user_id', $user_id);
 		
-		if($this->db->update('user', $user_data)) 
+		$this->db->update('user', $user_data);
+		
+		//update password
+		if($data['password'])
 		{
-			return true;
-		} 
+			$salt = rand(0, 1000);
+	
+			$user_data = array(
+				'salt'	    => $salt,
+				'password'  => sha1($salt . sha1($salt . sha1($data['password'])))
+			);
+			
+			$this->db->where('user_id', $user_id);
 		
-		return false;
+			$this->db->update('user', $user_data); 
+		}
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
 	}
 	
-	public function get_user($id)
+	public function get_user($user_id)
 	{
-		$q = $this->db->get_where('user', array('id' => $id), 1); 
+		$q = $this->db->get_where('user', array('user_id' => $user_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -90,8 +124,7 @@ class User_model extends CI_Model
 	{			
 		$this->db->select('user.*, user_group.name AS group_name', false);
 		$this->db->from('user');
-		$this->db->join('user_group', 'user_group.id = user.user_group_id', 'left');
-		$this->db->group_by('user.id');
+		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -144,11 +177,11 @@ class User_model extends CI_Model
 		}
 	}
 	
-	function get_user_total($data)
+	public function get_user_total($data)
 	{
-		$this->db->select("COUNT(user.id) AS total", false);
+		$this->db->select("COUNT(user.user_id) AS total", false);
 		$this->db->from('user');
-		$this->db->join('user_group', 'user_group.id = user.user_group_id', 'left');
+		$this->db->join('user_group', 'user_group.user_group_id = user.user_group_id', 'left');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -167,9 +200,9 @@ class User_model extends CI_Model
 		return $result['total'];
 	}
 	
-	public function delete_user($id) 
+	public function delete_user($user_id) 
 	{
-		if($this->db->delete('user', array('id' => $id))) 
+		if($this->db->delete('user', array('user_id' => $user_id))) 
 		{
 			return true;
 		}

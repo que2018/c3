@@ -1,12 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Shipping_model extends CI_Model
-{
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
+
+class Fee_model extends CI_Model
+{	
 	public function get_shipping_providers() 
 	{
 		$query = $this->db->get_where('extension', array('type' => 'shipping'));

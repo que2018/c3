@@ -2,13 +2,8 @@
 
 
 class Fee_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	function add_fee($data)
+{		
+	public function add_fee($data)
 	{
 		$fee_data = array(					
 			'name'		  => $data['name'],
@@ -18,6 +13,8 @@ class Fee_model extends CI_Model
 		$this->db->trans_begin();
 		
 		$this->db->insert('fee', $fee_data); 
+		
+		$fee_id = $this->db->insert_id();
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -29,11 +26,11 @@ class Fee_model extends CI_Model
 		{
 			$this->db->trans_commit();
 
-			return true;
+			return $fee_id;
 		}
 	}	
 	
-	function edit_fee($id, $data)
+	public function edit_fee($fee_id, $data)
 	{
 		$this->db->trans_begin();
 				
@@ -42,7 +39,7 @@ class Fee_model extends CI_Model
 		    'amount'      => $data['amount']
 		);
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $fee_id);
 		$this->db->update('fee', $fee_data);
 		
 		if($this->db->trans_status() === false) 
@@ -59,9 +56,9 @@ class Fee_model extends CI_Model
 		}
 	}		
 		
-	public function get_fee($id) 
+	public function get_fee($fee_id) 
 	{	
-		$q = $this->db->get_where('fee', array('id' => $id), 1); 
+		$q = $this->db->get_where('fee', array('id' => $fee_id), 1); 
 		
 		if($q->num_rows() > 0)
 		{
@@ -70,30 +67,10 @@ class Fee_model extends CI_Model
 		
 		return false;
 	}
-		
-	function delete_fee($id)
-	{
-		$this->db->trans_begin();
-		
-		$this->db->delete('fee', array('id' => $id));
-		
-		if($this->db->trans_status() === false) 
-		{
-			$this->db->trans_rollback();
 			
-			return false;
-		}
-		else
-		{
-			$this->db->trans_commit();
-
-			return true;
-		}
-	}	
-		
-	public function get_fees($data) 
+	public function get_fees($data = array()) 
 	{			
-		$this->db->select("*", false);
+		$this->db->select('*', false);
 		$this->db->from('fee');
 		
 		if(!empty($data['filter_name'])) 
@@ -149,7 +126,7 @@ class Fee_model extends CI_Model
 		}
 	}
 	
-	function get_fee_total($data)
+	public function get_fee_total($data = array())
 	{
 		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('fee');
@@ -170,4 +147,24 @@ class Fee_model extends CI_Model
 		
 		return $result['total'];
 	}
+	
+	public function delete_fee($fee_id)
+	{
+		$this->db->trans_begin();
+		
+		$this->db->delete('fee', array('id' => $fee_id));
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+			return true;
+		}
+	}	
 }

@@ -3,11 +3,6 @@
 
 class Customer_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function add_customer($data)
 	{
 		$this->db->trans_begin();
@@ -142,7 +137,7 @@ class Customer_model extends CI_Model
 		return false;
 	}	
 	
-	public function get_customers($data) 
+	public function get_customers($data = array()) 
 	{			
 		$this->db->select("customer.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->join('client', 'client.id = customer.client_id', 'left');
@@ -217,7 +212,7 @@ class Customer_model extends CI_Model
 		}
 	}
 	
-	function get_customer_total($data)
+	public function get_customer_total($data = array())
 	{
 		$this->db->select("COUNT(customer.id) AS total, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->join('client', 'client.id = customer.client_id', 'left');
@@ -254,19 +249,7 @@ class Customer_model extends CI_Model
 		
 		return $result['total'];
 	}
-	
-	public function get_all_customers() 
-	{
-		$q = $this->db->get('customer');
 		
-		if($q->num_rows() > 0) 
-		{
-			return $q->result_array();
-		}
-		
-		return false;
-	}
-	
 	public function find_customer_by_name($name) 
 	{
 		$this->db->select('*', false);

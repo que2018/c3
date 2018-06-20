@@ -8,10 +8,7 @@ class Ups_model extends CI_Model
 		parent::__construct();
 	}	
 		
-	public function install()
-	{
-		
-	}
+	public function install(){}
 	
 	public function uninstall() 
 	{
@@ -99,7 +96,7 @@ class Ups_model extends CI_Model
 			if(isset($response['pkgs']) && is_array($response['pkgs']) && count($response['pkgs']) > 0) 
 			{
 				$tracking = $response['pkgs'][0]['pkg_trk_num'];
-				$label_img = 'img/shipping_label/ups_' . $tracking . '.gif';
+				$label_img = 'img/shipping_label/ups_' . $tracking . '.' . $this->config->item('ups_image_type');
 				
 				if(@file_put_contents($label_img, base64_decode($response['pkgs'][0]['label_img'])))
 				{	
@@ -214,7 +211,7 @@ class Ups_model extends CI_Model
 			if(isset($response['pkgs']) && is_array($response['pkgs']) && count($response['pkgs']) > 0) 
 			{
 				$tracking = $response['pkgs'][0]['pkg_trk_num'];
-				$label_img = 'img/shipping_label/ups_' . $tracking . '.gif';
+				$label_img = 'img/shipping_label/ups_' . $tracking . '.' . $this->config->item('ups_image_type');
 				
 				if(@file_put_contents($label_img, base64_decode($response['pkgs'][0]['label_img'])))
 				{	

@@ -2,12 +2,7 @@
 
 
 class Client_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
+{		
 	public function add_client($data)
 	{
 		$this->db->trans_begin();
@@ -87,7 +82,7 @@ class Client_model extends CI_Model
 		
 		if($data['password'])
 		{
-			$salt = rand(0,1000);
+			$salt = rand(0, 1000);
 	
 			$client_data = array(
 				'salt'	    => $salt,
@@ -281,9 +276,9 @@ class Client_model extends CI_Model
 		}
 	}
 	
-	function get_client_total($data)
+	public function get_client_total($data = array())
 	{
-		$this->db->select("COUNT(id) AS total, CONCAT(firstname, ' ', lastname) AS name", false);
+		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('client');
 		
 		if(!empty($data['filter_name'])) 
@@ -311,20 +306,5 @@ class Client_model extends CI_Model
 		$result = $q->row_array();
 		
 		return $result['total'];
-	}
-	
-	public function get_all_clients() 
-	{
-		$this->db->select("*, CONCAT(firstname, ' ', lastname) AS name", false);
-		$this->db->from('client');
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0) 
-		{
-			return $q->result_array();
-		}
-		
-		return false;
 	}
 }

@@ -2,16 +2,13 @@
 
 
 class Transaction_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	function add_transaction($data)
+{		
+	public function add_transaction($data)
 	{
 		$transaction_data = array(					
 			'client_id'		  => $data['client_id'],
+			'cost'   		  => $data['cost'],
+			'markup'   		  => $data['markup'],
 		    'amount'   		  => $data['amount'],
 		    'comment'         => $data['comment'],
 			'date_added'   	  => date('Y-m-d H:i:s'),
@@ -23,6 +20,17 @@ class Transaction_model extends CI_Model
 		$this->db->insert('transaction', $transaction_data); 
 		
 		$transaction_id = $this->db->insert_id();
+		
+		if(isset($data['type']) && isset($data['type_id']))
+		{
+			$transaction_data = array(		
+				'type'     => $data['type'],
+				'type_id'  => $data['type_id']
+			);
+			
+			$this->db->where('id', $transaction_id);
+			$this->db->update('transaction', $transaction_data);
+		}
 		
 		$this->db->where('client_id', $data['client_id']);
 		$this->db->set('amount', 'amount-'.$data['amount'], false);
@@ -42,15 +50,11 @@ class Transaction_model extends CI_Model
 		}
 	}
 
-	function edit_transaction($id, $data)
+	public function edit_transaction($transaction_id, $data)
 	{
 		$this->db->trans_begin();
 		
-		$this->db->select("*", false);
-		$this->db->from('transaction');
-		$this->db->where('id', $id);
-
-		$q = $this->db->get();
+		$q = $this->db->get_where('transaction', array('id' => $transaction_id));
 		
 		$row = $q->row_array();
 		
@@ -62,15 +66,34 @@ class Transaction_model extends CI_Model
 		$this->db->set('amount', 'amount-'.$data['amount'], false);
 		$this->db->update('balance');
 		
-		$transaction_data = array(					
-		    'amount'   		  => $data['amount'],
-			'comment'         => $data['comment'],
-			'date_modified'   => date('Y-m-d H:i:s')		
-		);
+		if(isset($data['type']) && isset($data['type_id']))
+		{	
+			$transaction_data = array(		
+				'type'          => $data['type'],
+				'type_id'       => $data['type_id'],
+				'cost'          => $data['cost'],
+				'markup'        => $data['markup'],		
+				'amount'   		=> $data['amount'],
+				'comment'       => $data['comment'],
+				'date_modified' => date('Y-m-d H:i:s')		
+			);	
+		}
+		else
+		{
+			$transaction_data = array(		
+				'type'          => null,
+				'type_id'       => null,
+				'cost'          => $data['cost'],
+				'markup'        => $data['markup'],		
+				'amount'   		=> $data['amount'],
+				'comment'       => $data['comment'],
+				'date_modified' => date('Y-m-d H:i:s')		
+			);	
+		}
 		
-		$this->db->where('id', $id);
+		$this->db->where('id', $transaction_id);
 		$this->db->update('transaction', $transaction_data);
-		
+	
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -85,14 +108,10 @@ class Transaction_model extends CI_Model
 		}
 	}
 	
-	public function get_transaction($id) 
-	{	
-		$this->db->select("transaction.*", false);
-		$this->db->from('transaction');
-		$this->db->where('transaction.id', $id);
+	public function get_transaction($transaction_id) 
+	{			
+		$q = $this->db->get_where('transaction', array('id' => $transaction_id));
 
-		$q = $this->db->get();
-		
 		if($q->num_rows() > 0)
 		{
 			return $q->row_array();
@@ -115,6 +134,16 @@ class Transaction_model extends CI_Model
 		if(!empty($data['filter_client_id'])) 
 		{			
 			$this->db->where('transaction.client_id', $data['filter_client_id']);
+		}
+		
+		if(!empty($data['filter_cost'])) 
+		{			
+			$this->db->where('transaction.cost', $data['filter_cost']);
+		}
+		
+		if(!empty($data['filter_markup'])) 
+		{			
+			$this->db->where('transaction.markup', $data['filter_markup']);
 		}
 		
 		if(!empty($data['filter_amount'])) 
@@ -145,6 +174,8 @@ class Transaction_model extends CI_Model
 		$sort_data = array(
 			'name',
 			'transaction.id',
+			'transaction.cost',
+			'transaction.markup',
 			'transaction.amount',
 			'transaction.comment',
 			'transaction.date_added'
@@ -201,7 +232,7 @@ class Transaction_model extends CI_Model
 		}
 	}
 	
-	function get_transaction_total($data)
+	public function get_transaction_total($data)
 	{
 		$this->db->select("COUNT(transaction.id) AS total", false);
 		$this->db->from('transaction');
@@ -215,6 +246,16 @@ class Transaction_model extends CI_Model
 		if(!empty($data['filter_client_id'])) 
 		{			
 			$this->db->where('transaction.client_id', $data['filter_client_id']);
+		}
+		
+		if(!empty($data['filter_cost'])) 
+		{			
+			$this->db->where('transaction.cost', $data['filter_cost']);
+		}
+		
+		if(!empty($data['filter_markup'])) 
+		{			
+			$this->db->where('transaction.markup', $data['filter_markup']);
 		}
 		
 		if(!empty($data['filter_amount'])) 
@@ -249,7 +290,7 @@ class Transaction_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function delete_transaction($transaction_id)
+	public function delete_transaction($transaction_id)
 	{
 		$this->db->trans_begin();
 		
@@ -281,19 +322,22 @@ class Transaction_model extends CI_Model
 		}
 	}	
 	
-	function delete_transaction_by_type($type, $type_id)
+	public function delete_transaction_by_type($type, $type_id)
 	{
 		$this->db->trans_begin();
 		
 		$q = $this->db->get_where('transaction', array('type' => $type, 'type_id' => $type_id));		
 		
-		$row = $q->row_array();
-				
-		$this->db->where('client_id', $row['client_id']);
-		$this->db->set('amount', 'amount+' . $row['amount'], false);
-		$this->db->update('balance');
-		
-		$this->db->delete('transaction', array('type' => $type, 'type_id' => $type_id));
+		if($q->num_rows() > 0)
+		{
+			$row = $q->row_array();
+					
+			$this->db->where('client_id', $row['client_id']);
+			$this->db->set('amount', 'amount+' . $row['amount'], false);
+			$this->db->update('balance');
+			
+			$this->db->delete('transaction', array('type' => $type, 'type_id' => $type_id));
+		}
 		
 		if($this->db->trans_status() === false) 
 		{

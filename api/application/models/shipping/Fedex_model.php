@@ -8,10 +8,7 @@ class Fedex_model extends CI_Model
 		parent::__construct();
 	}	
 		
-	public function install()
-	{
-		
-	}
+	public function install(){}
 	
 	public function uninstall() 
 	{
@@ -55,7 +52,7 @@ class Fedex_model extends CI_Model
 						
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);			
-		$sale_products = $this->sale_model->get_sale_products($sale_id);
+		$sale_detail = $this->sale_model->get_sale_detail($sale_id);
 		
 		$length_class = $this->length_class_model->get_length_class($sale['length_class_id']);
 
@@ -84,7 +81,10 @@ class Fedex_model extends CI_Model
 		$config->setDefault('fedex', 'key', $this->config->item('fedex_key'));
 		$config->setDefault('fedex', 'password', $this->config->item('fedex_password'));
 
-		$config->setDefault('fedex', 'toCountryCode', $this->config->item('fedex_country'));
+		$config->setDefault('fedex', 'referenceCode', "CUSTOMER_REFERENCE");	
+		$config->setDefault('fedex', 'referenceValue', $sale_detail);	
+		
+		$config->setDefault('fedex', 'toCountryCode', $this->config->item('fedex_country'));	
 		$config->setDefault('fedex', 'service', $sale_shipping_service['method']);
 		$config->setDefault('fedex', 'packagingType', $sale_shipping_service['package']);
 		$config->setDefault('fedex', 'imageType', $this->config->item('fedex_image_type'));
@@ -92,6 +92,9 @@ class Fedex_model extends CI_Model
 		$config->setDefault('fedex', 'weightUnit', strtoupper($weight_class['unit']));
 
 		$shipment = new \RocketShipIt\Shipment('fedex', array('config' => $config));
+		
+		$state = $this->get_state_short($sale['state']);
+		$zipcode = $this->get_clean_zipcode($sale['zipcode']);		
 		
 		$shipment->setParameter('length', (int)$sale['length']);
 		$shipment->setParameter('width', (int)$sale['width']);
@@ -102,11 +105,12 @@ class Fedex_model extends CI_Model
 		$shipment->setParameter('toPhone', $sale['phone']);
 		$shipment->setParameter('toAddr1', $sale['street']);
 		$shipment->setParameter('toCity', $sale['city']);
-		$shipment->setParameter('toState',$sale['state']);
-		$shipment->setParameter('toCode', $sale['zipcode']);
+		$shipment->setParameter('toState',$state);
+		$shipment->setParameter('toCode', $zipcode);
+		$shipment->setParameter('RateType', 'PAYOR_ACCOUNT_PACKAGE');
 		
 		$response = $shipment->submitShipment();
-					
+							
 		if(isset($response['Fault'])) 
 		{
 			$result['error'] = $response['Fault']['detail']['desc'];	
@@ -120,15 +124,20 @@ class Fedex_model extends CI_Model
 			if(isset($response['pkgs']) && is_array($response['pkgs']) && count($response['pkgs']) > 0) 
 			{
 				$tracking = $response['pkgs'][0]['pkg_trk_num'];
-				$label_img = 'img/shipping_label/fedex_' . $tracking . '.gif';
+				$label_img = 'img/shipping_label/fedex_' . $tracking . '.' . $this->config->item('fedex_image_type');
 				
 				if(@file_put_contents($label_img, base64_decode($response['pkgs'][0]['label_img'])))
-				{									
-					$result['tracking']    = $tracking;
-					$result['amount']      = (isset($response['charges']))?$response['charges']:0;
-					$result['label_img']   = $label_img;
-					
-					$this->sale_model->update_label($sale_id, $label_img);
+				{					
+					if(isset($response['negotiated_charges'])) 
+						$amount = $response['negotiated_charges'];
+					else 
+						$amount = $response['charges'];
+			
+					$result = array(
+						'tracking'   => $tracking,
+						'label_img'  => $label_img,
+						'amount'     => $amount
+					);
 				}
 				else
 				{
@@ -193,6 +202,9 @@ class Fedex_model extends CI_Model
 
 		$shipment = new \RocketShipIt\Shipment('fedex', array('config' => $config));
 		
+		$state = $this->get_state_short($sale['state']);
+		$zipcode = $this->get_clean_zipcode($sale['zipcode']);		
+		
 		$shipment->setParameter('length', (int)$checkout['length']);
 		$shipment->setParameter('width', (int)$checkout['width']);
 		$shipment->setParameter('height', (int)$checkout['height']);
@@ -202,8 +214,9 @@ class Fedex_model extends CI_Model
 		$shipment->setParameter('toPhone', $sale['phone']);
 		$shipment->setParameter('toAddr1', $sale['street']);
 		$shipment->setParameter('toCity', $sale['city']);
-		$shipment->setParameter('toState',$sale['state']);
-		$shipment->setParameter('toCode', $sale['zipcode']);
+		$shipment->setParameter('toState',$state);
+		$shipment->setParameter('toCode', $zipcode);
+		$shipment->setParameter('negotiatedRates', true);
 		
 		$response = $shipment->submitShipment();
 					
@@ -220,13 +233,18 @@ class Fedex_model extends CI_Model
 			if(isset($response['pkgs']) && is_array($response['pkgs']) && count($response['pkgs']) > 0) 
 			{
 				$tracking = $response['pkgs'][0]['pkg_trk_num'];
-				$label_img = 'img/shipping_label/fedex_' . $tracking . '.gif';
+				$label_img = 'img\shipping_label\fedex_' . $tracking . '.' . $this->config->item('fedex_image_type');
 				
 				if(@file_put_contents($label_img, base64_decode($response['pkgs'][0]['label_img'])))
-				{									
+				{	
+					if(isset($response['negotiated_charges'])) 
+						$amount = $response['negotiated_charges'];
+					else 
+						$amount = $response['charges'];
+			
 					$result = array(
 						'tracking'   => $tracking,
-						'amount'     => (isset($response['charges']))?$response['charges']:0,
+						'amount'     => $amount,
 						'label_img'  => $label_img
 					);
 				}
@@ -242,5 +260,32 @@ class Fedex_model extends CI_Model
 		}
 		
 		return $result;
+	}
+	
+	protected function get_state_short($state)
+	{	
+		$state_short = $state;
+	
+		$states_mappping = $this->config->item('ups_state_mapping');
+		
+		if($states_mappping)
+		{			
+			foreach($states_mappping as $state_mappping)
+			{
+				if($state_mappping['state_long'] == strtolower($state))
+				{
+					$state_short = $state_mappping['state_short'];
+					
+					break;
+				}
+			}
+		}
+		
+		return $state_short;	
+	}
+	
+	protected function get_clean_zipcode($zipcode)
+	{	
+		return substr($zipcode, 0, 5);	
 	}
 }
