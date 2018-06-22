@@ -96,6 +96,21 @@
 				</div>
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_debug_mode'); ?></label>
+				  <div class="col-sm-10">
+				    <select name="usps_debug_mode" class="form-control">
+					  <?php if($usps_debug_mode) { ?>
+					    <option value="1" selected><?php echo $this->lang->line('text_enabled'); ?></option>
+						<option value="0"><?php echo $this->lang->line('text_disabled'); ?></option>
+					  <?php } else { ?>
+					    <option value="1"><?php echo $this->lang->line('text_enabled'); ?></option>
+						<option value="0" selected><?php echo $this->lang->line('text_disabled'); ?></option>
+					  <?php } ?>
+					</select>
+				  </div>
+                </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
 				  <div class="col-sm-10">
 				    <select name="usps_status" class="form-control">

@@ -1,17 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Usps_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
-	public function install() 
-	{
-		
-	}
+{		
+	public function install(){}
 	
 	public function uninstall() 
 	{
@@ -180,8 +171,6 @@ class Usps_model extends CI_Model
 							$result['amount']    = $response->Rate->Amount;
 							$result['label_img'] = $label_img;	
 							$result['tracking']  = $response->TrackingNumber;	
-
-							$this->sale_model->update_label($sale_id, $label_img);
 						}
 						else
 						{

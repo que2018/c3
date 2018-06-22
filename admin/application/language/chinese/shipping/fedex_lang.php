@@ -51,8 +51,10 @@ $lang['tab_state_mapping'] 	  	         	= 'State Mapping';
 $lang['tab_fee'] 	  	                 	= 'Fee';
 
 // Column
-$lang['column_name'] 	  	             	= 'Name';
-$lang['column_code'] 	  	             	= 'Code';
+$lang['column_name'] 	  	                = 'Name';
+$lang['column_code'] 	  	                = 'Code';
+$lang['column_client'] 	  	                = 'Client';
+$lang['column_fee'] 	  	                = 'Fee';
 $lang['column_method'] 	  	             	= 'Method';
 $lang['column_package'] 	  	         	= 'Package';
 $lang['column_state_long'] 	  	         	= 'State Long';

@@ -36,6 +36,7 @@ class Usps extends MX_Controller
 				'usps_state'     			 => $this->input->post('usps_state'),
 				'usps_country'     			 => $this->input->post('usps_country'),
 				'usps_postcode'     		 => $this->input->post('usps_postcode'),
+				'usps_debug_mode'     	     => $this->input->post('usps_debug_mode'),
 				'usps_status'     			 => $this->input->post('usps_status'),
 				'usps_sort_order'            => $this->input->post('usps_sort_order'),
 				'usps_stamps_username'       => $this->input->post('usps_stamps_username'),
@@ -172,6 +173,15 @@ class Usps extends MX_Controller
 			$data['usps_postcode'] = $this->config->item('usps_postcode');
 		}
 		
+		if($this->input->post('usps_debug_mode')) 
+		{
+			$data['usps_debug_mode'] = $this->input->post('usps_debug_mode');
+		} 
+		else 
+		{
+			$data['usps_debug_mode'] = $this->config->item('usps_debug_mode');
+		}
+		
 		if($this->input->post('usps_status')) 
 		{
 			$data['usps_status'] = $this->input->post('usps_status');
@@ -189,7 +199,6 @@ class Usps extends MX_Controller
 		{
 			$data['usps_sort_order'] = $this->config->item('usps_sort_order');
 		}
-		
 		
 		if($this->input->post('usps_stamps_username')) 
 		{
@@ -317,7 +326,8 @@ class Usps extends MX_Controller
 		$this->form_validation->set_rules('usps_city', $this->lang->line('text_usps_city'), 'required');
 		$this->form_validation->set_rules('usps_state', $this->lang->line('text_usps_state'), 'required');
 		$this->form_validation->set_rules('usps_country', $this->lang->line('text_usps_country'), 'required');
-		$this->form_validation->set_rules('usps_postcode', $this->lang->line('text_usps_postcode'), 'required');		
+		$this->form_validation->set_rules('usps_postcode', $this->lang->line('text_usps_postcode'), 'required');	
+		$this->form_validation->set_rules('usps_debug_mode', $this->lang->line('text_usps_debug_mode'), 'required');
 		$this->form_validation->set_rules('usps_status', $this->lang->line('text_usps_status'), 'required');
 		$this->form_validation->set_rules('usps_sort_order', $this->lang->line('text_usps_sort_order'), 'required');
 		$this->form_validation->set_rules('usps_stamps_username', $this->lang->line('text_usps_stamps_username'), 'required');

@@ -1,18 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Label extends CI_Controller {
-
-	function __construct()
+class Label extends CI_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
-	}
-	
-	public function index()
-	{
+		
 		$data['sale_id'] = $this->input->get('sale_id');
 		
 		$this->load->view('sale/sale_label', $data);
@@ -20,6 +15,8 @@ class Label extends CI_Controller {
 	
 	public function check()
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->model('sale/sale_model');
 		$this->load->model('inventory/inventory_model');
 		
@@ -56,12 +53,14 @@ class Label extends CI_Controller {
 			'success'  => true
 		);
 		
-		echo json_encode($outdata);
-		die();				
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));		
 	}
 	
 	public function execute()
 	{
+		$this->lang->load('sale/sale');
+		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('finance/transaction_model');
@@ -154,6 +153,8 @@ class Label extends CI_Controller {
 		$this->load->library('pdf');
 		$this->load->library('file');
 		$this->load->library('printnode');
+		
+		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
@@ -262,13 +263,13 @@ class Label extends CI_Controller {
 				);
 			}
 			
-			echo json_encode($outdata);
-			die();	
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
 	private function get_client_fee_value($client_id, $shipping_provider)
-	{		
+	{
 		$client_fee_value = $this->config->item($shipping_provider . '_fee_value');
 		
 		$client_fees = $this->config->item($shipping_provider . '_client_fee');

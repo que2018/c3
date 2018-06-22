@@ -18,6 +18,7 @@ $lang['text_usps_city'] 	  	         = 'city';
 $lang['text_usps_state'] 	  	         = 'state';
 $lang['text_usps_country'] 	  	         = 'country';
 $lang['text_usps_postcode'] 	  	     = 'postcode';
+$lang['text_usps_debug_mode'] 	  	     = 'debug mode';
 $lang['text_usps_status'] 	  	         = 'state';
 $lang['text_usps_sort_order'] 	  	     = 'sort order';
 $lang['text_usps_stamps_username'] 	  	 = 'stamps username';
@@ -33,6 +34,8 @@ $lang['text_fee_value'] 	  			 = 'fee value';
 // Column
 $lang['column_name'] 	  	             = 'Name';
 $lang['column_code'] 	  	             = 'Code';
+$lang['column_client'] 	  	             = 'Client';
+$lang['column_fee'] 	  	             = 'Fee';
 $lang['column_method'] 	  	             = 'Method';
 $lang['column_package'] 	  	         = 'Package';
 $lang['column_state_long'] 	  	         = 'State Long';
@@ -66,6 +69,7 @@ $lang['entry_integration_id'] 	  	     = 'Integration ID';
 $lang['entry_wsdl_file'] 	  	         = 'WSDL File';
 $lang['entry_fee_type'] 	  	         = 'Fee Type';
 $lang['entry_fee_value'] 	  	         = 'Fee Value';
+$lang['entry_debug_mode'] 	  	         = 'Debug Mode';
 
 // Error
 $lang['error_save_image_failed'] 	  	 = 'Error: save iamge failed';
