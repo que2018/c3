@@ -1,21 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ups extends CI_Controller {
-
-	function __construct()
+class Ups extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('shipping/ups');
 		
+		$this->load->model('client/client_model');
 		$this->load->model('setting/setting_model');
 		
 		$this->load->library('form_validation');
-	}
-	
-	public function index()
-	{
-		$this->load->model('client/client_model');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->header->add_style(base_url(). 'assets/css/app/shipping/ups.css');
+				
+		$this->header->set_title($this->lang->line('text_ups'));
 		
 		if(($this->input->server('REQUEST_METHOD') == 'POST') && $this->validate())
 		{
@@ -53,7 +56,7 @@ class Ups extends CI_Controller {
 			
 			$this->setting_model->edit_setting('ups', $data);
 			
-			$this->session->set_flashdata('success', $this->lang->line("textedit_success"));
+			$this->session->set_flashdata('success', $this->lang->line('text_edit_success'));
 			
 			redirect(base_url() . 'extension/shipping', 'refresh');
 		}
@@ -401,9 +404,10 @@ class Ups extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('shipping/ups', $data);
-		$this->load->view('common/footer');
 	}
 	
 	protected function validate() 

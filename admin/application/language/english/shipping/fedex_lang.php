@@ -43,6 +43,7 @@ $lang['text_png'] 	  	 				 	= 'png';
 $lang['text_fixed'] 	  			     	= 'fixed';
 $lang['text_ratio'] 	  			     	= 'ratio';
 $lang['text_fee_value'] 	  				= 'fee value';
+$lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Fedex edit success';
 
 // Tab
 $lang['tab_service'] 	  	             	= 'Service';

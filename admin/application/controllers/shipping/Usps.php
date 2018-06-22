@@ -1,21 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usps extends CI_Controller {
-
-	function __construct()
+class Usps extends MX_Controller 
+{	
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('shipping/usps');
 		
+		$this->load->model('client/client_model');
 		$this->load->model('setting/setting_model');
 		
 		$this->load->library('form_validation');
-	}
-	
-	public function index()
-	{
-		$this->load->model('client/client_model');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->header->add_style(base_url(). 'assets/css/app/shipping/usps.css');
+				
+		$this->header->set_title($this->lang->line('text_usps'));
 		
 		if(($this->input->server('REQUEST_METHOD') == 'POST') && $this->validate())
 		{
@@ -294,9 +297,10 @@ class Usps extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('shipping/usps', $data);
-		$this->load->view('common/footer');
 	}
 	
 	protected function validate() 

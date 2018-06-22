@@ -35,7 +35,7 @@ $lang['text_fixed'] 	  			     	= 'fixed';
 $lang['text_ratio'] 	  			     	= 'ratio';
 $lang['text_fee_value'] 	  				= 'fee value';
 $lang['text_save_setting'] 	  				= 'save setting';
-$lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;edit postpony success';
+$lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Postpony edit success';
 
 // Tab
 $lang['tab_service'] 	  	             	= 'Service';

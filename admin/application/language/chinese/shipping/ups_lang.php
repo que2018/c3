@@ -57,6 +57,7 @@ $lang['text_jpg'] 	  					 = 'jpg';
 $lang['text_fixed'] 	  			     = 'fixed';
 $lang['text_ratio'] 	  			     = 'ratio';
 $lang['text_fee_value'] 	  			 = 'fee value';
+$lang['text_edit_success'] 	  		     = '<i class="fa fa-check-circle-o"></i>&nbsp;UPS edit success';
 
 // Tab
 $lang['tab_service'] 	  	             = 'Service';

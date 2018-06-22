@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/shipping/ups.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_ups'); ?></h2>
@@ -446,6 +446,6 @@ $(document).ready(function() {
 	})
 });
 </script>
-
+<?php echo $footer; ?>
 		
 		

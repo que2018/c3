@@ -254,7 +254,7 @@ class Customer_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('customer');
-		$this->db->like('name', $name, 'left');
+		$this->db->like('name', $name, 'after');
 		
 		$q = $this->db->get();
 		

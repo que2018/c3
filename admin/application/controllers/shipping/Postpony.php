@@ -1,15 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Postpony extends CI_Controller {
-
+class Postpony extends MX_Controller 
+{
 	public function index()
 	{
-		$this->load->library('form_validation');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('shipping/postpony');
 		
 		$this->load->model('client/client_model');
 		$this->load->model('setting/setting_model');
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
+		
+		$this->header->add_style(base_url(). 'assets/css/app/shipping/postpony.css');
+				
+		$this->header->set_title($this->lang->line('text_postpony'));
 		
 		$this->form_validation->set_rules('postpony_key', $this->lang->line('text_key'), 'required');
 		$this->form_validation->set_rules('postpony_pwd', $this->lang->line('text_pwd'), 'required');
@@ -162,9 +171,10 @@ class Postpony extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('shipping/postpony', $data);
-		$this->load->view('common/footer');
 	}
 }
 

@@ -194,8 +194,8 @@ class Checkout_sale extends MX_Controller
 			);
 		}
 
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
 	public function add_checkout()
@@ -205,6 +205,8 @@ class Checkout_sale extends MX_Controller
 		$this->load->model('sale/sale_model');
 		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->form_validation->set_rules('sale_id', $this->lang->line('text_sale_id'), 'callback_validate_sale');
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
@@ -259,8 +261,8 @@ class Checkout_sale extends MX_Controller
 			);
 		}
 	
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
 	public function add_checkout_ajax()
@@ -334,12 +336,12 @@ class Checkout_sale extends MX_Controller
 				);
 			}
 			
-			echo json_encode($outdata);
-			die();
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
-	function validate_sale($sale_id)
+	public function validate_sale($sale_id)
 	{
 		$this->lang->load('check/checkout');
 		
@@ -374,7 +376,7 @@ class Checkout_sale extends MX_Controller
 		}
 	}
 	
-	function validate_tracking($tracking)
+	public function validate_tracking($tracking)
 	{	
 		$this->lang->load('check/checkout');
 	
@@ -401,7 +403,7 @@ class Checkout_sale extends MX_Controller
 		}
 	}
 
-	function validate_checkout_product($checkout_products)
+	public function validate_checkout_product($checkout_products)
 	{
 		$this->lang->load('check/checkout');
 	

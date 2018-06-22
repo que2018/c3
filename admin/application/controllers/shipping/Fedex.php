@@ -1,22 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Fedex extends CI_Controller {
-
-	function __construct()
+class Fedex extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
+		$this->load->module('header');
+		$this->load->module('footer');
 		
 		$this->lang->load('shipping/fedex');
 		
+		$this->load->model('client/client_model');
 		$this->load->model('setting/setting_model');
 		
 		$this->load->library('form_validation');
-	}
-	
-	public function index()
-	{
-		$this->load->model('client/client_model');
 		
+		$this->form_validation->CI =& $this;
+		
+		$this->header->add_style(base_url(). 'assets/css/app/shipping/fedex.css');
+				
+		$this->header->set_title($this->lang->line('text_fedex'));
+
 		if(($this->input->server('REQUEST_METHOD') == 'POST') && $this->validate())
 		{
 			$data = array(				
@@ -50,7 +53,7 @@ class Fedex extends CI_Controller {
 			
 			$this->setting_model->edit_setting('fedex', $data);
 			
-			$this->session->set_flashdata('success', $this->lang->line("textedit_success"));
+			$this->session->set_flashdata('success', $this->lang->line('text_edit_success'));
 			
 			redirect(base_url() . 'extension/shipping', 'refresh');
 		}
@@ -345,9 +348,10 @@ class Fedex extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('shipping/fedex', $data);
-		$this->load->view('common/footer');
 	}
 	
 	protected function validate() 

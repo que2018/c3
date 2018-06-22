@@ -460,7 +460,8 @@ class Customer extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -512,8 +513,8 @@ class Customer extends MX_Controller
 			}
 		}
 		
-		echo json_encode($outdata);
-		die();
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 
