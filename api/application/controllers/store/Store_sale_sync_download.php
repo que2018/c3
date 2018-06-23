@@ -1,27 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Store_sale_sync_download extends CI_Controller {
-
-	function __construct()
+class Store_sale_sync_download extends CI_Controller 
+{
+	public function download($store_id)
 	{
-		parent::__construct();
-		
 		$this->lang->load('store/store_sale_sync');
 		
-		$this->load->model('store/store_sale_sync_model');
-	}
-
-	function download($store_id)
-	{
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('store/store_sync_history_model');
-		
+		$this->load->model('store/store_sale_sync_model');
+
 		$store = $this->store_model->get_store($store_id);	
 		
 		$code = $store['platform'];
-		
+				
 		$this->load->model('platform/'. $code .'_model');
 
 		$result = $this->{$code . '_model'}->download($store_id);
@@ -234,46 +227,54 @@ class Store_sale_sync_download extends CI_Controller {
 		return $outdata;
 	}
 	
-	function download_ajax()
+	public function download_ajax()
 	{
 		$store_id = $this->input->get('store_id');
 		
 		$outdata = $this->download($store_id);
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function download_auto()
-	{
+	public function download_auto()
+	{		
+		$this->load->model('store/store_sale_sync_model');
+		
 		$store = $this->store_sale_sync_model->get_active_download_store();
-				
-		$store_id = $store['store_id'];
+			
+		if($store)
+		{
+			$store_id = $store['store_id'];
 		
-		$this->download($store_id);
-				
-		//get all store ids
-		$stores = $this->store_sale_sync_model->get_all_download_stores();	
-		
-		$store_ids = array();
-
-		foreach($stores as $store)
-			$store_ids[] = $store['store_id'];
+			$this->download($store_id);
 					
-		//find next store
-		$max_index = sizeof($store_ids) - 1;
-		
-		$index = array_search($store_id, $store_ids);
-		
-		if($index == $max_index)
-		{
-			$next_store_id = $store_ids[0];
+			//get all store ids
+			$stores = $this->store_sale_sync_model->get_all_download_stores();	
+			
+			$store_ids = array();
+
+			foreach($stores as $store)
+			{
+				$store_ids[] = $store['store_id'];
+			}
+						
+			//find next store
+			$max_index = sizeof($store_ids) - 1;
+			
+			$index = array_search($store_id, $store_ids);
+			
+			if($index == $max_index)
+			{
+				$next_store_id = $store_ids[0];
+			}
+			else 
+			{
+				$next_store_id = $store_ids[$index + 1];
+			}
+			
+			$this->store_sale_sync_model->activate_next_download_store($next_store_id);	
 		}
-		else 
-		{
-			$next_store_id = $store_ids[$index + 1];
-		}
-		
-		$this->store_sale_sync_model->activate_next_download_store($next_store_id);	
 	}
 }
 

@@ -123,6 +123,7 @@ class Usps_model extends CI_Model
 					$selectedRate = $ratesResponse->Rates->Rate;
 						
 					$additions = array();
+					
 					foreach($selectedRate->AddOns->AddOnV5 as $addon) 
 					{
 						if((isset($addon->Amount)&&($addon->AddOnType == 'US-A-INS' || $addon->AddOnType == 'US-A-SC')) || ($addon->AddOnType == 'SC-A-HP'))
@@ -150,6 +151,10 @@ class Usps_model extends CI_Model
 					{
 						$selectedRate->InsuredValue = $order['insurance'];
 					}
+					
+					//$CustomsV2 = new stdClass();
+					
+					//$CustomsV2->
 					
 					$requestParams = array(
 						'Authenticator'		=> $authenicator,
