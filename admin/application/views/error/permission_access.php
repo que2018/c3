@@ -1,3 +1,4 @@
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_permission'); ?></h2>
@@ -17,6 +18,6 @@
 	</div>
 	</div>
 </div>
-
+<?php echo $footer; ?>
 		
 		

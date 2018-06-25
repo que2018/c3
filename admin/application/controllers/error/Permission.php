@@ -1,27 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Permission extends CI_Controller 
+class Permission extends MX_Controller 
 {
-	function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('error/permission');
-	}
-
 	public function index()
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('error/permission');
+	
 		$type = $this->input->get('type');
 				
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
 		
 		if($type == 'access')
-			$this->load->view('error/permission_access');
+		{
+			$this->load->view('error/permission_access', $data);
+		}
 		
 		if($type == 'modify')
-			$this->load->view('error/permission_modify');
-		
-		$this->load->view('common/footer');
+		{
+			$this->load->view('error/permission_modify', $data);
+		}		
 	}
 }
 
