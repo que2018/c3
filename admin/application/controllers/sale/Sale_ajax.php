@@ -1,19 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Sale_ajax extends CI_Controller {
-
-	function __construct()
+class Sale_ajax extends CI_Controller 
+{	
+	public function get_product()
 	{
-		parent::__construct();
-		
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
-	}
 		
-	function get_product()
-	{
 		//code empty
 		if(!$this->input->post('code'))
 		{
@@ -22,8 +16,8 @@ class Sale_ajax extends CI_Controller {
 				'msg'       => $this->lang->line('error_code_empty')
 			);
 			
-			echo json_encode($outdata);
-			die();
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 		
 		//can't find product
@@ -91,11 +85,15 @@ class Sale_ajax extends CI_Controller {
 			'products'  => $products
 		);
 			
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_sale_products_volume()
+	public function get_sale_products_volume()
 	{
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
 
@@ -122,11 +120,15 @@ class Sale_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_sale_products_weight()
+	public function get_sale_products_weight()
 	{
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/weight_class_model');
 
@@ -149,11 +151,15 @@ class Sale_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 
-	function checkout()
+	public function checkout()
 	{
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		
@@ -172,8 +178,6 @@ class Sale_ajax extends CI_Controller {
 		{
 			$sale_products = $this->input->post('sale_product');
 			
-			$sale_fees = $this->sale_model->get_sale_fees($sale_id);	
-			
 			$checkout_products = array();
 			
 			foreach($sale_products as $product_id => $location_id)
@@ -189,17 +193,6 @@ class Sale_ajax extends CI_Controller {
 		
 			//checkout fee
 			$checkout_fees = array();
-			
-			if($sale_fees)
-			{
-				foreach($sale_fees as $sale_fee)
-				{
-					$checkout_fees[] = array(
-						'name'    => $sale_fee['name'],
-						'amount'  => $sale_fee['amount']
-					);
-				}
-			}
 			
 			foreach($sale_products as $product_id)
 			{
@@ -244,7 +237,8 @@ class Sale_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

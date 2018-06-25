@@ -1,16 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Store_sale_sync_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}		
-	
 	public function get_stores($data) 
 	{			
-		$this->db->select("store.*", false);
+		$this->db->select('store.*', false);
 		$this->db->from('store');
 		$this->db->group_by('store.id');
 		
@@ -29,7 +23,8 @@ class Store_sale_sync_model extends CI_Model
 			'store.flatform'
 		);
 		
-		if(isset($data['start']) || isset($data['limit'])) {
+		if(isset($data['start']) || isset($data['limit'])) 
+		{
 			if ($data['start'] < 0) {
 				$data['start'] = 0;
 			}
@@ -65,9 +60,9 @@ class Store_sale_sync_model extends CI_Model
 		}
 	}
 	
-	function get_store_total($data)
+	public function get_store_total($data)
 	{
-		$this->db->select("COUNT(id) AS total", false);
+		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('store');
 				
 		if(!empty($data['filter_name'])) 
@@ -87,7 +82,7 @@ class Store_sale_sync_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_all_download_stores()
+	public function get_all_download_stores()
 	{
 		$q = $this->db->get_where('store_sync', array('type' => 0, 'enabled' => 1));
 		
@@ -103,7 +98,7 @@ class Store_sale_sync_model extends CI_Model
 		return $q->result_array();
 	}
 	
-	function get_all_upload_stores()
+	public function get_all_upload_stores()
 	{
 		$q = $this->db->get_where('store_sync', array('type' => 1, 'enabled' => 1));
 		
@@ -117,7 +112,7 @@ class Store_sale_sync_model extends CI_Model
 		}
 	}
 	
-	function get_active_download_store()
+	public function get_active_download_store()
 	{
 		$q = $this->db->get_where('store_sync', array('type' => 0, 'active' => 1));
 		
@@ -131,7 +126,7 @@ class Store_sale_sync_model extends CI_Model
 		}
 	}
 	
-	function get_active_upload_store()
+	public function get_active_upload_store()
 	{
 		$q = $this->db->get_where('store_sync', array('enabled' => 1, 'type' => 1, 'active' => 1));
 		
@@ -145,14 +140,14 @@ class Store_sale_sync_model extends CI_Model
 		}
 	}
 	
-	function activate_next_download_store($store_id)
+	public function activate_next_download_store($store_id)
 	{
 		$this->db->update('store_sync', array('active' => 0), array('type' => 0));
 
 		$this->db->update('store_sync', array('active' => 1), array('type' => 0, 'store_id' => $store_id));
 	}
 	
-	function activate_next_upload_store($store_id)
+	public function activate_next_upload_store($store_id)
 	{
 		$this->db->update('store_sync', array('active' => 0), array('type' => 1));
 

@@ -1,21 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Store_sale_sync_download extends CI_Controller {
-
-	function __construct()
+class Store_sale_sync_download extends CI_Controller 
+{
+	public function download($store_id)
 	{
-		parent::__construct();
-		
 		$this->lang->load('store/store_sale_sync');
 		
-		$this->load->model('store/store_sale_sync_model');
-	}
-
-	function download($store_id)
-	{
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
+		$this->load->model('store/store_sale_sync_model');
 		$this->load->model('store/store_sync_history_model');
 		
 		$store = $this->store_model->get_store($store_id);	
@@ -234,7 +227,7 @@ class Store_sale_sync_download extends CI_Controller {
 		return $outdata;
 	}
 	
-	function download_ajax()
+	public function download_ajax()
 	{
 		if($this->input->get('store_id'))
 		{
@@ -242,7 +235,8 @@ class Store_sale_sync_download extends CI_Controller {
 		
 			$outdata = $this->download($store_id);
 		
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

@@ -1,15 +1,7 @@
-   <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Wish_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-		
-		$this->lang->load('platform/wish');
-	}	
-		
+{		
 	public function install()
 	{
 		$this->db->delete('setting', array('code' => 'wish')); 
@@ -50,7 +42,9 @@ class Wish_model extends CI_Model
 	public function download($store_id)
 	{
 		$this->load->library('datetimer');
-				
+		
+		$this->lang->load('platform/wish');
+	
 		$this->load->model('store/store_model');
 		$this->load->model('catalog/product_model');
 		
@@ -181,6 +175,8 @@ class Wish_model extends CI_Model
 	
 	public function upload($store_id)
 	{
+		$this->lang->load('platform/wish');
+		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		

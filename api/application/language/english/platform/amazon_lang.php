@@ -6,7 +6,9 @@ $lang['text_logo'] 	  	               		  = 'img/platform/amazon.png';
 $lang['text_no_tracking_need_sync'] 		  = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
 $lang['text_amazon_no_tracking_need_sync']	  = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
 $lang['text_sync_tracking_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;The tracking for order <strong>%s</strong> sync success';
-$lang['text_sync_tracking_note']       		  = '<i class="fa fa-check-circle-o"></i>&nbsp;Try to sync <strong>%s</strong> orders; success: <strong>%s</strong> orders; fail: <strong>%s</strong> orders';
+$lang['text_sync_tracking_note']       		  = '<i class="fa fa-check-circle-o"></i>&nbsp;Trying to sync <strong>%s</strong> orders';
+$lang['text_sale_sync_tracking_success']      = '<i class="fa fa-check-circle-o"></i>&nbsp;Sync order <strong>#%s</strong> success';
+$lang['text_sale_sync_tracking_note']         = '<i class="fa fa-check-circle-o"></i>&nbsp;Trying to sync order <strong>#%s</strong>  Feed ID: <strong>%s</strong>  Status: <strong>%s</strong>';
 
 // Entry
 $lang['entry_merchant_id'] 	  	       		  = 'Merchant ID';

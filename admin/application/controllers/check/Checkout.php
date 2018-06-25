@@ -938,7 +938,7 @@ class Checkout extends MX_Controller
 		}
 	}
 
-	function validate_checkout_product()
+	public function validate_checkout_product()
 	{	
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
@@ -1019,7 +1019,7 @@ class Checkout extends MX_Controller
 		}	
 	}
 	
-	function validate_checkout_fee()
+	public function validate_checkout_fee()
 	{		
 		if($this->input->post('checkout_fee'))
 		{

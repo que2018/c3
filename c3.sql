@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 11:27 PM
+-- Generation Time: Jun 25, 2018 at 07:23 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -822,7 +822,509 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (776, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-20 23:23:42'),
 (777, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-20 23:23:46'),
 (778, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-06-20 23:23:47'),
-(779, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-20 23:23:53');
+(779, 1, '::1', 'inventory/refund', 'view the refund page', 'GET', '2018-06-20 23:23:53'),
+(780, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-20 23:31:06'),
+(781, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-20 23:31:06'),
+(782, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-20 23:31:09'),
+(783, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-20 23:31:17'),
+(784, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-20 23:31:29'),
+(785, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-21 22:50:17'),
+(786, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-21 22:50:19'),
+(787, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-21 22:50:19'),
+(788, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-21 22:50:30'),
+(789, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-06-21 22:50:33'),
+(790, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-21 22:50:36'),
+(791, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2018-06-21 22:50:48'),
+(792, 1, '::1', 'warehouse/warehouse/edit', 'view the warehouse edit page', 'GET', '2018-06-21 22:50:56'),
+(793, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:50:58'),
+(794, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:02'),
+(795, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:03'),
+(796, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:04'),
+(797, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:05'),
+(798, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:07'),
+(799, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:08'),
+(800, 1, '::1', 'warehouse/location/edit', 'view the location edit page', 'GET', '2018-06-21 22:51:11'),
+(801, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-06-21 22:51:13'),
+(802, 1, '::1', 'warehouse/location_print/batch', '0', 'GET', '2018-06-21 22:51:15'),
+(803, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-21 22:51:23'),
+(804, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-06-21 22:51:28'),
+(805, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-21 22:51:31'),
+(806, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-21 22:51:33'),
+(807, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-21 22:52:05'),
+(808, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-06-21 22:52:08'),
+(809, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-21 22:52:09'),
+(810, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-21 22:52:19'),
+(811, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'GET', '2018-06-21 22:52:22'),
+(812, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-21 22:53:00'),
+(813, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'GET', '2018-06-21 22:53:04'),
+(814, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 22:53:09'),
+(815, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-21 22:53:51'),
+(816, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-06-21 22:53:52'),
+(817, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-21 22:53:54'),
+(818, 1, '::1', 'sale/import', 'view the order import page', 'GET', '2018-06-21 22:54:36'),
+(819, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 22:54:47'),
+(820, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-21 22:54:50'),
+(821, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2018-06-21 22:54:54'),
+(822, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-21 22:55:02'),
+(823, 1, '::1', 'sale/sale_ajax/get_product', 'try to get order product', 'POST', '2018-06-21 22:55:11'),
+(824, 1, '::1', 'sale/sale_ajax/get_product', 'try to get order product', 'POST', '2018-06-21 22:55:13'),
+(825, 1, '::1', 'sale/sale_ajax/get_product', 'try to get order product', 'POST', '2018-06-21 22:55:13'),
+(826, 1, '::1', 'sale/sale_ajax/get_sale_products_weight', 'try to get sale product weight', 'POST', '2018-06-21 22:55:14'),
+(827, 1, '::1', 'sale/sale_ajax/get_sale_products_volume', 'try to get sale product volume', 'POST', '2018-06-21 22:55:14'),
+(828, 1, '::1', 'sale/sale_ajax/get_sale_products_volume', 'try to get sale product volume', 'POST', '2018-06-21 22:55:16'),
+(829, 1, '::1', 'sale/sale_ajax/get_sale_products_weight', 'try to get sale product weight', 'POST', '2018-06-21 22:55:16'),
+(830, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2018-06-21 22:55:20'),
+(831, 1, '::1', 'sale/sale/add', 'view the order add page', 'POST', '2018-06-21 22:55:22'),
+(832, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 22:55:22'),
+(833, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:55:32'),
+(834, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-21 22:55:32'),
+(835, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-21 22:55:44'),
+(836, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'GET', '2018-06-21 22:55:45'),
+(837, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-21 22:55:48'),
+(838, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-21 22:55:50'),
+(839, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'POST', '2018-06-21 22:56:03'),
+(840, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-21 22:56:03'),
+(841, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-21 22:56:09'),
+(842, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-21 22:56:15'),
+(843, 1, '::1', 'check/checkout_sale/get_sale', 'try to get order for order checkout', 'GET', '2018-06-21 22:56:19'),
+(844, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 22:56:21'),
+(845, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:22'),
+(846, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:24'),
+(847, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:25'),
+(848, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:26'),
+(849, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 22:56:30'),
+(850, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 22:56:33'),
+(851, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:34'),
+(852, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:35'),
+(853, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-21 22:56:42'),
+(854, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 22:56:45'),
+(855, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-21 22:56:46'),
+(856, 1, '::1', 'check/checkout_sale/get_sale', 'try to get order for order checkout', 'GET', '2018-06-21 22:56:47'),
+(857, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-21 22:56:49'),
+(858, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 22:57:05'),
+(859, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 22:57:07'),
+(860, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-21 22:57:16'),
+(861, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-21 22:57:18'),
+(862, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2018-06-21 22:58:43'),
+(863, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-06-21 22:59:21'),
+(864, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-21 23:01:50'),
+(865, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-21 23:01:51'),
+(866, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2018-06-21 23:02:38'),
+(867, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 23:02:38'),
+(868, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 23:03:01'),
+(869, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-21 23:03:05'),
+(870, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-21 23:03:06'),
+(871, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-21 23:03:07'),
+(872, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-21 23:03:08'),
+(873, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-21 23:03:08'),
+(874, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-21 23:03:10'),
+(875, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-21 23:03:12'),
+(876, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-21 23:03:24'),
+(877, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-06-21 23:03:32'),
+(878, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-06-21 23:04:20'),
+(879, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2018-06-21 23:04:22'),
+(880, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-21 23:04:24'),
+(881, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-21 23:04:24'),
+(882, 1, '::1', 'setting/information', 'view the information page', 'GET', '2018-06-21 23:04:25'),
+(883, 1, '::1', 'setting/language', 'view the language page', 'GET', '2018-06-21 23:04:29'),
+(884, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-06-21 23:04:33'),
+(885, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-21 23:05:08'),
+(886, 1, '::1', 'sale/sale/delete', 'try to delete an order', 'GET', '2018-06-21 23:05:15'),
+(887, 1, '::1', 'sale/sale/reload', 'try to reload order page', 'GET', '2018-06-21 23:05:15'),
+(888, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-22 01:22:49'),
+(889, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-22 01:22:51'),
+(890, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 01:22:51'),
+(891, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:22:56'),
+(892, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-22 01:22:57'),
+(893, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-22 01:23:01'),
+(894, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-22 01:23:02'),
+(895, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-22 01:23:02'),
+(896, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-22 01:23:03'),
+(897, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-22 01:24:15'),
+(898, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-06-22 01:24:20'),
+(899, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-06-22 01:24:20'),
+(900, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-06-22 01:24:20'),
+(901, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-06-22 01:24:21'),
+(902, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:24:21'),
+(903, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:24:24'),
+(904, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-22 01:24:31'),
+(905, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-06-22 01:24:33'),
+(906, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:24:33'),
+(907, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:24:37'),
+(908, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2018-06-22 01:24:38'),
+(909, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:24:40'),
+(910, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:24:40'),
+(911, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:24:42'),
+(912, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2018-06-22 01:24:43'),
+(913, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:24:52'),
+(914, 1, '::1', 'sale/sale_ajax/get_product', 'try to get order product', 'POST', '2018-06-22 01:24:55'),
+(915, 1, '::1', 'sale/sale_ajax/get_sale_products_weight', 'try to get sale product weight', 'POST', '2018-06-22 01:24:56'),
+(916, 1, '::1', 'sale/sale_ajax/get_sale_products_volume', 'try to get sale product volume', 'POST', '2018-06-22 01:24:56'),
+(917, 1, '::1', 'sale/sale/add', 'view the order add page', 'POST', '2018-06-22 01:24:57'),
+(918, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:24:57'),
+(919, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:24:59'),
+(920, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:24:59'),
+(921, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 01:25:05'),
+(922, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:25:25'),
+(923, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 01:27:26'),
+(924, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:29'),
+(925, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:31'),
+(926, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:34'),
+(927, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:35'),
+(928, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:37'),
+(929, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:37'),
+(930, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:38'),
+(931, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:41'),
+(932, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:43'),
+(933, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:44'),
+(934, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-22 01:27:45'),
+(935, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-22 01:27:49'),
+(936, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:27:49'),
+(937, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:27:56'),
+(938, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:27:56'),
+(939, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 01:28:03'),
+(940, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'GET', '2018-06-22 01:28:05'),
+(941, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-22 01:28:07'),
+(942, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-22 01:28:08'),
+(943, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-22 01:28:12'),
+(944, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'POST', '2018-06-22 01:28:18'),
+(945, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 01:28:18'),
+(946, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2018-06-22 01:28:20'),
+(947, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:28:23'),
+(948, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:28:23'),
+(949, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 01:28:28'),
+(950, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'GET', '2018-06-22 01:28:31'),
+(951, 1, '::1', 'catalog/product_ajax/autocomplete', '0', 'GET', '2018-06-22 01:28:33'),
+(952, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-06-22 01:28:34'),
+(953, 1, '::1', 'inventory/inventory_batch/add', 'view the inventory add page', 'POST', '2018-06-22 01:28:39'),
+(954, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 01:28:39'),
+(955, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:28:41'),
+(956, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:28:43'),
+(957, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:28:44'),
+(958, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:28:44'),
+(959, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:28:49'),
+(960, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:28:49'),
+(961, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:28:53'),
+(962, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:31:22'),
+(963, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:31:31'),
+(964, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-06-22 01:31:38'),
+(965, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-06-22 01:31:38'),
+(966, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-06-22 01:31:40'),
+(967, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-06-22 01:31:40'),
+(968, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:31:42'),
+(969, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:31:43'),
+(970, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:31:44'),
+(971, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:31:44'),
+(972, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:31:47'),
+(973, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:19'),
+(974, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:33:23'),
+(975, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-06-22 01:33:27'),
+(976, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-06-22 01:33:27'),
+(977, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:33:28'),
+(978, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:33:30'),
+(979, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:33:32'),
+(980, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:33:33'),
+(981, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:33:34'),
+(982, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:36'),
+(983, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:33:41'),
+(984, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:33:46'),
+(985, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-06-22 01:33:48');
+INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
+(986, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-06-22 01:33:48'),
+(987, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:33:49'),
+(988, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:33:51'),
+(989, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2018-06-22 01:33:55'),
+(990, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 01:33:55'),
+(991, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:57'),
+(992, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:58'),
+(993, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:59'),
+(994, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:59'),
+(995, 1, '::1', 'check/checkout_sale/add_checkout', 'add checkout for order', 'POST', '2018-06-22 01:33:59'),
+(996, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:34:04'),
+(997, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-06-22 01:34:15'),
+(998, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 01:34:21'),
+(999, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 01:34:44'),
+(1000, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:34:47'),
+(1001, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:34:49'),
+(1002, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:50:40'),
+(1003, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:51:25'),
+(1004, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 01:51:27'),
+(1005, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:51:28'),
+(1006, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:27'),
+(1007, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:53:29'),
+(1008, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:53:30'),
+(1009, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:30'),
+(1010, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:32'),
+(1011, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:35'),
+(1012, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:53:36'),
+(1013, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:53:37'),
+(1014, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:37'),
+(1015, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:53:39'),
+(1016, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 01:53:40'),
+(1017, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:40'),
+(1018, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:53:42'),
+(1019, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:53:43'),
+(1020, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:43'),
+(1021, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 01:53:44'),
+(1022, 1, '::1', 'shipping/postpony', '0', 'POST', '2018-06-22 01:53:45'),
+(1023, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:45'),
+(1024, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:53:46'),
+(1025, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:53:47'),
+(1026, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:53:47'),
+(1027, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:26'),
+(1028, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:27'),
+(1029, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:54:29'),
+(1030, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:54:30'),
+(1031, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:30'),
+(1032, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:32'),
+(1033, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:54:33'),
+(1034, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:54:35'),
+(1035, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:35'),
+(1036, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 01:54:36'),
+(1037, 1, '::1', 'shipping/postpony', '0', 'POST', '2018-06-22 01:54:37'),
+(1038, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:37'),
+(1039, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:54:38'),
+(1040, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:54:39'),
+(1041, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:40'),
+(1042, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:54:41'),
+(1043, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 01:54:42'),
+(1044, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:54:42'),
+(1045, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:56:19'),
+(1046, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:56:20'),
+(1047, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:56:22'),
+(1048, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:56:22'),
+(1049, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:56:24'),
+(1050, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:13'),
+(1051, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:57:14'),
+(1052, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:57:16'),
+(1053, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:16'),
+(1054, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 01:57:17'),
+(1055, 1, '::1', 'shipping/postpony', '0', 'POST', '2018-06-22 01:57:18'),
+(1056, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:18'),
+(1057, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:57:20'),
+(1058, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:57:21'),
+(1059, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:21'),
+(1060, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:57:22'),
+(1061, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 01:57:23'),
+(1062, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:24'),
+(1063, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:57:26'),
+(1064, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:57:27'),
+(1065, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:27'),
+(1066, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:57:46'),
+(1067, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:57:47'),
+(1068, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:47'),
+(1069, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:50'),
+(1070, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:57:56'),
+(1071, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:57:57'),
+(1072, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:57:57'),
+(1073, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 01:58:08'),
+(1074, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 01:58:09'),
+(1075, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:09'),
+(1076, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 01:58:11'),
+(1077, 1, '::1', 'shipping/postpony', '0', 'POST', '2018-06-22 01:58:12'),
+(1078, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:12'),
+(1079, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:58:14'),
+(1080, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:58:16'),
+(1081, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:16'),
+(1082, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:58:17'),
+(1083, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 01:58:18'),
+(1084, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:18'),
+(1085, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:44'),
+(1086, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 01:58:44'),
+(1087, 1, '::1', 'shipping/ups', 'view the ups setting page', 'POST', '2018-06-22 01:58:46'),
+(1088, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 01:58:46'),
+(1089, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 01:58:58'),
+(1090, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-22 02:03:21'),
+(1091, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 02:03:21'),
+(1092, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:03:30'),
+(1093, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:03:32'),
+(1094, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 02:03:39'),
+(1095, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-22 02:03:45'),
+(1096, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 02:03:47'),
+(1097, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 02:03:48'),
+(1098, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:05:12'),
+(1099, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:05:12'),
+(1100, 1, '::1', 'setting/setting', 'view the setting page', 'POST', '2018-06-22 02:07:15'),
+(1101, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:07:15'),
+(1102, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:07:15'),
+(1103, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:07:24'),
+(1104, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:07:25'),
+(1105, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2018-06-22 02:07:32'),
+(1106, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2018-06-22 02:07:33'),
+(1107, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-22 02:07:42'),
+(1108, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:07:42'),
+(1109, 1, '::1', 'extension/payment', 'view the payment page', 'GET', '2018-06-22 02:07:46'),
+(1110, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 02:07:46'),
+(1111, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 02:07:48'),
+(1112, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 02:09:24'),
+(1113, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 02:09:24'),
+(1114, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 02:09:26'),
+(1115, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:09:35'),
+(1116, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 02:09:59'),
+(1117, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 02:10:00'),
+(1118, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-06-22 02:10:02'),
+(1119, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 02:10:04'),
+(1120, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-22 02:10:07'),
+(1121, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 02:10:19'),
+(1122, 1, '::1', 'inventory/inventory_batch/edit', 'view the inventory edit page', 'GET', '2018-06-22 02:10:24'),
+(1123, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-06-22 02:10:26'),
+(1124, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 02:13:03'),
+(1125, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-22 02:13:04'),
+(1126, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-22 02:13:05'),
+(1127, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:13:10'),
+(1128, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:13:22'),
+(1129, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-22 02:13:30'),
+(1130, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:13:31'),
+(1131, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:13:32'),
+(1132, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-22 02:13:38'),
+(1133, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:13:38'),
+(1134, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:13:45'),
+(1135, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 02:13:52'),
+(1136, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-22 02:13:53'),
+(1137, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-22 02:20:08'),
+(1138, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 02:20:08'),
+(1139, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:20:11'),
+(1140, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:20:11'),
+(1141, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:20:21'),
+(1142, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:20:21'),
+(1143, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:23:06'),
+(1144, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:23:06'),
+(1145, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2018-06-22 02:24:31'),
+(1146, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:24:31'),
+(1147, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-22 02:24:33'),
+(1148, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:26:32'),
+(1149, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:26:32'),
+(1150, 1, '::1', 'setting/setting', 'view the setting page', 'POST', '2018-06-22 02:29:48'),
+(1151, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-06-22 02:29:48'),
+(1152, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-06-22 02:29:48'),
+(1153, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:29:54'),
+(1154, 1, '::1', 'sale/label/check', 'check if shipping label is printable', 'POST', '2018-06-22 02:30:17'),
+(1155, 1, '::1', 'sale/label/execute_d', '0', 'POST', '2018-06-22 02:30:17'),
+(1156, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 02:49:57'),
+(1157, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 02:50:00'),
+(1158, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 02:50:02'),
+(1159, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 02:50:05'),
+(1160, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 02:50:07'),
+(1161, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 02:50:10'),
+(1162, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 02:53:02'),
+(1163, 1, '::1', 'shipping/postpony', '0', 'GET', '2018-06-22 02:53:05'),
+(1164, 1, '::1', 'shipping/ups', 'view the ups setting page', 'GET', '2018-06-22 02:53:10'),
+(1165, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 02:53:12'),
+(1166, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 03:03:01'),
+(1167, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 03:03:04'),
+(1168, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 03:03:05'),
+(1169, 1, '::1', 'shipping/usps', 'view the usps setting page', 'POST', '2018-06-22 03:03:10'),
+(1170, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 03:03:11'),
+(1171, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 03:14:26'),
+(1172, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 03:14:28'),
+(1173, 1, '::1', 'shipping/fedex', '0', 'GET', '2018-06-22 03:14:30'),
+(1174, 1, '::1', 'shipping/fedex', '0', 'POST', '2018-06-22 03:14:30'),
+(1175, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 03:14:31'),
+(1176, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-22 03:20:20'),
+(1177, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2018-06-22 03:20:22'),
+(1178, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2018-06-22 03:20:24'),
+(1179, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-22 23:00:47'),
+(1180, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-22 23:00:49'),
+(1181, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-22 23:00:49'),
+(1182, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-22 23:00:56'),
+(1183, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-22 23:00:57'),
+(1184, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-23 02:04:11'),
+(1185, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-23 02:33:36'),
+(1186, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-23 02:33:37'),
+(1187, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 02:33:37'),
+(1188, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-23 02:33:41'),
+(1189, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-06-23 02:33:53'),
+(1190, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-23 02:33:56'),
+(1191, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-23 02:33:57'),
+(1192, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-06-23 02:34:04'),
+(1193, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-06-23 02:34:59'),
+(1194, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-06-23 02:35:01'),
+(1195, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-06-23 02:35:02'),
+(1196, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-06-23 02:35:07'),
+(1197, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-06-23 02:35:07'),
+(1198, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-23 02:36:07'),
+(1199, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-23 02:36:24'),
+(1200, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-23 02:36:25'),
+(1201, 1, '::1', '', 'view the dashboard', 'GET', '2018-06-23 02:52:37'),
+(1202, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 02:52:37'),
+(1203, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-23 02:52:42'),
+(1204, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-23 02:52:43'),
+(1205, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-23 02:59:39'),
+(1206, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-06-23 03:10:21'),
+(1207, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:15:05'),
+(1208, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:15:11'),
+(1209, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-06-23 03:15:31'),
+(1210, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:15:38'),
+(1211, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:16:27'),
+(1212, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-23 03:16:29'),
+(1213, 1, '::1', 'store/store/edit', 'view the store edit page', 'POST', '2018-06-23 03:16:34'),
+(1214, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:16:34'),
+(1215, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-23 03:16:36'),
+(1216, 1, '::1', 'store/store/edit', 'view the store edit page', 'POST', '2018-06-23 03:16:39'),
+(1217, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:16:39'),
+(1218, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:18:36'),
+(1219, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:18:36'),
+(1220, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:18:39'),
+(1221, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:20:00'),
+(1222, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:20:02'),
+(1223, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:28:00'),
+(1224, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:28:03'),
+(1225, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:28:09'),
+(1226, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:28:13'),
+(1227, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:28:25'),
+(1228, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-23 03:28:30'),
+(1229, 1, '::1', 'store/store/edit', 'view the store edit page', 'POST', '2018-06-23 03:28:33'),
+(1230, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:28:33'),
+(1231, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:29:21'),
+(1232, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:29:45'),
+(1233, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-23 03:29:47'),
+(1234, 1, '::1', 'store/store/edit', 'view the store edit page', 'POST', '2018-06-23 03:29:54'),
+(1235, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:29:54'),
+(1236, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:30:01'),
+(1237, 1, '::1', 'store/store_sync_history/detail', 'view the store sync history detail page', 'GET', '2018-06-23 03:30:03'),
+(1238, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:30:46'),
+(1239, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-06-23 03:30:59'),
+(1240, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-06-23 03:31:13'),
+(1241, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-23 03:36:57'),
+(1242, 1, '::1', 'store/store', 'view the store page', 'GET', '2018-06-23 03:37:00'),
+(1243, 1, '::1', 'store/store/edit', 'view the store edit page', 'GET', '2018-06-23 03:37:02'),
+(1244, NULL, '::1', '', 'view the dashboard', 'GET', '2018-06-25 18:47:43'),
+(1245, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-06-25 18:47:46'),
+(1246, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-06-25 18:47:46'),
+(1247, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 18:47:49'),
+(1248, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 18:47:51'),
+(1249, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-25 18:48:01'),
+(1250, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 18:48:01'),
+(1251, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 18:48:03'),
+(1252, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-25 18:48:09'),
+(1253, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 18:48:10'),
+(1254, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 18:48:15'),
+(1255, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-06-25 18:52:52'),
+(1256, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-06-25 18:52:54'),
+(1257, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:01:53'),
+(1258, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:01:54'),
+(1259, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:09:37'),
+(1260, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:09:40'),
+(1261, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:16:41'),
+(1262, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-25 19:16:46'),
+(1263, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-25 19:17:21'),
+(1264, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:17:21'),
+(1265, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2018-06-25 19:17:27'),
+(1266, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-25 19:17:32'),
+(1267, 1, '::1', 'sale/customer/autocomplete', 'try to add customer to order', 'POST', '2018-06-25 19:17:34'),
+(1268, 1, '::1', 'sale/sale_ajax/get_product', 'try to get order product', 'POST', '2018-06-25 19:17:37'),
+(1269, 1, '::1', 'sale/sale_ajax/get_sale_products_volume', 'try to get sale product volume', 'POST', '2018-06-25 19:17:38'),
+(1270, 1, '::1', 'sale/sale_ajax/get_sale_products_weight', 'try to get sale product weight', 'POST', '2018-06-25 19:17:38'),
+(1271, 1, '::1', 'sale/sale/add', 'view the order add page', 'POST', '2018-06-25 19:17:41'),
+(1272, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:17:41'),
+(1273, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:17:48'),
+(1274, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:17:50'),
+(1275, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:23:18'),
+(1276, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-06-25 19:23:23'),
+(1277, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:23:23'),
+(1278, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:23:25'),
+(1279, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-06-25 19:23:27'),
+(1280, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-06-25 19:23:29');
 
 -- --------------------------------------------------------
 
@@ -938,6 +1440,13 @@ CREATE TABLE `checkout` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`id`, `code`, `location_id`, `tracking`, `status`, `width`, `length`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `label`, `note`, `description`, `date_added`, `date_modified`) VALUES
+(83, '1000000000000083', 0, '', 1, '15.00', '9.00', '2.00', '0.73', 1, 5, 'postpony', 'pfg', '', '', '', '2018-06-22 01:33:51', '2018-06-22 01:33:51');
+
 -- --------------------------------------------------------
 
 --
@@ -974,6 +1483,13 @@ CREATE TABLE `checkout_product` (
   `inventory_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `checkout_product`
+--
+
+INSERT INTO `checkout_product` (`id`, `checkout_id`, `inventory_id`, `quantity`) VALUES
+(162, 83, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -1199,6 +1715,15 @@ CREATE TABLE `inventory` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `type`, `product_id`, `location_id`, `batch`, `quantity`, `date_added`, `date_modified`) VALUES
+(1, 0, 2, 2406, '', 100, '2018-06-21 22:56:03', '2018-06-21 22:56:03'),
+(2, 0, 2, 2229, '', 200, '2018-06-22 01:28:18', '2018-06-22 01:28:18'),
+(3, 0, 3, 2406, '', 500, '2018-06-22 01:28:39', '2018-06-22 01:28:39');
 
 -- --------------------------------------------------------
 
@@ -1787,18 +2312,13 @@ CREATE TABLE `sale` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `sale_fee`
+-- Dumping data for table `sale`
 --
 
-CREATE TABLE `sale_fee` (
-  `id` int(11) NOT NULL,
-  `sale_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `amount` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `sale` (`id`, `store_id`, `store_sale_id`, `name`, `street`, `street2`, `city`, `state`, `zipcode`, `country`, `email`, `phone`, `length`, `width`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `total`, `tracking`, `status_id`, `note`, `date_added`, `date_modified`) VALUES
+(6, 0, '', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', '4.00', '4.00', '2.00', '0.20', 1, 5, 'usps', 'fc', '200.00', '', 1, '', '2018-06-22 01:24:57', '2018-06-25 19:17:21'),
+(7, 0, '', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', '9.00', '15.00', '2.00', '0.77', 1, 5, 'postpony', 'pfg', '450.00', '', 1, '', '2018-06-25 19:17:41', '2018-06-25 19:23:23');
 
 -- --------------------------------------------------------
 
@@ -1827,6 +2347,14 @@ CREATE TABLE `sale_product` (
   `store_sale_product_id` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `sale_product`
+--
+
+INSERT INTO `sale_product` (`id`, `sale_id`, `product_id`, `quantity`, `store_sale_product_id`) VALUES
+(13, 6, 3, 1, ''),
+(15, 7, 4, 1, '');
+
 -- --------------------------------------------------------
 
 --
@@ -1837,6 +2365,13 @@ CREATE TABLE `sale_to_checkout` (
   `sale_id` int(11) DEFAULT NULL,
   `checkout_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sale_to_checkout`
+--
+
+INSERT INTO `sale_to_checkout` (`sale_id`, `checkout_id`) VALUES
+(6, 83);
 
 -- --------------------------------------------------------
 
@@ -1866,14 +2401,18 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (16741, 'alipay', 'alipay_status', '1', 0),
 (16736, 'alipay', 'alipay_service', 'create_forex_trade', 0),
 (16737, 'alipay', 'alipay_partner', '850025472000772009660', 0),
-(21475, 'usps', 'usps_fee_type', '0', 0),
-(21476, 'usps', 'usps_fee_value', '3', 0),
-(21477, 'usps', 'usps_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
+(23816, 'usps', 'usps_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
+(23787, 'config', 'config_smtp_hostname', '', 0),
+(23815, 'usps', 'usps_fee_value', '3', 0),
+(23814, 'usps', 'usps_fee_type', '0', 0),
 (15438, 'system', 'system_google_map_api_key', 'AIzaSyAc05thWPUV50Wuz-ain57oVv4NU5sme_Y', 0),
 (16740, 'alipay', 'alipay_sort_order', '0', 0),
 (16472, 'authorize', 'authorize_id', '744fRQNwM', 0),
 (16470, 'paypal', 'paypal_email', 'freeshopping.us@gmail.com', 0),
-(21474, 'usps', 'usps_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:11:\"First Class\";s:4:\"code\";s:2:\"fc\";s:6:\"method\";s:5:\"US-FC\";s:7:\"package\";s:7:\"Package\";}i:1;a:4:{s:4:\"name\";s:8:\"Priority\";s:4:\"code\";s:2:\"pr\";s:6:\"method\";s:5:\"US-PM\";s:7:\"package\";s:7:\"Package\";}}', 1),
+(23811, 'usps', 'usps_stamps_integration_id', 'e13dde83-59b9-4b45-9a51-3f83016fd883', 0),
+(23812, 'usps', 'usps_stamps_wsdl_file', 'assets/file/stamps/stamps.prod.xml', 0),
+(23813, 'usps', 'usps_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:11:\"First Class\";s:4:\"code\";s:2:\"fc\";s:6:\"method\";s:5:\"US-FC\";s:7:\"package\";s:7:\"Package\";}i:1;a:4:{s:4:\"name\";s:8:\"Priority\";s:4:\"code\";s:2:\"pr\";s:6:\"method\";s:5:\"US-PM\";s:7:\"package\";s:7:\"Package\";}}', 1),
+(23685, 'ups', 'ups_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
 (16475, 'finance', 'finance_fee_type', 'a:4:{i:0;a:4:{s:4:\"code\";s:9:\"label_fee\";s:4:\"text\";s:13:\"Label Fee($2)\";s:6:\"static\";s:1:\"1\";s:6:\"amount\";s:3:\"0.5\";}i:1;a:4:{s:4:\"code\";s:12:\"shipping_fee\";s:4:\"text\";s:12:\"Shipping Fee\";s:6:\"static\";s:1:\"0\";s:6:\"amount\";s:0:\"\";}i:2;a:4:{s:4:\"code\";s:12:\"location_fee\";s:4:\"text\";s:12:\"Location Fee\";s:6:\"static\";s:1:\"0\";s:6:\"amount\";s:0:\"\";}i:3;a:4:{s:4:\"code\";s:10:\"handle_fee\";s:4:\"text\";s:14:\"Label Fee($10)\";s:6:\"static\";s:1:\"1\";s:6:\"amount\";s:2:\"10\";}}', 1),
 (16471, 'paypal', 'paypal_payment_name', 'Shipping Charge', 0),
 (17123, 'wish', 'wish_field', 'a:1:{i:0;s:5:\"token\";}', 1),
@@ -1885,156 +2424,154 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (17215, 'square', 'square_sort_order', '5', 0),
 (17121, 'opencart', 'opencart_sort_order', '1', 0),
 (17120, 'opencart', 'opencart_field', 'a:1:{i:0;s:5:\"token\";}', 1),
-(21473, 'usps', 'usps_stamps_wsdl_file', 'assets/file/stamps/stamps.prod.xml', 0),
-(21472, 'usps', 'usps_stamps_integration_id', 'e13dde83-59b9-4b45-9a51-3f83016fd883', 0),
+(23808, 'usps', 'usps_sort_order', '0', 0),
+(23809, 'usps', 'usps_stamps_username', 'FSUS', 0),
+(23810, 'usps', 'usps_stamps_password', 'John316', 0),
 (17122, 'opencart', 'opencart_status', '1', 0),
 (17125, 'wish', 'wish_status', '1', 0),
 (17127, 'ebay', 'ebay_sort_order', '0', 0),
 (17124, 'wish', 'wish_sort_order', '2', 0),
 (17214, 'square', 'square_field', 'a:1:{i:0;s:5:\"token\";}', 1),
 (17216, 'square', 'square_status', '1', 0),
-(21471, 'usps', 'usps_stamps_password', 'Proline9910', 0),
-(21988, 'ups', 'ups_fee_value', '3', 0),
-(21987, 'ups', 'ups_fee_type', '0', 0),
-(21967, 'ups', 'ups_time_zone', 'America/Los_Angeles', 0),
-(21968, 'ups', 'ups_origin', 'US', 0),
-(21969, 'ups', 'ups_street', '9852 Baldwin Place', 0),
-(21970, 'ups', 'ups_street2', 'B', 0),
-(21971, 'ups', 'ups_city', 'EL Monte', 0),
-(21972, 'ups', 'ups_state', 'CA', 0),
-(21973, 'ups', 'ups_postcode', '91731', 0),
-(21974, 'ups', 'ups_country', 'US', 0),
-(21975, 'ups', 'ups_quote_type', 'commercial', 0),
-(21976, 'ups', 'ups_owner', 'Prolineshipping', 0),
-(21977, 'ups', 'ups_description', 'Prolineshipping', 0),
-(21978, 'ups', 'ups_phone', '6263008400', 0),
-(21979, 'ups', 'ups_length_unit', 'INCH', 0),
-(21980, 'ups', 'ups_weight_unit', 'OZ', 0),
-(21981, 'ups', 'ups_image_type', 'PNG', 0),
-(21982, 'ups', 'ups_debug_mode', '1', 0),
-(21983, 'ups', 'ups_status', '1', 0),
-(21984, 'ups', 'ups_sort_order', '0', 0),
-(21985, 'ups', 'ups_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:10:\"UPS Ground\";s:4:\"code\";s:2:\"gr\";s:6:\"method\";s:2:\"03\";s:7:\"package\";s:2:\"04\";}i:1;a:4:{s:4:\"name\";s:15:\"UPS 2nd Day Air\";s:4:\"code\";s:4:\"2nda\";s:6:\"method\";s:2:\"02\";s:7:\"package\";s:2:\"04\";}}', 1),
-(21986, 'ups', 'ups_state_mapping', 'a:48:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:12:\"mississippi \";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new jersey\";s:11:\"state_short\";s:2:\"NJ\";}i:28;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:29;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:30;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:31;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:32;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:33;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:34;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:35;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:36;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:37;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:38;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:39;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:40;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:41;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:42;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:43;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:44;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:45;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:46;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:47;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
-(21470, 'usps', 'usps_stamps_username', 'prolineds', 0),
-(21469, 'usps', 'usps_sort_order', '0', 0),
-(21468, 'usps', 'usps_status', '1', 0),
-(21467, 'usps', 'usps_postcode', '91731', 0),
+(23807, 'usps', 'usps_status', '1', 0),
+(23675, 'ups', 'ups_length_unit', 'INCH', 0),
+(23676, 'ups', 'ups_weight_unit', 'OZ', 0),
+(23677, 'ups', 'ups_image_type', 'PNG', 0),
+(23678, 'ups', 'ups_debug_mode', '1', 0),
+(23679, 'ups', 'ups_status', '1', 0),
+(23680, 'ups', 'ups_sort_order', '0', 0),
+(23681, 'ups', 'ups_service', 'a:2:{i:0;a:4:{s:4:\"name\";s:10:\"UPS Ground\";s:4:\"code\";s:2:\"gr\";s:6:\"method\";s:2:\"03\";s:7:\"package\";s:2:\"04\";}i:1;a:4:{s:4:\"name\";s:15:\"UPS 2nd Day Air\";s:4:\"code\";s:4:\"2nda\";s:6:\"method\";s:2:\"02\";s:7:\"package\";s:2:\"04\";}}', 1),
+(23682, 'ups', 'ups_state_mapping', 'a:48:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:12:\"mississippi \";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new jersey\";s:11:\"state_short\";s:2:\"NJ\";}i:28;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:29;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:30;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:31;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:32;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:33;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:34;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:35;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:36;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:37;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:38;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:39;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:40;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:41;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:42;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:43;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:44;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:45;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:46;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:47;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
+(23683, 'ups', 'ups_fee_type', '0', 0),
+(23674, 'ups', 'ups_phone', '6263008400', 0),
+(23806, 'usps', 'usps_debug_mode', '0', 0),
+(23805, 'usps', 'usps_postcode', '91789', 0),
+(23804, 'usps', 'usps_country', 'US', 0),
 (17647, 'amazon', 'amazon_field', 'a:6:{i:0;s:6:\"Dev Id\";i:1;s:6:\"App Id\";i:2;s:7:\"Cert Id\";i:3;s:8:\"Username\";i:4;s:7:\"Site Id\";i:5;s:5:\"Token\";}', 1),
 (17648, 'amazon', 'amazon_status', '0', 0),
 (17649, 'amazon', 'amazon_sort_order', '0', 0),
-(23037, 'config', 'config_smtp_hostname', '', 0),
 (18696, 'offline', 'offline_status', '1', 0),
 (18695, 'offline', 'offline_sort_order', '0', 0),
-(23035, 'config', 'config_default_order_shipping_provider', 'postpony', 0),
-(23036, 'config', 'config_default_order_shipping_service', 'pfg', 0),
-(23034, 'config', 'config_weight_class_id', '5', 0),
-(23033, 'config', 'config_length_class_id', '1', 0),
-(22091, 'fedex', 'fedex_fee_type', '0', 0),
-(22092, 'fedex', 'fedex_fee_value', '3', 0),
-(22093, 'fedex', 'fedex_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
-(22084, 'fedex', 'fedex_weight_unit', 'LB', 0),
-(22085, 'fedex', 'fedex_image_type', 'PNG', 0),
-(22086, 'fedex', 'fedex_debug_mode', '1', 0),
-(22087, 'fedex', 'fedex_status', '1', 0),
-(22088, 'fedex', 'fedex_sort_order', '0', 0),
-(22089, 'fedex', 'fedex_service', 'a:1:{i:0;a:4:{s:4:\"name\";s:19:\"Fedex Home Delivery\";s:4:\"code\";s:3:\"ghd\";s:6:\"method\";s:20:\"GROUND_HOME_DELIVERY\";s:7:\"package\";s:14:\"YOUR_PACKAGING\";}}', 1),
-(22090, 'fedex', 'fedex_state_mapping', 'a:47:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:11:\"mississippi\";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:28;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:29;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:30;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:31;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:32;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:33;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:34;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:35;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:36;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:37;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:38;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:39;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:40;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:41;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:42;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:43;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:44;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:45;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:46;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
-(21466, 'usps', 'usps_country', 'US', 0),
-(21465, 'usps', 'usps_state', 'CA', 0),
-(21455, 'usps', 'usps_user_id', '609FREES0002', 0),
-(21456, 'usps', 'usps_time_zone', 'America/Los_Angeles', 0),
-(21457, 'usps', 'usps_owner', 'Tony', 0),
-(21458, 'usps', 'usps_first_name', 'Tony', 0),
-(21459, 'usps', 'usps_last_name', 'Liu', 0),
-(21460, 'usps', 'usps_company', 'Free Shopping Inc', 0),
-(21461, 'usps', 'usps_phone', '6263008400', 0),
-(21462, 'usps', 'usps_street', '9852 Baldwin Place', 0),
-(21463, 'usps', 'usps_street2', 'B', 0),
-(21464, 'usps', 'usps_city', 'EL Monte', 0),
-(21966, 'ups', 'ups_classification_code', '01', 0),
-(21965, 'ups', 'ups_pickup_method', '03', 0),
-(21964, 'ups', 'ups_account_number', '3FR703', 0),
-(21963, 'ups', 'ups_password', 'Proline2017', 0),
-(21962, 'ups', 'ups_username', 'proline18', 0),
-(21961, 'ups', 'ups_access_key', '7D3678D352FE879D', 0),
-(23031, 'config', 'config_language_id', '5', 0),
-(23032, 'config', 'config_information_front_id', '5', 0),
-(23030, 'config', 'config_printnode_general_printer_id', '356900', 0),
-(22083, 'fedex', 'fedex_length_unit', 'IN', 0),
-(22082, 'fedex', 'fedex_phone', '6263008400', 0),
-(22081, 'fedex', 'fedex_owner', 'Tony', 0),
-(22080, 'fedex', 'fedex_country', 'US', 0),
-(22079, 'fedex', 'fedex_postcode', '91731', 0),
-(22078, 'fedex', 'fedex_state', 'CA', 0),
-(22077, 'fedex', 'fedex_city', 'El Monte', 0),
-(22076, 'fedex', 'fedex_street2', '', 0),
-(22075, 'fedex', 'fedex_street', '9910 Baldwin Place', 0),
-(22074, 'fedex', 'fedex_origin', 'US', 0),
-(22073, 'fedex', 'fedex_time_zone', 'America/Los_Angeles', 0),
-(22072, 'fedex', 'fedex_company', 'Prolineshipping Inc', 0),
-(22071, 'fedex', 'fedex_password', 'GYuOzp9a0uGbUcw25uLnJ4vD7', 0),
-(22070, 'fedex', 'fedex_key', 'UOLSEeKVrlJSMEKb', 0),
-(22069, 'fedex', 'fedex_meter_number', '119000362', 0),
-(22068, 'fedex', 'fedex_account_number', '510087720', 0),
-(21989, 'ups', 'ups_client_fee', 'a:9:{i:0;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"10\";}i:1;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"11\";}i:2;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"12\";}i:3;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"13\";}i:4;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"14\";}i:5;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"15\";}i:6;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"16\";}i:7;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"17\";}i:8;a:2:{s:3:\"fee\";s:1:\"3\";s:9:\"client_id\";s:2:\"18\";}}', 1),
-(23029, 'config', 'config_printnode_label_printer_id', '376767', 0),
-(22788, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:\"state_long\";s:0:\"\";s:11:\"state_short\";s:0:\"\";}}', 1),
-(22789, 'postpony', 'postpony_fee_type', '0', 0),
-(22787, 'postpony', 'postpony_service', 'a:4:{i:0;a:4:{s:4:\"name\";s:21:\"Postpony Fedex Ground\";s:4:\"code\";s:3:\"pfg\";s:6:\"method\";s:11:\"FedExGround\";s:7:\"package\";s:12:\"YOUR_PACKAGE\";}i:1;a:4:{s:4:\"name\";s:19:\"Postpony UPS Ground\";s:4:\"code\";s:3:\"pug\";s:6:\"method\";s:9:\"UpsGround\";s:7:\"package\";s:7:\"PACKAGE\";}i:2;a:4:{s:4:\"name\";s:25:\"Postpony USPS First Class\";s:4:\"code\";s:5:\"pusfc\";s:6:\"method\";s:18:\"UspsFirstClassMail\";s:7:\"package\";s:7:\"PACKAGE\";}i:3;a:4:{s:4:\"name\";s:22:\"Postpony USPS Priority\";s:4:\"code\";s:4:\"pusp\";s:6:\"method\";s:16:\"UspsPriorityMail\";s:7:\"package\";s:7:\"PACKAGE\";}}', 1),
-(22786, 'postpony', 'postpony_sort_order', '0', 0),
-(22785, 'postpony', 'postpony_status', '1', 0),
-(22784, 'postpony', 'postpony_debug_mode', '1', 0),
-(22783, 'postpony', 'postpony_weight_unit', 'LB', 0),
-(22782, 'postpony', 'postpony_length_unit', 'IN', 0),
-(22781, 'postpony', 'postpony_phone', '9098956073', 0),
-(22779, 'postpony', 'postpony_country', 'US', 0),
-(22780, 'postpony', 'postpony_owner', 'SHAN SUN', 0),
-(22777, 'postpony', 'postpony_state', 'CA', 0),
-(22778, 'postpony', 'postpony_postcode', '91733', 0),
-(22776, 'postpony', 'postpony_city', 'South El Monte', 0),
-(22775, 'postpony', 'postpony_street2', '', 0),
-(22774, 'postpony', 'postpony_street', '1467 Lidcombe Ave', 0),
-(22773, 'postpony', 'postpony_company', 'intadat Inc', 0),
-(23028, 'config', 'config_printnode_api_key', '042f4d55c23fbc64ea98b5bb6d0a85a4caae5cbc', 0),
-(23027, 'config', 'config_printnode_width', '180', 0),
-(22772, 'postpony', 'postpony_authorized_key', 'TESTTOKEN-ske39De3mkC39d', 0),
-(22771, 'postpony', 'postpony_pwd', 'pypypypypy', 0),
-(22770, 'postpony', 'postpony_key', 'PY', 0),
-(22790, 'postpony', 'postpony_fee_value', '0', 0),
-(23025, 'config', 'config_printnode_position_x', '14', 0),
-(23026, 'config', 'config_printnode_position_y', '20', 0),
-(23024, 'config', 'config_location_barcode_batch_page_item', '1', 0),
-(23022, 'config', 'config_location_barcode_batch_code_size', '20', 0),
-(23023, 'config', 'config_location_barcode_batch_margin', '200', 0),
-(23021, 'config', 'config_location_barcode_batch_name_size', '60', 0),
-(23020, 'config', 'config_location_barcode_batch_posy', '20', 0),
-(23019, 'config', 'config_location_barcode_batch_posx', '10', 0),
-(23018, 'config', 'config_location_barcode_batch_height', '300', 0),
+(23785, 'config', 'config_default_order_shipping_provider', 'postpony', 0),
+(23784, 'config', 'config_weight_class_id', '5', 0),
+(23783, 'config', 'config_length_class_id', '1', 0),
+(23782, 'config', 'config_information_front_id', '5', 0),
+(23673, 'ups', 'ups_description', 'Prolineshipping', 0),
+(23842, 'fedex', 'fedex_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
+(23827, 'fedex', 'fedex_state', 'CA', 0),
+(23828, 'fedex', 'fedex_postcode', '91731', 0),
+(23829, 'fedex', 'fedex_country', 'US', 0),
+(23830, 'fedex', 'fedex_owner', 'Tony', 0),
+(23831, 'fedex', 'fedex_phone', '6263008400', 0),
+(23832, 'fedex', 'fedex_length_unit', 'IN', 0),
+(23833, 'fedex', 'fedex_weight_unit', 'LB', 0),
+(23834, 'fedex', 'fedex_image_type', 'PNG', 0),
+(23835, 'fedex', 'fedex_debug_mode', '1', 0),
+(23836, 'fedex', 'fedex_status', '1', 0),
+(23837, 'fedex', 'fedex_sort_order', '0', 0),
+(23838, 'fedex', 'fedex_service', 'a:1:{i:0;a:4:{s:4:\"name\";s:19:\"Fedex Home Delivery\";s:4:\"code\";s:3:\"ghd\";s:6:\"method\";s:20:\"GROUND_HOME_DELIVERY\";s:7:\"package\";s:14:\"YOUR_PACKAGING\";}}', 1),
+(23839, 'fedex', 'fedex_state_mapping', 'a:47:{i:0;a:2:{s:10:\"state_long\";s:7:\"alabama\";s:11:\"state_short\";s:2:\"AL\";}i:1;a:2:{s:10:\"state_long\";s:6:\"alaska\";s:11:\"state_short\";s:2:\"AK\";}i:2;a:2:{s:10:\"state_long\";s:7:\"arizona\";s:11:\"state_short\";s:2:\"AZ\";}i:3;a:2:{s:10:\"state_long\";s:8:\"arkansas\";s:11:\"state_short\";s:2:\"AR\";}i:4;a:2:{s:10:\"state_long\";s:10:\"california\";s:11:\"state_short\";s:2:\"CA\";}i:5;a:2:{s:10:\"state_long\";s:8:\"colorado\";s:11:\"state_short\";s:2:\"CO\";}i:6;a:2:{s:10:\"state_long\";s:11:\"connecticut\";s:11:\"state_short\";s:2:\"CT\";}i:7;a:2:{s:10:\"state_long\";s:8:\"delaware\";s:11:\"state_short\";s:2:\"DE\";}i:8;a:2:{s:10:\"state_long\";s:7:\"florida\";s:11:\"state_short\";s:2:\"FL\";}i:9;a:2:{s:10:\"state_long\";s:7:\"georgia\";s:11:\"state_short\";s:2:\"GA\";}i:10;a:2:{s:10:\"state_long\";s:6:\"hawaii\";s:11:\"state_short\";s:2:\"HI\";}i:11;a:2:{s:10:\"state_long\";s:5:\"idaho\";s:11:\"state_short\";s:2:\"ID\";}i:12;a:2:{s:10:\"state_long\";s:8:\"illinois\";s:11:\"state_short\";s:2:\"IN\";}i:13;a:2:{s:10:\"state_long\";s:4:\"iowa\";s:11:\"state_short\";s:2:\"IA\";}i:14;a:2:{s:10:\"state_long\";s:6:\"kansas\";s:11:\"state_short\";s:2:\"KS\";}i:15;a:2:{s:10:\"state_long\";s:8:\"kentucky\";s:11:\"state_short\";s:2:\"KY\";}i:16;a:2:{s:10:\"state_long\";s:9:\"louisiana\";s:11:\"state_short\";s:2:\"LA\";}i:17;a:2:{s:10:\"state_long\";s:5:\"maine\";s:11:\"state_short\";s:2:\"ME\";}i:18;a:2:{s:10:\"state_long\";s:8:\"maryland\";s:11:\"state_short\";s:2:\"MD\";}i:19;a:2:{s:10:\"state_long\";s:13:\"massachusetts\";s:11:\"state_short\";s:2:\"MA\";}i:20;a:2:{s:10:\"state_long\";s:8:\"michigan\";s:11:\"state_short\";s:2:\"MI\";}i:21;a:2:{s:10:\"state_long\";s:9:\"minnesota\";s:11:\"state_short\";s:2:\"MN\";}i:22;a:2:{s:10:\"state_long\";s:11:\"mississippi\";s:11:\"state_short\";s:2:\"MS\";}i:23;a:2:{s:10:\"state_long\";s:8:\"missouri\";s:11:\"state_short\";s:2:\"MO\";}i:24;a:2:{s:10:\"state_long\";s:7:\"montana\";s:11:\"state_short\";s:2:\"NE\";}i:25;a:2:{s:10:\"state_long\";s:6:\"nevada\";s:11:\"state_short\";s:2:\"NV\";}i:26;a:2:{s:10:\"state_long\";s:13:\"new hampshire\";s:11:\"state_short\";s:2:\"NH\";}i:27;a:2:{s:10:\"state_long\";s:10:\"new mexico\";s:11:\"state_short\";s:2:\"NM\";}i:28;a:2:{s:10:\"state_long\";s:8:\"new york\";s:11:\"state_short\";s:2:\"NY\";}i:29;a:2:{s:10:\"state_long\";s:14:\"north carolina\";s:11:\"state_short\";s:2:\"NC\";}i:30;a:2:{s:10:\"state_long\";s:12:\"north dakota\";s:11:\"state_short\";s:2:\"ND\";}i:31;a:2:{s:10:\"state_long\";s:4:\"ohio\";s:11:\"state_short\";s:2:\"OH\";}i:32;a:2:{s:10:\"state_long\";s:8:\"oklahoma\";s:11:\"state_short\";s:2:\"OK\";}i:33;a:2:{s:10:\"state_long\";s:6:\"oregon\";s:11:\"state_short\";s:2:\"OR\";}i:34;a:2:{s:10:\"state_long\";s:12:\"pennsylvania\";s:11:\"state_short\";s:2:\"PA\";}i:35;a:2:{s:10:\"state_long\";s:12:\"rhode island\";s:11:\"state_short\";s:2:\"RI\";}i:36;a:2:{s:10:\"state_long\";s:14:\"south carolina\";s:11:\"state_short\";s:2:\"SC\";}i:37;a:2:{s:10:\"state_long\";s:12:\"south dakota\";s:11:\"state_short\";s:2:\"SD\";}i:38;a:2:{s:10:\"state_long\";s:9:\"tennessee\";s:11:\"state_short\";s:2:\"TN\";}i:39;a:2:{s:10:\"state_long\";s:5:\"texas\";s:11:\"state_short\";s:2:\"TX\";}i:40;a:2:{s:10:\"state_long\";s:4:\"utah\";s:11:\"state_short\";s:2:\"UT\";}i:41;a:2:{s:10:\"state_long\";s:7:\"vermont\";s:11:\"state_short\";s:2:\"VT\";}i:42;a:2:{s:10:\"state_long\";s:8:\"virginia\";s:11:\"state_short\";s:2:\"VA\";}i:43;a:2:{s:10:\"state_long\";s:10:\"washington\";s:11:\"state_short\";s:2:\"WA\";}i:44;a:2:{s:10:\"state_long\";s:13:\"west virginia\";s:11:\"state_short\";s:2:\"WV\";}i:45;a:2:{s:10:\"state_long\";s:9:\"wisconsin\";s:11:\"state_short\";s:2:\"WI\";}i:46;a:2:{s:10:\"state_long\";s:7:\"wyoming\";s:11:\"state_short\";s:2:\"WY\";}}', 1),
+(23672, 'ups', 'ups_owner', 'Prolineshipping', 0),
+(23803, 'usps', 'usps_state', 'CA', 0),
+(23802, 'usps', 'usps_city', 'Walnut', 0),
+(23841, 'fedex', 'fedex_fee_value', '3', 0),
+(23840, 'fedex', 'fedex_fee_type', '0', 0),
+(23801, 'usps', 'usps_street2', 'STE 108', 0),
+(23800, 'usps', 'usps_street', '20803 Valley Blvd', 0),
+(23799, 'usps', 'usps_phone', '9098699466', 0),
+(23793, 'usps', 'usps_user_id', '609FREES0002', 0),
+(23794, 'usps', 'usps_time_zone', 'America/Los_Angeles', 0),
+(23795, 'usps', 'usps_owner', 'FSUS', 0),
+(23796, 'usps', 'usps_first_name', 'Tim', 0),
+(23797, 'usps', 'usps_last_name', 'Lee', 0),
+(23671, 'ups', 'ups_quote_type', 'commercial', 0),
+(23670, 'ups', 'ups_country', 'US', 0),
+(23669, 'ups', 'ups_postcode', '91731', 0),
+(23668, 'ups', 'ups_state', 'CA', 0),
+(23667, 'ups', 'ups_city', 'EL Monte', 0),
+(23781, 'config', 'config_language_id', '5', 0),
+(23780, 'config', 'config_printnode_general_printer_id', '431808', 0),
+(23823, 'fedex', 'fedex_origin', 'US', 0),
+(23824, 'fedex', 'fedex_street', '9910 Baldwin Place', 0),
+(23825, 'fedex', 'fedex_street2', '', 0),
+(23826, 'fedex', 'fedex_city', 'El Monte', 0),
+(23666, 'ups', 'ups_street2', 'B', 0),
+(23665, 'ups', 'ups_street', '9852 Baldwin Place', 0),
+(23664, 'ups', 'ups_origin', 'US', 0),
+(23663, 'ups', 'ups_time_zone', 'America/Los_Angeles', 0),
+(23662, 'ups', 'ups_classification_code', '01', 0),
+(23661, 'ups', 'ups_pickup_method', '03', 0),
+(23658, 'ups', 'ups_username', 'proline18', 0),
+(23659, 'ups', 'ups_password', 'Proline2017', 0),
+(23779, 'config', 'config_printnode_label_printer_id', '431808', 0),
+(23602, 'postpony', 'postpony_fee_type', '0', 0),
+(23603, 'postpony', 'postpony_fee_value', '0', 0),
+(23604, 'postpony', 'postpony_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
+(23600, 'postpony', 'postpony_service', 'a:4:{i:0;a:4:{s:4:\"name\";s:21:\"Postpony Fedex Ground\";s:4:\"code\";s:3:\"pfg\";s:6:\"method\";s:11:\"FedExGround\";s:7:\"package\";s:12:\"YOUR_PACKAGE\";}i:1;a:4:{s:4:\"name\";s:19:\"Postpony UPS Ground\";s:4:\"code\";s:3:\"pug\";s:6:\"method\";s:9:\"UpsGround\";s:7:\"package\";s:7:\"PACKAGE\";}i:2;a:4:{s:4:\"name\";s:25:\"Postpony USPS First Class\";s:4:\"code\";s:5:\"pusfc\";s:6:\"method\";s:18:\"UspsFirstClassMail\";s:7:\"package\";s:7:\"PACKAGE\";}i:3;a:4:{s:4:\"name\";s:22:\"Postpony USPS Priority\";s:4:\"code\";s:4:\"pusp\";s:6:\"method\";s:16:\"UspsPriorityMail\";s:7:\"package\";s:7:\"PACKAGE\";}}', 1),
+(23601, 'postpony', 'postpony_state_mapping', 'a:1:{i:0;a:2:{s:10:\"state_long\";s:0:\"\";s:11:\"state_short\";s:0:\"\";}}', 1),
+(23599, 'postpony', 'postpony_sort_order', '0', 0),
+(23598, 'postpony', 'postpony_status', '1', 0),
+(23597, 'postpony', 'postpony_debug_mode', '1', 0),
+(23596, 'postpony', 'postpony_weight_unit', 'LB', 0),
+(23595, 'postpony', 'postpony_length_unit', 'IN', 0),
+(23778, 'config', 'config_printnode_api_key', 'ecc393aa3ff30e0dd3b27f40ce0a033dc9a7b948', 0),
+(23777, 'config', 'config_printnode_width', '180', 0),
+(23594, 'postpony', 'postpony_phone', '9098956073', 0),
+(23593, 'postpony', 'postpony_owner', 'SHAN SUN', 0),
+(23592, 'postpony', 'postpony_country', 'US', 0),
+(23776, 'config', 'config_printnode_position_y', '20', 0),
+(23775, 'config', 'config_printnode_position_x', '14', 0),
+(23774, 'config', 'config_location_barcode_batch_page_item', '1', 0),
+(23773, 'config', 'config_location_barcode_batch_margin', '200', 0),
+(23772, 'config', 'config_location_barcode_batch_code_size', '20', 0),
+(23771, 'config', 'config_location_barcode_batch_name_size', '60', 0),
+(23770, 'config', 'config_location_barcode_batch_posy', '20', 0),
+(23769, 'config', 'config_location_barcode_batch_posx', '10', 0),
 (22875, 'flat', 'flat_amount', '20', 0),
 (22876, 'flat', 'flat_status', '1', 0),
-(23017, 'config', 'config_location_barcode_batch_width', '630', 0),
-(23016, 'config', 'config_location_barcode_code_size', '80', 0),
-(23015, 'config', 'config_location_barcode_name_size', '200', 0),
-(23014, 'config', 'config_location_barcode_posy', '200', 0),
-(23013, 'config', 'config_location_barcode_posx', '1', 0),
-(23012, 'config', 'config_location_barcode_height', '400', 0),
-(23011, 'config', 'config_location_barcode_width', '6', 0),
-(23010, 'config', 'config_label_posy', '0', 0),
-(23009, 'config', 'config_label_width', '60', 0),
-(23008, 'config', 'config_label_width_type', '0', 0),
-(23007, 'config', 'config_autocomplete_limit', '5', 0),
-(23006, 'config', 'config_dashboard_store_sync_limit', '8', 0),
-(23005, 'config', 'config_dashboard_order_limit', '7', 0),
-(23004, 'config', 'config_dashboard_activity_limit', '8', 0),
-(23003, 'config', 'config_sale_product_page_limit', '15', 0),
-(23002, 'config', 'config_page_limit', '10', 0),
-(23001, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
-(23038, 'config', 'config_smtp_username', '', 0),
-(23039, 'config', 'config_smtp_password', '', 0),
-(23040, 'config', 'config_smtp_port', '', 0),
-(23041, 'config', 'config_smtp_timeout', '', 0),
-(23042, 'config', 'config_google_key', '', 0);
+(23768, 'config', 'config_location_barcode_batch_height', '300', 0),
+(23767, 'config', 'config_location_barcode_batch_width', '630', 0),
+(23766, 'config', 'config_location_barcode_code_size', '80', 0),
+(23765, 'config', 'config_location_barcode_name_size', '200', 0),
+(23764, 'config', 'config_location_barcode_posy', '200', 0),
+(23763, 'config', 'config_location_barcode_posx', '1', 0),
+(23762, 'config', 'config_location_barcode_height', '400', 0),
+(23761, 'config', 'config_location_barcode_width', '6', 0),
+(23759, 'config', 'config_label_width', '60', 0),
+(23760, 'config', 'config_label_posy', '0', 0),
+(23757, 'config', 'config_autocomplete_limit', '5', 0),
+(23758, 'config', 'config_label_width_type', '0', 0),
+(23756, 'config', 'config_dashboard_store_sync_limit', '8', 0),
+(23755, 'config', 'config_dashboard_order_limit', '7', 0),
+(23754, 'config', 'config_dashboard_activity_limit', '8', 0),
+(23798, 'usps', 'usps_company', 'Free Shopping Inc', 0),
+(23660, 'ups', 'ups_account_number', '3FR703', 0),
+(23657, 'ups', 'ups_access_key', '7D3678D352FE879D', 0),
+(23589, 'postpony', 'postpony_city', 'South El Monte', 0),
+(23591, 'postpony', 'postpony_postcode', '91733', 0),
+(23586, 'postpony', 'postpony_company', 'intadat Inc', 0),
+(23587, 'postpony', 'postpony_street', '1467 Lidcombe Ave', 0),
+(23590, 'postpony', 'postpony_state', 'CA', 0),
+(23820, 'fedex', 'fedex_password', 'GYuOzp9a0uGbUcw25uLnJ4vD7', 0),
+(23822, 'fedex', 'fedex_time_zone', 'America/Los_Angeles', 0),
+(23821, 'fedex', 'fedex_company', 'Prolineshipping Inc', 0),
+(23819, 'fedex', 'fedex_key', 'UOLSEeKVrlJSMEKb', 0),
+(23818, 'fedex', 'fedex_meter_number', '119000362', 0),
+(23817, 'fedex', 'fedex_account_number', '510087720', 0),
+(23588, 'postpony', 'postpony_street2', '', 0),
+(23583, 'postpony', 'postpony_key', 'PY', 0),
+(23584, 'postpony', 'postpony_pwd', 'pypypypypy', 0),
+(23585, 'postpony', 'postpony_authorized_key', 'TESTTOKEN-ske39De3mkC39d', 0),
+(23684, 'ups', 'ups_fee_value', '3', 0),
+(23786, 'config', 'config_default_order_shipping_service', 'pfg', 0),
+(23753, 'config', 'config_sale_product_page_limit', '15', 0),
+(23752, 'config', 'config_page_limit', '10', 0),
+(23751, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
+(23788, 'config', 'config_smtp_username', '', 0),
+(23789, 'config', 'config_smtp_password', '', 0),
+(23790, 'config', 'config_smtp_port', '', 0),
+(23791, 'config', 'config_smtp_timeout', '', 0),
+(23792, 'config', 'config_google_key', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2063,7 +2600,7 @@ CREATE TABLE `store` (
 --
 
 INSERT INTO `store` (`id`, `client_id`, `name`, `platform`, `setting`, `default_sale_status_id`, `default_sale_shipping_provider`, `default_sale_shipping_service`, `active_download`, `active_upload`, `sync_inventory`, `sync_single_warehouse`, `sync_warehouse_id`) VALUES
-(1, 1, 'Arron 2894355100', 'wish', 'a:5:{s:5:\"token\";s:32:\"f320b5a2e1ce419d8d24ea6163debb43\";s:14:\"download_limit\";s:3:\"100\";s:12:\"upload_limit\";s:3:\"100\";s:11:\"recent_days\";s:2:\"10\";s:5:\"order\";s:1:\"0\";}', 1, 'usps', 'fc', 0, 0, 1, 0, NULL),
+(1, 1, 'Arron 2894355100', 'wish', 'a:5:{s:5:\"token\";s:32:\"70bcc38ae06d431a997f6a14046e6fdc\";s:14:\"download_limit\";s:2:\"20\";s:12:\"upload_limit\";s:2:\"20\";s:11:\"recent_days\";s:2:\"10\";s:5:\"order\";s:1:\"0\";}', 1, 'usps', 'fc', 0, 0, 1, 0, NULL),
 (2, 1, 'Arron 312988716', 'wish', 'a:5:{s:5:\"token\";s:32:\"f9a6caed681b426abb24a8c1197f18a7\";s:14:\"download_limit\";s:3:\"100\";s:12:\"upload_limit\";s:3:\"100\";s:11:\"recent_days\";s:2:\"10\";s:5:\"order\";s:1:\"1\";}', 1, 'usps', 'fc', 0, 0, 1, 0, NULL),
 (3, 2, 'Huang Offine', 'offline', 's:0:\"\";', 1, 'usps', 'fc', 0, 0, 1, 0, NULL);
 
@@ -2086,9 +2623,9 @@ CREATE TABLE `store_sync` (
 --
 
 INSERT INTO `store_sync` (`id`, `store_id`, `enabled`, `type`, `active`) VALUES
-(1, 1, 0, 0, 0),
+(1, 1, 1, 0, 0),
 (2, 1, 0, 1, 0),
-(3, 2, 0, 0, 0),
+(3, 2, 1, 0, 1),
 (4, 2, 0, 1, 0),
 (5, 3, 0, 0, 0),
 (6, 3, 0, 1, 0);
@@ -2107,6 +2644,22 @@ CREATE TABLE `store_sync_history` (
   `date_added` datetime NOT NULL,
   `messages` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `store_sync_history`
+--
+
+INSERT INTO `store_sync_history` (`id`, `store_id`, `type`, `status`, `date_added`, `messages`) VALUES
+(13, 1, 0, 2, '2018-06-23 03:00:06', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(14, 1, 0, 2, '2018-06-23 03:10:24', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(15, 1, 0, 2, '2018-06-23 03:18:19', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(16, 2, 0, 2, '2018-06-23 03:18:23', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(17, 1, 0, 2, '2018-06-23 03:18:28', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(18, 2, 0, 2, '2018-06-23 03:18:32', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(19, 1, 0, 2, '2018-06-23 03:27:57', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}'),
+(20, 2, 0, 2, '2018-06-23 03:28:07', 'a:2:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:30:\"Your access token has expired.\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:58:\"<strong>Not importing anything due to sync errors</strong>\";}}');
+INSERT INTO `store_sync_history` (`id`, `store_id`, `type`, `status`, `date_added`, `messages`) VALUES
+(21, 1, 0, 3, '2018-06-23 03:29:56', 'a:192:{i:0;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:59:\"order <strong>#5b2c8f410249506b40f92990</strong> is invalid\";}i:1;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5ae8b28e5d6d38146a671797\"><strong>order #5ae8b28e5d6d38146a671797</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:2;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d1efae394c516c0041c73\"><strong>order #5b2d1efae394c516c0041c73</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:3;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d1efae394c516c0041c73\"><strong>order #5b2d1efae394c516c0041c73</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:4;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5ad9563bc028f47f2967c72b\"><strong>order #5ad9563bc028f47f2967c72b</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:5;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5ad9563bc028f47f2967c72b\"><strong>order #5ad9563bc028f47f2967c72b</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:6;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5ad9563bc028f47f2967c72b\"><strong>order #5ad9563bc028f47f2967c72b</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:7;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5adb442e8254ed7e430d5b10\"><strong>order #5adb442e8254ed7e430d5b10</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:8;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5adb442e8254ed7e430d5b10\"><strong>order #5adb442e8254ed7e430d5b10</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:9;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5adb442e8254ed7e430d5b10\"><strong>order #5adb442e8254ed7e430d5b10</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:10;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5adb442e8254ed7e430d5b10\"><strong>order #5adb442e8254ed7e430d5b10</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:11;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17eb\"><strong>order #5b2d0fcf3ae46316c65c17eb</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:12;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17eb\"><strong>order #5b2d0fcf3ae46316c65c17eb</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:13;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17eb\"><strong>order #5b2d0fcf3ae46316c65c17eb</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:14;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17eb\"><strong>order #5b2d0fcf3ae46316c65c17eb</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:15;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17eb\"><strong>order #5b2d0fcf3ae46316c65c17eb</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:16;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:17;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:18;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:19;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:20;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:21;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2d0fcf3ae46316c65c17ea\"><strong>order #5b2d0fcf3ae46316c65c17ea</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:22;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:23;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:24;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:25;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:26;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:27;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:28;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1884e26386a15174f8488\"><strong>order #5af1884e26386a15174f8488</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:29;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:30;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:31;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:32;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:33;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:34;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:35;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:36;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68da\"><strong>order #5af2afcfbe3aca14cd0b68da</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:37;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:38;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:39;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:40;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:41;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:42;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:43;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:44;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:45;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af2afcfbe3aca14cd0b68d9\"><strong>order #5af2afcfbe3aca14cd0b68d9</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:46;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:47;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:48;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:49;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:50;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:51;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:52;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:53;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:54;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:55;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2ceaeb72ac0e16c65c13ff\"><strong>order #5b2ceaeb72ac0e16c65c13ff</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:56;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:57;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:58;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:59;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:60;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:61;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:62;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:63;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:64;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:65;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:66;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af1367a57cb7730ee274fe5\"><strong>order #5af1367a57cb7730ee274fe5</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:67;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:68;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:69;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:70;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:71;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:72;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:73;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:74;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:75;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:76;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:77;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:78;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d4\"><strong>order #5af0c92fc530573f308571d4</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:79;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:80;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:81;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:82;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:83;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:84;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:85;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:86;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:87;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:88;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:89;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:90;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:91;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d3\"><strong>order #5af0c92fc530573f308571d3</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:92;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:93;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:94;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:95;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:96;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:97;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:98;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:99;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:100;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:101;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:102;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:103;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:104;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:105;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af0c92fc530573f308571d2\"><strong>order #5af0c92fc530573f308571d2</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:106;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:107;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:108;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:109;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:110;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:111;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:112;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:113;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:114;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:115;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:116;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:117;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:118;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:119;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:120;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cddb286679c41ffd11ccd\"><strong>order #5b2cddb286679c41ffd11ccd</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:121;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:122;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:123;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:124;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:125;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:126;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:127;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:128;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:129;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:130;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:131;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:132;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:133;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:134;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:135;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:136;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af07f7b52d9cd1859b37ec0\"><strong>order #5af07f7b52d9cd1859b37ec0</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:137;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:138;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:139;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:140;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:141;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:142;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:143;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:144;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:145;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:146;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:147;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:148;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:149;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:150;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:151;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:152;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:153;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5af064cfabced31486524785\"><strong>order #5af064cfabced31486524785</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:154;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:155;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:156;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:157;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:158;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:159;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:160;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:161;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:162;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:163;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:164;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:165;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:166;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:167;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:168;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:169;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:170;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:171;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:240:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2cd1d0b886080bfe6ba333\"><strong>order #5b2cd1d0b886080bfe6ba333</strong> has sku <strong>20342-Black</strong> that is not found in system</a>\";}i:172;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:173;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:247:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>WD076MA-1 Pair Big</strong> that is not found in system</a>\";}i:174;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:175;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:176;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:177;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:178;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:179;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:180;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:181;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:236:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>套装3</strong> that is not found in system</a>\";}i:182;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:183;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:184;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:185;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:256:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-Large leaves 1 pc</strong> that is not found in system</a>\";}i:186;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:187;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:238:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff</strong> that is not found in system</a>\";}i:188;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:250:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>vfvfvffff-2 pcs seeds</strong> that is not found in system</a>\";}i:189;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:240:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>20342-Black</strong> that is not found in system</a>\";}i:190;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:248:\"<a target=\"_blank\" href=\"http://localhost/c3/api/store/store_sale_sync/sale_detail?store_sale_id=5b2a479e7743e716d7be7e0f\"><strong>order #5b2a479e7743e716d7be7e0f</strong> has sku <strong>cdvfrewgv-90X1000CM</strong> that is not found in system</a>\";}i:191;a:2:{s:5:\"level\";i:2;s:7:\"content\";s:60:\"<strong>Total: 19; Success: 0; Warning: 0; Fail: 19</strong>\";}}');
 
 -- --------------------------------------------------------
 
@@ -2462,12 +3015,6 @@ ALTER TABLE `sale`
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `sale_fee`
---
-ALTER TABLE `sale_fee`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sale_label`
 --
 ALTER TABLE `sale_label`
@@ -2558,7 +3105,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=780;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1281;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -2570,7 +3117,7 @@ ALTER TABLE `balance`
 -- AUTO_INCREMENT for table `checkin`
 --
 ALTER TABLE `checkin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `checkin_fee`
@@ -2588,13 +3135,13 @@ ALTER TABLE `checkin_file`
 -- AUTO_INCREMENT for table `checkin_product`
 --
 ALTER TABLE `checkin_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `checkout_fee`
@@ -2612,7 +3159,7 @@ ALTER TABLE `checkout_file`
 -- AUTO_INCREMENT for table `checkout_product`
 --
 ALTER TABLE `checkout_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -2660,7 +3207,7 @@ ALTER TABLE `information`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `language`
@@ -2720,13 +3267,7 @@ ALTER TABLE `refund`
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `sale_fee`
---
-ALTER TABLE `sale_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sale_label`
@@ -2738,13 +3279,13 @@ ALTER TABLE `sale_label`
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23043;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23843;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -2762,13 +3303,13 @@ ALTER TABLE `store_sync`
 -- AUTO_INCREMENT for table `store_sync_history`
 --
 ALTER TABLE `store_sync_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=717;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transfer`

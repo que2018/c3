@@ -1,17 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Store_sale_sync_upload extends CI_Controller {
-
-	function __construct()
+class Store_sale_sync_upload extends CI_Controller 
+{
+	public function upload($store_id)
 	{
-		parent::__construct();	
-
 		$this->lang->load('store/store_sale_sync_upload');		
-	}
-	
-	function upload($store_id)
-	{
+		
 		$this->load->model('store/store_model');
 		$this->load->model('store/store_sync_history_model');
 				
@@ -59,8 +53,10 @@ class Store_sale_sync_upload extends CI_Controller {
 		return $outdata;
 	}
 	
-	function upload_sale($sale_id)
+	public function upload_sale($sale_id)
 	{
+		$this->lang->load('store/store_sale_sync_upload');		
+
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('store/store_sync_history_model');
@@ -125,7 +121,7 @@ class Store_sale_sync_upload extends CI_Controller {
 		return $outdata;
 	}
 	
-	function upload_ajax()
+	public function upload_ajax()
 	{
 		if($this->input->get('store_id')) 
 		{
@@ -137,7 +133,7 @@ class Store_sale_sync_upload extends CI_Controller {
 		}
 	}
 	
-	function upload_sale_ajax()
+	public function upload_sale_ajax()
 	{
 		if($this->input->get('sale_id')) 
 		{
@@ -145,7 +141,8 @@ class Store_sale_sync_upload extends CI_Controller {
 		
 			$outdata = $this->upload_sale($sale_id);
 		
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

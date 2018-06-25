@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Sale extends MX_Controller
 {
 	public function index()
@@ -498,6 +497,8 @@ class Sale extends MX_Controller
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class_id'), 'required');
+		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
+		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_order_products'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		
@@ -526,8 +527,7 @@ class Sale extends MX_Controller
 				'shipping_provider' => $this->input->post('shipping_provider'),
 				'shipping_service'  => $this->input->post('shipping_service'),
 				'store_id'          => $this->input->post('store_id'),
-				'store_sale_id'     => $this->input->post('store_sale_id'),
-				'sale_fees'         => $this->input->post('sale_fee')
+				'store_sale_id'     => $this->input->post('store_sale_id')
 			);
 			
 			$data['sale_products'] = array();
@@ -576,7 +576,6 @@ class Sale extends MX_Controller
 				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
 				'store_id'          => '',
 				'store_sale_id'     => '',
-				'sale_fees'         => '',
 				'sale_products'     => array()
 			);
 		}
@@ -584,9 +583,7 @@ class Sale extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$sale_id = $this->sale_model->add_sale($data);
-			
-			$this->adjust_shipping($sale_id);
-						
+									
 			$this->session->set_flashdata('success', $this->lang->line('text_sale_add_success'));
 			
 			redirect(base_url() . 'sale/sale' . $url, 'refresh');
@@ -821,7 +818,9 @@ class Sale extends MX_Controller
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class_id'), 'required');
-		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_products'), 'required');
+		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
+		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
+		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_product'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
 		
 		if($this->form_validation->run() == true)
@@ -851,14 +850,11 @@ class Sale extends MX_Controller
 				'store_id'          => $this->input->post('store_id'),
 				'store_sale_id'     => $this->input->post('store_sale_id'),
 				'sale_products'     => $this->input->post('sale_product'),
-				'sale_labels'       => $this->input->post('sale_label'),
-				'sale_fees'         => $this->input->post('sale_fee')
+				'sale_labels'       => $this->input->post('sale_label')
 			);
 						
 			$this->sale_model->edit_sale($sale_id, $data);
-			
-			$this->adjust_shipping($sale_id);
-						
+				
 			$this->session->set_flashdata('success', $this->lang->line('text_sale_edit_success'));
 			
 			if($this->input->get('unsolved'))
@@ -897,7 +893,6 @@ class Sale extends MX_Controller
 			$data['store_id']           = $this->input->post('store_id');
 			$data['store_sale_id']      = $this->input->post('store_sale_id');
 			$data['sale_labels']        = $this->input->post('sale_label');
-			$data['sale_fees']          = $this->input->post('sale_fee');
 			
 			//sale products
 			$data['sale_products'] = array();
@@ -1005,21 +1000,6 @@ class Sale extends MX_Controller
 							'link'      => base_url() . $sale_label['path']
 						);
 					}
-				}
-			}
-			
-			//sale fees
-			$data['sale_fees'] = array();
-			
-			$sale_fees = $this->sale_model->get_sale_fees($sale_id);	
-			
-			if($sale_fees) 
-			{
-				foreach($sale_fees as $sale_fee) {
-					$data['sale_fees'][] = array(
-						'name'   => $sale_fee['name'],
-						'amount' => $sale_fee['amount']
-					);
 				}
 			}
 		}
@@ -1192,11 +1172,12 @@ class Sale extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
-	function validate_add_tracking($tracking)
+	public function validate_add_tracking($tracking)
 	{
 		$this->load->model('sale/sale_model');
 		
@@ -1221,7 +1202,7 @@ class Sale extends MX_Controller
 		}
 	}
 	
-	function validate_edit_tracking($tracking)
+	public function validate_edit_tracking($tracking)
 	{
 		$this->load->model('sale/sale_model');
 		
@@ -1252,23 +1233,6 @@ class Sale extends MX_Controller
 		else
 		{
 			return true;
-		}
-	}
-	
-	function adjust_shipping($sale_id)
-	{
-		$this->load->model('sale/sale_model');
-		
-		$sale = $this->sale_model->get_sale($sale_id);
-		
-		if(empty($sale['shipping_provider']) || empty($sale['shipping_service']))
-		{
-			$shipping_data = array(
-				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
-				'shipping_service'  => $this->config->item('config_default_order_shipping_service')
-			);
-			
-			$this->sale_model->update_shipping($sale_id, $shipping_data);
 		}
 	}
 }
