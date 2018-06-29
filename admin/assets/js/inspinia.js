@@ -121,20 +121,25 @@ $(document).ready(function () {
 
         var navbarheight = $('nav.navbar-default').height();
         var wrapperHeight = $('#page-wrapper').height();
+		var windowsHeight = $(window).height();
 
         if (navbarheight > wrapperHeight) {
             $('#page-wrapper').css("min-height", navbarheight + "px");
         }
 
         if (navbarheight < wrapperHeight) {
-            $('#page-wrapper').css("min-height", $(window).height() + "px");
+            $('#page-wrapper').css("min-height", windowsHeight + "px");
         }
 
+		if(wrapperHeight < windowsHeight) {
+			$('#page-wrapper').css("min-height", windowsHeight + "px");
+		}
+		
         if ($('body').hasClass('fixed-nav')) {
             if (navbarheight > wrapperHeight) {
                 $('#page-wrapper').css("min-height", navbarheight + "px");
             } else {
-                $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
+                $('#page-wrapper').css("min-height", windowsHeight - 60 + "px");
             }
         }
     }
