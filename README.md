@@ -1,1 +1,1 @@
-The C3 IMS System
+The C3 Inventory Managment System
