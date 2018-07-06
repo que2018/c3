@@ -6,8 +6,8 @@ $lang['text_fee'] 	  	                 = 'Fee';
 $lang['text_extension'] 	  	         = 'Extension';
 $lang['text_no_fees'] 	  	             = 'No Fees';
 $lang['text_fee_description'] 	     	 = 'Display All Fees';
-$lang['text_install_success'] 	  	     = '<i class="fa fa-check-circle-o"></i>&nbsp;shipping install success';
-$lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;shipping uninstall success';
+$lang['text_install_success'] 	  	     = '<i class="fa fa-check-circle-o"></i>&nbsp;fee install success';
+$lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;fee uninstall success';
 
 // Column
 $lang['column_name'] 	  	             = 'Name';

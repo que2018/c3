@@ -81,7 +81,7 @@
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_batch"><?php echo $this->lang->line('menu_inventory_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_import"><?php echo $this->lang->line('menu_import_inventory'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>inventory/transfer"><?php echo $this->lang->line('menu_transfer_list'); ?></a></li>
+			  <!--<li><a href="<?php echo base_url(); ?>inventory/transfer"><?php echo $this->lang->line('menu_transfer_list'); ?></a></li>-->
 			  <li><a href="<?php echo base_url(); ?>inventory/refund"><?php echo $this->lang->line('menu_return_list'); ?></a></li>
 			</ul>
 		  </li>
@@ -169,7 +169,8 @@
 				  <li><a href="<?php echo base_url(); ?>setting/length_class"><?php echo $this->lang->line('menu_length_class'); ?></a></li>
 			      <li><a href="<?php echo base_url(); ?>setting/weight_class"><?php echo $this->lang->line('menu_weight_class'); ?></a></li>
 				</ul>
-              </li>			
+              </li>	
+			  <li><a href="<?php echo base_url(); ?>setting/about"><?php echo $this->lang->line('menu_about'); ?></a></li>			  
 			</ul>
 		  </li>
 		</ul>

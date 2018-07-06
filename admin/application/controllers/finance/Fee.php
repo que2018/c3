@@ -174,13 +174,9 @@ class Fee extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_name']   = base_url().'finance/fee?sort=name' . $url;
@@ -203,6 +199,42 @@ class Fee extends MX_Controller
 		}
 		
 		$data['filter_url'] = base_url().'finance/fee'.$url;
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
+		
+		if($this->input->get('filter_amount')) 
+		{
+			$url .= '&filter_amount=' . $this->input->get('filter_amount');
+		}
+		
+		if($this->input->get('filter_date_added')) 
+		{
+			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
+		}
 		
 		$data['reload'] = base_url() . 'finance/fee/reload' . $url;
 

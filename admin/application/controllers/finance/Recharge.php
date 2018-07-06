@@ -200,13 +200,9 @@ class Recharge extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_client']     = base_url() . 'finance/recharge?sort=name' . $url;
@@ -217,7 +213,7 @@ class Recharge extends MX_Controller
 
 		$url = '';
 		
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '?limit=' . $this->input->get('limit');
 		}
@@ -226,13 +222,69 @@ class Recharge extends MX_Controller
 			$url .= '?limit=' . $this->config->item('config_page_limit');
 		}
 		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
+		if($this->input->get('filter_client_id')) 
+		{
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
+		}
+		
+		if($this->input->get('filter_payment_method')) 
+		{
+			$url .= '&filter_payment_method=' . $this->input->get('filter_payment_method');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		$data['reload'] = base_url() . 'finance/recharge/reload' . $url;
 
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_client_id')) 
+		{
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
+		}
+		
+		if($this->input->get('filter_payment_method')) 
+		{
+			$url .= '&filter_payment_method=' . $this->input->get('filter_payment_method');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		$data['filter_url'] = base_url().'finance/recharge' . $url;
 	
 		$data['sort']  = $sort;
@@ -461,7 +513,8 @@ class Recharge extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

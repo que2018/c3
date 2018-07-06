@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Inventory_batch extends MX_Controller 
 {
 	public function index()
@@ -311,7 +310,7 @@ class Inventory_batch extends MX_Controller
 		
 		$url = '';
 		
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '?limit='.$this->input->get('limit');
 		}
@@ -327,6 +326,47 @@ class Inventory_batch extends MX_Controller
 		
 		$data['filter_url'] = base_url() . 'inventory/inventory_batch' . $url;
 		
+		$url = '';
+				
+		if ($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+				
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_client_id')) 
+		{
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
+		}
+		
+		if($this->input->get('filter_location')) 
+		{
+			$url .= '&filter_location=' . $this->input->get('filter_location');
+		}
+		
+		if($this->input->get('filter_sku')) 
+		{
+			$url .= '&filter_sku=' . $this->input->get('filter_sku');
+		}
+		
+		if($this->input->get('filter_upc')) 
+		{
+			$url .= '&filter_upc=' . $this->input->get('filter_upc');
+		}
+		
 		$data['reload_url'] = base_url() . 'inventory/inventory_batch/reload' . $url;
 
 		$url = '';
@@ -340,9 +380,9 @@ class Inventory_batch extends MX_Controller
 			$url .= '?limit='.$this->config->item('config_page_limit');
 		}
 		
-		if($this->input->get('order')) 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=' . $this->input->get('order');
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		if($this->input->get('sort')) 

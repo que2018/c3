@@ -390,13 +390,9 @@ class Transaction extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_client']      = base_url() . 'finance/transaction?sort=name' . $url;
@@ -423,6 +419,69 @@ class Transaction extends MX_Controller
 		}
 		
 		$data['filter_url'] = base_url() . 'finance/transaction' . $url;
+	
+		$url = '';
+		
+		if ($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_client')) 
+		{
+			$url .= '&filter_client=' . $this->input->get('filter_client');
+		}
+		
+		if($this->input->get('filter_client_id')) 
+		{
+			$url .= '&filter_client_id=' . $this->input->get('filter_client_id');
+		}
+		
+		if($this->input->get('filter_cost')) 
+		{
+			$url .= '&filter_cost=' . $this->input->get('filter_cost');
+		}
+		
+		if($this->input->get('filter_markup')) 
+		{
+			$url .= '&filter_markup=' . $this->input->get('filter_markup');
+		}
+		
+		if($this->input->get('filter_amount')) 
+		{
+			$url .= '&filter_amount=' . $this->input->get('filter_amount');
+		}
+		
+		if($this->input->get('filter_comment')) 
+		{
+			$url .= '&filter_comment=' . $this->input->get('filter_comment');
+		}
+			
+		if($this->input->get('filter_date_from')) 
+		{
+			$url .= '&filter_date_from=' . $this->input->get('filter_date_from');
+		}
+		
+		if($this->input->get('filter_date_to')) 
+		{
+			$url .= '&filter_date_to=' . $this->input->get('filter_date_to');
+		}	
+	
+		$data['reload_url'] = base_url() . 'finance/transaction/reload' . $url;
 	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -607,7 +666,8 @@ class Transaction extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

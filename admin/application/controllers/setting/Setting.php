@@ -307,12 +307,15 @@ class Setting extends MX_Controller
 			
 			$shipping_services_data = $this->shipping_model->get_shipping_services($shipping_provider);
 			
-			foreach($shipping_services_data as $shipping_service_data)
+			if($shipping_services_data)
 			{
-				$data['shipping_services'][] = array(
-					'code'  => $shipping_service_data['code'],
-					'name'  => $shipping_service_data['name']
-				);
+				foreach($shipping_services_data as $shipping_service_data)
+				{
+					$data['shipping_services'][] = array(
+						'code'  => $shipping_service_data['code'],
+						'name'  => $shipping_service_data['name']
+					);
+				}
 			}
 		}
 		

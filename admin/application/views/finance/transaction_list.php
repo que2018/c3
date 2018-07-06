@@ -178,7 +178,7 @@ function delete_transaction(handle, transaction_id) {
 		success: function(json) {					
 			if(json.success) {
 				$.ajax({
-					url: '<?php echo base_url(); ?>finance/transaction/reload',
+					url: '<?php echo $reload_url; ?>',
 					dataType: 'html',
 					success: function(html) {					
 						$('.ibox-content').html(html);

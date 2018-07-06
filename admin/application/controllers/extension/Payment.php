@@ -59,6 +59,8 @@ class Payment extends MX_Controller
 	
 	public function install() 
 	{
+		$this->lang->load('extension/payment');
+		
 		$this->load->model('extension/extension_model');
 		
 		$code = $this->input->get('code');
@@ -76,6 +78,8 @@ class Payment extends MX_Controller
 	
 	public function uninstall() 
 	{
+		$this->lang->load('extension/payment');
+		
 		$this->load->model('extension/extension_model');
 		
 		$code = $this->input->get('code');

@@ -1,5 +1,13 @@
 .btn-edit{
 	margin-right: 6px;
-}.img-logo {	width: 120px;    margin: 0 auto;}
+}
+.img-logo {	
+	width: 120px;    
+	margin: 0 auto;
+}
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
 
 

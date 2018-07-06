@@ -12,9 +12,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_payment_description'); ?></h5>
@@ -41,7 +38,7 @@
 				    <?php if ($payment['installed']) { ?>
 					  <a href="<?php echo base_url('payment/' . $payment['code']); ?>" class="btn btn-primary  btn-edit"><i class="fa fa-pencil"></i></a>
 					<?php } else { ?>
-					  <button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-pencil"></i></button>
+					  <button type="button" class="btn btn-primary btn-edit" disabled="disabled"><i class="fa fa-pencil"></i></button>
 					<?php } ?>
 					<?php if (!$payment['installed']) { ?>
 					  <a href="<?php echo base_url('extension/payment/install?code=' . $payment['code']); ?>" class="btn btn-success"><i class="fa fa-plus-circle"></i></a>

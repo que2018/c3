@@ -240,18 +240,14 @@ class Checkin extends MX_Controller
 			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
 		}
 			
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if ($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_id']           = base_url() . 'check/checkin?sort=id' . $url;
@@ -277,6 +273,52 @@ class Checkin extends MX_Controller
 		}
 		
 		$data['filter_url'] = base_url() . 'check/checkin' . $url;
+	
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page='.$this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort='.$this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_id')) 
+		{
+			$url .= '&filter_id=' . $this->input->get('filter_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+		
+		if($this->input->get('filter_note')) 
+		{
+			$url .= '&filter_note=' . $this->input->get('filter_note');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
+		if($this->input->get('filter_date_added')) 
+		{
+			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
+		}
 	
 		$data['reload_url'] = base_url() . 'check/checkin/reload' . $url;
 
@@ -623,7 +665,8 @@ class Checkin extends MX_Controller
 				'success'   => ($result)?true:false
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	

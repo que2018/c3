@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Sale_unsolved extends MX_Controller 
 {
 	public function index()
@@ -272,9 +271,9 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($this->input->get('order')) 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=' . $this->input->get('order');
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 	
 		$this->pagination->total  = $sale_total;
@@ -306,23 +305,19 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&filter_status=' . $this->input->get('filter_status');
 		}
 		
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if ($this->input->get('page')) 
+		if($this->input->get('page')) 
 		{
 			$url .= '&page=' . $this->input->get('page');
 		}
 		
-		if ($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_sale_id']   	  = base_url() . 'sale/sale_unsolved?sort=sale.id' . $url;
@@ -346,7 +341,9 @@ class Sale_unsolved extends MX_Controller
 		{
 			$url .= '&sort=' . $this->input->get('sort');
 		}
-				
+			
+		$data['filter_url'] = base_url() . 'sale/sale_unsolved' . $url;
+
 		$url = '';
 		
 		if($this->input->get('limit')) 
@@ -368,11 +365,6 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 	
-		if($this->input->get('order')) 
-		{
-			$url .= '&order=' . $this->input->get('order');
-		}
-		
 		if($this->input->get('filter_sale_id')) 
 		{
 			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
@@ -393,9 +385,6 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&filter_status=' . $this->input->get('filter_status');
 		}
 			
-		
-		$data['filter_url'] = base_url() . 'sale/sale_unsolved' . $url;
-		
 		$data['reload_url'] = base_url() . 'sale/sale_unsolved/reload' . $url;
 
 		$data['sort']  = $sort;

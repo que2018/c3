@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkout extends MX_Controller 
 {
 	public function index()
@@ -247,13 +246,9 @@ class Checkout extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if ($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort='.$this->input->get('sort');
 		}
 		
 		$data['sort_id']         = base_url() . 'check/checkout?sort=id' . $url;
@@ -279,6 +274,52 @@ class Checkout extends MX_Controller
 		}
 				
 		$data['filter_url'] = base_url() . 'check/checkout' . $url;
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page='.$this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort='.$this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_id')) 
+		{
+			$url .= '&filter_id=' . $this->input->get('filter_id');
+		}
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
+		if($this->input->get('filter_date_added')) 
+		{
+			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
+		}
 		
 		$data['reload'] = base_url() . 'check/checkout/reload' . $url;
 	
@@ -524,6 +565,7 @@ class Checkout extends MX_Controller
 		$this->load->module('footer');
 		
 		$this->load->library('currency');
+		$this->load->library('phpexcel');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->CI =& $this;

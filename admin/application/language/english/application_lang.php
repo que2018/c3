@@ -74,6 +74,7 @@ $lang['menu_fee']	 		         = 'Fee';
 $lang['menu_log']	 		         = 'Log';
 $lang['menu_language']	 		     = 'Language';
 $lang['menu_activity_log']	 		 = 'Activity Log';
+$lang['menu_about']	 		 		 = 'About';
 
 // Text
 $lang['text_home']	                 = 'Home';

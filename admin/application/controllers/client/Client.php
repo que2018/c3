@@ -250,20 +250,19 @@ class Client extends MX_Controller
 			$url .= '&filter_phone=' . $this->input->get('filter_phone');
 		}   
 			
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if ($this->input->get('page')) 
+		if($this->input->get('page')) 
 		{
 			$url .= '&page=' . $this->input->get('page');
 		}
 		
-		if ($order == 'ASC') {
-			$url .= '&order=DESC';
-		} else {
-			$url .= '&order=ASC';
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_name']     = base_url() . 'client/client?sort=name' . $url;
@@ -288,6 +287,47 @@ class Client extends MX_Controller
 		}
 		
 		$data['filter_url'] = base_url() . 'client/client' . $url;
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
+		
+		if($this->input->get('filter_company')) 
+		{
+			$url .= '&filter_company=' . $this->input->get('filter_company');
+		}
+		
+		if($this->input->get('filter_email')) 
+		{
+			$url .= '&filter_email=' . $this->input->get('filter_email');
+		}
+		
+		if($this->input->get('filter_phone')) 
+		{
+			$url .= '&filter_phone=' . $this->input->get('filter_phone');
+		}   
 		
 		$data['reload_url'] = base_url() . 'client/client/reload' . $url;
 		
@@ -466,6 +506,7 @@ class Client extends MX_Controller
 			$this->lang->load('client/client');
 			
 			$this->load->model('sale/sale_model');
+			$this->load->model('client/client_model');
 			$this->load->model('catalog/product_model');
 			$this->load->model('finance/recharge_model');
 			$this->load->model('finance/transaction_model');

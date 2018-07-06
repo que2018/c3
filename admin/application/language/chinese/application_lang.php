@@ -74,6 +74,7 @@ $lang['menu_fee']	 		         = '费用';
 $lang['menu_log']	 		         = '日志';
 $lang['menu_language']	 		     = '语言';
 $lang['menu_activity_log']	 		 = '活动日志';
+$lang['menu_about']	 		 		 = '系统信息';
 
 // Text
 $lang['text_home']	                 = '首页';

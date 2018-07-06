@@ -249,13 +249,9 @@ class Warehouse extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_name']      = base_url() . 'warehouse/warehouse?sort=name' . $url;
@@ -267,7 +263,7 @@ class Warehouse extends MX_Controller
 
 		$url = '';
 		
-		if ($this->input->get('limit')) 
+		if($this->input->get('limit')) 
 		{
 			$url .= '?limit=' . $this->input->get('limit');
 		}
@@ -282,6 +278,55 @@ class Warehouse extends MX_Controller
 		}
 		
 		$data['filter_url'] = base_url() . 'warehouse/warehouse' . $url;
+	
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page='.$this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort='.$this->input->get('sort');
+		}
+	
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
+		
+		if($this->input->get('filter_street')) 
+		{
+			$url .= '&filter_street=' . $this->input->get('filter_street');
+		}
+	
+		if($this->input->get('filter_city')) 
+		{
+			$url .= '&filter_city=' . $this->input->get('filter_city');
+		}
+		
+		if($this->input->get('filter_state')) 
+		{
+			$url .= '&filter_state=' . $this->input->get('filter_state');
+		}
+		
+		if($this->input->get('filter_country')) 
+		{
+			$url .= '&filter_country=' . $this->input->get('filter_country');
+		}
+		
+		if($this->input->get('filter_zipcode')) 
+		{
+			$url .= '&filter_zipcode=' . $this->input->get('filter_zipcode');
+		}
 	
 		$data['reload_url'] = base_url() . 'warehouse/warehouse/reload' . $url;
 
@@ -464,7 +509,8 @@ class Warehouse extends MX_Controller
 				);
 			}
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -486,7 +532,8 @@ class Warehouse extends MX_Controller
 			'warehouses'  => $warehouses
 		);
 			
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

@@ -146,13 +146,9 @@ class User extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_username']    = base_url() . 'user/user?sort=user.username' . $url;
@@ -160,14 +156,18 @@ class User extends MX_Controller
 
 		$url = '';
 		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
-		}
-		
-		if ($this->input->get('limit')) 
-		{
-			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
 		$data['filter_url'] = base_url() . 'user/user' . $url;

@@ -13,6 +13,7 @@ $lang['text_cancel'] 	  	        	 	  	        			= 'cancel';
 $lang['text_delete'] 	  	        	 	  						= 'delete';
 $lang['text_remove'] 	  	        	 	  						= 'remove';
 $lang['text_print'] 	  	        	 	  						= 'print checkout';
+$lang['text_download'] 	  	        	 	  						= 'download';
 $lang['text_run'] 	  	        	 	  							= 'run';
 $lang['text_inventory'] 	  	        	 	  					= 'Inventory';
 $lang['text_return'] 	  	        	 	  						= 'Return';

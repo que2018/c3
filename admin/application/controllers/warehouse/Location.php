@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Location extends MX_Controller 
 {
 	public function index()
@@ -187,13 +186,9 @@ class Location extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('order')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&order=' . $this->input->get('order');
 		}
 		
 		$data['sort_name']        = base_url() . 'warehouse/location?sort=location.name' . $url;
@@ -218,10 +213,50 @@ class Location extends MX_Controller
 		
 		$data['filter_url'] = base_url() . 'warehouse/location' . $url;
 	
+		$url = '';
+	
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+	
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+	
+		if($this->input->get('limit')) 
+		{
+			$url .= '&limit=' . $this->input->get('limit');
+		}
+		
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+	
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
+		
+		if($this->input->get('filter_code')) 
+		{
+			$url .= '&filter_code=' . $this->input->get('filter_code');
+		}
+		
+		if($this->input->get('filter_warehouse')) 
+		{
+			$url .= '&filter_warehouse=' . $this->input->get('filter_warehouse');
+		}
+			
 		$data['reload_url'] = base_url() . 'warehouse/location/reload' . $url;
 	
 		$data['page']  = $page;
-	
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;

@@ -190,13 +190,9 @@ class Store extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_name']      = base_url() . 'store/store?sort=store.name' . $url;
@@ -220,6 +216,42 @@ class Store extends MX_Controller
 		}
 				
 		$data['filter_url'] = base_url() . 'store/store' . $url;
+		
+		$url = '';
+		
+		if ($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page='.$this->input->get('pages');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort='.$this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
+		
+		if($this->input->get('filter_platform')) 
+		{
+			$url .= '&filter_platform=' . $this->input->get('filter_platform');
+		}
+		
+		if($this->input->get('filter_client')) 
+		{
+			$url .= '&filter_client=' . $this->input->get('filter_client');
+		}
 		
 		$data['reload_url'] = base_url() . 'store/store/reload' . $url;
 	
@@ -588,7 +620,8 @@ class Store extends MX_Controller
 				);
 			}
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

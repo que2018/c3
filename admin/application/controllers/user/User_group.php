@@ -146,30 +146,56 @@ class User_group extends MX_Controller
 			$url .= '&limit=' . $this->input->get('limit');
 		}
 		
-		if($order == 'ASC') 
+		if($this->input->get('sort')) 
 		{
-			$url .= '&order=DESC';
-		} 
-		else 
-		{
-			$url .= '&order=ASC';
+			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
 		$data['sort_name']  = base_url() . 'user/user_group?sort=user_group.name' . $url;
 
 		$url = '';
 		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		if ($this->input->get('limit')) 
+		$data['filter_url'] = base_url() . 'user/user_group' . $url;
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
 		{
-			$url .= '&limit=' . $this->input->get('limit');
+			$url .= '?limit='.$this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit='.$this->config->item('config_page_limit');
 		}
 		
-		$data['filter_url'] = base_url() . 'user/user_group' . $url;
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('filter_name')) 
+		{
+			$url .= '&filter_name=' . $this->input->get('filter_name');
+		}
 		
 		$data['reload_url'] = base_url() . 'user/user_group/reload' . $url;
 
