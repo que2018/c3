@@ -1,18 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-	private $error = array();
-
-	function __construct()
-	{
-		parent::__construct();		
-	}
-
+class Login extends CI_Controller 
+{
 	public function index()
 	{
 		$this->lang->load('common/login');
 		
 		$this->load->library('form_validation');
+		
+		$this->load->model('tool/image_model');
 				
 		if($this->auth->is_logged()) 
 		{
@@ -50,6 +46,16 @@ class Login extends CI_Controller {
 		else 
 		{
 			$data['redirect'] = '';
+		}
+		
+		//logo
+		if(is_file(IMAGEPATH . $this->config->item('config_logo'))) 
+		{
+			$data['logo'] = $this->image_model->resize($this->config->item('config_logo'), 150, 150);
+		} 
+		else
+		{
+			$data['logo'] = false;
 		}
 		
 		$this->load->view('common/login', $data);

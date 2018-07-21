@@ -186,9 +186,21 @@ class Inventory_batch extends MX_Controller
 
 		$i = 2;
 		
-		if($inventories) 
+		$filter_data = array(
+			'filter_client_id'     => $filter_client_id,
+			'filter_location'      => $filter_location,
+			'filter_sku'    	   => $filter_sku,
+			'filter_upc'    	   => $filter_upc,
+			'filter_batch'    	   => $filter_batch,
+			'sort'                 => $sort,
+			'order'                => $order
+		);
+		
+		$inventories_excel = $this->inventory_model->get_batch_inventories($filter_data);	
+		
+		if($inventories_excel) 
 		{
-			foreach($inventories as $inventory)
+			foreach($inventories_excel as $inventory)
 			{	
 				$product_info = $this->product_model->get_product($inventory['product_id']);	
 			

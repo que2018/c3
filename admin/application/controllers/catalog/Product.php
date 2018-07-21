@@ -30,6 +30,8 @@ class Product extends MX_Controller
 	
 	protected function get_list()
 	{	
+		$this->load->library('phpexcel');
+	
 		$this->lang->load('catalog/product');
 	
 		$this->load->model('tool/image_model');
@@ -165,6 +167,61 @@ class Product extends MX_Controller
 				);
 			}
 		}
+		
+		//excel export begin
+		$objPHPExcel = new PHPExcel();	
+		$objPHPExcel->createSheet();
+		$objPHPExcel->setActiveSheetIndex(0);
+		
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+		
+		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+		
+		$objPHPExcel->getActiveSheet()->setCellValue('A1', $this->lang->line('column_name'));
+		$objPHPExcel->getActiveSheet()->setCellValue('B1', $this->lang->line('column_client'));
+		$objPHPExcel->getActiveSheet()->setCellValue('C1', $this->lang->line('column_upc'));
+		$objPHPExcel->getActiveSheet()->setCellValue('D1', $this->lang->line('column_sku'));
+		$objPHPExcel->getActiveSheet()->setCellValue('E1', $this->lang->line('column_quantity'));
+
+		$filter_data = array(
+			'filter_client_id' => $filter_client_id,
+			'filter_upc'       => $filter_upc,
+			'filter_sku'       => $filter_sku,
+			'filter_quantity'  => $filter_quantity,			
+			'sort'             => $sort,
+			'order'            => $order
+		);
+		
+		$products_excel = $this->product_model->get_products($filter_data);	
+		
+		$row = 2;
+		
+		if($products_excel)
+		{
+			foreach($products_excel as $product)
+			{
+				$quantity = $this->inventory_model->get_product_quantity($product['id']);	
+				
+				$objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $product['name']);
+				$objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $product['client']);
+				$objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $product['upc']);
+				$objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $product['sku']);
+				$objPHPExcel->getActiveSheet()->setCellValue('E' . $row, ($quantity)?$quantity:0);
+				
+				$row++;
+			}
+		}
+		
+		PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		$objWriter->save(FCPATH  . 'assets/file/export/product.xlsx');
+		//excel export end
 		
 		$url = '';
 		

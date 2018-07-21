@@ -25,6 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://localhost/c3/client';
 
+$config['site_url'] = 'http://localhost/c3/';
+
+$config['site_http'] = 'http://localhost/c3/';
+
+$config['site_https'] = 'https://localhost/c3/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

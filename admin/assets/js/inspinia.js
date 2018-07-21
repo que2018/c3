@@ -212,7 +212,7 @@ $(document).ready(function () {
 			$('#modal-image').remove();
 
 			$.ajax({
-				url: 'http://c3.jiusite.com/admin/common/filemanager?target=' + $element.parent().find('input').attr('id') + '&thumb=' + $element.attr('id'),
+				url: 'http://localhost/c3/admin/common/filemanager?target=' + $element.parent().find('input').attr('id') + '&thumb=' + $element.attr('id'),
 				dataType: 'html',
 				beforeSend: function() {
 					$button.prop('disabled', true);

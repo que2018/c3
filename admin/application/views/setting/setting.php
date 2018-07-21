@@ -152,6 +152,14 @@
 				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_logo'); ?></label>
+                <div class="col-sm-10">
+				  <a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_logo; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a>
+				  <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />				
+                </div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
 			</div>
 		  </div>
 		  <div id="label" class="tab-pane">

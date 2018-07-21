@@ -49,7 +49,8 @@ class Checkout_ajax extends CI_Controller
 				'msg'       => $this->lang->line('error_product_not_found')
 			);
 			
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 			die();
 		}
 		 
@@ -121,7 +122,8 @@ class Checkout_ajax extends CI_Controller
 			'products'  => $products
 		);
 			
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
 	public function get_locations()
@@ -161,7 +163,59 @@ class Checkout_ajax extends CI_Controller
 				);
 			}
 					
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
+	public function get_product_inventories()
+	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('inventory/inventory_model');
+		
+		if($this->input->get('product_id'))
+		{
+			$product_id = $this->input->get('product_id');
+			
+			$inventories_data = $this->inventory_model->get_inventories_by_product($product_id);
+		
+			if($inventories_data) 
+			{				
+				$inventories = array();
+				
+				foreach($inventories_data as $inventory_data)
+				{
+					if($inventory_data['batch'])
+					{
+						$location_name = sprintf($this->lang->line('text_location_batch'), $inventory_data['location_name'], $inventory_data['batch']);
+					}
+					else
+					{
+						$location_name = $inventory_data['location_name'];
+					}
+					
+					$inventories[] = array(
+						'inventory_id'  => $inventory_data['id'],
+						'location_name' => $location_name,
+						'quantity'      => $inventory_data['quantity'],
+					);
+				}
+				
+				$outdata = array(
+					'success'     => true,
+					'inventories' => $inventories
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'  => false
+				);
+			}
+					
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
@@ -192,7 +246,8 @@ class Checkout_ajax extends CI_Controller
 			);
 		}
 		
-		echo json_encode($outdata);	
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
 	public function change_status()
@@ -226,7 +281,8 @@ class Checkout_ajax extends CI_Controller
 				'status'    => $status
 			);
 					
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 }

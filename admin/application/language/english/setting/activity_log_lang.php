@@ -53,6 +53,8 @@ $lang['activity_check_checkout_rapid_get_checkout'] 	  		= 'get checkout';
 $lang['activity_check_checkout_print'] 	  						= 'try to print checkout';
 $lang['activity_check_checkout_print_bulk_print_d'] 	  		= 'try to bulk print checkout';
 $lang['activity_check_checkout_ajax_change_status'] 	  		= 'try to change checkout status';
+$lang['activity_check_checkout_ajax_get_inventories'] 	  	    = 'try to get product inventories';
+$lang['activity_check_checkout_ajax_get_product_inventories'] 	= 'try to get product inventories';
 $lang['activity_check_checkout_sale_add_checkout_ajax'] 	    = 'try to add checkout for order';
 $lang['activity_catalog_product'] 	  	              			= 'view the product page';
 $lang['activity_catalog_product_reload'] 	  	             	= 'reload the product page';
@@ -204,6 +206,5 @@ $lang['activity_setting_information_edit'] 					   	= 'view the information edit
 $lang['activity_setting_language_add'] 							= 'view the language add page';
 $lang['activity_setting_language_edit'] 			    		= 'view the language edit page';
 $lang['activity_setting_language_delete'] 			    		= 'try to delete a language';
-$lang['activity_setting_language_reload'] 						= 'try to reload language';
+$lang['activity_setting__language_reload'] 						= 'try to reload language';
 $lang['activity_setting_about'] 								= 'view about';
-

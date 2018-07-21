@@ -152,13 +152,13 @@ class Usps_model extends CI_Model
 						$selectedRate->InsuredValue = $order['insurance'];
 					}
 					
-					//$CustomsV2 = new stdClass();
-					
-					//$CustomsV2->
+					$memo = $this->sale_model->get_sale_detail($sale_id);
 					
 					$requestParams = array(
 						'Authenticator'		=> $authenicator,
 						'IntegratorTxID'	=> $sale_id . "-" . rand(0, 1000),
+						'memo'				=> $memo,
+						'printMemo'		    => true,
 						'Rate'				=> $selectedRate,
 						'From'				=> $fromAddress,
 						'To'				=> $cleanseResponse['response']->Address,

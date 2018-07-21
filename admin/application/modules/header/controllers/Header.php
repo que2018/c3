@@ -13,6 +13,17 @@ class Header extends MX_Controller
 	{
 		$this->load->language('header');
 		
+		$this->load->model('tool/image_model');
+		
+		if(is_file(IMAGEPATH . $this->config->item('config_logo'))) 
+		{
+			$data['logo'] = $this->image_model->resize($this->config->item('config_logo'), 48, 48);
+		} 
+		else
+		{
+			$data['logo'] = $this->image_model->resize('no_image.jpg', 48, 48);
+		}
+		
 		$data['username'] = sprintf($this->lang->line('text_hello'), $this->auth->get_username());
 		
 		$data['title'] = $this->title;

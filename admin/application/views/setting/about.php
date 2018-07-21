@@ -12,9 +12,10 @@
 <div class="wrapper wrapper-content">
   <div class="middle-box text-center animated fadeInDown">
 	<h3 class="font-bold"><?php echo $this->lang->line('text_title'); ?></h3>
+	<div><?php echo $this->lang->line('text_copy_right'); ?></div>
 	<div class="error-desc">
 	<?php echo $this->lang->line('text_no_permission_access_alert'); ?>
-	<br/><a href="<?php echo base_url(); ?>" class="btn btn-primary m-t"><?php echo $version; ?></a>
+	<br/><a href="<?php echo base_url(); ?>" class="btn btn-primary"><?php echo $version; ?></a>
 	</div>
 	</div>
 </div>

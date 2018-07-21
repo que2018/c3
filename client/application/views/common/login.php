@@ -14,7 +14,11 @@
 <body class="gray-bg">
   <div class="middle-box text-center loginscreen animated fadeInDown">
 	<div>
-	  <div><h1 class="logo-name"><?php echo $this->lang->line('text_logo_name'); ?></h1></div>
+	  <?php if($logo) { ?>
+	    <img src="<?php echo $logo; ?>" class="logo" />
+	  <?php } else {?>
+	    <h1 class="logo-name"><?php echo $this->lang->line('text_logo_name'); ?></h1>
+	  <?php } ?>
 	  <h3><?php echo $this->lang->line('text_welcome'); ?></h3>
 	  <?php if($error) { ?>
         <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $error; ?></div>

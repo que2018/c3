@@ -4,12 +4,12 @@
 	<h2><?php echo $this->lang->line('text_product_list'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>/catalog/product"><?php echo $this->lang->line('text_catalog'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>catalog/product"><?php echo $this->lang->line('text_catalog'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_product_list'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export'); ?>" class="btn btn-info btn-download" onclick="to_excel()"><i class="fa fa-download"></i></button>
+    <a href="<?php echo base_url(); ?>assets/file/export/product.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
     <a href="<?php echo base_url(); ?>catalog/product/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
@@ -244,29 +244,6 @@ function delete_product(handle, product_id) {
 			}
 		});
 	}
-}
-</script>
-<script>
-function to_excel() {
-	$.ajax({
-		url: '<?php echo base_url(); ?>catalog/product_download/products',
-		dataType: 'json',
-		beforeSend: function() {
-			$('.btn-download').html('<i class="fa fa-spinner fa-spin"></i>');
-		},
-		complete: function() {
-			$('.btn-download').html('<i class="fa fa-download"></i>');
-		},
-		success: function(json) {					
-			if(json.success) 
-			{	
-				window.location = json.link;
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
 }
 </script>
 <script>

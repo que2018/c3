@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Setting extends MX_Controller 
 {
 	public function index()
@@ -14,6 +13,7 @@ class Setting extends MX_Controller
 		
 		$this->lang->load('setting/setting');
 		
+		$this->load->model('tool/image_model');
 		$this->load->model('setting/setting_model');
 		$this->load->model('setting/language_model');
 		$this->load->model('extension/shipping_model');
@@ -104,6 +104,7 @@ class Setting extends MX_Controller
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
+				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
@@ -159,6 +160,7 @@ class Setting extends MX_Controller
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
 				'config_weight_class_id'      			    => $this->input->post('config_weight_class_id'),
+				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
@@ -206,6 +208,7 @@ class Setting extends MX_Controller
 			$data['config_information_front_id']     		    = $this->config->item('config_information_front_id');
 			$data['config_length_class_id']     		        = $this->config->item('config_length_class_id');
 			$data['config_weight_class_id']     		        = $this->config->item('config_weight_class_id');
+			$data['config_logo']     		                    = $this->config->item('config_logo');
 			$data['config_default_order_shipping_provider'] 	= $this->config->item('config_default_order_shipping_provider');
 			$data['config_default_order_shipping_service']  	= $this->config->item('config_default_order_shipping_service');
 			$data['config_smtp_hostname']                   	= $this->config->item('config_smtp_hostname');
@@ -279,6 +282,18 @@ class Setting extends MX_Controller
 				);
 			}
 		}
+		
+		//logo thumb
+		if(is_file(IMAGEPATH . $data['config_logo'])) 
+		{
+			$data['thumb_logo'] = $this->image_model->resize($data['config_logo'], 100, 100);
+		} 
+		else
+		{
+			$data['thumb_logo'] = $this->image_model->resize('no_image.jpg', 100, 100);
+		}
+		
+		$data['placeholder'] = $this->image_model->resize('no_image.jpg', 100, 100);
 		
 		//shipping providers
 		$data['shipping_providers'] = array();

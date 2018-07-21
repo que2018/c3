@@ -6,9 +6,10 @@ class Login extends CI_Controller
 	{
 		$this->lang->load('common/login');
 		
-		$this->load->library('form_validation');
-		
+		$this->load->model('tool/image_model');
 		$this->load->model('setting/language_model');
+		
+		$this->load->library('form_validation');
 				
 		if($this->auth->is_logged()) 
 		{
@@ -69,6 +70,16 @@ class Login extends CI_Controller
 			$data['redirect'] = '';
 		}
 		
+		//logo
+		if(is_file(IMAGEPATH . $this->config->item('config_logo'))) 
+		{
+			$data['logo'] = $this->image_model->resize($this->config->item('config_logo'), 150, 150);
+		} 
+		else
+		{
+			$data['logo'] = false;
+		}
+				
 		//languages
 		$languages = $this->language_model->get_languages();
 		

@@ -67,5 +67,16 @@
 .note-editor.note-frame .note-editing-area .note-editable {
 	color: #807d7d;
 }
+.selectize-dropdown-content {
+	position: relative;
+}
+.location-quantity {
+	font-size: 10px;
+    background: #1ab394;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px 8px;
+	float: right;
+}
 
 

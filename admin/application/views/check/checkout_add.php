@@ -95,22 +95,12 @@
 					    <?php $checkout_product_row = 0; ?>
 					    <?php if($checkout_products) { ?>
 						  <?php foreach($checkout_products as $checkout_product) { ?>
-						  <tr id="row<?php echo $checkout_product_row; ?>">
+						  <tr id="row<?php echo $checkout_product_row; ?>" data_product_id="<?php echo $checkout_product['product_id']; ?>" data_select_inventory_id="<?php echo $checkout_product['inventory_id']; ?>">
 						  <td class="text-left"><input name="checkout_product[<?php echo $checkout_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkout_product['product_id']; ?>" class="product_id"><div style="text-align:left;"><?php echo $checkout_product['name']; ?></div></td>
 						  <td class="text-left"><?php echo $checkout_product['upc']; ?></td>
 						  <td class="text-left"><?php echo $checkout_product['sku']; ?></td>
 						  <td><input class="form-control text-center quantity" name="checkout_product[<?php echo $checkout_product_row; ?>][quantity]" value="<?php echo $checkout_product['quantity']; ?>" onClick="this.select();"></td>
-						  <td>
-						    <select name="checkout_product[<?php echo $checkout_product_row; ?>][inventory_id]" class="form-control">
-							  <?php foreach($checkout_product['inventories'] as $inventory) { ?>
-							    <?php if($inventory['inventory_id'] == $checkout_product['inventory_id']) { ?>
-								<option value="<?php echo $inventory['inventory_id']; ?>" selected><?php echo $inventory['location_name']; ?></option>
-								<?php } else { ?>
-								<option value="<?php echo $inventory['inventory_id']; ?>"><?php echo $inventorys['location_name']; ?></option>
-								<?php } ?>
-							  <?php } ?>
-							</select>
-						  </td> 
+						  <td><select name="checkout_product[<?php echo $checkout_product_row; ?>][inventory_id]" class="form-control"></select></td> 
 						  <td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $checkout_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
 						  <?php $checkout_product_row ++; ?>
 						  <?php } ?>
@@ -288,6 +278,60 @@
   </div>  
 </div>
 <script>
+function set_checkout_locations(checkout_product_row, product_id, select_inventory_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>check/checkout_ajax/get_product_inventories?product_id=' + product_id,
+		dataType: 'json',
+		success: function(json) {		
+			if(json.success) {	
+				var options = [];
+			
+				$.each(json.inventories, function(index, inventory) {
+					option = {inventory_id: inventory.inventory_id, location_name: inventory.location_name, location_quantity: inventory.quantity};
+					options.push(option);
+				});
+				
+				$select = $('select[name=\'checkout_product[' + checkout_product_row + '][inventory_id]\']').selectize({
+					maxItems: 1,
+					valueField: 'inventory_id',
+					searchField: 'location_name',
+					options: options,
+					render: {
+						option: function(data, escape) {
+							return '<div class="option">' +
+								   '<span class="location-name">' + escape(data.location_name) + '</span>' +
+								   '<span class="location-quantity">' + escape(data.location_quantity) + '</span>' +
+								   '</div>';
+						},
+						item: function(data, escape) {
+							return '<div class="option">' +
+								   '<span class="location-name">' + escape(data.location_name) + '</span>' +
+								   '</div>';
+						}
+					},
+					create: false
+				});
+				
+				if(select_inventory_id) {
+					var selectize = $select[0].selectize;
+					selectize.setValue(select_inventory_id, true);
+				}
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
+$('#checkout-product tbody tr').each(function(index, element) {
+	product_id = $(element).attr('data_product_id');
+	select_inventory_id = $(element).attr('data_select_inventory_id');
+	
+	set_checkout_locations(index, product_id, select_inventory_id);
+});
+</script>
+<script>
 function refresh_volume() {
 	data = new FormData();
 				
@@ -424,16 +468,14 @@ $(document).ready(function() {
 				html += '<td class="text-left">' + product.sku + '</div></td>';
 				html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 				html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
-				
-				$.each(product.inventories, function(index, inventory) {
-					html += '<option value="' + inventory.inventory_id + '">' + inventory.location_name + '</optioin>';
-				});
-				
 				html += '</select></td>';
 				html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
 				
 				new_tr.html(html);
+				
 				$("#checkout-product").append(new_tr);
+				
+				set_checkout_locations(checkout_product_row, product.product_id, false);
 			}
 			
 			checkout_product_row ++;

@@ -10,6 +10,7 @@ class Checkout extends MX_Controller
 		$this->lang->load('check/checkout');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_list.css');
+
 		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
 	
 		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
@@ -361,10 +362,12 @@ class Checkout extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/selectize/css/selectize.bootstrap3.css');
 							
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/selectize/js/standalone/selectize.js');
 
 		$this->header->set_title($this->lang->line('text_checkout_add'));
 
@@ -418,9 +421,19 @@ class Checkout extends MX_Controller
 					{
 						foreach($inventories_data as $inventory_data)
 						{
+							if($inventory_data['batch'])
+							{
+								$location_name = sprintf($this->lang->line('text_location_batch'), $inventory_data['location_name'], $inventory_data['batch']);
+							}
+							else
+							{
+								$location_name = $inventory_data['location_name'];
+							}
+					
 							$inventories[] = array(
 								'inventory_id'  => $inventory_data['id'],
-								'location_name' => sprintf($this->lang->line('text_checkout_location_name'), $inventory_data['location_name'], $inventory_data['batch'])
+								'location_name' => $location_name,
+								'quantity'      => $inventory_data['quantity']
 							);
 						}
 					}
@@ -584,11 +597,13 @@ class Checkout extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
-		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
-							
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');						
+		$this->header->add_style(base_url(). 'assets/js/plugins/selectize/css/selectize.bootstrap3.css');
+
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/selectize/js/standalone/selectize.js');
 
 		$this->header->set_title($this->lang->line('text_checkout_edit'));
 		
@@ -680,7 +695,8 @@ class Checkout extends MX_Controller
 					
 							$inventories[] = array(
 								'inventory_id'  => $inventory_data['id'],
-								'location_name' => $location_name
+								'location_name' => $location_name,
+								'quantity'      => $inventory_data['quantity']
 							);
 						}
 					}
@@ -746,7 +762,8 @@ class Checkout extends MX_Controller
 							
 							$inventories[] = array(
 								'inventory_id'  => $inventory_data['id'],
-								'location_name' => $location_name
+								'location_name' => $location_name,
+								'quantity'      => $inventory_data['quantity']
 							);
 						}
 					}
@@ -1033,7 +1050,15 @@ class Checkout extends MX_Controller
 						
 						$location_info = $this->location_model->get_location($location_id);
 						
-						$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['batch'], $inventory['quantity']);
+						if($inventory['batch'])
+						{
+							$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['batch'], $inventory['quantity']);
+						}
+						else
+						{
+							$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient_non_batch'), $product_info['name'], $location_info['name'], $inventory['quantity']);
+						}
+						
 						$error_message .= '<br>';
 						
 						if($validated)
