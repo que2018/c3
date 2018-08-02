@@ -1125,7 +1125,7 @@ class Checkout extends MX_Controller
 		}	
 	}
 	
-	function validate_add_tracking($tracking)
+	public function validate_add_tracking($tracking)
 	{
 		$this->load->model('check/checkout_model');
 		
@@ -1150,7 +1150,7 @@ class Checkout extends MX_Controller
 		}
 	}
 	
-	function validate_edit_tracking($tracking)
+	public function validate_edit_tracking($tracking)
 	{
 		$this->load->model('check/checkout_model');
 		
@@ -1184,7 +1184,7 @@ class Checkout extends MX_Controller
 		}
 	}
 	
-	function validate_sale($sale_id)
+	public function validate_sale($sale_id)
 	{
 		$this->load->model('sale/sale_model');
 

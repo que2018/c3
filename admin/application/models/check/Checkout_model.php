@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkout_model extends CI_Model
 {		
 	public function add_checkout($data)
@@ -81,12 +80,23 @@ class Checkout_model extends CI_Model
 		{
 			foreach($data['checkout_products'] as $checkout_product)
 			{
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update('inventory');
+				$q = $this->db->get_where('inventory', array('id' => $checkout_product['inventory_id']));
 				
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				$result = $q->row_array();
+				
+				if($result['quantity'] == $checkout_product['quantity'])
+				{
+					$this->db->delete('inventory', array('id' => $checkout_product['inventory_id']));
+				}
+				else
+				{
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
+					$this->db->update('inventory');
+				
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				}
 			}	
 		}
 		
@@ -173,12 +183,23 @@ class Checkout_model extends CI_Model
 		{
 			foreach($data['checkout_products'] as $checkout_product)
 			{
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update('inventory');
+				$q = $this->db->get_where('inventory', array('id' => $checkout_product['inventory_id']));
 				
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				$result = $q->row_array();
+				
+				if($result['quantity'] == $checkout_product['quantity'])
+				{
+					$this->db->delete('inventory', array('id' => $checkout_product['inventory_id']));
+				}
+				else
+				{
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
+					$this->db->update('inventory');
+				
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				}
 			}
 		}
 		
@@ -198,12 +219,23 @@ class Checkout_model extends CI_Model
 			
 			foreach($data['checkout_products'] as $checkout_product)
 			{	
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update('inventory');
+				$q = $this->db->get_where('inventory', array('id' => $checkout_product['inventory_id']));
 				
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				$result = $q->row_array();
+				
+				if($result['quantity'] == $checkout_product['quantity'])
+				{
+					$this->db->delete('inventory', array('id' => $checkout_product['inventory_id']));
+				}
+				else
+				{
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
+					$this->db->update('inventory');
+				
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				}
 			}
 		}
 		
@@ -398,12 +430,23 @@ class Checkout_model extends CI_Model
 			
 			foreach($checkout_products as $checkout_product)
 			{
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
-				$this->db->update('inventory');
+				$q = $this->db->get_where('inventory', array('id' => $checkout_product['inventory_id']));
 				
-				$this->db->where('id', $checkout_product['inventory_id']);
-				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				$result = $q->row_array();
+				
+				if($result['quantity'] == $checkout_product['quantity'])
+				{
+					$this->db->delete('inventory', array('id' => $checkout_product['inventory_id']));
+				}
+				else
+				{
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->set('quantity', 'quantity-'.$checkout_product['quantity'], false);
+					$this->db->update('inventory');
+				
+					$this->db->where('id', $checkout_product['inventory_id']);
+					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
+				}
 			}
 			
 			//checkout fee data

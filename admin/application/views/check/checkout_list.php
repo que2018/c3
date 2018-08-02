@@ -17,7 +17,7 @@
   <div class="row">
 	<div class="col-lg-12">
 	  <div id="alerts">
-	    <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
+	    <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -181,7 +181,7 @@
 					  <td>
 					    <div class="input-group">
 						  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
-						  <span class="btn-checkout" onclick="change_checkout_status(this, <?php echo $checkout['checkout_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  <span class="btn-checkout"><i class="fa fa-refresh"></i></span>
 						</div>
 					  </td>
 					  <?php } ?>
@@ -219,20 +219,18 @@ function change_checkout_status(handle, checkout_id) {
 			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 		},
 		success: function(json) {
+			$(handle).html('<i class="fa fa fa-refresh"></i>');
+			
 			if(json.success) {
 				label = $(handle).closest('.input-group').find('span').eq(0);
-				
 				label.removeClass();
 				
-				if(json.status == 1) {
-					label.addClass('pending');
-					label.text('<?php echo $this->lang->line('text_pending'); ?>');
-				} else {
-					label.addClass('completed');
-					label.text('<?php echo $this->lang->line('text_completed'); ?>');
-				}
+				label.addClass('completed');
+				label.text('<?php echo $this->lang->line('text_completed'); ?>');
 				
-				$(handle).html('<i class="fa fa fa-refresh"></i>');
+			} else {
+				$('#alert-error span').html(json.message);
+				$('#alert-error').show();
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {

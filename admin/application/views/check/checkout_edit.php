@@ -474,29 +474,21 @@ $(document).ready(function() {
 		'select': function(event, ui) {			
 			product = ui.item;
 			
-			if($('input[name$="[product_id]"][value="' + product.product_id + '"]').length > 0) 
-			{
-				quantity = $('input[name$="[product_id]"][value="' + product.product_id + '"]').parent('td').parent('tr').find('input[name$="[quantity]"]');
-				quantity.val(parseInt(quantity.val()) + 1);
-			}
-			else 
-			{
-				new_tr = $('<tr id="row_' + checkout_product_row + '"></tr>');
-				
-				html  = '<td><input name="checkout_product[' + checkout_product_row + '][product_id]" type="hidden" value="' + product.product_id + '" class="product_id"><div class="text-left">' + product.name + '</div></td>';
-				html += '<td class="text-left">' + product.upc + '</div></td>';
-				html += '<td class="text-left">' + product.sku + '</div></td>';
-				html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
-				html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
-				html += '</select></td>';
-				html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
-				
-				new_tr.html(html);
-				
-				$("#checkout-product").append(new_tr);
-				
-				set_checkout_locations(checkout_product_row, product.product_id, false);
-			}
+			new_tr = $('<tr id="row_' + checkout_product_row + '"></tr>');
+			
+			html  = '<td><input name="checkout_product[' + checkout_product_row + '][product_id]" type="hidden" value="' + product.product_id + '" class="product_id"><div class="text-left">' + product.name + '</div></td>';
+			html += '<td class="text-left">' + product.upc + '</div></td>';
+			html += '<td class="text-left">' + product.sku + '</div></td>';
+			html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
+			html += '</select></td>';
+			html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+			
+			new_tr.html(html);
+			
+			$("#checkout-product").append(new_tr);
+			
+			set_checkout_locations(checkout_product_row, product.product_id, false);
 			
 			checkout_product_row ++;
 			

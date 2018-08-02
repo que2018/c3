@@ -766,7 +766,9 @@ class Product extends MX_Controller
 		//clients
 		$data['clients'] = array();
 		
-		$clients = $this->client_model->get_clients();
+		$filter_data = array('sort' => 'name', 'order' => 'ASC');
+		
+		$clients = $this->client_model->get_clients($filter_data);
 				
 		if($clients)
 		{
