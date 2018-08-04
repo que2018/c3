@@ -1,8 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // text
-$lang['text_title']		          			 = 'NI+ | 登录';
-$lang['text_welcome']		      			 = '欢迎来到 NI+';
+$lang['text_title']		          			 = 'GoodBox | 登录';
+$lang['text_welcome']		      			 = '欢迎来到GoodBox';
 $lang['text_logo_name']		      			 = 'IN+';
 $lang['text_username']		      			 = '用户名';
 $lang['text_password']		      			 = '密码';

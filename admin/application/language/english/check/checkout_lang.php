@@ -70,6 +70,7 @@ $lang['text_sale_checkout_transaction_note'] 	  	    			= 'transaction for order
 $lang['text_checkout_complete_hint'] 	  	     	 				= 'Checkout ID / Tracking Number / Order ID';
 $lang['text_sale_checkout_add_success']		 						= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout add success. <a href="%s"><strong>view the checkout</strong></a>';
 $lang['text_sale_checkout_edit_success']		 	  				= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success. <a href="%s"><strong>view checkout</strong></a>';
+$lang['text_checkout_add_success']    	  			    			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout add success';
 $lang['text_checkout_edit_success']    	  			    			= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout edit success';
 $lang['text_checkout_delete_success']    	  						= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout delete success';
 $lang['text_checkout_generate_success']    	  						= '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;checkout generate successs';
@@ -143,7 +144,7 @@ $lang['error_checkout_already_acompleted']    						= '<i class="fa fa-exclamati
 $lang['error_checkout_not_found']             						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout is not found';
 $lang['error_sale_not_found']                 						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Order is not found';
 $lang['error_checkout_product_required']      						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product is required';
-$lang['error_checkout_product_no_location']             			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product <strong>%s</strong> has no location selected or available';
+$lang['error_checkout_product_no_location']             			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout product <strong>%s</strong> at row <strong>%s</strong> has no location selected or available';
 $lang['error_checkout_fee_row_required']             				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is required';
 $lang['error_checkout_fee_amount_required']             			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> requires amount';
 $lang['error_product_location_empty']      			    			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Product <strong>%s</strong> has no available locaitons or the location is not selected, does it has sufficient inventory?';
@@ -152,7 +153,7 @@ $lang['error_sale_not_exist']               	   					= '<i class="fa fa-exclamat
 $lang['error_tracking_is_used']               						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The tracking number <strong>%s</strong> has been used';
 $lang['error_sale_checkout_generated']         		    			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout record for this order is generated; <a href="%s"><strong>view the checkout</strong></a>';
 $lang['error_sale_checkout_completed']         		    			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The checkout record for this order is completed; <a href="%s"><strong>view the checkout</strong></a>';
-$lang['error_checkout_product_quantity_required']   				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> needs to have a quantity';
+$lang['error_checkout_product_quantity_required']   				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> at row <strong>%s</strong> needs to have a quantity';
 $lang['error_checkout_product_quantity_negative']   				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> needs to have a positive quantity';
 $lang['error_checkout_product_inventory_insufficient']  		  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> at location <strong>%s [%s]</strong> has insufficient inventory for this checkout. The maximum at this location is <strong>%s</strong>';
 $lang['error_checkout_product_inventory_insufficient_non_batch']  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> at location <strong>%s</strong> has insufficient inventory for this checkout. The maximum at this location is <strong>%s</strong>';

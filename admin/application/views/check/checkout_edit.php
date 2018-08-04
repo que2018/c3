@@ -435,7 +435,6 @@ function add_checkout_fee(name, amount) {
 </script>
 <script>
 $(document).ready(function() {
-
 	checkout_product_row = <?php echo $checkout_product_row; ?>;
 	
 	$('input[name=\'code\']').autocomplete({  
