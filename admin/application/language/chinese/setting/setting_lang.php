@@ -57,11 +57,12 @@ $lang['tab_printnode'] 	  	                    = 'Printnode';
 $lang['tab_mail'] 	  	           			    = 'Mail';
 $lang['tab_order'] 	  	           				= 'Order';
 $lang['tab_shipping'] 	  	           			= 'Shipping';
-$lang['tab_google'] 	  	           			= 'Google';
+$lang['tab_operation'] 	  	           			= 'Operation';
 
 // Entry
 $lang['entry_time_zone']              			= 'Time Zone';
 $lang['entry_page_limit']              			= 'Page Limit';
+$lang['entry_label_checkout']               	= 'Checkout when print label';
 $lang['entry_sale_product_page_limit']          = 'Sale Product Page Limit';
 $lang['entry_dashboard_activity_limit']         = 'Dashboard Activity Limit';
 $lang['entry_dashboard_order_limit']            = 'Dashboard Order Limit';

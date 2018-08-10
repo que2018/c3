@@ -121,7 +121,7 @@ class Store extends MX_Controller
 				$this->lang->load('platform/' . $store['platform']);
 			
 				$data['stores'][] = array(
-					'store_id'    => $store['id'],
+					'store_id'    => $store['store_id'],
 					'name'        => $store['name'],
 					'platform'    => $this->lang->line('text_title'),
 					'client'      => $store['client']

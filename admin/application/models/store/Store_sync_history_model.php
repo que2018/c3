@@ -1,19 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Store_sync_history_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function get_store_sync_histories($data) 
 	{			
 		$this->db->select("store_sync_history.*, store.name AS store", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
-		$this->db->group_by('store_sync_history.id');
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
+		$this->db->group_by('store_sync_history.store_sync_history_id');
 		
 		if(!empty($data['filter_store'])) 
 		{			
@@ -82,7 +76,7 @@ class Store_sync_history_model extends CI_Model
 	{
 		$this->db->select("COUNT(store_sync_history.id) AS total", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		
 		if(!empty($data['filter_store'])) 
 		{			
@@ -138,12 +132,12 @@ class Store_sync_history_model extends CI_Model
 		}
 	}
 	
-	public function get_store_sync_history($id) 
+	public function get_store_sync_history($store_sync_history_id) 
 	{
 		$this->db->select("store_sync_history.*, store.name AS store", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
-		$this->db->where('store_sync_history.id', $id);
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
+		$this->db->where('store_sync_history.id', $store_sync_history_id);
 		
 		$q = $this->db->get();
 		
@@ -155,9 +149,9 @@ class Store_sync_history_model extends CI_Model
 		return false;
 	}
 	
-	public function delete_store_sync_history($id) 
+	public function delete_store_sync_history($store_sync_history_id) 
 	{
-		if($this->db->delete('store_sync_history', array('id' => $id))) 
+		if($this->db->delete('store_sync_history', array('id' => $store_sync_history_id))) 
 		{
 			return true;
 		}
@@ -180,6 +174,7 @@ class Store_sync_history_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}		

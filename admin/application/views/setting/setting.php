@@ -24,13 +24,13 @@
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>		  
 		  <li class=""><a data-toggle="tab" href="#option"><?php echo $this->lang->line('tab_option'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#operation"><?php echo $this->lang->line('tab_operation'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#localization"><?php echo $this->lang->line('tab_localization'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#barcode"><?php echo $this->lang->line('tab_barcode'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#printnode"><?php echo $this->lang->line('tab_printnode'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#mail"><?php echo $this->lang->line('tab_mail'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#google"><?php echo $this->lang->line('tab_google'); ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
@@ -39,6 +39,17 @@
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_time_zone'); ?></label>
 			    <div class="col-sm-10">
 				  <input name="config_time_zone" value="<?php echo $config_time_zone; ?>" class="form-control">
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			</div>
+		  </div>
+		  <div id="operation" class="tab-pane">
+			<div class="panel-body">
+		      <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_label_checkout'); ?></label>
+			    <div class="col-sm-10">
+				
 				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
@@ -426,17 +437,6 @@
 				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
-			</div>
-		  </div>
-		  <div id="google" class="tab-pane">
-			<div class="panel-body">
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_google_key'); ?></label>
-			    <div class="col-sm-10">
-				  <input name="config_google_key" value="<?php echo $config_google_key; ?>" class="form-control">
-				</div>
-			  </div>
-			  <div class="hr-line-dashed"></div>	
 			</div>
 		  </div>
 		</div>

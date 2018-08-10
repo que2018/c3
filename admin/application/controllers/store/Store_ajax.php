@@ -29,7 +29,7 @@ class Store_ajax extends CI_Controller {
 				foreach($stores_data as $store_data)
 				{
 					$stores[] = array(
-						'store_id'  => $store_data['id'],
+						'store_id'  => $store_data['store_id'],
 						'name'      => $store_data['name'],
 						'label'     => $store_data['name']
 					);

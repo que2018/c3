@@ -68,7 +68,7 @@ class Store_model extends CI_Model
 			'default_sale_shipping_service'  => $data['default_sale_shipping_service']
 		);
 		
-		$this->db->where('id', $store_id);
+		$this->db->where('store_id', $store_id);
 		$this->db->update('store', $store_data); 
 		
 		//store sync data
@@ -105,7 +105,7 @@ class Store_model extends CI_Model
 		$this->db->select("store.*, CONCAT(firstname, ' ', lastname) AS client", false);
 		$this->db->from('store');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
-		$this->db->where('store.id', $store_id);		
+		$this->db->where('store.store_id', $store_id);		
 
 		$q = $this->db->get();
 		
@@ -162,7 +162,7 @@ class Store_model extends CI_Model
 		$this->db->select("store.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
 		$this->db->from('store');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
-		$this->db->group_by('store.id');
+		$this->db->group_by('store.store_id');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -223,7 +223,7 @@ class Store_model extends CI_Model
 	
 	public function get_store_total($data = array())
 	{
-		$this->db->select('COUNT(store.id) AS total', false);
+		$this->db->select('COUNT(store.store_id) AS total', false);
 		$this->db->from('store');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
 		
@@ -253,7 +253,7 @@ class Store_model extends CI_Model
 	{
 		$this->db->trans_begin();
 		
-		$this->db->delete('store', array('id' => $store_id)); 
+		$this->db->delete('store', array('store_id' => $store_id)); 
 		
 		$this->db->delete('store_sync', array('store_id' => $store_id)); 
 		

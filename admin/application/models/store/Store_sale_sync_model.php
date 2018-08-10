@@ -6,7 +6,7 @@ class Store_sale_sync_model extends CI_Model
 	{			
 		$this->db->select('store.*', false);
 		$this->db->from('store');
-		$this->db->group_by('store.id');
+		$this->db->group_by('store.store_id');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -62,7 +62,7 @@ class Store_sale_sync_model extends CI_Model
 	
 	public function get_store_total($data)
 	{
-		$this->db->select('COUNT(id) AS total', false);
+		$this->db->select('COUNT(store_id) AS total', false);
 		$this->db->from('store');
 				
 		if(!empty($data['filter_name'])) 
