@@ -34,6 +34,8 @@ class Checkin extends MX_Controller
 	
 	protected function get_list()
 	{
+		$this->lang->load('check/checkin');
+		
 		$this->load->model('check/checkin_model');
 			
 		if($this->input->get('filter_id'))
@@ -346,7 +348,6 @@ class Checkin extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
-		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 	
@@ -400,23 +401,6 @@ class Checkin extends MX_Controller
 			}
 		}
 		
-		//fees
-		$data['fees'] = array();
-		
-		$fees = $this->fee_model->get_fees();
-		
-		if($fees) 
-		{
-			foreach($fees as $fee)
-			{
-				$data['fees'][] = array(
-					'fee_id'  => $fee['id'],
-					'name'    => $fee['name'],
-					'amount'  => $this->currency->format($fee['amount'])
-				);
-			}
-		}
-
 		if($this->form_validation->run() == true)
 		{
 			$this->checkin_model->add_checkin($data);
@@ -447,7 +431,6 @@ class Checkin extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
-		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 	

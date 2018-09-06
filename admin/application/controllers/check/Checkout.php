@@ -349,7 +349,6 @@ class Checkout extends MX_Controller
 		
 		$this->lang->load('check/checkout');
 		
-		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -568,7 +567,6 @@ class Checkout extends MX_Controller
 		
 		$this->lang->load('check/checkout');
 		
-		$this->load->model('finance/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');

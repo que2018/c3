@@ -337,15 +337,17 @@ function refresh_fee() {
 	});
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_checkout_fee',
+		url: '<?php echo base_url(); ?>extension/fee/get_checkout_fees',
 		type: 'post',
 		data: data,
 		cache: false,
 		contentType: false,
 		processData: false,
 		dataType: 'json',
-		success: function(json) {			
-			$.each(json.checkin_fees, function(checkout_fee_row, checkout_fee) {	
+		success: function(json) {	
+			$('#checkout_fees tbody').html('');	
+		
+			$.each(json.checkout_fees, function(checkout_fee_row, checkout_fee) {	
 				html  = '<tr id="checkout-fee-row' + checkout_fee_row + '">';
 				html += '<td><input name="checkout_fee[' + checkout_fee_row + '][name]" value="' + checkout_fee.name + '" class="form-control" /></td>';
 				html += '<td class="text-right">';

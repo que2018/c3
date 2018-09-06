@@ -98,7 +98,7 @@
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
 						    <td><input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][batch]" value="<?php echo $checkin_product['batch']; ?>"></td>							
-						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
+						    <td><input class="form-control text-center quantity" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
 							<td>
 							  <input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][location_name]" value="<?php echo $checkin_product['location_name']; ?>">
 							  <input type="hidden" name="checkin_product[<?php echo $checkin_product_row; ?>][location_id]" value="<?php echo $checkin_product['location_id']; ?>">
@@ -180,14 +180,16 @@ function refresh_fee() {
 	});
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_checkin_fee',
+		url: '<?php echo base_url(); ?>extension/fee/get_checkin_fees',
 		type: 'post',
 		data: data,
 		cache: false,
 		contentType: false,
 		processData: false,
 		dataType: 'json',
-		success: function(json) {			
+		success: function(json) {	
+			$('#checkin_fees tbody').html('');	
+		
 			$.each(json.checkin_fees, function(checkin_fee_row, checkin_fee) {	
 				html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
 				html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="' + checkin_fee.name + '" class="form-control" /></td>';
@@ -287,7 +289,7 @@ $(document).ready(function() {
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
 			html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text" value=""></td>';
-			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><input class="form-control text-center quantity" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control">';
 			html += '<input type="hidden" name="checkin_product[' + checkin_product_row + '][location_id]">';
@@ -340,6 +342,13 @@ function add_checkin_fee() {
 
 	checkin_fee_row++;
 }
+</script>
+<script>
+$(document).ready(function() {
+	$(document).on('input', '.quantity', function() {
+		refresh_fee();
+	});
+});
 </script>
 <script>
 $(document).ready(function() {

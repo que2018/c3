@@ -21,7 +21,7 @@ class Checkin_weight extends MX_Controller
 		
 		$this->form_validation->set_rules('checkin_weight_sort_order', $this->lang->line('text_checkin_weight_sort_order'), 'required');
 		$this->form_validation->set_rules('checkin_weight_level', $this->lang->line('text_checkin_weight_level'), 'callback_validate_checkin_weight_level');
-		$this->form_validation->set_rules('checkin_weight_level_end', $this->lang->line('text_checkin_weight_level_end'), 'required');
+		$this->form_validation->set_rules('checkin_weight_level_end', $this->lang->line('text_checkin_weight_level_end'), 'regex_match[/^(?:[1-9]\d*|0)?(?:\.\d+)?$/]');
 
 		if($this->form_validation->run() == true)
 		{
@@ -79,21 +79,21 @@ class Checkin_weight extends MX_Controller
 			
 			foreach($checkin_weight_levels as $row => $checkin_weight_level)
 			{
-				$checkin_weight = $checkin_weight_level['checkin_weight'];
+				$weight = $checkin_weight_level['weight'];
 				$amount = $checkin_weight_level['amount'];
 				
-				if(!$checkin_weight)
+				if(!preg_match('/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/', $weight))
 				{
-					$error_message .= sprintf($this->lang->line('error_checkin_weight_row_required'), ($row + 1));
+					$error_message .= sprintf($this->lang->line('error_weight_row_format'), ($row + 1));
 					$error_message .= '<br>';
 					
 					if($validated) 
 						$validated = false;
 				}
 				
-				if(!$amount)
+				if(!preg_match('/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/', $amount))
 				{
-					$error_message .= sprintf($this->lang->line('error_amount_row_required'), ($row + 1));
+					$error_message .= sprintf($this->lang->line('error_amount_row_format'), ($row + 1));
 					$error_message .= '<br>';
 					
 					if($validated) 

@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Store_Sync_history extends MX_Controller 
 {
 	public function index()
@@ -147,7 +146,7 @@ class Store_Sync_history extends MX_Controller
 				}
 			
 				$data['store_sync_histories'][] = array(
-					'store_sync_history_id' => $store_sync_history['id'],	
+					'store_sync_history_id' => $store_sync_history['store_sync_history_id'],	
 					'store'        			=> $store_sync_history['store'],
 					'type'         			=> $type,
 					'status'       			=> $status,

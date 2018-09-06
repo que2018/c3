@@ -166,30 +166,32 @@
 </div>
 <script>
 function delete_transaction(handle, transaction_id) {
-	$.ajax({
-		url: '<?php echo base_url(); ?>finance/transaction/delete?transaction_id=' + transaction_id,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: 'json',
-		beforeSend: function() {
-			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-		},
-		success: function(json) {					
-			if(json.success) {
-				$.ajax({
-					url: '<?php echo $reload_url; ?>',
-					dataType: 'html',
-					success: function(html) {					
-						$('.ibox-content').html(html);
-					},
-				});
+	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+		$.ajax({
+			url: '<?php echo base_url(); ?>finance/transaction/delete?transaction_id=' + transaction_id,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {					
+				if(json.success) {
+					$.ajax({
+						url: '<?php echo $reload_url; ?>',
+						dataType: 'html',
+						success: function(html) {					
+							$('.ibox-content').html(html);
+						},
+					});
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+		});
+	}
 }
 </script>
 <script>

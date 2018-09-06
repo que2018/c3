@@ -24,6 +24,7 @@ $lang['text_date_between'] 	  	            = '%s -- %s';
 $lang['text_date_since'] 	  	            = 'since %s';
 $lang['text_date_before'] 	  	            = 'before %s';
 $lang['text_all_the_date'] 	  	            = 'All The Date';
+$lang['text_confirm_delete'] 	  	     = 'Are you sure to delete this recharge?';
 $lang['text_transaction_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;transaction edit success';
 
 // Column

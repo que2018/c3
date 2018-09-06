@@ -2,9 +2,9 @@
 
 class Store_sync_history_model extends CI_Model
 {	
-	public function get_store_sync_histories($data) 
+	public function get_store_sync_histories($data = array()) 
 	{			
-		$this->db->select("store_sync_history.*, store.name AS store", false);
+		$this->db->select('store_sync_history.*, store.name AS store', false);
 		$this->db->from('store_sync_history');
 		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		$this->db->group_by('store_sync_history.store_sync_history_id');
@@ -72,9 +72,9 @@ class Store_sync_history_model extends CI_Model
 		}
 	}
 	
-	function get_store_sync_history_total($data)
+	public function get_store_sync_history_total($data = array())
 	{
-		$this->db->select("COUNT(store_sync_history.id) AS total", false);
+		$this->db->select("COUNT(store_sync_history.store_sync_history_id) AS total", false);
 		$this->db->from('store_sync_history');
 		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		
@@ -128,6 +128,7 @@ class Store_sync_history_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}
@@ -137,7 +138,7 @@ class Store_sync_history_model extends CI_Model
 		$this->db->select("store_sync_history.*, store.name AS store", false);
 		$this->db->from('store_sync_history');
 		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
-		$this->db->where('store_sync_history.id', $store_sync_history_id);
+		$this->db->where('store_sync_history.store_sync_history_id', $store_sync_history_id);
 		
 		$q = $this->db->get();
 		
@@ -151,7 +152,7 @@ class Store_sync_history_model extends CI_Model
 	
 	public function delete_store_sync_history($store_sync_history_id) 
 	{
-		if($this->db->delete('store_sync_history', array('id' => $store_sync_history_id))) 
+		if($this->db->delete('store_sync_history', array('store_sync_history_id' => $store_sync_history_id))) 
 		{
 			return true;
 		}

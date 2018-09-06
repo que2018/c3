@@ -2,6 +2,7 @@
 
 // Text
 $lang['text_title'] 	  	             	= 'Checkin Weight';
+$lang['text_description'] 	  	            = 'checkin fee by weight';
 $lang['text_checkin_weight'] 	  	        = 'Checkin Weight';
 $lang['text_fee'] 	  	             	    = 'Fee';
 $lang['text_save'] 	  	             	    = 'save checkin weight';
@@ -23,5 +24,5 @@ $lang['column_amount'] 	  	            	= 'Amount / lb';
 $lang['tab_level'] 	  	             		= 'Level';
 
 // Error 
-$lang['error_checkin_weight_row_required']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin_weight at row <strong>%s</strong> is required';
-$lang['error_amount_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;amount at row <strong>%s</strong> is required';
+$lang['error_amount_row_format']            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The format of amount at row <strong>%s</strong> is not valid';
+$lang['error_weight_row_format']  	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The format of weight at row <strong>%s</strong> is not valid';

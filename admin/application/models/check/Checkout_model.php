@@ -842,12 +842,17 @@ class Checkout_model extends CI_Model
 			}
 		}
 		
+		//restore transaction
+		$this->load->model('finance/transaction_model');
+
+		$this->transaction_model->delete_transaction_by_type('checkout', $checkout_id);	
+		
+		//delete checkout
 		$this->db->delete('checkout', array('id' => $checkout_id));
 		$this->db->delete('checkout_product', array('checkout_id' => $checkout_id));
 		$this->db->delete('checkout_fee', array('checkout_id' => $checkout_id));
 		$this->db->delete('sale_to_checkout', array('checkout_id' => $checkout_id));
-		$this->db->delete('transaction', array('type' => 'checkout', 'type_id' => $checkout_id));
-
+		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();

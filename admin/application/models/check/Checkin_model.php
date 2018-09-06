@@ -92,7 +92,7 @@ class Checkin_model extends CI_Model
 		//transaction
 		if(($data['status'] == 2) && isset($data['checkin_fees']))
 		{
-			$checkin_product = $data['checkin_product'][0];
+			$checkin_product = $data['checkin_products'][0];
 			
 			$this->load->model('catalog/product_model');
 			
@@ -601,6 +601,11 @@ class Checkin_model extends CI_Model
 				} 
 			}
 		}
+		
+		//restore transaction
+		$this->load->model('finance/transaction_model');
+
+		$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);	
 		
 		//delete checkin
 		$this->db->delete('checkin', array('id' => $checkin_id));
