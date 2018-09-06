@@ -23,46 +23,52 @@ class Checkin_weight_model extends CI_Model
 		$this->setting_model->delete_setting('checkin_weight');
 	}
 	
-	public function run()
+	public function run($products)
 	{
-		$this->load->model('client/client_model');
+		$this->lang->load('fee/checkin_weight');
+		
 		$this->load->model('catalog/product_model');
-		$this->load->model('finance/transaction_model');
+		$this->load->model('setting/weight_class_model');
 		
-		$clients = $this->client_model->get_clients();	
+		$checkin_weight_levels = $this->config->item('checkin_weight_level');
 		
-		if($clients)
-		{
-			foreach($clients as $client)
-			{
-				$client_id = $client['id'];
-				
-				$products = $this->product_model->get_products_by_client($client_id);
+		$amount = 0;
+		
+		foreach($products as $product_id => $quantity)
+		{			
+			$product = $this->get_product($product_id);
 
-				$amount = 0;
-				
-				if($products)
+			$weight = $this->weight_class_model->to_config($product['weight_class_id'], $product['weight']);
+		
+			$weight_found = false;
+		
+			foreach($checkin_weight_levels as $checkin_weight_level)
+			{
+				if($weight < $checkin_weight_level['weight'])
 				{
-					foreach($products as $product)
-					{
-						$checkin_weight = $product['length'] * $product['width'] * $product['height'];
-					}
-						
-					$amount += $checkin_weight * $this->config->item('checkin_weight_amount');
-				
-					$transaction_data = array(					
-						'client_id'		  => $client_id,
-						'type'		      => 'location',
-						'type_id'         => '',
-						'cost'   		  => 0,
-						'markup'   		  => $amount,
-						'amount'   		  => $amount,
-						'comment'         => ''
-					);
+					$amount += $checkin_weight_level['amount'] * $weight;
 					
-					$this->transaction_model->add_transaction($transaction_data);
-				}				
+					$weight_found = true;
+					
+					break;
+				}
+				else
+				{
+					continue;
+				}
 			}
+
+			if(!$weight_found)
+			{
+				$amount += $this->config->item('checkin_weight_level_end') * $weight;
+			}			
 		}
+		
+		$result = array(
+			'name'   => $this->lang->line('text_title'),
+			'amount' => $amount
+		);
+		
+		return $result;
 	}
 }

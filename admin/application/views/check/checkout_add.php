@@ -326,6 +326,46 @@ $('#checkout-product tbody tr').each(function(index, element) {
 });
 </script>
 <script>
+function refresh_fee() {
+	data = new FormData();
+				
+	$('#checkout-product tbody tr').each(function(index) {
+		product_id = $(this).find('.product_id').val();
+		quantity = $(this).find('.quantity').val();
+		
+		data.append('product[' + product_id + ']', quantity);
+	});
+	
+	$.ajax({
+		url: '<?php echo base_url(); ?>extension/fee/get_checkout_fee',
+		type: 'post',
+		data: data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		success: function(json) {			
+			$.each(json.checkin_fees, function(checkout_fee_row, checkout_fee) {	
+				html  = '<tr id="checkout-fee-row' + checkout_fee_row + '">';
+				html += '<td><input name="checkout_fee[' + checkout_fee_row + '][name]" value="' + checkout_fee.name + '" class="form-control" /></td>';
+				html += '<td class="text-right">';
+				html += '<div class="input-group">';
+				html += '<span class="input-group-addon">$</span>';
+				html += '<input name="checkout_fee[' + checkout_fee_row + '][amount]" value="' + checkout_fee.amount + '" class="form-control" /></td>';
+				html += '</div>';
+				html += '<td class="text-left"><button type="button" onclick="$(\'#checkout-fee-row' + checkout_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+				html += '</tr>';
+
+				$('#checkout_fees tbody').append(html);			
+			});
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 function refresh_volume() {
 	data = new FormData();
 				
@@ -464,6 +504,7 @@ $(document).ready(function() {
 			
 			$(this).val(''); 
 			
+			refresh_fee();
 			refresh_volume();
 			refresh_weight();
 			
@@ -475,6 +516,7 @@ $(document).ready(function() {
 	$('#checkout-product').on('click', '.btn-delete', function() {		
 		$(this).closest('tr').remove();		
 		
+		refresh_fee();
 		refresh_volume();
 		refresh_weight();
 	});
@@ -527,6 +569,7 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
 	$(document).on('input', '.quantity', function() {
+		refresh_fee();
 		refresh_volume();
 		refresh_weight();
 	});

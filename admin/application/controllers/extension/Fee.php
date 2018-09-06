@@ -104,24 +104,80 @@ class Fee extends MX_Controller
 		}
 	}
 	
-	public function run()
+	public function get_checkin_fees()
 	{
-		$files = glob(APPPATH . '/controllers/fee/*.php', GLOB_BRACE);
+		$this->load->model('extension/extension_model');
 
-		if($files) 
+		$outdata['checkin_fees'] = array();
+		
+		if($this->input->post('product'))
 		{
-			foreach ($files as $file) 
+			$products = $this->input->post('product');
+		
+			$fees = $this->extension_model->get_installed('fee');
+		
+			if($fees)
 			{
-				$code = strtolower(basename($file, '.php'));
-
-				if($this->config->item($code . '_status'))
+				foreach($fees as $key => $code) 
 				{
-					$this->load->model('fee/'. $code .'_model');
+					if($this->config->item($code . '_type') == 'checkin')
+					{
+						if($this->config->item($code . '_status'))
+						{
+							$this->load->model('fee/'. $code .'_model');
 
-					$this->{$code . '_model'}->run();
+							$checkin_fee = $this->{$code . '_model'}->run($products);
+							
+							$outdata['checkin_fees'][] = array(
+								'name'   => $checkin_fee['name'],
+								'amount' => $checkin_fee['amount']
+							);
+						}
+					}
 				}
 			}
 		}
+		
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
+	}
+	
+	public function get_checkout_fees()
+	{
+		$this->load->model('extension/extension_model');
+
+		$outdata['checkout_fees'] = array();
+		
+		if($this->input->post('product'))
+		{
+			$products = $this->input->post('product');
+		
+			$fees = $this->extension_model->get_installed('fee');
+		
+			if($fees)
+			{
+				foreach($fees as $key => $code) 
+				{
+					if($this->config->item($code . '_type') == 'checkout')
+					{
+						if($this->config->item($code . '_status'))
+						{
+							$this->load->model('fee/'. $code .'_model');
+
+							$checkout_fee = $this->{$code . '_model'}->run($products);
+							
+							$outdata['checkout_fees'][] = array(
+								'name'   => $checkout_fee['name'],
+								'amount' => $checkout_fee['amount']
+							);
+						}
+					}
+				}
+			}
+		}
+		
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 
