@@ -137,6 +137,23 @@ class Inventory_model extends CI_Model
 		return false;
 	}
 	
+	public function get_inventories_by_client($client_id) 
+	{		
+		$this->db->select('inventory.*', false);
+		$this->db->from('inventory');
+		$this->db->join('product', 'product.id = inventory.product_id', 'left');
+		$this->db->where('product.client_id', $client_id);
+		
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_inventory_by_location_product($location_id, $product_id) 
 	{
 		$q = $this->db->get_where('inventory', array('location_id' => $location_id, 'product_id' => $product_id), 1); 

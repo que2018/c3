@@ -8,6 +8,7 @@ class Volume_model extends CI_Model
 
 		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/inventory_model');
 		$this->load->model('finance/transaction_model');
 		$this->load->model('setting/length_class_model');
 
@@ -15,34 +16,42 @@ class Volume_model extends CI_Model
 		
 		if($clients)
 		{
-			$volume_levels = $this->config->item('volume_level');
-			
 			foreach($clients as $client)
 			{
 				$client_id = $client['id'];
 				
-				$products = $this->product_model->get_products_by_client($client_id);
-
-				$amount = 0;
+				$inventories = $this->inventory_model->get_inventories_by_client($client_id);
 				
-				$level_found = false;
-				
-				if($products)
+				if($inventories)
 				{
-					foreach($products as $product)
-					{
-						$length = $this->length_class_model->to_config(1, $product['length']);
-						$width  = $this->length_class_model->to_config(1, $product['width']);
-						$height = $this->length_class_model->to_config(1, $product['height']);
-
-						$volume = $length * $width * $height;
-					}
+					$volume_total = 0;
 					
+					foreach($inventories as $inventory)
+					{
+						$product_id = $inventory['product_id'];
+						
+						$quantity = $inventory['quantity'];
+
+						$product_info = $this->product_model->get_product($product_id);
+						
+						$length = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['length']);
+						$width  = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['width']);
+						$height = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['height']);
+
+						$volume_total += $length * $width * $height * $quantity;
+					}
+				
+					$amount = 0;
+					
+					$level_found = false;
+					
+					$volume_levels = $this->config->item('volume_level');
+				
 					foreach($volume_levels as $volume_level)
 					{
-						if($volume < $volume_level['volume'])
+						if($volume_total < $volume_level['volume'])
 						{
-							$amount = $volume_level['amount'] * $volume;
+							$amount = $volume_level['amount'] * $volume_total;
 							
 							$level_found = true;
 							
@@ -56,12 +65,12 @@ class Volume_model extends CI_Model
 					
 					if(!$level_found)
 					{
-						$amount = $this->config->item('volume_level_end') * $volume;
+						$amount = $this->config->item('volume_level_end') * $volume_total;
 					}
 					
 					$transaction_data = array(					
 						'client_id'		  => $client_id,
-						'type'		      => 'location',
+						'type'		      => 'inventory',
 						'type_id'         => '',
 						'cost'   		  => 0,
 						'markup'   		  => $amount,
