@@ -1,16 +1,26 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Flat_model extends CI_Model
 {		
 	public function install()
 	{
+		$this->load->model('setting/setting_model');
 		
+		$data = array(	
+			'flat_type'       => 'inventory',		
+			'flat_amount'     => 0,
+			'flat_status'     => 0,
+			'flat_sort_order' => 0
+		);
+			
+		$this->setting_model->edit_setting('flat', $data);
 	}
 	
 	public function uninstall() 
 	{
+		$this->load->model('setting/setting_model');
 		
+		$this->setting_model->delete_setting('flat');
 	}
 	
 	public function run()

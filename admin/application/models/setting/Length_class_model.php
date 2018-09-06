@@ -158,7 +158,7 @@ class Length_class_model extends CI_Model
 		}
 	}
 	
-	function get_length_class_total($data)
+	public function get_length_class_total($data)
 	{		
 		$this->db->select('COUNT(length_class.id) AS total', false);
 		$this->db->from('length_class');
@@ -185,7 +185,7 @@ class Length_class_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_all_length_classes() 
+	public function get_all_length_classes() 
 	{
 		$this->db->select('*');
 		$this->db->from('length_class');
@@ -200,7 +200,7 @@ class Length_class_model extends CI_Model
 		return false;
 	}
 	
-	function to_config($length_class_id, $length)
+	public function to_config($length_class_id, $length)
 	{
 		$q1 = $this->db->get_where('length_class', array('id' => $length_class_id), 1); 
 		

@@ -5,11 +5,23 @@ $lang['text_title'] 	  	             	= 'Volume';
 $lang['text_volume'] 	  	             	= 'Volume';
 $lang['text_fee'] 	  	             	    = 'Fee';
 $lang['text_save'] 	  	             	    = 'save volume';
-$lang['text_flat_amount'] 	  	            = 'amount';
-$lang['text_flat_status'] 	  	            = 'status';
+$lang['text_volume_level'] 	  	            = 'volume level';
+$lang['text_volume_level_end'] 	  	        = 'volume level end';
+$lang['text_volume_status'] 	  	        = 'status';
+$lang['text_volume_sort_order'] 	  	    = 'sort order';
 $lang['text_edit_success'] 	  	            = '<i class="fa fa-check-circle-o"></i>&nbsp;edit fee success';
 
 // Entry
-$lang['entry_amount'] 	  	             	 = 'Amount';
-$lang['entry_status'] 	  	             	 = 'Status';
+$lang['entry_status'] 	  	             	= 'Status';
+$lang['entry_sort_order'] 	  	            = 'Sort Order';
 
+// Column
+$lang['column_volume'] 	  	             	= 'Volume';
+$lang['column_amount'] 	  	            	= 'Amount / sqft';
+
+// Tab
+$lang['tab_level'] 	  	             		= 'Level';
+
+// Error 
+$lang['error_volume_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;volume at row <strong>%s</strong> is required';
+$lang['error_amount_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;amount at row <strong>%s</strong> is required';

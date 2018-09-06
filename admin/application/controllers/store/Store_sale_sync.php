@@ -92,7 +92,7 @@ class Store_sale_sync extends MX_Controller
 				$this->lang->load('platform/' . $store['platform']);
 			
 				$data['stores'][] = array(
-					'id'             => $store['id'],
+					'id'             => $store['store_id'],
 					'name'           => $store['name'],
 					'platform'       => $store['platform'],
 					'platform_title' => $this->lang->line('text_title')

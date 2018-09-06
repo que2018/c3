@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkin extends MX_Controller 
 {
 	public function index()
@@ -375,9 +374,9 @@ class Checkin extends MX_Controller
 			'checkin_fees'  	=> $this->input->post('checkin_fee'),
 			'note'              => $this->input->post('note')
 		);
-		
+		  
 		$checkin_products = $this->input->post('checkin_product');
-			
+		
 		$data['checkin_products'] = array();
 			
 		if($checkin_products)
@@ -554,7 +553,8 @@ class Checkin extends MX_Controller
 				foreach($checkin_fees as $checkin_fee) 
 				{
 					$data['checkin_fees'][] = array(
-						'fee_id'  => $checkin_fee['fee_id']
+						'name'   => $checkin_fee['name'],
+						'amount' => $checkin_fee['amount']
 					);
 				}
 			}
@@ -624,23 +624,6 @@ class Checkin extends MX_Controller
 			//excel export end
 		}
 		
-		//fees
-		$data['fees'] = array();
-		
-		$fees = $this->fee_model->get_fees();
-		
-		if($fees) 
-		{
-			foreach($fees as $fee)
-			{
-				$data['fees'][] = array(
-					'fee_id'  => $fee['id'],
-					'name'    => $fee['name'],
-					'amount'  => $this->currency->format($fee['amount'])
-				);
-			}
-		}
-			
 		$data['checkin_id'] = $checkin_id;		
 			
 		$data['error'] = validation_errors();	
@@ -670,7 +653,7 @@ class Checkin extends MX_Controller
 		}
 	}
 	
-	function validate_add_tracking($tracking)
+	public function validate_add_tracking($tracking)
 	{
 		$this->lang->load('check/checkin');
 		
@@ -697,7 +680,7 @@ class Checkin extends MX_Controller
 		}
 	}
 	
-	function validate_edit_tracking($tracking)
+	public function validate_edit_tracking($tracking)
 	{
 		$this->lang->load('check/checkin');
 		
@@ -733,7 +716,7 @@ class Checkin extends MX_Controller
 		}
 	}
 
-	function validate_checkin_product($checkin_products)
+	public function validate_checkin_product($checkin_products)
 	{
 		$this->lang->load('check/checkin');
 		
@@ -792,11 +775,12 @@ class Checkin extends MX_Controller
 		}	
 	}
 	
-	function validate_checkin_fee()
+	public function validate_checkin_fee()
 	{	
 		$this->lang->load('check/checkin');
 		
 		$this->load->model('check/checkin_model');
+		$this->load->model('catalog/product_model');
 		
 		if($this->input->post('checkin_fee'))
 		{
@@ -808,9 +792,21 @@ class Checkin extends MX_Controller
 			
 			foreach($checkin_fees as $row => $checkin_fee)
 			{
-				if(!$checkin_fee)
+				$name = $checkin_fee['name'];
+				$amount = $checkin_fee['amount'];
+				
+				if(!$name)
 				{
-					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_required'), ($row + 1));
+					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_name_required'), ($row + 1));
+					$error_message .= '<br>';
+					
+					if($validated) 
+						$validated = false;
+				}
+				
+				if(!$amount)
+				{
+					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_amount_required'), ($row + 1));
 					$error_message .= '<br>';
 					
 					if($validated) 
@@ -818,6 +814,39 @@ class Checkin extends MX_Controller
 				}
 			}
 			
+			$clients_ids = array();
+			
+			$checkin_products = $this->input->post('checkin_product');
+			
+			foreach($checkin_products as $checkin_product)
+			{
+				$product = $this->product_model->get_product($checkin_product['product_id']);
+				
+				if(!$product['client_id']) 
+				{
+					$error_message .= $this->lang->line('error_no_client_fee_notice');
+					$error_message .= '<br>';
+				
+					if($validated) 
+						$validated = false;
+				}
+				else
+				{
+					$clients_ids[] = $product['client_id'];
+				}
+			}
+			
+			$clients_ids = array_unique($clients_ids);
+			
+			if(sizeof($clients_ids) > 1)
+			{
+				$error_message .= $this->lang->line('error_multi_client_fee_notice');
+				$error_message .= '<br>';
+				
+				if($validated) 
+					$validated = false;
+			}
+			 
 			if(!$validated)
 			{
 				$this->form_validation->set_message('validate_checkin_fee', $error_message);

@@ -61,7 +61,7 @@
 					      <button class="btn btn-upload-disabled"><i class="fa fa-cloud-upload"></i></button>
 						<?php } ?>
 					  </td>
-					  <input type="hidden" name="store_id" value="<?php echo $store['id']; ?>">
+					  <input type="hidden" name="store_id" value="<?php echo $store['store_id']; ?>">
 					</tr>
 				  <?php } ?>
 				<?php } ?>

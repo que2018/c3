@@ -14,7 +14,7 @@ class Order_model extends CI_Model
 		
 		if(!empty($search_client)) 
 		{
-			$query .= 'WHERE store_id IN (SELECT store.id FROM store LEFT JOIN client ON store.client_id = client.id WHERE client.id = '.$search_client.')';
+			$query .= 'WHERE store_id IN (SELECT store.store_id FROM store LEFT JOIN client ON store.client_id = client.id WHERE client.id = '.$search_client.')';
 		}
 		
 		if(!empty($search_date_from)) 
@@ -76,7 +76,7 @@ class Order_model extends CI_Model
 		
 		if(!empty($search_client)) 
 		{
-			$query .= 'WHERE store_id IN (SELECT store.id FROM store LEFT JOIN client ON store.client_id = client.id WHERE client.id = '.$search_client.')';
+			$query .= 'WHERE store_id IN (SELECT store.store_id FROM store LEFT JOIN client ON store.client_id = client.id WHERE client.id = '.$search_client.')';
 		}
 		
 		if(!empty($search_date_from)) 

@@ -538,23 +538,6 @@ class Checkout extends MX_Controller
 			}
 		}
 		
-		//fees
-		$fees = $this->fee_model->get_fees();
-		
-		$data['fees'] = array();
-		
-		if($fees) 
-		{
-			foreach($fees as $fee)
-			{
-				$data['fees'][] = array(
-					'fee_id'  => $fee['id'],
-					'name'    => $fee['name'],
-					'amount'  => $this->currency->format($fee['amount'])
-				);
-			}
-		}
-		
 		if($this->form_validation->run() == true)
 		{
 			$this->checkout_model->add_checkout($data);
@@ -789,7 +772,8 @@ class Checkout extends MX_Controller
 				foreach($checkout_fees as $checkout_fee) 
 				{
 					$data['checkout_fees'][] = array(
-						'fee_id'  => $checkout_fee['fee_id']
+						'name'   => $checkout_fee['name'],
+						'amount' => $checkout_fee['amount']
 					);
 				}
 			}
@@ -937,24 +921,7 @@ class Checkout extends MX_Controller
 				);
 			}
 		}
-		
-		//fees
-		$fees = $this->fee_model->get_fees();
-		
-		$data['fees'] = array();
-		
-		if($fees) 
-		{
-			foreach($fees as $fee)
-			{
-				$data['fees'][] = array(
-					'fee_id'  => $fee['id'],
-					'name'    => $fee['name'],
-					'amount'  => $this->currency->format($fee['amount'])
-				);
-			}
-		}
-		
+	
 		//label
 		$checkout = $this->checkout_model->get_checkout($checkout_id);
 		
@@ -1126,7 +1093,7 @@ class Checkout extends MX_Controller
 	}
 	
 	public function validate_checkout_fee()
-	{		
+	{	
 		if($this->input->post('checkout_fee'))
 		{
 			$validated = true;
@@ -1137,14 +1104,59 @@ class Checkout extends MX_Controller
 			
 			foreach($checkout_fees as $row => $checkout_fee)
 			{
-				if(!$checkout_fee)
+				$name = $checkout_fee['name'];
+				$amount = $checkout_fee['amount'];
+				
+				if(!$name)
 				{
-					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_required'), ($row + 1));
+					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_name_required'), ($row + 1));
 					$error_message .= '<br>';
 					
 					if($validated) 
 						$validated = false;
 				}
+				
+				if(!$amount)
+				{
+					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_amount_required'), ($row + 1));
+					$error_message .= '<br>';
+					
+					if($validated) 
+						$validated = false;
+				}
+			}
+			
+			$clients_ids = array();
+			
+			$checkout_products = $this->input->post('checkout_product');
+			
+			foreach($checkout_products as $checkout_product)
+			{
+				$product = $this->product_model->get_product($checkout_product['product_id']);
+				
+				if(!$product['client_id']) 
+				{
+					$error_message .= $this->lang->line('error_no_client_fee_notice');
+					$error_message .= '<br>';
+				
+					if($validated) 
+						$validated = false;
+				}
+				else
+				{
+					$clients_ids[] = $product['client_id'];
+				}
+			}
+			
+			$clients_ids = array_unique($clients_ids);
+			
+			if(sizeof($clients_ids) > 1)
+			{
+				$error_message .= $this->lang->line('error_multi_client_fee_notice');
+				$error_message .= '<br>';
+				
+				if($validated) 
+					$validated = false;
 			}
 			
 			if(!$validated)

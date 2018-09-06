@@ -1,10 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkin_model extends CI_Model
 {		
 	public function add_checkin($data)
 	{
+		$this->lang->load('check/checkin');
+		
 		$this->db->trans_begin();
 		
 		//checkin data
@@ -23,7 +24,8 @@ class Checkin_model extends CI_Model
 		//checkin products
 		$checkin_products = array();
 					
-		foreach($data['checkin_products'] as $checkin_product){					
+		foreach($data['checkin_products'] as $checkin_product)
+		{					
 			$checkin_products[] = array(
 				'checkin_id'	=> $checkin_id,
 				'product_id' 	=> $checkin_product['product_id'],
@@ -40,10 +42,11 @@ class Checkin_model extends CI_Model
 		{
 			$checkin_fees = array();
 						
-			foreach($data['checkin_fees'] as $fee_id){					
+			foreach($data['checkin_fees'] as $checkin_fee){					
 				$checkin_fees[] = array(
 					'checkin_id'   => $checkin_id,
-					'fee_id' 	   => $fee_id
+					'name' 	       => $checkin_fee['name'],
+					'amount' 	   => $checkin_fee['amount']
 				);
 			}
 			
@@ -85,7 +88,40 @@ class Checkin_model extends CI_Model
 				}
 			}
 		}
-
+		
+		//transaction
+		if(($data['status'] == 2) && isset($data['checkin_fees']))
+		{
+			$checkin_product = $data['checkin_product'][0];
+			
+			$this->load->model('catalog/product_model');
+			
+			$product_info = $this->product_model->get_product($checkin_product['product_id']);
+			
+			$client_id = $product_info['client_id'];
+	
+			$amount = 0;
+			
+			foreach($data['checkin_fees'] as $checkin_fee) 
+			{
+				$amount += $checkin_fee['amount'];
+			}
+			
+			$this->load->model('finance/transaction_model');
+			
+			$transaction_data = array(					
+				'client_id'		  => $client_id,
+				'type'		      => 'checkin',
+				'type_id'         => $checkin_id,
+				'cost'   		  => 0,
+				'markup'   		  => $amount,
+				'amount'   		  => $amount,
+				'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
+			);
+			
+			$this->transaction_model->add_transaction($transaction_data); 							
+		} 
+		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -102,6 +138,8 @@ class Checkin_model extends CI_Model
 
 	public function edit_checkin($checkin_id, $data)
 	{
+		$this->lang->load('check/checkin');
+		
 		$this->db->trans_begin();
 		
 		//inventory data
@@ -206,6 +244,71 @@ class Checkin_model extends CI_Model
 				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 			}
 		}
+		
+		//transaction		
+		if(isset($data['checkin_fees']))
+		{
+			$this->load->model('finance/transaction_model');
+
+			$checkin_product = $data['checkin_products'][0];
+			
+			$this->load->model('catalog/product_model');
+			
+			$product_info = $this->product_model->get_product($checkin_product['product_id']);
+			
+			$client_id = $product_info['client_id'];
+			
+			if(($checkin['status'] == 1) && ($data['status'] == 2))
+			{
+				$amount = 0;
+				
+				foreach($data['checkin_fees'] as $checkin_fee) 
+				{
+					$amount += $checkin_fee['amount'];
+				}
+				
+				$transaction_data = array(					
+					'client_id'		  => $client_id,
+					'type'		      => 'checkin',
+					'type_id'         => $checkin_id,
+					'cost'   		  => 0,
+					'markup'   		  => $amount,
+					'amount'   		  => $amount,
+					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
+				);
+								
+				$this->transaction_model->add_transaction($transaction_data); 
+			}
+			
+			if(($checkin['status'] == 2) && ($data['status'] == 2))
+			{
+				$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
+
+				$amount = 0;
+								
+				foreach($data['checkin_fees'] as $checkin_fee) 
+				{
+					$amount += $checkin_fee['amount'];
+				}
+				
+				$transaction_data = array(					
+					'client_id'		  => $client_id,
+					'type'		      => 'checkin',
+					'type_id'         => $checkin_id,
+					'cost'   		  => 0,
+					'markup'   		  => $amount,
+					'amount'   		  => $amount,
+					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
+				);
+												
+				$this->transaction_model->add_transaction($transaction_data);
+			}
+				
+			if(($checkin['status'] == 2) && ($data['status'] == 1))
+			{
+				$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
+			}
+		} 
 				
 		//checkin data
 		$checkin_data = array(
@@ -241,10 +344,11 @@ class Checkin_model extends CI_Model
 		{
 			$checkin_fees = array();
 						
-			foreach($data['checkin_fees'] as $fee_id){					
+			foreach($data['checkin_fees'] as $checkin_fee){					
 				$checkin_fees[] = array(
-					'checkin_id'  => $checkin_id,
-					'fee_id' 	   => $fee_id
+					'checkin_id'   => $checkin_id,
+					'name' 	       => $checkin_fee['name'],
+					'amount' 	   => $checkin_fee['amount']
 				);
 			}
 			
@@ -307,6 +411,41 @@ class Checkin_model extends CI_Model
 				}
 			}
 			
+			//transaction
+			$checkin_fees = $this->get_checkin_fees($checkin_id);
+			
+			if($checkin_fees)
+			{
+				$checkin_product = $checkin_products[0];
+				
+				$this->load->model('catalog/product_model');
+				
+				$product_info = $this->product_model->get_product($checkin_product['product_id']);
+				
+				$client_id = $product_info['client_id'];
+		
+				$amount = 0;
+				
+				foreach($checkin_fees as $checkin_fee) 
+				{
+					$amount += $checkin_fee['amount'];
+				}
+				
+				$this->load->model('finance/transaction_model');
+				
+				$transaction_data = array(					
+					'client_id'		  => $client_id,
+					'type'		      => 'checkin',
+					'type_id'         => $checkin_id,
+					'cost'   		  => 0,
+					'markup'   		  => $amount,
+					'amount'   		  => $amount,
+					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
+				);
+				
+				$this->transaction_model->add_transaction($transaction_data); 
+			}				
+			
 			//checkin data
 			$this->db->where('id', $checkin_id);
 			$this->db->update('checkin', array('status'  => 2));
@@ -355,6 +494,11 @@ class Checkin_model extends CI_Model
 					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
 				}
 			}
+			
+			//transaction
+			$this->load->model('finance/transaction_model');
+
+			$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
 			
 			//checkin data
 			$this->db->where('id', $checkin_id);

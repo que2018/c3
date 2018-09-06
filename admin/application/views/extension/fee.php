@@ -21,10 +21,11 @@
 			<table class="table table-bordered table-hover">
 			  <thead>
 				<tr>
-				  <th class="text-left" style="width: 25%;"><?php echo $this->lang->line('column_name'); ?></th>
-				  <th class="text-left" style="width: 25%;"><?php echo $this->lang->line('column_status'); ?></th>
-				  <th class="text-right" style="width: 25%;"><?php echo $this->lang->line('column_sort_order'); ?></th>
-				  <th class="text-right" style="width: 25%;"><?php echo $this->lang->line('column_action'); ?></th>
+				  <th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_name'); ?></th>
+				  <th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_type'); ?></th>
+				  <th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_status'); ?></th>
+				  <th class="text-right" style="width: 20%;"><?php echo $this->lang->line('column_sort_order'); ?></th>
+				  <th class="text-right" style="width: 20%;"><?php echo $this->lang->line('column_action'); ?></th>
 				</tr>
 			  </thead>
 			  <tbody>
@@ -32,6 +33,7 @@
 				<?php foreach ($fees as $fee) { ?>
 				<tr>
 				  <td class="text-left"><?php echo $fee['name']; ?></td>
+				  <td class="text-left"><?php echo $fee['type']; ?></td>
 				  <td class="text-left"><?php echo $fee['status']; ?></td>
 				  <td class="text-right"><?php echo $fee['sort_order']; ?></td>
 				  <td class="text-right">

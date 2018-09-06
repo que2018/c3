@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/fee/flat.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_flat'); ?></h2>
@@ -46,6 +46,11 @@
 				  </div>
                 </div>
 				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_sort_order'); ?></label>
+			      <div class="col-sm-10"><input name="flat_sort_order" value="<?php echo $flat_sort_order; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>	
 			  </div>
 		    </div>
 		  </div>
@@ -54,3 +59,4 @@
     </div>
   </div>
 </div> 
+<?php echo $footer; ?>

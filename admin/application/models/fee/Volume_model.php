@@ -1,16 +1,26 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Volume_model extends CI_Model
 {		
 	public function install()
 	{
+		$this->load->model('setting/setting_model');
 		
+		$data = array(
+			'volume_type'       => 'inventory',
+			'volume_level'      => array(),
+			'volume_status'     => 0,
+			'volume_sort_order' => 0
+		);
+			
+		$this->setting_model->edit_setting('volume', $data);
 	}
 	
 	public function uninstall() 
 	{
+		$this->load->model('setting/setting_model');
 		
+		$this->setting_model->delete_setting('volume');
 	}
 	
 	public function run()

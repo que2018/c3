@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Fee extends MX_Controller 
 {
 	public function index()
@@ -43,12 +42,13 @@ class Fee extends MX_Controller
 				$fee = strtolower(basename($file, '.php'));
 
 				$this->lang->load('fee/' . $fee);
-
+				
 				$data['fees'][] = array(
 					'code'       => $fee,
 					'name'       => $this->lang->line('text_title'),
+					'type'       => $this->config->item($fee .'_type'),
 					'status'     => ($this->config->item($fee .'_status'))?$this->lang->line('text_enabled'):$this->lang->line('text_disabled'),
-					'sort_order' => 0,
+					'sort_order' => $this->config->item($fee .'_sort_order'),
 					'installed'  => in_array($fee, $fees)
 				);
 			}

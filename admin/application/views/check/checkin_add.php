@@ -113,7 +113,8 @@
                 <table id="checkin_fees" class="table table-striped table-bordered table-hover">
 				  <thead>
 					<tr>
-					<td class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></td>
+					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_name') ?></strong></td>
+					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_amount') ?></strong></td>
 					<td></td>
 					</tr>
 				  </thead>
@@ -122,19 +123,12 @@
 					<?php if($checkin_fees) { ?>
 					  <?php foreach ($checkin_fees as $checkin_fee) { ?>
 					  <tr id="checkin-fee-row<?php echo $checkin_fee_row; ?>">
-					    <td class="text-right">
-					      <select name="checkin_fee[<?php echo $checkin_fee_row; ?>]" class="form-control">
-						  <option value=""></option>
-						  <?php if($fees) { ?>
-						  <?php foreach($fees as $fee) { ?>
-						  <?php if($fee['fee_id'] == $checkin_fee['fee_id']) { ?>
-						  <option value="<?php echo $fee['fee_id']; ?>" selected><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>
-						  <?php } else { ?>
-						  <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>
-						  <?php } ?>
-						  <?php } ?>
-						  <?php } ?>
-						</select>
+					    <td><input name="checkin_fee[<?php echo $checkin_fee_row; ?>][name]" value="<?php echo $checkin_fee['name']; ?>" class="form-control" /></td>
+						<td class="text-right">
+						  <div class="input-group">
+						    <span class="input-group-addon">$</span>
+						    <input name="checkin_fee[<?php echo $checkin_fee_row; ?>][amount]" value="<?php echo $checkin_fee['amount']; ?>" class="form-control" /></td>
+						  </div>
 						</td>
 						<td class="text-left"><button type="button" onclick="$('#checkin-fee-row<?php echo $checkin_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
 					  </tr>
@@ -144,7 +138,7 @@
 				  </tbody>
 				  <tfoot>
 					<tr>
-					  <td colspan="1"></td>
+					  <td colspan="2"></td>
 					  <td class="text-left"><button type="button" onclick="add_checkin_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
 					</tr>
 				  </tfoot>
@@ -273,17 +267,14 @@ $(document).ready(function() {
 <script>
 checkin_fee_row = <?php echo $checkin_fee_row; ?>;
 
-function add_checkin_fee(name, amount) {
+function add_checkin_fee() {
 	html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
+	html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="" class="form-control" /></td>';
 	html += '<td class="text-right">';
-	html += '<select name="checkin_fee[' + checkin_fee_row + ']" class="form-control">';
-	html += '<option value=""></option>';
-	
-	<?php foreach($fees as $fee) { ?>
-	html += '<option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['name']; ?>&nbsp;(<?php echo $fee['amount']; ?>)</option>';
-	<?php } ?>
-	
-	html += '</select>';
+	html += '<div class="input-group">';
+	html += '<span class="input-group-addon">$</span>';
+	html += '<input name="checkin_fee[' + checkin_fee_row + '][amount]" value="" class="form-control" /></td>';
+	html += '</div>';
 	html += '<td class="text-left"><button type="button" onclick="$(\'#checkin-fee-row' + checkin_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 

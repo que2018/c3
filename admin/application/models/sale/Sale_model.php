@@ -567,7 +567,7 @@ class Sale_model extends CI_Model
 	{
 		$this->db->select('sale.*', false);
 		$this->db->from('sale');
-		$this->db->join('store', 'store.id = sale.store_id', 'left');
+		$this->db->join('store', 'store.store_id = sale.store_id', 'left');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
 		$this->db->where('client.id', $client_id);		
 		

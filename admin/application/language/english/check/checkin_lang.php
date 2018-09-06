@@ -32,11 +32,9 @@ $lang['text_completed'] 	  	    			 = 'Completed';
 $lang['text_canceled'] 	  	        			 = 'Canceled';
 $lang['text_loading'] 	  	        		     = 'loading ...';
 $lang['text_change'] 	  	        			 = 'Change';
-
 $lang['text_excel_tracking'] 	  	             = 'Tracking: %s';
 $lang['text_excel_pending'] 	  	             = 'Status: Pending';
 $lang['text_excel_completed'] 	  	        	 = 'Status: Completed';
-
 $lang['text_loading_locations'] 	  		     = 'loading locations ...';
 $lang['text_loading_product'] 	  	    		 = 'loading product ...';
 $lang['text_loading_checkin'] 	  	    		 = 'loading checkin ...';
@@ -51,6 +49,7 @@ $lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&n
 $lang['text_rapid_checkin_add_success'] 		 = '<i class="fa fa-check-circle-o"></i>&nbsp;rapid checkin add success';
 $lang['text_checkin_delete_success']    		 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin delete success';
 $lang['text_confirm_delete']            		 = 'Are you sure to delete this record?';
+$lang['text_checkin_transaction_note']    	     = 'transaction for checkin - ID: %s';
 $lang['text_checkin_is_completed']               = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin is completed';
 
 // Tab
@@ -104,8 +103,13 @@ $lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-
 $lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> quantity is not a positive number';
 $lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> has location unfilled';
 $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkin is already completed';
-$lang['error_checkin_fee_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> is required';
+$lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin fee at row <strong>%s</strong> is require name';
+$lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin fee at row <strong>%s</strong> is require amount';
 $lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> requires amount';
+$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to no client found';
+$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to multi client found';
+
+
 
 
 

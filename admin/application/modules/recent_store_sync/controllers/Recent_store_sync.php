@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Recent_store_sync extends MX_Controller 
 {
 	public function index()
@@ -28,7 +27,7 @@ class Recent_store_sync extends MX_Controller
 					'type'         => $store_sync_history['type'],
 					'status'       => $store_sync_history['status'],
 					'date_added'   => $store_sync_history['date_added'],
-					'link'         => base_url() . 'store/store_sync_history/detail?store_sync_history_id=' . $store_sync_history['id']
+					'link'         => base_url() . 'store/store_sync_history/detail?store_sync_history_id=' . $store_sync_history['store_sync_history_id']
 				);
 			}
 		}

@@ -11,7 +11,9 @@
 .tabs-container .panel-body {
 	padding-top: 35px !important;
 }
-
+.volume-level-end {
+	width: 100%;
+}
 
 
 

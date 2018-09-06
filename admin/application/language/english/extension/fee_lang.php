@@ -11,6 +11,7 @@ $lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbs
 
 // Column
 $lang['column_name'] 	  	             = 'Name';
+$lang['column_type'] 	  	             = 'Type';
 $lang['column_status'] 	  	             = 'Status';
 $lang['column_sort_order'] 	  	         = 'Sort Order';
 $lang['column_action'] 	  	             = 'Action';
