@@ -119,7 +119,7 @@ function add_volume_level() {
 	html += '<span class="input-group-addon">$</span>';
 	html += '<input name="volume_level[' + level_row + '][amount]" value="" class="form-control" /></td>';
 	html += '</div>';
-	html += '<td class="text-left"><button type="button" onclick="$(\'#level-row' + level_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '<td class="text-left"><button type="button" onclick="$(\'#volume-row' + level_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
 	$('#volume_levels tbody').append(html);
