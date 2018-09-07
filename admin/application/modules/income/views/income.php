@@ -5,9 +5,9 @@
 	  <h5><?php echo $this->lang->line('text_income'); ?></h5> 
     </div>
     <div class="ibox-content">
-	  <h1 class="no-margins"><?php echo $sale_income; ?></h1>
-	  <div class="stat-percent font-bold text-success"><?php echo $sale_income_trend; ?>%
-	  <?php if($sale_income_trend >= 0) { ?>
+	  <h1 class="no-margins"><?php echo $income; ?></h1>
+	  <div class="stat-percent font-bold text-success"><?php echo $income_trend; ?>%
+	  <?php if($income_trend >= 0) { ?>
 	  <i class="fa fa-level-up"></i>
 	  <?php } else { ?>
 	  <i class="fa fa-level-down"></i>

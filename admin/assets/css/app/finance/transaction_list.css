@@ -39,6 +39,10 @@ input:focus {
 	top: 30px;    	
 	right: 50px;
 }
+.alert-success {
+    width: 230px;
+    margin: 0 auto;
+}
 
 
 

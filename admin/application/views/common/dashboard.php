@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 <div class="wrapper wrapper-content">
   <div class="row">
-    <div class="col-lg-3"><?php echo $sale_income; ?></div>
+    <div class="col-lg-3"><?php echo $income; ?></div>
 	<div class="col-lg-3"><?php echo $sale_total; ?></div>
 	<div class="col-lg-3"><?php echo $yesterday_activity; ?></div>
 	<div class="col-lg-3"><?php echo $total_alert; ?></div>

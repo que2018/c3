@@ -67,7 +67,7 @@
 					    <tr id="volume-row<?php echo $level_row; ?>">
 					      <td class="text-right">
 						    <div class="input-group">
-							  <span class="input-group-addon">sqft (<)</span>
+							  <span class="input-group-addon">inch^3 (<)</span>
 							  <input name="volume_level[<?php echo $level_row; ?>][volume]" value="<?php echo $volume_level['volume']; ?>" class="form-control" />
 							</div>
 						  </td>

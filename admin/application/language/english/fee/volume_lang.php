@@ -17,7 +17,7 @@ $lang['entry_sort_order'] 	  	            = 'Sort Order';
 
 // Column
 $lang['column_volume'] 	  	             	= 'Volume';
-$lang['column_amount'] 	  	            	= 'Amount / sqft';
+$lang['column_amount'] 	  	            	= 'Amount / inch^3';
 
 // Tab
 $lang['tab_level'] 	  	             		= 'Level';

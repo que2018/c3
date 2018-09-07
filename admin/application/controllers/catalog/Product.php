@@ -460,7 +460,7 @@ class Product extends MX_Controller
 		//length classes
 		$data['length_classes'] = array();
 		
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		if($length_classes) 
 		{
@@ -476,7 +476,7 @@ class Product extends MX_Controller
 		//weight classses
 		$data['weight_classes'] = array();
 		
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		if($weight_classes) 
 		{
@@ -695,7 +695,7 @@ class Product extends MX_Controller
 		//length classes
 		$data['length_classes'] = array();
 		
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 	
 		if($length_classes) 
 		{
@@ -711,7 +711,7 @@ class Product extends MX_Controller
 		//weight classses
 		$data['weight_classes'] = array();
 		
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		if($weight_classes) 
 		{

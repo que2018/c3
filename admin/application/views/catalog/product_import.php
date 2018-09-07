@@ -56,7 +56,11 @@
 			  <div class="col-sm-10">
 				<select name="weight_class_id" class="form-control">
 				  <?php foreach($weight_classes as $weight_class) { ?>
-				    <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['unit']; ?></option>
+					<?php if($weight_class['weight_class_id'] == $this->config->item('config_weight_class_id')) { ?>
+					  <option value="<?php echo $weight_class['weight_class_id']; ?>" selected><?php echo $weight_class['unit']; ?></option>
+					<?php } else { ?>
+					  <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['unit']; ?></option>
+					<?php } ?>				  
 				  <?php } ?>
 				</select>
 			  </div>

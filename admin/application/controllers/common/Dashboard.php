@@ -22,10 +22,10 @@ class Dashboard extends MX_Controller
 		
 		$this->header->add_style(base_url(). 'assets/css/app/common/dashboard.css');
 	
-		//sale income
-		$this->load->module('sale_income');
+		//income
+		$this->load->module('income');
 		
-		$data['sale_income'] = Modules::run('module/sale_income/index');
+		$data['income'] = Modules::run('module/income/index');
 		
 		//sale total
 		$this->load->module('sale_total');

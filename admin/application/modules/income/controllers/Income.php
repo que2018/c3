@@ -1,22 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-class Sale_income extends MX_Controller 
+class Income extends MX_Controller 
 {
 	public function index()
 	{
 		$this->load->library('currency');
 		$this->load->library('datetimer');		
 
-		$this->load->model('sale/sale_model');
-		
+		$this->load->model('finance/transaction_model');
+
 		$first_date_this_month = $this->datetimer->first_date_this_month();
 		
 		$filter_data = array(
 			'filter_date_added_since' => $first_date_this_month
 		);
 		
-		$sale_income = $this->sale_model->get_period_sale_income($filter_data);
+		$income = $this->transaction_model->get_total_income($filter_data);
 		
 		$current_datetime = $this->datetimer->current_datetime();
 		
@@ -31,21 +30,21 @@ class Sale_income extends MX_Controller
 			'filter_date_added_to'   => $relative_date_last_month
 		);
 		
-		$sale_income_last_month = $this->sale_model->get_period_sale_income($filter_data);
+		$income_last_month = $this->transaction_model->get_total_income($filter_data);
 		
-		if($sale_income_last_month > 0)
+		if($income_last_month > 0)
 		{
-			$sale_income_trend = ($sale_income - $sale_income_last_month) / $sale_income_last_month * 100;
+			$income_trend = ($income - $income_last_month) / $income_last_month * 100;
 		}
 		else 
 		{
-			$sale_income_trend  = 100;
+			$income_trend  = 100;
 		}
 		
-		$data['sale_income_trend'] = number_format($sale_income_trend);
+		$data['income_trend'] = number_format($income_trend);
 		
-		$data['sale_income'] = $this->currency->format($sale_income);
+		$data['income'] = $this->currency->format($income);
 		
-		$this->load->view('sale_income', $data);
+		$this->load->view('income', $data);
 	}
 }

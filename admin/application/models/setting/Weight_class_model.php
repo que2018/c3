@@ -57,7 +57,7 @@ class Weight_class_model extends CI_Model
 		return false;
 	}		
 		
-	public function get_weight_classes($data) 
+	public function get_weight_classes($data = array()) 
 	{	
 		$this->db->select('*', false);
 		$this->db->from('weight_class');
@@ -113,7 +113,7 @@ class Weight_class_model extends CI_Model
 		}
 	}
 
-	public function get_weight_class_total($data)
+	public function get_weight_class_total($data = array())
 	{		
 		$this->db->select('COUNT(weight_class.id) AS total', false);
 		$this->db->from('weight_class');
@@ -134,21 +134,6 @@ class Weight_class_model extends CI_Model
 		
 		return $result['total'];
 	}	
-	
-	public function get_all_weight_classes() 
-	{
-		$this->db->select('*');
-		$this->db->from('weight_class');
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		
-		return false;
-	}
 	
 	public function to_config($weight_class_id, $weight)
 	{

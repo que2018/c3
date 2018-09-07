@@ -1,13 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Length_class_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
 	public function add_length_class($data)
 	{
 		$this->db->trans_begin();
@@ -96,7 +90,7 @@ class Length_class_model extends CI_Model
 		}
 	}		
 		
-	public function get_length_classes($data) 
+	public function get_length_classes($data = array()) 
 	{	
 		$this->db->select('*', false);
 		$this->db->from('length_class');
@@ -158,7 +152,7 @@ class Length_class_model extends CI_Model
 		}
 	}
 	
-	public function get_length_class_total($data)
+	public function get_length_class_total($data = array())
 	{		
 		$this->db->select('COUNT(length_class.id) AS total', false);
 		$this->db->from('length_class');
@@ -185,21 +179,6 @@ class Length_class_model extends CI_Model
 		return $result['total'];
 	}
 	
-	public function get_all_length_classes() 
-	{
-		$this->db->select('*');
-		$this->db->from('length_class');
-		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		}
-		
-		return false;
-	}
-	
 	public function to_config($length_class_id, $length)
 	{
 		$q1 = $this->db->get_where('length_class', array('id' => $length_class_id), 1); 
@@ -211,5 +190,20 @@ class Length_class_model extends CI_Model
 		$r2 = $q2->row_array();
 		
 		return $length * $r2['value'] / $r1['value'];
+	}
+	
+	public function to_inch($length_class_id, $length)
+	{
+		$q1 = $this->db->get_where('length_class', array('id' => $length_class_id), 1); 
+		
+		$r1 = $q1->row_array();
+		
+		$q2 = $this->db->get_where('length_class', array('unit' => 'inch'), 1); 
+		
+		$r2 = $q2->row_array();
+		
+		$result = $length * $r2['value'] / $r1['value'];
+	
+		return $result;
 	}
 }

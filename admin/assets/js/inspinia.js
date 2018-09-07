@@ -305,6 +305,13 @@ $(document).ready(function () {
     }
 });
 
+// remove success alert
+$(document).ready(function () {
+    setTimeout(function(){ 
+		$('.alert-success').remove();
+	}, 3500);
+});
+
 // check if browser support HTML5 local storage
 function localStorageSupport() {
     return (('localStorage' in window) && window['localStorage'] !== null)

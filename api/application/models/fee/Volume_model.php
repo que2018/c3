@@ -34,13 +34,13 @@ class Volume_model extends CI_Model
 
 						$product_info = $this->product_model->get_product($product_id);
 						
-						$length = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['length']);
-						$width  = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['width']);
-						$height = $this->length_class_model->to_config($product_info['length_class_id'], $product_info['height']);
+						$length = $this->length_class_model->to_inch($product_info['length_class_id'], $product_info['length']);
+						$width  = $this->length_class_model->to_inch($product_info['length_class_id'], $product_info['width']);
+						$height = $this->length_class_model->to_inch($product_info['length_class_id'], $product_info['height']);
 
 						$volume_total += $length * $width * $height * $quantity;
 					}
-				
+								
 					$amount = 0;
 					
 					$level_found = false;

@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Transaction_model extends CI_Model
 {		
 	public function add_transaction($data)
@@ -120,7 +119,7 @@ class Transaction_model extends CI_Model
 		return false;
 	}
 	
-	public function get_transactions($data) 
+	public function get_transactions($data= array()) 
 	{			
 		$this->db->select("transaction.*, CONCAT(client.firstname, ' ', client.lastname) AS name", false);
 		$this->db->from('transaction');
@@ -232,7 +231,7 @@ class Transaction_model extends CI_Model
 		}
 	}
 	
-	public function get_transaction_total($data)
+	public function get_transaction_total($data = array())
 	{
 		$this->db->select("COUNT(transaction.id) AS total", false);
 		$this->db->from('transaction');
@@ -282,6 +281,29 @@ class Transaction_model extends CI_Model
 		{			
 			$this->db->where('transaction.date_added <=', $data['filter_date_to'] . ' 23:59:59');
 		}	
+		
+		$q = $this->db->get();
+		
+		$result = $q->row_array();
+		
+		return $result['total'];
+	}
+	
+	public function get_total_income($data = array())
+	{
+		$this->db->select('SUM(markup) AS total', false);
+		$this->db->from('transaction');
+		
+		if(!empty($data['filter_date_added_since'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_since']);
+		}
+		
+		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_from']);
+			$this->db->where('date_added <=', $data['filter_date_added_to']);
+		}
 		
 		$q = $this->db->get();
 		

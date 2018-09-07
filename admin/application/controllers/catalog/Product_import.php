@@ -43,7 +43,7 @@ class Product_import extends MX_Controller
 		
 		$this->load->model('setting/length_class_model');
 		
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		if($length_classes) 
 		{
@@ -61,7 +61,7 @@ class Product_import extends MX_Controller
 		
 		$this->load->model('setting/weight_class_model');
 		
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		if($weight_classes) 
 		{

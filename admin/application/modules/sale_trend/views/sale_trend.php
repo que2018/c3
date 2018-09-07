@@ -34,7 +34,7 @@
 		  </li>
 		  <li>
 			<h2 class="no-margins "><?php echo $sale_income_num; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_income_trend; ?>% <i class="fa fa-level-up text-navy"></i></div>
+			<div class="stat-percent"><?php //echo $sale_income_trend; ?>% <i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
 			  <div style="width: 22%;" class="progress-bar"></div>
 			</div>
