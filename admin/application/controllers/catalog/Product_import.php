@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Product_import extends MX_Controller 
 {
 	public function index() 
@@ -81,7 +80,9 @@ class Product_import extends MX_Controller
 	}
 	
 	public function upload() 
-	{				
+	{
+		$this->lang->load('catalog/product');
+
 		if(!empty($_FILES)) 
 		{	
 			$temp_file = $_FILES['file']['tmp_name'];    
@@ -126,8 +127,8 @@ class Product_import extends MX_Controller
 		}	
 	}
 	
-	protected function import_excel($file) 
-	{
+	private function import_excel($file) 
+	{		
 		$this->load->library('phpexcel');
 		
 		$this->load->model('catalog/product_model');
@@ -161,16 +162,6 @@ class Product_import extends MX_Controller
 				
 			$flag = true;
 					
-			//error name
-			if(!isset($name) || empty($name))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_name'), $i);
-			
-				$flag = false;
-				
-				$validated = false;
-			}
-			
 			//error upc
 			if(!isset($upc) || empty($upc))
 			{
@@ -190,82 +181,7 @@ class Product_import extends MX_Controller
 				
 				$validated = false;
 			}
-			
-			//error price
-			if(!isset($price))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_price'), $i);
-				
-				$flag = false;
-				
-				$validated = false;
-			}
-			
-			//error length
-			if(!isset($length))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_length'), $i);
-					
-				$flag = false;
-				
-				$validated = false;
-			}
-			
-			//error width
-			if(!isset($width))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_width'), $i);
-				
-				$flag = false;
-				
-				$validated = false;
-			}
-			
-			//error height
-			if(!isset($height))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_height'), $i);
-
-				$flag = false;
-				
-				$validated = false;
-			}
-			
-			//error weight
-			if(!isset($weight))
-			{
-				$messages[] = sprintf($this->lang->line('error_row_weight'), $i);
-
-				$flag = false;
-				
-				$validated = false;
-			}
-			
-			//name exist in database
-			$product_info = $this->product_model->get_product_by_name($name);	
-					
-			if($product_info)
-			{
-				$messages[] = sprintf($this->lang->line('error_row_name_exist'), $i, $name);
-			
-				$flag = false;
-				
-				$validated = false;
-			}	
-			
-			//name exist in array
-			foreach($products as $product)
-			{
-				if($product['name'] == $name)
-				{
-					$messages[] = sprintf($this->lang->line('error_row_name_exist'), $i, $name);
-			
-					$flag = false;
-					
-					break;
-				}
-			}
-			
+						
 			//sku exist in database
 			$product_info = $this->product_model->get_product_by_sku($sku);	
 					
@@ -289,7 +205,7 @@ class Product_import extends MX_Controller
 					
 					break;
 				}
-			}			
+			}		
 			
 			//upc exist in database
 			$product_info = $this->product_model->get_product_by_upc($upc);	
@@ -320,17 +236,17 @@ class Product_import extends MX_Controller
 			{				
 				$products[] = array(
 					'client_id'          => $client_id,
-					'name'               => $name,
+					'name'               => isset($name)?$name:'',
 					'upc'                => $upc,
 					'sku'                => $sku,
 					'asin'      	     => '',
-					'price'              => $price,
+					'price'              => isset($price)?$price:0,
 					'image'              => '',
 					'description'        => '',
-					'length'             => $length,
-					'width'              => $width,
-					'height'             => $height,
-					'weight'             => $weight,
+					'length'             => isset($length)?$length:0,
+					'width'              => isset($width)?$width:0,
+					'height'             => isset($height)?$height:0,
+					'weight'             => isset($weight)?$weight:0,
 					'length_class_id'    => $length_class_id,
 					'weight_class_id'    => $weight_class_id,
 					'shipping_provider'  => $this->config->item('config_default_order_shipping_provider'),
