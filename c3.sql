@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2018 at 09:07 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Sep 09, 2018 at 07:03 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -516,7 +516,32 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (4848, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:06:56'),
 (4849, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:06:59'),
 (4850, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:06:59'),
-(4851, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:07:00');
+(4851, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:07:00'),
+(4852, NULL, '::1', '', 'view the dashboard', 'GET', '2018-09-09 06:52:36'),
+(4853, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:41'),
+(4854, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:49'),
+(4855, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:52'),
+(4856, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-09 06:52:52'),
+(4857, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-09 06:53:04'),
+(4858, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-09 06:53:05'),
+(4859, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-09-09 06:53:07'),
+(4860, 1, '::1', 'user/user/edit', 'view the user edit page', 'GET', '2018-09-09 06:53:09'),
+(4861, 1, '::1', 'user/user/edit', 'view the user edit page', 'POST', '2018-09-09 06:53:26'),
+(4862, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-09-09 06:53:26'),
+(4863, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-09 06:53:33'),
+(4864, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 06:53:51'),
+(4865, 1, '::1', 'catalog/product_import', 'view the product import page', 'GET', '2018-09-09 06:57:51'),
+(4866, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-09-09 06:59:56'),
+(4867, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-09-09 07:00:41'),
+(4868, 1, '::1', 'inventory/inventory_import', 'view the inventory import page', 'GET', '2018-09-09 07:00:43'),
+(4869, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-09-09 07:00:44'),
+(4870, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:00:47'),
+(4871, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-09-09 07:00:48'),
+(4872, 1, '::1', 'catalog/product_import', 'view the product import page', 'GET', '2018-09-09 07:00:48'),
+(4873, 1, '::1', 'catalog/product_import/upload', '0', 'POST', '2018-09-09 07:00:55'),
+(4874, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:00:58'),
+(4875, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-09-09 07:01:06'),
+(4876, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:01:11');
 
 -- --------------------------------------------------------
 
@@ -887,28 +912,6 @@ CREATE TABLE `inventory` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `inventory`
---
-
-INSERT INTO `inventory` (`id`, `type`, `product_id`, `location_id`, `batch`, `quantity`, `date_added`, `date_modified`) VALUES
-(1, 0, 2, 2406, '', 2, '2018-06-21 22:56:03', '2018-09-06 21:05:11'),
-(2, 0, 2, 2229, '', 200, '2018-06-22 01:28:18', '2018-09-06 21:05:11'),
-(3, 0, 3, 2231, '', 2000, '2018-08-04 20:49:54', '2018-09-06 21:06:59'),
-(4, 0, 6, 2416, '', 0, '2018-08-04 20:50:10', '2018-08-04 20:52:33'),
-(5, 0, 2, 2431, '', 200, '2018-08-04 21:52:12', '2018-09-06 21:05:09'),
-(6, 0, 5, 2234, '', 0, '2018-09-06 01:44:30', '2018-09-06 21:03:05'),
-(7, 0, 6, 2406, '', 0, '2018-09-06 01:59:04', '2018-09-06 02:11:03'),
-(8, 0, 5, 2232, '', 0, '2018-09-06 02:05:42', '2018-09-06 21:04:58'),
-(10, 0, 2, 2415, '', 0, '2018-09-06 19:42:31', '2018-09-06 20:26:51'),
-(11, 0, 3, 2418, '', 0, '2018-09-06 20:25:26', '2018-09-06 20:26:41'),
-(12, 0, 4, 2406, '', 0, '2018-09-06 20:25:35', '2018-09-06 20:27:19'),
-(13, 0, 6, 2431, '', 0, '2018-09-06 20:25:35', '2018-09-06 21:04:42'),
-(14, 0, 4, 2234, '', 0, '2018-09-06 20:31:37', '2018-09-06 21:03:03'),
-(15, 0, 6, 2415, '', 0, '2018-09-06 20:54:41', '2018-09-06 20:55:27'),
-(16, 0, 3, 2406, '', 0, '2018-09-06 20:56:00', '2018-09-06 20:56:05'),
-(17, 0, 5, 2431, '', 0, '2018-09-06 21:03:57', '2018-09-06 21:04:06');
 
 -- --------------------------------------------------------
 
@@ -1325,96 +1328,32 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `upc`, `sku`, `asin`, `name`, `price`, `image`, `description`, `weight`, `weight_class_id`, `length_class_id`, `length`, `width`, `height`, `alert_quantity`, `shipping_provider`, `shipping_service`, `client_id`, `date_added`, `date_modified`) VALUES
-(2, 'C0000S', 'C-0000-S', '', 'C-0000-S', '5.00', 'no_image.jpg', NULL, '11.50', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:29:40', '2018-06-18 07:41:12'),
-(3, 'C0000M', 'C-0000-M', '', 'C-0000-M', '5.00', 'no_image.jpg', NULL, '11.80', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:30:54', '2018-06-18 07:42:03'),
-(4, 'C0000L', 'C-0000-L', '', 'C-0000-L', '5.00', 'no_image.jpg', NULL, '12.50', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:31:49', '2018-06-18 07:42:42'),
-(5, 'C0000XL', 'C-0000-XL', '', 'C-0000-XL', '5.00', 'no_image.jpg', NULL, '12.90', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:33:05', '2018-06-18 07:42:49'),
-(6, 'C00002XL', 'C-0000-2XL', '', 'C-0000-2XL', '5.00', 'no_image.jpg', NULL, '13.70', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:34:04', '2018-06-18 07:42:57'),
-(7, 'C00003XL', 'C-0000-3XL', '', 'C-0000-3XL', '5.00', 'no_image.jpg', NULL, '11.15', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:35:16', '2018-06-18 07:43:03'),
-(8, 'C00003XL', 'C-0000-3XL', '', 'C-0000-3XL', '3.00', 'no_image.jpg', NULL, '11.15', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:35:48', '2018-06-18 07:35:48'),
-(9, 'C00004XL', 'C-0000-4XL', '', 'C-0000-4XL', '5.00', 'no_image.jpg', NULL, '15.00', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:38:50', '2018-06-18 07:43:10'),
-(10, 'C00005XL', 'C-0000-5XL', '', 'C-0000-5XL', '5.00', 'no_image.jpg', NULL, '15.40', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:39:41', '2018-06-18 07:43:17'),
-(11, 'C00006XL', 'C-0000-6XL', '', 'C-0000-6XL', '5.00', 'no_image.jpg', NULL, '15.90', 6, 1, '9.00', '15.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:40:27', '2018-06-18 07:40:27'),
-(12, 'C9991S', 'C-9991-S', '', 'C-9991-S', '5.00', 'no_image.jpg', NULL, '10.60', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:44:00', '2018-06-18 07:44:00'),
-(13, 'C9991M', 'C-9991-M', '', 'C-9991-M', '5.00', 'no_image.jpg', NULL, '9.60', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:44:55', '2018-06-18 07:44:55'),
-(14, 'C9991L', 'C-9991-L', '', 'C-9991-L', '5.00', 'no_image.jpg', NULL, '11.20', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:45:46', '2018-06-18 07:45:46'),
-(15, 'C9991XL', 'C-9991-XL', '', 'C-9991-XL', '5.00', 'no_image.jpg', NULL, '11.90', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:46:36', '2018-06-18 07:46:36'),
-(16, 'C99912XL', 'C-9991-2XL', '', 'C-9991-2XL', '5.00', 'no_image.jpg', NULL, '11.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:47:20', '2018-06-18 07:47:20'),
-(17, 'C99913XL', 'C-9991-3XL', '', 'C-9991-3XL', '5.00', 'no_image.jpg', NULL, '12.20', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:48:03', '2018-06-18 07:48:03'),
-(18, 'C99914XL', 'C-9991-4XL', '', 'C-9991-4XL', '5.00', 'no_image.jpg', NULL, '12.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:48:44', '2018-06-18 07:48:44'),
-(19, 'C99915XL', 'C-9991-5XL', '', 'C-9991-5XL', '5.00', 'no_image.jpg', NULL, '12.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:49:29', '2018-06-18 07:49:29'),
-(20, 'C99916XL', 'C-9991-6XL', '', 'C-9991-6XL', '5.00', 'no_image.jpg', NULL, '13.50', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:50:22', '2018-06-18 07:50:22'),
-(21, 'C8881S', 'C-8881-S', '', 'C-8881-S', '5.00', 'no_image.jpg', NULL, '10.30', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 07:58:47', '2018-06-18 07:58:47'),
-(22, 'C88812XL', 'C-8881-2XL', '', 'C-8881-2XL', '5.00', 'no_image.jpg', NULL, '11.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:01:35', '2018-06-18 08:01:35'),
-(23, 'C88814XL', 'C-8881-4XL', '', 'C-8881-4XL', '5.00', 'no_image.jpg', NULL, '12.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:04:27', '2018-06-18 08:04:27'),
-(24, 'C88815XL', 'C-8881-5XL', '', 'C-8881-5XL', '5.00', 'no_image.jpg', NULL, '13.40', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:05:16', '2018-06-18 08:05:16'),
-(25, 'C88816XL', 'C-8881-6XL', '', 'C-8881-6XL', '5.00', 'no_image.jpg', NULL, '13.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:06:15', '2018-06-18 08:06:15'),
-(26, 'C8882M', 'C-8882-M', '', 'C-8882-M', '5.00', 'no_image.jpg', NULL, '12.00', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:08:38', '2018-06-18 08:08:38'),
-(27, 'C88825XL', 'C-8882-5XL', '', 'C-8882-5XL', '5.00', 'no_image.jpg', NULL, '13.40', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:11:04', '2018-06-18 08:11:04'),
-(28, 'C88823XL', 'C-8882-3XL', '', 'C-8882-3XL', '5.00', 'no_image.jpg', NULL, '12.50', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:12:06', '2018-06-18 08:12:06'),
-(29, 'C8884XL', 'C-8884-XL', '', 'C-8884-XL', '5.00', 'no_image.jpg', NULL, '11.60', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:18:47', '2018-06-18 08:18:47'),
-(30, 'C88842XL', 'C-8884-2XL', '', 'C-8884-2XL', '5.00', 'no_image.jpg', NULL, '11.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:19:30', '2018-06-18 08:20:39'),
-(31, 'C88843XL', 'C-8884-3XL', '', 'C-8884-3XL', '5.00', 'no_image.jpg', NULL, '12.50', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:21:31', '2018-06-18 08:21:31'),
-(32, 'C88844XL', 'C-8884-4XL', '', 'C-8884-4XL', '5.00', 'no_image.jpg', NULL, '12.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:22:14', '2018-06-18 08:22:14'),
-(33, 'C88852XL', 'C-8885-2XL', '', 'C-8885-2XL', '5.00', 'no_image.jpg', NULL, '11.80', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:23:01', '2018-06-18 08:23:01'),
-(34, 'C88853XL', 'C-8885-3XL', '', 'C-8885-3XL', '5.00', 'no_image.jpg', NULL, '12.50', 6, 1, '10.00', '16.00', '2.00', 1, 'usps', 'fc', 2, '2018-06-18 08:23:40', '2018-06-18 08:23:40'),
-(35, 'C7771S', 'C-7771-S', '', 'C-7771-S', '3.00', 'no_image.jpg', NULL, '7.86', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 0, '2018-06-18 08:36:06', '2018-06-18 08:36:06'),
-(36, 'C7771M', 'C-7771-M', '', 'C-7771-M', '3.00', 'no_image.jpg', NULL, '7.90', 6, 1, '12.00', '8.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 08:37:23', '2018-06-18 08:37:23'),
-(37, 'C7771L', 'C-7771-L', '', 'C-7771-L', '3.00', 'no_image.jpg', NULL, '8.90', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:47:26', '2018-06-18 08:47:26'),
-(38, 'C7771XL', 'C-7771-XL', '', 'C-7771-XL', '3.00', 'no_image.jpg', NULL, '9.20', 6, 1, '12.00', '8.00', '0.30', 1, 'usps', 'fc', 2, '2018-06-18 08:48:12', '2018-06-18 08:48:12'),
-(39, 'C77712XL', 'C-7771-2XL', '', 'C-7771-2XL', '3.00', 'no_image.jpg', NULL, '9.85', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:48:58', '2018-06-18 08:48:58'),
-(40, 'C77713XL', 'C-7771-3XL', '', 'C-7771-3XL', '3.00', 'no_image.jpg', NULL, '10.50', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:50:39', '2018-06-18 08:50:39'),
-(41, 'C7772S', 'C-7772-S', '', 'C-7772-S', '3.00', 'no_image.jpg', NULL, '7.80', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:51:49', '2018-06-18 08:51:49'),
-(42, 'C7772M', 'C-7772-M', '', 'C-7772-M', '3.00', 'no_image.jpg', NULL, '8.81', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:52:33', '2018-06-18 08:52:33'),
-(43, 'C7772L', 'C-7772-L', '', 'C-7772-L', '3.00', 'no_image.jpg', NULL, '8.50', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:53:17', '2018-06-18 08:53:17'),
-(44, 'C7772XL', 'C-7772-XL', '', 'C-7772-XL', '3.00', 'no_image.jpg', NULL, '9.80', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:55:14', '2018-06-18 08:55:14'),
-(45, 'C7773M', 'C-7773-M', '', 'C-7773-M', '3.00', 'no_image.jpg', NULL, '8.81', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 08:56:01', '2018-06-18 08:56:01'),
-(46, 'C7773L', 'C-7773-L', '', 'C-7773-L', '3.00', 'no_image.jpg', NULL, '8.30', 6, 1, '10.00', '7.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 08:57:02', '2018-06-18 08:57:02'),
-(47, 'C7773XL', 'C-7773-XL', '', 'C-7773-XL', '3.00', 'no_image.jpg', NULL, '8.90', 6, 1, '11.00', '7.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 08:57:44', '2018-06-18 08:57:44'),
-(48, 'C7774S', 'C-7774-S', '', 'C-7774-S', '3.00', 'no_image.jpg', NULL, '7.70', 6, 1, '11.00', '7.00', '0.30', 1, 'usps', 'fc', 2, '2018-06-18 08:58:23', '2018-06-18 08:58:23'),
-(49, 'C7774M', 'C-7774-M', '', 'C-7774-M', '3.00', 'no_image.jpg', NULL, '7.80', 6, 1, '11.00', '7.00', '0.10', 1, 'usps', 'fc', 2, '2018-06-18 08:59:02', '2018-06-18 08:59:02'),
-(50, 'C7774L', 'C-7774-L', '', 'C-7774-L', '3.00', 'no_image.jpg', NULL, '8.50', 6, 1, '11.00', '7.00', '0.30', 1, 'usps', 'fc', 2, '2018-06-18 08:59:46', '2018-06-18 08:59:46'),
-(51, 'C7774XL', 'C-7774-XL', '', 'C-7774-XL', '3.00', 'no_image.jpg', NULL, '9.87', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:01:28', '2018-06-18 09:01:28'),
-(52, 'C66665XL', 'C-6666-5XL', '', 'C-6666-5XL', '5.00', 'no_image.jpg', NULL, '13.50', 6, 1, '8.00', '10.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 09:02:59', '2018-06-18 09:02:59'),
-(53, 'C6666XL', 'C-6666-XL', '', 'C-6666-XL', '5.00', 'no_image.jpg', NULL, '9.80', 6, 1, '8.00', '10.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 09:04:52', '2018-06-18 09:04:52'),
-(54, 'C66675XL', 'C-6667-5XL', '', 'C-6667-5XL', '5.00', 'no_image.jpg', NULL, '13.50', 6, 1, '8.00', '10.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 09:05:58', '2018-06-18 09:05:58'),
-(55, 'C66674XL', 'C-6667-4XL', '', 'C-6667-4XL', '5.00', 'no_image.jpg', NULL, '12.40', 6, 1, '8.00', '10.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 09:07:25', '2018-06-18 09:07:25'),
-(56, 'C66676XL', 'C-6667-6XL', '', 'C-6667-6XL', '5.00', 'no_image.jpg', NULL, '11.20', 6, 1, '8.00', '10.00', '0.20', 1, 'usps', 'fc', 2, '2018-06-18 09:08:34', '2018-06-18 09:08:34'),
-(57, 'C9843S', 'C-9843-S', '', 'C-9843-S', '10.00', 'no_image.jpg', NULL, '13.40', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:09:34', '2018-06-18 09:09:34'),
-(58, 'C9843M', 'C-9843-M', '', 'C-9843-M', '10.00', 'no_image.jpg', NULL, '13.20', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:10:23', '2018-06-18 09:10:23'),
-(59, 'C9843L', 'C-9843-L', '', 'C-9843-L', '10.00', 'no_image.jpg', NULL, '13.50', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:11:02', '2018-06-18 09:11:02'),
-(60, 'C9843XL', 'C-9843-XL', '', 'C-9843-XL', '10.00', 'no_image.jpg', NULL, '14.80', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:11:47', '2018-06-18 09:11:47'),
-(61, 'C98432XL', 'C-9843-2XL', '', 'C-9843-2XL', '10.00', 'no_image.jpg', NULL, '14.90', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:12:26', '2018-06-18 09:12:26'),
-(62, 'C1025S', 'C-1025-S', '', 'C-1025-S', '5.00', 'no_image.jpg', NULL, '9.87', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:13:21', '2018-06-18 09:13:21'),
-(63, 'C1025XL', 'C-1025-XL', '', 'C-1025-XL', '5.00', 'no_image.jpg', NULL, '11.27', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:14:11', '2018-06-18 09:14:11'),
-(64, 'C10252XL', 'C-1025-2XL', '', 'C-1025-2XL', '5.00', 'no_image.jpg', NULL, '11.99', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:14:55', '2018-06-18 09:14:55'),
-(65, 'C10253XL', 'C-1025-3XL', '', 'C-1025-3XL', '5.00', 'no_image.jpg', NULL, '12.34', 6, 1, '12.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:15:31', '2018-06-18 09:15:31'),
-(66, 'C10254XL', 'C-1025-4XL', '', 'C-1025-4XL', '5.00', 'no_image.jpg', NULL, '11.99', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:16:31', '2018-06-18 09:16:31'),
-(67, 'C10255XL', 'C-1025-5XL', '', 'C-1025-5XL', '5.00', 'no_image.jpg', NULL, '11.90', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:18:22', '2018-06-18 09:18:22'),
-(68, 'C10256XL', 'C-1025-6XL', '', 'C-1025-6XL', '5.00', 'no_image.jpg', NULL, '11.92', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:18:58', '2018-06-18 09:18:58'),
-(69, 'C5551S', 'C-5551-S', '', 'C-5551-S', '5.00', 'no_image.jpg', NULL, '7.76', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:19:52', '2018-06-18 09:19:52'),
-(70, 'C5552S', 'C-5552-S', '', 'C-5552-S', '5.00', 'no_image.jpg', NULL, '7.76', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:20:47', '2018-06-18 09:20:47'),
-(71, 'C5552M', 'C-5552-M', '', 'C-5552-M', '5.00', 'no_image.jpg', NULL, '7.93', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:21:23', '2018-06-18 09:21:23'),
-(72, 'C5551L', 'C-5551-L', '', 'C-5551-L', '5.00', 'no_image.jpg', NULL, '8.00', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:22:15', '2018-06-18 09:22:15'),
-(73, 'C5552L', 'C-5552-L', '', 'C-5552-L', '5.00', 'no_image.jpg', NULL, '8.00', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:22:52', '2018-06-18 09:22:52'),
-(74, 'C5552XL', 'C-5552-XL', '', 'C-5552-XL', '5.00', 'no_image.jpg', NULL, '8.74', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:23:31', '2018-06-18 09:23:31'),
-(75, 'C55512XL', 'C-5551-2XL', '', 'C-5551-2XL', '5.00', 'no_image.jpg', NULL, '8.82', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:24:20', '2018-06-18 09:24:20'),
-(76, 'C55522XL', 'C-5552-2XL', '', 'C-5552-2XL', '5.00', 'no_image.jpg', NULL, '8.82', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:24:57', '2018-06-18 09:24:57'),
-(77, 'C55523XL', 'C-5552-3XL', '', 'C-5552-3XL', '5.00', 'no_image.jpg', NULL, '9.38', 6, 1, '10.00', '8.00', '0.40', 1, 'usps', 'fc', 2, '2018-06-18 09:25:38', '2018-06-18 09:25:38'),
-(78, 'WUCFJ0088809', 'WU-CFJ008-8809', '', 'WUCFJ0088809', '5.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'fc', 1, '2018-06-20 20:29:13', '2018-06-20 20:29:13'),
-(79, 'txdqizhihang0001', 'txdqizhihang0001', '', 'txdqizhihang0001', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '6.00', 0, 'usps', 'fc', 1, '2018-06-20 20:29:48', '2018-06-20 20:29:48'),
-(80, 'TXD002-W-0', 'TXD002-W-0', '', 'TXD002-W-0', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 1, '2018-06-20 20:30:15', '2018-06-20 20:30:15'),
-(81, 'TXD002-W1-Grey', 'TXD002-W1-Grey', '', 'TXD002-W1-Grey', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 0, '2018-06-20 20:31:02', '2018-06-20 20:31:02'),
-(82, 'TXD002-W-5', 'TXD002-W-5', '', 'TXD002-W-5', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 1, '2018-06-20 20:31:49', '2018-06-20 20:31:49'),
-(83, 'CFJ-1-BLACK', 'CFJ-1-BLACK', '', 'CFJ-1-BLACK', '5.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'pr', 1, '2018-06-20 20:32:26', '2018-06-20 20:32:26'),
-(84, 'CFJ-1-Black', 'CFJ-1-Black', '', 'CFJ-1-Black', '5.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'fc', 1, '2018-06-20 20:32:58', '2018-06-20 20:32:58'),
-(85, 'CFJ-1', 'CFJ-1', '', 'CFJ-1', '5.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'pr', 1, '2018-06-20 20:33:29', '2018-06-20 20:33:29'),
-(86, 'WUCFJ0088809', 'WUCFJ0088809', '', 'WUCFJ0088809', '14.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'pr', 1, '2018-06-20 20:34:02', '2018-06-20 20:34:02'),
-(87, 'CFJ-55-Black', 'CFJ-55-Black', '', 'CFJ-55-Black', '14.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'pr', 1, '2018-06-20 20:34:34', '2018-06-20 20:34:34'),
-(88, 'TXD002-W-2', 'TXD002-W-2', '', 'TXD002-W-2', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 1, '2018-06-20 20:35:05', '2018-06-20 20:35:05'),
-(89, 'TXD002-W-0', 'TXD002-W-0', '', 'TXD002-W-0', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 1, '2018-06-20 20:35:38', '2018-06-20 20:35:38'),
-(90, 'txdqizhihang0001', 'txdqizhihang0001', '', 'txdqizhihang0001', '5.00', 'no_image.jpg', NULL, '10.00', 6, 1, '8.00', '6.00', '2.00', 0, 'usps', 'fc', 1, '2018-06-20 20:36:10', '2018-06-20 20:36:10'),
-(91, 'WUCFJ0088809', 'WUCFJ0088809', '', 'WUCFJ0088809', '3.00', 'no_image.jpg', NULL, '1.56', 5, 1, '11.00', '11.00', '4.00', 0, 'usps', 'fc', 1, '2018-06-20 20:36:37', '2018-06-20 20:36:37');
+(92, 'X001D08AXL', 'NRC-91', '', 'NRC-91', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '8.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
+(93, 'X000Y005WP', 'RC-02', '', 'RC-02', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
+(94, 'X000Y005XJ', 'RC-03', '', 'RC-03', '0.00', 'no_image.jpg', NULL, '3.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
+(95, 'X000Y005X9', 'RC-06', '', 'RC-06', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(96, 'X0016B6TV7', 'RC-10', '', 'RC-10', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '1.00', '1.00', '5.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(97, 'X00169XD95', 'RC-11', '', 'RC-11', '0.00', 'no_image.jpg', NULL, '10.00', 5, 1, '0.00', '0.00', '3.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(98, 'X00169OB87', 'RC-12', '', 'RC-12', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(99, 'X001CPSMEJ', 'RC-15', '', 'RC-15', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(100, 'X001CPMDPX', 'RC-16', '', 'RC-16', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(101, 'X001CQE0FD', 'RC-17', '', 'RC-17', '0.00', 'no_image.jpg', NULL, '10.00', 5, 1, '4.00', '9.00', '6.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(102, 'X001CQE0FX', 'RC-18', '', 'RC-18', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(103, 'X001CNW52B', 'RC-19', '', 'RC-19', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(104, 'X00177V42T', 'RC-21', '', 'RC-21', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(105, 'X001DNSXKD', 'RC-22', '', 'RC-22', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(106, 'X001DNSN67', 'RC-23', '', 'RC-23', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(107, 'X001DNSI67', 'RC-27', '', 'RC-27', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(108, 'X001DNP11H', 'RC-28', '', 'RC-28', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(109, 'X001DNSXK3', 'RC-31', '', 'RC-31', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(110, 'X001DNSW31', 'RC-32', '', 'RC-32', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(111, 'X001DNP1C1', 'RC-33', '', 'RC-33', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(112, 'X001DNT1H7', 'RC-34', '', 'RC-34', '0.00', 'no_image.jpg', NULL, '3.00', 5, 1, '5.00', '7.00', '10.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(113, 'X001GQIPSR', 'NRC-41', '', 'NRC-41', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '8.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(114, 'X001GQHV19', 'NRC-43', '', 'NRC-43', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(115, 'X001DTZDIR', 'RC-45', '', 'RC-45', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '1.00', '4.00', '2.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(116, 'X001E3MQ23', 'RC-47', '', 'RC-47', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
+(117, 'X001DOG9WL', 'RC-48', '', 'RC-48', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56');
 
 -- --------------------------------------------------------
 
@@ -1932,7 +1871,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', '2302bea86bcf5825b20864c5a1cd79dd5b08b605', '173', 'Sarah', 'Yu', 'sarah@intlgo.com', '', '', '::1', 1, '2017-02-13 11:42:29');
+(1, 1, 'admin', '7fb998c9c27935375105a423701fd55e8b5b1908', '433', 'Sam', 'Shao', 'sam@goodbox.com', '', '', '::1', 1, '2017-02-13 11:42:29');
 
 -- --------------------------------------------------------
 
@@ -2283,242 +2222,202 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4852;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4877;
 --
 -- AUTO_INCREMENT for table `balance`
 --
 ALTER TABLE `balance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `checkin`
 --
 ALTER TABLE `checkin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `checkin_fee`
 --
 ALTER TABLE `checkin_fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
 --
 -- AUTO_INCREMENT for table `checkin_file`
 --
 ALTER TABLE `checkin_file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `checkin_product`
 --
 ALTER TABLE `checkin_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
-
 --
 -- AUTO_INCREMENT for table `checkout_fee`
 --
 ALTER TABLE `checkout_fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
 --
 -- AUTO_INCREMENT for table `checkout_file`
 --
 ALTER TABLE `checkout_file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `checkout_product`
 --
 ALTER TABLE `checkout_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
-
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `damage`
 --
 ALTER TABLE `damage`
   MODIFY `damage_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `employee_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `extension`
 --
 ALTER TABLE `extension`
   MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
-
 --
 -- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
   MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
   MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `length_class`
 --
 ALTER TABLE `length_class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2527;
-
 --
 -- AUTO_INCREMENT for table `location_to_client`
 --
 ALTER TABLE `location_to_client`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `location_unit`
 --
 ALTER TABLE `location_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT for table `product_fee`
 --
 ALTER TABLE `product_fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `recharge`
 --
 ALTER TABLE `recharge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `refund`
 --
 ALTER TABLE `refund`
   MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `sale_label`
 --
 ALTER TABLE `sale_label`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24414;
-
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
   MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `store_sync`
 --
 ALTER TABLE `store_sync`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `store_sync_history`
 --
 ALTER TABLE `store_sync_history`
   MODIFY `store_sync_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `transfer_product`
 --
 ALTER TABLE `transfer_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `user_group`
 --
 ALTER TABLE `user_group`
   MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT for table `warehouse`
 --
 ALTER TABLE `warehouse`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `weight_class`
 --
 ALTER TABLE `weight_class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- Constraints for dumped tables
 --
