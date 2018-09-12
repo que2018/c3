@@ -39,6 +39,7 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover dataTables-example" >
     <thead>
+      <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 	  <th class="text-center" style="width: 8%;"><?php echo $this->lang->line('column_image'); ?></th>
 	  <?php if($sort == 'product.name') { ?>
 	  <th style="width: 22%;" class="sorting_<?php echo strtolower($order); ?>">
@@ -92,6 +93,9 @@
 	    <?php $offset = 0; ?>
 	    <?php foreach($products as $product) { ?>
 		  <tr>
+		    <td class="text-center">
+			  <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
+		    </td>
 			<td class="text-center">
 			  <img src="<?php echo $product['image']; ?>" class="img-thumbnail" />
 			  <div class="detail" style="top: <?php echo $offset * 67 + 170; ?>px;">

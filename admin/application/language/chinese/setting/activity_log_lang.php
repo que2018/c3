@@ -61,6 +61,7 @@ $lang['activity_catalog_product_reload'] 	  	             	= 'reload the product
 $lang['activity_catalog_product_add'] 	  	          			= 'view the product add page';
 $lang['activity_catalog_product_edit'] 	  	          			= 'view the product edit page';
 $lang['activity_catalog_product_delete'] 	  	          		= 'try to delete a product';
+$lang['activity_catalog_product_bulk_delete'] 	  	            = 'try to bulk delete product';
 $lang['activity_catalog_product_import'] 	  	      			= 'view the product import page';
 $lang['activity_catalog_product_ajax_get_products_volume'] 	  	= 'try to get product volume';
 $lang['activity_catalog_product_ajax_get_products_weight'] 	  	= 'try to get product weight';

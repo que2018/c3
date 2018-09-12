@@ -834,6 +834,57 @@ class Product extends MX_Controller
 		}
 	}
 	
+	public function bulk_delete()
+	{
+		$this->lang->load('catalog/product');
+
+		$this->load->model('catalog/product_model');
+		$this->load->model('inventory/transfer_model');
+		$this->load->model('inventory/inventory_model');
+		
+		if($this->input->post('product_ids'))
+		{
+			$product_ids = $this->input->post('product_ids');
+		
+			$success = true;
+		
+			$messages = [];
+		
+			foreach($product_ids as $product_id)
+			{
+				$transfer = $this->transfer_model->get_transfer_by_product($product_id);
+				
+				$inventory = $this->inventory_model->get_inventories_by_product($product_id);
+				
+				if($transfer || $inventory)
+				{	
+					$product_info = $this->product_model->get_product($product_id);
+			
+					if($transfer) 
+						$messages[] = sprintf($this->lang->line('error_product_can_not_delete_transfer_exist'), $product_info['name']);
+
+					if($inventory) 
+						$messages[] = sprintf($this->lang->line('error_product_can_not_delete_inventory_exist'), $product_info['name']);
+
+					if($success)
+						$success = false;
+				}
+				else
+				{
+					$result = $this->product_model->delete_product($product_id);
+				}
+				
+				$outdata = array(
+					'success'  => $success,
+					'messages' => $messages
+				);
+			}
+				
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
 	public function validate_add_sku($sku)
 	{
 		$this->lang->load('catalog/product');

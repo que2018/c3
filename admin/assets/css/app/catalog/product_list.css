@@ -36,6 +36,9 @@ input:focus {
 .btn-download {	
 	margin-right: 5px;
 }
+.btn-bulk-delete {	
+	margin-left: 5px;
+}
 .pagination-block {
 	min-height: 33px;
 }

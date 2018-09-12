@@ -11,6 +11,7 @@
   <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>assets/file/export/product.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
     <a href="<?php echo base_url(); ?>catalog/product/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_delete'); ?>" class="btn btn-danger btn-bulk-delete" onClick="bulk_delete_product(this)"><i class="fa fa-trash"></i></button>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -63,6 +64,7 @@
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
+			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 			    <th class="text-center" style="width: 8%;"><?php echo $this->lang->line('column_image'); ?></th>
 				<?php if($sort == 'product.name') { ?>
 				<th style="width: 22%;" class="sorting_<?php echo strtolower($order); ?>">
@@ -116,6 +118,9 @@
 				  <?php $offset = 0; ?>
 				  <?php foreach($products as $product) { ?>
 					<tr>
+					  <td class="text-center">
+					    <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
+					  </td>
 					  <td class="text-center">
 					    <img src="<?php echo $product['image']; ?>" class="img-thumbnail" />
 						<div class="detail" style="top: <?php echo $offset * 67 + 170; ?>px;">
@@ -247,6 +252,58 @@ function delete_product(handle, product_id) {
 }
 </script>
 <script>
+function bulk_delete_product(handle) {
+	if(confirm('<?php echo $this->lang->line('text_confirm_bulk_delete'); ?>')) {
+		data = new FormData();
+		
+		$('input[name*=\'selected\']').each(function(index) {
+			if($(this).is(':checked')) {
+				prdouct_id = $(this).val();				
+				data.append('product_ids[]', prdouct_id);
+			}			
+		});
+		
+		$.ajax({
+			url: '<?php echo base_url(); ?>catalog/product/bulk_delete',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: function() {
+				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			},
+			success: function(json) {		
+				$(handle).html('<i class="fa fa-trash"></i>');
+			
+				if(!json.success) {
+					html = '';
+					
+					$.each(json.messages, function(i, message) {				
+						html += message + '<br>';
+					});
+					
+					$('#alert-error span').html(html);
+					$('#alert-error').show();
+				}
+				
+				$.ajax({
+					url: '<?php echo $reload_url; ?>',
+					dataType: 'html',
+					success: function(html) {					
+						$('.ibox-content').html(html);
+					},
+				});
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+}
+</script>
+<script>
 function active_field(field, handle) {	
 	if(!$(handle).find('input').length) 
 	{		
@@ -282,7 +339,6 @@ function update_field(product_id, field, handle) {
 		}
 	});
 }
-
 </script>
 <script>
 $(document).on({
@@ -292,7 +348,7 @@ $(document).on({
 	mouseleave: function () {
 	   $(this).find('.detail').hide();
 	}
-}, 'td:first-child');
+}, 'td:nth-child(2)');
 </script>
 <?php echo $footer; ?>		
 		
