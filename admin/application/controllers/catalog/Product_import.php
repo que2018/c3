@@ -197,9 +197,9 @@ class Product_import extends MX_Controller
 			//sku exist in array
 			foreach($products as $product)
 			{
-				if($product['sku'] == $sku)
+				if($product['sku'] === $sku)
 				{
-					$messages[] = sprintf($this->lang->line('error_row_sku_exist'), $i, $sku);
+					$messages[] = sprintf($this->lang->line('error_row_sku_duplicate'), $i, $sku);
 			
 					$flag = false;
 					
@@ -220,11 +220,11 @@ class Product_import extends MX_Controller
 			}
 			
 			//upc exist in array
-			foreach($products as $product)
+			foreach($products as $k => $product)
 			{
-				if($product['upc'] == $upc)
+				if($product['upc'] === $upc)
 				{
-					$messages[] = sprintf($this->lang->line('error_row_upc_exist'), $i, $upc);
+					$messages[] = sprintf($this->lang->line('error_row_upc_duplicate'), $i, $upc);
 			
 					$flag = false;
 					

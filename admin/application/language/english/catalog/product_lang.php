@@ -105,7 +105,9 @@ $lang['error_weight_positive_number']           		= 'weight must be an positive 
 $lang['error_alert_quantity_positive_number']   		= 'alert quantity must be an positive number';
 $lang['error_row_name_exist']                   		= 'row %s: name <strong>%s</strong> is exist';
 $lang['error_row_upc_exist']                    		= 'row %s: upc <strong>%s</strong> is exist';
+$lang['error_row_upc_duplicate']                    		= 'row %s: upc <strong>%s</strong> is dupliated';
 $lang['error_row_sku_exist']                    		= 'row %s: sku <strong>%s</strong> is exist';
+$lang['error_row_sku_duplicate']                        = 'row %s: sku <strong>%s</strong> is dupliated';
 $lang['error_sku_is_used']                      		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> is used in another product';
 $lang['error_can_not_delete_inventory_exist']   		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;This product can not be deleted because the inventory exists';
 $lang['error_can_not_delete_transfer_exist']   			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;This can not be deleted because the inventory exists';
