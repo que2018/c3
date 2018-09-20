@@ -105,7 +105,7 @@ class Inventory_import extends MX_Controller
 		$sheet = $obj_phpexcel->getSheet(0);
 		$rows = $sheet->getHighestDataRow();
 				
-		$validated = true;
+		$success = true;
 		
 		$messages = array();
 		
@@ -119,14 +119,18 @@ class Inventory_import extends MX_Controller
 			$name      = $row[0][1];
 			$batch     = $row[0][2];
 			$quantity  = $row[0][3];
+			
+			$flag = true;
 								
 			//sku empty
 			if(!isset($sku) || empty($sku))
 			{
 				$messages[] = sprintf($this->lang->line('error_row_sku_empty'), $i);
 				
-				if($validated)
-					$validated = false;
+				$flag = false;
+				
+				if($success)
+					$success = false;
 			}
 				
 			//sku not found	
@@ -136,8 +140,10 @@ class Inventory_import extends MX_Controller
 			{
 				$messages[] = sprintf($this->lang->line('error_row_sku_not_found'), $i, $sku);
 				
-				if($validated)
-					$validated = false;
+				$flag = false;
+				
+				if($success)
+					$success = false;
 			}	
 
 			//location empty
@@ -145,8 +151,10 @@ class Inventory_import extends MX_Controller
 			{
 				$messages[] = sprintf($this->lang->line('error_row_locatoin_empty'), $i);
 				
-				if($validated)
-					$validated = false;
+				$flag = false;
+				
+				if($success)
+					$success = false;
 			}
 			
 			//location not found			
@@ -156,8 +164,10 @@ class Inventory_import extends MX_Controller
 			{
 				$messages[] = sprintf($this->lang->line('error_row_location_not_found'), $i, $name);
 				
-				if($validated)
-					$validated = false;
+				$flag = false;
+				
+				if($success)
+					$success = false;
 			}
 			
 			//fix batch
@@ -171,8 +181,10 @@ class Inventory_import extends MX_Controller
 			{
 				$messages[] = sprintf($this->lang->line('error_row_quantity_empty'), $i);
 				
-				if($validated)
-					$validated = false;
+				$flag = false;
+				
+				if($success)
+					$success = false;
 			}
 			
 			//duplicate data
@@ -185,12 +197,14 @@ class Inventory_import extends MX_Controller
 				{
 					$messages[] = sprintf($this->lang->line('error_row_duplicated_data'), $i);
 				
-					if($validated)
-						$validated = false;
+					$flag = false;
+				
+					if($success)
+						$success = false;
 				}
 			} 
 			
-			if($validated)
+			if($flag)
 			{
 				$inventories[] = array(
 					'product_id'   => $product['id'],
@@ -200,34 +214,25 @@ class Inventory_import extends MX_Controller
 				);
 			}
 		}
+	
+		$this->inventory_model->clear_inventory();
 		
-		if($validated) 
+		if($inventories)
 		{
-			$this->inventory_model->clear_inventory();
-			
 			foreach($inventories as $inventory)
 			{
 				$this->inventory_model->add_inventory($inventory);
 			}
-			
-			$total = sizeof($inventories);
-			
-			$messages[] = sprintf($this->lang->line('text_rows_imported'), $total);
-			
-			$result = array(
-				'success'   => true,
-				'messages'  => $messages
-			);
 		}
-		else 
-		{
-			$messages[] = sprintf($this->lang->line('text_no_rows_imported'));
-			
-			$result = array(
-				'success'   => false,
-				'messages'  => $messages
-			);
-		}
+		
+		$total = sizeof($inventories);
+		
+		$messages[] = sprintf($this->lang->line('text_rows_imported'), $total);
+		
+		$result = array(
+			'success'   => $success,
+			'messages'  => $messages
+		);
 		
 		return $result;
 	}
