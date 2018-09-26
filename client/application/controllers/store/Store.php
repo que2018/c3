@@ -91,7 +91,7 @@ class Store extends CI_Controller {
 				$this->lang->load('platform/' . $store['platform']);
 			
 				$data['stores'][] = array(
-					'id'          => $store['id'],
+					'store_id'    => $store['store_id'],
 					'name'        => $store['name'],
 					'platform'    => $this->lang->line('text_title')
 				);
@@ -193,13 +193,13 @@ class Store extends CI_Controller {
 	
 	public function view() 
 	{
-		$id = $this->input->get('id');
+		$store_id = $this->input->get('store_id');
 	
-		$store = $this->store_model->get_store($id);
+		$store = $this->store_model->get_store($store_id);
 		
-		$store_download = $this->store_model->get_store_download($id);
+		$store_download = $this->store_model->get_store_download($store_id);
 		
-		$store_upload = $this->store_model->get_store_upload($id);
+		$store_upload = $this->store_model->get_store_upload($store_id);
 		
 		$data['platform_code']           = $store['platform'];
 		$data['name']                    = $store['name'];

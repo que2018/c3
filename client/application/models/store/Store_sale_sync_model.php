@@ -12,7 +12,7 @@ class Store_sale_sync_model extends CI_Model
 	{			
 		$this->db->select("store.*", false);
 		$this->db->from('store');
-		$this->db->group_by('store.id');
+		$this->db->group_by('store.store_id');
 		
 		if(!empty($data['filter_name'])) 
 		{			

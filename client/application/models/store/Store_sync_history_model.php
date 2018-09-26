@@ -12,7 +12,7 @@ class Store_sync_history_model extends CI_Model
 	{			
 		$this->db->select("store_sync_history.*, store.name AS store", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		$this->db->group_by('store_sync_history.id');
 		
 		if(!empty($data['filter_store'])) 
@@ -82,7 +82,7 @@ class Store_sync_history_model extends CI_Model
 	{
 		$this->db->select("COUNT(store_sync_history.id) AS total", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		
 		if(!empty($data['filter_store'])) 
 		{			
@@ -142,7 +142,7 @@ class Store_sync_history_model extends CI_Model
 	{
 		$this->db->select("store_sync_history.*, store.name AS store", false);
 		$this->db->from('store_sync_history');
-		$this->db->join('store', 'store.id = store_sync_history.store_id', 'left');
+		$this->db->join('store', 'store.store_id = store_sync_history.store_id', 'left');
 		$this->db->where('store_sync_history.id', $id);
 		
 		$q = $this->db->get();

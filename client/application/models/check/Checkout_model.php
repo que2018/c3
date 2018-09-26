@@ -482,10 +482,10 @@ class Checkout_model extends CI_Model
 	
 	public function get_checkout_sale($checkout_id) 
 	{	
-		$this->db->select('sale.*, store.id AS store_id, client.id AS client_id', false);
+		$this->db->select('sale.*, store.store_id AS store_id, client.id AS client_id', false);
 		$this->db->from('sale_to_checkout');
 		$this->db->join('sale', 'sale.id = sale_to_checkout.sale_id', 'left');
-		$this->db->join('store', 'store.id = sale.store_id', 'left');
+		$this->db->join('store', 'store.store_id = sale.store_id', 'left');
 		$this->db->join('client', 'client.id = store.client_id', 'left');
 		$this->db->where('sale_to_checkout.checkout_id', $checkout_id);
 

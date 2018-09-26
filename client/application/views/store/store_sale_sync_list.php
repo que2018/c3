@@ -56,7 +56,7 @@
 					    <button class="btn btn-primary btn-download"><i class="fa fa-cloud-download"></i></button>
 					    <button class="btn btn-primary btn-upload"><i class="fa fa-cloud-upload"></i></button>
 					  </td>
-					  <input type="hidden" name="id" value="<?php echo $store['id']; ?>">
+					  <input type="hidden" name="id" value="<?php echo $store['store_id']; ?>">
 					</tr>
 				  <?php } ?>
 				<?php } ?>

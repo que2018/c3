@@ -50,7 +50,7 @@
 					  <td><?php echo $store['name']; ?></td>
 					  <td><?php echo $store['platform']; ?></td>
 					  <td style="text-align: center">
-					    <a href="<?php echo base_url('store/store/view?id=' . $store['id']); ?>" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>
+					    <a href="<?php echo base_url('store/store/view?id=' . $store['store_id']); ?>" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>
 					  </td>				
 					</tr>
 				  <?php } ?>

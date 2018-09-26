@@ -7,7 +7,7 @@ class Store_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('store');
-		$this->db->where('store.id', $store_id);		
+		$this->db->where('store.store_id', $store_id);		
 
 		$q = $this->db->get();
 		
@@ -48,7 +48,7 @@ class Store_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('store');
 		$this->db->where('client_id', $this->auth->get_client_id());
-		$this->db->group_by('store.id');
+		$this->db->group_by('store.store_id');
 		
 		if(!empty($data['filter_name'])) 
 		{			
@@ -103,7 +103,7 @@ class Store_model extends CI_Model
 	
 	public function get_store_total($data = array())
 	{
-		$this->db->select('COUNT(id) AS total', false);
+		$this->db->select('COUNT(store_id) AS total', false);
 		$this->db->from('store');
 		$this->db->where('client_id', $this->auth->get_client_id());
 

@@ -35,7 +35,8 @@ class Setting extends MX_Controller
 		$this->form_validation->set_rules('config_dashboard_activity_limit', $this->lang->line('text_dashboard_activity_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_order_limit', $this->lang->line('text_dashboard_order_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_store_sync_limit', $this->lang->line('text_dashboard_store_sync_limit'), 'required');
-		$this->form_validation->set_rules('config_language_id', $this->lang->line('text_language'), 'required');
+		$this->form_validation->set_rules('config_admin_language_id', $this->lang->line('text_admin_language'), 'required');
+		$this->form_validation->set_rules('config_client_language_id', $this->lang->line('text_client_language'), 'required');
 		$this->form_validation->set_rules('config_length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('config_weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('config_autocomplete_limit', $this->lang->line('text_autocomplete_limit'), 'required');
@@ -99,7 +100,8 @@ class Setting extends MX_Controller
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_label_printer_id'   		=> $this->input->post('config_printnode_label_printer_id'),
 				'config_printnode_general_printer_id'       => $this->input->post('config_printnode_general_printer_id'),
-				'config_language_id'      			        => $this->input->post('config_language_id'),
+				'config_admin_language_id'      			=> $this->input->post('config_admin_language_id'),
+				'config_client_language_id'      			=> $this->input->post('config_client_language_id'),
 				'config_information_id'      			    => $this->input->post('config_information_id'),
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
@@ -155,7 +157,8 @@ class Setting extends MX_Controller
 				'config_printnode_api_key'   				=> $this->input->post('config_printnode_api_key'),
 				'config_printnode_label_printer_id'         => $this->input->post('config_printnode_label_printer_id'),
 				'config_printnode_general_printer_id'       => $this->input->post('config_printnode_general_printer_id'),
-				'config_language_id'        			    => $this->input->post('config_language_id'),
+				'config_admin_language_id'        			=> $this->input->post('config_admin_language_id'),
+				'config_client_language_id'        			=> $this->input->post('config_client_language_id'),
 				'config_information_id'      			    => $this->input->post('config_information_id'),
 				'config_information_front_id'      			=> $this->input->post('config_information_front_id'),
 				'config_length_class_id'      			    => $this->input->post('config_length_class_id'),
@@ -203,7 +206,8 @@ class Setting extends MX_Controller
 			$data['config_printnode_api_key']     		        = $this->config->item('config_printnode_api_key');
 			$data['config_printnode_label_printer_id']     		= $this->config->item('config_printnode_label_printer_id');
 			$data['config_printnode_general_printer_id']        = $this->config->item('config_printnode_general_printer_id');
-			$data['config_language_id']     		            = $this->config->item('config_language_id');
+			$data['config_admin_language_id']     		        = $this->config->item('config_admin_language_id');
+			$data['config_client_language_id']     		        = $this->config->item('config_client_language_id');
 			$data['config_information_id']     		            = $this->config->item('config_information_id');
 			$data['config_information_front_id']     		    = $this->config->item('config_information_front_id');
 			$data['config_length_class_id']     		        = $this->config->item('config_length_class_id');

@@ -104,11 +104,26 @@
 		  <div id="localization" class="tab-pane">
 			<div class="panel-body">
 			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_language'); ?></label>
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_admin_language'); ?></label>
 			    <div class="col-sm-10">
-				  <select name="config_language_id" class="form-control">
+				  <select name="config_admin_language_id" class="form-control">
 				    <?php foreach($languages as $language) { ?>
-					<?php if($language['language_id'] == $config_language_id) { ?>
+					<?php if($language['language_id'] == $config_admin_language_id) { ?>
+					<option value="<?php echo $language['language_id']; ?>" selected><?php echo $language['name']; ?></option>
+					<?php } else { ?>
+					<option value="<?php echo $language['language_id']; ?>"><?php echo $language['name']; ?></option>					
+					<?php } ?>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_client_language'); ?></label>
+			    <div class="col-sm-10">
+				  <select name="config_client_language_id" class="form-control">
+				    <?php foreach($languages as $language) { ?>
+					<?php if($language['language_id'] == $config_client_language_id) { ?>
 					<option value="<?php echo $language['language_id']; ?>" selected><?php echo $language['name']; ?></option>
 					<?php } else { ?>
 					<option value="<?php echo $language['language_id']; ?>"><?php echo $language['name']; ?></option>					

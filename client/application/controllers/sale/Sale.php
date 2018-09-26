@@ -447,7 +447,7 @@ class Sale extends CI_Controller
 			foreach($stores as $store)
 			{
 				$data['stores'][] = array(
-					'store_id'  => $store['id'],
+					'store_id'  => $store['store_id'],
 					'name'      => $store['name']
 				);
 			}
@@ -734,7 +734,7 @@ class Sale extends CI_Controller
 			foreach($stores as $store)
 			{
 				$data['stores'][] = array(
-					'store_id'  => $store['id'],
+					'store_id'  => $store['store_id'],
 					'name'      => $store['name']
 				);
 			}
@@ -909,7 +909,7 @@ class Sale extends CI_Controller
 			foreach($stores as $store)
 			{
 				$data['stores'][] = array(
-					'store_id'  => $store['id'],
+					'store_id'  => $store['store_id'],
 					'name'      => $store['name']
 				);
 			}

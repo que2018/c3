@@ -58,7 +58,7 @@ class Login extends CI_Controller
 		{
 			$data['username']     = '';
 			$data['password']     = '';
-			$data['language_id']  = $this->config->item('config_language_id');
+			$data['language_id']  = $this->config->item('config_admin_language_id');
 		}
 		
 		if($this->input->get('redirect')) 
@@ -95,9 +95,7 @@ class Login extends CI_Controller
 				);
 			}
 		}
-		
-		$data['language_id'] = $this->config->item('config_language_id');
-		
+				
 		$data['error'] = validation_errors();
 				
 		$this->load->view('common/login', $data);

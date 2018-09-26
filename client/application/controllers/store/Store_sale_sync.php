@@ -91,7 +91,7 @@ class Store_sale_sync extends CI_Controller {
 				$this->lang->load('platform/' . $store['platform']);
 			
 				$data['stores'][] = array(
-					'id'         => $store['id'],
+					'id'         => $store['store_id'],
 					'name'       => $store['name'],
 					'platform'   => $this->lang->line('text_title')
 				);
