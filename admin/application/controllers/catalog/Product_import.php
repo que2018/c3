@@ -151,9 +151,9 @@ class Product_import extends MX_Controller
 		{ 
 			$row = $sheet->rangeToArray('A' . $i . ':H' . $i, null, true, false);
 
-			$name    = $row[0][0];
-			$upc     = $row[0][1];
-			$sku     = $row[0][2];
+			$name    = trim($row[0][0]);
+			$upc     = trim($row[0][1]);
+			$sku     = trim($row[0][2]);
 			$price   = $row[0][3];
 			$length  = $row[0][4];
 			$width   = $row[0][5];
