@@ -36,7 +36,7 @@
 <script>
 Dropzone.options.dropzoneForm = {
 	paramName: 'file', 
-	maxFilesize: 2,	
+	maxFilesize: 100,	
 	dictDefaultMessage: '<strong><?php echo $this->lang->line('text_drop_file_and_upload'); ?></strong><br><?php echo $this->lang->line('text_only_excel_will_accepted'); ?>',
 
 	sending: function(file, xhr, formData){

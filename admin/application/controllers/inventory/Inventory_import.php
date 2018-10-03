@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Inventory_import extends MX_Controller 
 {
 	public function index() 
@@ -22,7 +21,7 @@ class Inventory_import extends MX_Controller
 		
 		$data['locations'] = array();
 	
-		$locations = $this->location_model->get_all_locations();	
+		$locations = $this->location_model->get_locations();	
 
 		if($locations)
 		{
@@ -115,9 +114,9 @@ class Inventory_import extends MX_Controller
 		{ 
 			$row = $sheet->rangeToArray('A' . $i . ':D' . $i, null, true, false);
 
-			$sku       = $row[0][0];
-			$name      = $row[0][1];
-			$batch     = $row[0][2];
+			$sku       = trim($row[0][0]);
+			$name      = trim($row[0][1]);
+			$batch     = trim($row[0][2]);
 			$quantity  = $row[0][3];
 			
 			$flag = true;
@@ -132,20 +131,7 @@ class Inventory_import extends MX_Controller
 				if($success)
 					$success = false;
 			}
-				
-			//sku not found	
-			$product = $this->product_model->get_product_by_sku($sku);	
-				
-			if(!$product)
-			{
-				$messages[] = sprintf($this->lang->line('error_row_sku_not_found'), $i, $sku);
-				
-				$flag = false;
-				
-				if($success)
-					$success = false;
-			}	
-
+					
 			//location empty
 			if(!isset($name) || empty($name))
 			{
@@ -170,12 +156,6 @@ class Inventory_import extends MX_Controller
 					$success = false;
 			}
 			
-			//fix batch
-			if(!isset($batch))
-			{
-				$batch = '';
-			}
-
 			//quantity empty
 			if(!isset($quantity))
 			{
@@ -206,10 +186,41 @@ class Inventory_import extends MX_Controller
 			
 			if($flag)
 			{
+				$product = $this->product_model->get_product_by_sku($sku);	
+				
+				if(!$product)
+				{
+					$product = array(
+						'client_id'          => '',
+						'name'               => $sku,
+						'upc'                => $sku,
+						'sku'                => $sku,
+						'asin'      	     => '',
+						'price'              => 0,
+						'image'              => '',
+						'description'        => '',
+						'length'             => 0,
+						'width'              => 0,
+						'height'             => 0,
+						'weight'             => 0,
+						'length_class_id'    => $this->config->item('config_length_class_id'),
+						'weight_class_id'    => $this->config->item('config_weight_class_id'),
+						'shipping_provider'  => $this->config->item('config_default_order_shipping_provider'),
+						'shipping_service'   => $this->config->item('config_default_order_shipping_service'),
+						'alert_quantity'     => 0
+					);
+					
+					$product_id = $this->product_model->add_product($product);
+				}
+				else
+				{
+					$product_id = $product['id'];
+				}
+				
 				$inventories[] = array(
-					'product_id'   => $product['id'],
+					'product_id'   => $product_id,
 					'quantity'     => $quantity,
-					'batch'        => $batch,
+					'batch'        => (isset($batch))?$batch:'',
 					'location_id'  => $location['id']
 				);
 			}

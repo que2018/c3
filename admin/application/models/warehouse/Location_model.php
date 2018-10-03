@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Location_model extends CI_Model
 {	
 	public function add_location($data)
@@ -225,23 +224,8 @@ class Location_model extends CI_Model
 		
 		return false;
 	}	
-	
-	public function get_all_locations() 
-	{
-		$this->db->select('*', false);
-		$this->db->from('location');
 		
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		
-		return false;
-	}	
-		
-	public function get_locations($data) 
+	public function get_locations($data = array()) 
 	{			
 		$this->db->select('location.*, warehouse.name AS warehouse', false);
 		$this->db->from('location');
@@ -305,7 +289,7 @@ class Location_model extends CI_Model
 		}
 	}
 	
-	function get_location_total($data)
+	public function get_location_total($data = array())
 	{
 		$this->db->select("COUNT(location.id) AS total", false);
 		$this->db->from('location');
