@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Inventory extends MX_Controller 
 {
 	public function index()
@@ -27,6 +26,13 @@ class Inventory extends MX_Controller
 		$data = $this->get_list();
 			
 		$this->load->view('inventory/inventory_list_table', $data);
+	}
+	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('inventory/inventory_list_filter', $data);
 	}
 	
 	protected function get_list()
@@ -299,7 +305,7 @@ class Inventory extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'inventory/inventory' . $url;
+		$data['filter_url'] = base_url() . 'inventory/inventory/filter' . $url;
 		
 		$url = '';
 				

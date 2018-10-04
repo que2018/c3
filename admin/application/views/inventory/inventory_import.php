@@ -23,6 +23,23 @@
 	    <div class="ibox-content">
 		  <div id="alert-success" class="alert alert-success" style="display:none;"><span></span><button type="button" class="close" onclick="$('.alert').hide()">&times;</button></div>
 		  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('.alert').hide()">&times;</button></div>
+		  <div class="form-horizontal">
+	        <div class="form-group">
+			  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_warehouse'); ?></label>
+			  <div class="col-sm-10">
+			    <select name="warehouse_id" class="form-control">
+				  <?php foreach($warehouses as $warehouse) { ?>
+				  <?php if($warehouse['id'] == $warehouse_id) { ?>
+				  <option value="<?php echo $warehouse['id']; ?>" selected><?php echo $warehouse['name']; ?></option>
+				  <?php } else { ?>
+				  <option value="<?php echo $warehouse['id']; ?>"><?php echo $warehouse['name']; ?></option>
+				  <?php } ?>
+				  <?php } ?>
+			    </select>
+			  </div>
+		    </div>
+			<div class="hr-line-dashed"></div>	  
+          </div>
 		  <form action="<?php echo base_url(); ?>inventory/inventory_import/upload" class="dropzone" id="dropzoneForm">
 			<div class="fallback">
 		      <input name="file" type="file" />
@@ -40,8 +57,8 @@ Dropzone.options.dropzoneForm = {
 	dictDefaultMessage: '<strong><?php echo $this->lang->line('text_drop_file_and_upload'); ?></strong><br><?php echo $this->lang->line('text_only_excel_will_accepted'); ?>',
 
 	sending: function(file, xhr, formData){
-		//location_id = $('select[name="location_id"]').val();		
-        //formData.append('location_id', location_id);
+		warehouse_id = $('select[name=\'warehouse_id\']').val();
+		formData.append('warehouse_id', warehouse_id);
     },
 	
 	success: function(file, response){		

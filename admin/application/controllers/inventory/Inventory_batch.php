@@ -28,6 +28,13 @@ class Inventory_batch extends MX_Controller
 		$this->load->view('inventory/inventory_batch_list_table', $data);
 	}
 	
+	public function filter()
+	{
+		$data = $this->get_list_batch();
+			
+		$this->load->view('inventory/inventory_batch_list_filter', $data);
+	}
+	
 	protected function get_list_batch()
 	{
 		$this->load->library('phpexcel');
@@ -336,7 +343,7 @@ class Inventory_batch extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'inventory/inventory_batch' . $url;
+		$data['filter_url'] = base_url() . 'inventory/inventory_batch/filter' . $url;
 		
 		$url = '';
 				

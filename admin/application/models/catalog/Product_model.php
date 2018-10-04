@@ -296,9 +296,9 @@ class Product_model extends CI_Model
 		return false;
 	}
 	
-	public function delete_product($id) 
+	public function delete_product($product_id) 
 	{
-		if($this->db->delete('product', array('id' => $id))) 
+		if($this->db->delete('product', array('id' => $product_id))) 
 		{
 			return true;
 		}

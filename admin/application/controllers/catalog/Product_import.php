@@ -23,7 +23,6 @@ class Product_import extends MX_Controller
 		//clients
 		$data['clients'] = array();
 		
-		
 		$clients = $this->client_model->get_clients();
 				
 		if($clients)
@@ -152,8 +151,8 @@ class Product_import extends MX_Controller
 			$row = $sheet->rangeToArray('A' . $i . ':H' . $i, null, true, false);
 
 			$name    = trim($row[0][0]);
-			$upc     = trim($row[0][1]);
-			$sku     = trim($row[0][2]);
+			$upc     = str_replace(' ', '-', trim($row[0][1]));
+			$sku     = str_replace(' ', '-', trim($row[0][2]));
 			$price   = $row[0][3];
 			$length  = $row[0][4];
 			$width   = $row[0][5];

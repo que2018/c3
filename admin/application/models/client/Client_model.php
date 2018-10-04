@@ -23,21 +23,6 @@ class Client_model extends CI_Model
 		
 		$client_id = $this->db->insert_id();
 		
-		//location data
-		if($data['locations'])
-		{
-			foreach($data['locations'] as $location)
-			{
-				$location_client_data = array(	
-					'client_id'    => $client_id,
-					'location_id'  => $location['location_id'],
-					'date_added'   => $location['date_added']
-				);
-				
-				$this->db->insert('location_to_client', $location_client_data);
-			}
-		}
-		
 		//balance data
 		$this->load->model('finance/balance_model');
 		
@@ -141,6 +126,18 @@ class Client_model extends CI_Model
 	public function get_client_by_email($email) 
 	{
 		$q = $this->db->get_where('client', array('email' => $email), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_client_by_company($company) 
+	{
+		$q = $this->db->get_where('client', array('company' => $company), 1); 
 		
 		if($q->num_rows() > 0)
 		{

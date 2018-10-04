@@ -24,13 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost/c3/admin';
+$config['base_url'] = 'http://ims2.allstars3pl.com/admin';
 
-$config['site_url'] = 'http://localhost/c3/';
+$config['site_url'] = 'http://ims2.allstars3pl.com/';
 
-$config['site_http'] = 'http://localhost/c3/';
+$config['site_http'] = 'http://ims2.allstars3pl.com/';
 
-$config['site_https'] = 'https://localhost/c3/';
+$config['site_https'] = 'https://ims2.allstars3pl.com/';
 
 /*
 |--------------------------------------------------------------------------

@@ -9,7 +9,7 @@ class Inventory_import extends MX_Controller
 	
 		$this->lang->load('inventory/inventory');
 			
-		$this->load->model('warehouse/location_model');
+		$this->load->model('warehouse/warehouse_model');
 
 		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
@@ -19,17 +19,17 @@ class Inventory_import extends MX_Controller
 
 		$this->header->set_title($this->lang->line('text_inventory_import'));
 		
-		$data['locations'] = array();
+		$data['warehouses'] = array();
 	
-		$locations = $this->location_model->get_locations();	
+		$warehouses = $this->warehouse_model->get_warehouses();	
 
-		if($locations)
+		if($warehouses)
 		{
-			foreach($locations as $location) 
+			foreach($warehouses as $warehouse) 
 			{
-				$data['locations'][] = array(
-					'id'    => $location['id'],
-					'name'  => $location['name']
+				$data['warehouses'][] = array(
+					'id'    => $warehouse['id'],
+					'name'  => $warehouse['name']
 				);
 			}	
 		}
@@ -96,6 +96,7 @@ class Inventory_import extends MX_Controller
 		
 		$this->lang->load('inventory/inventory');
 				
+		$this->load->model('client/client_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/inventory_model');
@@ -112,13 +113,14 @@ class Inventory_import extends MX_Controller
 		
 		for($i = 2; $i <= $rows; $i++)
 		{ 
-			$row = $sheet->rangeToArray('A' . $i . ':D' . $i, null, true, false);
+			$row = $sheet->rangeToArray('A' . $i . ':E' . $i, null, true, false);
 
-			$sku       = trim($row[0][0]);
-			$name      = trim($row[0][1]);
+			$sku       = str_replace(' ', '-', trim($row[0][0]));
+			$name      = str_replace(' ', '-', trim($row[0][1]));
 			$batch     = trim($row[0][2]);
 			$quantity  = $row[0][3];
-			
+			$company   = trim($row[0][4]);
+
 			$flag = true;
 								
 			//sku empty
@@ -143,19 +145,6 @@ class Inventory_import extends MX_Controller
 					$success = false;
 			}
 			
-			//location not found			
-			$location = $this->location_model->get_location_by_name($name);	
-				
-			if(!$location)
-			{
-				$messages[] = sprintf($this->lang->line('error_row_location_not_found'), $i, $name);
-				
-				$flag = false;
-				
-				if($success)
-					$success = false;
-			}
-			
 			//quantity empty
 			if(!isset($quantity))
 			{
@@ -168,30 +157,65 @@ class Inventory_import extends MX_Controller
 			}
 			
 			//duplicate data
-			foreach($inventories as $inventory)
+			/* foreach($inventories as $inventory)
 			{
-				if(($inventory['product_id'] == $product['id']) && 
-				   ($inventory['location_id'] == $location['id']) && 
-				   ($inventory['batch'] == $batch)
-				)
+				$product = $this->product_model->get_product_by_sku($sku);	
+
+				if($product)
 				{
-					$messages[] = sprintf($this->lang->line('error_row_duplicated_data'), $i);
-				
-					$flag = false;
-				
-					if($success)
-						$success = false;
+					if(($inventory['product_id'] == $product['id']) && 
+					   ($inventory['location_id'] == $location['id']) && 
+					   ($inventory['batch'] == $batch)
+					)
+					{
+						$messages[] = sprintf($this->lang->line('error_row_duplicated_data'), $i);
+					
+						$flag = false;
+					
+						if($success)
+							$success = false;
+					}
 				}
-			} 
+			} */
 			
 			if($flag)
 			{
-				$product = $this->product_model->get_product_by_sku($sku);	
+				//create client if not found
+				if(isset($company) && !empty($company))
+				{
+					$client = $this->client_model->get_client_by_company($company);	
+
+					if(!$client)
+					{
+						$client = array(
+							'email'      => '',
+							'salt'       => '',				
+							'password'   => '',
+							'firstname'  => $company,
+							'lastname'   => $company,
+							'company'    => $company,
+							'phone'      => ''
+						);
+						
+						$client_id = $this->client_model->add_client($client);
+					}
+					else
+					{
+						$client_id = $client['id'];
+					}
+				}
+				else
+				{
+					$client_id = null;
+				}
+				
+				//create product if not found
+				$product = $this->product_model->get_product_by_sku($sku);
 				
 				if(!$product)
 				{
 					$product = array(
-						'client_id'          => '',
+						'client_id'          => (isset($client_id))?$client_id:'',
 						'name'               => $sku,
 						'upc'                => $sku,
 						'sku'                => $sku,
@@ -217,11 +241,29 @@ class Inventory_import extends MX_Controller
 					$product_id = $product['id'];
 				}
 				
+				//create location if not found
+				$location = $this->location_model->get_location_by_name($name);	
+
+				if(!$location)
+				{
+					$location = array(
+						'name'         => $name,
+						'code'         => $name,
+						'warehouse_id' => $this->input->post('warehouse_id')
+					);
+					
+					$location_id = $this->location_model->add_location($location);
+				}
+				else
+				{
+					$location_id = $location['id'];
+				}
+				
 				$inventories[] = array(
 					'product_id'   => $product_id,
 					'quantity'     => $quantity,
 					'batch'        => (isset($batch))?$batch:'',
-					'location_id'  => $location['id']
+					'location_id'  => $location_id
 				);
 			}
 		}

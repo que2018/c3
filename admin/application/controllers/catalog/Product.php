@@ -28,6 +28,13 @@ class Product extends MX_Controller
 		$this->load->view('catalog/product_list_table', $data);
 	}
 	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('catalog/product_list_filter', $data);
+	}
+	
 	protected function get_list()
 	{	
 		$this->load->library('phpexcel');
@@ -316,17 +323,12 @@ class Product extends MX_Controller
 			$url .= '?limit='.$this->config->item('config_page_limit');
 		}
 		
-		if($this->input->get('page')) 
-		{
-			$url .= '&page='.$this->input->get('page');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'catalog/product'  .$url;
+		$data['filter_url'] = base_url() . 'catalog/product/filter'  .$url;
 	
 		if($this->input->get('filter_client_id')) 
 		{

@@ -366,7 +366,8 @@ class Client extends MX_Controller
 		$this->header->set_title($this->lang->line('text_add_client'));
 
 		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|regex_match[/^\S+@\S+\.\S+$/]|callback_validate_add_email');
-		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');		
+		$this->form_validation->set_rules('password', $this->lang->line('text_password'), 'required');
+		$this->form_validation->set_rules('password', $this->lang->line('text_company'), 'required');		
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
 		$this->form_validation->set_rules('location', $this->lang->line('text_location'), 'callback_validate_client_location');
@@ -425,6 +426,7 @@ class Client extends MX_Controller
 		$client_id = $this->input->get('client_id');
 	
 		$this->form_validation->set_rules('email', $this->lang->line('text_email'), 'required|regex_match[/^\S+@\S+\.\S+$/]|callback_validate_edit_email');
+		$this->form_validation->set_rules('company', $this->lang->line('text_company'), 'required');		
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
 		$this->form_validation->set_rules('location', $this->lang->line('text_location'), 'callback_validate_client_location');
