@@ -43,9 +43,6 @@
 		</div>
 		<button type="submit" class="btn btn-primary block full-width m-b"><?php echo $this->lang->line('button_login'); ?></button>
 		<a href="#"><small><?php echo $this->lang->line('text_password_forget'); ?></small></a>
-		<?php if($redirect) { ?>
-		  <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
-		<?php } ?>
 	  </form>
 	  <p class="m-t"><small><?php echo $this->lang->line('text_pround_product'); ?></small> </p>
 	</div>

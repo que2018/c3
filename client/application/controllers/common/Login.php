@@ -52,15 +52,6 @@ class Login extends CI_Controller
 			$data['language_id']  = $this->config->item('config_client_language_id');
 		}
 		
-		if($this->input->get('redirect')) 
-		{
-			$data['redirect'] = $this->input->get('redirect');
-		} 
-		else 
-		{
-			$data['redirect'] = '';
-		}
-		
 		//logo
 		if(is_file(IMAGEPATH . $this->config->item('config_logo'))) 
 		{
