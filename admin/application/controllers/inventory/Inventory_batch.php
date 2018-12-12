@@ -6,7 +6,8 @@ class Inventory_batch extends MX_Controller
 	{
 		$this->load->module('header');
 		$this->load->module('footer');
-	
+		$this->load->module('inventory_mod');
+
 		$this->lang->load('inventory/inventory');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_list.css');
@@ -14,9 +15,11 @@ class Inventory_batch extends MX_Controller
 		$this->header->set_title($this->lang->line('text_inventory_list'));
 	
 		$data = $this->get_list_batch();
-			
+				
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
+		
+		$data['clear_mod'] = Modules::run('module/inventory_mod/clear');
 		
 		$this->load->view('inventory/inventory_batch_list', $data);
 	}

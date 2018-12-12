@@ -35,6 +35,19 @@ a:focus, a:hover {
 .btn-download {
     margin-right: 8px;
 }
+.btn-bulk-delete {
+    margin-right: 8px;
+}
+.btn-delete-all, .btn-delete-all:hover, .btn-delete-all:focus, .btn-delete-all:active {
+   background-color: #000000 !important;
+   border-color: #000000 !important;
+}
+#btn-confirm-clear {
+	min-width: 140px;
+}
+#btn-cancel-clear {
+	margin-left: 10px;
+}
 .page-heading {
 	position: relative;
 }

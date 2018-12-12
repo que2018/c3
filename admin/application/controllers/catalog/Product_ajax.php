@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Product_ajax extends CI_Controller 
 {
 	public function autocomplete()
@@ -51,23 +50,27 @@ class Product_ajax extends CI_Controller
 	{
 		$this->load->model('catalog/product_model');
 		
-		$product_id  = $this->input->post('product_id');
-		$field       = $this->input->post('field');
-		$value       = $this->input->post('value');
+		if($this->input->post)
+		{
 		
-		$data = array(
-			'field'  => $field,
-			'value'  => $value
-		);
+			$product_id  = $this->input->post('product_id');
+			$field       = $this->input->post('field');
+			$value       = $this->input->post('value');
 			
-		$result = $this->product_model->update_product_value($product_id, $data);
+			$data = array(
+				'field'  => $field,
+				'value'  => $value
+			);
+				
+			$result = $this->product_model->update_product_value($product_id, $data);
+				
+			$outdata = array(
+				'success'     => ($result)?true:false
+			);
 			
-		$outdata = array(
-			'success'     => ($success)?true:false
-		);
-		
-		$this->output->set_content_type('application/json');
-		$this->output->set_output(json_encode($outdata));
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
 	}
 	
 	public function get_products_volume()

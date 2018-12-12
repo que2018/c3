@@ -16,7 +16,22 @@ class Inventory_ajax extends CI_Controller
 			'success'  => ($result)?true:false
 		);
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
+	}
+	
+	public function clear_inventory()
+	{		
+		$this->load->model('inventory/inventory_model');
+			
+		$result = $this->inventory_model->clear_inventory();
+		
+		$outdata = array(
+			'success'  => ($result)?true:false
+		);
+		
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

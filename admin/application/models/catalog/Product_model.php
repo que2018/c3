@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Product_model extends CI_Model
 {		
 	public function add_product($data)
@@ -321,6 +320,7 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}
@@ -341,6 +341,7 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}
@@ -361,6 +362,7 @@ class Product_model extends CI_Model
 		else
 		{
 			$this->db->trans_commit();
+			
 			return true;
 		}
 	}		
@@ -565,5 +567,7 @@ class Product_model extends CI_Model
 		{
 			return true;
 		}
+		
+		return false;
 	}
 }

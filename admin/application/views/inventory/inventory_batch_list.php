@@ -12,6 +12,7 @@
     <a href="<?php echo base_url(); ?>assets/file/export/inventory.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
     <a href="<?php echo base_url(); ?>inventory/inventory_batch/add"  data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_delete'); ?>" class="btn btn-danger btn-bulk-delete" onClick="bulk_delete_inventory(this)"><i class="fa fa-trash"></i></button>
+	<a href="#inventory-clear" data-toggle="modal" class="btn btn-danger btn-delete-all"><i class="fa fa-trash"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -189,6 +190,7 @@
     </div>
   </div>
 </div>
+<?php echo $clear_mod; ?>
 <script>
 $(document).ready(function() {	
 	$('select[name=\'client_id\']').on('change', function() {
@@ -277,45 +279,47 @@ function delete_inventory(handle, inventory_id) {
 }
 </script>
 <script>
-function bulk_delete_inventory(handle) {
-	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-		data = new FormData();
-		
-		$('input[name*=\'selected\']').each(function(index) {
-			if($(this).is(':checked')) {
-				inventory_id = $(this).val();				
-				data.append('inventory_ids[]', inventory_id);
-			}			
-		});
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>inventory/inventory_batch/bulk_delete',
-			type: 'post',
-			data: data,
-			dataType: 'json',
-			cache: false,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-			},
-			success: function(json) {		
-				$(handle).html('<i class="fa fa-trash"></i>');
+function bulk_delete_inventory(handle) {	
+	if($('input[name*=\'selected\']:checked').length) {
+		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
+			data = new FormData();
 			
-				if(json.success) {
-					$.ajax({
-						url: '<?php echo $reload_url; ?>',
-						dataType: 'html',
-						success: function(html) {					
-							$('.ibox-content').html(html);
-						},
-					});
+			$('input[name*=\'selected\']').each(function(index) {
+				if($(this).is(':checked')) {
+					inventory_id = $(this).val();				
+					data.append('inventory_ids[]', inventory_id);
+				}			
+			});
+			
+			$.ajax({
+				url: '<?php echo base_url(); ?>inventory/inventory_batch/bulk_delete',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+				},
+				success: function(json) {		
+					$(handle).html('<i class="fa fa-trash"></i>');
+				
+					if(json.success) {
+						$.ajax({
+							url: '<?php echo $reload_url; ?>',
+							dataType: 'html',
+							success: function(html) {					
+								$('.ibox-content').html(html);
+							},
+						});
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
+			});
+		}
 	}
 }
 </script>
