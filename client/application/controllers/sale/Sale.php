@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Sale extends CI_Controller 
 {
 	public function index()
@@ -334,8 +333,7 @@ class Sale extends CI_Controller
 			'shipping_provider' => $this->input->post('shipping_provider'),
 			'shipping_service'  => $this->input->post('shipping_service'),
 			'store_id'          => $this->input->post('store_id'),
-			'store_sale_id'     => $this->input->post('store_sale_id'),
-			'sale_fees'         => $this->input->post('sale_fee')
+			'store_sale_id'     => $this->input->post('store_sale_id')
 		);
 		
 		$data['sale_products'] = array();
@@ -370,7 +368,7 @@ class Sale extends CI_Controller
 		}
 		
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		$data['length_classes'] = array();
 		
@@ -386,7 +384,7 @@ class Sale extends CI_Controller
 		}
 			
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		$data['weight_classes'] = array();
 		
@@ -514,8 +512,7 @@ class Sale extends CI_Controller
 				'shipping_service'  => $this->input->post('shipping_service'),
 				'store_id'          => $this->input->post('store_id'),
 				'store_sale_id'     => $this->input->post('store_sale_id'),
-				'sale_products'     => $this->input->post('sale_product'),
-				'sale_fees'         => $this->input->post('sale_fee')
+				'sale_products'     => $this->input->post('sale_product')
 			);
 						
 			$this->sale_model->edit_sale($sale_id, $data);
@@ -559,7 +556,6 @@ class Sale extends CI_Controller
 			$data['shipping_service']   = $this->input->post('shipping_service');
 			$data['store_id']           = $this->input->post('store_id');
 			$data['store_sale_id']      = $this->input->post('store_sale_id');
-			$data['sale_fees']          = $this->input->post('sale_fee');
 			
 			$data['sale_products'] = array();
 			
@@ -634,27 +630,12 @@ class Sale extends CI_Controller
 					'checkout_locations' => $checkout_locations
 				);
 			}
-			
-			//sale fees
-			$data['sale_fees'] = array();
-			
-			$sale_fees = $this->sale_model->get_sale_fees($sale_id);	
-			
-			if($sale_fees) 
-			{
-				foreach($sale_fees as $sale_fee) {
-					$data['sale_fees'][] = array(
-						'name'   => $sale_fee['name'],
-						'amount' => $sale_fee['amount']
-					);
-				}
-			}
 		}
 		
 		$data['sale_id'] = $sale_id;
 			
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		$data['length_classes'] = array();
 		
@@ -667,10 +648,10 @@ class Sale extends CI_Controller
 					'unit'  => $length_class['unit']
 				);
 			}
-		}
+		} 
 			
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		$data['weight_classes'] = array();
 		
@@ -799,21 +780,6 @@ class Sale extends CI_Controller
 			);
 		}
 		
-		//sale fees
-		$data['sale_fees'] = array();
-		
-		$sale_fees = $this->sale_model->get_sale_fees($sale_id);	
-		
-		if($sale_fees) 
-		{
-			foreach($sale_fees as $sale_fee) {
-				$data['sale_fees'][] = array(
-					'name'   => $sale_fee['name'],
-					'amount' => $sale_fee['amount']
-				);
-			}
-		}
-	
 		//checkout status
 		$sale_checkouts = $this->checkout_model->get_sale_checkout($sale_id);
 		

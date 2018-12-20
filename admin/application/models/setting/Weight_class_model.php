@@ -1,13 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Weight_class_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
 	public function add_weight_class($data)
 	{
 		$weight_class_data = array(		

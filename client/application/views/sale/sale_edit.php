@@ -32,7 +32,6 @@
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
 		</ul>
 		<div class="tab-content">
@@ -250,40 +249,6 @@
 				</div>
               </div>
 			  <div class="hr-line-dashed"></div>  	
-			</div>
-		  </div>
-		  <div id="fee" class="tab-pane">
-		    <div class="panel-body">
-			  <div class="table-responsive">
-                <table id="sale_fee" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					  <td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_name') ?></td>
-					  <td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_amount') ?></td>							
-					  <td></td>
-					</tr>
-				  </thead>
-				  <tbody>
-					<?php $sale_fee_row = 0; ?>
-					<?php if($sale_fees) { ?>
-					  <?php foreach ($sale_fees as $sale_fee) { ?>
-					  <tr id="sale-fee-row<?php echo $sale_fee_row; ?>">
-					    <td class="text-right"><input type="text" name="sale_fee[<?php echo $sale_fee_row; ?>][name]" value="<?php echo $sale_fee['name']; ?>" class="form-control" /></td>
-					    <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="sale_fee[<?php echo $sale_fee_row; ?>][amount]" value="<?php echo $sale_fee['amount']; ?>" class="form-control" /></div></td>
-					    <td class="text-left"><button type="button" onclick="$('#sale-fee-row<?php echo $sale_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
-					  </tr>
-					  <?php $sale_fee_row++; ?>
-					  <?php } ?>
-					<?php } ?>
-				  </tbody>
-				  <tfoot>
-					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_sale_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-					</tr>
-				  </tfoot>
-                </table>
-              </div>
 			</div>
 		  </div>
 		  <div id="store" class="tab-pane">
@@ -507,21 +472,6 @@ $(document).ready(function() {
 		}
 	});
 });
-</script>
-<script>
-sale_fee_row = <?php echo $sale_fee_row; ?>;
-
-function add_sale_fee() {
-	html  = '<tr id="sale-fee-row' + sale_fee_row + '">';
-	html += '  <td class="text-right"><input type="text" name="sale_fee[' + sale_fee_row + '][name]" value="" class="form-control" /></td>';
-	html += '  <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="sale_fee[' + sale_fee_row + '][amount]" value="" class="form-control" /></div></td>';
-	html += '  <td class="text-left"><button type="button" onclick="$(\'#sale-fee-row' + sale_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
-
-	$('#sale_fee tbody').append(html);
-
-	sale_fee_row++;
-}
 </script>
 <script>
 $('input[name=\'customer_name\']').autocomplete({

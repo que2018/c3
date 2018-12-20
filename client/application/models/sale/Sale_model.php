@@ -1,13 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Sale_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
 	public function add_sale($data)
 	{
 		$this->db->trans_begin();
@@ -113,25 +107,6 @@ class Sale_model extends CI_Model
 		}
 						
 		$this->db->insert_batch('sale_product', $sale_products_data); 
-		
-		//sale fee
-		$this->db->delete('sale_fee', array('sale_id' => $sale_id));
-		
-		if(isset($data['sale_fees']) && $data['sale_fees'])
-		{
-			$sale_fees_data = array();
-						
-			foreach($data['sale_fees'] as $sale_fee)
-			{					
-				$sale_fees_data[] = array(
-					'sale_id'  => $sale_id,
-					'name' 	   => $sale_fee['name'],
-					'amount'   => $sale_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('sale_fee', $sale_fees_data);
-		}	
 		
 		if($this->db->trans_status() === false) 
 		{
@@ -242,25 +217,6 @@ class Sale_model extends CI_Model
 				
 		$this->db->insert_batch('sale_product', $sale_products_data); 
 		
-		//sale fee
-		$this->db->delete('sale_fee', array('sale_id' => $sale_id));
-		
-		if(isset($data['sale_fees']) && $data['sale_fees'])
-		{
-			$sale_fees_data = array();
-						
-			foreach($data['sale_fees'] as $sale_fee)
-			{					
-				$sale_fees_data[] = array(
-					'sale_id'  => $sale_id,
-					'name' 	   => $sale_fee['name'],
-					'amount'   => $sale_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('sale_fee', $sale_fees_data);
-		}	
-		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -309,22 +265,6 @@ class Sale_model extends CI_Model
 		return false;
 	}
 	
-	public function get_sale_fees($sale_id) 
-	{	
-		$this->db->select('*', false);
-		$this->db->from('sale_fee');
-		$this->db->where('sale_id', $sale_id);
-
-		$q = $this->db->get();
-		
-		if($q->num_rows() > 0)
-		{
-			return $q->result_array();
-		} 
-		
-		return false;
-	}
-	
 	public function get_sale_product($sale_id, $product_id) 
 	{
 		$this->db->select('sale_product.quantity, product.*', false);
@@ -360,7 +300,7 @@ class Sale_model extends CI_Model
 		return false;
 	}		
 	
-	function get_sale_volume($sale_id) 
+	public function get_sale_volume($sale_id) 
 	{
 		$this->load->model('setting/length_class_model');
 		
@@ -433,7 +373,7 @@ class Sale_model extends CI_Model
 		return $result;
 	}
 	
-	function get_sale_products_volume($sale_products)
+	public function get_sale_products_volume($sale_products)
 	{
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
@@ -499,7 +439,7 @@ class Sale_model extends CI_Model
 		return $volume;
 	}
 	
-	function get_sale_weight($sale_id) 
+	public function get_sale_weight($sale_id) 
 	{
 		$this->load->model('setting/weight_class_model');
 		
@@ -530,7 +470,7 @@ class Sale_model extends CI_Model
 		return $result;
 	}
 	
-	function get_sale_products_weight($sale_products)
+	public function get_sale_products_weight($sale_products)
 	{
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/weight_class_model');
@@ -554,7 +494,7 @@ class Sale_model extends CI_Model
 		return $weight;
 	}
 	
-	function get_sales($data)
+	public function get_sales($data)
 	{
 		$this->db->select('sale.*', false);
 		$this->db->from('sale');
@@ -644,7 +584,7 @@ class Sale_model extends CI_Model
 		}
 	}
 	
-	function get_sale_total($data)
+	public function get_sale_total($data)
 	{
 		$this->db->select('COUNT(sale.id) AS total', false);
 		$this->db->from('sale');
@@ -713,7 +653,7 @@ class Sale_model extends CI_Model
 		return false;
 	}
 	
-	function get_period_sale_total($data)
+	public function get_period_sale_total($data)
 	{
 		$this->db->select("COUNT(id) AS total", false);
 		$this->db->from('sale');
@@ -736,7 +676,7 @@ class Sale_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_period_sale_income($data)
+	public function get_period_sale_income($data)
 	{
 		$this->db->select('SUM(total) AS total', false);
 		$this->db->from('sale');
@@ -778,7 +718,6 @@ class Sale_model extends CI_Model
 		
 		$this->db->delete('sale', array('id' => $sale_id));
 		$this->db->delete('sale_product', array('sale_id' => $sale_id));
-		$this->db->delete('sale_fee', array('sale_id' => $sale_id));
 		$this->db->delete('sale_to_checkout', array('sale_id' => $sale_id));
 		
 		if($this->db->trans_status() === false) 
@@ -795,7 +734,7 @@ class Sale_model extends CI_Model
 		}
 	}	
 	
-	function update_tracking($sale_id, $tracking) 
+	public function update_tracking($sale_id, $tracking) 
 	{
 		$this->db->trans_begin();
 		
@@ -816,7 +755,7 @@ class Sale_model extends CI_Model
 		}
 	}
 	
-	function update_label($sale_id, $label) 
+	public function update_label($sale_id, $label) 
 	{
 		$this->db->trans_begin();
 		
@@ -837,7 +776,7 @@ class Sale_model extends CI_Model
 		}
 	}
 	
-	function update_shipping($sale_id, $shipping_data) 
+	public function update_shipping($sale_id, $shipping_data) 
 	{
 		$this->db->trans_begin();
 				
@@ -858,7 +797,7 @@ class Sale_model extends CI_Model
 		}
 	}
 	
-	function update_status($sale_id, $status_id) 
+	public function update_status($sale_id, $status_id) 
 	{
 		$this->db->trans_begin();
 			
