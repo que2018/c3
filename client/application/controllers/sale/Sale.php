@@ -780,31 +780,6 @@ class Sale extends CI_Controller
 			);
 		}
 		
-		//checkout status
-		$sale_checkouts = $this->checkout_model->get_sale_checkout($sale_id);
-		
-		$data['checkedout'] = ($sale_checkouts)?true:false;
-		
-		$data['product_locations'] = array();
-	
-		if($sale_checkouts)
-		{
-			foreach($sale_checkouts as $sale_checkout)
-			{
-				$checkout_id = $sale_checkout['id'];
-				
-				$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);
-				
-				if($checkout_products)
-				{				
-					foreach($checkout_products as $checkout_product)
-					{
-						$data['product_locations'][$checkout_product['product_id']] = $sale_checkout['location_id'];
-					}
-				}
-			}
-		}
-		
 		//shipping providers			
 		$shipping_providers_data = $this->shipping_model->get_shipping_providers();
 				
