@@ -85,7 +85,7 @@ class Weight_class_model extends CI_Model
 		return $result['total'];
 	}
 	
-	function get_all_weight_classes() 
+	function get_weight_classes() 
 	{
 		$this->db->select('*');
 		$this->db->from('weight_class');

@@ -8,7 +8,7 @@ class Length_class_model extends CI_Model
 		parent::__construct();
 	}	
 	
-	function get_all_length_classes() 
+	function get_length_classes() 
 	{
 		$this->db->select('*');
 		$this->db->from('length_class');

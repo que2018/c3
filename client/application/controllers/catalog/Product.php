@@ -299,7 +299,7 @@ class Product extends CI_Controller
 		}
 				
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		$data['length_classes'] = array();
 		
@@ -315,7 +315,7 @@ class Product extends CI_Controller
 		}
 			
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		$data['weight_classes'] = array();
 		
@@ -487,7 +487,7 @@ class Product extends CI_Controller
 		$data['quantity'] = ($quantity)?$quantity:0;
 		
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		$data['length_classes'] = array();
 		
@@ -503,7 +503,7 @@ class Product extends CI_Controller
 		}
 		
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		$data['weight_classes'] = array();
 		
@@ -611,7 +611,7 @@ class Product extends CI_Controller
 		$data['quantity'] = ($quantity)?$quantity:0;
 		
 		//length classes
-		$length_classes = $this->length_class_model->get_all_length_classes();
+		$length_classes = $this->length_class_model->get_length_classes();
 		
 		$data['length_classes'] = array();
 		
@@ -627,7 +627,7 @@ class Product extends CI_Controller
 		}
 		
 		//weight classses
-		$weight_classes = $this->weight_class_model->get_all_weight_classes();
+		$weight_classes = $this->weight_class_model->get_weight_classes();
 		
 		$data['weight_classes'] = array();
 		
