@@ -1,19 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Sale_ajax extends CI_Controller {
-
-	function __construct()
+class Sale_ajax extends CI_Controller 
+{	
+	public function get_product()
 	{
-		parent::__construct();
-		
-		$this->lang->load('sale/sale');
-		
 		$this->load->model('sale/sale_model');
-	}
-	
-	function get_product()
-	{
+		
 		//code empty
 		if(!$this->input->post('code'))
 		{
@@ -65,8 +57,8 @@ class Sale_ajax extends CI_Controller {
 				'msg'       => $this->lang->line('error_product_not_found')
 			);
 			
-			echo json_encode($outdata);
-			die();
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 		 
 		//find product
@@ -91,11 +83,13 @@ class Sale_ajax extends CI_Controller {
 			'products'  => $products
 		);
 			
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_sale_products_volume()
+	public function get_sale_products_volume()
 	{
+		$this->load->model('sale/sale_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/length_class_model');
 
@@ -122,11 +116,13 @@ class Sale_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function get_sale_products_weight()
+	public function get_sale_products_weight()
 	{
+		$this->load->model('sale/sale_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('setting/weight_class_model');
 
@@ -149,7 +145,33 @@ class Sale_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
+	}
+	
+	public function get_tracking_detail()
+	{		
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->get('sale_id')) 
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);	
+			
+			$tracking = $sale['tracking'];
+			
+			$code = $sale['shipping_provider'];
+			
+			$this->load->model('tracking/'. $code .'_model');
+
+			$tracking_details = $this->{$code . '_model'}->get_tracking_detail($tracking);
+		
+			$outdata['tracking_details'] = $tracking_details;
+		
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
 	}
 }
 

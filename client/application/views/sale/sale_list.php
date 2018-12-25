@@ -139,6 +139,7 @@
 					  <td>
 					    <?php if($sale['tracking']) { ?>
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
+						  <div class="trac-detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
 						<?php } ?>
 					  </td>
 					  <td><?php echo $sale['name']; ?></td>
@@ -153,6 +154,7 @@
 						  <button class="btn btn-danger btn-delete" data="<?php echo $sale['sale_id']; ?>"><i class="fa fa-trash"></i></button>
 						<?php } ?>
 					 </td>
+					<input type="hidden" name="sale_id" value="<?php echo $sale['sale_id']; ?>" >
 					</tr>
 					<?php $offset++; ?>
 				  <?php } ?>
@@ -261,10 +263,61 @@ function print_label(handle)
 </script>
 <script>
 $(document).ready(function() {
-	$('td:first-child').hover(function() {
+	$(document).on('mouseenter', 'td:nth-child(1)', function() {
 		$(this).find('.detail').show();
-	}, function() {
+	});
+	
+	$(document).on('mouseleave', 'td:nth-child(1)', function() {
 		$(this).find('.detail').hide();
+	});
+});
+</script>
+<script>
+$(document).ready(function() {
+	$(document).on('mouseenter', 'td:nth-child(3)', function() {
+		$(this).find('.trac-detail').show();
+		
+		handle = $(this);
+		
+		var trackBox = handle.find('.trac-detail');
+		
+		sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
+		
+		$.ajax({
+			url: '<?php echo base_url(); ?>sale/sale_ajax/get_tracking_detail?sale_id=' + sale_id,
+			dataType: 'json',
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: function() {
+				trackBox.html('<i class="fa fa-spinner fa-spin trac-spin"></i>');
+			},
+			success: function(json) {
+				html = '<table class="table">';
+				html += '<thead>';
+				html += '<tr>';
+				html += '<th><?php echo $this->lang->line('column_action'); ?></th>';
+				html += '<th><?php echo $this->lang->line('column_date'); ?></th>';
+				html += '</thead>';
+				html += '<tbody>';
+				
+				$.each(json.tracking_details, function(index, tracking_detail) {
+					html += '<tr>';
+					html += '<td>' + tracking_detail.description + '</td>';
+					html += '<td>' + tracking_detail.time + '</td>';
+					html += '</tr>';
+				});
+				
+				html += '</tbody>';
+				html += '</table>'; 
+				
+				trackBox.html(html);
+			}
+		});
+	});
+	
+	$(document).on('mouseleave', 'td:nth-child(3)', function() {
+		$(this).find('.trac-detail').hide();
 	});
 });
 </script>	

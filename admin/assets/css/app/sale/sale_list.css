@@ -80,6 +80,23 @@ input:focus {
     padding: 20px 15px;
 	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
+.trac-detail {
+	width: 400px;
+	height: 100px;
+    background: #ffffff;
+    position: absolute;
+	display: none;
+	left: 33%;
+    padding: 20px 15px;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+	z-index: 100;
+}
+.trac-spin {
+	line-height: 60px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
 .detail table {
 	margin-bottom: 0px;
 }

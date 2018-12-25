@@ -135,6 +135,8 @@ $lang['column_height_short'] 	  	            = 'H';
 $lang['column_weight_short'] 	  	            = 'W';
 $lang['column_checkout_location'] 	  	     	= 'Checkout Location';
 $lang['column_date_added'] 	  	         		= 'Date Added';
+$lang['column_action'] 	  	         		    = 'Action';
+$lang['column_date'] 	  	         		    = 'Date';
 
 // Button
 $lang['button_add_product'] 	  	     		= 'Add Product';

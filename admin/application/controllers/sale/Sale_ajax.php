@@ -240,6 +240,31 @@ class Sale_ajax extends CI_Controller
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));
 	}
+	
+	public function get_tracking_detail()
+	{		
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->get('sale_id')) 
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);	
+			
+			$tracking = $sale['tracking'];
+			
+			$code = $sale['shipping_provider'];
+			
+			$this->load->model('tracking/'. $code .'_model');
+
+			$tracking_details = $this->{$code . '_model'}->get_tracking_detail($tracking);
+		
+			$outdata['tracking_details'] = $tracking_details;
+		
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
 }
 
 

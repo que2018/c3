@@ -104,6 +104,8 @@ $lang['column_height_short'] 	  	            = 'H';
 $lang['column_weight_short'] 	  	            = 'W';
 $lang['column_checkout_location'] 	  	     	= '出库库位';
 $lang['column_date_added'] 	  	         		= '添加时间';
+$lang['column_action'] 	  	         		    = '操作';
+$lang['column_date'] 	  	         		    = '日期';
 
 // Button
 $lang['button_add_product'] 	  	     		= '添加产品';
