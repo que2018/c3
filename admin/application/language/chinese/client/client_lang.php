@@ -6,6 +6,8 @@ $lang['text_edit'] 	  	        	 	  	    = 'edit client';
 $lang['text_delete'] 	  	        	 	  	= 'delete client';
 $lang['text_save'] 	  	        	 	  	 	= 'save client';
 $lang['text_cancel'] 	  	        	 	  	= 'cancel';
+$lang['text_order'] 	  	        	 	  	= 'order';
+$lang['text_checkin'] 	  	        	 	  	= 'checkin';
 $lang['text_firstname'] 	  	         		= 'firstname';
 $lang['text_lastname'] 	  	             		= 'lastname';
 $lang['text_company'] 	  	             		= 'company';
@@ -34,6 +36,7 @@ $lang['column_action'] 	  	             		= 'Action';
 
 // Tab
 $lang['tab_general'] 	  	             		= 'General';
+$lang['tab_data'] 	  	             		    = 'Data';
 $lang['tab_location'] 	  	         		    = 'Location';
 
 // Entry

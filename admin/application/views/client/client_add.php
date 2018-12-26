@@ -23,6 +23,7 @@
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
+		  <li><a data-toggle="tab" href="#data"><?php echo $this->lang->line('tab_data'); ?></a></li>
 		  <li><a data-toggle="tab" href="#location"><?php echo $this->lang->line('tab_location'); ?></a></li>
 		</ul>
 		<div class="tab-content">
@@ -57,6 +58,26 @@
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_phone'); ?></label>
 			    <div class="col-sm-10"><input type="text" name="phone" value="<?php echo $phone; ?>" class="form-control"></div>
 			  </div>
+			</div>
+		  </div>
+		  <div id="data" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_email'); ?></label>
+				<div class="col-sm-10">
+				  <?php if(isset($data['mail']['checkin'])) { ?>
+				    <div class="i-checks"><label><input type="checkbox" name="data[mail][checkin]" value="1" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_checkin'); ?></label></div>
+				  <?php } else { ?>
+				    <div class="i-checks"><label><input type="checkbox" name="data[mail][checkin]" value="1"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_checkin'); ?></label></div>
+				  <?php } ?>
+			      <?php if(isset($data['mail']['order'])) { ?>
+				    <div class="i-checks"><label><input type="checkbox" name="data[mail][order]" value="1" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_order'); ?></label></div>
+				  <?php } else { ?>
+				    <div class="i-checks"><label><input type="checkbox" name="data[mail][order]" value="1"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_order'); ?></label></div>
+				  <?php } ?>
+				</div>
+              </div>
+			  <div class="hr-line-dashed"></div>
 			</div>
 		  </div>
 		  <div id="location" class="tab-pane">
@@ -159,6 +180,14 @@ function locationautocomplete(location_row) {
 		}
 	});
 }
+</script>
+<script>
+$(document).ready(function () {
+	$('.i-checks').iCheck({
+		checkboxClass: 'icheckbox_square-green',
+		radioClass: 'iradio_square-green',
+	});
+});
 </script>
 <?php echo $footer; ?>
 

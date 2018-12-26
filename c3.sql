@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2018 at 07:03 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Dec 26, 2018 at 07:53 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -541,7 +541,114 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (4873, 1, '::1', 'catalog/product_import/upload', '0', 'POST', '2018-09-09 07:00:55'),
 (4874, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:00:58'),
 (4875, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-09-09 07:01:06'),
-(4876, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:01:11');
+(4876, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:01:11'),
+(4877, NULL, '::1', '', 'view the dashboard', 'GET', '2018-12-20 18:59:26'),
+(4878, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-12-20 18:59:32'),
+(4879, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-12-20 18:59:32'),
+(4880, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:35'),
+(4881, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:36'),
+(4882, 1, '::1', 'setting/language', 'view the language page', 'GET', '2018-12-20 18:59:39'),
+(4883, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:41');
+INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
+(4884, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:41'),
+(4885, 1, '::1', 'setting/setting', 'view the setting page', 'POST', '2018-12-20 18:59:47'),
+(4886, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:48'),
+(4887, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:48'),
+(4888, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-12-20 18:59:51'),
+(4889, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 18:59:59'),
+(4890, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:00:02'),
+(4891, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:00:05'),
+(4892, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:00:08'),
+(4893, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:00:14'),
+(4894, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:00:17'),
+(4895, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-20 19:00:22'),
+(4896, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:00:22'),
+(4897, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:01:09'),
+(4898, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:01:53'),
+(4899, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:01:55'),
+(4900, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:19:44'),
+(4901, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:20:59'),
+(4902, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:21:02'),
+(4903, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:21:09'),
+(4904, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:29:52'),
+(4905, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:11'),
+(4906, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:30:13'),
+(4907, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:15'),
+(4908, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:30:17'),
+(4909, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-12-20 19:30:19'),
+(4910, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2018-12-20 19:30:24'),
+(4911, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-12-20 19:30:26'),
+(4912, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:26'),
+(4913, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-12-20 19:31:06'),
+(4914, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-12-20 19:31:09'),
+(4915, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'POST', '2018-12-20 19:31:13'),
+(4916, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-12-20 19:31:13'),
+(4917, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 19:44:50'),
+(4918, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 19:44:50'),
+(4919, 1, '::1', 'setting/about', 'view about', 'GET', '2018-12-20 19:44:51'),
+(4920, NULL, '::1', '', 'view the dashboard', 'GET', '2018-12-26 18:32:48'),
+(4921, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-12-26 18:32:54'),
+(4922, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:32:54'),
+(4923, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:32:59'),
+(4924, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:32:59'),
+(4925, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-26 18:33:01'),
+(4926, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-26 18:33:01'),
+(4927, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:33:16'),
+(4928, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:36:56'),
+(4929, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:36:56'),
+(4930, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:37:44'),
+(4931, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-26 18:37:51'),
+(4932, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-12-26 18:38:04'),
+(4933, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-12-26 18:38:05'),
+(4934, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 19:09:52'),
+(4935, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:09:55'),
+(4936, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:09:57'),
+(4937, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:10:36'),
+(4938, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2018-12-26 19:10:47'),
+(4939, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:10:49'),
+(4940, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:15:34'),
+(4941, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:15:37'),
+(4942, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:15:39'),
+(4943, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:16:49'),
+(4944, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2018-12-26 19:16:59'),
+(4945, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:17:00'),
+(4946, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:18:28'),
+(4947, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:18:53'),
+(4948, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:19:08'),
+(4949, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:19:22'),
+(4950, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:20:10'),
+(4951, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:21:39'),
+(4952, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:25:16'),
+(4953, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:25:18'),
+(4954, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:25:18'),
+(4955, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:25:31'),
+(4956, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:25:35'),
+(4957, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:25:35'),
+(4958, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:26:09'),
+(4959, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:26:42'),
+(4960, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:26:47'),
+(4961, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:26:47'),
+(4962, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:38:01'),
+(4963, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:42:52'),
+(4964, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:42:56'),
+(4965, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:42:56'),
+(4966, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:42:58'),
+(4967, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:03'),
+(4968, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:04'),
+(4969, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:06'),
+(4970, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:09'),
+(4971, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:09'),
+(4972, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:11'),
+(4973, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:15'),
+(4974, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:15'),
+(4975, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:17'),
+(4976, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:49:43'),
+(4977, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:49:45'),
+(4978, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:00'),
+(4979, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:04'),
+(4980, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:06'),
+(4981, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:18'),
+(4982, 1, '::1', 'client/client/add', 'view the client add page', 'POST', '2018-12-26 19:50:22');
 
 -- --------------------------------------------------------
 
@@ -724,16 +831,17 @@ CREATE TABLE `client` (
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL
+  `phone` varchar(20) DEFAULT NULL,
+  `data` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`, `firstname`, `lastname`, `company`, `address`, `city`, `state`, `country`, `postal_code`, `phone`) VALUES
-(1, '', 'a64e29f468e9948a4877866c661fd58f84d9933f', '34', '649790223@qq.com', 1, 'Arron', 'Dong', 'Arron Inc', '', '', '', '', '', '1386523650'),
-(2, '', '0d752cdeba0a851675afde29aadd715a8cdcce16', '957', 'd15875325129@outlook.com', 1, 'Huang', 'Xiaojian', 'Huang Inc', '', '', '', '', '', '1386203696');
+INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`, `firstname`, `lastname`, `company`, `address`, `city`, `state`, `country`, `postal_code`, `phone`, `data`) VALUES
+(1, '', '97849389bbdd30445519fb94283c01289b1de41e', '425', '649790223@qq.com', 1, 'Arron', 'Dong', 'Arron Inc', '', '', '', '', '', '1386523650', ''),
+(2, '', '0d752cdeba0a851675afde29aadd715a8cdcce16', '957', 'd15875325129@outlook.com', 1, 'Huang', 'Xiaojian', 'Huang Inc', '', '', '', '', '', '1386203696', 'a:1:{s:4:\"mail\";a:1:{s:7:\"checkin\";s:1:\"1\";}}');
 
 -- --------------------------------------------------------
 
@@ -764,7 +872,8 @@ INSERT INTO `customer` (`id`, `client_id`, `name`, `email`, `company`, `street`,
 (1, 2, 'Vanessa Hill', '', '', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', 'US', '29461', ''),
 (2, 2, 'Emily Taggart', '', '', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', 'US', '54981', ''),
 (3, 1, 'Ashley Azzarella', '', '', '5147 Cadagan court', '', 'Bensalem', 'Pennsylvania', 'US', '19020', '8433317201'),
-(4, 1, 'Daniela Montalvo', '', '', '4725 Randall dr', '', 'Las Vegas', 'Nevada', 'US', '89122', '7024095967');
+(4, 1, 'Daniela Montalvo', '', '', '4725 Randall dr', '', 'Las Vegas', 'Nevada', 'US', '89122', '7024095967'),
+(5, 1, 'TJ', '', '', '11615 E YATES CENTER RD', '', 'LYNDONVILLE', 'NY', 'United States', '14098', '5853535341');
 
 -- --------------------------------------------------------
 
@@ -1328,7 +1437,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `upc`, `sku`, `asin`, `name`, `price`, `image`, `description`, `weight`, `weight_class_id`, `length_class_id`, `length`, `width`, `height`, `alert_quantity`, `shipping_provider`, `shipping_service`, `client_id`, `date_added`, `date_modified`) VALUES
-(92, 'X001D08AXL', 'NRC-91', '', 'NRC-91', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '8.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
+(92, 'X001D08AXL', 'NRC-91', '', 'NRC-91', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '8.00', '0.00', 0, 'postpony', 'pfg', 1, '2018-09-09 07:00:55', '2018-12-20 19:31:13'),
 (93, 'X000Y005WP', 'RC-02', '', 'RC-02', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
 (94, 'X000Y005XJ', 'RC-03', '', 'RC-03', '0.00', 'no_image.jpg', NULL, '3.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
 (95, 'X000Y005X9', 'RC-06', '', 'RC-06', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
@@ -1444,7 +1553,8 @@ INSERT INTO `sale` (`id`, `store_id`, `store_sale_id`, `name`, `street`, `street
 (6, 0, '', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', '4.00', '4.00', '2.00', '0.20', 1, 5, 'usps', 'fc', '200.00', '', 2, '', '2018-06-22 01:24:57', '2018-06-25 19:17:21'),
 (7, 0, '', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', '3.00', '4.00', '2.00', '0.20', 1, 5, 'usps', 'fc', '450.00', '', 1, '', '2018-06-25 19:17:41', '2018-07-21 20:02:55'),
 (8, 2, '5b578d08ac658917522297ab', 'Ashley Azzarella', '5147 Cadagan court', '', 'Bensalem', 'Pennsylvania', '19020', 'US', '', '8433317201', '11.00', '11.00', '4.00', '1.56', 1, 5, '', '', '17.83', '', 1, '', '2018-07-24 20:33:12', '0000-00-00 00:00:00'),
-(9, 2, '5b5bd689b1f52b56128cf1e3', 'Daniela Montalvo', '4725 Randall dr', '', 'Las Vegas', 'Nevada', '89122', 'US', '', '7024095967', '11.00', '11.00', '4.00', '1.56', 1, 5, '', '', '17.83', '', 1, '', '2018-07-28 02:35:53', '0000-00-00 00:00:00');
+(9, 2, '5b5bd689b1f52b56128cf1e3', 'Daniela Montalvo', '4725 Randall dr', '', 'Las Vegas', 'Nevada', '89122', 'US', '', '7024095967', '11.00', '11.00', '4.00', '1.56', 1, 5, 'ups', 'gr', '17.83', '', 2, '', '2018-07-28 02:35:53', '2018-12-20 19:30:26'),
+(10, 1, '2255544450222300', 'TJ', '11615 E YATES CENTER RD', '', 'LYNDONVILLE', 'NY', '14098', 'United States', '', '5853535341', '0.00', '8.00', '0.00', '0.00', 1, 5, 'usps', 'fc', '100.00', '', 1, '', '2018-12-20 19:32:10', '2018-12-20 19:32:14');
 
 -- --------------------------------------------------------
 
@@ -1481,8 +1591,9 @@ INSERT INTO `sale_product` (`id`, `sale_id`, `product_id`, `quantity`, `store_sa
 (13, 6, 3, 1, ''),
 (16, 7, 4, 1, ''),
 (17, 8, 83, 1, ''),
-(18, 9, 83, 1, ''),
-(19, 9, 83, 1, '');
+(20, 9, 0, 1, ''),
+(21, 9, 0, 1, ''),
+(23, 10, 92, 1, '');
 
 -- --------------------------------------------------------
 
@@ -1524,7 +1635,7 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (16736, 'alipay', 'alipay_service', 'create_forex_trade', 0),
 (16737, 'alipay', 'alipay_partner', '850025472000772009660', 0),
 (23816, 'usps', 'usps_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
-(24401, 'config', 'config_printnode_general_printer_id', '431808', 0),
+(24443, 'config', 'config_printnode_general_printer_id', '431808', 0),
 (23815, 'usps', 'usps_fee_value', '3', 0),
 (23814, 'usps', 'usps_fee_type', '0', 0),
 (15438, 'system', 'system_google_map_api_key', 'AIzaSyAc05thWPUV50Wuz-ain57oVv4NU5sme_Y', 0),
@@ -1574,7 +1685,7 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (17649, 'amazon', 'amazon_sort_order', '0', 0),
 (18696, 'offline', 'offline_status', '1', 0),
 (18695, 'offline', 'offline_sort_order', '0', 0),
-(24400, 'config', 'config_printnode_label_printer_id', '431808', 0),
+(24442, 'config', 'config_printnode_label_printer_id', '431808', 0),
 (23673, 'ups', 'ups_description', 'Prolineshipping', 0),
 (23842, 'fedex', 'fedex_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
 (23827, 'fedex', 'fedex_state', 'CA', 0),
@@ -1608,7 +1719,7 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (23669, 'ups', 'ups_postcode', '91731', 0),
 (23668, 'ups', 'ups_state', 'CA', 0),
 (23667, 'ups', 'ups_city', 'EL Monte', 0),
-(24399, 'config', 'config_printnode_api_key', 'ecc393aa3ff30e0dd3b27f40ce0a033dc9a7b948', 0),
+(24441, 'config', 'config_printnode_api_key', 'ecc393aa3ff30e0dd3b27f40ce0a033dc9a7b948', 0),
 (23823, 'fedex', 'fedex_origin', 'US', 0),
 (23824, 'fedex', 'fedex_street', '9910 Baldwin Place', 0),
 (23825, 'fedex', 'fedex_street2', '', 0),
@@ -1621,7 +1732,7 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (23661, 'ups', 'ups_pickup_method', '03', 0),
 (23658, 'ups', 'ups_username', 'proline18', 0),
 (23659, 'ups', 'ups_password', 'Proline2017', 0),
-(24398, 'config', 'config_printnode_width', '180', 0),
+(24440, 'config', 'config_printnode_width', '180', 0),
 (23602, 'postpony', 'postpony_fee_type', '0', 0),
 (23603, 'postpony', 'postpony_fee_value', '0', 0),
 (23604, 'postpony', 'postpony_client_fee', 'a:2:{i:0;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"1\";}i:1;a:2:{s:3:\"fee\";s:1:\"0\";s:9:\"client_id\";s:1:\"2\";}}', 1),
@@ -1635,18 +1746,17 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (23594, 'postpony', 'postpony_phone', '9098956073', 0),
 (23593, 'postpony', 'postpony_owner', 'SHAN SUN', 0),
 (23592, 'postpony', 'postpony_country', 'US', 0),
-(24397, 'config', 'config_printnode_position_y', '20', 0),
-(24396, 'config', 'config_printnode_position_x', '14', 0),
-(24395, 'config', 'config_location_barcode_batch_page_item', '1', 0),
-(24394, 'config', 'config_location_barcode_batch_margin', '200', 0),
-(24393, 'config', 'config_location_barcode_batch_code_size', '20', 0),
-(24392, 'config', 'config_location_barcode_batch_name_size', '60', 0),
-(24391, 'config', 'config_location_barcode_batch_posy', '20', 0),
-(24390, 'config', 'config_location_barcode_batch_posx', '10', 0),
-(24389, 'config', 'config_location_barcode_batch_height', '300', 0),
-(24388, 'config', 'config_location_barcode_batch_width', '630', 0),
-(24387, 'config', 'config_location_barcode_code_size', '80', 0),
-(24386, 'config', 'config_location_barcode_name_size', '200', 0),
+(24439, 'config', 'config_printnode_position_y', '20', 0),
+(24438, 'config', 'config_printnode_position_x', '14', 0),
+(24437, 'config', 'config_location_barcode_batch_page_item', '1', 0),
+(24436, 'config', 'config_location_barcode_batch_margin', '200', 0),
+(24435, 'config', 'config_location_barcode_batch_code_size', '20', 0),
+(24434, 'config', 'config_location_barcode_batch_name_size', '60', 0),
+(24433, 'config', 'config_location_barcode_batch_posy', '20', 0),
+(24432, 'config', 'config_location_barcode_batch_posx', '10', 0),
+(24431, 'config', 'config_location_barcode_batch_height', '300', 0),
+(24430, 'config', 'config_location_barcode_batch_width', '630', 0),
+(24429, 'config', 'config_location_barcode_code_size', '80', 0),
 (23798, 'usps', 'usps_company', 'Free Shopping Inc', 0),
 (23660, 'ups', 'ups_account_number', '3FR703', 0),
 (23657, 'ups', 'ups_access_key', '7D3678D352FE879D', 0),
@@ -1666,20 +1776,14 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (23584, 'postpony', 'postpony_pwd', 'pypypypypy', 0),
 (23585, 'postpony', 'postpony_authorized_key', 'TESTTOKEN-ske39De3mkC39d', 0),
 (23684, 'ups', 'ups_fee_value', '3', 0),
-(24385, 'config', 'config_location_barcode_posy', '200', 0),
-(24384, 'config', 'config_location_barcode_posx', '1', 0),
-(24383, 'config', 'config_location_barcode_height', '400', 0),
-(24382, 'config', 'config_location_barcode_width', '6', 0),
-(24381, 'config', 'config_label_posy', '0', 0),
-(24380, 'config', 'config_label_width', '60', 0),
-(24379, 'config', 'config_label_width_type', '0', 0),
-(24378, 'config', 'config_autocomplete_limit', '5', 0),
-(24377, 'config', 'config_dashboard_store_sync_limit', '8', 0),
-(24376, 'config', 'config_dashboard_order_limit', '7', 0),
-(24375, 'config', 'config_dashboard_activity_limit', '8', 0),
-(24374, 'config', 'config_sale_product_page_limit', '15', 0),
-(24373, 'config', 'config_page_limit', '10', 0),
-(24372, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
+(24428, 'config', 'config_location_barcode_name_size', '200', 0),
+(24427, 'config', 'config_location_barcode_posy', '200', 0),
+(24426, 'config', 'config_location_barcode_posx', '1', 0),
+(24425, 'config', 'config_location_barcode_height', '400', 0),
+(24424, 'config', 'config_location_barcode_width', '6', 0),
+(24423, 'config', 'config_label_posy', '0', 0),
+(24422, 'config', 'config_label_width', '60', 0),
+(24421, 'config', 'config_label_width_type', '0', 0),
 (24371, 'checkout_weight', 'checkout_weight_level_end', '2', 0),
 (24215, 'volume', 'volume_level_end', '10', 0),
 (24227, 'flat', 'flat_sort_order', '0', 0),
@@ -1699,18 +1803,26 @@ INSERT INTO `setting` (`setting_id`, `code`, `key`, `value`, `serialized`) VALUE
 (24370, 'checkout_weight', 'checkout_weight_level', 'a:1:{i:0;a:2:{s:6:\"weight\";s:2:\"20\";s:6:\"amount\";s:1:\"0\";}}', 1),
 (24368, 'checkout_weight', 'checkout_weight_status', '1', 0),
 (24367, 'checkout_weight', 'checkout_weight_type', 'checkout', 0),
-(24402, 'config', 'config_language_id', '5', 0),
-(24403, 'config', 'config_information_front_id', '5', 0),
-(24404, 'config', 'config_length_class_id', '1', 0),
-(24405, 'config', 'config_weight_class_id', '5', 0),
-(24406, 'config', 'config_logo', '', 0),
-(24407, 'config', 'config_default_order_shipping_provider', 'postpony', 0),
-(24408, 'config', 'config_default_order_shipping_service', 'pfg', 0),
-(24409, 'config', 'config_smtp_hostname', '', 0),
-(24410, 'config', 'config_smtp_username', '', 0),
-(24411, 'config', 'config_smtp_password', '', 0),
-(24412, 'config', 'config_smtp_port', '', 0),
-(24413, 'config', 'config_smtp_timeout', '', 0);
+(24420, 'config', 'config_autocomplete_limit', '5', 0),
+(24419, 'config', 'config_dashboard_store_sync_limit', '8', 0),
+(24418, 'config', 'config_dashboard_order_limit', '7', 0),
+(24417, 'config', 'config_dashboard_activity_limit', '8', 0),
+(24416, 'config', 'config_sale_product_page_limit', '15', 0),
+(24415, 'config', 'config_page_limit', '10', 0),
+(24414, 'config', 'config_time_zone', 'America/Los_Angeles', 0),
+(24444, 'config', 'config_admin_language_id', '5', 0),
+(24445, 'config', 'config_client_language_id', '5', 0),
+(24446, 'config', 'config_information_front_id', '4', 0),
+(24447, 'config', 'config_length_class_id', '1', 0),
+(24448, 'config', 'config_weight_class_id', '5', 0),
+(24449, 'config', 'config_logo', '', 0),
+(24450, 'config', 'config_default_order_shipping_provider', 'postpony', 0),
+(24451, 'config', 'config_default_order_shipping_service', 'pfg', 0),
+(24452, 'config', 'config_smtp_hostname', '', 0),
+(24453, 'config', 'config_smtp_username', '', 0),
+(24454, 'config', 'config_smtp_password', '', 0),
+(24455, 'config', 'config_smtp_port', '', 0),
+(24456, 'config', 'config_smtp_timeout', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2222,202 +2334,242 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4877;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4983;
+
 --
 -- AUTO_INCREMENT for table `balance`
 --
 ALTER TABLE `balance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `checkin`
 --
 ALTER TABLE `checkin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkin_fee`
 --
 ALTER TABLE `checkin_fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
 --
 -- AUTO_INCREMENT for table `checkin_file`
 --
 ALTER TABLE `checkin_file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkin_product`
 --
 ALTER TABLE `checkin_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkout_fee`
 --
 ALTER TABLE `checkout_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkout_file`
 --
 ALTER TABLE `checkout_file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `checkout_product`
 --
 ALTER TABLE `checkout_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `damage`
 --
 ALTER TABLE `damage`
   MODIFY `damage_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `employee_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `extension`
 --
 ALTER TABLE `extension`
   MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
 --
 -- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
   MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
   MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `length_class`
 --
 ALTER TABLE `length_class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2527;
+
 --
 -- AUTO_INCREMENT for table `location_to_client`
 --
 ALTER TABLE `location_to_client`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `location_unit`
 --
 ALTER TABLE `location_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+
 --
 -- AUTO_INCREMENT for table `product_fee`
 --
 ALTER TABLE `product_fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `recharge`
 --
 ALTER TABLE `recharge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `refund`
 --
 ALTER TABLE `refund`
   MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `sale_label`
 --
 ALTER TABLE `sale_label`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24414;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24457;
+
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
   MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `store_sync`
 --
 ALTER TABLE `store_sync`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `store_sync_history`
 --
 ALTER TABLE `store_sync_history`
-  MODIFY `store_sync_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `store_sync_history_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transfer_product`
 --
 ALTER TABLE `transfer_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `user_group`
 --
 ALTER TABLE `user_group`
   MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT for table `warehouse`
 --
 ALTER TABLE `warehouse`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `weight_class`
 --
 ALTER TABLE `weight_class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- Constraints for dumped tables
 --

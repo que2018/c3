@@ -23,6 +23,17 @@ class Client_model extends CI_Model
 		
 		$client_id = $this->db->insert_id();
 		
+		if(isset($data['data']))
+		{
+			$client_data = array(
+				'data'	       => serialize($data['data'])
+			);
+		
+			$this->db->where('id', $client_id);
+		
+			$this->db->update('client', $client_data); 
+		}
+		
 		//balance data
 		$this->load->model('finance/balance_model');
 		
@@ -63,6 +74,17 @@ class Client_model extends CI_Model
 		$this->db->where('id', $client_id);
 		
 		$this->db->update('client', $client_data); 
+		
+		if(isset($data['data']))
+		{
+			$client_data = array(
+				'data'	       => serialize($data['data'])
+			);
+		
+			$this->db->where('id', $client_id);
+		
+			$this->db->update('client', $client_data); 
+		}
 		
 		if($data['password'])
 		{
@@ -117,7 +139,24 @@ class Client_model extends CI_Model
 		
 		if($q->num_rows() > 0)
 		{
-			return $q->row_array();
+			$row = $q->row_array();
+			
+			$result = array(
+				'email'       => $row['email'],
+				'password'    => $row['password'],
+				'firstname'   => $row['firstname'],
+				'lastname'    => $row['lastname'],				
+				'company'     => $row['company'],
+				'address'     => $row['address'],
+				'city'        => $row['city'],
+				'state'       => $row['state'],
+				'country'     => $row['country'],
+				'postal_code' => $row['postal_code'],
+				'phone'       => $row['phone'],
+				'data'        => unserialize($row['data'])
+			);
+			
+			return $result;
 		} 
 		
 		return false;

@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Client extends MX_Controller 
 {
 	public function index()
@@ -358,9 +357,12 @@ class Client extends MX_Controller
 
 		$this->load->model('client/client_model');
 		
-		$this->header->add_style(base_url(). 'assets/css/app/client/client_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
+		$this->header->add_style(base_url(). 'assets/css/app/client/client_edit.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/iCheck/icheck.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		
 		$this->header->set_title($this->lang->line('text_add_client'));
@@ -379,6 +381,7 @@ class Client extends MX_Controller
 			'lastname'   => $this->input->post('lastname'),
 			'company'    => $this->input->post('company'),
 			'phone'      => $this->input->post('phone'),
+			'data'       => $this->input->post('data'),
 			'locations'  => $this->input->post('location')
 		);
 		
@@ -416,11 +419,14 @@ class Client extends MX_Controller
 
 		$this->load->model('client/client_model');
 		
+		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
 		$this->header->add_style(base_url(). 'assets/css/app/client/client_edit.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/iCheck/icheck.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
-		
+
 		$this->header->set_title($this->lang->line('text_edit_client'));
 	
 		$client_id = $this->input->get('client_id');
@@ -440,6 +446,7 @@ class Client extends MX_Controller
 				'lastname'   => $this->input->post('lastname'),
 				'company'    => $this->input->post('company'),
 				'phone'      => $this->input->post('phone'),
+				'data'       => $this->input->post('data'),
 				'locations'  => $this->input->post('location')
 			);
 						
@@ -458,6 +465,7 @@ class Client extends MX_Controller
 			$data['lastname']   = $this->input->post('lastname');						
 			$data['company']    = $this->input->post('company');			
 			$data['phone']      = $this->input->post('phone');	
+			$data['data']       = $this->input->post('data');	
 			$data['locations']  = $this->input->post('location');							
 		}
 		else
@@ -486,6 +494,7 @@ class Client extends MX_Controller
 			$data['lastname']   = $client['lastname'];				
 			$data['company']    = $client['company'];
 			$data['phone']      = $client['phone'];
+			$data['data']       = $client['data'];
 			$data['locations']  = $locations;				
 		}
 		
