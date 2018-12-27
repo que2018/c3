@@ -545,21 +545,6 @@ $(document).ready(function() {
 });
 </script>
 <script>
-sale_fee_row = <?php echo $sale_fee_row; ?>;
-
-function add_sale_fee() {
-	html  = '<tr id="sale-fee-row' + sale_fee_row + '">';
-	html += '  <td class="text-right"><input type="text" name="sale_fee[' + sale_fee_row + '][name]" value="" class="form-control" /></td>';
-	html += '  <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="sale_fee[' + sale_fee_row + '][amount]" value="" class="form-control" /></div></td>';
-	html += '  <td class="text-left"><button type="button" onclick="$(\'#sale-fee-row' + sale_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
-
-	$('#sale_fee tbody').append(html);
-
-	sale_fee_row++;
-}
-</script>
-<script>
 $('input[name=\'customer_name\']').autocomplete({
 	'source': function(request, response) {
 		customer_name = $('input[name=\'customer_name\']').val();

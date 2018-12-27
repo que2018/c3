@@ -403,7 +403,7 @@ class Sale_model extends CI_Model
 				$height_total += $height * $sale_product['quantity'];
 			}
 					
-			if(($length_total >= $width_total) && ($length_total >= $height_total)) 
+			if(($length_total <= $width_total) && ($length_total <= $height_total)) 
 			{
 				$result = array(
 					'length'  => number_format($length_total, 2),
@@ -411,7 +411,7 @@ class Sale_model extends CI_Model
 					'height'  => number_format($height_max, 2)
 				);
 			}
-			else if(($width_total >= $height_total) && ($width_total >= $length_total))
+			else if(($width_total <= $height_total) && ($width_total <= $length_total))
 			{
 				$result = array(
 					'length'  =>  number_format($length_max, 2),
@@ -419,7 +419,7 @@ class Sale_model extends CI_Model
 					'height'  =>  number_format($height_max, 2)
 				);
 			}
-			else if(($height >= $width_total) && ($height >= $length_total))
+			else if(($height_total <= $width_total) && ($height_total <= $length_total))
 			{
 				$result = array(
 					'length'  =>  number_format($length_max, 2),
@@ -475,7 +475,7 @@ class Sale_model extends CI_Model
 			$height_total += $height * $quantity;
 		}
 	
-		if(($length_total >= $width_total) && ($length_total >= $height_total)) 
+		if(($length_total <= $width_total) && ($length_total <= $height_total)) 
 		{
 			$volume = array(
 				'length'           => number_format($length_total, 2),
@@ -484,7 +484,7 @@ class Sale_model extends CI_Model
 				'length_class_id'  => $this->config->item('config_length_class_id')
 			);
 		}
-		else if(($width_total >= $height_total) && ($width_total >= $length_total))
+		else if(($width_total <= $height_total) && ($width_total <= $length_total))
 		{
 			$volume = array(
 				'length'           => number_format($length_max, 2),
@@ -493,7 +493,7 @@ class Sale_model extends CI_Model
 				'length_class_id'  => $this->config->item('config_length_class_id')
 			);
 		}
-		else if(($height_total >= $width_total) && ($height_total >= $length_total))
+		else if(($height_total <= $width_total) && ($height_total <= $length_total))
 		{
 			$volume = array(
 				'length'           => number_format($length_max, 2),
@@ -522,9 +522,7 @@ class Sale_model extends CI_Model
 			
 				$weight_total += $weight * $sale_product['quantity'];
 			}
-			
-			//list($weight_pound, $weight_ounce) = $this->weight_class_model->to_pound_and_ounce($weight_total);
-			
+						
 			$result = array(
 				'weight'  => number_format($weight_total, 2)
 			);
