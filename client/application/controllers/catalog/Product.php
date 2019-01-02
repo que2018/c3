@@ -1,19 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Product extends CI_Controller 
 {
-	function __construct()
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('catalog/product');
 		
 		$this->load->model('catalog/product_model');
-	}
-	
-	function index()
-	{
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -259,8 +252,11 @@ class Product extends CI_Controller
 	{
 		$this->load->library('form_validation');
 	
-		$this->load->model('localization/length_class_model');
-		$this->load->model('localization/weight_class_model');
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('catalog/product_model');
+		$this->load->model('setting/length_class_model');
+		$this->load->model('setting/weight_class_model');
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -368,24 +364,6 @@ class Product extends CI_Controller
 			}
 		}
 		
-		//clients
-		$data['clients'] = array();
-		
-		$this->load->model('client/client_model');
-		
-		$clients = $this->client_model->get_all_clients();
-				
-		if($clients)
-		{
-			foreach($clients as $client) 
-			{
-				$data['clients'][] = array(
-					'id'    => $client['id'],
-					'name'  => $client['name']
-				);
-			}
-		}
-		
 		$data['error'] = validation_errors();
 		
 		$this->load->view('common/header');
@@ -397,12 +375,15 @@ class Product extends CI_Controller
 	{
 		$this->load->library('form_validation');
 		
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('inventory/inventory_model');
-		$this->load->model('localization/length_class_model');
-		$this->load->model('localization/weight_class_model');
+		$this->load->model('setting/length_class_model');
+		$this->load->model('setting/weight_class_model');
 	
-		$id = $this->input->get('id');
+		$product_id = $this->input->get('product_id');
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
@@ -430,10 +411,9 @@ class Product extends CI_Controller
 				'shipping_provider'  => $this->input->post('shipping_provider'),
 				'shipping_service'   => $this->input->post('shipping_service'),
 				'alert_quantity'     => $this->input->post('alert_quantity'),
-				'client_id'          => $this->input->post('client_id')
 			);
 			
-			$this->product_model->edit_product($id, $data);
+			$this->product_model->edit_product($product_id, $data);
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_product_edit_success'));
 			
@@ -456,11 +436,10 @@ class Product extends CI_Controller
 			$data['shipping_provider'] = $this->input->post('shipping_provider');
 			$data['shipping_service']  = $this->input->post('shipping_service');
 			$data['alert_quantity']    = $this->input->post('alert_quantity');
-			$data['client_id']         = $this->input->post('client_id');
 		}
 		else
 		{
-			$product = $this->product_model->get_product($id);
+			$product = $this->product_model->get_product($product_id);
 			
 			$data['upc']               = $product['upc'];
 			$data['sku']               = $product['sku'];
@@ -476,13 +455,12 @@ class Product extends CI_Controller
 			$data['shipping_provider'] = $product['shipping_provider'];
 			$data['shipping_service']  = $product['shipping_service'];
 			$data['alert_quantity']    = $product['alert_quantity'];
-			$data['client_id']    	   = $product['client_id'];
 		}
 
-		$data['id'] = $id;
+		$data['product_id'] = $product_id;
 		
 		//quantity
-		$quantity = $this->inventory_model->get_product_quantity($id);
+		$quantity = $this->inventory_model->get_product_quantity($product_id);
 		
 		$data['quantity'] = ($quantity)?$quantity:0;
 		
@@ -557,21 +535,6 @@ class Product extends CI_Controller
 			}
 		}
 		
-		//clients
-		$this->load->model('client/client_model');
-		
-		$clients_data = $this->client_model->get_all_clients();
-				
-		$data['clients'] = array();
-		
-		foreach($clients_data as $client_data) 
-		{
-			$data['clients'][] = array(
-				'id'    => $client_data['id'],
-				'name'  => $client_data['name']
-			);
-		}
-		
 		$data['error'] = validation_errors();
 		
 		$this->load->view('common/header');
@@ -580,7 +543,10 @@ class Product extends CI_Controller
 	}
 	
 	public function view() 
-	{		
+	{	
+		$this->lang->load('catalog/product');
+		
+		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('inventory/inventory_model');
 		$this->load->model('setting/length_class_model');
@@ -690,9 +656,11 @@ class Product extends CI_Controller
 	
 	public function delete()
 	{
-		$this->load->model('inventory/inventory_model');
+		$this->lang->load('catalog/product');
 		
+		$this->load->model('catalog/product_model');	
 		$this->load->model('inventory/transfer_model');
+		$this->load->model('inventory/inventory_model');
 		
 		if($this->input->get('id'))
 		{

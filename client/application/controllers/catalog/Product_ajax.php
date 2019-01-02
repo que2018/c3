@@ -1,17 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Product_ajax extends CI_Controller {
-
-	function __construct()
-	{
-		parent::__construct();
-				
-		$this->load->model('catalog/product_model');
-	}
-	
+class Product_ajax extends CI_Controller 
+{
 	public function autocomplete()
-	{		
+	{	
+		$this->load->model('catalog/product_model');
+
 		$outdata = array();
 		
 		if($this->input->get('product_name'))
@@ -32,11 +26,14 @@ class Product_ajax extends CI_Controller {
 			}
 		}
 	
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
-	function update_value()
+	public function update_value()
 	{
+		$this->load->model('catalog/product_model');
+
 		$product_id  = $this->input->post('product_id');
 		$field       = $this->input->post('field');
 		$value       = $this->input->post('value');
@@ -61,7 +58,8 @@ class Product_ajax extends CI_Controller {
 			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

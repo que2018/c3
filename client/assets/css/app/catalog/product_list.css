@@ -32,6 +32,12 @@ input:focus {
 .btn-delete {
 	margin-left: 5px;
 }
+.btn-add {	
+	margin-right: 5px;
+}
+.btn-edit {	
+	margin-right: 5px;
+}
 .btn-download {	
 	margin-right: 5px;
 }

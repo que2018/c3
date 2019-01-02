@@ -9,6 +9,7 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
+    <a href="<?php echo base_url(); ?>catalog/product/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
 	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export'); ?>" class="btn btn-info btn-download" onclick="to_excel()"><i class="fa fa-download"></i></button>
   </div>
 </div>
@@ -98,7 +99,8 @@
 					  <td><?php echo $product['sku']; ?></td>
 					  <td><?php echo $product['quantity']; ?></td>
 					  <td class="text-center">
-						<a href="<?php echo base_url() . 'catalog/product/view?product_id=' . $product['product_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>
+						<a href="<?php echo base_url().'catalog/product/edit?product_id='.$product['product_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+						<a href="<?php echo base_url() . 'catalog/product/view?product_id=' . $product['product_id']; ?>" class="btn btn-primary btn-success"><i class="fa fa-eye"></i></a>
 					  </td>
 					  <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 					</tr>

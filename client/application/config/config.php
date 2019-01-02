@@ -23,13 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://ims.hualongusa.com/client';
+$config['base_url'] = 'http://localhost/c3/client';
 
-$config['site_url'] = 'http://ims.hualongusa.com/';
+$config['site_url'] = 'http://localhost/c3/';
 
-$config['site_http'] = 'http://ims.hualongusa.com/';
+$config['site_http'] = 'http://localhost/c3/';
 
-$config['site_https'] = 'https://ims.hualongusa.com/';
+$config['site_https'] = 'https://localhost/c3/';
 
 /*
 |--------------------------------------------------------------------------

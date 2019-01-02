@@ -20,7 +20,7 @@
       <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $error; ?></div>
     <?php } ?>
     <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
-	<form method="post" action="<?php echo base_url(); ?>catalog/product/edit?id=<?php echo $id; ?>" class="form-horizontal">
+	<form method="post" action="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $product_id; ?>" class="form-horizontal">
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
