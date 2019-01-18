@@ -27,7 +27,7 @@ class Login extends CI_Controller
 		
 		if($this->form_validation->run() == true)
 		{	
-			if($this->auth->login($data['username'], $data['password']))
+			if($this->auth->login(trim($data['username']), trim($data['password'])))
 			{
 				$this->session->set_userdata('language_id', $data['language_id']);
 
