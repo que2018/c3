@@ -561,12 +561,12 @@ class Checkout_model extends CI_Model
 		
 		if(!empty($data['filter_id'])) 
 		{			
-			$this->db->like('id', $data['filter_id'], 'left');
+			$this->db->like('id', $data['filter_id'], 'after');
 		}
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'left');
+			$this->db->like('tracking', $data['filter_tracking'], 'after');
 		}
 		
 		if(!empty($data['filter_note'])) 

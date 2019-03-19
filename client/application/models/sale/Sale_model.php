@@ -525,7 +525,7 @@ class Sale_model extends CI_Model
 				
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('sale.name', $data['filter_name'], 'left');
+			$this->db->like('sale.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 

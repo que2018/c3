@@ -198,22 +198,22 @@ class Inventory_model extends CI_Model
 		
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'left');
+			$this->db->like('product.name', $data['filter_product'], 'after');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'left');
+			$this->db->like('product.upc', $data['filter_upc'], 'after');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'left');
+			$this->db->like('product.sku', $data['filter_sku'], 'after');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'left');
+			$this->db->like('product.asin', $data['filter_asin'], 'after');
 		}
 		
 		if(!empty($data['filter_location'])) 
@@ -228,7 +228,7 @@ class Inventory_model extends CI_Model
 		
 		if(!empty($data['filter_batch'])) 
 		{			
-			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
+			$this->db->like('inventory.batch', $data['filter_batch'], 'after');
 		}
 		
 		if(!empty($data['filter_quantity'])) 
@@ -353,22 +353,22 @@ class Inventory_model extends CI_Model
 		
 		if(!empty($data['filter_product'])) 
 		{			
-			$this->db->like('product.name', $data['filter_product'], 'left');
+			$this->db->like('product.name', $data['filter_product'], 'after');
 		}
 		
 		if(!empty($data['filter_upc'])) 
 		{			
-			$this->db->like('product.upc', $data['filter_upc'], 'left');
+			$this->db->like('product.upc', $data['filter_upc'], 'after');
 		}
 		
 		if(!empty($data['filter_sku'])) 
 		{			
-			$this->db->like('product.sku', $data['filter_sku'], 'left');
+			$this->db->like('product.sku', $data['filter_sku'], 'after');
 		}
 		
 		if(!empty($data['filter_asin'])) 
 		{			
-			$this->db->like('product.asin', $data['filter_asin'], 'left');
+			$this->db->like('product.asin', $data['filter_asin'], 'after');
 		}
 		
 		if(!empty($data['filter_location'])) 
@@ -383,7 +383,7 @@ class Inventory_model extends CI_Model
 		
 		if(!empty($data['filter_batch'])) 
 		{			
-			$this->db->like('inventory.batch', $data['filter_batch'], 'left');
+			$this->db->like('inventory.batch', $data['filter_batch'], 'after');
 		}
 		
 		if(!empty($data['filter_quantity'])) 

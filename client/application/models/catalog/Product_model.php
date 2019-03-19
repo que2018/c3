@@ -122,7 +122,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select("*", false);
 		$this->db->from('product'); 
-		$this->db->like('upc', $upc, 'left');
+		$this->db->like('upc', $upc, 'after');
 		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
@@ -140,7 +140,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select("*", false);
 		$this->db->from('product'); 
-		$this->db->like('sku', $sku, 'left');
+		$this->db->like('sku', $sku, 'after');
 		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
@@ -158,7 +158,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select("*", false);
 		$this->db->from('product'); 
-		$this->db->like('asin', $asin, 'left');
+		$this->db->like('asin', $asin, 'after');
 		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
@@ -176,7 +176,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select("*", false);
 		$this->db->from('product'); 
-		$this->db->like('name', $name, 'left');
+		$this->dafterike('name', $name, 'after');
 		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		

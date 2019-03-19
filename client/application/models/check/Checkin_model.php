@@ -255,7 +255,7 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'left');
+			$this->db->like('tracking', $data['filter_tracking'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -325,7 +325,7 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'left');
+			$this->db->like('tracking', $data['filter_tracking'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -395,7 +395,7 @@ class Checkin_model extends CI_Model
 		
 		if(!empty($data['filter_tracking'])) 
 		{			
-			$this->db->like('tracking', $data['filter_tracking'], 'left');
+			$this->db->like('tracking', $data['filter_tracking'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 

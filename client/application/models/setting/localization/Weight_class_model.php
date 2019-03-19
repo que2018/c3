@@ -64,12 +64,12 @@ class Weight_class_model extends CI_Model
 		
 		if(!empty($data['filter_unit'])) 
 		{			
-			$this->db->like('unit', $data['filter_unit'], 'left');
+			$this->db->like('unit', $data['filter_unit'], 'after');
 		}
 		
 		if(!empty($data['filter_value'])) 
 		{			
-			$this->db->like('value', $data['filter_value'], 'left');
+			$this->db->like('value', $data['filter_value'], 'after');
 		}
 		
 		$sort_data = array(
@@ -120,12 +120,12 @@ class Weight_class_model extends CI_Model
 		
 		if(!empty($data['filter_unit'])) 
 		{			
-			$this->db->like('unit', $data['filter_unit'], 'left');
+			$this->db->like('unit', $data['filter_unit'], 'after');
 		}
 		
 		if(!empty($data['filter_value'])) 
 		{			
-			$this->db->like('value', $data['filter_value'], 'left');
+			$this->db->like('value', $data['filter_value'], 'after');
 		}
 		
 		$q = $this->db->get();
