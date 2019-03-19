@@ -612,7 +612,7 @@ class Sale_model extends CI_Model
 				
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('sale.name', $data['filter_name'], 'left');
+			$this->db->like('sale.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -703,7 +703,7 @@ class Sale_model extends CI_Model
 			
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('sale.name', $data['filter_name'], 'left');
+			$this->db->like('sale.name', $data['filter_name'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -729,8 +729,8 @@ class Sale_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('sale'); 
 		$this->db->or_where('id', $key);  
-		$this->db->or_like('store_sale_id', $key, 'left');  
-		$this->db->or_like('tracking', $key, 'left');  
+		$this->db->or_like('store_sale_id', $key, 'after');  
+		$this->db->or_like('tracking', $key, 'after');  
 		
 		$q = $this->db->get();
 		

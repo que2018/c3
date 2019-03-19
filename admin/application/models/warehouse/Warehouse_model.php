@@ -188,7 +188,7 @@ class Warehouse_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('warehouse'); 
-		$this->db->like('name', $key, 'left');  
+		$this->db->like('name', $key, 'after');  
 		
 		$q = $this->db->get();
 		

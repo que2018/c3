@@ -197,7 +197,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('upc', $upc, 'left');
+		$this->db->like('upc', $upc, 'after');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -214,7 +214,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('sku', $sku, 'left');
+		$this->db->like('sku', $sku, 'after');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -231,7 +231,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('asin', $asin, 'left');
+		$this->db->like('asin', $asin, 'after');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -264,7 +264,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->like('name', $name, 'left');
+		$this->db->like('name', $name, 'after');
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		
 		$q = $this->db->get();
@@ -281,9 +281,9 @@ class Product_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('product'); 
-		$this->db->or_like('name', $key, 'left');  
-		$this->db->or_like('upc', $key, 'left');  
-		$this->db->or_like('sku', $key, 'left');  
+		$this->db->or_like('name', $key, 'after');  
+		$this->db->or_like('upc', $key, 'after');  
+		$this->db->or_like('sku', $key, 'after');  
 		
 		$q = $this->db->get();
 		
@@ -385,12 +385,12 @@ class Product_model extends CI_Model
 		
 		if(!empty($data['filter_upc'])) 
 		{						
-			$this->db->like('product.upc', $data['filter_upc'], 'left');
+			$this->db->like('product.upc', $data['filter_upc'], 'after');
 		}
 	
 		if(!empty($data['filter_sku'])) 
 		{						
-			$this->db->like('product.sku', $data['filter_sku'], 'left');
+			$this->db->like('product.sku', $data['filter_sku'], 'after');
 		}
 		
 		$sort_data = array(
@@ -454,12 +454,12 @@ class Product_model extends CI_Model
 		
 		if(!empty($data['filter_upc'])) 
 		{						
-			$this->db->like('product.upc', $data['filter_upc'], 'left');
+			$this->db->like('product.upc', $data['filter_upc'], 'after');
 		}
 	
 		if(!empty($data['filter_sku'])) 
 		{						
-			$this->db->like('product.sku', $data['filter_sku'], 'left');
+			$this->db->like('product.sku', $data['filter_sku'], 'after');
 		}
 		
 		$q = $this->db->get();

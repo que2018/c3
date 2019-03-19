@@ -139,7 +139,7 @@ class Information_model extends CI_Model
 		
 		if(!empty($data['filier_title'])) 
 		{			
-			$this->db->like('information_content.title', $data['filier_title'], 'left');
+			$this->db->like('information_content.title', $data['filier_title'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 
@@ -199,7 +199,7 @@ class Information_model extends CI_Model
 
 		if(!empty($data['filier_title'])) 
 		{			
-			$this->db->like('information_content.title', $data['filier_title'], 'left');
+			$this->db->like('information_content.title', $data['filier_title'], 'after');
 		}
 		
 		if(!empty($data['filter_status'])) 

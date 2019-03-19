@@ -415,8 +415,6 @@ class Product extends MX_Controller
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
-		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
-		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		
 		$data = array(
 			'upc'                => $this->input->post('upc'),
@@ -586,8 +584,6 @@ class Product extends MX_Controller
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('weight',$this->lang->line('error_weight_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('alert_quantity',$this->lang->line('error_alert_quantity_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
-		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
-		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		
 		if($this->form_validation->run() == true)
 		{

@@ -202,8 +202,8 @@ class Location_model extends CI_Model
 	{
 		$this->db->select('*', false);
 		$this->db->from('location'); 
-		$this->db->or_like('name', $key, 'left');  
-		$this->db->or_like('code', $key, 'left');  
+		$this->db->or_like('name', $key, 'after');  
+		$this->db->or_like('code', $key, 'after');  
 		
 		$q = $this->db->get();
 		
