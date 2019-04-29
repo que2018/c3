@@ -1,12 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Recent_sale extends MX_Controller 
 {
 	public function index()
 	{
 		$this->load->model('sale/sale_model');
-
 		$this->load->model('store/store_model');
 		
 		$filter_data = array(
@@ -34,16 +32,18 @@ class Recent_sale extends MX_Controller
 				$date_added = $this->datetimer->format_display($sale_data['date_added']);
 
 				foreach($sale_products as $sale_product)
-				{					
-					$total = $this->currency->format($sale_product['price'] * $sale_product['quantity']);
-					
-					$recent_sale_products[] = array(
-						'product_id'  => $sale_product['product_id'],
-						'name'    	  => $sale_product['name'],
-						'date'        => $date_added,
-						'store'       => $store_data['name'],
-						'total'       => $total
-					);
+				{
+					if($sale_product['name']) {
+						$total = $this->currency->format($sale_product['price'] * $sale_product['quantity']);
+						
+						$recent_sale_products[] = array(
+							'product_id'  => $sale_product['product_id'],
+							'name'    	  => $sale_product['name'],
+							'date'        => $date_added,
+							'store'       => $store_data['name'],
+							'total'       => $total
+						);
+					}
 				}
 			}
 		}

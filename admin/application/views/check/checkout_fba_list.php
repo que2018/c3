@@ -5,7 +5,7 @@
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
 	  <li><a href="<?php echo base_url(); ?>check/checkout"><?php echo $this->lang->line('text_checkout'); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line('text_checkout_list'); ?></strong></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_fba_list'); ?></strong></li>
 	</ol>
 	<div class="button-group tooltip-demo">
 	  <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_print'); ?>" class="btn btn-info btn-bulk-print"><i class="fa fa-print"></i></button>
@@ -21,27 +21,19 @@
 	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
-		  <h5><?php echo $this->lang->line('text_checkout_description'); ?></h5>
+		  <h5><?php echo $this->lang->line('text_fba_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
 		    <div class="row">
 		      <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-6 control-label"><?php echo $this->lang->line('text_checkout_id'); ?></label>
-			      <div class="col-sm-6"><input name="id" class="form-control" value="<?php echo $filter_id; ?>"></div>
+			      <div class="col-sm-12"><input name="id" class="form-control" value="<?php echo $filter_id; ?>" placeholder="<?php echo $this->lang->line('text_fba_id'); ?>" ></div>
 				</div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
-			      <div class="col-sm-7"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
-			    </div>
-			  </div>
-			  <div class="col-md-2">
-			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_Status'); ?></label>
-			      <div class="col-sm-7">
+			      <div class="col-sm-12">
 				    <select name="status" class="form-control">
 					  <option value=""></option>
 					  <?php if($filter_status == 1) { ?>
@@ -58,10 +50,11 @@
 				  </div>
 			    </div>
 			  </div>
-			  <div class="col-md-3">
+			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_date_added'); ?></label>
-			      <div class="col-sm-8"><input name="date_added" class="form-control" value="<?php echo $filter_date_added; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="date_added" class="form-control" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $this->lang->line('text_date_added'); ?>">
+				  </div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
@@ -76,11 +69,11 @@
 			      <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 				  <?php if($sort == 'id') { ?>
 				  <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkout_id'); ?></a>
+					<a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 				  </th>
 				  <?php } else { ?>
 				  <th style="width: 15%;" class="sorting">
-					<a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkout_id'); ?></a>
+					<a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 				  </th>
 				  <?php } ?>
 				  <?php if($sort == 'sale_id') { ?>
@@ -123,15 +116,15 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <?php if($checkouts) { ?>
+			    <?php if($fbas) { ?>
 				  <?php $offset = 0; ?>
-				  <?php foreach($checkouts as $checkout) { ?>
+				  <?php foreach($fbas as $fba) { ?>
 					<tr>
 					  <td class="text-center">
-					    <input type="checkbox" name="selected[]" value="<?php echo $checkout['checkout_id']; ?>" />
+					    <input type="checkbox" name="selected[]" value="<?php echo $checkout['fba_id']; ?>" />
 					  </td>
 					  <td>
-					    <span>#<?php echo $checkout['checkout_id']; ?></span>
+					    <span>#<?php echo $fba['fba_id']; ?></span>
 						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table">
 						    <thead>

@@ -15,9 +15,9 @@ $lang['text_location'] 	  	         	   		= 'location';
 $lang['text_quantity'] 	  	               		= 'quantity';
 $lang['text_inventory_add'] 	  	       		= 'Inventory Add';
 $lang['text_inventory_edit'] 	  	       		= 'Inventory Edit';
-$lang['text_confirm_delete'] 	  	       		= 'Are you sure to delete this inventory?';
-$lang['text_alert_inventory_list_description']  = 'Display All alert Inventories';
+$lang['text_inventory_alert_list'] 	  	        = 'Inventory Alert List';
 $lang['text_confirm_delete'] 	           		= 'Are you sure to delete this inventory?';
+$lang['text_alert_inventory_list_description']  = 'Display All alert Inventories';
 $lang['text_inventory_delete_success'] 	   		= '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory delete success';
 
 // Column

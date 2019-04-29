@@ -1,24 +1,18 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Inventory_alert_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-			
-	public function get_alert_inventories($data) 
+{			
+	public function get_alert_inventories($data = array()) 
 	{			
-		$this->db->select('inventory.*, product.name AS product_name, location.name AS location_name, warehouse.name AS warehouse_name', false);
+		$this->db->select('inventory.id, inventory.product_id, inventory.date_modified, SUM(inventory.quantity) AS quantity, product.name AS product_name, location.name AS location_name, warehouse.name AS warehouse_name', false);
 		$this->db->from('inventory');
+		
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
 		
-		$this->db->where('inventory.quantity <', 'product.alert_quantity');
-		
-		$this->db->group_by('inventory.id');
+		$this->db->where('inventory.quantity < product.alert_quantity');
+		$this->db->group_by('inventory.product_id');
 		
 		if(!empty($data['filter_product'])) 
 		{			
@@ -95,15 +89,16 @@ class Inventory_alert_model extends CI_Model
 		}
 	}
 	
-	function get_alert_inventory_total($data)
+	public function get_alert_inventory_total($data = array())
 	{
 		$this->db->select('COUNT(inventory.id) AS total', false);
 		$this->db->from('inventory');
+		
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('warehouse', 'warehouse.id = location.warehouse_id', 'left');
 		
-		$this->db->where('inventory.quantity <', 'product.alert_quantity');
+		$this->db->where('inventory.quantity < product.alert_quantity');
 		
 		if(!empty($data['filter_product'])) 
 		{			

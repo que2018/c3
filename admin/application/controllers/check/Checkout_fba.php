@@ -7,7 +7,7 @@ class Checkout_fba extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 	
-		$this->lang->load('check/checkout');
+		$this->lang->load('check/checkout_fba');
 		
 		$this->header->add_style(base_url(). 'assets/css/app/check/checkout_fba_list.css');
 
@@ -16,7 +16,7 @@ class Checkout_fba extends MX_Controller
 		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
 
-		$this->header->set_title($this->lang->line('text_checkout'));
+		$this->header->set_title($this->lang->line('text_fba'));
 	
 		$data = $this->get_list();
 			
@@ -35,8 +35,6 @@ class Checkout_fba extends MX_Controller
 
 	protected function get_list()
 	{	
-		$this->lang->load('check/checkout');
-		
 		$this->load->model('check/checkout_model');
 			
 		if($this->input->get('filter_id'))
