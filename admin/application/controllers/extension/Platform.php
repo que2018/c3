@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Platform extends MX_Controller 
 {
 	public function index()
@@ -45,8 +44,6 @@ class Platform extends MX_Controller
 					'code'       => $platform,
 					'name'       => $this->lang->line('text_title'),
 					'logo'       => $this->lang->line('text_logo'),
-					'status'     => ($this->config->item($platform .'_status'))?$this->lang->line('text_enabled'):$this->lang->line('text_disabled'),
-					'sort_order' => $this->config->item($platform .'_sort_order'),
 					'installed'  => in_array($platform, $platforms)
 				);
 			}
@@ -94,18 +91,6 @@ class Platform extends MX_Controller
 		$this->session->set_flashdata('success', $this->lang->line('text_uninstall_success'));
 
 		redirect(base_url() . 'extension/platform', 'refresh');
-	}
-	
-	public function get_platform_form() 
-	{
-		if($this->input->get('code'))
-		{
-			$code = $this->input->get('code');
-			
-			$this->lang->load('platform/' . $code);
-			
-			$this->load->view('platform/'. $code . '_form');
-		}
 	}
 }
 

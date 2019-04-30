@@ -16,6 +16,7 @@
   <script src="<?php echo $script; ?>"></script>
 <?php } ?>
 <?php } ?>
+<link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/gif">
 <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="<?php echo base_url(); ?>assets/css/style.css" type="text/css" rel="stylesheet" media="screen" />
@@ -48,15 +49,13 @@
 			<a><i class="fa fa-arrow-circle-o-right"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkin'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('menu_checkin_list'); ?></a></li>
-			  <li><a href="<?php echo base_url(); ?>check/checkin_scan"><?php echo $this->lang->line('menu_checkin_scan'); ?></a></li>
 			</ul>
 		  </li>
 		  <li>
 			<a><i class="fa fa-arrow-circle-o-left"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkout'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
+		      <li><a href="<?php echo base_url(); ?>check/checkout_fba"><?php echo $this->lang->line('menu_fba_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout"><?php echo $this->lang->line('menu_checkout_list'); ?></a></li>
-			  <!--<li><a href="<?php echo base_url(); ?>check/checkout_scan"><?php echo $this->lang->line('menu_checkout_scan'); ?></a></li>-->
-			  <li><a href="<?php echo base_url(); ?>check/checkout_fba"><?php echo $this->lang->line('menu_checkout_fba_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout_sale"><?php echo $this->lang->line('menu_checkout_order'); ?></a></li>
 			</ul>
 		  </li>

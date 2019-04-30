@@ -29,11 +29,10 @@
 		    <div class="row">
 		      <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_client'); ?></label>
-			      <div class="col-sm-8">
+			      <div class="col-sm-12">
 				    <select name="client_id" class="form-control">
 				      <?php if($clients) { ?>
-					    <option value=""></option>
+					    <option value="<?php echo $this->lang->line('entry_client'); ?>"></option>
 					    <?php foreach($clients as $client) { ?>
 					      <?php if($client['client_id'] == $filter_client_id) { ?>
 						  <option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
@@ -48,20 +47,23 @@
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('entry_location'); ?></label>
-			      <div class="col-sm-8"><input name="location" class="form-control" value="<?php echo $filter_location; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="location" class="form-control" value="<?php echo $filter_location; ?>" placeholder="<?php echo $this->lang->line('entry_location'); ?>">
+				  </div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_sku'); ?></label>
-			      <div class="col-sm-9"><input name="sku" class="form-control" value="<?php echo $filter_sku; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="sku" class="form-control" value="<?php echo $filter_sku; ?>" placeholder="<?php echo $this->lang->line('entry_sku'); ?>">
+				  </div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('entry_upc'); ?></label>
-			      <div class="col-sm-9"><input name="upc" class="form-control" value="<?php echo $filter_upc; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="upc" class="form-control" value="<?php echo $filter_upc; ?>" placeholder="<?php echo $this->lang->line('entry_upc'); ?>">
+				  </div>
 			    </div>
 			  </div>
 		    </div>
@@ -138,8 +140,8 @@
 						    </table>
 						  </div>
 					    </td>
-					    <td><?php echo $inventory['upc']; ?></td>
-					    <td><?php echo $inventory['sku']; ?></td>
+					    <td><a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?><?php echo $inventory['upc']; ?></a></td>
+						<td><a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?><?php echo $inventory['sku']; ?></a></td>
 					    <td><?php echo $inventory['location']; ?></td>
 					    <td><?php echo $inventory['quantity']; ?></td>	
 					  </tr>

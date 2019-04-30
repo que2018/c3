@@ -118,6 +118,7 @@ $lang['activity_sale_sale_unsolved'] 	  	        			= 'view the unsolved order l
 $lang['activity_sale_sale_unsolved_reload'] 	  	        	= 'reload the unsolved order list';
 $lang['activity_sale_sale_ajax_checkout'] 	  	            	= 'checkout the order';
 $lang['activity_sale_sale_ajax_get_product'] 	  	            = 'try to get order product';
+$lang['activity_sale_sale_ajax_get_tracking_detail'] 	  	    = 'try to get order tracking detail';
 $lang['activity_sale_sale_ajax_get_sale_products_volume'] 	  	= 'try to get sale product volume';
 $lang['activity_sale_sale_ajax_get_sale_products_weight'] 	  	= 'try to get sale product weight';
 $lang['activity_sale_label'] 	  	              		    	= 'try to print a shipping label';

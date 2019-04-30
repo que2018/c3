@@ -23,13 +23,12 @@
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
 		  <div class="row">
-		    <div class="col-md-3">
+		    <div class="col-md-2">
 			  <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line("text_client"); ?></label>
-			    <div class="col-sm-9">
+			    <div class="col-sm-12">
 				  <select name="client_id" class="form-control">
 				    <?php if($clients) { ?>
-					  <option value=""></option>
+					  <option value=""><?php echo $this->lang->line("text_client"); ?></option>
 					  <?php foreach($clients as $client) { ?>
 					    <?php if($client['client_id'] == $filter_client_id) { ?>
 						<option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
@@ -42,16 +41,18 @@
 				</div>
 			  </div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 			  <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_date_from'); ?></label>
-			    <div class="col-sm-9"><input name="date_from" class="form-control" value="<?php echo $filter_date_from; ?>"></div>
+			    <div class="col-sm-12">
+				  <input name="date_from" class="form-control" value="<?php echo $filter_date_from; ?>" placeholder="<?php echo $this->lang->line('text_date_from'); ?>">
+				</div>
 			  </div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 			  <div class="form-group">
-			    <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_date_to'); ?></label>
-			    <div class="col-sm-9"><input name="date_to" class="form-control" value="<?php echo $filter_date_to; ?>"></div>
+			    <div class="col-sm-12">
+				  <input name="date_to" class="form-control" value="<?php echo $filter_date_to; ?>" placeholder="<?php echo $this->lang->line('text_date_from'); ?>">
+				</div>
 			  </div>
 			</div>
 			<div class="col-md-3">
@@ -139,17 +140,6 @@
 				  <?php } ?>
 				<?php } ?>
 			  </tbody>			  
-			  <tfoot>
-			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="name" placeholder="<?php echo $this->lang->line('column_client'); ?>" value="<?php echo $filter_client; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="cost" placeholder="<?php echo $this->lang->line('column_cost'); ?>" value="<?php echo $filter_cost; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="markup" placeholder="<?php echo $this->lang->line('column_markup'); ?>" value="<?php echo $filter_markup; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="amount" placeholder="<?php echo $this->lang->line('column_amount'); ?>" value="<?php echo $filter_amount; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="comment" placeholder="<?php echo $this->lang->line('column_comment'); ?>" value="<?php echo $filter_comment; ?>" /></th>
-				  <th></th>		
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 		  <div class="pagination-block">

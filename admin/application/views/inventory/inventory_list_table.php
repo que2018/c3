@@ -111,8 +111,8 @@
 			      </table>
 			    </div>
 		      </td>
-		      <td><?php echo $inventory['upc']; ?></td>
-		      <td><?php echo $inventory['sku']; ?></td>
+		      <td><a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?><?php echo $inventory['upc']; ?></a></td>
+		      <td><a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $inventory['product_id']; ?>" target="_blank"><?php echo $inventory['product']; ?><?php echo $inventory['sku']; ?></a></td>
 		      <td><?php echo $inventory['location']; ?></td>
 		      <td><?php echo $inventory['quantity']; ?></td>			
 		    </tr>
