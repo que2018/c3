@@ -1,21 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Inventory_alert extends CI_Controller {
-
-	function __construct()
+class Inventory_alert extends MX_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
-		
+		$this->load->module('header');
+		$this->load->module('footer');
+	
 		$this->lang->load('inventory/inventory_alert');
+
+		$this->header->add_style(base_url(). 'assets/css/app/inventory/inventory_alert_list.css');
 		
-		$this->load->model('inventory/inventory_alert_model');
+		$this->header->set_title($this->lang->line('text_inventory_alert_list'));
+		
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('inventory/inventory_alert_list', $data);
 	}
 	
-	function index()
+	public function get_list()
 	{
-		$data['success'] = $this->session->flashdata('success');
-		                   	
+		$this->load->model('inventory/inventory_alert_model');
+
 		if($this->input->get('filter_product'))
 		{
 			$filter_product = $this->input->get('filter_product');
@@ -254,9 +263,7 @@ class Inventory_alert extends CI_Controller {
 		$data['filter_quantity']        = $filter_quantity;
 		$data['filter_date_modified']   = $filter_date_modified;
 		
-		$this->load->view('common/header');
-		$this->load->view('inventory/inventory_alert_list', $data);
-		$this->load->view('common/footer');
+		return $data;
 	}
 }
 

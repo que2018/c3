@@ -1,7 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="<?php echo base_url(); ?>assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/app/inventory/inventory_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_alert_inventory'); ?></h2>
@@ -27,38 +24,38 @@
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
 				<?php if($sort == 'product.name') { ?>
-				<th style="width: 22%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 22%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 			      <a href="<?php echo $sort_product; ?>"><?php echo $this->lang->line('column_product'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'location.name') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 			      <a href="<?php echo $sort_location; ?>"><?php echo $this->lang->line('column_location'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'warehouse.name') { ?>
-				<th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 			      <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 14%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 			      <a href="<?php echo $sort_warehouse; ?>"><?php echo $this->lang->line('column_warehouse'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'inventory.quantity') { ?>
-				<th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 12%;" class="sorting">
+				<th style="width: 20%;" class="sorting">
 			      <a href="<?php echo $sort_quantity; ?>"><?php echo $this->lang->line('column_quantity'); ?></a>
 				</th>
 				<?php } ?>
@@ -71,7 +68,6 @@
 				  <a href="<?php echo $sort_date_modified; ?>"><?php echo $this->lang->line('column_date_modified'); ?></a>
 				</th>
 				<?php } ?>
-				<th style="width: 10%;" style="width: 10%;"><center><?php echo $this->lang->line('column_action'); ?></center></th>
 			  </thead>
 			  <tbody>
 				<?php if($alert_inventories) { ?>
@@ -81,25 +77,11 @@
 					  <td><?php echo $alert_inventory['location']; ?></td>
 					  <td><?php echo $alert_inventory['warehouse']; ?></td>
 					  <td><?php echo $alert_inventory['quantity']; ?></td>
-					  <td><?php echo $alert_inventory['date_modified']; ?></td>
-					  <td class="text-center tooltip-demo">
-					    <a href="<?php echo base_url(); ?>inventory/inventory/edit?inventory_id=<?php echo $alert_inventory['inventory_id']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_edit'); ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-					  	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_delete'); ?>" class="btn btn-danger btn-delete" data="<?php echo $alert_inventory['inventory_id']; ?>"><i class="fa fa-trash"></i></button>
-					  </td>				
+					  <td><?php echo $alert_inventory['date_modified']; ?></td>				
 					</tr>
 				  <?php } ?>
 				<?php } ?>
 			  </tbody>			  
-			  <tfoot>
-			    <tr>
-				  <th class="filter-td"><input type="text" class="filter-input" name="product" placeholder="<?php echo $this->lang->line('column_product'); ?>" value="<?php echo $filter_product; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="location" placeholder="<?php echo $this->lang->line('column_location'); ?>" value="<?php echo $filter_location; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="warehouse" placeholder="<?php echo $this->lang->line('column_warehouse'); ?>" value="<?php echo $filter_warehouse; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="quantity" placeholder="<?php echo $this->lang->line('column_quantity'); ?>" value="<?php echo $filter_quantity; ?>" /></th>
-				  <th class="filter-td"><input type="text" class="filter-input" name="date_modified" placeholder="<?php echo $this->lang->line('column_date_modified'); ?>" value="<?php echo $filter_date_modified; ?>" /></th>
-				  <th></th>
-				</tr>
-			  </tfoot>
 		    </table>
 		  </div>
 		  <div class="pagination-block">
@@ -151,32 +133,5 @@ $(document).ready(function() {
 	});
 });
 </script>
-<script>
-$(document).ready(function() {
-	$('.btn-delete').click(function() {
-		if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
-			handler = $(this);
-			inventory_id = $(this).attr('data');
-			
-			$.ajax({
-				url: '<?php echo base_url(); ?>inventory/inventory/delete?inventory_id=' + inventory_id,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				beforeSend: function() {
-					handler.html('<i class="fa fa-circle-o-notch fa-spin"></i>');
-				},
-				success: function(json) {					
-					if(json.success) 
-						handler.closest('tr').remove();
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-				}
-			});
-		}
-	});
-});
-</script>
+<?php echo $footer; ?>	
 		

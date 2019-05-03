@@ -352,7 +352,7 @@ class Sale_model extends CI_Model
 	
 	public function get_sale_products($sale_id) 
 	{
-		$this->db->select('sale_product.id, sale_product.quantity, product.*, product.id AS product_id', false);
+		$this->db->select('sale_product.id, sale_product.product_id, sale_product.quantity, product.*', false);
 		$this->db->from('sale_product');
 		$this->db->join('product', 'product.id = sale_product.product_id', 'left');
 		$this->db->where('sale_product.sale_id', $sale_id);

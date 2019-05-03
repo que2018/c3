@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2018 at 07:53 PM
+-- Generation Time: May 01, 2019 at 07:48 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -43,612 +43,43 @@ CREATE TABLE `activity_log` (
 --
 
 INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
-(4378, 1, '::1', 'setting/activity_log', 'view the activity log page', 'GET', '2018-09-06 20:12:27'),
-(4379, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:12:33'),
-(4380, 1, '::1', 'setting/activity_log', 'view the activity log page', 'GET', '2018-09-06 20:12:36'),
-(4381, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-09-06 20:12:49'),
-(4382, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2018-09-06 20:12:50'),
-(4383, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:13:19'),
-(4384, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:13:21'),
-(4385, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-09-06 20:13:21'),
-(4386, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:13:23'),
-(4387, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:13:24'),
-(4388, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:21:42'),
-(4389, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:22:02'),
-(4390, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:22:04'),
-(4391, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:22:05'),
-(4392, 1, '::1', 'extension/fee/get_checkin_fees', '0', 'POST', '2018-09-06 20:22:06'),
-(4393, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:22:11'),
-(4394, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-09-06 20:22:12'),
-(4395, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 20:22:14'),
-(4396, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:22:15'),
-(4397, 1, '::1', 'extension/fee/get_checkout_fees', '0', 'POST', '2018-09-06 20:22:15'),
-(4398, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 20:22:15'),
-(4399, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 20:22:15'),
-(4400, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 20:22:16'),
-(4401, 1, '::1', 'extension/fee/get_checkout_fees', '0', 'POST', '2018-09-06 20:22:17'),
-(4402, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 20:22:17'),
-(4403, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:22:17'),
-(4404, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 20:22:17'),
-(4405, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-09-06 20:24:15'),
-(4406, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 20:24:17'),
-(4407, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 20:24:19'),
-(4408, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 20:24:20'),
-(4409, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 20:24:20'),
-(4410, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 20:24:20'),
-(4411, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:24:20'),
-(4412, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:24:21'),
-(4413, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:24:41'),
-(4414, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:24:46'),
-(4415, 1, '::1', 'fee/checkin_weight', '0', 'GET', '2018-09-06 20:24:48'),
-(4416, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:24:53'),
-(4417, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:24:54'),
-(4418, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:24:56'),
-(4419, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:24:57'),
-(4420, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:24:59'),
-(4421, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:24:59'),
-(4422, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:25:03'),
-(4423, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:25:04'),
-(4424, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 20:25:05'),
-(4425, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:25:19'),
-(4426, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 20:25:26'),
-(4427, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:25:26'),
-(4428, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:25:27'),
-(4429, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:25:30'),
-(4430, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:25:33'),
-(4431, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:25:35'),
-(4432, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:25:37'),
-(4433, 1, '::1', 'finance/transaction/edit', 'view the transaction edit page', 'GET', '2018-09-06 20:26:01'),
-(4434, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:26:02'),
-(4435, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:06'),
-(4436, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-09-06 20:26:08'),
-(4437, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:09'),
-(4438, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2018-09-06 20:26:26'),
-(4439, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:26'),
-(4440, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:26:28'),
-(4441, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:29'),
-(4442, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-09-06 20:26:31'),
-(4443, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:33'),
-(4444, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:26:36'),
-(4445, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:38'),
-(4446, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 20:26:41'),
-(4447, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 20:26:41'),
-(4448, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:26:43'),
-(4449, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:26:46'),
-(4450, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:26:48'),
-(4451, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 20:26:51'),
-(4452, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 20:26:51'),
-(4453, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:27:17'),
-(4454, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 20:27:19'),
-(4455, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 20:27:19'),
-(4456, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:27:22'),
-(4457, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:27:23'),
-(4458, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:27:25'),
-(4459, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:27:34'),
-(4460, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:27:36'),
-(4461, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:27:37'),
-(4462, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:27:41'),
-(4463, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:27:44'),
-(4464, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:27:46'),
-(4465, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:27:48'),
-(4466, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:27:50'),
-(4467, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:27:52'),
-(4468, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:27:53'),
-(4469, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:27:56'),
-(4470, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:27:59'),
-(4471, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:28:04'),
-(4472, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:28:05'),
-(4473, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 20:28:06'),
-(4474, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:29:09'),
-(4475, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:29:12'),
-(4476, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:29:16'),
-(4477, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:29:18'),
-(4478, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:29:31'),
-(4479, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:29:31'),
-(4480, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:29:34'),
-(4481, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:29:35'),
-(4482, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:29:36'),
-(4483, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:29:39'),
-(4484, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:29:40'),
-(4485, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:29:44'),
-(4486, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:29:44'),
-(4487, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'POST', '2018-09-06 20:29:46'),
-(4488, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 20:29:49'),
-(4489, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'POST', '2018-09-06 20:29:51'),
-(4490, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:29:51'),
-(4491, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:29:54'),
-(4492, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:29:58'),
-(4493, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:30:07'),
-(4494, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:31:09'),
-(4495, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:31:10'),
-(4496, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:31:26'),
-(4497, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:31:27'),
-(4498, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:31:28'),
-(4499, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:31:30'),
-(4500, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:31:35'),
-(4501, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:31:37'),
-(4502, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:31:41'),
-(4503, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:31:44'),
-(4504, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:31:45'),
-(4505, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:31:47'),
-(4506, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 20:31:51'),
-(4507, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 20:31:54'),
-(4508, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 20:31:55'),
-(4509, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:31:59'),
-(4510, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:32:02'),
-(4511, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 20:32:07'),
-(4512, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:32:07'),
-(4513, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-09-06 20:32:16'),
-(4514, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:32:16'),
-(4515, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:32:18'),
-(4516, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:32:22'),
-(4517, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-09-06 20:32:25'),
-(4518, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:32:26'),
-(4519, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-09-06 20:32:30'),
-(4520, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:32:32'),
-(4521, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 20:32:35'),
-(4522, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:32:35'),
-(4523, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:32:38'),
-(4524, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-09-06 20:32:40'),
-(4525, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:32:41'),
-(4526, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-09-06 20:32:43'),
-(4527, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:32:44'),
-(4528, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 20:32:47'),
-(4529, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:32:47'),
-(4530, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:32:49'),
-(4531, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:32:57'),
-(4532, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 20:32:59'),
-(4533, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 20:32:59'),
-(4534, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:33:02'),
-(4535, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 20:33:22'),
-(4536, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:33:22'),
-(4537, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:33:26'),
-(4538, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:33:27'),
-(4539, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:33:31'),
-(4540, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:33:42'),
-(4541, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:33:43'),
-(4542, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:33:49'),
-(4543, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:34:43'),
-(4544, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:35:16'),
-(4545, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 20:35:21'),
-(4546, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 20:35:21'),
-(4547, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 20:35:23'),
-(4548, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 20:35:23'),
-(4549, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:35:32'),
-(4550, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 20:35:48'),
-(4551, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2018-09-06 20:35:49'),
-(4552, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-09-06 20:35:51'),
-(4553, 1, '::1', 'finance/fee', 'view the fee page', 'GET', '2018-09-06 20:35:55'),
-(4554, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 20:36:08'),
-(4555, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2018-09-06 20:36:09'),
-(4556, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 20:36:10'),
-(4557, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2018-09-06 20:36:11'),
-(4558, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-09-06 20:36:18'),
-(4559, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:36:23'),
-(4560, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-09-06 20:36:27'),
-(4561, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:36:53'),
-(4562, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-09-06 20:36:56'),
-(4563, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:37:06'),
-(4564, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:37:43'),
-(4565, 1, '::1', 'fee/volume', '0', 'GET', '2018-09-06 20:37:47'),
-(4566, 1, '::1', 'setting/about', 'view about', 'GET', '2018-09-06 20:38:07'),
-(4567, 1, '::1', 'setting/about', 'view about', 'GET', '2018-09-06 20:38:37'),
-(4568, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-06 20:38:50'),
-(4569, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-06 20:38:50'),
-(4570, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-06 20:40:15'),
-(4571, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-06 20:40:15'),
-(4572, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-06 20:40:38'),
-(4573, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-06 20:40:38'),
-(4574, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2018-09-06 20:40:41'),
-(4575, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:40:54'),
-(4576, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:43:00'),
-(4577, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:43:05'),
-(4578, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:44:26'),
-(4579, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:44:29'),
-(4580, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:45:24'),
-(4581, 1, '::1', 'store/store_sync_history/clear', 'try to clear store sync history', 'GET', '2018-09-06 20:45:29'),
-(4582, 1, '::1', 'store/store_sync_history', 'view the store sync history page', 'GET', '2018-09-06 20:45:29'),
-(4583, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-06 20:46:33'),
-(4584, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-09-06 20:46:34'),
-(4585, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:47:53'),
-(4586, 1, '::1', 'fee/checkin_weight', '0', 'GET', '2018-09-06 20:48:03'),
-(4587, 1, '::1', 'fee/checkin_weight', '0', 'POST', '2018-09-06 20:48:07'),
-(4588, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:48:07'),
-(4589, 1, '::1', 'fee/checkin_weight', '0', 'GET', '2018-09-06 20:48:09'),
-(4590, 1, '::1', 'fee/checkin_weight', '0', 'POST', '2018-09-06 20:48:13'),
-(4591, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:48:13'),
-(4592, 1, '::1', 'fee/checkin_weight', '0', 'GET', '2018-09-06 20:48:15'),
-(4593, 1, '::1', 'fee/checkin_weight', '0', 'GET', '2018-09-06 20:49:48'),
-(4594, 1, '::1', 'fee/checkin_weight', '0', 'POST', '2018-09-06 20:49:53'),
-(4595, 1, '::1', 'fee/checkin_weight', '0', 'POST', '2018-09-06 20:49:57'),
-(4596, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:49:57'),
-(4597, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:50:22'),
-(4598, 1, '::1', 'fee/checkout_weight', '0', 'GET', '2018-09-06 20:50:24'),
-(4599, 1, '::1', 'fee/checkout_weight', '0', 'POST', '2018-09-06 20:50:27'),
-(4600, 1, '::1', 'fee/checkout_weight', '0', 'POST', '2018-09-06 20:50:33'),
-(4601, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:50:33'),
-(4602, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2018-09-06 20:50:46'),
-(4603, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-06 20:50:51'),
-(4604, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-06 20:50:51'),
-(4605, 1, '::1', 'setting/setting', 'view the setting page', 'POST', '2018-09-06 20:50:57'),
-(4606, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-06 20:50:58'),
-(4607, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-06 20:50:58'),
-(4608, 1, '::1', 'common/logout', 'view the logout page', 'GET', '2018-09-06 20:51:57'),
-(4609, NULL, '::1', 'common/login', 'view the login page', 'GET', '2018-09-06 20:51:57'),
-(4610, NULL, '::1', 'common/login', 'view the login page', 'GET', '2018-09-06 20:52:40'),
-(4611, NULL, '::1', 'common/login', 'view the login page', 'GET', '2018-09-06 20:52:53'),
-(4612, NULL, '::1', 'common/login', 'view the login page', 'GET', '2018-09-06 20:53:08'),
-(4613, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-06 20:53:09'),
-(4614, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-09-06 20:53:09'),
-(4615, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2018-09-06 20:53:12'),
-(4616, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:53:14'),
-(4617, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:53:19'),
-(4618, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:54:24'),
-(4619, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:54:27'),
-(4620, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:54:28'),
-(4621, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:54:30'),
-(4622, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:54:30'),
-(4623, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 20:54:34'),
-(4624, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 20:54:36'),
-(4625, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 20:54:41'),
-(4626, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:54:41'),
-(4627, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:54:44'),
-(4628, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-06 20:54:54'),
-(4629, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:55:03'),
-(4630, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 20:55:06'),
-(4631, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 20:55:08'),
-(4632, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 20:55:08'),
-(4633, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:55:14'),
-(4634, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 20:55:15'),
-(4635, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:55:20'),
-(4636, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:55:24'),
-(4637, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 20:55:27'),
-(4638, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 20:55:27'),
-(4639, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:55:28'),
-(4640, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 20:55:33'),
-(4641, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:55:37'),
-(4642, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:55:38'),
-(4643, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 20:55:40'),
-(4644, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 20:55:40'),
-(4645, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:55:41'),
-(4646, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 20:55:43'),
-(4647, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:55:44'),
-(4648, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:55:46'),
-(4649, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:55:46'),
-(4650, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:55:50'),
-(4651, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 20:55:50'),
-(4652, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 20:55:55'),
-(4653, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 20:55:58'),
-(4654, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 20:56:00'),
-(4655, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 20:56:00'),
-(4656, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:56:02'),
-(4657, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:56:02'),
-(4658, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 20:56:05'),
-(4659, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 20:56:05'),
-(4660, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:56:07'),
-(4661, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 20:56:08'),
-(4662, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:01:24'),
-(4663, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 21:01:28'),
-(4664, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:01:32'),
-(4665, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 21:01:34'),
-(4666, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:01:35'),
-(4667, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:40'),
-(4668, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:40'),
-(4669, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:41'),
-(4670, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:41'),
-(4671, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:43'),
-(4672, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:43'),
-(4673, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:44'),
-(4674, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:44'),
-(4675, 1, '::1', 'finance/transaction/edit', 'view the transaction edit page', 'GET', '2018-09-06 21:01:45'),
-(4676, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:01:47'),
-(4677, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:49'),
-(4678, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:50'),
-(4679, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:51'),
-(4680, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:51'),
-(4681, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:54'),
-(4682, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:54'),
-(4683, 1, '::1', 'finance/transaction/delete', 'try to delete a transaction record', 'GET', '2018-09-06 21:01:55'),
-(4684, 1, '::1', 'finance/transaction/reload', 'reload transaction page', 'GET', '2018-09-06 21:01:55'),
-(4685, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:01:57'),
-(4686, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 21:01:58'),
-(4687, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:01:59'),
-(4688, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:02:05'),
-(4689, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:02:14'),
-(4690, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:02:14'),
-(4691, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:02:19'),
-(4692, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:02:42'),
-(4693, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:02:44'),
-(4694, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:02:54'),
-(4695, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 21:02:59'),
-(4696, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:03:01'),
-(4697, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:03'),
-(4698, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:04'),
-(4699, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:05'),
-(4700, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:05'),
-(4701, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:07'),
-(4702, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:07'),
-(4703, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:09'),
-(4704, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:09'),
-(4705, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:10'),
-(4706, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:10'),
-(4707, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:12'),
-(4708, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:12'),
-(4709, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:03:13'),
-(4710, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:03:13'),
-(4711, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:03:15'),
-(4712, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 21:03:16'),
-(4713, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:23'),
-(4714, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:23'),
-(4715, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:27'),
-(4716, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:27'),
-(4717, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:28'),
-(4718, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:31'),
-(4719, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 21:03:32'),
-(4720, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:33'),
-(4721, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:35'),
-(4722, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:03:35'),
-(4723, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'POST', '2018-09-06 21:03:40'),
-(4724, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 21:03:42'),
-(4725, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'POST', '2018-09-06 21:03:44'),
-(4726, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:03:44'),
-(4727, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 21:03:48'),
-(4728, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:03:50'),
-(4729, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:03:53'),
-(4730, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:03:54'),
-(4731, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 21:03:57'),
-(4732, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:03:58'),
-(4733, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:04:02'),
-(4734, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:04:06'),
-(4735, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:04:06'),
-(4736, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:04:09'),
-(4737, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:04:11'),
-(4738, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'GET', '2018-09-06 21:04:14'),
-(4739, 1, '::1', 'check/checkin_ajax/get_product', 'try to get checkin product', 'POST', '2018-09-06 21:04:16'),
-(4740, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:04:17'),
-(4741, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:04:19'),
-(4742, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:04:19'),
-(4743, 1, '::1', 'extension/fee/get_checkin_fees', 'try to get checkin fee', 'POST', '2018-09-06 21:04:19'),
-(4744, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 21:04:20'),
-(4745, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2018-09-06 21:04:22'),
-(4746, 1, '::1', 'check/checkin/add', 'view the checkin add page', 'POST', '2018-09-06 21:04:24'),
-(4747, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:04:24'),
-(4748, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2018-09-06 21:04:26'),
-(4749, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-06 21:04:29'),
-(4750, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:04:31'),
-(4751, 1, '::1', 'check/checkin_ajax/change_status', '0', 'GET', '2018-09-06 21:04:33'),
-(4752, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:04:34'),
-(4753, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:04:38'),
-(4754, 1, '::1', 'check/checkin/delete', 'delete a checkout', 'GET', '2018-09-06 21:04:42'),
-(4755, 1, '::1', 'check/checkin/reload', '0', 'GET', '2018-09-06 21:04:42'),
-(4756, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:04:44'),
-(4757, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:04:48'),
-(4758, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:04:52'),
-(4759, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:04:52'),
-(4760, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:04:54'),
-(4761, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:04:54'),
-(4762, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:04:56'),
-(4763, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:04:56'),
-(4764, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:04:58'),
-(4765, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:04:58'),
-(4766, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:00'),
-(4767, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:00'),
-(4768, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:04'),
-(4769, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:04'),
-(4770, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:06'),
-(4771, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:06'),
-(4772, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:07'),
-(4773, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:07'),
-(4774, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:09'),
-(4775, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:10'),
-(4776, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:11'),
-(4777, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:11'),
-(4778, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:13'),
-(4779, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:13'),
-(4780, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 21:05:16'),
-(4781, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:05:17'),
-(4782, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:05:21'),
-(4783, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:05:21'),
-(4784, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:05:21'),
-(4785, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 21:05:23'),
-(4786, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:05:24'),
-(4787, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:05:24'),
-(4788, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:05:24'),
-(4789, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:05:24'),
-(4790, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:05:27'),
-(4791, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:05:27'),
-(4792, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:05:27'),
-(4793, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:05:27'),
-(4794, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:05:27'),
-(4795, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:05:27'),
-(4796, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:05:27'),
-(4797, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:05:27'),
-(4798, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:05:27'),
-(4799, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-09-06 21:05:31'),
-(4800, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:05:31'),
-(4801, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:05:41'),
-(4802, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:05:41'),
-(4803, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:06:03'),
-(4804, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-09-06 21:06:05'),
-(4805, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 21:06:06'),
-(4806, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:06:07'),
-(4807, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:07'),
-(4808, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:07'),
-(4809, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:07'),
-(4810, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:11'),
-(4811, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:11'),
-(4812, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:11'),
-(4813, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:11'),
-(4814, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:11'),
-(4815, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:11'),
-(4816, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-09-06 21:06:12'),
-(4817, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:06:12'),
-(4818, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-09-06 21:06:20'),
-(4819, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:06:20'),
-(4820, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:06:23'),
-(4821, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:06:23'),
-(4822, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:06:24'),
-(4823, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:06:24'),
-(4824, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'GET', '2018-09-06 21:06:25'),
-(4825, 1, '::1', 'check/checkout_ajax/get_product', 'get checkout product', 'POST', '2018-09-06 21:06:27'),
-(4826, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:06:28'),
-(4827, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:28'),
-(4828, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:28'),
-(4829, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:28'),
-(4830, 1, '::1', 'check/checkout/add', 'view the checkout add page', 'POST', '2018-09-06 21:06:30'),
-(4831, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:06:31'),
-(4832, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 21:06:33'),
-(4833, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:06:34'),
-(4834, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:35'),
-(4835, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:35'),
-(4836, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:35'),
-(4837, 1, '::1', 'catalog/product_ajax/get_products_weight', 'try to get product weight', 'POST', '2018-09-06 21:06:36'),
-(4838, 1, '::1', 'catalog/product_ajax/get_products_volume', 'try to get product volume', 'POST', '2018-09-06 21:06:36'),
-(4839, 1, '::1', 'extension/fee/get_checkout_fees', 'try to get checkout fee', 'POST', '2018-09-06 21:06:36'),
-(4840, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'POST', '2018-09-06 21:06:37'),
-(4841, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:06:37'),
-(4842, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2018-09-06 21:06:39'),
-(4843, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2018-09-06 21:06:39'),
-(4844, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:06:44'),
-(4845, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-09-06 21:06:49'),
-(4846, 1, '::1', 'check/checkout_ajax/change_status', 'try to change checkout status', 'GET', '2018-09-06 21:06:52'),
-(4847, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2018-09-06 21:06:54'),
-(4848, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:06:56'),
-(4849, 1, '::1', 'check/checkout/delete', 'try to delete a checkout', 'GET', '2018-09-06 21:06:59'),
-(4850, 1, '::1', 'check/checkout/reload', 'reload checkout listing page', 'GET', '2018-09-06 21:06:59'),
-(4851, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2018-09-06 21:07:00'),
-(4852, NULL, '::1', '', 'view the dashboard', 'GET', '2018-09-09 06:52:36'),
-(4853, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:41'),
-(4854, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:49'),
-(4855, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-09-09 06:52:52'),
-(4856, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-09-09 06:52:52'),
-(4857, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-09-09 06:53:04'),
-(4858, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-09-09 06:53:05'),
-(4859, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-09-09 06:53:07'),
-(4860, 1, '::1', 'user/user/edit', 'view the user edit page', 'GET', '2018-09-09 06:53:09'),
-(4861, 1, '::1', 'user/user/edit', 'view the user edit page', 'POST', '2018-09-09 06:53:26'),
-(4862, 1, '::1', 'user/user', 'view the user page', 'GET', '2018-09-09 06:53:26'),
-(4863, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2018-09-09 06:53:33'),
-(4864, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 06:53:51'),
-(4865, 1, '::1', 'catalog/product_import', 'view the product import page', 'GET', '2018-09-09 06:57:51'),
-(4866, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-09-09 06:59:56'),
-(4867, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-09-09 07:00:41'),
-(4868, 1, '::1', 'inventory/inventory_import', 'view the inventory import page', 'GET', '2018-09-09 07:00:43'),
-(4869, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-09-09 07:00:44'),
-(4870, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:00:47'),
-(4871, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2018-09-09 07:00:48'),
-(4872, 1, '::1', 'catalog/product_import', 'view the product import page', 'GET', '2018-09-09 07:00:48'),
-(4873, 1, '::1', 'catalog/product_import/upload', '0', 'POST', '2018-09-09 07:00:55'),
-(4874, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:00:58'),
-(4875, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-09-09 07:01:06'),
-(4876, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-09-09 07:01:11'),
-(4877, NULL, '::1', '', 'view the dashboard', 'GET', '2018-12-20 18:59:26'),
-(4878, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-12-20 18:59:32'),
-(4879, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2018-12-20 18:59:32'),
-(4880, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:35'),
-(4881, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:36'),
-(4882, 1, '::1', 'setting/language', 'view the language page', 'GET', '2018-12-20 18:59:39'),
-(4883, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:41');
-INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
-(4884, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:41'),
-(4885, 1, '::1', 'setting/setting', 'view the setting page', 'POST', '2018-12-20 18:59:47'),
-(4886, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 18:59:48'),
-(4887, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 18:59:48'),
-(4888, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2018-12-20 18:59:51'),
-(4889, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 18:59:59'),
-(4890, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:00:02'),
-(4891, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:00:05'),
-(4892, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:00:08'),
-(4893, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:00:14'),
-(4894, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:00:17'),
-(4895, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-20 19:00:22'),
-(4896, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:00:22'),
-(4897, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:01:09'),
-(4898, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:01:53'),
-(4899, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:01:55'),
-(4900, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:19:44'),
-(4901, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-20 19:20:59'),
-(4902, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:21:02'),
-(4903, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:21:09'),
-(4904, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-20 19:29:52'),
-(4905, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:11'),
-(4906, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:30:13'),
-(4907, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:15'),
-(4908, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-20 19:30:17'),
-(4909, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-12-20 19:30:19'),
-(4910, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2018-12-20 19:30:24'),
-(4911, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2018-12-20 19:30:26'),
-(4912, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-20 19:30:26'),
-(4913, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-12-20 19:31:06'),
-(4914, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2018-12-20 19:31:09'),
-(4915, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'POST', '2018-12-20 19:31:13'),
-(4916, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2018-12-20 19:31:13'),
-(4917, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-20 19:44:50'),
-(4918, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-20 19:44:50'),
-(4919, 1, '::1', 'setting/about', 'view about', 'GET', '2018-12-20 19:44:51'),
-(4920, NULL, '::1', '', 'view the dashboard', 'GET', '2018-12-26 18:32:48'),
-(4921, NULL, '::1', 'common/login', 'view the login page', 'POST', '2018-12-26 18:32:54'),
-(4922, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:32:54'),
-(4923, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:32:59'),
-(4924, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:32:59'),
-(4925, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2018-12-26 18:33:01'),
-(4926, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2018-12-26 18:33:01'),
-(4927, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:33:16'),
-(4928, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:36:56'),
-(4929, 1, '::1', 'sale/sale_ajax/get_tracking_detail', '0', 'GET', '2018-12-26 18:36:56'),
-(4930, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 18:37:44'),
-(4931, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2018-12-26 18:37:51'),
-(4932, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2018-12-26 18:38:04'),
-(4933, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2018-12-26 18:38:05'),
-(4934, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2018-12-26 19:09:52'),
-(4935, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:09:55'),
-(4936, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:09:57'),
-(4937, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:10:36'),
-(4938, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2018-12-26 19:10:47'),
-(4939, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:10:49'),
-(4940, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:15:34'),
-(4941, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:15:37'),
-(4942, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:15:39'),
-(4943, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:16:49'),
-(4944, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2018-12-26 19:16:59'),
-(4945, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2018-12-26 19:17:00'),
-(4946, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:18:28'),
-(4947, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:18:53'),
-(4948, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:19:08'),
-(4949, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:19:22'),
-(4950, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:20:10'),
-(4951, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:21:39'),
-(4952, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:25:16'),
-(4953, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:25:18'),
-(4954, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:25:18'),
-(4955, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:25:31'),
-(4956, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:25:35'),
-(4957, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:25:35'),
-(4958, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:26:09'),
-(4959, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:26:42'),
-(4960, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:26:47'),
-(4961, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:26:47'),
-(4962, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:38:01'),
-(4963, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:42:52'),
-(4964, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:42:56'),
-(4965, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:42:56'),
-(4966, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:42:58'),
-(4967, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:03'),
-(4968, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:04'),
-(4969, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:06'),
-(4970, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:09'),
-(4971, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:09'),
-(4972, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:11'),
-(4973, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2018-12-26 19:43:15'),
-(4974, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:43:15'),
-(4975, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2018-12-26 19:43:17'),
-(4976, 1, '::1', 'client/client', 'view the client page', 'GET', '2018-12-26 19:49:43'),
-(4977, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:49:45'),
-(4978, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:00'),
-(4979, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:04'),
-(4980, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:06'),
-(4981, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2018-12-26 19:50:18'),
-(4982, 1, '::1', 'client/client/add', 'view the client add page', 'POST', '2018-12-26 19:50:22');
+(5589, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:22:55'),
+(5590, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-05-01 19:23:00'),
+(5591, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:23:01'),
+(5592, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-05-01 19:23:02'),
+(5593, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:23:03'),
+(5594, 1, '::1', 'client/client', 'view the client page', 'GET', '2019-05-01 19:23:05'),
+(5595, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:23:06'),
+(5596, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:23:07'),
+(5597, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:26:29'),
+(5598, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:26:31'),
+(5599, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:26:32'),
+(5600, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:27:05'),
+(5601, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2019-05-01 19:27:06'),
+(5602, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:27:12'),
+(5603, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:27:14'),
+(5604, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:27:16'),
+(5605, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:27:16'),
+(5606, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:30:11'),
+(5607, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:30:11'),
+(5608, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:30:12'),
+(5609, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:30:14'),
+(5610, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:30:15'),
+(5611, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:30:18'),
+(5612, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:30:19'),
+(5613, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:30:23'),
+(5614, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:31:45'),
+(5615, 1, '::1', 'inventory/inventory_alert', 'view the alert inventory page', 'GET', '2019-05-01 19:31:55'),
+(5616, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:31:58'),
+(5617, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:32:52'),
+(5618, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:32:54'),
+(5619, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:32:54'),
+(5620, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:34:16'),
+(5621, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:34:17'),
+(5622, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:37:31'),
+(5623, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:37:32'),
+(5624, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:46:25'),
+(5625, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:47:34');
 
 -- --------------------------------------------------------
 
@@ -686,6 +117,14 @@ CREATE TABLE `checkin` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `checkin`
+--
+
+INSERT INTO `checkin` (`id`, `client_id`, `tracking`, `note`, `status`, `date_added`, `date_modified`) VALUES
+(1, 0, '', '', 2, '2019-04-29 17:44:41', '2019-04-29 17:44:41'),
+(2, 0, '', '', 2, '2019-04-29 17:44:56', '2019-04-29 17:44:56');
+
 -- --------------------------------------------------------
 
 --
@@ -716,7 +155,9 @@ INSERT INTO `checkin_fee` (`id`, `checkin_id`, `name`, `amount`) VALUES
 (57, 16, 'checkin fee by weight', '7.58'),
 (58, 17, 'checkin fee by weight', '6.88'),
 (59, 7, 'checkin fee by weight', '8.00'),
-(60, 18, 'checkin fee by weight', '10.83');
+(60, 18, 'checkin fee by weight', '10.83'),
+(61, 1, 'checkin fee by weight', '0.00'),
+(62, 2, 'checkin fee by weight', '0.00');
 
 -- --------------------------------------------------------
 
@@ -745,6 +186,14 @@ CREATE TABLE `checkin_product` (
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `checkin_product`
+--
+
+INSERT INTO `checkin_product` (`id`, `checkin_id`, `product_id`, `batch`, `quantity`, `location_id`) VALUES
+(1, 1, 92, '', 1, 2406),
+(2, 2, 94, '', 2, 2415);
+
 -- --------------------------------------------------------
 
 --
@@ -772,6 +221,13 @@ CREATE TABLE `checkout` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`id`, `code`, `location_id`, `tracking`, `status`, `width`, `length`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `label`, `note`, `description`, `date_added`, `date_modified`) VALUES
+(1, '100000000000001', 0, '', 1, '8.00', '0.00', '0.00', '0.00', 1, 5, 'usps', 'fc', '', '', '', '2019-04-30 19:20:56', '2019-04-30 19:20:56');
+
 -- --------------------------------------------------------
 
 --
@@ -792,9 +248,22 @@ CREATE TABLE `checkout_fee` (
 --
 
 CREATE TABLE `checkout_file` (
-  `id` int(11) NOT NULL,
+  `checkout_file_id` int(11) NOT NULL,
   `checkout_id` int(11) DEFAULT NULL,
   `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout_lable`
+--
+
+CREATE TABLE `checkout_lable` (
+  `checkout_label_id` int(11) NOT NULL,
+  `checkout_id` int(11) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `tracking` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -809,6 +278,13 @@ CREATE TABLE `checkout_product` (
   `inventory_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `checkout_product`
+--
+
+INSERT INTO `checkout_product` (`id`, `checkout_id`, `inventory_id`, `quantity`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1021,6 +497,14 @@ CREATE TABLE `inventory` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `type`, `product_id`, `location_id`, `batch`, `quantity`, `date_added`, `date_modified`) VALUES
+(1, 0, 92, 2406, '', 1, '2019-04-29 17:44:44', '2019-04-29 17:44:44'),
+(2, 0, 94, 2415, '', 1, '2019-04-29 17:44:59', '2019-04-29 17:45:33');
 
 -- --------------------------------------------------------
 
@@ -1437,9 +921,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `upc`, `sku`, `asin`, `name`, `price`, `image`, `description`, `weight`, `weight_class_id`, `length_class_id`, `length`, `width`, `height`, `alert_quantity`, `shipping_provider`, `shipping_service`, `client_id`, `date_added`, `date_modified`) VALUES
-(92, 'X001D08AXL', 'NRC-91', '', 'NRC-91', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '8.00', '0.00', 0, 'postpony', 'pfg', 1, '2018-09-09 07:00:55', '2018-12-20 19:31:13'),
+(92, 'X001D08AXL', 'NRC-91', '', 'NRC-91', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '8.00', '0.00', 2, 'postpony', 'pfg', 1, '2018-09-09 07:00:55', '2019-04-29 18:00:42'),
 (93, 'X000Y005WP', 'RC-02', '', 'RC-02', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
-(94, 'X000Y005XJ', 'RC-03', '', 'RC-03', '0.00', 'no_image.jpg', NULL, '3.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2018-09-09 07:00:55'),
+(94, 'X000Y005XJ', 'RC-03', '', 'RC-03', '0.00', 'no_image.jpg', NULL, '3.00', 5, 1, '0.00', '0.00', '0.00', 4, 'postpony', 'pfg', 2, '2018-09-09 07:00:55', '2019-04-29 18:00:52'),
 (95, 'X000Y005X9', 'RC-06', '', 'RC-06', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '0.00', '0.00', '0.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
 (96, 'X0016B6TV7', 'RC-10', '', 'RC-10', '0.00', 'no_image.jpg', NULL, '0.00', 5, 1, '1.00', '1.00', '5.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
 (97, 'X00169XD95', 'RC-11', '', 'RC-11', '0.00', 'no_image.jpg', NULL, '10.00', 5, 1, '0.00', '0.00', '3.00', 0, 'postpony', 'pfg', 2, '2018-09-09 07:00:56', '2018-09-09 07:00:56'),
@@ -1605,6 +1089,13 @@ CREATE TABLE `sale_to_checkout` (
   `sale_id` int(11) DEFAULT NULL,
   `checkout_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sale_to_checkout`
+--
+
+INSERT INTO `sale_to_checkout` (`sale_id`, `checkout_id`) VALUES
+(10, 1);
 
 -- --------------------------------------------------------
 
@@ -1915,6 +1406,14 @@ CREATE TABLE `transaction` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `client_id`, `type`, `type_id`, `cost`, `markup`, `amount`, `comment`, `date_added`, `date_modified`) VALUES
+(1, 1, 'checkin', 1, '0.00', '0.00', '0.00', 'transaction for checkin - ID: 1', '2019-04-29 17:44:44', '2019-04-29 17:44:44'),
+(2, 2, 'checkin', 2, '0.00', '0.00', '0.00', 'transaction for checkin - ID: 2', '2019-04-29 17:44:59', '2019-04-29 17:44:59');
+
 -- --------------------------------------------------------
 
 --
@@ -2003,7 +1502,7 @@ CREATE TABLE `user_group` (
 --
 
 INSERT INTO `user_group` (`user_group_id`, `name`, `description`, `permission`) VALUES
-(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"]}'),
+(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"]}'),
 (12, 'Clerk', 'The clerk user group', '{\"access\":[\"inventory\"]}'),
 (13, 'Client', '', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"setting\"]}');
 
@@ -2113,7 +1612,13 @@ ALTER TABLE `checkout_fee`
 -- Indexes for table `checkout_file`
 --
 ALTER TABLE `checkout_file`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`checkout_file_id`);
+
+--
+-- Indexes for table `checkout_lable`
+--
+ALTER TABLE `checkout_lable`
+  ADD PRIMARY KEY (`checkout_label_id`);
 
 --
 -- Indexes for table `checkout_product`
@@ -2334,7 +1839,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4983;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5626;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -2346,13 +1851,13 @@ ALTER TABLE `balance`
 -- AUTO_INCREMENT for table `checkin`
 --
 ALTER TABLE `checkin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkin_fee`
 --
 ALTER TABLE `checkin_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `checkin_file`
@@ -2364,13 +1869,13 @@ ALTER TABLE `checkin_file`
 -- AUTO_INCREMENT for table `checkin_product`
 --
 ALTER TABLE `checkin_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `checkout_fee`
@@ -2382,13 +1887,19 @@ ALTER TABLE `checkout_fee`
 -- AUTO_INCREMENT for table `checkout_file`
 --
 ALTER TABLE `checkout_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `checkout_file_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `checkout_lable`
+--
+ALTER TABLE `checkout_lable`
+  MODIFY `checkout_label_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `checkout_product`
 --
 ALTER TABLE `checkout_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -2430,7 +1941,7 @@ ALTER TABLE `information`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `language`
@@ -2532,7 +2043,7 @@ ALTER TABLE `store_sync_history`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transfer`

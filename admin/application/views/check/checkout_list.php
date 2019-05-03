@@ -28,22 +28,23 @@
 		    <div class="row">
 		      <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-6 control-label"><?php echo $this->lang->line('text_checkout_id'); ?></label>
-			      <div class="col-sm-6"><input name="id" class="form-control" value="<?php echo $filter_id; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="id" class="form-control" value="<?php echo $filter_id; ?>" placeholder="<?php echo $this->lang->line('text_checkout_id'); ?>">
+				  </div>
 				</div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
-			      <div class="col-sm-7"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>" placeholder="<?php echo $this->lang->line('text_sale_id'); ?>">
+				  </div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_Status'); ?></label>
-			      <div class="col-sm-7">
+			      <div class="col-sm-12">
 				    <select name="status" class="form-control">
-					  <option value=""></option>
+					  <option value=""><?php echo $this->lang->line('text_Status'); ?></option>
 					  <?php if($filter_status == 1) { ?>
 					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
 					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
@@ -58,10 +59,11 @@
 				  </div>
 			    </div>
 			  </div>
-			  <div class="col-md-3">
+			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-4 control-label"><?php echo $this->lang->line('text_date_added'); ?></label>
-			      <div class="col-sm-8"><input name="date_added" class="form-control" value="<?php echo $filter_date_added; ?>"></div>
+			      <div class="col-sm-12">
+				    <input name="date_added" class="form-control" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $this->lang->line('text_date_added'); ?>">
+				  </div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">

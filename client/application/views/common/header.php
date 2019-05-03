@@ -10,6 +10,7 @@
 <script src="<?php echo base_url(); ?>assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/inspinia.js"></script>
+<link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/gif">
 <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="<?php echo base_url(); ?>assets/css/style.css" type="text/css" rel="stylesheet" media="screen" />
@@ -24,6 +25,12 @@
 			<div class="dropdown profile-element">
 			  <span><img alt="image" class="img-circle" src="<?php echo base_url(); ?>img/profile_small.jpg" /></span>
 			</div>
+		  </li>
+		  <li>
+			<a><i class="fa fa-arrow-circle-o-right"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkin'); ?></span><span class="fa arrow"></span></a>
+			<ul class="nav nav-second-level">
+			  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('menu_checkin_list'); ?></a></li>
+			</ul>
 		  </li>
 		  <li>
 			<a><i class="fa fa-product-hunt"></i><span class="nav-label"><?php echo $this->lang->line('menu_product'); ?></span><span class="fa arrow"></span></a>
@@ -75,48 +82,6 @@
           <ul class="nav navbar-top-links navbar-right">
 			<li>
 			  <span class="m-r-sm text-muted welcome-message"><?php echo $this->lang->line('text_welcome'); ?></span>
-			</li>
-			<li class="dropdown" style="display:none;">
-			  <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-				<i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-			  </a>
-			  <ul class="dropdown-menu dropdown-alerts">
-				<li>
-				  <a href="mailbox.html">
-					<div>
-				      <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-					  <span class="pull-right text-muted small">4 minutes ago</span>
-					</div>
-				  </a>
-				</li>
-				<li class="divider"></li>
-				<li>
-				<a href="profile.html">
-				  <div>
-					<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-					<span class="pull-right text-muted small">12 minutes ago</span>
-				  </div>
-				</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-				  <a href="grid_options.html">
-					<div>
-					  <i class="fa fa-upload fa-fw"></i> Server Rebooted
-					  <span class="pull-right text-muted small">4 minutes ago</span>
-					</div>
-				 </a>
-				</li>
-				<li class="divider"></li>
-				<li>
-				  <div class="text-center link-block">
-					<a href="notifications.html">
-					  <strong>See All Alerts</strong>
-					  <i class="fa fa-angle-right"></i>
-					</a>
-				  </div>
-				</li>
-			  </ul>
 			</li>
 			<li>
 			  <a href="<?php echo base_url(); ?>common/logout">

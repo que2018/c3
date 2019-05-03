@@ -445,6 +445,51 @@ class Product extends MX_Controller
 			redirect(base_url() . 'catalog/product', 'refresh');
 		}
 		
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
+		{
+			$data = array(
+				'upc'                => $this->input->post('upc'),
+				'sku'                => $this->input->post('sku'),
+				'asin'               => $this->input->post('asin'),
+				'name'               => $this->input->post('name'),
+				'image'              => $this->input->post('image'),
+				'price'              => $this->input->post('price'),
+				'alert_quantity'     => $this->input->post('alert_quantity'),
+				'length'             => $this->input->post('length'),
+				'width'              => $this->input->post('width'),
+				'height'             => $this->input->post('height'),
+				'weight'             => $this->input->post('weight'),
+				'length_class_id'    => $this->input->post('length_class_id'),
+				'weight_class_id'    => $this->input->post('weight_class_id'),
+				'shipping_provider'  => $this->input->post('shipping_provider'),
+				'shipping_service'   => $this->input->post('shipping_service'),
+				'client_id'          => $this->input->post('client_id'),
+				'product_fees'       => $this->input->post('product_fee')
+			);
+		}
+		else
+		{
+			$data = array(
+				'upc'                => '',
+				'sku'                => '',
+				'asin'               => '',
+				'name'               => '',
+				'image'              => '',
+				'price'              => '',
+				'alert_quantity'     => '',
+				'length'             => '',
+				'width'              => '',
+				'height'             => '',
+				'weight'             => '',
+				'length_class_id'    => '',
+				'weight_class_id'    => '',
+				'shipping_provider'  => $this->config->item('config_default_order_shipping_provider'),
+				'shipping_service'   => $this->config->item('config_default_order_shipping_service'),
+				'client_id'          => '',
+				'product_fees'       => ''
+			);
+		}
+		
 		//thumb
 		if(is_file(IMAGEPATH . $data['image'])) 
 		{

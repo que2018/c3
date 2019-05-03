@@ -618,6 +618,8 @@ class Checkout extends MX_Controller
 				'shipping_service'   => $this->input->post('shipping_service'),
 				'note'               => $this->input->post('note'),
 				'checkout_products'  => $this->input->post('checkout_product'),
+				'checkout_labels'    => $this->input->post('checkout_label'),
+				'checkout_files'     => $this->input->post('checkout_file'),
 				'checkout_fees'      => $this->input->post('checkout_fee')				
 			);
 			
@@ -643,6 +645,8 @@ class Checkout extends MX_Controller
 			$data['shipping_provider']  = $this->input->post('shipping_provider');
 			$data['shipping_service']   = $this->input->post('shipping_service');
 			$data['note']            	= $this->input->post('note');
+			$data['checkout_labels']    = $this->input->post('checkout_label');
+			$data['checkout_files']    = $this->input->post('checkout_file');
 			$data['checkout_fees']   	= $this->input->post('checkout_fee');
 			
 			$checkout_products = $this->input->post('checkout_product');
@@ -712,6 +716,7 @@ class Checkout extends MX_Controller
 			$data['shipping_service']   = $checkout['shipping_service'];
 			$data['note']         		= $checkout['note'];
 			
+			//checkout products
 			$data['checkout_products'] = array();
 			
 			$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);	
@@ -760,7 +765,28 @@ class Checkout extends MX_Controller
 					);
 				}
 			}
+			
+			//checkout labels
+			$data['checkout_labels'] = array();
+			
+			$checkout_labels = $this->checkout_model->get_checkout_labels($checkout_id);
+			
+			if($checkout_labels)
+			{
+				foreach($checkout_labels as $checkout_label)
+				{					
+					if(is_file(FCPATH . $checkout_label['path'])) 
+					{
+						$data['checkout_labels'][] = array(
+							'tracking'  => $checkout_label['tracking'],
+							'path'      => $checkout_label['path'],
+							'link'      => base_url() . $checkout_label['path']
+						);
+					}
+				}
+			}
 
+			//checkout fee
 			$data['checkout_fees'] = array();
 			
 			$checkout_fees = $this->checkout_model->get_checkout_fees($checkout_id);	

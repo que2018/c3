@@ -131,6 +131,11 @@
 						<?php } else { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="setting"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_system'); ?></label></div>
 						<?php } ?>
+						<?php if(isset($permission['access']) && in_array('log', $permission['access'])) { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="log" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_log'); ?></label></div>
+						<?php } else { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="log"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_log'); ?></label></div>
+						<?php } ?>
 					 </div>
 				    </div>
 				  </div>
@@ -216,6 +221,11 @@
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="setting" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_system'); ?></label></div>
 					  <?php } else { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="setting"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_system'); ?></label></div>
+					  <?php } ?>
+					  <?php if(isset($permission['modify']) && in_array('log', $permission['modify'])) { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="log" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_log'); ?></label></div>
+					  <?php } else { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="log"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_log'); ?></label></div>
 					  <?php } ?>
 					</div>
 				  </div>

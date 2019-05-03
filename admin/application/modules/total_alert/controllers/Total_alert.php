@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Total_alert extends MX_Controller 
 {
 	public function index()
@@ -17,11 +16,12 @@ class Total_alert extends MX_Controller
 			foreach($products as $product)
 			{
 				$product_id = $product['id'];
+				
 				$alert_quantity = $product['alert_quantity'];
 				
 				$quantity = $this->inventory_model->get_product_quantity($product_id);
 
-				if($quantity < $alert_quantity)
+				if((0 < $quantity) && ($quantity < $alert_quantity))
 				{
 					$data['alert_quantity'] ++;
 				}

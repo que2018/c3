@@ -22,13 +22,12 @@
 	    <div class="ibox-content">
 	      <div class="form-horizontal">
 		    <div class="row">
-		      <div class="col-md-3">
+		      <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_client'); ?></label>
-			      <div class="col-sm-9">
+			      <div class="col-sm-12">
 				    <select name="client_id" class="form-control">
 				      <?php if($clients) { ?>
-					    <option value=""></option>
+					    <option value=""><?php echo $this->lang->line('text_client'); ?></option>
 					    <?php foreach($clients as $client) { ?>
 					      <?php if($client['client_id'] == $filter_client_id) { ?>
 						  <option value="<?php echo $client['client_id']; ?>" selected><?php echo $client['name']; ?></option>
@@ -41,13 +40,12 @@
 				  </div>
 				</div>
 			  </div>
-			  <div class="col-md-3">
+			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_method'); ?></label>
-			      <div class="col-sm-9">
+			      <div class="col-sm-12">
 				    <select name="client_id" class="form-control">
 				      <?php if($payment_methods) { ?>
-					    <option value=""></option>
+					    <option value=""><?php echo $this->lang->line('text_method'); ?></option>
 					    <?php foreach($payment_methods as $payment_method) { ?>
 					      <?php if($payment_method['code'] == $filter_payment_method) { ?>
 						  <option value="<?php echo $payment_method['code']; ?>" selected><?php echo $payment_method['name']; ?></option>
@@ -60,12 +58,11 @@
 				  </div>
 			    </div>
 			  </div>
-			  <div class="col-md-3">
+			  <div class="col-md-2">
 			    <div class="form-group">
-			      <label class="col-sm-3 control-label"><?php echo $this->lang->line('text_status'); ?></label>
-			      <div class="col-sm-9">
+			      <div class="col-sm-12">
 				    <select name="status" class="form-control">
-					  <option value=""></option>
+					  <option value=""><?php echo $this->lang->line('text_status'); ?></option>
 				      <?php if($filter_status == 1) { ?>
 					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
 					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>

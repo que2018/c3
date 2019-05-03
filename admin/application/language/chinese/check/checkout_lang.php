@@ -81,6 +81,7 @@ $lang['text_confirm_delete']             	  						= 'Are you sure to delete this
 // Tab
 $lang['tab_general'] 	        	    	  						= 'General';
 $lang['tab_shipping'] 	        	              					= 'Shipping';
+$lang['tab_label'] 	        	              					    = 'Label';
 $lang['tab_fee'] 	        	              						= 'Fee';
 $lang['tab_file'] 	        	              						= 'File';
 $lang['tab_note'] 	        	              						= 'Note';
@@ -95,7 +96,6 @@ $lang['column_sale_id'] 	        		  						= 'Order ID(#)';
 $lang['column_name'] 	        	          						= 'Name';
 $lang['column_loc'] 	        	          						= 'Loc';
 $lang['column_qty'] 	        	          						= 'Qty';
-$lang['column_tracking'] 	        	      						= 'Tracking';
 $lang['column_amount'] 	        	          						= 'Amount';
 $lang['column_location'] 	        	 	  						= 'Location';
 $lang['column_note']        		 	      						= 'Note';
@@ -109,6 +109,8 @@ $lang['column_sku'] 	    			      						= 'SKU';
 $lang['column_batch'] 	    			      						= 'Batch';
 $lang['column_quantity'] 	    		 	  						= 'Quantity';
 $lang['column_file'] 	    		          						= 'File';
+$lang['column_label'] 	    		          						= 'Lable';
+$lang['column_tracking'] 	    		          				    = 'Tracking';
 
 // Entry
 $lang['entry_sale_id'] 	  	    	 	  	  						= 'Order ID';
