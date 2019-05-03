@@ -616,6 +616,18 @@ class Checkout_model extends CI_Model
 		return false;
 	}
 	
+	public function get_checkout_labels($checkout_id) 
+	{	
+		$q = $this->db->get_where('checkout_label', array('checkout_id' => $checkout_id));
+
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_checkout_fees($checkout_id) 
 	{	
 		$this->db->select('checkout_fee.*', false);

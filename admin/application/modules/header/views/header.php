@@ -54,7 +54,6 @@
 		  <li>
 			<a><i class="fa fa-arrow-circle-o-left"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkout'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
-		      <li><a href="<?php echo base_url(); ?>check/checkout_fba"><?php echo $this->lang->line('menu_fba_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout"><?php echo $this->lang->line('menu_checkout_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>check/checkout_sale"><?php echo $this->lang->line('menu_checkout_order'); ?></a></li>
 			</ul>
@@ -81,7 +80,6 @@
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_batch"><?php echo $this->lang->line('menu_inventory_list'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>inventory/inventory_import"><?php echo $this->lang->line('menu_import_inventory'); ?></a></li>
-			  <!--<li><a href="<?php echo base_url(); ?>inventory/transfer"><?php echo $this->lang->line('menu_transfer_list'); ?></a></li>-->
 			  <li><a href="<?php echo base_url(); ?>inventory/refund"><?php echo $this->lang->line('menu_return_list'); ?></a></li>
 			</ul>
 		  </li>

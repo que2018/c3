@@ -1,4 +1,4 @@
-<a href="<?php echo base_url(); ?>setting/log/activity_log">
+<a href="<?php echo base_url(); ?>log/activity_log">
   <div class="ibox float-e-margins">
     <div class="ibox-title"><span class="label label-primary pull-right"><?php echo $this->lang->line('text_today'); ?></span>
 	  <h5><?php echo $this->lang->line('text_visits'); ?></h5> 

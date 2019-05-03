@@ -42,6 +42,7 @@ $lang['permission_access_report']   		  = 'View Report';
 $lang['permission_access_client']   	      = 'View Client';
 $lang['permission_access_user']   			  = 'View User';
 $lang['permission_access_system']   		  = 'View System';
+$lang['permission_access_log']   		      = 'View Log';
 $lang['permission_modify_catalog']      	  = 'Edit Catalog';
 $lang['permission_modify_check']        	  = 'Edit Check';
 $lang['permission_modify_inventory'] 		  = 'Edit Inventory';
@@ -58,6 +59,9 @@ $lang['permission_modify_report']   		  = 'Edit Report';
 $lang['permission_modify_client']   	      = 'Edit Client';
 $lang['permission_modify_user']   			  = 'Edit User';
 $lang['permission_modify_system']   		  = 'Edit System';
+$lang['permission_modify_log']   		      = 'Edit Log';
+
+
 
 // Tab
 $lang['tab_general'] 	  	                  = 'General';

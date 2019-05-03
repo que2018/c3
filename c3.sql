@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2019 at 07:52 PM
+-- Generation Time: May 01, 2019 at 07:48 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -43,169 +43,43 @@ CREATE TABLE `activity_log` (
 --
 
 INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
-(5347, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-04-30 18:55:00'),
-(5348, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2019-04-30 18:55:04'),
-(5349, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-04-30 18:55:05'),
-(5350, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:55:08'),
-(5351, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:55:13'),
-(5352, 1, '::1', 'check/checkin_scan', 'view the scan checkin page', 'GET', '2019-04-30 18:55:15'),
-(5353, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:55:20'),
-(5354, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:56:05'),
-(5355, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:56:08'),
-(5356, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-04-30 18:56:27'),
-(5357, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:56:37'),
-(5358, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:57:10'),
-(5359, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:57:11'),
-(5360, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:57:11'),
-(5361, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:57:47'),
-(5362, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:57:48'),
-(5363, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:58:14'),
-(5364, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:58:37'),
-(5365, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:58:37'),
-(5366, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:58:43'),
-(5367, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:58:58'),
-(5368, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 18:59:00'),
-(5369, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:04'),
-(5370, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:04'),
-(5371, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:05'),
-(5372, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:07'),
-(5373, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:07'),
-(5374, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:07'),
-(5375, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5376, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5377, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5378, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5379, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5380, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:09'),
-(5381, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:10'),
-(5382, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:10'),
-(5383, 1, '::1', 'sale/sale_ajax/get_tracking_detail', 'try to get order tracking detail', 'GET', '2019-04-30 18:59:16'),
-(5384, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 18:59:25'),
-(5385, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:00:48'),
-(5386, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:00:58'),
-(5387, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-04-30 19:01:04'),
-(5388, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2019-04-30 19:01:06'),
-(5389, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-04-30 19:01:07'),
-(5390, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-04-30 19:02:44'),
-(5391, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:02:57'),
-(5392, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:03:11'),
-(5393, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:03:17'),
-(5394, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:04:35'),
-(5395, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:04:49'),
-(5396, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:04:54'),
-(5397, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:04:55'),
-(5398, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:04:55'),
-(5399, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:04:58'),
-(5400, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:04:59'),
-(5401, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:02'),
-(5402, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:02'),
-(5403, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:03'),
-(5404, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:03'),
-(5405, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:05'),
-(5406, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:08'),
-(5407, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:09'),
-(5408, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:10'),
-(5409, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:12'),
-(5410, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:15'),
-(5411, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:15'),
-(5412, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:15'),
-(5413, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:16'),
-(5414, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:16'),
-(5415, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:16'),
-(5416, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:25'),
-(5417, 1, '::1', 'catalog/product/filter', 'filter the product page', 'GET', '2019-04-30 19:05:27'),
-(5418, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:05:37'),
-(5419, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:07:14'),
-(5420, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:14:48'),
-(5421, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:15:08'),
-(5422, 1, '::1', 'warehouse/location', 'view the location page', 'GET', '2019-04-30 19:15:15'),
-(5423, 1, '::1', 'warehouse/location_import', 'try to import locations', 'GET', '2019-04-30 19:15:17'),
-(5424, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2019-04-30 19:15:18'),
-(5425, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2019-04-30 19:15:22'),
-(5426, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2019-04-30 19:15:23'),
-(5427, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:15:25'),
-(5428, 1, '::1', 'client/client', 'view the client page', 'GET', '2019-04-30 19:15:28'),
-(5429, 1, '::1', 'user/user', 'view the user page', 'GET', '2019-04-30 19:15:32'),
-(5430, 1, '::1', 'user/user', 'view the user page', 'GET', '2019-04-30 19:15:32'),
-(5431, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2019-04-30 19:15:34'),
-(5432, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2019-04-30 19:16:30'),
-(5433, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2019-04-30 19:16:40'),
-(5434, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:16:44'),
-(5435, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:17:45'),
-(5436, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:17:57'),
-(5437, 1, '::1', 'finance/recharge', 'view the recharge page', 'GET', '2019-04-30 19:18:05'),
-(5438, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:18:09'),
-(5439, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2019-04-30 19:18:25'),
-(5440, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:18:33'),
-(5441, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 19:18:38'),
-(5442, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:18:40'),
-(5443, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:18:43'),
-(5444, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 19:18:45'),
-(5445, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:18:47'),
-(5446, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:20:17'),
-(5447, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2019-04-30 19:20:21'),
-(5448, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:20:23'),
-(5449, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2019-04-30 19:20:30'),
-(5450, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:20:37'),
-(5451, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2019-04-30 19:20:40'),
-(5452, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2019-04-30 19:20:47'),
-(5453, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2019-04-30 19:20:51'),
-(5454, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2019-04-30 19:20:51'),
-(5455, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2019-04-30 19:20:56'),
-(5456, 1, '::1', 'check/checkout_sale/add_checkout_ajax', 'try to add checkout for order', 'GET', '2019-04-30 19:20:57'),
-(5457, 1, '::1', 'check/checkout_sale', 'view the order checkout page', 'GET', '2019-04-30 19:20:57'),
-(5458, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:21:26'),
-(5459, 1, '::1', 'inventory/inventory_import', 'view the inventory import page', 'GET', '2019-04-30 19:21:28'),
-(5460, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:21:29'),
-(5461, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:21:31'),
-(5462, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:21:38'),
-(5463, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:21:42'),
-(5464, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:21:46'),
-(5465, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:21:49'),
-(5466, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:21:58'),
-(5467, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2019-04-30 19:22:02'),
-(5468, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:22:04'),
-(5469, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-04-30 19:22:07'),
-(5470, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:22:13'),
-(5471, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-04-30 19:22:18'),
-(5472, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:22:26'),
-(5473, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:22:32'),
-(5474, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:26:36'),
-(5475, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:27:06'),
-(5476, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:28:10'),
-(5477, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:12'),
-(5478, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:15'),
-(5479, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:16'),
-(5480, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:20'),
-(5481, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:28:33'),
-(5482, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-04-30 19:28:35'),
-(5483, 1, '::1', 'inventory/inventory_import', 'view the inventory import page', 'GET', '2019-04-30 19:28:53'),
-(5484, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:28:53'),
-(5485, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:55'),
-(5486, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:28:58'),
-(5487, 1, '::1', 'catalog/product/edit', 'view the product edit page', 'GET', '2019-04-30 19:29:00'),
-(5488, 1, '::1', 'inventory/inventory_batch/edit', 'view the inventory edit page', 'GET', '2019-04-30 19:29:05'),
-(5489, 1, '::1', 'inventory/inventory_batch', 'view the inventory batch page', 'GET', '2019-04-30 19:29:08'),
-(5490, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-04-30 19:29:13'),
-(5491, 1, '::1', 'extension/fee', 'view the extension fee page', 'GET', '2019-04-30 19:29:22'),
-(5492, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:29:24'),
-(5493, 1, '::1', 'platform/ebay', '0', 'GET', '2019-04-30 19:29:40'),
-(5494, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:29:41'),
-(5495, 1, '::1', 'platform/amazon', '0', 'GET', '2019-04-30 19:29:43'),
-(5496, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:29:44'),
-(5497, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2019-04-30 19:30:04'),
-(5498, 1, '::1', 'extension/payment', 'view the payment page', 'GET', '2019-04-30 19:30:07'),
-(5499, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:30:07'),
-(5500, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:32:39'),
-(5501, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:33:19'),
-(5502, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:33:27'),
-(5503, 1, '::1', 'extension/platform', 'view the platform page', 'GET', '2019-04-30 19:34:18'),
-(5504, 1, '::1', 'check/checkout_fba', 'view the fba page', 'GET', '2019-04-30 19:34:38'),
-(5505, 1, '::1', 'check/checkout_fba', 'view the fba page', 'GET', '2019-04-30 19:39:46'),
-(5506, 1, '::1', 'check/checkout_fba', 'view the fba page', 'GET', '2019-04-30 19:40:06'),
-(5507, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-04-30 19:51:56'),
-(5508, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-04-30 19:51:58'),
-(5509, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-04-30 19:51:58');
+(5589, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:22:55'),
+(5590, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2019-05-01 19:23:00'),
+(5591, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:23:01'),
+(5592, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2019-05-01 19:23:02'),
+(5593, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:23:03'),
+(5594, 1, '::1', 'client/client', 'view the client page', 'GET', '2019-05-01 19:23:05'),
+(5595, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:23:06'),
+(5596, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:23:07'),
+(5597, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:26:29'),
+(5598, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:26:31'),
+(5599, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:26:32'),
+(5600, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:27:05'),
+(5601, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2019-05-01 19:27:06'),
+(5602, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2019-05-01 19:27:12'),
+(5603, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:27:14'),
+(5604, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:27:16'),
+(5605, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:27:16'),
+(5606, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:30:11'),
+(5607, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:30:11'),
+(5608, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:30:12'),
+(5609, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:30:14'),
+(5610, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:30:15'),
+(5611, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:30:18'),
+(5612, 1, '::1', 'log/activity_log', 'view the activity log page', 'GET', '2019-05-01 19:30:19'),
+(5613, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:30:23'),
+(5614, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:31:45'),
+(5615, 1, '::1', 'inventory/inventory_alert', 'view the alert inventory page', 'GET', '2019-05-01 19:31:55'),
+(5616, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2019-05-01 19:31:58'),
+(5617, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2019-05-01 19:32:52'),
+(5618, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:32:54'),
+(5619, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:32:54'),
+(5620, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:34:16'),
+(5621, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:34:17'),
+(5622, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:37:31'),
+(5623, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2019-05-01 19:37:32'),
+(5624, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:46:25'),
+(5625, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2019-05-01 19:47:34');
 
 -- --------------------------------------------------------
 
@@ -377,6 +251,19 @@ CREATE TABLE `checkout_file` (
   `checkout_file_id` int(11) NOT NULL,
   `checkout_id` int(11) DEFAULT NULL,
   `path` varchar(1024) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout_lable`
+--
+
+CREATE TABLE `checkout_lable` (
+  `checkout_label_id` int(11) NOT NULL,
+  `checkout_id` int(11) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `tracking` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1615,7 +1502,7 @@ CREATE TABLE `user_group` (
 --
 
 INSERT INTO `user_group` (`user_group_id`, `name`, `description`, `permission`) VALUES
-(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\"]}'),
+(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"]}'),
 (12, 'Clerk', 'The clerk user group', '{\"access\":[\"inventory\"]}'),
 (13, 'Client', '', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"setting\"]}');
 
@@ -1726,6 +1613,12 @@ ALTER TABLE `checkout_fee`
 --
 ALTER TABLE `checkout_file`
   ADD PRIMARY KEY (`checkout_file_id`);
+
+--
+-- Indexes for table `checkout_lable`
+--
+ALTER TABLE `checkout_lable`
+  ADD PRIMARY KEY (`checkout_label_id`);
 
 --
 -- Indexes for table `checkout_product`
@@ -1946,7 +1839,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5510;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5626;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -1995,6 +1888,12 @@ ALTER TABLE `checkout_fee`
 --
 ALTER TABLE `checkout_file`
   MODIFY `checkout_file_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `checkout_lable`
+--
+ALTER TABLE `checkout_lable`
+  MODIFY `checkout_label_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `checkout_product`

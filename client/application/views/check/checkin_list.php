@@ -10,6 +10,9 @@
 	  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('text_checkin'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_checkin_list'); ?></strong></li>
 	</ol>
+	<div class="button-group tooltip-demo">
+	  <a href="<?php echo base_url(); ?>check/checkin/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+	</div>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

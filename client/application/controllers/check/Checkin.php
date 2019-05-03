@@ -1,9 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkin extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 		
@@ -12,7 +11,7 @@ class Checkin extends CI_Controller {
 		$this->load->model('check/checkin_model');
 	}
 	
-	function index()
+	public function index()
 	{	
 		$data['success'] = $this->session->flashdata('success');
 		

@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Yesterday_activity extends MX_Controller 
 {
 	public function index()

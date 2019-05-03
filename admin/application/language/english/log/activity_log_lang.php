@@ -197,7 +197,6 @@ $lang['activity_user_user_group_add'] 	  	          			= 'view the user group ad
 $lang['activity_user_user_group_edit'] 	  	          			= 'view the user group edit page';
 $lang['activity_user_user_group_delete'] 	  	          	    = 'try to delete user group';
 $lang['activity_setting_setting'] 	  	              			= 'view the setting page';
-$lang['activity_setting_activity_log'] 	  	            	    = 'view the activity log page';
 $lang['activity_setting_length_class'] 	  						= 'view the length class page';
 $lang['activity_setting_length_class_add'] 						= 'view the length class add page';
 $lang['activity_setting_length_class_edit'] 					= 'view the length class edit page';
@@ -214,3 +213,5 @@ $lang['activity_setting_language_edit'] 			    		= 'view the language edit page'
 $lang['activity_setting_language_delete'] 			    		= 'try to delete a language';
 $lang['activity_setting__language_reload'] 						= 'try to reload language';
 $lang['activity_setting_about'] 								= 'view about';
+$lang['activity_log_activity_log'] 	  	            	        = 'view the activity log page';
+

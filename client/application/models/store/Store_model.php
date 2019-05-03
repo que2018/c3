@@ -66,6 +66,35 @@ class Store_model extends CI_Model
 			return false;
 		}
 	}
+	
+	public function get_store_total($data = array())
+	{
+		$this->db->select('COUNT(store.store_id) AS total', false);
+		$this->db->from('store');
+		$this->db->where('client.id', $this->auth->get_client_id());
+		$this->db->join('client', 'client.id = store.client_id', 'left');
+		
+		if(!empty($data['filter_name'])) 
+		{			
+			$this->db->like('store.name', $data['filter_name'], 'both');
+		}
+		
+		if(!empty($data['filter_platform'])) 
+		{			
+			$this->db->like('store.platform', $data['filter_platform'], 'both');
+		}
+		
+		if(!empty($data['filter_client'])) 
+		{			
+			$this->db->like("CONCAT(client.firstname, ' ', client.lastname)", $data['filter_client'], 'both');
+		}
+		
+		$q = $this->db->get();
+		
+		$result = $q->row_array();
+		
+		return $result['total'];
+	}
 
 	public function get_store($store_id) 
 	{

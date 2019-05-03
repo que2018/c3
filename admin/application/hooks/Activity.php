@@ -8,9 +8,9 @@ class Activity
 
 		$CI->load->helper('url');
 		
-		$CI->lang->load('setting/activity_log');
+		$CI->lang->load('log/activity_log');
 		
-		$CI->load->model('setting/activity_log_model');
+		$CI->load->model('log/activity_log_model');
 
 		$data = array(
 			'user_id'     => $CI->auth->get_user_id(),

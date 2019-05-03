@@ -7,11 +7,11 @@ class Activity_log extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 
-		$this->lang->load('setting/activity_log');
+		$this->lang->load('log/activity_log');
 		
-		$this->load->model('setting/activity_log_model');
+		$this->load->model('log/activity_log_model');
 		
-		$this->header->add_style(base_url(). 'assets/css/app/setting/activity_log_history.css');
+		$this->header->add_style(base_url(). 'assets/css/app/log/activity_log_history.css');
 	
 		$this->header->set_title($this->lang->line('text_activity_log'));
 		 
@@ -174,7 +174,7 @@ class Activity_log extends MX_Controller
 		$this->pagination->total  = $activity_log_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url() . 'setting/activity_log?page={page}' . $url;
+		$this->pagination->url    = base_url() . 'log/activity_log?page={page}' . $url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($activity_log_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($activity_log_total - $limit)) ? $activity_log_total : ((($page - 1) * $limit) + $limit), $activity_log_total, ceil($activity_log_total / $limit));
 
@@ -219,11 +219,11 @@ class Activity_log extends MX_Controller
 			$url .= '&order=ASC';
 		}
 		
-		$data['sort_user']         = base_url() . 'setting/activity_log?sort=activity_log.user' . $url;
-		$data['sort_ip_address']   = base_url() . 'setting/activity_log?sort=activity_log.ip_address' . $url;
-		$data['sort_description']  = base_url() . 'setting/activity_log?sort=activity_log.description' . $url;
-		$data['sort_method']       = base_url() . 'setting/activity_log?sort=activity_log.method' . $url;
-		$data['sort_date_added']   = base_url() . 'setting/activity_log?sort=activity_log.date_added' . $url;
+		$data['sort_user']         = base_url() . 'log/activity_log?sort=activity_log.user' . $url;
+		$data['sort_ip_address']   = base_url() . 'log/activity_log?sort=activity_log.ip_address' . $url;
+		$data['sort_description']  = base_url() . 'log/activity_log?sort=activity_log.description' . $url;
+		$data['sort_method']       = base_url() . 'log/activity_log?sort=activity_log.method' . $url;
+		$data['sort_date_added']   = base_url() . 'log/activity_log?sort=activity_log.date_added' . $url;
 
 		$url = '';
 		
@@ -241,7 +241,7 @@ class Activity_log extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'setting/activity_log' . $url;
+		$data['filter_url'] = base_url() . 'log/activity_log' . $url;
 			
 		$data['sort']  = $sort;
 		$data['order'] = $order;
@@ -256,20 +256,20 @@ class Activity_log extends MX_Controller
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
-		$this->load->view('setting/activity_log_list', $data);
+		$this->load->view('log/activity_log_list', $data);
 	}
 	
 	public function clear()
 	{
-		$this->lang->load('setting/activity_log');
+		$this->lang->load('log/activity_log');
 		
-		$this->load->model('setting/activity_log_model');
+		$this->load->model('log/activity_log_model');
 		
 		$this->activity_log_model->clear_log_activity();
 		
 		$this->session->set_flashdata('success', $this->lang->line('text_store_sync_clear_success'));
 			
-		redirect(base_url() . 'setting/activity_log', 'refresh');
+		redirect(base_url() . 'log/activity_log', 'refresh');
 	}
 }
 

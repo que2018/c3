@@ -37,6 +37,8 @@
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#file"><?php echo $this->lang->line('tab_file'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#note"><?php echo $this->lang->line('tab_note'); ?></a></li>
 		</ul>
@@ -47,11 +49,11 @@
 			    <div class="row">
 				  <div class="col-lg-7">
 				    <div class="form-group">
-					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_sale_id'); ?></label>
+					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_checkout_id'); ?></label>
 					  <div class="col-sm-10">
 					    <div class="input-group">
 					      <span class="input-group-addon">#</span>
-						  <input type="text" name="sale_id" value="<?php echo $sale_id; ?>" class="form-control">
+						  <input type="text" name="checkout_id" value="<?php echo $checkout_id; ?>" class="form-control">
 					    </div>
 					  </div>
 				    </div>
@@ -223,21 +225,78 @@
 				  </select>
 			    </div>
 			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_label'); ?></label>
-                <div class="col-sm-10">
-				  <div class="plabel">
-				    <?php if($label) { ?>
-					  <img src="<?php echo $label; ?>" class="label-img" />
-					  <a href="<?php echo $label; ?>" class="btn btn-primary btn-clabel" download><i class="fa fa-download"></i></a>
-					<?php } ?>
-				  </div>  
-                </div>				  
-              </div> 
 			  <div class="hr-line-dashed"></div>	
 		    </div>
 		  </div>
+		  <div id="label" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="checkout_label" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 30%;"><?php echo $this->lang->line('column_label') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_tracking') ?></th>							
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $checkout_lable_row = 0; ?>
+					<?php if($checkout_labels) { ?>
+					  <?php foreach ($checkout_labels as $checkout_label) { ?>
+					  <tr id="checkout-label-row<?php echo $checkout_lable_row; ?>">
+					    <td class="text-right" style="padding: 20px;">
+						  <img src="<?php echo $checkout_label['link']; ?>" class="label-img" />
+						  <input type="hidden" name="checkout_label[<?php echo $checkout_lable_row; ?>][path]" value="<?php echo $checkout_label['path']; ?>"/>
+						</td>
+					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="checkout_label[<?php echo $checkout_lable_row; ?>][tracking]" value="<?php echo $checkout_label['tracking']; ?>" class="form-control" /></div></td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#checkout-label-row<?php echo $checkout_lable_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						  <a class="btn btn-info btn-download" href="<?php echo $checkout_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						</td>
+					  </tr>
+					  <?php $checkout_lable_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+                </table>
+              </div> 
+			</div>
+		  </div>
+		  <div id="file" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="checkout_file" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_download') ?></th>							
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $checkout_file_row = 0; ?>
+					<?php if($checkout_files) { ?>
+					  <?php foreach ($checkout_files as $checkout_file) { ?>
+					  <tr id="checkout-file-row<?php echo $checkout_file_row; ?>">
+					    <td class="text-right" style="padding: 20px;">
+						  <input type="hidden" name="checkout_file[<?php echo $checkout_lable_row; ?>][path]" value="<?php echo $checkout_label['path']; ?>"/>
+						</td>
+					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="checkout_file[<?php echo $checkout_file_row; ?>][tracking]" value="<?php echo $checkout_file['tracking']; ?>" class="form-control" /></div></td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#checkout-file-row<?php echo $checkout_file_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						  <a class="btn btn-info btn-download" href="<?php echo $checkout_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						</td>
+					  </tr>
+					  <?php $checkout_file_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+                </table>
+              </div> 
+			</div>
+		  </div>
+		  
+		  
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
 			  <div class="table-responsive">

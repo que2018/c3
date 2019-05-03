@@ -61,6 +61,7 @@
 						<div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="report"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_report'); ?></label></div>
 						<div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="user"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_user'); ?></label></div>
 						<div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="setting"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_system'); ?></label></div>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="log"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_log'); ?></label></div>
 					 </div>
 				    </div>
 				  </div>
@@ -77,6 +78,7 @@
 					  <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="report"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_report'); ?></label></div>
 					  <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="user"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_user'); ?></label></div>
 					  <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="setting"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_system'); ?></label></div>
+	    			  <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="log"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_log'); ?></label></div>
 					</div>
 				  </div>
 				</div>
