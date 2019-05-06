@@ -785,6 +785,9 @@ class Checkout extends MX_Controller
 					}
 				}
 			}
+			
+			//checkout file
+			$data['checkout_files'] = array();
 
 			//checkout fee
 			$data['checkout_fees'] = array();
