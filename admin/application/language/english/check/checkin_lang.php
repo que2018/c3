@@ -17,6 +17,7 @@ $lang['text_cancel'] 	  	        	 	  	 = 'cancel';
 $lang['text_search'] 	  	        			 = 'Search';
 $lang['text_download'] 	  	        			 = 'download';
 $lang['text_check_in'] 	  	        	 	  	 = 'check in';
+$lang['text_checkin_print'] 	  	        	 = 'checkin print';
 $lang['text_checkin_fee'] 	  	        		 = 'checkin fee';
 $lang['text_checkin_product'] 	  	    		 = 'checkin product';
 $lang['text_checkin_add'] 	  	    			 = 'Add Checkin';

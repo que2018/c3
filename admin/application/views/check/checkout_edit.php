@@ -269,8 +269,7 @@
 				  <thead>
 					<tr>
 					  <th class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></th>
-					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_download') ?></th>							
-					  <th></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_action') ?></th>							
 					</tr>
 				  </thead>
 				  <tbody>
@@ -278,13 +277,13 @@
 					<?php if($checkout_files) { ?>
 					  <?php foreach ($checkout_files as $checkout_file) { ?>
 					  <tr id="checkout-file-row<?php echo $checkout_file_row; ?>">
-					    <td class="text-right" style="padding: 20px;">
-						  <input type="hidden" name="checkout_file[<?php echo $checkout_lable_row; ?>][path]" value="<?php echo $checkout_label['path']; ?>"/>
+					    <td class="text-left">
+						  <?php echo $checkout_file['name']; ?>
+						  <input type="hidden" name="checkout_file[<?php echo $checkout_file_row; ?>][path]" value="<?php echo $checkout_file['path']; ?>"/>
 						</td>
-					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="checkout_file[<?php echo $checkout_file_row; ?>][tracking]" value="<?php echo $checkout_file['tracking']; ?>" class="form-control" /></div></td>
 					    <td class="text-center">
 						  <button type="button" onclick="$('#checkout-file-row<?php echo $checkout_file_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
-						  <a class="btn btn-info btn-download" href="<?php echo $checkout_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						  <a class="btn btn-info btn-file-download" href="<?php echo $checkout_file['url']; ?>" download><i class="fa fa-download"></i></a>
 						</td>
 					  </tr>
 					  <?php $checkout_file_row++; ?>

@@ -498,14 +498,12 @@ class Sale extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class_id'), 'required');
 		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
-		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_order_products'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
 			$data = array(
-				'total'    		    => $this->input->post('total'),
 				'status_id'    		=> $this->input->post('status_id'),
 				'tracking'    		=> $this->input->post('tracking'),
 				'note'     		    => $this->input->post('note'),
@@ -553,7 +551,6 @@ class Sale extends MX_Controller
 		else
 		{
 			$data = array(
-				'total'    		    => '',
 				'status_id'    		=> '',
 				'tracking'    		=> '',
 				'note'     		    => '',
@@ -819,14 +816,12 @@ class Sale extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class_id'), 'required');
 		$this->form_validation->set_rules('shipping_provider', $this->lang->line('text_shipping_provider'), 'required');
-		$this->form_validation->set_rules('shipping_service', $this->lang->line('text_shipping_service'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_product'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
 		
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'total'    		    => $this->input->post('total'),
 				'status_id'    		=> $this->input->post('status_id'),
 				'tracking'          => $this->input->post('tracking'),
 				'note'              => $this->input->post('note'),
@@ -869,7 +864,6 @@ class Sale extends MX_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['total']       	    = $this->input->post('total');
 			$data['status_id']       	= $this->input->post('status_id');
 			$data['tracking']       	= $this->input->post('tracking');
 			$data['note']        	    = $this->input->post('note');			
@@ -941,7 +935,6 @@ class Sale extends MX_Controller
 		{
 			$sale = $this->sale_model->get_sale($sale_id);
 			
-			$data['total']       	    = $sale['total'];			
 			$data['status_id']   		= $sale['status_id'];	
 			$data['tracking']   		= $sale['tracking'];
 			$data['note']    		    = $sale['note'];

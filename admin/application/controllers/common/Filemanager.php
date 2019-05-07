@@ -7,15 +7,7 @@ class Filemanager extends MX_Controller
 	{
 		$this->lang->load('common/filemanager');
 
-		// Find which protocol to use to pass the full image link back
-		if ($this->input->server('HTTPS')) 
-		{
-			$server = $this->config->item('site_https');
-		} 
-		else 
-		{
-			$server = $this->config->item('site_http');
-		}
+		$server = $this->config->item('site_url');
 
 		if($this->input->get('filter_name')) 
 		{

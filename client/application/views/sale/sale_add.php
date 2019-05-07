@@ -42,16 +42,6 @@
 		    <div id="general" class="tab-pane active">
 			  <div class="panel-body">
 			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_total'); ?></label>
-                  <div class="col-sm-10">
-				    <div class="input-group">
-					  <span class="input-group-addon">$</span>
-				      <input type="text" name="total" value="<?php echo $total; ?>" class="form-control">
-					</div>
-				  </div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
                   <div class="col-sm-10"><input type="text" name="tracking" value="<?php echo $tracking; ?>" class="form-control"></div>
                 </div>

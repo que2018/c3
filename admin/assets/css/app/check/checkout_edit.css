@@ -10,6 +10,9 @@
 .btn-download {
 	margin-right: 6px;
 }
+.btn-file-download {
+	margin-left: 6px;
+}
 .code-box {
     width: 95%;
     padding: 10px;

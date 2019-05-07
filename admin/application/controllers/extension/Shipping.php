@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Shipping extends MX_Controller 
 {
 	public function index()
@@ -123,8 +122,7 @@ class Shipping extends MX_Controller
 			else
 			{
 				$outdata = array(
-					'success'  => false,
-					'msg'      => $this->lang->line('error_no_shipping_service')
+					'success'  => false
 				);
 			}
 					

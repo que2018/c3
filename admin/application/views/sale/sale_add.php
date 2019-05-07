@@ -37,16 +37,6 @@
 		    <div id="general" class="tab-pane active">
 			  <div class="panel-body">
 			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_total'); ?></label>
-                  <div class="col-sm-10">
-				    <div class="input-group">
-					  <span class="input-group-addon">$</span>
-				      <input type="text" name="total" value="<?php echo $total; ?>" class="form-control">
-					</div>
-				  </div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
                   <div class="col-sm-10"><input type="text" name="tracking" value="<?php echo $tracking; ?>" class="form-control"></div>
                 </div>
@@ -254,7 +244,6 @@
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_service'); ?></label>
                   <div class="col-sm-10">
 				    <select name="shipping_service" class="form-control">
-					  <option value=""></option>
 				      <?php foreach($shipping_services as $service) { ?>
 					  <?php if($service['code'] == $shipping_service) { ?>
 					  <option value="<?php echo $service['code']; ?>" selected><?php echo $service['name']; ?></option>
@@ -445,6 +434,8 @@ $(document).ready(function() {
 	
 		if(code) 
 		{
+			$('select[name=\'shipping_service\']').html('');	
+			
 			$.ajax({
 				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_services?code=' + code,
 				dataType: "json",
@@ -461,11 +452,6 @@ $(document).ready(function() {
 						});
 				
 						$('select[name=\'shipping_service\']').html(shipping_service_html);
-					}
-					else 
-					{
-						$('#alert-error span').html(json.msg);		
-						$('#alert-error').show();
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {

@@ -788,6 +788,23 @@ class Checkout extends MX_Controller
 			
 			//checkout file
 			$data['checkout_files'] = array();
+			
+			$checkout_files = $this->checkout_model->get_checkout_files($checkout_id);
+			
+			if($checkout_files)
+			{
+				foreach($checkout_files as $checkout_file)
+				{					
+					if(is_file(FILEPATH . $checkout_file['path'])) 
+					{
+						$data['checkout_files'][] = array(
+							'name'  => basename($checkout_file['path']),
+							'path'  => $checkout_file['path'],
+							'url'   => $this->config->item('site_url') . 'media/file/' . $checkout_file['path']
+						);
+					}
+				}
+			}
 
 			//checkout fee
 			$data['checkout_fees'] = array();

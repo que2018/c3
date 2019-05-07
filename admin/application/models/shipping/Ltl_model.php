@@ -8,16 +8,6 @@ class Ltl_model extends CI_Model
 	{
 		$this->db->delete('setting', array('code' => 'ltl')); 
 	}
-	
-	public function generate_sale_label($sale_id)
-	{
-		
-	}
-	
-	public function generate_checkout_label($checkout_id)
-	{
-		
-	}
 }
 
 

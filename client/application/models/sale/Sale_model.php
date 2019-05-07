@@ -34,7 +34,6 @@ class Sale_model extends CI_Model
 			'weight_class_id'	 => $data['weight_class_id'],
 			'shipping_provider'	 => $data['shipping_provider'],
 			'shipping_service'	 => $data['shipping_service'],
-			'total'	             => $data['total'],
 			'tracking'	         => $data['tracking'],
 			'status_id'	         => 1,
 			'note'	             => $data['note'],
@@ -145,7 +144,6 @@ class Sale_model extends CI_Model
 			'weight_class_id'	 => $data['weight_class_id'],
 			'shipping_provider'	 => $data['shipping_provider'],
 			'shipping_service'	 => $data['shipping_service'],
-			'total'	             => $data['total'],
 			'tracking'	         => $data['tracking'],
 			'note'	             => $data['note'],
 			'date_modified'      => date('Y-m-d H:i:s')

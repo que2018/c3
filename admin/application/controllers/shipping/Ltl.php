@@ -22,8 +22,8 @@ class Ltl extends MX_Controller
 		if(($this->input->server('REQUEST_METHOD') == 'POST') && $this->validate())
 		{
 			$data = array(				
-				'ltl_status'   	  		 => $this->input->post('ltl_status'),
-				'ltl_sort_order'  		 => $this->input->post('ltl_sort_order')
+				'ltl_status'   	  => $this->input->post('ltl_status'),
+				'ltl_sort_order'  => $this->input->post('ltl_sort_order')
 			);
 			
 			$this->setting_model->edit_setting('ltl', $data);

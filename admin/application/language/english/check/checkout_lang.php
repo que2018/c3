@@ -32,6 +32,7 @@ $lang['text_shipping_provider'] 	  	 							= 'shipping provider';
 $lang['text_shipping_method'] 	  	     							= 'shipping method';
 $lang['text_checkout_product'] 	  	        	 	  				= 'checkout product';
 $lang['text_checkout_fee'] 	  	        	 	  					= 'checkout fee';
+$lang['text_checkout_print'] 	  	        	 	  			    = 'checkout print';
 $lang['text_location'] 	  	    		 	  						= 'location';
 $lang['text_packing_list'] 	  	    		 						= 'packing list';
 $lang['text_generate_checkout'] 	  	    		 			    = 'generate checkout';
