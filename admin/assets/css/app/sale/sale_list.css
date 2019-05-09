@@ -152,6 +152,9 @@ input:focus {
     padding: 4px 5px;
 	margin-right: 5px;
 }
+.checkout-pending a, .checkout-complete a {
+	color: #ffffff;
+}
 .table-shipping {
 	margin-top: 15px;
 }

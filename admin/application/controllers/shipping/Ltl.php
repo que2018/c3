@@ -23,7 +23,8 @@ class Ltl extends MX_Controller
 		{
 			$data = array(				
 				'ltl_status'   	  => $this->input->post('ltl_status'),
-				'ltl_sort_order'  => $this->input->post('ltl_sort_order')
+				'ltl_sort_order'  => $this->input->post('ltl_sort_order'),
+				'ltl_service'     => $this->input->post('ltl_service')
 			);
 			
 			$this->setting_model->edit_setting('ltl', $data);
@@ -49,6 +50,15 @@ class Ltl extends MX_Controller
 		else 
 		{
 			$data['ltl_sort_order'] = $this->config->item('ltl_sort_order');
+		}
+		
+		if($this->input->post('ltl_service')) 
+		{
+			$data['ltl_services'] = $this->input->post('ltl_service');
+		} 
+		else 
+		{
+			$data['ltl_services'] = $this->config->item('ltl_service');
 		}
 		
 		$data['error'] = validation_errors();

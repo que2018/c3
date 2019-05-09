@@ -153,19 +153,27 @@
 		    </td>
 			<td class="status">
 			  <?php if($sale['status_id'] == 1) { ?>
-			  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+			    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
 			  <?php } else { ?>
-			  <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+			    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 			  <?php } ?>
 			  &nbsp;
 			  <?php if($sale['checkout']) { ?>      
 			  <?php if($sale['checkout']['status'] == 1) { ?>
-			  <span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+			  <span class="checkout-pending">
+			    <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
+				  <?php echo $this->lang->line('text_checkout_pending'); ?>
+			    </a>
+			  </span>
 			  <?php } else { ?>
-			  <span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
+			  <span class="checkout-complete">
+			    <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
+				  <?php echo $this->lang->line('text_checkout_complete'); ?>
+			    </a>
+			  </span>
 			  <?php } ?>
 			  <?php } ?>
-			</td>
+		    </td>
 		    <td><?php echo $sale['date_added']; ?></td>
 		    <td class="text-center">
 			  <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>

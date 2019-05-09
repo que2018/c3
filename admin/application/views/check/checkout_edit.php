@@ -32,7 +32,7 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-    <form method="post" action="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $checkout_id; ?>" class="form-horizontal">
+    <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $checkout_id; ?>" class="form-horizontal">
       <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
@@ -290,12 +290,16 @@
 					  <?php } ?>
 					<?php } ?>
 				  </tbody>
+				  <tfoot>
+					<tr>
+					  <td></td>
+					  <td class="text-left"><button type="button" onclick="add_checkout_file();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					</tr>
+				  </tfoot>
                 </table>
               </div> 
 			</div>
 		  </div>
-		  
-		  
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
 			  <div class="table-responsive">
@@ -503,6 +507,20 @@ function refresh_weight() {
 			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+}
+</script>
+<script>
+checkout_file_row = <?php echo $checkout_file_row; ?>;
+
+function add_checkout_file() {
+	html  = '<tr id="checkout-file-row' + checkout_file_row + '">';
+	html += '<td><input type="file" name="checkout_file[' + checkout_file_row + ']" /></td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-file-row' + checkout_file_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#checkout_file tbody').append(html);
+
+	checkout_file_row++;
 }
 </script>
 <script>

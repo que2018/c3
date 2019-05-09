@@ -396,6 +396,7 @@ class Checkout extends MX_Controller
 				'weight_class_id'   => $this->input->post('weight_class_id'),
 				'shipping_provider' => $this->input->post('shipping_provider'),
 				'shipping_service'  => $this->input->post('shipping_service'),
+				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fees'  	=> $this->input->post('checkout_fee'),
 				'note'           	=> $this->input->post('note')
 			);
@@ -463,6 +464,7 @@ class Checkout extends MX_Controller
 				'weight_class_id'   => $this->input->post('weight_class_id'),
 				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
 				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
+				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fees'  	=> $this->input->post('checkout_fee'),
 				'note'           	=> $this->input->post('note'),
 				'checkout_products' => array()
@@ -620,7 +622,7 @@ class Checkout extends MX_Controller
 				'checkout_products'  => $this->input->post('checkout_product'),
 				'checkout_labels'    => $this->input->post('checkout_label'),
 				'checkout_files'     => $this->input->post('checkout_file'),
-				'checkout_fees'      => $this->input->post('checkout_fee')				
+				'checkout_fees'      => $this->input->post('checkout_fee')
 			);
 			
 			$this->checkout_model->edit_checkout($checkout_id, $data);
@@ -646,13 +648,9 @@ class Checkout extends MX_Controller
 			$data['shipping_service']   = $this->input->post('shipping_service');
 			$data['note']            	= $this->input->post('note');
 			$data['checkout_labels']    = $this->input->post('checkout_label');
-			$data['checkout_files']    = $this->input->post('checkout_file');
+			$data['checkout_files']     = $this->input->post('checkout_file');
 			$data['checkout_fees']   	= $this->input->post('checkout_fee');
-			
-			$checkout_products = $this->input->post('checkout_product');
-			
-			$data['checkout_products'] = array();
-						
+									
 			if($checkout_products)
 			{	
 				foreach($checkout_products as $checkout_product) 
@@ -692,7 +690,7 @@ class Checkout extends MX_Controller
 						'upc'           => $product_data['upc'],
 						'sku'           => $product_data['sku'],
 						'quantity'      => $checkout_product['quantity'],
-						'inventory_id'  => $checkout_product['inventory_id'],
+						'inventory_id'  => (isset($checkout_product['inventory_id']))?$checkout_product['inventory_id']:null,
 						'inventories'   => $inventories
 					);
 				}
@@ -1043,9 +1041,9 @@ class Checkout extends MX_Controller
 				{
 					$row = $i + 1;
 					
-					$product_id    = $checkout_product['product_id'];
-					$inventory_id  = $checkout_product['inventory_id'];
-					$quantity      = $checkout_product['quantity'];
+					$product_id   = $checkout_product['product_id'];
+					$inventory_id = $checkout_product['inventory_id'];
+					$quantity     = $checkout_product['quantity'];
 					
 					$product_info = $this->product_model->get_product($product_id);
 
