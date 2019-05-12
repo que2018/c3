@@ -81,5 +81,10 @@
     padding: 0px 8px;
 	float: right;
 }
+.upload-box {
+	min-height: 35px;
+	background: #ffffff;
+    border: 1px dashed #1ab394 !important;
+}
 
 

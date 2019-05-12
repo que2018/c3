@@ -174,7 +174,7 @@ class Checkout_model extends CI_Model
 			return $checkout_id;
 		}
 	}
-	
+
 	public function edit_checkout($checkout_id, $data)
 	{
 		$this->lang->load('check/checkout');

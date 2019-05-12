@@ -141,6 +141,9 @@
 				  <tbody>
 				    <tr>
 					  <td colspan=4 class="text-right">
+					  	<?php if($sale['name']) { ?>
+						<span class="name"><?php echo $sale['name']; ?></span>
+						<?php } ?>
 						<?php if($sale['shipping']) { ?>
 						<span class="shipping"><?php echo $sale['shipping']; ?></span>
 						<?php } ?>

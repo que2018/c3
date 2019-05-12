@@ -358,6 +358,46 @@ class Checkout_ajax extends CI_Controller
 		
 		return $result;
 	}
+	
+	public function upload_file() 
+	{	
+		$this->lang->load('check/checkout');
+	
+		$this->load->model('check/checkout_model');
+
+		if(!empty($_FILES)) 
+		{	
+			$temp_file = $_FILES['file']['tmp_name'];      
+			$target_path = FILEPATH . $_FILES['file']['name'];  
+	 
+			$result = move_uploaded_file($temp_file, $target_path);
+			
+			if($result)
+			{
+				$outdata = array(
+					'success'  => true,
+					'path'     => $target_path
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'  => false,
+					'message'  => $this->lang->line('error_file_move')
+				);
+			}
+		}
+		else
+		{
+			$outdata = array(
+				'success'  => false,
+				'message'  => $this->lang->line('error_file_upload')
+			);
+		}
+
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));		
+	}
 }
 
 

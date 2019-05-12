@@ -514,13 +514,23 @@ checkout_file_row = <?php echo $checkout_file_row; ?>;
 
 function add_checkout_file() {
 	html  = '<tr id="checkout-file-row' + checkout_file_row + '">';
-	html += '<td><input type="file" name="checkout_file[' + checkout_file_row + ']" /></td>';
+	html += '<td>';
+	html += '<form class="upload-box" id="dropzone' + checkout_file_row + '">';
+	html += '<input type="hidden" name="checkout_file[' + checkout_file_row + '][path]">';
+	html += '</form>';
+	html += '</td>';
 	html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-file-row' + checkout_file_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
 	$('#checkout_file tbody').append(html);
-
-	checkout_file_row++;
+	
+	$("#dropzone" + checkout_file_row).dropzone({
+		url: "<?php echo base_url(); ?>check/checkout_ajax/upload_file",
+		success: function(file, response){
+			$("input[name='checkout_file[" + checkout_file_row + "][path]']").val(response.path);
+			checkout_file_row++;		
+		}
+	});
 }
 </script>
 <script>
