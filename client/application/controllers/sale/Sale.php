@@ -308,11 +308,9 @@ class Sale extends CI_Controller
 		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('store_id', $this->lang->line('text_store'), 'required');
-		$this->form_validation->set_rules('store_sale_id', $this->lang->line('text_store_sale_id'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_products'), 'required');
 		
 		$data = array(
-			'total'    		    => $this->input->post('total'),
 			'tracking'    		=> $this->input->post('tracking'),
 			'note'     		    => $this->input->post('note'),
 			'name'       		=> $this->input->post('name'),
@@ -484,13 +482,11 @@ class Sale extends CI_Controller
 		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('store_id', $this->lang->line('text_store'), 'required');
-		$this->form_validation->set_rules('store_sale_id', $this->lang->line('text_store_sale_id'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_products'), 'required');
 		
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'total'    		    => $this->input->post('total'),
 				'tracking'          => $this->input->post('tracking'),
 				'note'              => $this->input->post('note'),
 				'name'              => $this->input->post('name'),
@@ -533,7 +529,6 @@ class Sale extends CI_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['total']       	    = $this->input->post('total');
 			$data['status_id']       	= $this->input->post('status_id');
 			$data['tracking']       	= $this->input->post('tracking');
 			$data['note']        	    = $this->input->post('note');			
@@ -586,7 +581,6 @@ class Sale extends CI_Controller
 		{
 			$sale = $this->sale_model->get_sale($sale_id);
 			
-			$data['total']       	    = $sale['total'];			
 			$data['status_id']   		= $sale['status_id'];	
 			$data['tracking']   		= $sale['tracking'];
 			$data['note']    		    = $sale['note'];

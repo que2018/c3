@@ -10,6 +10,9 @@
 .btn-download {
 	margin-right: 6px;
 }
+.btn-file-download {
+	margin-left: 6px;
+}
 .code-box {
     width: 95%;
     padding: 10px;
@@ -77,6 +80,11 @@
     border-radius: 3px;
     padding: 0px 8px;
 	float: right;
+}
+.upload-box {
+	min-height: 35px;
+	background: #ffffff;
+    border: 1px dashed #1ab394 !important;
 }
 
 

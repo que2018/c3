@@ -60,6 +60,23 @@ class Checkout_model extends CI_Model
 		
 		$this->db->insert_batch('checkout_product', $checkout_products);							
 		
+		//checkout file	
+		if(isset($data['checkout_files']) && $data['checkout_files'])
+		{						
+			foreach($data['checkout_files'] as $checkout_file)
+			{			
+				if(is_file(FILEPATH . $checkout_file['path'])) 		
+				{
+					$checkout_files[] = array(
+						'checkout_id' => $checkout_id,
+						'path'        => $checkout_file['path']
+					);
+				}
+			}
+			
+			$this->db->insert_batch('checkout_file', $checkout_files);
+		}
+		
 		//checkout fee
 		if(isset($data['checkout_fees']) && $data['checkout_fees'])
 		{
@@ -157,7 +174,7 @@ class Checkout_model extends CI_Model
 			return $checkout_id;
 		}
 	}
-	
+
 	public function edit_checkout($checkout_id, $data)
 	{
 		$this->lang->load('check/checkout');
@@ -353,6 +370,25 @@ class Checkout_model extends CI_Model
 		
 		$this->db->insert_batch('checkout_product', $checkout_products);
 
+		//checkout file	
+		$this->db->delete('checkout_file', array('checkout_id' => $checkout_id));
+		
+		if(isset($data['checkout_files']) && $data['checkout_files'])
+		{						
+			foreach($data['checkout_files'] as $checkout_file)
+			{			
+				if(is_file(FILEPATH . $checkout_file['path'])) 		
+				{
+					$checkout_files[] = array(
+						'checkout_id' => $checkout_id,
+						'path'        => $checkout_file['path']
+					);
+				}
+			}
+			
+			$this->db->insert_batch('checkout_file', $checkout_files);
+		}
+
 		//checkout fee
 		$this->db->delete('checkout_fee', array('checkout_id' => $checkout_id));
 		
@@ -360,7 +396,8 @@ class Checkout_model extends CI_Model
 		{
 			$checkout_fees = array();
 						
-			foreach($data['checkout_fees'] as $checkout_fee){					
+			foreach($data['checkout_fees'] as $checkout_fee)
+			{					
 				$checkout_fees[] = array(
 					'checkout_id' => $checkout_id,
 					'name'        => $checkout_fee['name'],
@@ -608,6 +645,18 @@ class Checkout_model extends CI_Model
 
 		$q = $this->db->get();
 		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_checkout_files($checkout_id) 
+	{	
+		$q = $this->db->get_where('checkout_file', array('checkout_id' => $checkout_id));
+
 		if($q->num_rows() > 0)
 		{
 			return $q->result_array();

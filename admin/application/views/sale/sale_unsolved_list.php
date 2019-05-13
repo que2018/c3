@@ -57,47 +57,47 @@
 			    <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 			    <?php if($sort == 'sale.id') { ?>
 				<th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
+			      <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 8%;" class="sorting">
-					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
+			      <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.store_sale_id') { ?>
 				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
+				  <a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 20.6%;" class="sorting">
-					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
+			      <a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.tracking') { ?>
 				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
+				  <a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 20.6%;" class="sorting">
-					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
+				  <a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.status_id') { ?>
 				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
+				  <a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 16.6%;" class="sorting">
-					<a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
+				  <a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.date_added') { ?>
 				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 16.6%;" class="sorting">
-					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } ?>
 				<th></th>
@@ -149,6 +149,9 @@
 						    <tbody>
 							  <tr>
 								<td colspan=4 class="text-right">
+								  <?php if($sale['name']) { ?>
+							      <span class="name"><?php echo $sale['name']; ?></span>
+								  <?php } ?>
 								  <?php if($sale['shipping']) { ?>
 								  <span class="shipping"><?php echo $sale['shipping']; ?></span>
 								  <?php } ?>
@@ -181,16 +184,24 @@
 					  </td>
 					  <td class="status">
 					    <?php if($sale['status_id'] == 1) { ?>
-					    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+					      <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
 					    <?php } else { ?>
-					    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+					      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 					    <?php } ?>
 						&nbsp;
 						<?php if($sale['checkout']) { ?>      
 						<?php if($sale['checkout']['status'] == 1) { ?>
-						<span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
+						<span class="checkout-pending">
+						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
+						    <?php echo $this->lang->line('text_checkout_pending'); ?>
+						  </a>
+						</span>
 						<?php } else { ?>
-						<span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
+						<span class="checkout-complete">
+						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
+						    <?php echo $this->lang->line('text_checkout_complete'); ?>
+						  </a>
+						</span>
 						<?php } ?>
 						<?php } ?>
 					  </td>

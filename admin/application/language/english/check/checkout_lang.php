@@ -32,6 +32,7 @@ $lang['text_shipping_provider'] 	  	 							= 'shipping provider';
 $lang['text_shipping_method'] 	  	     							= 'shipping method';
 $lang['text_checkout_product'] 	  	        	 	  				= 'checkout product';
 $lang['text_checkout_fee'] 	  	        	 	  					= 'checkout fee';
+$lang['text_checkout_print'] 	  	        	 	  			    = 'checkout print';
 $lang['text_location'] 	  	    		 	  						= 'location';
 $lang['text_packing_list'] 	  	    		 						= 'packing list';
 $lang['text_generate_checkout'] 	  	    		 			    = 'generate checkout';
@@ -131,6 +132,9 @@ $lang['entry_label'] 	  	        								= 'Label';
 $lang['entry_note'] 	  	        	 	  						= 'Note';
 
 // Error 
+$lang['error_system']   											= '<i class="fa fa-exclamation-triangle"></i>&nbsp;system error';
+$lang['error_file_move']   											= '<i class="fa fa-exclamation-triangle"></i>&nbsp;file move error';
+$lang['error_file_upload']   										= '<i class="fa fa-exclamation-triangle"></i>&nbsp;file upload error';
 $lang['error_client_empty'] 	  	     	  						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Client is empty';
 $lang['error_select_location_first']         						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Please select a location first';
 $lang['error_code_empty'] 	  	         	  						= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Code is empty';
@@ -171,7 +175,6 @@ $lang['error_checkout_fee_row_name_required']     					= '<i class="fa fa-exclam
 $lang['error_checkout_fee_row_amount_required']   					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is require amount';
 $lang['error_no_client_fee_notice']              					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to no client found';
 $lang['error_multi_client_fee_notice']           					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to multi client found';
-
 
 
 

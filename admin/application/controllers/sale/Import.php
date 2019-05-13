@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Import extends MX_Controller 
 {
 	public function index() 
@@ -15,7 +14,6 @@ class Import extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_import.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
-		
 		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
 	
 		$this->header->set_title($this->lang->line('text_import_order'));	

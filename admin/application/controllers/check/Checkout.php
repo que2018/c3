@@ -396,6 +396,7 @@ class Checkout extends MX_Controller
 				'weight_class_id'   => $this->input->post('weight_class_id'),
 				'shipping_provider' => $this->input->post('shipping_provider'),
 				'shipping_service'  => $this->input->post('shipping_service'),
+				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fees'  	=> $this->input->post('checkout_fee'),
 				'note'           	=> $this->input->post('note')
 			);
@@ -463,6 +464,7 @@ class Checkout extends MX_Controller
 				'weight_class_id'   => $this->input->post('weight_class_id'),
 				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
 				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
+				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fees'  	=> $this->input->post('checkout_fee'),
 				'note'           	=> $this->input->post('note'),
 				'checkout_products' => array()
@@ -581,6 +583,7 @@ class Checkout extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');						
 		$this->header->add_style(base_url(). 'assets/js/plugins/selectize/css/selectize.bootstrap3.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
@@ -620,7 +623,7 @@ class Checkout extends MX_Controller
 				'checkout_products'  => $this->input->post('checkout_product'),
 				'checkout_labels'    => $this->input->post('checkout_label'),
 				'checkout_files'     => $this->input->post('checkout_file'),
-				'checkout_fees'      => $this->input->post('checkout_fee')				
+				'checkout_fees'      => $this->input->post('checkout_fee')
 			);
 			
 			$this->checkout_model->edit_checkout($checkout_id, $data);
@@ -646,13 +649,9 @@ class Checkout extends MX_Controller
 			$data['shipping_service']   = $this->input->post('shipping_service');
 			$data['note']            	= $this->input->post('note');
 			$data['checkout_labels']    = $this->input->post('checkout_label');
-			$data['checkout_files']    = $this->input->post('checkout_file');
+			$data['checkout_files']     = $this->input->post('checkout_file');
 			$data['checkout_fees']   	= $this->input->post('checkout_fee');
-			
-			$checkout_products = $this->input->post('checkout_product');
-			
-			$data['checkout_products'] = array();
-						
+									
 			if($checkout_products)
 			{	
 				foreach($checkout_products as $checkout_product) 
@@ -692,7 +691,7 @@ class Checkout extends MX_Controller
 						'upc'           => $product_data['upc'],
 						'sku'           => $product_data['sku'],
 						'quantity'      => $checkout_product['quantity'],
-						'inventory_id'  => $checkout_product['inventory_id'],
+						'inventory_id'  => (isset($checkout_product['inventory_id']))?$checkout_product['inventory_id']:null,
 						'inventories'   => $inventories
 					);
 				}
@@ -781,6 +780,26 @@ class Checkout extends MX_Controller
 							'tracking'  => $checkout_label['tracking'],
 							'path'      => $checkout_label['path'],
 							'link'      => base_url() . $checkout_label['path']
+						);
+					}
+				}
+			}
+			
+			//checkout file
+			$data['checkout_files'] = array();
+			
+			$checkout_files = $this->checkout_model->get_checkout_files($checkout_id);
+			
+			if($checkout_files)
+			{
+				foreach($checkout_files as $checkout_file)
+				{					
+					if(is_file(FILEPATH . $checkout_file['path'])) 
+					{
+						$data['checkout_files'][] = array(
+							'name'  => basename($checkout_file['path']),
+							'path'  => $checkout_file['path'],
+							'url'   => $this->config->item('site_url') . 'media/file/' . $checkout_file['path']
 						);
 					}
 				}
@@ -1023,9 +1042,9 @@ class Checkout extends MX_Controller
 				{
 					$row = $i + 1;
 					
-					$product_id    = $checkout_product['product_id'];
-					$inventory_id  = $checkout_product['inventory_id'];
-					$quantity      = $checkout_product['quantity'];
+					$product_id   = $checkout_product['product_id'];
+					$inventory_id = $checkout_product['inventory_id'];
+					$quantity     = $checkout_product['quantity'];
 					
 					$product_info = $this->product_model->get_product($product_id);
 
