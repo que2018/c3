@@ -1,56 +1,17 @@
 
-溜冰场:
+Lady Gaga 2019奥斯卡获奖感言:
 
-https://www.chineseinla.com/f/page_viewtopic/t_731313.html
+“如果你正在家里，正躺在沙发上看着这个颁奖典礼，我想说的是，我为这一切努力奋斗了很久很久。拿到这个奖不是我赢得了什么，而是我没有放弃什么。如果你也有梦想，那就为它奋斗吧。在这过程中，重要的不是你被拒绝了多少次，你摔倒了多少次，又或者被打倒了多少次。而是你勇敢的站起来的次数，和你一直到底的坚持。
 
-------------------------------------------------------------------------
+--------------------------------------------
 
-QT项目:
+https://github.com/macrozheng/mall
 
-https://github.com/qTox/qTox
+--------------------------------------------
 
-https://github.com/188080501/JQTools
+Coco游戏:
 
-------------------------------------------------------------------------
+https://github.com/ares5221/cocos-creator-game
 
-Altium Tutorial:
+--------------------------------------------
 
-https://www.altium.com/documentation/18.0/display/ADES/From+Idea+to+Manufacture+-+Driving+a+PCB+Design+through+Altium+Designer
-
-------------------------------------------------------------------------
-
-mysql脚本运行:
-
-https://stackoverflow.com/questions/11168402/mysql-copy-selected-fields-from-one-table-to-anothers
-
-------------------------------------------------------------------------
-
-钉子:
-
-https://www.ebay.com/itm/Torx-T20-25-Star-Flat-Head-with-nibs-Yellow-Zinc-Type-17-Outdoor-Wood-Screw/253898316644?var=553201012728&hash=item3b1d84db64:m:mKNthuJ6uHjiSf1BRGcSoOA:sc:USPSFirstClass!91732!US!-1
-
-------------------------------------------------------------------------
-
-Gmail API:
-
-https://developers.google.com/gmail/api/quickstart/php
-
-------------------------------------------------------------------------
-
-制冷剂在BaldwinPark有:
-
-https://www.walmart.com/ip/Interdynamics-Auto-Air-Conditioner-R-134a-Refrigerant-12-oz-301CA/16888798?wmlspartner=wlpa&selectedSellerId=0&adid=22222222227025375196&wl0=&wl1=g&wl2=c&wl3=60294854378&wl4=pla-98191016498&wl5=9031219&wl6=&wl7=&wl8=&wl9=pla&wl10=8175035&wl11=online&wl12=16888798&wl13=&veh=sem&gclid=Cj0KCQjwnKHlBRDLARIsAMtMHDEJpIbZjIhQN75-buYyelySgBNaPmDUl7MUKx5W_GcBhgIea9dB8OcaAm7sEALw_wcB
-
-------------------------------------------------------------------------
-
-芯片烧录座:
-
-https://item.taobao.com/item.htm?spm=2013.1.0.0.468928841Uuy00&id=561985437412
-
-------------------------------------------------------------------------
-
-U盘启动windows
-
-https://www.zhihu.com/question/39207359
-
-------------------------------------------------------------------------

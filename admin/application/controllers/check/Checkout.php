@@ -651,7 +651,9 @@ class Checkout extends MX_Controller
 			$data['checkout_labels']    = $this->input->post('checkout_label');
 			$data['checkout_files']     = $this->input->post('checkout_file');
 			$data['checkout_fees']   	= $this->input->post('checkout_fee');
-									
+			
+			$checkout_products = $this->input->post('checkout_product');
+			
 			if($checkout_products)
 			{	
 				foreach($checkout_products as $checkout_product) 
@@ -794,7 +796,7 @@ class Checkout extends MX_Controller
 			{
 				foreach($checkout_files as $checkout_file)
 				{					
-					if(is_file(FILEPATH . $checkout_file['path'])) 
+					if(is_file($checkout_file['path'])) 
 					{
 						$data['checkout_files'][] = array(
 							'name'  => basename($checkout_file['path']),
