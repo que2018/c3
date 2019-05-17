@@ -2,7 +2,7 @@
 
 // Text
 $lang['text_title'] 	  	           		  = 'Amazon';
-$lang['text_logo'] 	  	               		  = 'img/platform/amazon.png';
+$lang['text_logo'] 	  	               		  = 'assets/image/platform/amazon.png';
 $lang['text_no_tracking_need_sync'] 		  = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
 $lang['text_amazon_no_tracking_need_sync']	  = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
 $lang['text_sync_tracking_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;The tracking for order <strong>%s</strong> sync success';

@@ -1,0 +1,46 @@
+a {
+	color: #676a6c;
+}
+a:focus, a:hover {
+    color: #444444;
+}
+.limit-select {
+	width: 70px;
+	margin-bottom: 5px;
+    font-weight: 700;
+}
+.filter-td {
+}
+.filter-input {
+	border: none;
+	line-height: 20px;
+}
+.filter-select {
+	width: 100%;
+}
+input:focus {
+	outline:0;
+}
+.pagination {
+	margin: 0;
+}
+.pagination-block {
+	min-height: 33px;
+}.button-group {	position: absolute;    top: 30px;    right: 50px;}
+.page-heading {
+	position: relative;
+}
+.pagination {
+	margin: 0px;
+}
+.hr-line-space {
+    color: #ffffff;
+    background-color: #ffffff;
+    height: 1px;
+    margin: 10px 0;
+}
+
+
+
+
+

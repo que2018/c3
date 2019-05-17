@@ -7,7 +7,7 @@ $lang['text_fields'] 	  	               = 'Fields';
 $lang['text_platform'] 	  	               = 'Platform';
 $lang['text_payment_detail'] 	  	       = 'Payment Detail';
 $lang['text_order_detail'] 	  	           = 'Order Detail';
-$lang['text_logo'] 	  	                   = 'img/platform/square.png';
+$lang['text_logo'] 	  	                   = 'assets/image/platform/square.png';
 $lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;square platform edit success';
 
 // Tab

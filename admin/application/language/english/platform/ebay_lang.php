@@ -5,7 +5,7 @@ $lang['text_title'] 	  	             = 'Ebay';
 $lang['text_ebay'] 	  	                 = 'Ebay';
 $lang['text_fields'] 	  	             = 'Fields';
 $lang['text_platform'] 	  	             = 'Platform';
-$lang['text_logo'] 	  	                 = 'img/platform/ebay.png';
+$lang['text_logo'] 	  	                 = 'assets/image/platform/ebay.png';
 $lang['text_ebay_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;ebay platform edit success';
 
 // Tab
