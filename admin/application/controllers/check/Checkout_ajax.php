@@ -376,6 +376,7 @@ class Checkout_ajax extends CI_Controller
 			{
 				$outdata = array(
 					'success'  => true,
+					'name'     => basename($target_path),
 					'path'     => $target_path
 				);
 			}

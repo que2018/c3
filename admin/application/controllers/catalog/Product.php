@@ -409,7 +409,6 @@ class Product extends MX_Controller
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
-		$this->form_validation->set_rules('price',$this->lang->line('error_price_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('length',$this->lang->line('error_length_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('width',$this->lang->line('error_width_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
@@ -422,7 +421,6 @@ class Product extends MX_Controller
 			'asin'               => $this->input->post('asin'),
 			'name'               => $this->input->post('name'),
 			'image'              => $this->input->post('image'),
-			'price'              => $this->input->post('price'),
 			'alert_quantity'     => $this->input->post('alert_quantity'),
 			'length'             => $this->input->post('length'),
 			'width'              => $this->input->post('width'),
@@ -453,7 +451,6 @@ class Product extends MX_Controller
 				'asin'               => $this->input->post('asin'),
 				'name'               => $this->input->post('name'),
 				'image'              => $this->input->post('image'),
-				'price'              => $this->input->post('price'),
 				'alert_quantity'     => $this->input->post('alert_quantity'),
 				'length'             => $this->input->post('length'),
 				'width'              => $this->input->post('width'),
@@ -475,7 +472,6 @@ class Product extends MX_Controller
 				'asin'               => '',
 				'name'               => '',
 				'image'              => '',
-				'price'              => '',
 				'alert_quantity'     => '',
 				'length'             => '',
 				'width'              => '',
@@ -623,7 +619,6 @@ class Product extends MX_Controller
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
-		$this->form_validation->set_rules('price',$this->lang->line('error_price_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('length',$this->lang->line('error_length_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('width',$this->lang->line('error_width_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
 		$this->form_validation->set_rules('height',$this->lang->line('error_height_positive_number'),'regex_match[/^[+]?\d+([.]\d+)?$/]');
@@ -638,7 +633,6 @@ class Product extends MX_Controller
 				'asin'               => $this->input->post('asin'),
 				'name'               => $this->input->post('name'),
 				'image'              => $this->input->post('image'),
-				'price'              => $this->input->post('price'),
 				'length'             => $this->input->post('length'),
 				'width'              => $this->input->post('width'),
 				'height'             => $this->input->post('height'),
@@ -666,7 +660,6 @@ class Product extends MX_Controller
 			$data['asin']              = $this->input->post('asin');
 			$data['name']              = $this->input->post('name');
 			$data['image']             = $this->input->post('image');
-			$data['price']             = $this->input->post('price');
 			$data['length']            = $this->input->post('length');
 			$data['width']             = $this->input->post('width');
 			$data['height']            = $this->input->post('height');
@@ -688,7 +681,6 @@ class Product extends MX_Controller
 			$data['asin']              = $product['asin'];
 			$data['name']              = $product['name'];
 			$data['image']             = $product['image'];
-			$data['price']             = $product['price'];
 			$data['length']            = $product['length'];
 			$data['width']             = $product['width'];
 			$data['height']            = $product['height'];

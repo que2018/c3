@@ -306,7 +306,7 @@ class Checkout_sale extends MX_Controller
 			if($inventory_validated && !$sale_checkout)
 			{
 				$sale = $this->sale_model->get_sale($sale_id);
-		
+						
 				$data = array(
 					'sale_id'            => $sale_id,
 					'tracking'           => '',
@@ -323,10 +323,11 @@ class Checkout_sale extends MX_Controller
 					'checkout_products'  => $checkout_products
 				);
 				
-				$this->checkout_model->add_checkout($data);
+				$checkout_id = $this->checkout_model->add_checkout($data);
 
 				$outdata = array(
-					'success'   => true
+					'success'     => true,
+					'checkout_id' => $checkout_id
 				);
 			}
 			else

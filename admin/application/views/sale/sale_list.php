@@ -265,7 +265,7 @@ function checkout(handle, sale_id) {
 		success: function(json) {					
 			if(json.success) {
 				html  = '<span class="checkout-pending">';
-				html += '<?php echo $this->lang->line('text_checkout_pending'); ?>';
+				html += '<a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=' + json.checkout_id + '"><?php echo $this->lang->line('text_checkout_pending'); ?></a>';
 				html += '</span>';
 				
 				$(handle).closest('tr').find('.status').append(html);

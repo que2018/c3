@@ -101,11 +101,11 @@
 				</th>
 				<?php } ?>
 				<?php if($sort == 'transaction.comment') { ?>
-				<th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
+				<th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 				</th>
 				<?php } else { ?>
-				<th style="width: 20%;" class="sorting">
+				<th style="width: 30%;" class="sorting">
 				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 				</th>
 				<?php } ?>
@@ -185,7 +185,6 @@ function delete_transaction(handle, transaction_id) {
 $(document).ready(function() {
 	//filter
 	$('#btn-search').click(function() {
-		name     	= $('input[name=\'name\']').val();
 		client_id   = $('select[name=\'client_id\']').val();
 		cost        = $('input[name=\'cost\']').val();
 		markup      = $('input[name=\'markup\']').val();
@@ -195,9 +194,6 @@ $(document).ready(function() {
 		date_to     = $('input[name=\'date_to\']').val();
 
 		url = '<?php echo $filter_url; ?>';
-		
-		if(name)
-			url += '&filter_client=' + name;
 		
 		if(client_id)
 			url += '&filter_client_id=' + client_id;

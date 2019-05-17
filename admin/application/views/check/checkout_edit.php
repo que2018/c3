@@ -526,8 +526,9 @@ function add_checkout_file() {
 	
 	$("#dropzone" + checkout_file_row).dropzone({
 		url: "<?php echo base_url(); ?>check/checkout_ajax/upload_file",
+		previewTemplate: "<div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></div>",
 		success: function(file, response){
-			html = '<input type="hidden" name="checkout_file[' + checkout_file_row + '][path]" value="' + response.path + '">';
+			html = response.name + '<input type="hidden" name="checkout_file[' + checkout_file_row + '][path]" value="' + response.path + '">';
 			$("#checkout-file-td" + checkout_file_row).html(html);
 			
 			checkout_file_row++;		

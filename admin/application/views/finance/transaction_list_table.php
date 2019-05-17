@@ -76,11 +76,11 @@
 	  </th>
 	  <?php } ?>
 	  <?php if($sort == 'transaction.comment') { ?>
-	  <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
+	  <th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
 	    <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 	  </th>
 	  <?php } else { ?>
-	  <th style="width: 20%;" class="sorting">
+	  <th style="width: 30%;" class="sorting">
 	    <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
 	  </th>
 	  <?php } ?>

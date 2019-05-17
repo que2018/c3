@@ -260,7 +260,6 @@ class Product extends CI_Controller
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('price', $this->lang->line('text_price'), 'required');
 		$this->form_validation->set_rules('length', $this->lang->line('text_length'), 'required');
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
@@ -272,7 +271,6 @@ class Product extends CI_Controller
 			'sku'                => $this->input->post('sku'),
 			'asin'               => $this->input->post('asin'),
 			'name'               => $this->input->post('name'),
-			'price'              => $this->input->post('price'),
 			'alert_quantity'     => $this->input->post('alert_quantity'),
 			'length'             => $this->input->post('length'),
 			'width'              => $this->input->post('width'),
@@ -387,7 +385,6 @@ class Product extends CI_Controller
 	
 		$this->form_validation->set_rules('sku', $this->lang->line('text_sku'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('price', $this->lang->line('text_price'), 'required');
 		$this->form_validation->set_rules('length', $this->lang->line('text_length'), 'required');
 		$this->form_validation->set_rules('weight', $this->lang->line('text_weight'), 'required');
 		$this->form_validation->set_rules('height', $this->lang->line('text_height'), 'required');
@@ -401,7 +398,6 @@ class Product extends CI_Controller
 				'sku'                => $this->input->post('sku'),
 				'asin'               => $this->input->post('asin'),
 				'name'               => $this->input->post('name'),
-				'price'              => $this->input->post('price'),
 				'length'             => $this->input->post('length'),
 				'width'              => $this->input->post('width'),
 				'height'             => $this->input->post('height'),
@@ -426,7 +422,6 @@ class Product extends CI_Controller
 			$data['sku']               = $this->input->post('sku');
 			$data['asin']              = $this->input->post('asin');
 			$data['name']              = $this->input->post('name');
-			$data['price']             = $this->input->post('price');
 			$data['length']            = $this->input->post('length');
 			$data['width']             = $this->input->post('width');
 			$data['height']            = $this->input->post('height');
@@ -445,7 +440,6 @@ class Product extends CI_Controller
 			$data['sku']               = $product['sku'];
 			$data['asin']              = $product['asin'];
 			$data['name']              = $product['name'];
-			$data['price']             = $product['price'];
 			$data['length']            = $product['length'];
 			$data['width']             = $product['width'];
 			$data['height']            = $product['height'];
@@ -560,7 +554,6 @@ class Product extends CI_Controller
 		$data['sku']               = $product['sku'];
 		$data['asin']              = $product['asin'];
 		$data['name']              = $product['name'];
-		$data['price']             = $product['price'];
 		$data['length']            = $product['length'];
 		$data['width']             = $product['width'];
 		$data['height']            = $product['height'];

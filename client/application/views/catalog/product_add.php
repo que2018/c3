@@ -51,16 +51,6 @@
               </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
-		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_price'); ?></label>
-                <div class="col-sm-10">
-				  <div class="input-group">
-				    <span class="input-group-addon">$</span> 
-					<input type="text" name="price" value="<?php echo $price; ?>" class="form-control"> 
-				  </div>	
-				</div>
-              </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_alert_quantity'); ?></label>
                 <div class="col-sm-10"><input type="text" name="alert_quantity" value="<?php echo $alert_quantity; ?>" class="form-control"></div>
               </div>
