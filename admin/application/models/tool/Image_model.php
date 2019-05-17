@@ -45,6 +45,6 @@ class Image_model extends CI_Model
 			}
 		}
 
-		return $this->config->item('site_url') . 'media/image/' . $new_image;
+		return $this->config->item('media_url') . 'image/' . $new_image;
 	}
 }

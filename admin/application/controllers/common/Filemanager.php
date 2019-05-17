@@ -7,7 +7,7 @@ class Filemanager extends MX_Controller
 	{
 		$this->lang->load('common/filemanager');
 
-		$server = $this->config->item('site_url');
+		$server = $this->config->item('media_url');
 
 		if($this->input->get('filter_name')) 
 		{

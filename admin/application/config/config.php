@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['base_url'] = 'http://localhost/c3/admin';
 
-$config['site_url'] = 'http://localhost/c3/';
+$config['media_url'] = 'http://localhost/c3/media/';
 
 /*
 |--------------------------------------------------------------------------

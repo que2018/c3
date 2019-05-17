@@ -45,13 +45,6 @@ class Image_model extends CI_Model
 			}
 		}
 
-		if($this->input->server('HTTPS')) 
-		{
-			return $this->config->item('site_https') . 'media/image/' . $new_image;
-		} 
-		else 
-		{
-			return $this->config->item('site_http') . 'media/image/' . $new_image;
-		}
+		return $this->config->item('media_url') . 'image/' . $new_image;
 	}
 }

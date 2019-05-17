@@ -284,7 +284,7 @@ class Information extends MX_Controller
 			{
 				$ch = curl_init(); 
 				
-				$url = $this->config->item('site_url') . 'cms';
+				$url = base_url() . 'cms';
 								
 				curl_setopt($ch, CURLOPT_URL, $url); 
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
@@ -365,7 +365,7 @@ class Information extends MX_Controller
 			{
 				$ch = curl_init(); 
 				
-				$url = $this->config->item('site_url') . 'cms';
+				$url = base_url() . 'cms';
 								
 				curl_setopt($ch, CURLOPT_URL, $url); 
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	

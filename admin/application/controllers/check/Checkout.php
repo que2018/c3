@@ -801,7 +801,7 @@ class Checkout extends MX_Controller
 						$data['checkout_files'][] = array(
 							'name'  => basename($checkout_file['path']),
 							'path'  => $checkout_file['path'],
-							'url'   => $this->config->item('site_url') . 'media/file/' . $checkout_file['path']
+							'url'   => $this->config->item('media_url') . 'file/' . $checkout_file['path']
 						);
 					}
 				}
