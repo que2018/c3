@@ -38,7 +38,7 @@ class Postpony extends MX_Controller
 		$this->form_validation->set_rules('postpony_sort_order', $this->lang->line('text_sort_order'), 'required|regex_match[/^\d+$/]');
 		$this->form_validation->set_rules('postpony_service[]', $this->lang->line('text_service'), 'required');
 		$this->form_validation->set_rules('postpony_fee_type', $this->lang->line('text_fee_type'), 'required');
-		$this->form_validation->set_rules('postpony_fee_value', $this->lang->line('text_fee_value'), 'required|regex_match[/^\d+$/]');
+		$this->form_validation->set_rules('postpony_fee_value', $this->lang->line('text_fee_value'), 'required');
 		
 		if($this->form_validation->run() == true)
 		{

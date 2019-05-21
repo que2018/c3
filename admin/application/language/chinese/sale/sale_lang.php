@@ -159,6 +159,7 @@ $lang['error_shipping_method_not_set']   		= '<i class="fa fa-exclamation-triang
 $lang['error_inventory_not_enough']      		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;inventory is not enough';
 $lang['error_store_name_empty']      		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;store name is empty';
 $lang['error_store_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;store is not picked';
+$lang['error_update_tracking_error'] 	  	    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;update tracking error';
 $lang['error_location_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;location is not selected, please select a store first';
 $lang['error_sale_checkout_completed_notice'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;location can not be modified because checkout is compeleted';
 $lang['error_not_able_convert_image_to_pdf'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;convert image to pdf file fail';

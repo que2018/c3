@@ -98,19 +98,22 @@ class Postpony_model extends CI_Model
 			
 			$response_array = @json_decode(@json_encode($response), 1);
 			
-			$amount = $response_array['TotalFreight'];
-						
+			$amount = $response_array['TotalFreight'];		
 			$tracking = $response_array['MainTrackingNum'];
-												
-			$label_img = 'img/shipping_label/' . $tracking . '.png';
-			
+											
+			$label_img = LABELPATH . $tracking . '.png';
+						
 			if(@file_put_contents($label_img, base64_decode($label_data)))
 			{					
 				$result = array(
 					'tracking'   => $tracking,
-					'label_img'  => $label_img,
+					'label_img'  => $tracking . '.png',
 					'amount'     => $amount
 				);
+			}
+			else
+			{
+				$result['error'] = $this->lang->line('error_save_image_failed');
 			}
 		}
 		else
@@ -181,7 +184,7 @@ class Postpony_model extends CI_Model
 		$xml .= '<City>'.$data['city'].'</City>';
 		$xml .= '<StateOrProvinceCode>'.$data['state'].'</StateOrProvinceCode>';
 		$xml .= '<PostalCode>'.$data['postcode'].'</PostalCode>';
-		$xml .= '<CountryCode>'.$data['country'].'</CountryCode>';
+		$xml .= '<CountryCode>US</CountryCode>';
 		$xml .= '<CountryName>'.$data['country'].'</CountryName>';
 		$xml .= '<IsResidentialAddress xsi:nil="true" />';
 		$xml .= '</Shipper>';
@@ -196,7 +199,7 @@ class Postpony_model extends CI_Model
 		$xml .= '<StateOrProvinceCode>'.$data['to_state'].'</StateOrProvinceCode>';
 		$xml .= '<PostalCode>'.$data['to_postcode'].'</PostalCode>';
 		$xml .= '<CountryCode>US</CountryCode>';
-		$xml .= '<CountryName>United States of America</CountryName>';
+		$xml .= '<CountryName>United States</CountryName>';
 		$xml .= '<IsResidentialAddress>false</IsResidentialAddress>';
 		$xml .= '</Recipient>';
 		$xml .= '<Package>';
@@ -229,7 +232,7 @@ class Postpony_model extends CI_Model
 		$xml .= '<Description>teste</Description>';
 		$xml .= '<Weight>'.$data['weight'].'</Weight>';
 		$xml .= '<CustomsValue>1</CustomsValue>';
-		$xml .= '<CountryOfOrigin>CN</CountryOfOrigin>';
+		$xml .= '<CountryOfOrigin>US</CountryOfOrigin>';
 		$xml .= '</CustomsItem>';
 		$xml .= '</CustomsList>'; 
  		$xml .= '<LbSize>S4X6</LbSize>';
