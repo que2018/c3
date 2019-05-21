@@ -1,7 +1,7 @@
 
 # C3 Inventory Management System
 
-version: 2.1.2
+version: 2.0.2
 
 Demo Link: http://ims.saminthebox.com
 
