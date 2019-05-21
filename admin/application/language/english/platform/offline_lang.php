@@ -5,7 +5,7 @@ $lang['text_title'] 	  	                 = 'Offline';
 $lang['text_offline'] 	  	                 = 'Offline';
 $lang['text_fields'] 	  	                 = 'Fields';
 $lang['text_platform'] 	  	                 = 'Platform';
-$lang['text_logo'] 	  	                     = 'img/platform/offline.png';
+$lang['text_logo'] 	  	                     = 'assets/image/platform/offline.png';
 $lang['text_offline_platform_edit_success']  = '<i class="fa fa-check-circle-o"></i>&nbsp;offline platform edit success';
 $lang['text_offline_no_tracking_need_sync']  = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
 $lang['text_offline_sync_tracking_success']  = '<i class="fa fa-check-circle-o"></i>&nbsp;The tracking for order <strong>%s</strong> sync success';

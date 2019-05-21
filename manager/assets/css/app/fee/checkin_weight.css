@@ -1,0 +1,29 @@
+.tabs-container .tab-pane .panel-body {
+    min-height: 600px;
+	position: relative;
+}
+.btn-submit {
+	position: absolute;
+    bottom: 5px;
+    right: 25px;
+}
+.tabs-container .panel-body {
+	padding-top: 35px !important;
+}
+.checkin-weight-level-end {
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

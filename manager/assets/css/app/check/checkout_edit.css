@@ -1,0 +1,90 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.btn-print {
+	margin-right: 6px;
+}
+.btn-download {
+	margin-right: 6px;
+}
+.btn-file-download {
+	margin-left: 6px;
+}
+.code-box {
+    width: 95%;
+    padding: 10px;
+    background: #1ab394;
+    border-radius: 2px;
+    float: right;
+}
+.code-box input {
+	width: 100%;
+    border-radius: 2px;
+    line-height: 25px;
+}
+.ibox-content {
+   padding-top: 25px;
+}
+.button-group {		
+	position: absolute;    	
+	top: 30px;    	
+	right: 50px;
+}
+.tab-panel {
+    min-height: 590px;
+    padding-top: 25px !important;
+}
+.pending {
+    font-size: 9px;
+    background: #f5e14d;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.completed {
+    font-size: 9px;
+    background: #3bbf7c;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.page-heading h2 {
+	position: relative;
+}
+.label-img {
+    width: 250px;
+}
+.btn-clabel {
+    margin-left: 25px;
+}
+.note-editor.note-frame {
+    border: none !important;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+	color: #807d7d;
+}
+.selectize-dropdown-content {
+	position: relative;
+}
+.location-quantity {
+	font-size: 10px;
+    background: #1ab394;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px 8px;
+	float: right;
+}
+.upload-box {
+	min-height: 35px;
+	background: #ffffff;
+    border: 1px dashed #1ab394 !important;
+}
+
+

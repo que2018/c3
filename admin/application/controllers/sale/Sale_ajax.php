@@ -265,6 +265,23 @@ class Sale_ajax extends CI_Controller
 			$this->output->set_output(json_encode($outdata));
 		}
 	}
+	
+	public function update_tracking()
+	{
+		$this->load->model('sale/sale_model');
+		
+		$sale_id  = $this->input->post('sale_id');
+		$tracking = $this->input->post('tracking');
+			
+		$result = $this->sale_model->update_tracking($sale_id, $tracking);
+			
+		$outdata = array(
+			'success'     => ($result)?true:false
+		);
+		
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
+	}
 }
 
 

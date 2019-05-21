@@ -77,6 +77,15 @@ input:focus {
     border-radius: 2px;
     padding: 4px 5px;
 }
+.name {
+    font-size: 9px;
+    background: #1ab394;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	float: left;
+	margin-top: 1px;
+}
 .store {
     font-size: 9px;
     background: #9d80ca;

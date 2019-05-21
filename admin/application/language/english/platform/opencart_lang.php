@@ -5,7 +5,7 @@ $lang['text_title'] 	  	             = 'Opencart';
 $lang['text_opencart'] 	  	             = 'Opencart';
 $lang['text_fields'] 	  	             = 'Fields';
 $lang['text_platform'] 	  	             = 'Platform';
-$lang['text_logo'] 	  	                 = 'img/platform/opencart.png';
+$lang['text_logo'] 	  	                 = 'assets/image/platform/opencart.png';
 $lang['text_wish_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;Opencart platform edit success';
 
 // Tab

@@ -920,12 +920,12 @@ class Sale extends MX_Controller
 			{
 				foreach($sale_labels as $sale_label)
 				{					
-					if(is_file(FCPATH . $sale_label['path'])) 
+					if(is_file(LABELPATH . $sale_label['path'])) 
 					{
 						$data['sale_labels'][] = array(
 							'tracking'  => $sale_label['tracking'],
 							'path'      => $sale_label['path'],
-							'link'      => base_url() . $sale_label['path']
+							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
 						);
 					}
 				}
@@ -985,12 +985,12 @@ class Sale extends MX_Controller
 			{
 				foreach($sale_labels as $sale_label)
 				{					
-					if(is_file(FCPATH . $sale_label['path'])) 
+					if(is_file(LABELPATH . $sale_label['path'])) 
 					{
 						$data['sale_labels'][] = array(
 							'tracking'  => $sale_label['tracking'],
 							'path'      => $sale_label['path'],
-							'link'      => base_url() . $sale_label['path']
+							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
 						);
 					}
 				}

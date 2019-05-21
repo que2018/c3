@@ -1,0 +1,83 @@
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.btn-print {
+	margin-right: 6px;
+}
+.btn-download {
+	margin-right: 6px;
+}
+.code-box {
+    width: 95%;
+    padding: 10px;
+    background: #1ab394;
+    border-radius: 2px;
+    float: right;
+}
+.code-box input {
+	width: 100%;
+    border-radius: 2px;
+    line-height: 25px;
+}
+.tab-panel {
+	min-height: 590px;
+    padding-top: 25px !important
+}
+.fbox-title {
+	background-color: #ffffff;
+    color: inherit;
+    margin-bottom: 0;
+    min-height: 48px;
+}
+.fbox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 0px 20px 0px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+.button-group {	
+	position: absolute;    
+	top: 30px;    
+	right: 50px;
+}
+.note-editor.note-frame {
+    border: none !important;
+}
+.note-editor p {
+	color: #807d7d;
+}
+.pending {
+    font-size: 9px;
+    background: #f5e14d;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.completed {
+    font-size: 9px;
+    background: #3bbf7c;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.page-heading h2 {
+	position: relative;
+}
+
+
+
+
+
+
+
+

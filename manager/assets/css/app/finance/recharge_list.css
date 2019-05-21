@@ -1,0 +1,70 @@
+a {
+	color: #676a6c;
+}
+a:focus, a:hover {
+    color: #444444;
+}
+.filter-select {
+    width: 100%;
+    border: none;
+}
+.filter-select:focus, input:focus {
+	outline:0;
+}
+.limit-select {
+	width: 70px;
+	margin-bottom: 5px;
+    font-weight: 700;
+}
+.filter-td {
+}
+.filter-input {
+	border: none;
+	line-height: 20px;
+}
+.filter-select {
+	width: 100%;
+}
+input:focus {
+	outline:0;
+}
+.page-heading {
+	position: relative;
+}
+.pagination-block {
+	min-height: 33px;
+}
+.pagination {
+	margin: 0px;
+}
+.btn-edit {
+    margin-right: 8px;
+}
+.button-group {		
+	position: absolute;    	
+	top: 30px;    	
+	right: 50px;
+}
+.pending {	
+	font-size: 9px;    
+	background: #f5e14d;    
+	color: #fff;    
+	border-radius: 2px;    
+	padding: 4px 5px;
+}
+.completed {	
+	font-size: 9px;    
+	background: #3bbf7c;    
+	color: #fff;    
+	border-radius: 2px;    
+	padding: 4px 5px;
+}
+.alert-success {
+    width: 200px;
+    margin: 0 auto;
+}
+
+
+
+
+

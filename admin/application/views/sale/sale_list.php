@@ -191,7 +191,7 @@
 						</div>
 					  </td>
 					  <td><?php echo $sale['store_sale_id']; ?></td>
-					  <td class="tracking-td">
+					  <td class="tracking-td" ondblclick="active_tracking(this)">
 					    <?php if($sale['tracking']) { ?>
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
 						  <div class="trac-detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
@@ -249,6 +249,42 @@
   </div>
 </div>
 <script>
+function active_tracking(handle) {	
+	if(!$(handle).find('input').length) 
+	{		
+		value = $(handle).html();
+		
+		sale_id = $(handle).closest('tr').find('input[name=\'sale_id\']').val();
+			
+		html = '<input type="text" value="'+ value +'" onblur="update_tracking(\'' + sale_id + '\', this)" class="form-control" onfocus="this.value = this.value;" />';
+	
+		$(handle).html(html);	
+		$(handle).find('input').focus();
+	}
+}
+
+function update_tracking(sale_id, handle) {	
+
+	tracking = $(handle).val();
+		
+	$(handle).closest('td').html(tracking);
+		
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
+		data: 'sale_id=' + sale_id + '&tracking=' + tracking,
+		type: 'POST',
+		dataType: 'json',
+		success: function (json) {
+			if(!json.success)
+				alert('<?php echo $this->lang->line('error_update_tracking_error'); ?>');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 function checkout(handle, sale_id) {
 	$.ajax({
 		url: '<?php echo base_url(); ?>check/checkout_sale/add_checkout_ajax?sale_id=' + sale_id,
@@ -265,7 +301,7 @@ function checkout(handle, sale_id) {
 		success: function(json) {					
 			if(json.success) {
 				html  = '<span class="checkout-pending">';
-				html += '<?php echo $this->lang->line('text_checkout_pending'); ?>';
+				html += '<a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=' + json.checkout_id + '"><?php echo $this->lang->line('text_checkout_pending'); ?></a>';
 				html += '</span>';
 				
 				$(handle).closest('tr').find('.status').append(html);

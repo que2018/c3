@@ -1,0 +1,27 @@
+.ibox-content {
+    padding-top: 25px;
+}
+.page-heading {
+	position: relative;
+}
+.btn-submit {
+	margin-right: 6px;
+}
+.button-group {
+	position: absolute;
+    top: 30px;
+    right: 50px;
+}
+.label-client {
+	padding-top: 12px !important;
+}
+input[name=client_name] {
+    border: 5px solid #1ab394;
+    height: 42px;
+}
+
+
+
+
+
+
