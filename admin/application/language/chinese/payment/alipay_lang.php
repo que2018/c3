@@ -7,7 +7,7 @@ $lang['text_payment'] 	  	              = 'Payment';
 $lang['text_status'] 	  	              = 'status';
 $lang['text_fields'] 	  	              = 'Fields';
 $lang['text_platform'] 	  	              = 'Platform';
-$lang['text_alipay_service'] 	  	      = 'service';
+$lang['text_alipay_service'] 	  	      = '服务';
 $lang['text_alipay_partner'] 	  	      = 'partner';
 $lang['text_alipay_seller_id'] 	  	      = 'seller Id';
 $lang['text_alipay_key'] 	  	          = 'key';
@@ -21,7 +21,7 @@ $lang['tab_fields'] 	  	              = 'Fields';
 $lang['tab_setting'] 	  	              = 'Setting';
 
 // Entry
-$lang['entry_service'] 	  	              = 'Service';
+$lang['entry_service'] 	  	              = '服务';
 $lang['entry_partner'] 	  	              = 'Partner';
 $lang['entry_seller_id'] 	  	          = 'Seller ID';
 $lang['entry_key'] 	  	              	  = 'Key';

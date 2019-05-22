@@ -191,10 +191,10 @@
 						</div>
 					  </td>
 					  <td><?php echo $sale['store_sale_id']; ?></td>
-					  <td class="tracking-td" ondblclick="active_tracking(this)">
+					  <td class="tracking-td" ondblclick="active_tracking(this)" data-offset="<?php echo $offset; ?>" >
 					    <?php if($sale['tracking']) { ?>
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
-						  <div class="trac-detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
+						  <!--<div class="trac-detail" style="top: <?php echo $offset * 50 + 170; ?>px;">-->
 					    <?php } ?>
 					  </td>
 					  <td class="status">
@@ -252,36 +252,42 @@
 function active_tracking(handle) {	
 	if(!$(handle).find('input').length) 
 	{		
-		value = $(handle).html();
-		
 		sale_id = $(handle).closest('tr').find('input[name=\'sale_id\']').val();
-			
-		html = '<input type="text" value="'+ value +'" onblur="update_tracking(\'' + sale_id + '\', this)" class="form-control" onfocus="this.value = this.value;" />';
-	
+		
+		if($(handle).find('span').length) {
+			value = $(handle).find('span').html();
+			html = '<input value=' + value + ' onblur="update_tracking(' + sale_id + ', this)" class="form-control" />';
+		} else {
+			html = '<input onblur="update_tracking(' + sale_id + ', this)" class="form-control" />';
+		}
+		
 		$(handle).html(html);	
 		$(handle).find('input').focus();
 	}
 }
-
+</script>
+<script>
 function update_tracking(sale_id, handle) {	
-
 	tracking = $(handle).val();
-		
-	$(handle).closest('td').html(tracking);
-		
-	$.ajax({
-		url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
-		data: 'sale_id=' + sale_id + '&tracking=' + tracking,
-		type: 'POST',
-		dataType: 'json',
-		success: function (json) {
-			if(!json.success)
-				alert('<?php echo $this->lang->line('error_update_tracking_error'); ?>');
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+	
+	if(tracking) {
+		html = '<span class="tracking">' + tracking + '</span>';
+		$(handle).closest('td').html(html);
+			
+		$.ajax({
+			url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
+			data: 'sale_id=' + sale_id + '&tracking=' + tracking,
+			type: 'POST',
+			dataType: 'json',
+			success: function (json) {
+				if(!json.success)
+					alert('<?php echo $this->lang->line('error_update_tracking_error'); ?>');
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
 }
 </script>
 <script>
@@ -487,49 +493,51 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
 	$(document).on('mouseenter', 'td:nth-child(4)', function() {
-		$(this).find('.trac-detail').show();
-		
-		handle = $(this);
-		
-		var trackBox = handle.find('.trac-detail');
-		
-		sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
-
-		$.ajax({
-			url: '<?php echo base_url(); ?>sale/sale_ajax/get_tracking_detail?sale_id=' + sale_id,
-			dataType: 'json',
-			cache: false,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				trackBox.html('<i class="fa fa-spinner fa-spin trac-spin"></i>');
-			},
-			success: function(json) {
-				html = '<table class="table">';
-				html += '<thead>';
-				html += '<tr>';
-				html += '<th><?php echo $this->lang->line('column_action'); ?></th>';
-				html += '<th><?php echo $this->lang->line('column_date'); ?></th>';
-				html += '</thead>';
-				html += '<tbody>';
-				
-				$.each(json.tracking_details, function(index, tracking_detail) {
-					html += '<tr>';
-					html += '<td>' + tracking_detail.description + '</td>';
-					html += '<td>' + tracking_detail.time + '</td>';
-					html += '</tr>';
-				});
-				
-				html += '</tbody>';
-				html += '</table>'; 
-				
-				trackBox.html(html);
-			}
-		});
-	});
+		if($(this).find('span').length) {
+			offset = $(this).attr('data-offset');
+			top = offset * 50 + 170;
+			html = '<div class="trac-detail" style="top: '+ top + 'px;"></div>';
+			$(this).append(html);
+			
+			trackBox = $(this).find('.trac-detail');
 	
+			sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
+
+			$.ajax({
+				url: '<?php echo base_url(); ?>sale/sale_ajax/get_tracking_detail?sale_id=' + sale_id,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					trackBox.html('<i class="fa fa-spinner fa-spin trac-spin"></i>');
+				},
+				success: function(json) {
+					html = '<table class="table">';
+					html += '<thead>';
+					html += '<tr>';
+					html += '<th><?php echo $this->lang->line('column_action'); ?></th>';
+					html += '<th><?php echo $this->lang->line('column_date'); ?></th>';
+					html += '</thead>';
+					html += '<tbody>';
+					
+					$.each(json.tracking_details, function(index, tracking_detail) {
+						html += '<tr>';
+						html += '<td>' + tracking_detail.description + '</td>';
+						html += '<td>' + tracking_detail.time + '</td>';
+						html += '</tr>';
+					});
+					
+					html += '</tbody>';
+					html += '</table>'; 
+					
+					trackBox.html(html);
+				}
+			});
+		}
+	});
 	$(document).on('mouseleave', 'td:nth-child(4)', function() {
-		$(this).find('.trac-detail').hide();
+		$(this).find('.trac-detail').remove();
 	});
 });
 </script>

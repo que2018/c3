@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		     	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;{field}是必填项';
+$lang['form_validation_required']		     	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The {field} is required';
 $lang['form_validation_isset']					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The {field} must have a value';
 $lang['form_validation_valid_email']			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The {field} must contain a valid email address';
 $lang['form_validation_valid_emails']			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;The {field} must contain all valid email addresses';

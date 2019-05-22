@@ -1,13 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_add'] 	  	        	 	  	    = 'add client';
-$lang['text_edit'] 	  	        	 	  	    = 'edit client';
-$lang['text_delete'] 	  	        	 	  	= 'delete client';
-$lang['text_save'] 	  	        	 	  	 	= 'save client';
-$lang['text_cancel'] 	  	        	 	  	= 'cancel';
+$lang['text_add'] 	  	        	 	  	    = '添加 client';
+$lang['text_edit'] 	  	        	 	  	    = '编辑 client';
+$lang['text_delete'] 	  	        	 	  	= '删除 client';
+$lang['text_save'] 	  	        	 	  	 	= '保存 client';
+$lang['text_cancel'] 	  	        	 	  	= '取消';
 $lang['text_order'] 	  	        	 	  	= 'order';
-$lang['text_checkin'] 	  	        	 	  	= 'checkin';
+$lang['text_checkin'] 	  	        	 	  	= '入库';
 $lang['text_firstname'] 	  	         		= 'firstname';
 $lang['text_lastname'] 	  	             		= 'lastname';
 $lang['text_company'] 	  	             		= 'company';
@@ -16,23 +16,23 @@ $lang['text_location'] 	  	             		= 'location';
 $lang['text_password'] 	  	             		= 'password';
 $lang['text_phone'] 	  	             		= 'phone';
 $lang['text_location'] 	  	             		= 'location';
-$lang['text_client'] 	  	             		= 'Client';
-$lang['text_client_list'] 	  	         		= 'Client List';
-$lang['text_add_client'] 	  	         		= 'Add Client';
-$lang['text_edit_client'] 	  	         		= 'Edit Client';
-$lang['text_client_add_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;client add success';
-$lang['text_client_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;client edit success';
-$lang['text_client_list_description'] 	 		= 'Display all clients';
+$lang['text_client'] 	  	             		= '客户';
+$lang['text_client_list'] 	  	         		= '客户 列表';
+$lang['text_add_client'] 	  	         		= '添加 客户';
+$lang['text_edit_client'] 	  	         		= '编辑 客户';
+$lang['text_client_add_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;client 添加 成功';
+$lang['text_client_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;client 编辑 成功';
+$lang['text_client_list_description'] 	 		= '显示 all clients';
 $lang['text_volume_total'] 	 	  	       		= '%s %s^3';
-$lang['text_confirm_delete'] 	 	  	        = 'Are you sure to delete this client?';
+$lang['text_confirm_delete'] 	 	  	        = '您确定要 删除 这个 client?';
 
 // Column
-$lang['column_name'] 	  	             		= 'Name';
+$lang['column_name'] 	  	             		= '名称';
 $lang['column_company'] 	  	         		= 'Company';
 $lang['column_email'] 	  	             		= 'Email';
 $lang['column_phone'] 	  	             		= 'Phone';
 $lang['column_location'] 	  	                = 'Location';
-$lang['column_action'] 	  	             		= 'Action';
+$lang['column_action'] 	  	             		= '操作';
 
 // Tab
 $lang['tab_general'] 	  	             		= 'General';
@@ -51,9 +51,9 @@ $lang['entry_volume_total'] 	  	            = 'Total Volume';
 
 // Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> is used';
-$lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This client can not be deleted because the order exists';
-$lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This client can not be deleted because the product exists';
-$lang['error_can_not_delete_recharge_exist']    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This client can not be deleted because the recharge exists';
-$lang['error_can_not_delete_transaction_exist'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This client can not be deleted because the transaction exists';
+$lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the order exists';
+$lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the 产品 exists';
+$lang['error_can_not_delete_recharge_exist']    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the recharge exists';
+$lang['error_can_not_delete_transaction_exist'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the transaction exists';
 $lang['error_client_location_required']        	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;You may have some location names not assigned';
 $lang['error_client_location_duplicated']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The locations you assigned are duplicated';

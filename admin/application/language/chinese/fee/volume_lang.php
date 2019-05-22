@@ -3,13 +3,13 @@
 // Text
 $lang['text_title'] 	  	             	= 'Volume';
 $lang['text_volume'] 	  	             	= 'Volume';
-$lang['text_fee'] 	  	             	    = 'Fee';
-$lang['text_save'] 	  	             	    = 'save volume';
+$lang['text_fee'] 	  	             	    = '费用';
+$lang['text_save'] 	  	             	    = '保存 volume';
 $lang['text_volume_level'] 	  	            = 'volume level';
 $lang['text_volume_level_end'] 	  	        = 'volume level end';
 $lang['text_volume_status'] 	  	        = 'status';
 $lang['text_volume_sort_order'] 	  	    = 'sort order';
-$lang['text_edit_success'] 	  	            = '<i class="fa fa-check-circle-o"></i>&nbsp;edit fee success';
+$lang['text_edit_success'] 	  	            = '<i class="fa fa-check-circle-o"></i>&nbsp;编辑 fee 成功';
 
 // Entry
 $lang['entry_status'] 	  	             	= 'Status';

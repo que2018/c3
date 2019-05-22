@@ -85,7 +85,6 @@ input:focus {
 	height: 100px;
     background: #ffffff;
     position: absolute;
-	display: none;
 	left: 33%;
     padding: 20px 15px;
 	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);

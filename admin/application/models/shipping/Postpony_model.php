@@ -164,6 +164,8 @@ class Postpony_model extends CI_Model
 			$url = 'https://api.postpony.com/api/Ship';
 		}
 			
+		$shipDate = date("Y-m-d\TH:i:s");
+							
 		$xml  = '<?xml version="1.0" encoding="utf-8" ?>';
 		$xml .= '<ShipRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
 		$xml .= '<UserCredential>';
@@ -205,9 +207,9 @@ class Postpony_model extends CI_Model
 		$xml .= '<Package>';
 		$xml .= '<LabelId>0</LabelId>';
 		$xml .= '<Weight>'.$data['weight'].'</Weight>';
-		$xml .= '<ShipDate>2018-04-10T10:18:19.8642674+08:00</ShipDate>';
+		$xml .= '<ShipDate>'.$shipDate.'</ShipDate>';
 		$xml .= '<FTRCode>30.37 (a) </FTRCode>';
-		$xml .= '<ContentsType>Gift</ContentsType>';
+		$xml .= '<ContentsType>Product</ContentsType>';
 		$xml .= '<ElectronicExportType>NoEEISED</ElectronicExportType>';
 		$xml .= '<ShippingNotes>'.$data['sale_detail'].'</ShippingNotes>';
 		$xml .= '</Package>';
@@ -228,8 +230,8 @@ class Postpony_model extends CI_Model
  		$xml .= '<CustomsList>';
 		$xml .= '<CustomsItem>';
 		$xml .= '<Quantity>1</Quantity>';
-		$xml .= '<UnitPrice>1</UnitPrice>';
-		$xml .= '<Description>teste</Description>';
+		$xml .= '<UnitPrice>0</UnitPrice>';
+		$xml .= '<Description>product</Description>';
 		$xml .= '<Weight>'.$data['weight'].'</Weight>';
 		$xml .= '<CustomsValue>1</CustomsValue>';
 		$xml .= '<CountryOfOrigin>US</CountryOfOrigin>';

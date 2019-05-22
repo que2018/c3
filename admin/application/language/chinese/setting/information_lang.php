@@ -3,9 +3,9 @@
 // Text
 $lang['text_title'] 	  	                = 'Information';
 $lang['text_system'] 	  	        		= 'System';
-$lang['text_add'] 	  	        		    = 'add information';
-$lang['text_save'] 	  	        		    = 'save information';
-$lang['text_cancel'] 	  	        		= 'cancel';
+$lang['text_add'] 	  	        		    = '添加 information';
+$lang['text_save'] 	  	        		    = '保存 information';
+$lang['text_cancel'] 	  	        		= '取消';
 $lang['text_enabled'] 	  	        		= 'enabled';
 $lang['text_disabled'] 	  	        		= 'disabled';
 $lang['text_title'] 	  	        		= 'title';
@@ -14,12 +14,12 @@ $lang['text_front'] 	  	        		= 'front';
 $lang['text_redirect'] 	  	        		= 'redirect';
 $lang['text_status'] 	  	        		= 'status';
 $lang['text_information'] 	  	            = 'Information';
-$lang['text_information_add'] 	  	        = 'Add Information';
-$lang['text_information_edit'] 	  	        = 'Edit Information';
+$lang['text_information_add'] 	  	        = '添加 Information';
+$lang['text_information_edit'] 	  	        = '编辑 Information';
 $lang['text_information_description'] 	    = 'Dispay all the information';
-$lang['text_confirm_delete'] 	            = 'Are you sure to delete this information?';
-$lang['text_information_add_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;add information success';
-$lang['text_information_edit_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;edit information success';
+$lang['text_confirm_delete'] 	            = '您确定要 删除 这个 information?';
+$lang['text_information_add_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;添加 information 成功';
+$lang['text_information_edit_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;编辑 information 成功';
 
 // Tab
 $lang['tab_content'] 	  	         		= 'Content';

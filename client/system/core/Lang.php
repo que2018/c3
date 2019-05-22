@@ -99,7 +99,7 @@ class CI_Lang {
 		}
 		else
 		{
-			$language_id = $CI->config->item('config_client_language_id');
+			$language_id = $CI->config->item('config_admin_language_id');
 		}
 				
 		$q = $CI->db->get_where('language', array('language_id' => $language_id));

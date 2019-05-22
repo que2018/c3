@@ -2,29 +2,29 @@
 
 // Text
 $lang['text_checkin'] 	  	        			 = 'Checkin';
-$lang['text_title'] 	  	        			 = 'Checkin List';
+$lang['text_title'] 	  	        			 = 'Checkin 列表';
 $lang['text_search'] 	  	        			 = 'Search';
 $lang['text_checkin'] 	  	        			 = 'Checkin';
 $lang['text_location'] 	  	    				 = 'location';
 $lang['text_status'] 	  	    				 = 'status';
-$lang['text_product'] 	  	    				 = 'product';
+$lang['text_product'] 	  	    				 = '产品';
 $lang['text_tracking'] 	  	    				 = 'tracking';
-$lang['text_add'] 	  	        	 	  	     = 'add checkin';
-$lang['text_edit'] 	  	        	 	  		 = 'edit checkin';
-$lang['text_delete'] 	  	        	 	  	 = 'delete';
-$lang['text_save'] 	  	        	 	  	 	 = 'save checkin';
-$lang['text_cancel'] 	  	        	 	  	 = 'cancel';
+$lang['text_add'] 	  	        	 	  	     = '添加 入库';
+$lang['text_edit'] 	  	        	 	  		 = '编辑 入库';
+$lang['text_delete'] 	  	        	 	  	 = '删除';
+$lang['text_save'] 	  	        	 	  	 	 = '保存 入库';
+$lang['text_cancel'] 	  	        	 	  	 = '取消';
 $lang['text_search'] 	  	        			 = 'Search';
-$lang['text_download'] 	  	        			 = 'download';
+$lang['text_download'] 	  	        			 = '下载';
 $lang['text_check_in'] 	  	        	 	  	 = 'check in';
-$lang['text_checkin_print'] 	  	        	 = 'checkin print';
-$lang['text_checkin_fee'] 	  	        		 = 'checkin fee';
-$lang['text_checkin_product'] 	  	    		 = 'checkin product';
-$lang['text_checkin_add'] 	  	    			 = 'Add Checkin';
-$lang['text_checkin_edit'] 	  	    			 = 'Edit Checkin';
+$lang['text_checkin_print'] 	  	        	 = '入库 print';
+$lang['text_checkin_fee'] 	  	        		 = '入库 fee';
+$lang['text_checkin_product'] 	  	    		 = '入库 产品';
+$lang['text_checkin_add'] 	  	    			 = '添加 Checkin';
+$lang['text_checkin_edit'] 	  	    			 = '编辑 Checkin';
 $lang['text_checkin_scan'] 	  	    			 = 'Scan Checkin';
 $lang['text_checkin_rapid'] 	  	    		 = 'Rapid Checkin';
-$lang['text_checkin_list'] 	  	    			 = 'Checkin List';
+$lang['text_checkin_list'] 	  	    			 = 'Checkin 列表';
 $lang['text_pending'] 	  	        			 = 'Pending';
 $lang['text_completed'] 	  	    			 = 'Completed';
 $lang['text_canceled'] 	  	        			 = 'Canceled';
@@ -37,25 +37,25 @@ $lang['text_excel_tracking'] 	  	             = 'Tracking: %s';
 $lang['text_excel_pending'] 	  	             = 'Status: Pending';
 $lang['text_excel_completed'] 	  	        	 = 'Status: Completed';
 $lang['text_loading_locations'] 	  		     = 'loading locations ...';
-$lang['text_loading_product'] 	  	    		 = 'loading product ...';
-$lang['text_loading_checkin'] 	  	    		 = 'loading checkin ...';
+$lang['text_loading_product'] 	  	    		 = 'loading 产品 ...';
+$lang['text_loading_checkin'] 	  	    		 = 'loading 入库 ...';
 $lang['text_print_title']            		     = 'Checkin ID(#%s)';
 $lang['text_checkin_rapid_hint'] 	  	         = 'Checkin ID / Tracking Number';
-$lang['text_checkin_edit_title'] 	  	         = 'Edit Checkin(#%s)';
-$lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / Proudct Name';
-$lang['text_checkin_scan_hint'] 	  	         = 'UPC / SKU / ASIN / Proudct Name';
-$lang['text_checkin_description']				 = 'Display all the checkin records';
-$lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin add success';
-$lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin edit success';
-$lang['text_rapid_checkin_add_success'] 		 = '<i class="fa fa-check-circle-o"></i>&nbsp;rapid checkin add success';
-$lang['text_checkin_delete_success']    		 = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin delete success';
-$lang['text_confirm_delete']            		 = 'Are you sure to delete this record?';
-$lang['text_checkin_transaction_note']    	     = 'transaction for checkin - ID: %s';
-$lang['text_checkin_is_completed']               = '<i class="fa fa-check-circle-o"></i>&nbsp;checkin is completed';
+$lang['text_checkin_edit_title'] 	  	         = '编辑 Checkin(#%s)';
+$lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / Proudct 名称';
+$lang['text_checkin_scan_hint'] 	  	         = 'UPC / SKU / ASIN / Proudct 名称';
+$lang['text_checkin_description']				 = '显示 all the 入库 records';
+$lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库 添加 成功';
+$lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库 编辑 成功';
+$lang['text_rapid_checkin_add_success'] 		 = '<i class="fa fa-check-circle-o"></i>&nbsp;rapid 入库 添加 成功';
+$lang['text_checkin_delete_success']    		 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库 删除 成功';
+$lang['text_confirm_delete']            		 = '您确定要 删除 这个 record?';
+$lang['text_checkin_transaction_note']    	     = 'transaction for 入库 - ID: %s';
+$lang['text_checkin_is_completed']               = '<i class="fa fa-check-circle-o"></i>&nbsp;入库 is completed';
 
 // Tab
 $lang['tab_general'] 	        	    		 = 'General';
-$lang['tab_fee'] 	        	        		 = 'Fee';
+$lang['tab_fee'] 	        	        		 = '费用';
 $lang['tab_file'] 	        	        		 = 'File';
 $lang['tab_note'] 	        	        		 = 'Note';
 
@@ -64,25 +64,25 @@ $lang['button_select_file'] 	        		 = 'Select file';
 
 // Column
 $lang['column_checkin_id'] 	        	         = 'Check ID(#)';
-$lang['column_name'] 	        	    		 = 'Name';
-$lang['column_product_name'] 	        	     = 'Product Name';
+$lang['column_name'] 	        	    		 = '名称';
+$lang['column_product_name'] 	        	     = '产品 名称';
 $lang['column_upc'] 	        	     		 = 'UPC';
 $lang['column_sku'] 	        	             = 'SKU';
 $lang['column_loc'] 	        	             = 'Loc';
 $lang['column_qty'] 	        	             = 'Qty';
-$lang['column_quantity'] 	        	         = 'Quantity';
+$lang['column_quantity'] 	        	         = '数量';
 $lang['column_amount'] 	        	    		 = 'Amount';
 $lang['column_location'] 	        			 = 'Location';
 $lang['column_tracking']        				 = 'Tacking';
 $lang['column_description']         			 = 'Description';
 $lang['column_status'] 	  	        			 = 'Status';
 $lang['column_date_added'] 	        			 = 'Date Added';
-$lang['column_action'] 	  	        			 = 'Action';
-$lang['column_product_name'] 	    			 = 'Product Name';
+$lang['column_action'] 	  	        			 = '操作';
+$lang['column_product_name'] 	    			 = '产品 名称';
 $lang['column_upc'] 	    					 = 'UPC';
 $lang['column_sku'] 	    					 = 'SKU';
 $lang['column_batch'] 	    				 	 = 'Batch';
-$lang['column_quantity'] 	    				 = 'Quantity';
+$lang['column_quantity'] 	    				 = '数量';
 $lang['column_file'] 	    		    		 = 'File';
 
 // Entry
@@ -94,21 +94,21 @@ $lang['entry_note'] 	  	        	 		 = 'Note';
 $lang['entry_date_added'] 	  	        	     = 'Date Added';
 
 // Error 
-$lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Code is empty';
-$lang['error_checkin_status_invalid'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkin is either canceled or completed';
-$lang['error_product_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Product is not found';
-$lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;please select checkin record first';
+$lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Code 是空的';
+$lang['error_checkin_status_invalid'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 入库 is either canceled or completed';
+$lang['error_product_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品 is not found';
+$lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;please select 入库 record first';
 $lang['error_checkin_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin record is not found';
 $lang['error_tracking_is_used']                  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The tracking number <strong>%s</strong> has been used';
-$lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin product is required';
-$lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> quantity is not a positive number';
-$lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The product <strong>%s</strong> has location unfilled';
-$lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This checkin is already completed';
-$lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin fee at row <strong>%s</strong> is require name';
+$lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin 产品 is required';
+$lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 产品 <strong>%s</strong> 数量 is not a 正数';
+$lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 产品 <strong>%s</strong> has location unfilled';
+$lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 入库 is already completed';
+$lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin fee at row <strong>%s</strong> is require 名称';
 $lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin fee at row <strong>%s</strong> is require amount';
-$lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> requires amount';
-$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to no client found';
-$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to multi client found';
+$lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 fee at row <strong>%s</strong> requires amount';
+$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用 is not able to calculate due to no client found';
+$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用 is not able to calculate due to multi client found';
 
 
 

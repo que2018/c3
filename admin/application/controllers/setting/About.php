@@ -11,7 +11,7 @@ class About extends MX_Controller
 			
 		$this->header->set_title($this->lang->line('text_about'));
 		 
-		$data['version'] = sprintf($this->lang->line('text_version'), '2.1.2'); 
+		$data['version'] = sprintf($this->lang->line('text_version'), '2.1.3'); 
 		 
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');

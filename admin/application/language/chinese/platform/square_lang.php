@@ -8,18 +8,18 @@ $lang['text_platform'] 	  	               = 'Platform';
 $lang['text_payment_detail'] 	  	       = 'Payment Detail';
 $lang['text_order_detail'] 	  	           = 'Order Detail';
 $lang['text_logo'] 	  	                   = 'assets/image/platform/square.png';
-$lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;square platform edit success';
+$lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;square platform 编辑 成功';
 
 // Tab
 $lang['tab_fields'] 	  	               = 'Fields';
 $lang['tab_setting'] 	  	               = 'Setting';
 $lang['tab_customer'] 	  	               = 'Customer';
-$lang['tab_product'] 	  	               = 'Product';
+$lang['tab_product'] 	  	               = '产品';
 
 // Column
-$lang['column_name'] 	  	               = 'Name';
-$lang['column_quantity'] 	  	           = 'Quantity';
-$lang['itemization_type'] 	  	           = 'Itemzation Type';
+$lang['column_name'] 	  	               = '名称';
+$lang['column_quantity'] 	  	           = '数量';
+$lang['itemization_type'] 	  	           = 'Itemzation 类型';
 $lang['total_money'] 	  	               = 'Total Money';
 $lang['discount_money'] 	  	           = 'Discount Money';
 
@@ -32,7 +32,7 @@ $lang['entry_location_id'] 	  	           = 'Location ID';
 $lang['entry_recent_days'] 	  	           = 'Recent Days';
 $lang['entry_limit'] 	  	               = 'Limit';
 $lang['entry_order'] 	  	               = 'Order';
-$lang['entry_name'] 	  	               = 'Name';
+$lang['entry_name'] 	  	               = '名称';
 $lang['entry_street'] 	  	               = 'Street';
 $lang['entry_street2'] 	  	               = 'Street2';
 $lang['entry_city'] 	  	               = 'City';
@@ -50,6 +50,6 @@ $lang['entry_net_total_money'] 	           = 'Net Total Money';
 $lang['entry_refunded_money'] 	           = 'Refunded Money';
 
 // Error
-$lang['error_order_sku_empty']             = '<a target="_blank" href="%s"><strong>order #%s</strong> has product with empty sku</a>';
+$lang['error_order_sku_empty']             = '<a target="_blank" href="%s"><strong>order #%s</strong> has 产品 with empty sku</a>';
 $lang['error_order_product_empty']         = '<a target="_blank" href="%s"><strong>order #%s</strong> has no products</a>';
 $lang['error_server_response_error']       = 'square server response error';
