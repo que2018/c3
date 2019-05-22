@@ -289,7 +289,7 @@ switch (ENVIRONMENT)
 	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
 		
 	// The path to the "upload" directory
-	if (is_dir($upload_folder))
+	/* if (is_dir($upload_folder))
 	{
 		if (($_temp = realpath($upload_folder)) !== FALSE)
 		{
@@ -319,7 +319,7 @@ switch (ENVIRONMENT)
 		exit(3); // EXIT_CONFIG
 	}
 	
-	define('UPLOADPATH', $upload_folder.DIRECTORY_SEPARATOR);
+	define('UPLOADPATH', $upload_folder.DIRECTORY_SEPARATOR); */
 
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
