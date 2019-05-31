@@ -2,13 +2,6 @@
 
 class Postpony_model extends CI_Model
 {	
-	public function install(){}
-	
-	public function uninstall() 
-	{
-		$this->db->delete('setting', array('code' => 'postpony')); 
-	}
-	
 	public function get_service($code)
 	{	
 		$q = $this->db->get_where('setting', array('key' => 'postpony_service'));
@@ -34,99 +27,6 @@ class Postpony_model extends CI_Model
 		{
 			return false;
 		}
-	}
-	
-	public function generate_sale_label($sale_id)
-	{
-		$this->load->model('sale/sale_model');
-		
-		$this->lang->load('shipping/postpony');
-				
-		//get shipping info
-		$sale = $this->sale_model->get_sale($sale_id);
-		
-		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
-	
-		$data['key'] = $this->config->item('postpony_key');
-		$data['pwd'] = $this->config->item('postpony_pwd');
-		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
-		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
-		$data['owner'] = $this->config->item('postpony_owner');
-		$data['company'] = $this->config->item('postpony_company');
-		$data['street'] = $this->config->item('postpony_street');
-		$data['street2'] = $this->config->item('postpony_street2');
-		$data['city'] = $this->config->item('postpony_city');
-		$data['state'] = $this->config->item('postpony_state');
-		$data['postcode'] = $this->config->item('postpony_postcode');
-		$data['country'] = $this->config->item('postpony_country');
-		$data['phone'] = $this->config->item('postpony_phone');
-		
-		//service 
-		$shipping_service = $this->get_service($sale['shipping_service']);
-		
-		$data['method'] = $shipping_service['method'];
-		
-		//recipient
-		$data['to_name'] = $sale['name'];
-		$data['to_company'] = '';
-		$data['to_phone'] = $sale['phone'];
-		
-		if($sale['street2'])
-		{
-			$data['to_street'] = $sale['street'] .' '. $sale['street2'];
-		}
-		else
-		{
-			$data['to_street'] = $sale['street'];
-		}
-		
-		$data['to_city'] = $sale['city'];		
-		$data['to_state'] = $this->get_state_short($sale['state']);
-		$data['to_postcode'] = $this->get_clean_zipcode($sale['zipcode']);
-		
-		//length & weight
-		$data['length'] = $sale['length'];
-		$data['width'] = $sale['width'];
-		$data['height'] = $sale['height'];
-		$data['weight'] = $sale['weight'];
-		
-		$response = $this->send_request($data);
-								
-		if($response->Sucess == 'true')
-		{			
-			$label_data = $response->LableData->base64Binary;
-			
-			$response_array = @json_decode(@json_encode($response), 1);
-			
-			$amount = $response_array['TotalFreight'];		
-			$tracking = $response_array['MainTrackingNum'];
-											
-			$label_img = LABELPATH . $tracking . '.png';
-						
-			if(@file_put_contents($label_img, base64_decode($label_data)))
-			{					
-				$result = array(
-					'tracking'   => $tracking,
-					'label_img'  => $tracking . '.png',
-					'amount'     => $amount
-				);
-			}
-			else
-			{
-				$result['error'] = $this->lang->line('error_save_image_failed');
-			}
-		}
-		else
-		{
-			$result['error'] = $response->Msg;
-		}
-			
-		return $result;
-	}
-	
-	public function generate_checkout_label($checkout_id)
-	{
-		
 	}
 	
 	public function rating($sale) 

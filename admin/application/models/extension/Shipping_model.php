@@ -2,11 +2,6 @@
 
 class Shipping_model extends CI_Model
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
 	public function get_shipping_providers() 
 	{
 		$query = $this->db->get_where('extension', array('type' => 'shipping'));
@@ -44,7 +39,9 @@ class Shipping_model extends CI_Model
 			{
 				$shipping_methods[] = array(
 					'code'   => $shipping_method_data['code'],
-					'name'   => $shipping_method_data['name']
+					'name'   => $shipping_method_data['name'],
+					'method'   => $shipping_method_data['method'],
+					
 				);
 			}
 			

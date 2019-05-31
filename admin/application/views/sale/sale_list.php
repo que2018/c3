@@ -143,22 +143,6 @@
 							  <?php } ?>
 							</tbody>
 						  </table>
-						  <table class="table table-vw">
-						    <thead>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_length_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_width_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_height_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_weight_short'); ?></th>
-							</thead>
-							<tbody>
-							  <tr>
-							    <td><?php echo $sale['length']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-							    <td><?php echo $sale['width']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-								<td><?php echo $sale['height']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-								<td><?php echo $sale['weight']; ?>&nbsp;<?php echo $sale['weight_class']; ?></td>
-							  </tr>
-							</tbody>
-						  </table>
 						  <table class="table table-shipping">
 						    <tbody>
 							  <tr>
@@ -171,18 +155,6 @@
 								  <?php } ?>
 							      <?php if($sale['store_name']) { ?>
 							      <span class="store"><?php echo $sale['store_name']; ?></span>
-								  <?php } ?>
-								  <?php if($sale['checkout']) { ?>
-								  <?php if($sale['checkout']['status'] == 1) { ?>
-								  <span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
-								  <?php } else { ?>
-								  <span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
-								  <?php } ?>
-								  <?php } ?>
-								  <?php if($sale['status_id'] == 1) { ?>
-								  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-								  <?php } else { ?>
-							      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 								  <?php } ?>
 							    </td>
 							  </tr>
@@ -273,21 +245,23 @@ function update_tracking(sale_id, handle) {
 	if(tracking) {
 		html = '<span class="tracking">' + tracking + '</span>';
 		$(handle).closest('td').html(html);
-			
-		$.ajax({
-			url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
-			data: 'sale_id=' + sale_id + '&tracking=' + tracking,
-			type: 'POST',
-			dataType: 'json',
-			success: function (json) {
-				if(!json.success)
-					alert('<?php echo $this->lang->line('error_update_tracking_error'); ?>');
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
+	} else {
+		$(handle).closest('td').html('');
 	}
+		
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
+		data: 'sale_id=' + sale_id + '&tracking=' + tracking,
+		type: 'POST',
+		dataType: 'json',
+		success: function (json) {
+			if(!json.success)
+				alert('<?php echo $this->lang->line('error_update_tracking_error'); ?>');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
 }
 </script>
 <script>
@@ -481,11 +455,46 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+	var rate_ajax = null;
 	$(document).on('mouseenter', 'td:nth-child(2)', function() {
 		$(this).find('.detail').show();
+		if($(this).find('span').length) {
+			html = '<span class="rating"></span>';
+			$(this).find('.shipping').append(html);
+			
+			ratingBox = $(this).find('.rating');
+	
+			sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
+
+			rate_ajax = $.ajax({
+				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_rate?sale_id=' + sale_id,
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					ratingBox.html('<i class="fa fa-spinner fa-spin rating-spin"></i>');
+				},
+				success: function(json) {
+					if(json.success){
+						html = '$'+json.rate;
+						ratingBox.html(html);
+					}else{
+						html = '--';
+						ratingBox.html(html);
+					}
+					
+				}
+			});
+		}
 	});
 	
 	$(document).on('mouseleave', 'td:nth-child(2)', function() {
+		if(rate_ajax != null){
+			rate_ajax.abort();
+		}
+		
+		$(this).find('.rating').remove();
 		$(this).find('.detail').hide();
 	});
 });

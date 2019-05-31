@@ -121,22 +121,6 @@
 				    <?php } ?>
 				  </tbody>
 			    </table>
-			    <table class="table table-vw">
-				  <thead>
-				    <th style="width: 25%;"><?php echo $this->lang->line('column_length_short'); ?></th>
-				    <th style="width: 25%;"><?php echo $this->lang->line('column_width_short'); ?></th>
-				    <th style="width: 25%;"><?php echo $this->lang->line('column_height_short'); ?></th>
-				    <th style="width: 25%;"><?php echo $this->lang->line('column_weight_short'); ?></th>
-				  </thead>
-				  <tbody>
-				    <tr>
-					  <td><?php echo $sale['length']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-					  <td><?php echo $sale['width']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-					  <td><?php echo $sale['height']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-					  <td><?php echo $sale['weight']; ?>&nbsp;<?php echo $sale['weight_class']; ?></td>
-				    </tr>
-				  </tbody>
-			    </table>
 			    <table class="table table-shipping">
 				  <tbody>
 				    <tr>

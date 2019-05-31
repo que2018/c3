@@ -133,31 +133,42 @@ class Shipping extends MX_Controller
 	
 	public function get_shipping_rate() 
 	{
+		$this->load->model('sale/sale_model');
+
 		$this->lang->load('extension/shipping');
-
-		$shipping_method   = $this->input->post('shipping_method');
-		$postal_code       = $this->input->post('postal_code');	
-		$products          = $this->input->post('product');
 		
-		$this->load->model('shipping/' . $shipping_service . '_model');
+		if($this->input->get('sale_id')) 
+		{
+			$sale_id = $this->input->get('sale_id');
+			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$code = $sale['shipping_provider'];
+			
+			$this->load->model('shipping/'. $code .'_model');
 		
-		$result = $this->{$shipping_service . _model}->rating($products, $postal_code, $shipping_method);
+			$result = $this->{$code . '_model'}->rating($sale);
 
-		if(isset($result['error']))
+			if(!$result['success'])
+			{
+				$outdata = array(
+					'success'    => false,
+					'error'      => $result['error']
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'    => true,
+					'rate'       => $result['rate']
+				);
+			}
+		}
+		else
 		{
 			$outdata = array(
 				'success' => false,
-				'error'   => $result['error']
- 			);
-		}
-		else 
-		{			
-			$rate = $result['rate'];
-								
-			$outdata = array(
-				'success'      => true,
-				'rate'         => $rate
- 			);
+				'error'   => "sale id missing"
+			);
 		}
 		
 		$this->output->set_content_type('application/json');
