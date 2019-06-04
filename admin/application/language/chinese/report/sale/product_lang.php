@@ -14,7 +14,7 @@ $lang['text_product_sale'] 	  	         	  	= '产品 Sale';
 $lang['text_today'] 	  	         	  	    = 'Today';
 $lang['text_monthly'] 	  	         	  		= 'Monthly';
 $lang['text_annual'] 	  	         	  		= 'Annual';
-$lang['text_sale_product_description'] 	  	    = '显示 all the 产品 sale records';
+$lang['text_sale_product_description'] 	  	    = '显示 all the 产品 sale 记录';
 
 // Column
 $lang['column_name'] 	  	             	  	= '名称';
@@ -22,7 +22,7 @@ $lang['column_upc'] 	  	             	  	= 'UPC';
 $lang['column_sku'] 	  	             	  	= 'SKU';
 $lang['column_quantity'] 	  	         	  	= '数量';
 $lang['column_total'] 	  	         	  	    = 'Total';
-$lang['column_date_added'] 	  	         	  	= 'Date Added';
+$lang['column_date_added'] 	  	         	  	= '添加时间';
 $lang['column_income'] 	  	         	  		= 'Income';
 $lang['column_action'] 	  	             	  	= '操作';
 

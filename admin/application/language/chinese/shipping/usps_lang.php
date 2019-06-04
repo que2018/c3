@@ -24,16 +24,16 @@ $lang['text_usps_sort_order'] 	  	     = 'sort order';
 $lang['text_usps_stamps_username'] 	  	 = 'stamps username';
 $lang['text_usps_stamps_password'] 	  	 = 'stamps password';
 $lang['text_usps_stamps_integration_id'] = 'stamps integration id';
-$lang['text_usps_stamps_wsdl_file'] 	 = 'wsdl file';
+$lang['text_usps_stamps_wsdl_file'] 	 = 'wsdl 文件';
 $lang['text_service'] 	  	         	 = '服务';
 $lang['text_usps_edit_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;USPS 编辑 成功';
 $lang['text_fixed'] 	  			     = 'fixed';
 $lang['text_ratio'] 	  			     = 'ratio';
-$lang['text_fee_value'] 	  			 = 'fee value';
+$lang['text_fee_value'] 	  			 = '费 value';
 
 // Column
 $lang['column_name'] 	  	             = '名称';
-$lang['column_code'] 	  	             = 'Code';
+$lang['column_code'] 	  	             = '代码';
 $lang['column_client'] 	  	             = '客户';
 $lang['column_fee'] 	  	             = '费用';
 $lang['column_method'] 	  	             = 'Method';
@@ -61,20 +61,20 @@ $lang['entry_city'] 	  	             = 'City';
 $lang['entry_state'] 	  	             = 'State';
 $lang['entry_country'] 	  	             = 'Country';
 $lang['entry_postcode'] 	  	         = 'Postcode';
-$lang['entry_status'] 	  	             = 'Status';
+$lang['entry_status'] 	  	             = '转态';
 $lang['entry_sort_order'] 	  	         = 'Sort Order';
 $lang['entry_username'] 	  	         = 'Username';
 $lang['entry_password'] 	  	         = 'Password';
 $lang['entry_integration_id'] 	  	     = 'Integration ID';
-$lang['entry_wsdl_file'] 	  	         = 'WSDL File';
+$lang['entry_wsdl_file'] 	  	         = 'WSDL 文件';
 $lang['entry_fee_type'] 	  	         = '费用 类型';
 $lang['entry_fee_value'] 	  	         = '费用 Value';
 $lang['entry_debug_mode'] 	  	         = 'Debug Mode';
 
 // Error
 $lang['error_save_image_failed'] 	  	 = 'Error: 保存 iamge failed';
-$lang['error_stamps_credentials'] 	  	 = 'Error: stamps credentials is not valid';
-$lang['error_destination_address'] 	  	 = 'Error: destination address is not valid';
+$lang['error_stamps_credentials'] 	  	 = 'Error: stamps credentials 是 not valid';
+$lang['error_destination_address'] 	  	 = 'Error: destination address 是 not valid';
 
 
 

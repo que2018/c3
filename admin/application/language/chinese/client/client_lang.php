@@ -12,10 +12,10 @@ $lang['text_firstname'] 	  	         		= 'firstname';
 $lang['text_lastname'] 	  	             		= 'lastname';
 $lang['text_company'] 	  	             		= 'company';
 $lang['text_email'] 	  	             		= 'email';
-$lang['text_location'] 	  	             		= 'location';
+$lang['text_location'] 	  	             		= '库位';
 $lang['text_password'] 	  	             		= 'password';
 $lang['text_phone'] 	  	             		= 'phone';
-$lang['text_location'] 	  	             		= 'location';
+$lang['text_location'] 	  	             		= '库位';
 $lang['text_client'] 	  	             		= '客户';
 $lang['text_client_list'] 	  	         		= '客户 列表';
 $lang['text_add_client'] 	  	         		= '添加 客户';
@@ -31,13 +31,13 @@ $lang['column_name'] 	  	             		= '名称';
 $lang['column_company'] 	  	         		= 'Company';
 $lang['column_email'] 	  	             		= 'Email';
 $lang['column_phone'] 	  	             		= 'Phone';
-$lang['column_location'] 	  	                = 'Location';
+$lang['column_location'] 	  	                = '库位';
 $lang['column_action'] 	  	             		= '操作';
 
 // Tab
-$lang['tab_general'] 	  	             		= 'General';
+$lang['tab_general'] 	  	             		= '通用';
 $lang['tab_data'] 	  	             		    = 'Data';
-$lang['tab_location'] 	  	         		    = 'Location';
+$lang['tab_location'] 	  	         		    = '库位';
 
 // Entry
 $lang['entry_email'] 	  	             		= 'Email';
@@ -50,10 +50,10 @@ $lang['entry_balance'] 	  	             		= 'Balance';
 $lang['entry_volume_total'] 	  	            = 'Total Volume';
 
 // Error 
-$lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> is used';
+$lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> 是 used';
 $lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the order exists';
 $lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the 产品 exists';
 $lang['error_can_not_delete_recharge_exist']    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the recharge exists';
 $lang['error_can_not_delete_transaction_exist'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the transaction exists';
-$lang['error_client_location_required']        	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;You may have some location names not assigned';
-$lang['error_client_location_duplicated']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The locations you assigned are duplicated';
+$lang['error_client_location_required']        	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;You may have some 库位 names not assigned';
+$lang['error_client_location_duplicated']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 库位 you assigned are duplicated';

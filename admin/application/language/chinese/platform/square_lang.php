@@ -26,9 +26,9 @@ $lang['discount_money'] 	  	           = 'Discount Money';
 // Entry
 $lang['entry_field'] 	  	               = 'Field';
 $lang['entry_sort_order'] 	  	           = 'Sort Order';
-$lang['entry_status'] 	  	               = 'Status';
+$lang['entry_status'] 	  	               = '转态';
 $lang['entry_token'] 	  	               = 'Token';
-$lang['entry_location_id'] 	  	           = 'Location ID';
+$lang['entry_location_id'] 	  	           = '库位 ID';
 $lang['entry_recent_days'] 	  	           = 'Recent Days';
 $lang['entry_limit'] 	  	               = 'Limit';
 $lang['entry_order'] 	  	               = 'Order';

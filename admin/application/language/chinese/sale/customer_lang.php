@@ -49,5 +49,5 @@ $lang['entry_email'] 	  	             = 'Email';
 $lang['entry_phone'] 	  	             = 'Phone';
 
 // Error
-$lang['error_customer_not_found'] 	  	 = 'Error: customer not found';
+$lang['error_customer_not_found'] 	  	 = 'Error: customer 没有找到';
 

@@ -24,9 +24,9 @@ $lang['text_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['text_image_type'] 	  	     	 	= '图片 类型';
 $lang['text_debug_mode'] 	  	     	 	= 'Debug Mode';
 $lang['text_sort_order'] 	  	         	= 'sort order';
-$lang['text_status'] 	  	             	= 'status';
+$lang['text_status'] 	  	             	= '转态';
 $lang['text_service'] 	  	         	 	= '服务';
-$lang['text_fedex_edit_success'] 	  	 	= 'FedEx is successfully edited';
+$lang['text_fedex_edit_success'] 	  	 	= 'FedEx 是 successfully edited';
 $lang['text_residential'] 	  	         	= 'Reisidential';
 $lang['text_commerical'] 	  	         	= 'Commerical';
 $lang['text_us_origin'] 	  	         	= 'US';
@@ -42,7 +42,7 @@ $lang['text_lb'] 	  	 				 	= 'lb';
 $lang['text_png'] 	  	 				 	= 'png';
 $lang['text_fixed'] 	  			     	= 'fixed';
 $lang['text_ratio'] 	  			     	= 'ratio';
-$lang['text_fee_value'] 	  				= 'fee value';
+$lang['text_fee_value'] 	  				= '费 value';
 $lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Fedex 编辑 成功';
 
 // Tab
@@ -52,7 +52,7 @@ $lang['tab_fee'] 	  	                 	= '费用';
 
 // Column
 $lang['column_name'] 	  	                = '名称';
-$lang['column_code'] 	  	                = 'Code';
+$lang['column_code'] 	  	                = '代码';
 $lang['column_client'] 	  	                = '客户';
 $lang['column_fee'] 	  	                = '费用';
 $lang['column_method'] 	  	             	= 'Method';
@@ -81,7 +81,7 @@ $lang['entry_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['entry_image_type'] 	  	     	 	= '图片 类型';
 $lang['entry_debug_mode'] 	  	     	 	= 'Debug Mode';
 $lang['entry_sort_order'] 	  	         	= 'Sort Order';
-$lang['entry_status'] 	  	             	= 'Status';
+$lang['entry_status'] 	  	             	= '转态';
 $lang['entry_fee_type'] 	  	         	= '费用 类型';
 $lang['entry_fee_value'] 	  	         	= '费用 Value';
 

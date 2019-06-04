@@ -12,7 +12,7 @@ $lang['text_title'] 	  	        		= 'title';
 $lang['text_content'] 	  	        		= 'content';
 $lang['text_front'] 	  	        		= 'front';
 $lang['text_redirect'] 	  	        		= 'redirect';
-$lang['text_status'] 	  	        		= 'status';
+$lang['text_status'] 	  	        		= '转态';
 $lang['text_information'] 	  	            = 'Information';
 $lang['text_information_add'] 	  	        = '添加 Information';
 $lang['text_information_edit'] 	  	        = '编辑 Information';
@@ -28,14 +28,14 @@ $lang['tab_data'] 	  	                    = 'Data';
 // Column
 $lang['column_title'] 	  	         		= 'Title';
 $lang['column_front'] 	  	                = 'Front';
-$lang['column_status'] 	  	                = 'Status';
+$lang['column_status'] 	  	                = '转态';
 
 // Entry
 $lang['entry_title'] 	  	         		= 'Title';
 $lang['entry_content'] 	  	         		= 'Content';
 $lang['entry_front'] 	  	                = 'Front';
 $lang['entry_redirect'] 	  	            = 'Direct';
-$lang['entry_status'] 	  	                = 'Status';
+$lang['entry_status'] 	  	                = '转态';
 
 
 

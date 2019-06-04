@@ -11,6 +11,6 @@ $lang['text_uninstall_success'] 	  	 = 'Payment uninstall 成功';
 
 // Column
 $lang['column_name'] 	  	             = '名称';
-$lang['column_status'] 	  	             = 'Status';
+$lang['column_status'] 	  	             = '转态';
 $lang['column_sort_order'] 	  	         = 'Sort Order';
 $lang['column_action'] 	  	             = '操作';

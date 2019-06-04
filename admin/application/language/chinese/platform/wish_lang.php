@@ -8,7 +8,7 @@ $lang['text_platform'] 	  	             = 'Platform';
 $lang['text_logo'] 	  	                 = 'assets/image/platform/wish.png';
 $lang['text_wish_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;wish platform 编辑 成功';
 $lang['text_wish_no_tracking_need_sync'] = '<i class="fa fa-check-circle-o"></i>&nbsp;No orders need to be synced';
-$lang['text_wish_sync_tracking_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;The tracking for order <strong>%s</strong> sync 成功';
+$lang['text_wish_sync_tracking_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;The 追踪号 for order <strong>%s</strong> sync 成功';
 $lang['text_wish_sync_tracking_note']    = '<i class="fa fa-check-circle-o"></i>&nbsp;Try to sync <strong>%s</strong> orders; 成功: <strong>%s</strong> orders; fail: <strong>%s</strong> orders';
 
 // Tab
@@ -24,11 +24,11 @@ $lang['entry_recent_days'] 	  	         = 'Recent Days';
 $lang['entry_order'] 	  	             = 'Order';
 $lang['entry_field'] 	  	             = 'Field';
 $lang['entry_sort_order'] 	  	         = 'Sort Order';
-$lang['entry_status'] 	  	             = 'Status';
+$lang['entry_status'] 	  	             = '转态';
 
 // Error
 $lang['error_server_response_error']     = 'wish server response error';
-$lang['error_order_sku_missing']         = 'order <strong>#%s</strong> sku is missing';
-$lang['error_order_invalid']             = 'order <strong>#%s</strong> is invalid';
-$lang['error_wish_sync_tracking_error']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Tracking sync for order <strong>%s</strong> is fail: <strong>%s</strong>';
+$lang['error_order_sku_missing']         = 'order <strong>#%s</strong> sku 是 missing';
+$lang['error_order_invalid']             = 'order <strong>#%s</strong> 是 invalid';
+$lang['error_wish_sync_tracking_error']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;追踪号 sync for order <strong>%s</strong> 是 fail: <strong>%s</strong>';
 

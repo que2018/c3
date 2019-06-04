@@ -1,4 +1,4 @@
-<a href="<?php echo base_url(); ?>report/sale/product">
+<a href="<?php echo base_url(); ?>finance/transaction">
   <div class="ibox float-e-margins">
     <div class="ibox-title">
 	  <span class="label label-success pull-right"><?php echo $this->lang->line('text_monthly'); ?></span>

@@ -17,7 +17,7 @@ $lang['text_add_transaction'] 	  	     	= '添加 Transaction';
 $lang['text_edit_transaction'] 	  	     	= '编辑 Transaction';
 $lang['text_amount'] 	  	             	= 'Amount';
 $lang['text_comment'] 	  	             	= 'Comment';
-$lang['text_search'] 	  	             	= 'search';
+$lang['text_search'] 	  	             	= '搜索';
 $lang['text_total_amount'] 	  	            = 'Total Amount';
 $lang['text_transaction_report'] 	  	    = 'Transaction Report';
 $lang['text_date_between'] 	  	            = '%s -- %s';
@@ -33,7 +33,7 @@ $lang['column_cost'] 	  	             	= 'Cost';
 $lang['column_markup'] 	  	             	= 'Markup';
 $lang['column_amount'] 	  	             	= 'Amount';
 $lang['column_comment'] 	  	         	= 'Comment';
-$lang['column_date_added'] 	  	         	= 'Date Added';
+$lang['column_date_added'] 	  	         	= '添加时间';
 $lang['column_action'] 	  	             	= '操作';
 
 // Entry

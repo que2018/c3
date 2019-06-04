@@ -11,7 +11,7 @@ $lang['text_save'] 	  	         	   	   		= '保存';
 $lang['text_cancel'] 	  	         	   		= '取消';
 $lang['text_export'] 	  	         	   		= '导出';
 $lang['text_product'] 	  	               		= '产品';
-$lang['text_location'] 	  	         	   		= 'location';
+$lang['text_location'] 	  	         	   		= '库位';
 $lang['text_quantity'] 	  	               		= '数量';
 $lang['text_inventory_add'] 	  	       		= 'Inventory 添加';
 $lang['text_inventory_edit'] 	  	       		= 'Inventory 编辑';
@@ -22,9 +22,9 @@ $lang['text_inventory_delete_success'] 	   		= '<i class="fa fa-check-circle-o">
 
 // Column
 $lang['column_product'] 	  	           		= '名称';
-$lang['column_location'] 	  	           		= 'Location';
+$lang['column_location'] 	  	           		= '库位';
 $lang['column_warehouse'] 	  	           		= 'Warehouse';
 $lang['column_quantity'] 	  	           		= '数量';
-$lang['column_date_added'] 	  	           		= 'Date Added';
+$lang['column_date_added'] 	  	           		= '添加时间';
 $lang['column_date_modified'] 	  	       		= 'Date Modified';
 

@@ -13,12 +13,12 @@ $lang['text_add_recharge'] 	  	         = '添加 Recharge';
 $lang['text_edit_recharge'] 	  	     = '编辑 Recharge';
 $lang['text_client'] 	  	             = '客户';
 $lang['text_method'] 	  	             = 'Method';
-$lang['text_status'] 	  	             = 'Status';
+$lang['text_status'] 	  	             = '转态';
 $lang['text_payment_method'] 	  	     = 'payment 方式';
 $lang['text_amount'] 	  	             = 'amount';
-$lang['text_pending'] 	  	             = 'pending';
-$lang['text_completed'] 	  	         = 'completed';
-$lang['text_search'] 	  	         	 = 'Search';
+$lang['text_pending'] 	  	             = '待完成';
+$lang['text_completed'] 	  	         = '完成的';
+$lang['text_search'] 	  	         	 = '搜索';
 $lang['text_recharge_list_description']  = '显示 recharge history';
 $lang['text_confirm_delete'] 	  	     = '您确定要 删除 这个 recharge?';
 $lang['text_recharge_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;recharge 编辑 成功';
@@ -27,12 +27,12 @@ $lang['text_recharge_edit_success']      = '<i class="fa fa-check-circle-o" aria
 $lang['entry_client'] 	  	             = '客户';
 $lang['entry_payment_method'] 	  	     = 'Payment Method';
 $lang['entry_amount'] 	  	             = 'Amount';
-$lang['entry_status'] 	  	             = 'Status';
+$lang['entry_status'] 	  	             = '转态';
 
 // Column
 $lang['column_client'] 	  	             = '客户';
 $lang['column_payment_method'] 	  	     = 'Payment Method';
 $lang['column_amount'] 	  	             = 'Amount';
-$lang['column_status'] 	  	             = 'Status';
-$lang['column_date_added'] 	  	         = 'Date Added';
+$lang['column_status'] 	  	             = '转态';
+$lang['column_date_added'] 	  	         = '添加时间';
 $lang['column_action'] 	  	             = '操作';

@@ -23,7 +23,7 @@ $lang['column_action'] 	  	                  = '操作';
 
 // Entry
 $lang['entry_name'] 	  	                  = '名称';
-$lang['entry_description'] 	  	              = 'Description';
+$lang['entry_description'] 	  	              = '描述';
 
 // Permission
 $lang['permission_access_catalog']      	  = 'View 目录';
@@ -62,8 +62,8 @@ $lang['permission_modify_system']   		  = '编辑 System';
 $lang['permission_modify_log']   		  	  = '编辑 Log';
 
 // Tab
-$lang['tab_general'] 	  	                  = 'General';
+$lang['tab_general'] 	  	                  = '通用';
 $lang['tab_permission'] 	  	              = 'Permission';
 
 // Error
-$lang['error_user_group_is_in_use'] 	      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 user group is in use and 不能被删除';
+$lang['error_user_group_is_in_use'] 	      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 user group 是 in use and 不能被删除';

@@ -38,6 +38,6 @@ $lang['entry_country'] 	  	              = 'Country';
 $lang['entry_zipcode'] 	  	              = 'Zipcode';
 
 // Error
-$lang['error_warehouse_location_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse is in use for locations and 不能被删除';
-$lang['error_warehouse_employee_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse is in use for employees and 不能被删除';
+$lang['error_warehouse_location_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse 是 in use for 库位 and 不能被删除';
+$lang['error_warehouse_employee_in_use']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse 是 in use for employees and 不能被删除';
 

@@ -12,7 +12,7 @@ $lang['text_user_edit'] 	  	     	 = '编辑 User';
 $lang['text_user_group'] 	  	     	 = 'user group';
 $lang['text_email'] 	  	     	 	 = 'email';
 $lang['text_confirm'] 	  	     	 	 = 'confirm';
-$lang['text_status'] 	  	     	 	 = 'status';
+$lang['text_status'] 	  	     	 	 = '转态';
 $lang['text_enabled'] 	  	     	 	 = 'Enabled';
 $lang['text_disabled'] 	  	     	 	 = 'Disabled';
 $lang['text_add'] 	  	     	 	 	 = '添加 user';
@@ -38,11 +38,11 @@ $lang['entry_lastname'] 	  	         = 'Lastname';
 $lang['entry_email'] 	  	         	 = 'Email';
 $lang['entry_password'] 	  	         = 'Password';
 $lang['entry_confirm'] 	  	             = 'Confirm';
-$lang['entry_status'] 	  	             = 'Status';
+$lang['entry_status'] 	  	             = '转态';
 $lang['entry_user_group'] 	  	         = 'User Group';
 
 // Tab
-$lang['tab_general'] 	  	             = 'General';
+$lang['tab_general'] 	  	             = '通用';
 
 // Error
-$lang['error_user_is_in_use'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 user is in use and 不能被删除';
+$lang['error_user_is_in_use'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 user 是 in use and 不能被删除';

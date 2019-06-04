@@ -22,4 +22,4 @@ $lang['entry_ebay_token'] 	  	         = 'Ebay Token';
 $lang['entry_ebay_site_id'] 	  	     = 'Ebay Site ID';
 $lang['entry_field'] 	  	             = 'Field';
 $lang['entry_sort_order'] 	  	         = 'Sort Order';
-$lang['entry_status'] 	  	             = 'Status';
+$lang['entry_status'] 	  	             = '转态';

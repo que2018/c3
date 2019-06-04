@@ -10,7 +10,7 @@ $lang['text_add'] 	  	             	 		= '添加 store';
 $lang['text_edit'] 	  	             	 		= '编辑 store';
 $lang['text_cancel'] 	  	             		= '取消';
 $lang['text_save'] 	  	                 		= '保存 store';
-$lang['text_default_sale_status_id'] 	  	    = 'default order status';
+$lang['text_default_sale_status_id'] 	  	    = 'default order 转态';
 $lang['text_default_order_shipping_provider'] 	= 'default order 配送 提供商';
 $lang['text_default_order_shipping_service'] 	= 'default order 配送 服务';
 $lang['text_auto_download'] 	  	     		= 'auto downlaod';
@@ -35,7 +35,7 @@ $lang['column_action'] 	  	             		= '操作';
 $lang['entry_platform'] 	  	         		= 'Platform';
 $lang['entry_client'] 	  	             	   	= '客户';
 $lang['entry_name'] 	  	             	   	= '名称';
-$lang['entry_default_order_status'] 	 	   	= 'Default Order Status';
+$lang['entry_default_order_status'] 	 	   	= 'Default Order 转态';
 $lang['entry_default_order_shipping_provider'] 	= 'Default Order 配送 提供商';
 $lang['entry_default_order_shipping_service']  	= 'Default Order 配送 服务';
 
@@ -54,5 +54,5 @@ $lang['tab_inventory_sync'] 	  	     		= 'Inventory Sync';
 $lang['button_add_product'] 	  	     		= '添加 产品';
 
 // Error
-$lang['error_store_employee_in_use']            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 store is in use for employee and 不能被删除';
+$lang['error_store_employee_in_use']            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 store 是 in use for employee and 不能被删除';
 
