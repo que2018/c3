@@ -41,7 +41,7 @@
     <thead>
 	  <?php if($sort == 'client.name') { ?>
 	  <th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
-	     <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line("column_client"); ?></a>
+	    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
 	  </th>
 	  <?php } else { ?>
 	  <th style="width: 16%;" class="sorting">
@@ -115,17 +115,6 @@
 	    <?php } ?>
 	  <?php } ?>
     </tbody>			  
-    <tfoot>
-	  <tr>
-	    <th class="filter-td"><input type="text" class="filter-input" name="name" placeholder="<?php echo $this->lang->line('column_client'); ?>" value="<?php echo $filter_client; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="cost" placeholder="<?php echo $this->lang->line('column_cost'); ?>" value="<?php echo $filter_cost; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="markup" placeholder="<?php echo $this->lang->line('column_markup'); ?>" value="<?php echo $filter_markup; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="amount" placeholder="<?php echo $this->lang->line('column_amount'); ?>" value="<?php echo $filter_amount; ?>" /></th>
-	    <th class="filter-td"><input type="text" class="filter-input" name="comment" placeholder="<?php echo $this->lang->line('column_comment'); ?>" value="<?php echo $filter_comment; ?>" /></th>
-	    <th></th>		
-	    <th></th>
-	  </tr>
-    </tfoot>
   </table>
 </div>
 <div class="pagination-block">

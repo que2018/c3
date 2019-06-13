@@ -455,45 +455,11 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-	var rate_ajax = null;
 	$(document).on('mouseenter', 'td:nth-child(2)', function() {
 		$(this).find('.detail').show();
-		if($(this).find('span').length) {
-			html = '<span class="rating"></span>';
-			$(this).find('.shipping').append(html);
-			
-			ratingBox = $(this).find('.rating');
-	
-			sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
-
-			rate_ajax = $.ajax({
-				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_rate?sale_id=' + sale_id,
-				dataType: 'json',
-				cache: false,
-				contentType: false,
-				processData: false,
-				beforeSend: function() {
-					ratingBox.html('<i class="fa fa-spinner fa-spin rating-spin"></i>');
-				},
-				success: function(json) {
-					if(json.success){
-						html = '$'+json.rate;
-						ratingBox.html(html);
-					}else{
-						html = '--';
-						ratingBox.html(html);
-					}
-					
-				}
-			});
-		}
 	});
 	
 	$(document).on('mouseleave', 'td:nth-child(2)', function() {
-		if(rate_ajax != null){
-			rate_ajax.abort();
-		}
-		
 		$(this).find('.rating').remove();
 		$(this).find('.detail').hide();
 	});
