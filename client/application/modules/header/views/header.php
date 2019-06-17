@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title><?php echo $title; ?></title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.1.1.min.js"></script>
@@ -10,11 +11,21 @@
 <script src="<?php echo base_url(); ?>assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/inspinia.js"></script>
+<?php if($scripts) { ?>
+<?php foreach($scripts as $script) { ?>
+  <script src="<?php echo $script; ?>"></script>
+<?php } ?>
+<?php } ?>
 <link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/gif">
 <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="<?php echo base_url(); ?>assets/css/style.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="<?php echo base_url(); ?>assets/css/animate.css" type="text/css" rel="stylesheet" media="screen" />
+<?php if($styles) { ?>
+<?php foreach($styles as $style) { ?>
+  <link href="<?php echo $style; ?>" type="text/css" rel="stylesheet" />
+<?php } ?>
+<?php } ?>
 </head>
 <body>
   <div id="wrapper">

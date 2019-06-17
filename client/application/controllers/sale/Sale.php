@@ -310,48 +310,78 @@ class Sale extends CI_Controller
 		$this->form_validation->set_rules('store_id', $this->lang->line('text_store'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_products'), 'required');
 		
-		$data = array(
-			'tracking'    		=> $this->input->post('tracking'),
-			'note'     		    => $this->input->post('note'),
-			'name'       		=> $this->input->post('name'),
-			'street'      		=> $this->input->post('street'),
-			'street2'      		=> $this->input->post('street2'),
-			'city'        		=> $this->input->post('city'),
-			'state'       		=> $this->input->post('state'),
-			'country'     		=> $this->input->post('country'),
-			'zipcode'           => $this->input->post('zipcode'),
-			'email'             => $this->input->post('email'),
-			'phone'             => $this->input->post('phone'),
-			'length'            => $this->input->post('length'),
-			'width'             => $this->input->post('width'),
-			'height'            => $this->input->post('height'),
-			'weight'            => $this->input->post('weight'),
-			'length_class_id'   => $this->input->post('length_class_id'),
-			'weight_class_id'   => $this->input->post('weight_class_id'),
-			'shipping_provider' => $this->input->post('shipping_provider'),
-			'shipping_service'  => $this->input->post('shipping_service'),
-			'store_id'          => $this->input->post('store_id'),
-			'store_sale_id'     => $this->input->post('store_sale_id')
-		);
-		
-		$data['sale_products'] = array();
-			
-		$sale_products_data = $this->input->post('sale_product');
-		
-		if($sale_products_data)
+		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
-			foreach($sale_products_data as $sale_product_data)
+			$data = array(
+				'tracking'    		=> $this->input->post('tracking'),
+				'note'     		    => $this->input->post('note'),
+				'name'       		=> $this->input->post('name'),
+				'street'      		=> $this->input->post('street'),
+				'street2'      		=> $this->input->post('street2'),
+				'city'        		=> $this->input->post('city'),
+				'state'       		=> $this->input->post('state'),
+				'country'     		=> $this->input->post('country'),
+				'zipcode'           => $this->input->post('zipcode'),
+				'email'             => $this->input->post('email'),
+				'phone'             => $this->input->post('phone'),
+				'length'            => $this->input->post('length'),
+				'width'             => $this->input->post('width'),
+				'height'            => $this->input->post('height'),
+				'weight'            => $this->input->post('weight'),
+				'length_class_id'   => $this->input->post('length_class_id'),
+				'weight_class_id'   => $this->input->post('weight_class_id'),
+				'shipping_provider' => $this->input->post('shipping_provider'),
+				'shipping_service'  => $this->input->post('shipping_service'),
+				'store_id'          => $this->input->post('store_id'),
+				'store_sale_id'     => $this->input->post('store_sale_id')
+			);
+			
+			$data['sale_products'] = array();
+			
+			$sale_products_data = $this->input->post('sale_product');
+			
+			if($sale_products_data)
 			{
-				$product_data = $this->product_model->get_product($sale_product_data['product_id']);
+				foreach($sale_products_data as $sale_product_data)
+				{
+					$product_data = $this->product_model->get_product($sale_product_data['product_id']);
 
-				$data['sale_products'][] = array(
-					'product_id'  => $product_data['id'],
-					'upc'         => $product_data['upc'],
-					'sku'         => $product_data['sku'],
-					'name'        => $product_data['name'],
-					'quantity'    => $sale_product_data['quantity']
-				);
+					$data['sale_products'][] = array(
+						'product_id'  => $product_data['id'],
+						'upc'         => $product_data['upc'],
+						'sku'         => $product_data['sku'],
+						'name'        => $product_data['name'],
+						'quantity'    => $sale_product_data['quantity']
+					);
+				}
 			}
+		}
+		else
+		{
+			$data = array(
+				'tracking'    		=> '',
+				'note'     		    => '',
+				'name'       		=> '',
+				'street'      		=> '',
+				'street2'      		=> '',
+				'city'        		=> '',
+				'state'       		=> '',
+				'country'     		=> '',
+				'zipcode'           => '',
+				'email'             => '',
+				'phone'             => '',
+				'length'            => '',
+				'width'             => '',
+				'height'            => '',
+				'weight'            => '',
+				'length_class_id'   => '',
+				'weight_class_id'   => '',
+				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
+				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
+				'store_id'          => '',
+				'store_sale_id'     => '',
+				'sale_products'     => array()
+			);
 		}
 		
 		if($this->form_validation->run() == true)
