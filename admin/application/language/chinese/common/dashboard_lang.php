@@ -24,7 +24,7 @@ $lang['text_real_time']			                 = 'Real Time';
 $lang['text_activities']			             = 'Activities';
 $lang['text_number_of_orders']			         = 'Number of orders';
 $lang['text_income']			                 = 'Income';
-$lang['text_recent_store_sync']			         = 'Recent Store Sync';
+$lang['text_recent_store_sync']			         = 'Recent 店铺 Sync';
 $lang['text_new_activities']			         = 'New Activities';
 $lang['text_to_do_list']			             = 'To do list';
 $lang['text_items_need_attention']			     = 'Items Need Attention';
@@ -35,11 +35,11 @@ $lang['text_display_most_recent_activity_log']   = '显示 most recent activity 
 
 // Column
 $lang['column_product']			                 = '产品';
-$lang['column_store']			                 = 'Store';
+$lang['column_store']			                 = '店铺';
 $lang['column_date']			                 = 'Date';
 $lang['column_type']			                 = '类型';
 $lang['column_status']			                 = '转态';
-$lang['column_store']			                 = 'Store';
+$lang['column_store']			                 = '店铺';
 $lang['column_total']			                 = 'Total';
 $lang['column_view']			                 = 'View';
 

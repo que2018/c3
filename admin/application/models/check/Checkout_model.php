@@ -62,10 +62,12 @@ class Checkout_model extends CI_Model
 		
 		//checkout file	
 		if(isset($data['checkout_files']) && $data['checkout_files'])
-		{						
+		{	
+			$checkout_files = array();
+	
 			foreach($data['checkout_files'] as $checkout_file)
 			{			
-				if(is_file($checkout_file['path'])) 		
+				if(is_file(FILEPATH . $checkout_file['path'])) 		
 				{
 					$checkout_files[] = array(
 						'checkout_id' => $checkout_id,

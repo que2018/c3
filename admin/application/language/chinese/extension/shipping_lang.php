@@ -12,5 +12,5 @@ $lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbs
 // Column
 $lang['column_name'] 	  	             = '名称';
 $lang['column_status'] 	  	             = '转态';
-$lang['column_sort_order'] 	  	         = 'Sort Order';
+$lang['column_sort_order'] 	  	         = 'Sort 订单';
 $lang['column_action'] 	  	             = '操作';

@@ -9,12 +9,12 @@ $lang['text_save'] 	  	             	    = '保存 入库 重量';
 $lang['text_checkin_weight_level'] 	  	    = 'checkin_weight level';
 $lang['text_checkin_weight_level_end'] 	  	= '入库 重量 level end';
 $lang['text_checkin_weight_status'] 	  	= '转态';
-$lang['text_checkin_weight_sort_order'] 	= 'sort order';
+$lang['text_checkin_weight_sort_order'] 	= 'sort 订单';
 $lang['text_edit_success'] 	  	            = '<i class="fa fa-check-circle-o"></i>&nbsp;编辑 费 成功';
 
 // Entry
 $lang['entry_status'] 	  	             	= '转态';
-$lang['entry_sort_order'] 	  	            = 'Sort Order';
+$lang['entry_sort_order'] 	  	            = 'Sort 订单';
 
 // Column
 $lang['column_checkin_weight'] 	  	        = '入库 重量';

@@ -1,15 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_sale'] 	  	               				= 'Order';
-$lang['text_sale_id'] 	  	               			= 'Order ID';
-$lang['text_store_sale_id'] 	  	                = 'Store Order ID';
+$lang['text_sale'] 	  	               				= '订单';
+$lang['text_sale_id'] 	  	               			= '订单 ID';
+$lang['text_store_sale_id'] 	  	                = '店铺 订单 ID';
 $lang['text_tracking'] 	  	                 	  	= '追踪号';
 $lang['text_search'] 	  	                 	  	= '搜索';
 $lang['text_product'] 	  	                 	  	= '产品';
 $lang['text_checkin'] 	  	                 	  	= '入库';
 $lang['text_checkout'] 	  	                 	  	= 'Checkout';
-$lang['text_inventory'] 	  	                 	= 'Inventory';
+$lang['text_inventory'] 	  	                 	= '库存';
 $lang['text_location'] 	  	                 		= '库位';
 $lang['text_quantity'] 	  	                 		= '数量';
 $lang['text_location'] 	  	                 	  	= '库位';

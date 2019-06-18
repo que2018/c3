@@ -22,7 +22,7 @@ $lang['text_length_unit'] 	  	     	 	= '长 Unit';
 $lang['text_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['text_image_type'] 	  	     	 	= '图片 类型';
 $lang['text_debug_mode'] 	  	     	 	= 'Debug Mode';
-$lang['text_sort_order'] 	  	         	= 'sort order';
+$lang['text_sort_order'] 	  	         	= 'sort 订单';
 $lang['text_status'] 	  	             	= '转态';
 $lang['text_service'] 	  	         	 	= '服务';
 $lang['text_state_mapping'] 	  	        = 'state mapping';
@@ -70,7 +70,7 @@ $lang['entry_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['entry_image_type'] 	  	     	 	= '图片 类型';
 $lang['entry_debug_mode'] 	  	     	 	= 'Debug Mode';
 $lang['entry_status'] 	  	             	= '转态';
-$lang['entry_sort_order'] 	  	         	= 'Sort Order';
+$lang['entry_sort_order'] 	  	         	= 'Sort 订单';
 $lang['entry_fee_type'] 	  	         	= '费用 类型';
 $lang['entry_fee_value'] 	  	         	= '费用 Value';
 

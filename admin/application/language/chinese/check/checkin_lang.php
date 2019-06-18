@@ -81,7 +81,7 @@ $lang['column_action'] 	  	        			 = '操作';
 $lang['column_product_name'] 	    			 = '产品名称';
 $lang['column_upc'] 	    					 = 'UPC';
 $lang['column_sku'] 	    					 = 'SKU';
-$lang['column_batch'] 	    				 	 = 'Batch';
+$lang['column_batch'] 	    				 	 = '批次';
 $lang['column_quantity'] 	    				 = '数量';
 $lang['column_file'] 	    		    		 = '文件';
 
@@ -97,18 +97,18 @@ $lang['entry_date_added'] 	  	        	     = '添加时间';
 $lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;代码是空的';
 $lang['error_checkin_status_invalid'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个入库是取消或者完成的';
 $lang['error_product_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品没有找到';
-$lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;请 选择 入库 记录 first';
-$lang['error_checkin_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 记录 是 没有找到';
-$lang['error_tracking_is_used']                  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 追踪号 number <strong>%s</strong> has been used';
-$lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 产品 是 required';
-$lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 产品 <strong>%s</strong> 数量 是 not a 正数';
-$lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The 产品 <strong>%s</strong> has 库位 unfilled';
-$lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 入库 是 already 完成的';
-$lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 费 at row <strong>%s</strong> 是 require 名称';
-$lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 费 at row <strong>%s</strong> 是 require amount';
-$lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库 费 at row <strong>%s</strong> requires amount';
-$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用 是 not able to calculate due to no client found';
-$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用 是 not able to calculate due to multi client found';
+$lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;请先选择入库记录';
+$lang['error_checkin_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库记录没有找到';
+$lang['error_tracking_is_used']                  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;追踪号<strong>%s</strong>已被使用';
+$lang['error_checkin_product_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库产品是必须的';
+$lang['error_checkin_product_quantity_format']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品的<strong>%s</strong>数量格式不正确';
+$lang['error_checkin_product_location_required'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品<strong>%s</strong>库位是必须的';
+$lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库已经完成';
+$lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费名称是必须的';
+$lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费金额是必须的';
+$lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费金额是必须的';
+$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为没有客户被找到,所以费用不确定';
+$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为多个客户被找到，所以费用不能被计算';
 
 
 

@@ -1,12 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_inventory'] 	  	           = 'Inventory';
+$lang['text_inventory'] 	  	           = '库存';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = '产品';
 $lang['text_location'] 	  	         	   = '库位';
-$lang['text_inventory_list'] 	  	       = 'Inventory 列表';
-$lang['text_inventory_import'] 	  	       = '导入 Inventory';
+$lang['text_inventory_list'] 	  	       = '库存 列表';
+$lang['text_inventory_import'] 	  	       = '导入 库存';
 $lang['text_add'] 	  	         	   	   = '添加';
 $lang['text_edit'] 	  	         	   	   = '编辑';
 $lang['text_delete'] 	  	         	   = 'Delete';
@@ -18,9 +18,9 @@ $lang['text_batch'] 	  	               = 'batch';
 $lang['text_quantity'] 	  	               = '数量';
 $lang['text_search'] 	  	               = '搜索';
 $lang['text_download_sample'] 	  	       = '下载 模板';
-$lang['text_inventory_add'] 	  	       = 'Inventory 添加';
-$lang['text_inventory_edit'] 	  	       = 'Inventory 编辑';
-$lang['text_import_inventory'] 	  	       = '导入 Inventory';
+$lang['text_inventory_add'] 	  	       = '库存 添加';
+$lang['text_inventory_edit'] 	  	       = '库存 编辑';
+$lang['text_import_inventory'] 	  	       = '导入 库存';
 $lang['text_confirm_delete'] 	  	       = '您确定要 删除 这个 inventory?';
 $lang['text_inventory_list_description']   = '显示 所有 Inventories';
 $lang['text_import_inventory_description'] = '导入 inventory 从 excel 文件';
@@ -28,9 +28,9 @@ $lang['text_loading_locations']            = '加载 库位 ..';
 $lang['text_only_excel_will_accepted'] 	   = '( 只有Excel文件才能被接受 )';
 $lang['text_drop_file_and_upload'] 	       = '拖入文件或者点击上传';
 $lang['text_confirm_delete'] 	           = '您确定要 删除 这个 inventory?';
-$lang['text_inventory_add_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory 添加 成功';
-$lang['text_inventory_edit_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory 编辑 成功';
-$lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;Inventory 删除 成功';
+$lang['text_inventory_add_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 添加 成功';
+$lang['text_inventory_edit_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 编辑 成功';
+$lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
 $lang['text_rows_imported'] 	           = '<strong>共%s行 被导入</strong>';
 $lang['text_no_rows_imported'] 	           = '<strong>No row 是 imported</strong>';
 
@@ -69,7 +69,7 @@ $lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> 是 �
 $lang['error_update_quantity_error'] 	   = 'Update 数量 fail';
 $lang['error_row_location_not_found'] 	   = 'row%s: 库位 <strong>%s</strong> 是 没有找到';
 $lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same 产品 and 库位';
-$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Inventory with same 产品, 库位 and batch has been used';
+$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and batch 已被使用';
 
 
 

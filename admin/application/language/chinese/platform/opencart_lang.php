@@ -17,10 +17,10 @@ $lang['entry_field'] 	  	             = 'Field';
 $lang['entry_token'] 	  	             = 'Token';
 $lang['entry_start'] 	  	             = 'Start';
 $lang['entry_limit'] 	  	             = 'Limit';
-$lang['entry_sort_order'] 	  	         = 'Sort Order';
+$lang['entry_sort_order'] 	  	         = 'Sort 订单';
 $lang['entry_status'] 	  	             = '转态';
 
 // Error
-$lang['error_order_sku_empty']           = '<strong>order #%s</strong> has 产品 with empty sku';
+$lang['error_order_sku_empty']           = '<strong>订单 #%s</strong> has 产品 with empty sku';
 $lang['error_server_response_error']     = 'opencart server response error';
-$lang['error_order_sku_not_found']       = '<strong>order #%s</strong> has 产品 with sku <strong>%s</strong> that 是 没有找到 in system';
+$lang['error_order_sku_not_found']       = '<strong>订单 #%s</strong> has 产品 with sku <strong>%s</strong> that 是 没有找到 in system';

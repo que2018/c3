@@ -6,7 +6,7 @@ $lang['text_square'] 	  	               = 'Square';
 $lang['text_fields'] 	  	               = 'Fields';
 $lang['text_platform'] 	  	               = 'Platform';
 $lang['text_payment_detail'] 	  	       = 'Payment Detail';
-$lang['text_order_detail'] 	  	           = 'Order Detail';
+$lang['text_order_detail'] 	  	           = '订单 Detail';
 $lang['text_logo'] 	  	                   = 'assets/image/platform/square.png';
 $lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;square platform 编辑 成功';
 
@@ -25,13 +25,13 @@ $lang['discount_money'] 	  	           = 'Discount Money';
 
 // Entry
 $lang['entry_field'] 	  	               = 'Field';
-$lang['entry_sort_order'] 	  	           = 'Sort Order';
+$lang['entry_sort_order'] 	  	           = 'Sort 订单';
 $lang['entry_status'] 	  	               = '转态';
 $lang['entry_token'] 	  	               = 'Token';
 $lang['entry_location_id'] 	  	           = '库位 ID';
 $lang['entry_recent_days'] 	  	           = 'Recent Days';
 $lang['entry_limit'] 	  	               = 'Limit';
-$lang['entry_order'] 	  	               = 'Order';
+$lang['entry_order'] 	  	               = '订单';
 $lang['entry_name'] 	  	               = '名称';
 $lang['entry_street'] 	  	               = 'Street';
 $lang['entry_street2'] 	  	               = 'Street2';
@@ -50,6 +50,6 @@ $lang['entry_net_total_money'] 	           = 'Net Total Money';
 $lang['entry_refunded_money'] 	           = 'Refunded Money';
 
 // Error
-$lang['error_order_sku_empty']             = '<a target="_blank" href="%s"><strong>order #%s</strong> has 产品 with empty sku</a>';
-$lang['error_order_product_empty']         = '<a target="_blank" href="%s"><strong>order #%s</strong> has no products</a>';
+$lang['error_order_sku_empty']             = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has 产品 with empty sku</a>';
+$lang['error_order_product_empty']         = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has no products</a>';
 $lang['error_server_response_error']       = 'square server response error';

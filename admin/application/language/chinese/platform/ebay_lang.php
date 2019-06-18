@@ -21,5 +21,5 @@ $lang['entry_ebay_username'] 	  	     = 'Ebay Username';
 $lang['entry_ebay_token'] 	  	         = 'Ebay Token';
 $lang['entry_ebay_site_id'] 	  	     = 'Ebay Site ID';
 $lang['entry_field'] 	  	             = 'Field';
-$lang['entry_sort_order'] 	  	         = 'Sort Order';
+$lang['entry_sort_order'] 	  	         = 'Sort 订单';
 $lang['entry_status'] 	  	             = '转态';

@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_order_report'] 	  	             	= 'Order Report';
+$lang['text_order_report'] 	  	             	= '订单 Report';
 $lang['text_report'] 	  	             	    = 'Report';
-$lang['text_order'] 	  	             	    = 'Order';
+$lang['text_order'] 	  	             	    = '订单';
 $lang['text_search_condition'] 	 				= '搜索 condition';
 
 //$lang['text_sku'] 	  	                 		= 'sku';
@@ -19,28 +19,28 @@ $lang['text_shipping_method'] 	  	     		= '配送 方式';
 $lang['text_sale_products'] 	  	     		= 'sale products';
 $lang['text_total'] 	  	             		= 'total';
 $lang['text_status'] 	  	             		= '转态';
-$lang['text_unsolved_order'] 	  	     		= 'Unsolved Order';
-$lang['text_order_add'] 	  	         		= '添加 Order';
-$lang['text_order_edit'] 	  	         		= '编辑 Order';
-$lang['text_order_edit_id'] 	  	            = '编辑 Order(#%s)';
-$lang['text_order_list'] 	  	         		= 'Order 列表';
-$lang['text_import_order'] 	  	         		= '导入 Order';
+$lang['text_unsolved_order'] 	  	     		= 'Unsolved 订单';
+$lang['text_order_add'] 	  	         		= '添加 订单';
+$lang['text_order_edit'] 	  	         		= '编辑 订单';
+$lang['text_order_edit_id'] 	  	            = '编辑 订单(#%s)';
+$lang['text_order_list'] 	  	         		= '订单 列表';
+$lang['text_import_order'] 	  	         		= '导入 订单';
 $lang['text_loading'] 	  	        		 	= '加载 ...';
 $lang['text_pending'] 	  	     		        = '待完成';
 $lang['text_completed'] 	  	     		    = '完成的';
-$lang['text_checkout_order_note'] 	  	        = '出库 for order #%s';
+$lang['text_checkout_order_note'] 	  	        = '出库 for 订单 #%s';
 $lang['text_import_order_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;orders are successfully imported';
-$lang['text_order_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;order 编辑 成功';
+$lang['text_order_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
 //$lang['text_order_list_description'] 	 		= '显示 all unsolved orders';
 $lang['text_unsolved_order_list_description']  	= '显示 all orders';
 $lang['text_only_excel_will_accepted'] 	 		= '( 只有Excel文件才能被接受 )';
-$lang['text_import_order_description'] 	 		= '导入 order 从 Excel 文件';
+$lang['text_import_order_description'] 	 		= '导入 订单 从 Excel 文件';
 $lang['text_drop_file_and_upload'] 	     		= '拖入文件或者点击上传';
 $lang['text_code_hint'] 	  	    	 		= 'UPC / SKU / ASIN / 产品 名称';
 $lang['text_rows_imported'] 	  	     		= '<strong>%s rows 被导入</strong>';
-//$lang['text_confirm_delete'] 	  	     		= '您确定要 删除 这个 order?';
+//$lang['text_confirm_delete'] 	  	     		= '您确定要 删除 这个 订单?';
 $lang['text_confirm_delete'] 	  	     		= '请 enter 搜索 condition.';
-$lang['text_packing_list_title'] 	  	        = 'Order(#%s)';
+$lang['text_packing_list_title'] 	  	        = '订单(#%s)';
 
 // Entry
 $lang['entry_date_from'] 	  	         		= 'Date From';
@@ -68,14 +68,14 @@ $lang['entry_phone'] 	  	             		= 'Phone';
 $lang['entry_label'] 	  	             		= 'Label';
 $lang['entry_shipping_provider'] 	  	 		= '配送 提供商';
 $lang['entry_shipping_service'] 	  	        = '配送 服务';
-$lang['entry_store'] 	  	                    = 'Store';
-$lang['entry_store_order_id'] 	  	            = 'Store Order ID';
-$lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;order 添加 成功';
-$lang['text_sale_edit_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;order 编辑 成功';
+$lang['entry_store'] 	  	                    = '店铺';
+$lang['entry_store_order_id'] 	  	            = '店铺 订单 ID';
+$lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单 添加 成功';
+$lang['text_sale_edit_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
 
 // Column
-$lang['column_order_id'] 	  	     		    = 'Order Id';
-$lang['column_store_order_id'] 	  	     		= 'Store Order Id';
+$lang['column_order_id'] 	  	     		    = '订单 Id';
+$lang['column_store_order_id'] 	  	     		= '店铺 订单 Id';
 $lang['column_tracking'] 	  	         		= '追踪号 Number';
 $lang['column_name'] 	  	            	 	= '名称';
 $lang['column_customer'] 	  	                = 'Customer';
@@ -96,7 +96,7 @@ $lang['button_search'] 	  	             		= '搜索';
 // Error
 $lang['error_no_data'] 	  	 					= '搜索 complate but NO data found!';
 //$lang['error_sku_not_found'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> 是 not existed';
-//$lang['error_order_exist'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;store order id <strong>%s</strong> 是 existed';
+//$lang['error_order_exist'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;store 订单 id <strong>%s</strong> 是 existed';
 $lang['error_client_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;client 是 not 选择的';
 //$lang['error_row_data'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;the <strong>%sth</strong> row has invalid data';
 $lang['error_client_empty'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;client 是空的';

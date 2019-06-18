@@ -1,13 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_refund'] 	  	               = 'Return';
-$lang['text_inventory'] 	  	           = 'Inventory';
+$lang['text_refund'] 	  	               = '返回';
+$lang['text_inventory'] 	  	           = '库存';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_product'] 	  	               = '产品';
 $lang['text_location'] 	  	         	   = '库位';
-$lang['text_refund_list'] 	  	           = 'Return 列表';
-$lang['text_refund_import'] 	  	       = 'Return 导入';
+$lang['text_refund_list'] 	  	           = '返回 列表';
+$lang['text_refund_import'] 	  	       = '返回 导入';
 $lang['text_add'] 	  	         	   	   = '添加 return';
 $lang['text_edit'] 	  	         	   	   = '编辑 return';
 $lang['text_delete'] 	  	         	   = '删除 return';
@@ -20,9 +20,9 @@ $lang['text_batch'] 	  	               = 'batch';
 $lang['text_quantity'] 	  	               = '数量';
 $lang['text_search'] 	  	               = '搜索';
 $lang['text_download_sample'] 	  	       = '下载 模板';
-$lang['text_refund_add'] 	  	           = '添加 Return';
-$lang['text_refund_edit'] 	  	           = '编辑 Return';
-$lang['text_import_refund'] 	  	       = '导入 Return';
+$lang['text_refund_add'] 	  	           = '添加 返回';
+$lang['text_refund_edit'] 	  	           = '编辑 返回';
+$lang['text_import_refund'] 	  	       = '导入 返回';
 $lang['text_confirm_delete'] 	  	       = '您确定要 删除 这个 return?';
 $lang['text_refund_list_description']  	   = '显示 所有 Returns';
 $lang['text_import_refund_description']    = '导入 return 从 excel 文件';
@@ -67,7 +67,7 @@ $lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> 是 �
 $lang['error_update_quantity_error'] 	   = 'Update 数量 fail';
 $lang['error_row_location_not_found'] 	   = 'row%s: 库位 <strong>%s</strong> 是 没有找到';
 $lang['error_row_duplicated_data'] 	  	   = 'row%s: refund data duplicated: thare are more than one row of same 产品 and 库位';
-$lang['error_refund_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and batch has been used';
+$lang['error_refund_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and batch 已被使用';
 
 
 

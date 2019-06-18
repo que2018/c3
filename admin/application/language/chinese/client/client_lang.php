@@ -6,7 +6,7 @@ $lang['text_edit'] 	  	        	 	  	    = '编辑 client';
 $lang['text_delete'] 	  	        	 	  	= '删除 client';
 $lang['text_save'] 	  	        	 	  	 	= '保存 client';
 $lang['text_cancel'] 	  	        	 	  	= '取消';
-$lang['text_order'] 	  	        	 	  	= 'order';
+$lang['text_order'] 	  	        	 	  	= '订单';
 $lang['text_checkin'] 	  	        	 	  	= '入库';
 $lang['text_firstname'] 	  	         		= 'firstname';
 $lang['text_lastname'] 	  	             		= 'lastname';
@@ -51,7 +51,7 @@ $lang['entry_volume_total'] 	  	            = 'Total Volume';
 
 // Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> 是 used';
-$lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the order exists';
+$lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the 订单 exists';
 $lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the 产品 exists';
 $lang['error_can_not_delete_recharge_exist']    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the recharge exists';
 $lang['error_can_not_delete_transaction_exist'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 client 不能被删除 because the transaction exists';

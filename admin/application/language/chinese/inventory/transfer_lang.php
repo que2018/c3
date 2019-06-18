@@ -2,7 +2,7 @@
 
 // Text
 $lang['text_transfer'] 	  	               = 'Transfer';
-$lang['text_inventory'] 	  	           = 'Inventory';
+$lang['text_inventory'] 	  	           = '库存';
 $lang['text_warehouse'] 	  	           = 'Warehouse';
 $lang['text_location'] 	  	         	   = '库位';
 $lang['text_quantity'] 	  	               = '数量';
