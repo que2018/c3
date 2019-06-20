@@ -60,6 +60,7 @@ class Postpony_model extends CI_Model
 		$data['postcode'] = $this->config->item('postpony_postcode');
 		$data['country'] = $this->config->item('postpony_country');
 		$data['phone'] = $this->config->item('postpony_phone');
+		$data['signature'] = $this->config->item('postpony_signature');
 		
 		//service 
 		$shipping_service = $this->get_service($sale['shipping_service']);
@@ -376,6 +377,15 @@ class Postpony_model extends CI_Model
 		{
 			$url = 'https://api.postpony.com/api/Ship';
 		}
+		
+		if($data['signature'])
+		{
+			$signature = 'Direct';
+		}
+		else
+		{
+			$signature = 'None';
+		}
 			
 		$shipDate = date("Y-m-d\TH:i:s");
 							
@@ -451,7 +461,7 @@ class Postpony_model extends CI_Model
 		$xml .= '</CustomsItem>';
 		$xml .= '</CustomsList>'; 
  		$xml .= '<LbSize>S4X6</LbSize>';
-		$xml .= '<Signature>None</Signature>';
+		$xml .= '<Signature>'.$signature.'</Signature>';
 		$xml .= '</RequstInfo>'; 
 		$xml .= '<ShipType>'.$data['method'].'</ShipType>';
 		$xml .= '</ShipRequest>';

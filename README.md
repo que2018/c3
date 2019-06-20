@@ -12,3 +12,4 @@ Demo Link: http://ims.saminthebox.com
 <div>shipping price calcuation</div>
 <div>checkout file uploader beter UI</div>
 <div>better checkout experience</div>
+<div>order zip with dashb line</div>
