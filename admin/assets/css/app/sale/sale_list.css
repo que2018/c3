@@ -144,24 +144,36 @@ input:focus {
     padding: 4px 5px;
 	margin-right: 5px;
 }
-.checkout-pending {
-    font-size: 9px;
-    background: #fd895b;
+.unsolved {	
+	font-size: 10px;
+    background: #f5e14d;
     color: #fff;
-    border-radius: 2px;
-    padding: 4px 5px;
-	margin-right: 5px;
+    padding: 5px 18px;
+    border-radius: 3px 0px 0px 3px;
 }
-.checkout-complete {
-    font-size: 9px;
-    background: #21b9bb;
+.checking-out {	
+	font-size: 10px;
+    background: #3bbf7c;
     color: #fff;
-    border-radius: 2px;
-    padding: 4px 5px;
-	margin-right: 5px;
+    padding: 5px 11px;
+    border-radius: 3px 0px 0px 3px;
 }
-.checkout-pending a, .checkout-complete a {
-	color: #ffffff;
+.completed {	
+	font-size: 10px;
+    background: #f5e14d;
+    color: #fff;
+    padding: 5px 18px;
+    border-radius: 3px 0px 0px 3px;
+}
+.btn-reverse {
+    padding: 4px 7px;
+    background: #fff;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    border-radius: 3px;
+    font-size: 10px;
+    cursor: pointer;
 }
 .table-shipping {
 	margin-top: 15px;

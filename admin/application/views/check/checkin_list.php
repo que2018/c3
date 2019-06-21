@@ -69,7 +69,7 @@
 		  </div>
 		  <div class="table-responsive">
 		    <div id="detail" style="display:none;"></div>
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-checkin">
 			  <thead>
 			    <tr>
 				  <?php if($sort == 'id') { ?>

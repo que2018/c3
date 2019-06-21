@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover dataTables-example" >
+  <table class="table table-striped table-bordered table-hover table-warehouse">
     <thead>
 	  <?php if($sort == 'name') { ?>
 	  <th style="width: 14%;" class="sorting_<?php echo strtolower($order); ?>">

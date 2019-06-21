@@ -41,7 +41,7 @@
 </div>
 <div id="table-content">
   <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover table-non-batch dataTables-example" >
+    <table class="table table-striped table-bordered table-hover table-non-batch table-inventory">
       <thead>
 	    <?php if($sort == 'product.name') { ?>
 	    <th style="width: 24%;" class="sorting_<?php echo strtolower($order); ?>">

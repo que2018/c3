@@ -72,5 +72,8 @@ input:focus {
     width: 200px;
     margin: 0 auto;
 }
+.table-product {
+	min-width: 1500px;
+}
 
 

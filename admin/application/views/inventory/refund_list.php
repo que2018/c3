@@ -73,7 +73,7 @@
 		    </div>
 		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-refund">
 			  <thead>
 			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 				<?php if($sort == 'product.name') { ?>

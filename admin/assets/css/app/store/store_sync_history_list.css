@@ -49,6 +49,9 @@ input:focus {
     width: 270px;
     margin: 0 auto;
 }
+.table-store-sync {
+	min-width: 1500px;
+}
 
 
 

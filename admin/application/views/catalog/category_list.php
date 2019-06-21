@@ -22,7 +22,7 @@
 	    </div>
 	    <div class="ibox-content">
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-category">
 			  <thead>
 				<?php if($sort == 'category.name') { ?>
 				<th style="width: 40%;" class="sorting_<?php echo strtolower($order); ?>">

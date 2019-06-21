@@ -81,18 +81,18 @@ $lang['text_confirm_delete']             	  						= '您确定要删除这记录
 // Tab
 $lang['tab_general'] 	        	    	  						= '通用';
 $lang['tab_shipping'] 	        	              					= '配送';
-$lang['tab_label'] 	        	              					    = 'Label';
+$lang['tab_label'] 	        	              					    = '标签';
 $lang['tab_fee'] 	        	              						= '费用';
 $lang['tab_file'] 	        	              						= '文件';
 $lang['tab_note'] 	        	              						= '备注';
 
 // Button
 $lang['button_print'] 	  	             							= '打印';
-$lang['button_select_file'] 	              						= '选择 文件';
+$lang['button_select_file'] 	              						= '选择文件';
 
 // Column
-$lang['column_checkout_id'] 	        	  						= '出库 ID(#)';
-$lang['column_sale_id'] 	        		  						= '订单 ID(#)';
+$lang['column_checkout_id'] 	        	  						= '出库ID(#)';
+$lang['column_sale_id'] 	        		  						= '订单ID(#)';
 $lang['column_name'] 	        	          						= '名称';
 $lang['column_loc'] 	        	          						= 'Loc';
 $lang['column_qty'] 	        	          						= 'Qty';
@@ -109,25 +109,26 @@ $lang['column_sku'] 	    			      						= 'SKU';
 $lang['column_batch'] 	    			      						= 'Batch';
 $lang['column_quantity'] 	    		 	  						= '数量';
 $lang['column_file'] 	    		          						= '文件';
-$lang['column_label'] 	    		          						= 'Lable';
+$lang['column_label'] 	    		          						= '标签';
 $lang['column_tracking'] 	    		          				    = '追踪号';
 
 // Entry
-$lang['entry_sale_id'] 	  	    	 	  	  						= '订单 ID';
-$lang['entry_store_sale_id'] 	  	    	 	  	    			= '店铺 订单 ID';
+$lang['entry_checkout_id'] 	  	    	 	  	  				    = '出库ID';
+$lang['entry_sale_id'] 	  	    	 	  	  						= '订单ID';
+$lang['entry_store_sale_id'] 	  	    	 	  	    			= '店铺订单ID';
 $lang['entry_location'] 	  	    	 	  						= '库位';
 $lang['entry_tracking'] 	  	    	      						= '追踪号';
-$lang['entry_source'] 	  	    	      							= 'Source';
+$lang['entry_source'] 	  	    	      							= '源';
 $lang['entry_status'] 	  	        	 	  						= '转态';
 $lang['entry_length'] 	  	             	  						= '长度';
 $lang['entry_width'] 	  	             	  						= '宽';
 $lang['entry_height'] 	  	             	  						= '高';
 $lang['entry_weight'] 	  	             	  						= '重量';
-$lang['entry_length_class'] 	  	     	 						= '长 class';
-$lang['entry_weight_class'] 	  	     	  						= '重量 class';
-$lang['entry_shipping_provider'] 	  	 							= '配送 提供商';
-$lang['entry_shipping_service'] 	  	        					= '配送 服务';
-$lang['entry_label'] 	  	        								= 'Label';
+$lang['entry_length_class'] 	  	     	 						= '长度单位';
+$lang['entry_weight_class'] 	  	     	  						= '重量单位';
+$lang['entry_shipping_provider'] 	  	 							= '配送提供商';
+$lang['entry_shipping_service'] 	  	        					= '配送服务';
+$lang['entry_label'] 	  	        								= '标签';
 $lang['entry_note'] 	  	        	 	  						= '备注';
 
 // Error 

@@ -170,27 +170,22 @@
 					    <?php } ?>
 					  </td>
 					  <td class="status">
-					    <?php if($sale['status_id'] == 1) { ?>
-					      <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+						<?php if($sale['status_id'] == 1) { ?>
+						  <div class="input-group">
+						    <span class="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
+						<?php } else if($sale['status_id'] == 2) { ?>  
+						  <div class="input-group">
+						    <span class="checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } else { ?>
-					      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+						  <div class="input-group">
+						    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } ?>
-						&nbsp;
-						<?php if($sale['checkout']) { ?>      
-						<?php if($sale['checkout']['status'] == 1) { ?>
-						<span class="checkout-pending">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_pending'); ?>
-						  </a>
-						</span>
-						<?php } else { ?>
-						<span class="checkout-complete">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_complete'); ?>
-						  </a>
-						</span>
-						<?php } ?>
-						<?php } ?>
 					  </td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">

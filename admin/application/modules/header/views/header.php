@@ -156,7 +156,7 @@
 			  <li><a href="<?php echo base_url(); ?>setting/setting"><?php echo $this->lang->line('menu_setting'); ?></a></li>
 			  <li><a href="#"><?php echo $this->lang->line('menu_log'); ?></a>     
 				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>setting/activity_log"><?php echo $this->lang->line('menu_activity_log'); ?></a></li>
+				  <li><a href="<?php echo base_url(); ?>log/activity_log"><?php echo $this->lang->line('menu_activity_log'); ?></a></li>
 				</ul>
               </li>
 			  <li><a href="<?php echo base_url(); ?>setting/information"><?php echo $this->lang->line('menu_information'); ?></a></li>

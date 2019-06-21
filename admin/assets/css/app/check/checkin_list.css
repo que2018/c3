@@ -88,6 +88,9 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
+.table-checkin {
+	min-width: 1500px;
+}
 
 
 

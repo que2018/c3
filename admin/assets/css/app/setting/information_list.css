@@ -47,7 +47,9 @@ a:focus, a:hover {
     width: 220px;
     margin: 0 auto;
 }
-
+.table-information {
+	min-width: 1500px;
+}
 
 
 
