@@ -251,6 +251,25 @@ class Checkout_ajax extends CI_Controller
 	
 	public function change_status()
 	{
+		$this->load->library('mail');
+		
+		$this->mail->protocol = 'smtp';
+		//$this->mail->parameter = $this->config->get('config_mail_parameter');
+		$this->mail->smtp_hostname = $this->config->item('config_smtp_hostname');
+		$this->mail->smtp_username = $this->config->item('config_smtp_username');
+		$this->mail->smtp_password = $this->config->item('config_smtp_password');
+		$this->mail->smtp_port = $this->config->item('config_smtp_port');
+	//	$this->mail->smtp_timeout = $this->config->item('config_smtp_timeout');
+
+		$this->mail->setTo('quedinge2012@gmail.com');
+		$this->mail->setFrom('sam@hualongus.com');
+		$this->mail->setSender('Sam');
+		$this->mail->setSubject(html_entity_decode('Sam', ENT_QUOTES, 'UTF-8'));
+		$this->mail->setHtml('<div>safe and sound</div>');
+		$this->mail->send();
+
+		
+		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');
