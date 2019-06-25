@@ -282,6 +282,179 @@ class Sale_ajax extends CI_Controller
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));
 	}
+	
+	public function change_status()
+	{
+		$this->lang->load('check/checkout');
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('check/checkout_model');
+		
+		if($this->input->get('sale_id'))
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$checkout = $this->checkout_model->get_sale_checkout($sale_id);
+
+			$status = 0;	
+			$message = null;
+
+			//no checkout record yet
+			if(!$checkout) 
+			{
+				$sale_products = $this->sale_model->get_sale_products($sale_id);
+				
+				$inventory_validated = true;
+					
+				$checkout_products = array();
+					
+				foreach($sale_products as $sale_product)
+				{
+					$inventories = $this->inventory_model->get_inventories_by_product($sale_product['product_id']);
+						
+					if(!$inventories || (sizeof($inventories) > 1) || ($inventories[0]['quantity'] < $sale_product['quantity'])) 
+					{
+						$inventory_validated = false;
+						
+						break;
+					}
+					else
+					{
+						$checkout_products[] = array(
+							'product_id'   => $sale_product['product_id'],
+							'inventory_id' => $inventories[0]['id'],
+							'quantity'     => $sale_product['quantity']
+						);
+					}
+				}
+			
+				if($inventory_validated)
+				{
+					$sale = $this->sale_model->get_sale($sale_id);
+							
+					$data = array(
+						'sale_id'            => $sale_id,
+						'tracking'           => '',
+						'status'             => 1,
+						'length'	         => $sale['length'],
+						'width'	             => $sale['width'],
+						'height'	         => $sale['height'],
+						'weight'	         => $sale['weight'],
+						'length_class_id'	 => $sale['length_class_id'],
+						'weight_class_id'	 => $sale['weight_class_id'],
+						'shipping_provider'	 => $sale['shipping_provider'],
+						'shipping_service'	 => $sale['shipping_service'],
+						'note'               => '',
+						'checkout_products'  => $checkout_products
+					);
+					
+					$checkout_id = $this->checkout_model->add_checkout($data);
+
+					$success = true;
+					$status = 2;	
+				}
+				else
+				{
+					$success = false;
+					$status = 4;	
+				}
+			}
+			
+			//there is checkout record, now change status
+			else
+			{
+				$checkout_id = $checkout['id'];
+				
+				if($checkout['status'] == 1) 
+				{
+					$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);
+					
+					$validate_result = $this->validate_checkout_product($checkout_products);
+					
+					if($validate_result['success'])
+					{
+						$this->checkout_model->complete_checkout($checkout_id);
+					
+						$success = true;
+						$status = 3;	
+					}
+					else
+					{
+						$success = false;
+						$status = 4;
+						$message = $validate_result['message'];
+					}
+				}
+				
+				if($checkout['status'] == 2)
+				{
+					$result = $this->checkout_model->uncomplete_checkout($checkout_id);
+					
+					$success = true;
+					$status = 2;
+				}
+			}
+			
+			$outdata = array(
+				'success'   => $success,
+				'status'    => $status,
+				'message'   => $message
+			);
+					
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
+	private function validate_checkout_product($checkout_products)
+	{	
+		$this->load->model('catalog/product_model');
+		$this->load->model('warehouse/location_model');
+		$this->load->model('inventory/inventory_model');
+
+		$validated = true;
+		
+		$error_message = '';
+		
+		foreach($checkout_products as $checkout_product)
+		{
+			$product_id    = $checkout_product['product_id'];
+			$inventory_id  = $checkout_product['inventory_id'];
+			$quantity      = $checkout_product['quantity'];
+			
+			$product_info = $this->product_model->get_product($product_id);
+
+			$inventory = $this->inventory_model->get_inventory($inventory_id);
+			
+			if($inventory['quantity'] < $quantity)
+			{
+				$location_id = $inventory['location_id'];
+				
+				$location_info = $this->location_model->get_location($location_id);
+				
+				if($inventory['batch'])
+				{
+					$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['batch'], $inventory['quantity']);
+				}
+				else
+				{
+					$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient_non_batch'), $product_info['name'], $location_info['name'], $inventory['quantity']);
+				}
+				
+				$error_message .= '<br>';
+				
+				if($validated)
+					$validated = false;
+			}
+		}
+		
+		$result = array(
+			'success' => ($validated)?true:false,
+			'message' => $error_message
+		);
+		
+		return $result;
+	}
 }
 
 

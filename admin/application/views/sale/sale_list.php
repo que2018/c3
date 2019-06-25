@@ -259,6 +259,54 @@ function update_tracking(sale_id, handle) {
 	});
 }
 </script>
+
+<script>
+function change_sale_status(handle, sale_id) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/change_status?sale_id=' + sale_id,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		success: function(json) {
+			$(handle).html('<i class="fa fa fa-refresh"></i>');
+			
+			if(json.success) {
+				label = $(handle).closest('.input-group').find('span').eq(0);
+				
+				label.removeClass();
+				
+				if(json.status == 1) {
+					label.addClass('unsolved');
+					label.text('<?php echo $this->lang->line("text_unsolved"); ?>');
+				}else if(json.status == 2){
+					label.addClass('checking-out');
+					label.text('<?php echo $this->lang->line("text_checking_out"); ?>');
+				}else if(json.status == 3){
+					label.addClass('completed');
+					label.text('<?php echo $this->lang->line("text_completed"); ?>');
+				}else if(json.status == 4){
+					label.addClass('unsolved');
+					label.text('<?php echo $this->lang->line("text_unsolved"); ?>');
+				}
+				
+				$(handle).html('<i class="fa fa fa-refresh"></i>');
+			} else {
+				$('#alert-error span').html(json.message);
+				$('#alert-error').show();
+			} 
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+
+
 <script>
 function checkout(handle, sale_id) {
 	$.ajax({
