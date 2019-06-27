@@ -4,12 +4,12 @@
 $lang['text_print_label'] 	  	                = '打印 label';
 $lang['text_sku'] 	  	                 		= 'sku';
 $lang['text_quantity'] 	  	                    = '数量';
-$lang['text_customer_name'] 	  	            = 'customer 名称';
-$lang['text_customer_street'] 	  	            = 'customer street';
-$lang['text_customer_city'] 	  	            = 'customer city';
-$lang['text_customer_state'] 	  	            = 'customer state';
-$lang['text_customer_country'] 	  	            = 'customer country';
-$lang['text_customer_zipcode'] 	  	            = 'customer zipcode';
+$lang['text_customer_name'] 	  	            = '客户 名称';
+$lang['text_customer_street'] 	  	            = '客户 street';
+$lang['text_customer_city'] 	  	            = '客户 city';
+$lang['text_customer_state'] 	  	            = '客户 state';
+$lang['text_customer_country'] 	  	            = '客户 country';
+$lang['text_customer_zipcode'] 	  	            = '客户 zipcode';
 $lang['text_length'] 	  	             	  	= '长度';
 $lang['text_weight'] 	  	             	  	= '重量';
 $lang['text_height'] 	  	             	  	= '高度';
@@ -60,7 +60,7 @@ $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"><
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows 被导入</strong>';
 
 // Tab
-$lang['tab_customer'] 	  	             		= 'Customer';
+$lang['tab_customer'] 	  	             		= '客户';
 $lang['tab_product'] 	  	             		= '产品';
 $lang['tab_fee'] 	  	                 		= '费用';
 $lang['tab_store'] 	  	                 		= '店铺';
@@ -98,7 +98,7 @@ $lang['column_order_id'] 	  	     		    = '订单 Id';
 $lang['column_store_order_id'] 	  	     		= '店铺 订单 Id';
 $lang['column_tracking'] 	  	         		= '追踪号 Number';
 $lang['column_name'] 	  	            	 	= '名称';
-$lang['column_customer'] 	  	                = 'Customer';
+$lang['column_customer'] 	  	                = '客户';
 $lang['column_amount'] 	  	            	 	= 'Amount';
 $lang['column_product_name'] 	  	     		= '产品 名称';
 $lang['column_upc'] 	  	     		 		= 'UPC';

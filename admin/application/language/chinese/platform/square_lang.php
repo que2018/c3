@@ -13,7 +13,7 @@ $lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></
 // Tab
 $lang['tab_fields'] 	  	               = 'Fields';
 $lang['tab_setting'] 	  	               = 'Setting';
-$lang['tab_customer'] 	  	               = 'Customer';
+$lang['tab_customer'] 	  	               = '客户';
 $lang['tab_product'] 	  	               = '产品';
 
 // Column

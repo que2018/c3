@@ -107,8 +107,8 @@ $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-
 $lang['error_checkin_fee_row_name_required']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费名称是必须的';
 $lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费金额是必须的';
 $lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费金额是必须的';
-$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为没有客户被找到,所以费用不确定';
-$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为多个客户被找到，所以费用不能被计算';
+$lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为没有customer被找到,所以费用不确定';
+$lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为多个customer被找到，所以费用不能被计算';
 
 
 

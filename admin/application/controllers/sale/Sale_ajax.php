@@ -285,9 +285,11 @@ class Sale_ajax extends CI_Controller
 	
 	public function change_status()
 	{
-		$this->lang->load('check/checkout');
+		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('client/client_model');
 		$this->load->model('check/checkout_model');
 		
 		if($this->input->get('sale_id'))
@@ -394,6 +396,48 @@ class Sale_ajax extends CI_Controller
 					$status = 2;
 				}
 			}
+			
+			//send mail
+			$store_id = $sale['store_id'];
+			$store = $this->store_model->get_store($store_id);
+			
+			$client_id = $store['client_id'];
+			$client = $this->client_model->get_client($client_id);
+			
+			$this->mail->protocol = 'smtp';
+			$this->mail->smtp_hostname = $this->config->item('config_smtp_hostname');
+			$this->mail->smtp_username = $this->config->item('config_smtp_username');
+			$this->mail->smtp_password = $this->config->item('config_smtp_password');
+			$this->mail->smtp_port = $this->config->item('config_smtp_port');
+
+			$this->mail->setTo($client['email']);
+			$this->mail->setFrom($this->config->item('config_smtp_username'));
+			$this->mail->setSender('HUALONGUS');
+			$this->mail->setSubject(html_entity_decode($this->lang->line('text_order_status_changed'), ENT_QUOTES, 'UTF-8'));
+			
+			if($status == 1) 
+			{
+				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+			}
+			
+			if($status == 2) 
+			{
+				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+			}
+			
+			if($status == 3) 
+			{
+				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+			}
+			
+			if($status == 4) 
+			{
+				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+			}
+			
+			
+			$this->mail->setHtml('<div>safe and sound</div>');
+			$this->mail->send();
 			
 			$outdata = array(
 				'success'   => $success,

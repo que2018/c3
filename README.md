@@ -13,3 +13,4 @@ Demo Link: http://ims.saminthebox.com
 <div>checkout file uploader beter UI</div>
 <div>better checkout experience</div>
 <div>order zip with dashb line</div>
+<div>charge fee when check out</div>
