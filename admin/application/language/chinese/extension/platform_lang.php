@@ -6,8 +6,8 @@ $lang['text_platform'] 	  	             = 'Platform';
 $lang['text_extension'] 	  	         = 'Extension';
 $lang['text_no_platforms'] 	  	         = 'No platforms';
 $lang['text_platform_description'] 	  	 = '显示 all platforms';
-$lang['text_install_success'] 	  	     = '<i class="fa fa-check-circle-o"></i>&nbsp;platform install 成功';
-$lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;platform 是 uninstall 成功';
+$lang['text_install_success'] 	  	     = '<i 单位="fa fa-check-circle-o"></i>&nbsp;platform install 成功';
+$lang['text_uninstall_success'] 	  	 = '<i 单位="fa fa-check-circle-o"></i>&nbsp;platform 是 uninstall 成功';
 
 // Column
 $lang['column_name'] 	  	             = '名称';

@@ -7,8 +7,8 @@ $lang['text_delete'] 	  	        	 	= '删除';
 $lang['text_save'] 	  	        	 	 	= '保存';
 $lang['text_cancel'] 	  	        	 	= '取消';
 $lang['text_client'] 	  	        	 	= '客户';
-$lang['text_date_from'] 	  	            = 'Date From';
-$lang['text_date_to'] 	  	        	 	= 'Date To';
+$lang['text_date_from'] 	  	            = '时间 From';
+$lang['text_date_to'] 	  	        	 	= '时间 To';
 $lang['text_download'] 	  	        	 	= '下载';
 $lang['text_title'] 	  	             	= 'Transaction';
 $lang['text_finance'] 	  	             	= 'Finance';
@@ -18,14 +18,14 @@ $lang['text_edit_transaction'] 	  	     	= '编辑 Transaction';
 $lang['text_amount'] 	  	             	= 'Amount';
 $lang['text_comment'] 	  	             	= 'Comment';
 $lang['text_search'] 	  	             	= '搜索';
-$lang['text_total_amount'] 	  	            = 'Total Amount';
+$lang['text_total_amount'] 	  	            = '总计 Amount';
 $lang['text_transaction_report'] 	  	    = 'Transaction Report';
 $lang['text_date_between'] 	  	            = '%s -- %s';
 $lang['text_date_since'] 	  	            = 'since %s';
 $lang['text_date_before'] 	  	            = 'before %s';
-$lang['text_all_the_date'] 	  	            = '所有 The Date';
+$lang['text_all_the_date'] 	  	            = '所有 The 时间';
 $lang['text_confirm_delete'] 	  	     = '您确定要 删除 这个 recharge?';
-$lang['text_transaction_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;transaction 编辑 成功';
+$lang['text_transaction_edit_success']      = '<i 单位="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;transaction 编辑 成功';
 
 // Column
 $lang['column_client'] 	  	             	= '客户';

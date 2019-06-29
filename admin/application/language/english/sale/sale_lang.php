@@ -3,6 +3,7 @@
 // Text
 $lang['text_print_label'] 	  	                = 'print label';
 $lang['text_sale_id'] 	  	                    = 'Order ID';
+$lang['text_order_detail'] 	  	                = 'Order Detail';
 $lang['text_all_orders'] 	  	                = 'All Orders';
 $lang['text_unsolved_order'] 	  	            = 'Unsolved Order';
 $lang['text_sale_add'] 	  	                	= 'Add Order';
@@ -54,6 +55,9 @@ $lang['text_pending'] 	  	     		        = 'Pending';
 $lang['text_completed'] 	  	     		    = 'Completed';
 $lang['text_bulk_print'] 	  	                = 'bulk print';
 $lang['text_print_pdf'] 	  	                = 'print PDF';
+$lang['text_checkout_record_generated'] 	  	= 'Order #%s is pending for checkout';
+$lang['text_checkout_record_checking_out'] 	  	= 'Order #%s is checking out';
+$lang['text_checkout_record_completed'] 	  	= 'Order #%s is completed';
 $lang['text_packing_list_title'] 	  	        = 'Order(#%s)';
 $lang['text_no_checkout'] 	  	                = 'no checkout';
 $lang['text_checkout_pending'] 	  	            = 'checkout pending';
@@ -116,6 +120,8 @@ $lang['entry_shipping_service'] 	  	        = 'Shipping Service';
 $lang['entry_order_id'] 	  	                = 'Order ID';
 $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';
+$lang['entry_product_name'] 	  	            = 'Name';
+$lang['entry_product_quantity'] 	  	        = 'Qty';
 
 // Column
 $lang['column_order_id'] 	  	     		    = 'Order Id';

@@ -21,18 +21,18 @@ $lang['text_download_sample'] 	  	       = '下载 模板';
 $lang['text_inventory_add'] 	  	       = '库存 添加';
 $lang['text_inventory_edit'] 	  	       = '库存 编辑';
 $lang['text_import_inventory'] 	  	       = '导入 库存';
-$lang['text_confirm_delete'] 	  	       = '您确定要 删除 这个 inventory?';
+$lang['text_confirm_delete'] 	  	       = '您确定要 删除 这个 库存?';
 $lang['text_inventory_list_description']   = '显示 所有 Inventories';
-$lang['text_import_inventory_description'] = '导入 inventory 从 excel 文件';
+$lang['text_import_inventory_description'] = '导入 库存 从 excel 文件';
 $lang['text_loading_locations']            = '加载 库位 ..';
 $lang['text_only_excel_will_accepted'] 	   = '( 只有Excel文件才能被接受 )';
 $lang['text_drop_file_and_upload'] 	       = '拖入文件或者点击上传';
-$lang['text_confirm_delete'] 	           = '您确定要 删除 这个 inventory?';
-$lang['text_inventory_add_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 添加 成功';
-$lang['text_inventory_edit_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 编辑 成功';
-$lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
+$lang['text_confirm_delete'] 	           = '您确定要 删除 这个 库存?';
+$lang['text_inventory_add_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 添加 成功';
+$lang['text_inventory_edit_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 编辑 成功';
+$lang['text_inventory_delete_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
 $lang['text_rows_imported'] 	           = '<strong>共%s行 被导入</strong>';
-$lang['text_no_rows_imported'] 	           = '<strong>No row 是 imported</strong>';
+$lang['text_no_rows_imported'] 	           = '<strong>No row 是 导入</strong>';
 
 // Column
 $lang['column_name'] 	  	               = '名称';
@@ -44,7 +44,7 @@ $lang['column_client'] 	  	           	   = '客户';
 $lang['column_batch'] 	  	           	   = 'Batch';
 $lang['column_quantity'] 	  	           = '数量';
 $lang['column_date_added'] 	  	           = '添加时间';
-$lang['column_date_modified'] 	  	       = 'Date Modified';
+$lang['column_date_modified'] 	  	       = '时间 Modified';
 
 // Button
 $lang['button_batch'] 	  	               = 'batch';
@@ -66,10 +66,10 @@ $lang['error_row_sku_empty'] 	  	       = 'row%s: sku 是空的';
 $lang['error_row_location_empty'] 	  	   = 'row%s: 库位 是空的';
 $lang['error_row_quantity_empty'] 	  	   = 'row%s: 数量 是空的';
 $lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> 是 没有找到';
-$lang['error_update_quantity_error'] 	   = 'Update 数量 fail';
+$lang['error_update_quantity_error'] 	   = 'Update 数量 失败';
 $lang['error_row_location_not_found'] 	   = 'row%s: 库位 <strong>%s</strong> 是 没有找到';
-$lang['error_row_duplicated_data'] 	  	   = 'row%s: inventory data duplicated: thare are more than one row of same 产品 and 库位';
-$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and batch 已被使用';
+$lang['error_row_duplicated_data'] 	  	   = 'row%s: 库存 data duplicated: thare are more than one row of same 产品 and 库位';
+$lang['error_inventory_add_unique'] 	   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and batch 已被使用';
 
 
 

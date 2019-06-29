@@ -14,7 +14,7 @@ $lang['text_alipay_key'] 	  	          = 'key';
 $lang['text_sort_order'] 	  	          = 'sort 订单';
 $lang['text_create_forex_trade'] 	  	  = 'Create Foregin Trade';
 $lang['text_create_direct_pay_by_user']   = 'Create Direct Pay By User';
-$lang['text_alipay_edit_success']         = 'Alipay 是 successfully edited';
+$lang['text_alipay_edit_success']         = 'Alipay 是 成功 edited';
 
 // Tab
 $lang['tab_fields'] 	  	              = 'Fields';

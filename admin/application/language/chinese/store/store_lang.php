@@ -1,15 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_client'] 	  	             		= 'client';
+$lang['text_client'] 	  	             		= '客户';
 $lang['text_platform'] 	  	             		= 'platform';
 $lang['text_setting'] 	  	             		= 'setting';
 $lang['text_name'] 	  	                 		= '名称';
 $lang['text_setting'] 	  	             		= 'setting';
-$lang['text_add'] 	  	             	 		= '添加 store';
-$lang['text_edit'] 	  	             	 		= '编辑 store';
+$lang['text_add'] 	  	             	 		= '添加 店铺';
+$lang['text_edit'] 	  	             	 		= '编辑 店铺';
 $lang['text_cancel'] 	  	             		= '取消';
-$lang['text_save'] 	  	                 		= '保存 store';
+$lang['text_save'] 	  	                 		= '保存 店铺';
 $lang['text_default_sale_status_id'] 	  	    = 'default 订单 转态';
 $lang['text_default_order_shipping_provider'] 	= 'default 订单 配送 提供商';
 $lang['text_default_order_shipping_service'] 	= 'default 订单 配送 服务';
@@ -20,10 +20,10 @@ $lang['text_store_add'] 	  	         		= '添加 店铺';
 $lang['text_store_edit'] 	  	         		= '编辑 店铺';
 $lang['text_store_list'] 	  	         		= '店铺 列表';
 $lang['text_store_list_description'] 	 		= '显示 all the stores';
-$lang['text_confirm_delete']             		= '您确定要 删除 这个 store?';
+$lang['text_confirm_delete']             		= '您确定要 删除 这个 店铺?';
 $lang['text_sync_single_warehouse']      		= 'sync single warehouse';
-$lang['text_store_add_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;store 添加 成功';
-$lang['text_store_edit_success'] 	     		= '<i class="fa fa-check-circle-o"></i>&nbsp;store 编辑 成功';
+$lang['text_store_add_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;店铺 添加 成功';
+$lang['text_store_edit_success'] 	     		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;店铺 编辑 成功';
 
 // Column
 $lang['column_name'] 	  	             		= '名称';
@@ -54,5 +54,5 @@ $lang['tab_inventory_sync'] 	  	     		= '库存 Sync';
 $lang['button_add_product'] 	  	     		= '添加 产品';
 
 // Error
-$lang['error_store_employee_in_use']            = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 store 是 in use for employee and 不能被删除';
+$lang['error_store_employee_in_use']            = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 店铺 是 in use for employee and 不能被删除';
 

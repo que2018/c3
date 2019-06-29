@@ -16,9 +16,9 @@ $lang['text_quantity'] 	  	               		= '数量';
 $lang['text_inventory_add'] 	  	       		= '库存 添加';
 $lang['text_inventory_edit'] 	  	       		= '库存 编辑';
 $lang['text_inventory_alert_list'] 	  	        = '库存 警告 列表';
-$lang['text_confirm_delete'] 	           		= '您确定要 删除 这个 inventory?';
+$lang['text_confirm_delete'] 	           		= '您确定要 删除 这个 库存?';
 $lang['text_alert_inventory_list_description']  = '显示 所有 警告 Inventories';
-$lang['text_inventory_delete_success'] 	   		= '<i class="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
+$lang['text_inventory_delete_success'] 	   		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
 
 // Column
 $lang['column_product'] 	  	           		= '名称';
@@ -26,5 +26,5 @@ $lang['column_location'] 	  	           		= '库位';
 $lang['column_warehouse'] 	  	           		= 'Warehouse';
 $lang['column_quantity'] 	  	           		= '数量';
 $lang['column_date_added'] 	  	           		= '添加时间';
-$lang['column_date_modified'] 	  	       		= 'Date Modified';
+$lang['column_date_modified'] 	  	       		= '时间 Modified';
 

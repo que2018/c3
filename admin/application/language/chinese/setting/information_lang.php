@@ -18,8 +18,8 @@ $lang['text_information_add'] 	  	        = '添加 Information';
 $lang['text_information_edit'] 	  	        = '编辑 Information';
 $lang['text_information_description'] 	    = 'Dispay all the information';
 $lang['text_confirm_delete'] 	            = '您确定要 删除 这个 information?';
-$lang['text_information_add_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;添加 information 成功';
-$lang['text_information_edit_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;编辑 information 成功';
+$lang['text_information_add_success'] 	    = '<i 单位="fa fa-check-circle-o"></i>&nbsp;添加 information 成功';
+$lang['text_information_edit_success'] 	    = '<i 单位="fa fa-check-circle-o"></i>&nbsp;编辑 information 成功';
 
 // Tab
 $lang['tab_content'] 	  	         		= 'Content';

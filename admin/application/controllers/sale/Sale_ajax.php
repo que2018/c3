@@ -285,6 +285,8 @@ class Sale_ajax extends CI_Controller
 	
 	public function change_status()
 	{
+		$this->load->library('mail');
+		
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
@@ -296,6 +298,7 @@ class Sale_ajax extends CI_Controller
 		{
 			$sale_id = $this->input->get('sale_id');
 			
+			$sale = $this->sale_model->get_sale($sale_id);
 			$checkout = $this->checkout_model->get_sale_checkout($sale_id);
 
 			$status = 0;	
@@ -331,9 +334,7 @@ class Sale_ajax extends CI_Controller
 				}
 			
 				if($inventory_validated)
-				{
-					$sale = $this->sale_model->get_sale($sale_id);
-							
+				{		
 					$data = array(
 						'sale_id'            => $sale_id,
 						'tracking'           => '',
@@ -412,31 +413,38 @@ class Sale_ajax extends CI_Controller
 
 			$this->mail->setTo($client['email']);
 			$this->mail->setFrom($this->config->item('config_smtp_username'));
-			$this->mail->setSender('HUALONGUS');
-			$this->mail->setSubject(html_entity_decode($this->lang->line('text_order_status_changed'), ENT_QUOTES, 'UTF-8'));
+			$this->mail->setSender($this->config->item('config_smtp_sender'));
 			
 			if($status == 1) 
 			{
-				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_generated'), $sale_id));
 			}
 			
 			if($status == 2) 
 			{
-				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_checking_out'), $sale_id));
 			}
 			
 			if($status == 3) 
 			{
-				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_completed'), $sale_id));
 			}
 			
-			if($status == 4) 
+			$sale_products = $this->sale_model->get_sale_products($sale_id);
+			
+			$html  = '<div><strong>'.$this->lang->line('text_order_detail').'</strong></div>';
+			$html .= '<br>';
+			
+			foreach($sale_products as $sale_product)
 			{
-				$this->mail->setHtml('<div>'.$this->lang->line('text_checkout_record_is_generated').'</div>');
+				$html .= '<div>';
+				$html .= '<span><strong>'.$this->lang->line('entry_product_name').':&nbsp;</strong>'.$sale_product['name'].'</spans>&nbsp;&nbsp;';
+				$html .= '<span><strong>'.$this->lang->line('entry_product_quantity').':&nbsp;</strong>'.$sale_product['quantity'].'</spans>';
+				$html .= '</div>';
 			}
 			
-			
-			$this->mail->setHtml('<div>safe and sound</div>');
+			$this->mail->setHtml($html);
+		
 			$this->mail->send();
 			
 			$outdata = array(

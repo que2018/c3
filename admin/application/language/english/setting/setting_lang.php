@@ -102,6 +102,7 @@ $lang['entry_smtp_hostname']                    = 'Smtp Hostname';
 $lang['entry_smtp_username']                    = 'Smtp Username';
 $lang['entry_smtp_password']                    = 'Smtp Password';
 $lang['entry_smtp_port']                        = 'Smtp Port';
+$lang['entry_smtp_sender']                      = 'Smtp Sender';
 $lang['entry_smtp_timeout']                     = 'Smtp Timeout';
 $lang['entry_google_key']              			= 'Google Key';
 $lang['entry_print_label']                      = 'print label';

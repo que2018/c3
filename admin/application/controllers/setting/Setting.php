@@ -113,6 +113,7 @@ class Setting extends MX_Controller
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
 				'config_smtp_password'                   	=> $this->input->post('config_smtp_password'),
 				'config_smtp_port'                       	=> $this->input->post('config_smtp_port'),
+				'config_smtp_sender'                       	=> $this->input->post('config_smtp_sender'),
 				'config_smtp_timeout'                    	=> $this->input->post('config_smtp_timeout'),
 				'config_google_key'                      	=> $this->input->post('config_google_key')
 			);
@@ -170,6 +171,7 @@ class Setting extends MX_Controller
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
 				'config_smtp_password'                   	=> $this->input->post('config_smtp_password'),
 				'config_smtp_port'                       	=> $this->input->post('config_smtp_port'),
+				'config_smtp_sender'                       	=> $this->input->post('config_smtp_sender'),
 				'config_smtp_timeout'                    	=> $this->input->post('config_smtp_timeout'),
 				'config_google_key'                      	=> $this->input->post('config_google_key')
 			);
@@ -219,6 +221,7 @@ class Setting extends MX_Controller
 			$data['config_smtp_username']                   	= $this->config->item('config_smtp_username');
 			$data['config_smtp_password']                   	= $this->config->item('config_smtp_password');
 			$data['config_smtp_port']                           = $this->config->item('config_smtp_port');
+			$data['config_smtp_sender']                         = $this->config->item('config_smtp_sender');
 			$data['config_smtp_timeout']                   		= $this->config->item('config_smtp_timeout');
 			$data['config_google_key']             			    = $this->config->item('config_google_key');
 		}

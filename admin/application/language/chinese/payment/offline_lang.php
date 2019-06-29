@@ -8,7 +8,7 @@ $lang['text_status'] 	  	              = '转态';
 $lang['text_fields'] 	  	              = 'Fields';
 $lang['text_platform'] 	  	              = 'Platform';
 $lang['text_sort_order'] 	  	          = 'sort 订单';
-$lang['text_offline_edit_success']        = 'Offline 是 successfully edited';
+$lang['text_offline_edit_success']        = 'Offline 是 成功 edited';
 
 // Tab
 $lang['tab_fields'] 	  	              = 'Fields';

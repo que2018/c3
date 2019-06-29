@@ -21,7 +21,7 @@ $lang['text_completed'] 	  	         = '完成的';
 $lang['text_search'] 	  	         	 = '搜索';
 $lang['text_recharge_list_description']  = '显示 recharge history';
 $lang['text_confirm_delete'] 	  	     = '您确定要 删除 这个 recharge?';
-$lang['text_recharge_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;recharge 编辑 成功';
+$lang['text_recharge_edit_success']      = '<i 单位="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;recharge 编辑 成功';
 
 // Entry
 $lang['entry_client'] 	  	             = '客户';

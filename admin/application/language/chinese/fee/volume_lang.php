@@ -9,7 +9,7 @@ $lang['text_volume_level'] 	  	            = 'volume level';
 $lang['text_volume_level_end'] 	  	        = 'volume level end';
 $lang['text_volume_status'] 	  	        = '转态';
 $lang['text_volume_sort_order'] 	  	    = 'sort 订单';
-$lang['text_edit_success'] 	  	            = '<i class="fa fa-check-circle-o"></i>&nbsp;编辑 费 成功';
+$lang['text_edit_success'] 	  	            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;编辑 费 成功';
 
 // Entry
 $lang['entry_status'] 	  	             	= '转态';
@@ -23,5 +23,5 @@ $lang['column_amount'] 	  	            	= 'Amount / inch^3';
 $lang['tab_level'] 	  	             		= 'Level';
 
 // Error 
-$lang['error_volume_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;volume at row <strong>%s</strong> 是 必须的';
-$lang['error_amount_row_required']          = '<i class="fa fa-exclamation-triangle"></i>&nbsp;amount at row <strong>%s</strong> 是 必须的';
+$lang['error_volume_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;volume at row <strong>%s</strong> 是 必须的';
+$lang['error_amount_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;amount at row <strong>%s</strong> 是 必须的';

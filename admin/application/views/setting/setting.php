@@ -409,6 +409,13 @@
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_smtp_sender'); ?></label>
+			    <div class="col-sm-10">
+				  <input name="config_smtp_sender" value="<?php echo $config_smtp_sender; ?>" class="form-control">
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_smtp_timeout'); ?></label>
 			    <div class="col-sm-10">
 				  <input name="config_smtp_timeout" value="<?php echo $config_smtp_timeout; ?>" class="form-control">
