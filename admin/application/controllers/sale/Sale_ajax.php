@@ -299,6 +299,9 @@ class Sale_ajax extends CI_Controller
 			$sale_id = $this->input->get('sale_id');
 			
 			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$sale_products = $this->sale_model->get_sale_products($sale_id);
+			
 			$checkout = $this->checkout_model->get_sale_checkout($sale_id);
 
 			$status = 0;	
@@ -307,33 +310,9 @@ class Sale_ajax extends CI_Controller
 			//no checkout record yet
 			if(!$checkout) 
 			{
-				$sale_products = $this->sale_model->get_sale_products($sale_id);
-				
-				$inventory_validated = true;
-					
-				$checkout_products = array();
-					
-				foreach($sale_products as $sale_product)
-				{
-					$inventories = $this->inventory_model->get_inventories_by_product($sale_product['product_id']);
-						
-					if(!$inventories || (sizeof($inventories) > 1) || ($inventories[0]['quantity'] < $sale_product['quantity'])) 
-					{
-						$inventory_validated = false;
-						
-						break;
-					}
-					else
-					{
-						$checkout_products[] = array(
-							'product_id'   => $sale_product['product_id'],
-							'inventory_id' => $inventories[0]['id'],
-							'quantity'     => $sale_product['quantity']
-						);
-					}
-				}
-			
-				if($inventory_validated)
+				$result = $this->validate_sale_checkout($sale_id);
+
+				if($result['success'])
 				{		
 					$data = array(
 						'sale_id'            => $sale_id,
@@ -348,7 +327,7 @@ class Sale_ajax extends CI_Controller
 						'shipping_provider'	 => $sale['shipping_provider'],
 						'shipping_service'	 => $sale['shipping_service'],
 						'note'               => '',
-						'checkout_products'  => $checkout_products
+						'checkout_products'  => $result['checkout_products']
 					);
 					
 					$checkout_id = $this->checkout_model->add_checkout($data);
@@ -360,6 +339,7 @@ class Sale_ajax extends CI_Controller
 				{
 					$success = false;
 					$status = 4;	
+					$message = $result['message'];
 				}
 			}
 			
@@ -370,11 +350,9 @@ class Sale_ajax extends CI_Controller
 				
 				if($checkout['status'] == 1) 
 				{
-					$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);
+					$result = $this->validate_sale_checkout($sale_id);
 					
-					$validate_result = $this->validate_checkout_product($checkout_products);
-					
-					if($validate_result['success'])
+					if($result['success'])
 					{
 						$this->checkout_model->complete_checkout($checkout_id);
 					
@@ -385,7 +363,7 @@ class Sale_ajax extends CI_Controller
 					{
 						$success = false;
 						$status = 4;
-						$message = $validate_result['message'];
+						$message = $result['message'];
 					}
 				}
 				
@@ -399,7 +377,7 @@ class Sale_ajax extends CI_Controller
 			}
 			
 			//send mail
-			$store_id = $sale['store_id'];
+			/* $store_id = $sale['store_id'];
 			$store = $this->store_model->get_store($store_id);
 			
 			$client_id = $store['client_id'];
@@ -413,7 +391,7 @@ class Sale_ajax extends CI_Controller
 
 			$this->mail->setTo($client['email']);
 			$this->mail->setFrom($this->config->item('config_smtp_username'));
-			$this->mail->setSender($this->config->item('config_smtp_sender'));
+			$this->mail->setSender($this->config->item('config_smtp_sender')); 
 			
 			if($status == 1) 
 			{
@@ -429,9 +407,7 @@ class Sale_ajax extends CI_Controller
 			{
 				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_completed'), $sale_id));
 			}
-			
-			$sale_products = $this->sale_model->get_sale_products($sale_id);
-			
+						
 			$html  = '<div><strong>'.$this->lang->line('text_order_detail').'</strong></div>';
 			$html .= '<br>';
 			
@@ -445,7 +421,7 @@ class Sale_ajax extends CI_Controller
 			
 			$this->mail->setHtml($html);
 		
-			$this->mail->send();
+			$this->mail->send(); */
 			
 			$outdata = array(
 				'success'   => $success,
@@ -458,51 +434,60 @@ class Sale_ajax extends CI_Controller
 		}
 	}
 	
-	private function validate_checkout_product($checkout_products)
-	{	
-		$this->load->model('catalog/product_model');
-		$this->load->model('warehouse/location_model');
+	private function validate_sale_checkout($sale_id)
+	{
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
 		$this->load->model('inventory/inventory_model');
 
 		$validated = true;
 		
-		$error_message = '';
+		$message = '';
 		
-		foreach($checkout_products as $checkout_product)
+		$checkout_products = array();
+		
+		$sale_products = $this->sale_model->get_sale_products($sale_id);
+		
+		foreach($sale_products as $sale_product)
 		{
-			$product_id    = $checkout_product['product_id'];
-			$inventory_id  = $checkout_product['inventory_id'];
-			$quantity      = $checkout_product['quantity'];
-			
-			$product_info = $this->product_model->get_product($product_id);
-
-			$inventory = $this->inventory_model->get_inventory($inventory_id);
-			
-			if($inventory['quantity'] < $quantity)
+			$inventories = $this->inventory_model->get_inventories_by_product($sale_product['product_id']);
+				
+			if(!$inventories)
 			{
-				$location_id = $inventory['location_id'];
-				
-				$location_info = $this->location_model->get_location($location_id);
-				
-				if($inventory['batch'])
-				{
-					$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient'), $product_info['name'], $location_info['name'], $inventory['batch'], $inventory['quantity']);
-				}
-				else
-				{
-					$error_message .= sprintf($this->lang->line('error_checkout_product_inventory_insufficient_non_batch'), $product_info['name'], $location_info['name'], $inventory['quantity']);
-				}
-				
-				$error_message .= '<br>';
+				$message .= sprintf($this->lang->line('error_product_no_inventory'), $sale_product['name']).'<br>';
+								
+				if($validated)
+					$validated = false;
+			}
+			else if(sizeof($inventories) > 1)
+			{
+				$message .= sprintf($this->lang->line('error_product_multi_inventory'), $sale_product['name']).'<br>';
 				
 				if($validated)
 					$validated = false;
 			}
+			else if($inventories[0]['quantity'] < $sale_product['quantity'])
+			{
+				$message .= sprintf($this->lang->line('error_product_inventory_insufficent'), $sale_product['name']).'<br>';
+								
+				if($validated)
+					$validated = false;
+			}
+			else
+			{
+				$checkout_products[] = array(
+					'product_id'    => $sale_product['product_id'],
+					'inventory_id'  => $inventories[0]['id'],
+					'quantity'      => $sale_product['quantity']
+				);
+			}
 		}
 		
 		$result = array(
-			'success' => ($validated)?true:false,
-			'message' => $error_message
+			'success'           => ($validated)?true:false,
+			'message'           => $message,
+			'checkout_products' => $checkout_products
 		);
 		
 		return $result;

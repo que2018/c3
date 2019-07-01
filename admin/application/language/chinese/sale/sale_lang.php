@@ -171,6 +171,9 @@ $lang['error_update_tracking_error'] 	  	    = '<i 单位="fa fa-exclamation-tri
 $lang['error_location_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位还未选择的, 请先选择店铺';
 $lang['error_sale_checkout_completed_notice'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位不能被修改因为出库已经完成';
 $lang['error_not_able_convert_image_to_pdf'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;转化图片到pdf文件失败';
+$lang['error_product_no_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品%s无库存';
+$lang['error_product_multi_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品%s有多个库位';
+$lang['error_product_inventory_insufficent'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品%s库存不足';
 
 
 

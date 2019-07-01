@@ -17,7 +17,7 @@
   <div class="row">
 	<div class="col-lg-12">
 	  <div id="alerts">
-	    <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
+	    <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -288,9 +288,6 @@ function change_sale_status(handle, sale_id) {
 				}else if(json.status == 3){
 					label.addClass('completed');
 					label.text('<?php echo $this->lang->line("text_completed"); ?>');
-				}else if(json.status == 4){
-					label.addClass('unsolved');
-					label.text('<?php echo $this->lang->line("text_unsolved"); ?>');
 				}
 				
 				$(handle).html('<i class="fa fa fa-refresh"></i>');
