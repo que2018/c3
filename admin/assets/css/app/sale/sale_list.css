@@ -144,26 +144,23 @@ input:focus {
     padding: 4px 5px;
 	margin-right: 5px;
 }
-.unsolved {	
+.checkout-status {	
 	font-size: 10px;
-    background: #ff4f09;
     color: #fff;
-    padding: 5px 18px;
+    padding: 5px 0px;
     border-radius: 3px 0px 0px 3px;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+.unsolved {	
+    background: #ff4f09;
 }
 .checking-out {	
-	font-size: 10px;
     background: #f5e14d;
-    color: #fff;
-    padding: 5px 11px;
-    border-radius: 3px 0px 0px 3px;
 }
 .completed {	
-	font-size: 10px;
     background: #3bbf7c;
-    color: #fff;
-    padding: 5px 18px;
-    border-radius: 3px 0px 0px 3px;
 }
 .btn-reverse {
     padding: 4px 7px;

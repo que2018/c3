@@ -307,7 +307,6 @@ class Sale_ajax extends CI_Controller
 			$status = 0;	
 			$message = null;
 
-			//no checkout record yet
 			if(!$checkout) 
 			{
 				$result = $this->validate_sale_checkout($sale_id);
@@ -342,8 +341,6 @@ class Sale_ajax extends CI_Controller
 					$message = $result['message'];
 				}
 			}
-			
-			//there is checkout record, now change status
 			else
 			{
 				$checkout_id = $checkout['id'];

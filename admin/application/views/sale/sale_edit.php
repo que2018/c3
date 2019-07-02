@@ -2,8 +2,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo sprintf($this->lang->line('text_order_edit_id'), $sale_id); ?>
-	  <?php if($status_id == 1) { ?>
-	  &nbsp;<span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+	  <?php if(!$checkout) { ?>
+	  &nbsp;<span class="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>
+	  <?php } else if($checkout['status'] == 1) {?>
+	  &nbsp;<span class="checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>
 	  <?php } else {?>
 	  &nbsp;<span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 	  <?php } ?>
@@ -51,24 +53,6 @@
 				  </div>
 				</div>
               </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
-			    <div class="col-sm-10">
-				  <select name="status_id" class="form-control">
-					<?php if($status_id == 1) { ?>
-					<option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
-					<option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-					<?php } else if($status_id == 2) { ?>
-					<option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					<option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
-					<?php } else { ?>
-					<option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					<option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
-					<?php } ?>
-				  </select>
-			    </div>
-			  </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_note'); ?></label>

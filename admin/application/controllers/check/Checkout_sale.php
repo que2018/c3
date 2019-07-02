@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkout_sale extends MX_Controller 
 {
 	public function index()
@@ -263,83 +262,6 @@ class Checkout_sale extends MX_Controller
 	
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));
-	}
-	
-	public function add_checkout_ajax()
-	{
-		$this->load->model('sale/sale_model');
-		$this->load->model('check/checkout_model');
-		$this->load->model('inventory/inventory_model');
-		
-		if($this->input->get('sale_id'))
-		{
-			$sale_id = $this->input->get('sale_id');
-			
-			$sale_products = $this->sale_model->get_sale_products($sale_id);
-			
-			$inventory_validated = true;
-				
-			$checkout_products = array();
-				
-			foreach($sale_products as $sale_product)
-			{
-				$inventories = $this->inventory_model->get_inventories_by_product($sale_product['product_id']);
-					
-				if(!$inventories || (sizeof($inventories) > 1) || ($inventories[0]['quantity'] < $sale_product['quantity'])) 
-				{
-					$inventory_validated = false;
-					
-					break;
-				}
-				else
-				{
-					$checkout_products[] = array(
-						'product_id'   => $sale_product['product_id'],
-						'inventory_id' => $inventories[0]['id'],
-						'quantity'     => $sale_product['quantity']
-					);
-				}
-			}
-			
-			$sale_checkout = $this->checkout_model->get_sale_checkout($sale_id);
-
-			if($inventory_validated && !$sale_checkout)
-			{
-				$sale = $this->sale_model->get_sale($sale_id);
-						
-				$data = array(
-					'sale_id'            => $sale_id,
-					'tracking'           => '',
-					'status'             => 1,
-					'length'	         => $sale['length'],
-					'width'	             => $sale['width'],
-					'height'	         => $sale['height'],
-					'weight'	         => $sale['weight'],
-					'length_class_id'	 => $sale['length_class_id'],
-					'weight_class_id'	 => $sale['weight_class_id'],
-					'shipping_provider'	 => $sale['shipping_provider'],
-					'shipping_service'	 => $sale['shipping_service'],
-					'note'               => '',
-					'checkout_products'  => $checkout_products
-				);
-				
-				$checkout_id = $this->checkout_model->add_checkout($data);
-
-				$outdata = array(
-					'success'     => true,
-					'checkout_id' => $checkout_id
-				);
-			}
-			else
-			{
-				$outdata = array(
-					'success'   => false
-				);
-			}
-			
-			$this->output->set_content_type('application/json');
-			$this->output->set_output(json_encode($outdata));
-		}
 	}
 	
 	public function validate_sale($sale_id)

@@ -93,7 +93,16 @@ input[name=customer_name] {
 .label-customer {
 	padding-top: 12px !important;
 }
-.pending {
+.unsolved {
+    font-size: 9px;
+    background: #ff4f09;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.checking-out {
     font-size: 9px;
     background: #f5e14d;
     color: #fff;

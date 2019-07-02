@@ -70,15 +70,6 @@ class Sale extends MX_Controller
 			$filter_tracking = '';
 		}
 		
-		if($this->input->get('filter_status'))
-		{
-			$filter_status = $this->input->get('filter_status');
-		} 
-		else 
-		{
-			$filter_status = '';
-		}
-		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -132,11 +123,6 @@ class Sale extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -161,7 +147,6 @@ class Sale extends MX_Controller
 			'filter_sale_id'        => $filter_sale_id,
 			'filter_store_sale_id'  => $filter_store_sale_id,
 			'filter_tracking'       => $filter_tracking,
-			'filter_status'         => $filter_status,
 			'sort'                  => $sort,
 			'order'                 => $order,
 			'start'                 => ($page - 1) * $limit,
@@ -255,11 +240,6 @@ class Sale extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -297,11 +277,6 @@ class Sale extends MX_Controller
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
-		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
 		}
 		
 		if ($this->input->get('limit')) 
@@ -387,11 +362,6 @@ class Sale extends MX_Controller
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
-		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
 			
 		$data['add'] = base_url() . 'sale/sale/add' . $url;
 		
@@ -405,7 +375,6 @@ class Sale extends MX_Controller
 		$data['filter_sale_id']   	  = $filter_sale_id;
 		$data['filter_store_sale_id'] = $filter_store_sale_id;
 		$data['filter_tracking']      = $filter_tracking;
-		$data['filter_status']        = $filter_status;
 		
 		return $data;
 	}
@@ -484,7 +453,6 @@ class Sale extends MX_Controller
 			$url .= '&filter_name=' . $this->input->get('filter_name');
 		}
 	
-		$this->form_validation->set_rules('status_id', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_customer_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_customer_street'), 'required');
 		$this->form_validation->set_rules('city', $this->lang->line('text_customer_city'), 'required');
@@ -504,7 +472,6 @@ class Sale extends MX_Controller
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
 			$data = array(
-				'status_id'    		=> $this->input->post('status_id'),
 				'tracking'    		=> $this->input->post('tracking'),
 				'note'     		    => $this->input->post('note'),
 				'name'       		=> $this->input->post('name'),
@@ -551,7 +518,6 @@ class Sale extends MX_Controller
 		else
 		{
 			$data = array(
-				'status_id'    		=> '',
 				'tracking'    		=> '',
 				'note'     		    => '',
 				'name'       		=> '',
@@ -740,6 +706,7 @@ class Sale extends MX_Controller
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
+		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
@@ -803,7 +770,6 @@ class Sale extends MX_Controller
 						
 		$sale_id = $this->input->get('sale_id');
 	
-		$this->form_validation->set_rules('status_id', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
 		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
@@ -822,7 +788,6 @@ class Sale extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'status_id'    		=> $this->input->post('status_id'),
 				'tracking'          => $this->input->post('tracking'),
 				'note'              => $this->input->post('note'),
 				'name'              => $this->input->post('name'),
@@ -864,7 +829,6 @@ class Sale extends MX_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['status_id']       	= $this->input->post('status_id');
 			$data['tracking']       	= $this->input->post('tracking');
 			$data['note']        	    = $this->input->post('note');			
 			$data['name']  		    	= $this->input->post('name');
@@ -935,7 +899,6 @@ class Sale extends MX_Controller
 		{
 			$sale = $this->sale_model->get_sale($sale_id);
 			
-			$data['status_id']   		= $sale['status_id'];	
 			$data['tracking']   		= $sale['tracking'];
 			$data['note']    		    = $sale['note'];
 			$data['name']       		= $sale['name'];
@@ -1085,6 +1048,9 @@ class Sale extends MX_Controller
 				);
 			}
 		}
+		
+		//checkout
+		$data['checkout'] = $this->checkout_model->get_sale_checkout($sale_id);	
 		
 		$url = '';
 		

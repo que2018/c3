@@ -70,15 +70,6 @@ class Sale_unsolved extends MX_Controller
 			$filter_tracking = '';
 		}
 		
-		if($this->input->get('filter_status'))
-		{
-			$filter_status = $this->input->get('filter_status');
-		} 
-		else 
-		{
-			$filter_status = '';
-		}
-		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -132,11 +123,6 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -161,8 +147,6 @@ class Sale_unsolved extends MX_Controller
 			'filter_sale_id'        => $filter_sale_id,
 			'filter_store_sale_id'  => $filter_store_sale_id,
 			'filter_tracking'       => $filter_tracking,
-			'filter_status'         => $filter_status,
-			'filter_status'         => 1,
 			'sort'                  => $sort,
 			'order'                 => $order,
 			'start'                 => ($page - 1) * $limit,
@@ -256,11 +240,6 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -298,11 +277,6 @@ class Sale_unsolved extends MX_Controller
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
-		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
 		}
 		
 		if($this->input->get('limit')) 
@@ -379,11 +353,6 @@ class Sale_unsolved extends MX_Controller
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
-		
-		if($this->input->get('filter_status')) 
-		{
-			$url .= '&filter_status=' . $this->input->get('filter_status');
-		}
 			
 		$data['reload_url'] = base_url() . 'sale/sale_unsolved/reload' . $url;
 
@@ -395,7 +364,6 @@ class Sale_unsolved extends MX_Controller
 		$data['filter_sale_id']   	  = $filter_sale_id;
 		$data['filter_store_sale_id'] = $filter_store_sale_id;
 		$data['filter_tracking']      = $filter_tracking;
-		$data['filter_status']        = $filter_status;
 		
 		return $data;
 	}
