@@ -374,51 +374,54 @@ class Sale_ajax extends CI_Controller
 			}
 			
 			//send mail
-			/* $store_id = $sale['store_id'];
-			$store = $this->store_model->get_store($store_id);
-			
-			$client_id = $store['client_id'];
-			$client = $this->client_model->get_client($client_id);
-			
-			$this->mail->protocol = 'smtp';
-			$this->mail->smtp_hostname = $this->config->item('config_smtp_hostname');
-			$this->mail->smtp_username = $this->config->item('config_smtp_username');
-			$this->mail->smtp_password = $this->config->item('config_smtp_password');
-			$this->mail->smtp_port = $this->config->item('config_smtp_port');
+			if($status != 4) 
+			{
+				$store_id = $sale['store_id'];
+				$store = $this->store_model->get_store($store_id);
+				
+				$client_id = $store['client_id'];
+				$client = $this->client_model->get_client($client_id);
+				
+				$this->mail->protocol = 'smtp';
+				$this->mail->smtp_hostname = $this->config->item('config_smtp_hostname');
+				$this->mail->smtp_username = $this->config->item('config_smtp_username');
+				$this->mail->smtp_password = $this->config->item('config_smtp_password');
+				$this->mail->smtp_port = $this->config->item('config_smtp_port');
 
-			$this->mail->setTo($client['email']);
-			$this->mail->setFrom($this->config->item('config_smtp_username'));
-			$this->mail->setSender($this->config->item('config_smtp_sender')); 
+				$this->mail->setTo($client['email']);
+				$this->mail->setFrom($this->config->item('config_smtp_username'));
+				$this->mail->setSender($this->config->item('config_smtp_sender')); 
+				
+				if($status == 1) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_generated'), $sale_id));
+				}
+				
+				if($status == 2) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_checking_out'), $sale_id));
+				}
+				
+				if($status == 3) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_completed'), $sale_id));
+				}
+							
+				$html  = '<div><strong>'.$this->lang->line('text_order_detail').'</strong></div>';
+				$html .= '<br>';
+				
+				foreach($sale_products as $sale_product)
+				{
+					$html .= '<div>';
+					$html .= '<span><strong>'.$this->lang->line('entry_product_name').':&nbsp;</strong>'.$sale_product['name'].'</spans>&nbsp;&nbsp;';
+					$html .= '<span><strong>'.$this->lang->line('entry_product_quantity').':&nbsp;</strong>'.$sale_product['quantity'].'</spans>';
+					$html .= '</div>';
+				}
+				
+				$this->mail->setHtml($html);
 			
-			if($status == 1) 
-			{
-				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_generated'), $sale_id));
+				$this->mail->send();
 			}
-			
-			if($status == 2) 
-			{
-				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_checking_out'), $sale_id));
-			}
-			
-			if($status == 3) 
-			{
-				$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_completed'), $sale_id));
-			}
-						
-			$html  = '<div><strong>'.$this->lang->line('text_order_detail').'</strong></div>';
-			$html .= '<br>';
-			
-			foreach($sale_products as $sale_product)
-			{
-				$html .= '<div>';
-				$html .= '<span><strong>'.$this->lang->line('entry_product_name').':&nbsp;</strong>'.$sale_product['name'].'</spans>&nbsp;&nbsp;';
-				$html .= '<span><strong>'.$this->lang->line('entry_product_quantity').':&nbsp;</strong>'.$sale_product['quantity'].'</spans>';
-				$html .= '</div>';
-			}
-			
-			$this->mail->setHtml($html);
-		
-			$this->mail->send(); */
 			
 			$outdata = array(
 				'success'   => $success,

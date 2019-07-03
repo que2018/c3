@@ -14,12 +14,12 @@ $lang['text_default_sale_status_id'] 	  	    = 'default 订单 转态';
 $lang['text_default_order_shipping_provider'] 	= 'default 订单 配送 提供商';
 $lang['text_default_order_shipping_service'] 	= 'default 订单 配送 服务';
 $lang['text_auto_download'] 	  	     		= 'auto downlaod';
-$lang['text_auto_upload'] 	  	         		= 'auto upload';
+$lang['text_auto_upload'] 	  	         		= 'auto 上传';
 $lang['text_store'] 	  	             		= '店铺';
 $lang['text_store_add'] 	  	         		= '添加 店铺';
 $lang['text_store_edit'] 	  	         		= '编辑 店铺';
 $lang['text_store_list'] 	  	         		= '店铺 列表';
-$lang['text_store_list_description'] 	 		= '显示 all the stores';
+$lang['text_store_list_description'] 	 		= '显示 all 这个 stores';
 $lang['text_confirm_delete']             		= '您确定要 删除 这个 店铺?';
 $lang['text_sync_single_warehouse']      		= 'sync single warehouse';
 $lang['text_store_add_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;店铺 添加 成功';
@@ -41,7 +41,7 @@ $lang['entry_default_order_shipping_service']  	= 'Default 订单 配送 服务'
 
 
 $lang['entry_auto_download'] 	  	     		= 'Auto Download';
-$lang['entry_auto_upload'] 	  	         		= 'Auto Upload';
+$lang['entry_auto_upload'] 	  	         		= 'Auto 上传';
 $lang['entry_sync_inventory'] 	         		= 'Sync 库存';
 $lang['entry_sync_single_warehouse'] 	 		= 'Sync Single Warehouse';
 $lang['entry_sync_warehouse'] 	  	     		= 'Sync Warehouse';

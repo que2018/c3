@@ -16,7 +16,7 @@ $lang['text_bulk_delete'] 	  	           = '批量 删除 return';
 $lang['text_cancel'] 	  	         	   = '取消';
 $lang['text_download'] 	  	         	   = '下载 return';
 $lang['text_export'] 	  	         	   = '导出 return';
-$lang['text_batch'] 	  	               = 'batch';
+$lang['text_batch'] 	  	               = '批次';
 $lang['text_quantity'] 	  	               = '数量';
 $lang['text_search'] 	  	               = '搜索';
 $lang['text_download_sample'] 	  	       = '下载 模板';
@@ -34,7 +34,7 @@ $lang['text_refund_add_success'] 	       = '<i 单位="fa fa-check-circle-o"></i
 $lang['text_refund_edit_success'] 	       = '<i 单位="fa fa-check-circle-o"></i>&nbsp;return 编辑 成功';
 $lang['text_refund_delete_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;return 删除 成功';
 $lang['text_rows_imported'] 	           = '<strong>共%s行 被导入</strong>';
-$lang['text_no_rows_imported'] 	           = '<strong>No row 是 导入</strong>';
+$lang['text_no_rows_imported'] 	           = '<strong>No 行 是 导入</strong>';
 
 // Column
 $lang['column_name'] 	  	               = '名称';
@@ -42,9 +42,9 @@ $lang['column_upc'] 	  	               = 'UPC';
 $lang['column_sku'] 	  	               = 'SKU';
 $lang['column_product'] 	  	           = '名称';
 $lang['column_location'] 	  	           = '库位';
-$lang['column_batch'] 	  	           	   = 'Batch';
+$lang['column_batch'] 	  	           	   = '批次';
 $lang['column_client'] 	  	           	   = '客户';
-$lang['column_batch'] 	  	           	   = 'Batch';
+$lang['column_batch'] 	  	           	   = '批次';
 $lang['column_quantity'] 	  	           = '数量';
 $lang['column_date_added'] 	  	           = '添加时间';
 $lang['column_date_modified'] 	  	       = '时间 Modified';
@@ -54,20 +54,20 @@ $lang['entry_client'] 	  	               = '客户';
 $lang['entry_product'] 	  	               = '产品';
 $lang['entry_quantity'] 	  	           = '数量';
 $lang['entry_location'] 	  	           = '库位';
-$lang['entry_batch'] 	  	           	   = 'Batch';
+$lang['entry_batch'] 	  	           	   = '批次';
 $lang['entry_client'] 	  	           	   = '客户';
 $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
 
 // Error
-$lang['error_row_sku_empty'] 	  	       = 'row%s: sku 是空的';
-$lang['error_row_location_empty'] 	  	   = 'row%s: 库位 是空的';
-$lang['error_row_quantity_empty'] 	  	   = 'row%s: 数量 是空的';
-$lang['error_row_sku_not_found'] 	  	   = 'row%s: sku <strong>%s</strong> 是 没有找到';
+$lang['error_row_sku_empty'] 	  	       = '行%s: sku 是空的';
+$lang['error_row_location_empty'] 	  	   = '行%s: 库位 是空的';
+$lang['error_row_quantity_empty'] 	  	   = '行%s: 数量 是空的';
+$lang['error_row_sku_not_found'] 	  	   = '行%s: sku <strong>%s</strong> 是 没有找到';
 $lang['error_update_quantity_error'] 	   = 'Update 数量 失败';
-$lang['error_row_location_not_found'] 	   = 'row%s: 库位 <strong>%s</strong> 是 没有找到';
-$lang['error_row_duplicated_data'] 	  	   = 'row%s: refund data duplicated: thare are more than one row of same 产品 and 库位';
-$lang['error_refund_add_unique'] 	   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and batch 已被使用';
+$lang['error_row_location_not_found'] 	   = '行%s: 库位 <strong>%s</strong> 是 没有找到';
+$lang['error_row_duplicated_data'] 	  	   = '行%s: refund data duplicated: thare are more than one 行 of same 产品 and 库位';
+$lang['error_refund_add_unique'] 	   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and 批次 已被使用';
 
 
 

@@ -8,7 +8,7 @@ $lang['text_platform'] 	  	             = 'Platform';
 $lang['text_logo'] 	  	                 = 'assets/图片/platform/wish.png';
 $lang['text_wish_platform_edit_success'] = '<i 单位="fa fa-check-circle-o"></i>&nbsp;wish platform 编辑 成功';
 $lang['text_wish_no_tracking_need_sync'] = '<i 单位="fa fa-check-circle-o"></i>&nbsp;No 订单 need to be synced';
-$lang['text_wish_sync_tracking_success'] = '<i 单位="fa fa-check-circle-o"></i>&nbsp;The 追踪号 for 订单 <strong>%s</strong> sync 成功';
+$lang['text_wish_sync_tracking_success'] = '<i 单位="fa fa-check-circle-o"></i>&nbsp;这个 追踪号 for 订单 <strong>%s</strong> sync 成功';
 $lang['text_wish_sync_tracking_note']    = '<i 单位="fa fa-check-circle-o"></i>&nbsp;Try to sync <strong>%s</strong> 订单; 成功: <strong>%s</strong> 订单; 失败: <strong>%s</strong> 订单';
 
 // Tab
@@ -19,7 +19,7 @@ $lang['tab_setting'] 	  	             = 'Setting';
 $lang['entry_token'] 	  	             = 'Token';
 $lang['entry_start'] 	  	             = 'Start';
 $lang['entry_download_limit'] 	  	     = 'Download Limit';
-$lang['entry_upload_limit'] 	  	     = 'Upload Limit';
+$lang['entry_upload_limit'] 	  	     = '上传 Limit';
 $lang['entry_recent_days'] 	  	         = 'Recent Days';
 $lang['entry_order'] 	  	             = '订单';
 $lang['entry_field'] 	  	             = 'Field';

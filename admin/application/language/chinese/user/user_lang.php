@@ -5,12 +5,12 @@ $lang['text_name'] 	  	                 = '名称';
 $lang['text_user'] 	  	         		 = 'User';
 $lang['text_username'] 	  	             = 'usename';
 $lang['text_password'] 	  	             = 'password';
-$lang['text_firstname'] 	  	         = 'firstname';
-$lang['text_lastname'] 	  	             = 'lastname';
+$lang['text_firstname'] 	  	         = '名';
+$lang['text_lastname'] 	  	             = '姓';
 $lang['text_user_add'] 	  	             = '添加 User';
 $lang['text_user_edit'] 	  	     	 = '编辑 User';
 $lang['text_user_group'] 	  	     	 = 'user group';
-$lang['text_email'] 	  	     	 	 = 'email';
+$lang['text_email'] 	  	     	 	 = '邮件';
 $lang['text_confirm'] 	  	     	 	 = 'confirm';
 $lang['text_status'] 	  	     	 	 = '转态';
 $lang['text_enabled'] 	  	     	 	 = 'Enabled';
@@ -33,8 +33,8 @@ $lang['column_action'] 	  	             = '操作';
 
 // Entry
 $lang['entry_username'] 	  	         = 'Username';
-$lang['entry_firstname'] 	  	         = 'Firstname';
-$lang['entry_lastname'] 	  	         = 'Lastname';
+$lang['entry_firstname'] 	  	         = '名';
+$lang['entry_lastname'] 	  	         = '姓';
 $lang['entry_email'] 	  	         	 = '邮箱';
 $lang['entry_password'] 	  	         = 'Password';
 $lang['entry_confirm'] 	  	             = 'Confirm';

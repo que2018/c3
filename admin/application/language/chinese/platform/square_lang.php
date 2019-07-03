@@ -42,7 +42,7 @@ $lang['entry_zipcode'] 	  	               = '邮编';
 $lang['entry_phone'] 	  	               = '电话';
 $lang['entry_payment_id'] 	  	           = 'Payment ID';
 $lang['entry_device'] 	  	               = 'Device';
-$lang['entry_created_at'] 	  	           = 'Created At';
+$lang['entry_created_at'] 	  	           = 'Created 在';
 $lang['entry_total_collected_money'] 	   = '总计 Collected Money';
 $lang['entry_discount_money'] 	           = 'Discount Money';
 

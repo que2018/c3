@@ -23,4 +23,4 @@ $lang['entry_status'] 	  	             = '转态';
 // Error
 $lang['error_order_sku_empty']           = '<strong>订单 #%s</strong> has 产品 with empty sku';
 $lang['error_server_response_error']     = 'opencart server response 错误';
-$lang['error_order_sku_not_found']       = '<strong>订单 #%s</strong> has 产品 with sku <strong>%s</strong> that 是 没有找到 in system';
+$lang['error_order_sku_not_found']       = '<strong>订单 #%s</strong> has 产品 with sku <strong>%s</strong> that 是 没有找到 in 系统';

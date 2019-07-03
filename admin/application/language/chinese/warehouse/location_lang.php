@@ -49,5 +49,5 @@ $lang['error_row_code_used']              = '第%s行: 代码 <strong>%s</strong
 $lang['error_location_name_used'] 	  	  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 名称 <strong>%s</strong> 已被使用';
 $lang['error_location_code_used'] 	  	  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 代码 <strong>%s</strong> 已被使用';
 $lang['error_location_is_in_use'] 	  	  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 库位 是 in use and 不能被删除';
-$lang['error_file_type_not_excel']        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;文件 类型 是 not excel, 请 upload excel 文件';
+$lang['error_file_type_not_excel']        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;文件 类型 是 not excel, 请 上传 excel 文件';
 

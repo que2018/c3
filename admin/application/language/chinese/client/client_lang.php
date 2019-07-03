@@ -8,13 +8,13 @@ $lang['text_save'] 	  	        	 	  	 	= '保存 客户';
 $lang['text_cancel'] 	  	        	 	  	= '取消';
 $lang['text_order'] 	  	        	 	  	= '订单';
 $lang['text_checkin'] 	  	        	 	  	= '入库';
-$lang['text_firstname'] 	  	         		= 'firstname';
-$lang['text_lastname'] 	  	             		= 'lastname';
-$lang['text_company'] 	  	             		= 'company';
-$lang['text_email'] 	  	             		= 'email';
+$lang['text_firstname'] 	  	         		= '名';
+$lang['text_lastname'] 	  	             		= '姓';
+$lang['text_company'] 	  	             		= '公司';
+$lang['text_email'] 	  	             		= '邮件';
 $lang['text_location'] 	  	             		= '库位';
 $lang['text_password'] 	  	             		= 'password';
-$lang['text_phone'] 	  	             		= 'phone';
+$lang['text_phone'] 	  	             		= '电话';
 $lang['text_location'] 	  	             		= '库位';
 $lang['text_client'] 	  	             		= '客户';
 $lang['text_client_list'] 	  	         		= '客户 列表';
@@ -28,7 +28,7 @@ $lang['text_confirm_delete'] 	 	  	        = '您确定要 删除 这个 客户?
 
 // Column
 $lang['column_name'] 	  	             		= '名称';
-$lang['column_company'] 	  	         		= 'Company';
+$lang['column_company'] 	  	         		= '公司';
 $lang['column_email'] 	  	             		= '邮箱';
 $lang['column_phone'] 	  	             		= '电话';
 $lang['column_location'] 	  	                = '库位';
@@ -43,17 +43,17 @@ $lang['tab_location'] 	  	         		    = '库位';
 $lang['entry_email'] 	  	             		= '邮箱';
 $lang['entry_password'] 	  	         		= 'Password';
 $lang['entry_firstname'] 	  	         		= 'Firstame';
-$lang['entry_lastname'] 	  	         		= 'Lastname';
-$lang['entry_company'] 	  	                  	= 'Company';
+$lang['entry_lastname'] 	  	         		= '姓';
+$lang['entry_company'] 	  	                  	= '公司';
 $lang['entry_phone'] 	  	             		= '电话';
 $lang['entry_balance'] 	  	             		= 'Balance';
 $lang['entry_volume_total'] 	  	            = '总计 Volume';
 
 // Error 
 $lang['error_email_is_used']                    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;邮箱 <strong>%s</strong> 是 used';
-$lang['error_can_not_delete_order_exist']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because the 订单 exists';
-$lang['error_can_not_delete_product_exist']     = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because the 产品 exists';
-$lang['error_can_not_delete_recharge_exist']    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because the recharge exists';
-$lang['error_can_not_delete_transaction_exist'] = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because the transaction exists';
+$lang['error_can_not_delete_order_exist']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because 这个 订单 exists';
+$lang['error_can_not_delete_product_exist']     = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because 这个 产品 exists';
+$lang['error_can_not_delete_recharge_exist']    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because 这个 recharge exists';
+$lang['error_can_not_delete_transaction_exist'] = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 客户 不能被删除 because 这个 transaction exists';
 $lang['error_client_location_required']        	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;You may have some 库位 names not assigned';
-$lang['error_client_location_duplicated']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;The 库位 you assigned are duplicated';
+$lang['error_client_location_duplicated']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 库位 you assigned are duplicated';

@@ -17,11 +17,11 @@ $lang['entry_sort_order'] 	  	            = 'Sort 订单';
 
 // Column
 $lang['column_volume'] 	  	             	= 'Volume';
-$lang['column_amount'] 	  	            	= 'Amount / inch^3';
+$lang['column_amount'] 	  	            	= '总量 / inch^3';
 
 // Tab
 $lang['tab_level'] 	  	             		= 'Level';
 
 // Error 
-$lang['error_volume_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;volume at row <strong>%s</strong> 是 必须的';
-$lang['error_amount_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;amount at row <strong>%s</strong> 是 必须的';
+$lang['error_volume_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;volume 在 行 <strong>%s</strong> 是 必须的';
+$lang['error_amount_row_required']          = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;总量 在 行 <strong>%s</strong> 是 必须的';

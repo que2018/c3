@@ -5,7 +5,7 @@ $lang['text_title'] 	  	             = 'Payment';
 $lang['text_payment'] 	  	             = 'Payment';
 $lang['text_extension'] 	  	         = 'Extension';
 $lang['text_no_payments'] 	  	         = 'No payments';
-$lang['text_payment_description'] 	  	 = '显示 all the payments';
+$lang['text_payment_description'] 	  	 = '显示 all 这个 payments';
 $lang['text_install_success'] 	  	     = 'Payment install 成功';
 $lang['text_uninstall_success'] 	  	 = 'Payment uninstall 成功';
 

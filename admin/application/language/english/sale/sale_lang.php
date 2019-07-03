@@ -173,7 +173,7 @@ $lang['error_sale_checkout_completed_notice'] 	= '<i class="fa fa-exclamation-tr
 $lang['error_not_able_convert_image_to_pdf'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;convert image to pdf file fail';
 $lang['error_product_no_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has no inventory';
 $lang['error_product_multi_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has multi inventory';
-$lang['error_product_inventory_insufficent'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has no sufficient';
+$lang['error_product_inventory_insufficent'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has no sufficient inventory';
 
 
 

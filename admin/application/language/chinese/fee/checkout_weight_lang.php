@@ -18,11 +18,11 @@ $lang['entry_sort_order'] 	  	            = 'Sort 订单';
 
 // Column
 $lang['column_checkout_weight'] 	  	        = '出库 重量';
-$lang['column_amount'] 	  	            	= 'Amount / lb';
+$lang['column_amount'] 	  	            	= '总量 / lb';
 
 // Tab
 $lang['tab_level'] 	  	             		= 'Level';
 
 // Error 
-$lang['error_amount_row_format']            = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;The format of amount at row <strong>%s</strong> 是 not valid';
-$lang['error_weight_row_format']  	        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;The format of 重量 at row <strong>%s</strong> 是 not valid';
+$lang['error_amount_row_format']            = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 format of 总量 在 行 <strong>%s</strong> 是 not valid';
+$lang['error_weight_row_format']  	        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 format of 重量 在 行 <strong>%s</strong> 是 not valid';

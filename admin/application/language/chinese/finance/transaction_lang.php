@@ -15,15 +15,15 @@ $lang['text_finance'] 	  	             	= 'Finance';
 $lang['text_transaction'] 	  	         	= 'Transaction';
 $lang['text_add_transaction'] 	  	     	= '添加 Transaction';
 $lang['text_edit_transaction'] 	  	     	= '编辑 Transaction';
-$lang['text_amount'] 	  	             	= 'Amount';
+$lang['text_amount'] 	  	             	= '总量';
 $lang['text_comment'] 	  	             	= 'Comment';
 $lang['text_search'] 	  	             	= '搜索';
-$lang['text_total_amount'] 	  	            = '总计 Amount';
+$lang['text_total_amount'] 	  	            = '总计 总量';
 $lang['text_transaction_report'] 	  	    = 'Transaction Report';
 $lang['text_date_between'] 	  	            = '%s -- %s';
 $lang['text_date_since'] 	  	            = 'since %s';
 $lang['text_date_before'] 	  	            = 'before %s';
-$lang['text_all_the_date'] 	  	            = '所有 The 时间';
+$lang['text_all_the_date'] 	  	            = '所有 这个 时间';
 $lang['text_confirm_delete'] 	  	     = '您确定要 删除 这个 recharge?';
 $lang['text_transaction_edit_success']      = '<i 单位="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;transaction 编辑 成功';
 
@@ -31,7 +31,7 @@ $lang['text_transaction_edit_success']      = '<i 单位="fa fa-check-circle-o" 
 $lang['column_client'] 	  	             	= '客户';
 $lang['column_cost'] 	  	             	= 'Cost';
 $lang['column_markup'] 	  	             	= 'Markup';
-$lang['column_amount'] 	  	             	= 'Amount';
+$lang['column_amount'] 	  	             	= '总量';
 $lang['column_comment'] 	  	         	= 'Comment';
 $lang['column_date_added'] 	  	         	= '添加时间';
 $lang['column_action'] 	  	             	= '操作';
@@ -40,6 +40,6 @@ $lang['column_action'] 	  	             	= '操作';
 $lang['entry_client'] 	  	             	= '客户';
 $lang['entry_cost'] 	  	             	= 'Cost';
 $lang['entry_markup'] 	  	             	= 'Markup';
-$lang['entry_amount'] 	  	             	= 'Amount';
+$lang['entry_amount'] 	  	             	= '总量';
 $lang['entry_comment'] 	  	             	= 'Comment';
 

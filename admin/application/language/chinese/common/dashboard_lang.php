@@ -16,7 +16,7 @@ $lang['text_new_orders']			             = 'New 订单';
 $lang['text_recent_orders']			             = 'Recent 订单';
 $lang['text_alert']			                     = '警告';
 $lang['text_download']			                 = 'Download';
-$lang['text_upload']			                 = 'Upload';
+$lang['text_upload']			                 = '上传';
 $lang['text_success']			                 = 'Success';
 $lang['text_fail']			                     = '&nbsp;&nbsp;&nbsp;&nbsp;Fail&nbsp;&nbsp;&nbsp;&nbsp;';
 $lang['text_warning']			                 = 'Warning';
@@ -31,7 +31,7 @@ $lang['text_items_need_attention']			     = 'Items Need Attention';
 $lang['text_total_order_this_month']			 = '总计 订单 of 这个 month';
 $lang['text_total_order_last_month']			 = '总计 订单 of last month';
 $lang['text_total_income_this_month']			 = 'Monthly income 从 订单';
-$lang['text_display_most_recent_activity_log']   = '显示 most recent activity logs of system users';
+$lang['text_display_most_recent_activity_log']   = '显示 most recent activity logs of 系统 users';
 
 // Column
 $lang['column_product']			                 = '产品';
@@ -41,7 +41,7 @@ $lang['column_type']			                 = '类型';
 $lang['column_status']			                 = '转态';
 $lang['column_store']			                 = '店铺';
 $lang['column_total']			                 = '总计';
-$lang['column_view']			                 = 'View';
+$lang['column_view']			                 = '查看';
 
 // Button
 $lang['button_detail']			                 = 'detail';
