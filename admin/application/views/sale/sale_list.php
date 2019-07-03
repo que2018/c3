@@ -17,7 +17,7 @@
   <div class="row">
 	<div class="col-lg-12">
 	  <div id="alerts">
-	    <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button></div>
+	    <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
@@ -66,7 +66,7 @@
 		    </div>
 		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-sale">
 			  <thead>
 			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 			    <?php if($sort == 'sale.id') { ?>
@@ -143,22 +143,6 @@
 							  <?php } ?>
 							</tbody>
 						  </table>
-						  <table class="table table-vw">
-						    <thead>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_length_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_width_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_height_short'); ?></th>
-							  <th style="width: 25%;"><?php echo $this->lang->line('column_weight_short'); ?></th>
-							</thead>
-							<tbody>
-							  <tr>
-							    <td><?php echo $sale['length']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-							    <td><?php echo $sale['width']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-								<td><?php echo $sale['height']; ?>&nbsp;<?php echo $sale['length_class']; ?></td>
-								<td><?php echo $sale['weight']; ?>&nbsp;<?php echo $sale['weight_class']; ?></td>
-							  </tr>
-							</tbody>
-						  </table>
 						  <table class="table table-shipping">
 						    <tbody>
 							  <tr>
@@ -172,18 +156,6 @@
 							      <?php if($sale['store_name']) { ?>
 							      <span class="store"><?php echo $sale['store_name']; ?></span>
 								  <?php } ?>
-								  <?php if($sale['checkout']) { ?>
-								  <?php if($sale['checkout']['status'] == 1) { ?>
-								  <span class="checkout-pending"><?php echo $this->lang->line('text_checkout_pending'); ?></span>
-								  <?php } else { ?>
-								  <span class="checkout-complete"><?php echo $this->lang->line('text_checkout_complete'); ?></span>
-								  <?php } ?>
-								  <?php } ?>
-								  <?php if($sale['status_id'] == 1) { ?>
-								  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-								  <?php } else { ?>
-							      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
-								  <?php } ?>
 							    </td>
 							  </tr>
 							</tbody>
@@ -191,43 +163,32 @@
 						</div>
 					  </td>
 					  <td><?php echo $sale['store_sale_id']; ?></td>
-					  <td class="tracking-td" ondblclick="active_tracking(this)">
+					  <td class="tracking-td" ondblclick="active_tracking(this)" data-offset="<?php echo $offset; ?>" >
 					    <?php if($sale['tracking']) { ?>
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
-						  <div class="trac-detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 					    <?php } ?>
 					  </td>
 					  <td class="status">
-					    <?php if($sale['status_id'] == 1) { ?>
-					      <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+						<?php if(!$sale['checkout']) { ?>
+						  <div class="input-group">
+						    <span class="checkout-status unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
+						<?php } else if($sale['checkout']['status'] == 1) { ?>  
+						  <div class="input-group">
+						    <span class="checkout-status checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } else { ?>
-					      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+						  <div class="input-group">
+						    <span class="checkout-status completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } ?>
-						&nbsp;
-						<?php if($sale['checkout']) { ?>      
-						<?php if($sale['checkout']['status'] == 1) { ?>
-						<span class="checkout-pending">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_pending'); ?>
-						  </a>
-						</span>
-						<?php } else { ?>
-						<span class="checkout-complete">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_complete'); ?>
-						  </a>
-						</span>
-						<?php } ?>
-						<?php } ?>
 					  </td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-						<?php if(!$sale['checkout']) { ?>
-						<button onclick="checkout(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
-						<?php } else { ?>
-						<button class="btn btn-info btn-checkout-disable"><i class="fa fa-refresh"></i></button>
-						<?php } ?>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
@@ -252,22 +213,30 @@
 function active_tracking(handle) {	
 	if(!$(handle).find('input').length) 
 	{		
-		value = $(handle).html();
-		
 		sale_id = $(handle).closest('tr').find('input[name=\'sale_id\']').val();
-			
-		html = '<input type="text" value="'+ value +'" onblur="update_tracking(\'' + sale_id + '\', this)" class="form-control" onfocus="this.value = this.value;" />';
-	
+		
+		if($(handle).find('span').length) {
+			value = $(handle).find('span').html();
+			html = '<input value=' + value + ' onblur="update_tracking(' + sale_id + ', this)" class="form-control" />';
+		} else {
+			html = '<input onblur="update_tracking(' + sale_id + ', this)" class="form-control" />';
+		}
+		
 		$(handle).html(html);	
 		$(handle).find('input').focus();
 	}
 }
-
+</script>
+<script>
 function update_tracking(sale_id, handle) {	
-
 	tracking = $(handle).val();
-		
-	$(handle).closest('td').html(tracking);
+	
+	if(tracking) {
+		html = '<span class="tracking">' + tracking + '</span>';
+		$(handle).closest('td').html(html);
+	} else {
+		$(handle).closest('td').html('');
+	}
 		
 	$.ajax({
 		url: '<?php echo base_url(); ?>sale/sale_ajax/update_tracking',
@@ -285,29 +254,40 @@ function update_tracking(sale_id, handle) {
 }
 </script>
 <script>
-function checkout(handle, sale_id) {
+function change_sale_status(handle, sale_id) {
 	$.ajax({
-		url: '<?php echo base_url(); ?>check/checkout_sale/add_checkout_ajax?sale_id=' + sale_id,
+		url: '<?php echo base_url(); ?>sale/sale_ajax/change_status?sale_id=' + sale_id,
 		cache: false,
 		contentType: false,
 		processData: false,
 		dataType: 'json',
 		beforeSend: function() {
-			$(handle).html('<i class="fa fa-refresh fa-spin"></i>');
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 		},
-		complete: function() {
-			$(handle).html('<i class="fa fa-refresh"></i>');
-		},
-		success: function(json) {					
+		success: function(json) {
+			$(handle).html('<i class="fa fa fa-refresh"></i>');
+			
 			if(json.success) {
-				html  = '<span class="checkout-pending">';
-				html += '<a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=' + json.checkout_id + '"><?php echo $this->lang->line('text_checkout_pending'); ?></a>';
-				html += '</span>';
+				label = $(handle).closest('.input-group').find('span').eq(0);
 				
-				$(handle).closest('tr').find('.status').append(html);
+				label.removeClass();
+				
+				if(json.status == 1) {
+					label.addClass('checkout-status unsolved');
+					label.text('<?php echo $this->lang->line("text_unsolved"); ?>');
+				}else if(json.status == 2){
+					label.addClass('checkout-status checking-out');
+					label.text('<?php echo $this->lang->line("text_checking_out"); ?>');
+				}else if(json.status == 3){
+					label.addClass('checkout-status completed');
+					label.text('<?php echo $this->lang->line("text_completed"); ?>');
+				}
+				
+				$(handle).html('<i class="fa fa fa-refresh"></i>');
 			} else {
-				window.open('<?php echo base_url(); ?>check/checkout_sale?sale_id=' + sale_id, '_blank');
-			}
+				$('#alert-error span').html(json.message);
+				$('#alert-error').show();
+			} 
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -480,56 +460,8 @@ $(document).ready(function() {
 	});
 	
 	$(document).on('mouseleave', 'td:nth-child(2)', function() {
+		$(this).find('.rating').remove();
 		$(this).find('.detail').hide();
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$(document).on('mouseenter', 'td:nth-child(4)', function() {
-		$(this).find('.trac-detail').show();
-		
-		handle = $(this);
-		
-		var trackBox = handle.find('.trac-detail');
-		
-		sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
-
-		$.ajax({
-			url: '<?php echo base_url(); ?>sale/sale_ajax/get_tracking_detail?sale_id=' + sale_id,
-			dataType: 'json',
-			cache: false,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				trackBox.html('<i class="fa fa-spinner fa-spin trac-spin"></i>');
-			},
-			success: function(json) {
-				html = '<table class="table">';
-				html += '<thead>';
-				html += '<tr>';
-				html += '<th><?php echo $this->lang->line('column_action'); ?></th>';
-				html += '<th><?php echo $this->lang->line('column_date'); ?></th>';
-				html += '</thead>';
-				html += '<tbody>';
-				
-				$.each(json.tracking_details, function(index, tracking_detail) {
-					html += '<tr>';
-					html += '<td>' + tracking_detail.description + '</td>';
-					html += '<td>' + tracking_detail.time + '</td>';
-					html += '</tr>';
-				});
-				
-				html += '</tbody>';
-				html += '</table>'; 
-				
-				trackBox.html(html);
-			}
-		});
-	});
-	
-	$(document).on('mouseleave', 'td:nth-child(4)', function() {
-		$(this).find('.trac-detail').hide();
 	});
 });
 </script>

@@ -360,9 +360,10 @@ class Checkout extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
-		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');						
 		$this->header->add_style(base_url(). 'assets/js/plugins/selectize/css/selectize.bootstrap3.css');
-							
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jasny/jasny-bootstrap.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
@@ -801,7 +802,7 @@ class Checkout extends MX_Controller
 						$data['checkout_files'][] = array(
 							'name'  => basename($checkout_file['path']),
 							'path'  => $checkout_file['path'],
-							'url'   => $this->config->item('media_url') . 'file/' . $checkout_file['path']
+							'url'   => $this->config->item('media_url') . '/file/' . $checkout_file['path']
 						);
 					}
 				}

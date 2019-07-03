@@ -83,7 +83,7 @@
 		    </div>
 		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-recharge">
 			  <thead>
 				<?php if($sort == 'client.name') { ?>
 				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">

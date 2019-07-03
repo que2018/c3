@@ -46,6 +46,9 @@ input:focus {
     width: 200px;
     margin: 0 auto;
 }
+.table-store {
+	min-width: 1500px;
+}
 
 
 

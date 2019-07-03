@@ -52,6 +52,9 @@ input:focus {
     width: 200px;
     margin: 0 auto;
 }
+.table-client {
+	min-width: 1500px;
+}
 
 
 

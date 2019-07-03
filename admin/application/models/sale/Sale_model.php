@@ -35,7 +35,6 @@ class Sale_model extends CI_Model
 			'shipping_provider'	 => $data['shipping_provider'],
 			'shipping_service'	 => $data['shipping_service'],
 			'tracking'	         => $data['tracking'],
-			'status_id'	         => $data['status_id'],
 			'note'	             => $data['note'],
 			'date_added'         => $date_added
 		);
@@ -143,7 +142,6 @@ class Sale_model extends CI_Model
 			'shipping_provider'	 => $data['shipping_provider'],
 			'shipping_service'	 => $data['shipping_service'],
 			'tracking'	         => $data['tracking'],
-			'status_id'	         => $data['status_id'],
 			'note'	             => $data['note'],
 			'date_modified'      => date('Y-m-d H:i:s')
 		);
@@ -581,6 +579,8 @@ class Sale_model extends CI_Model
 	{
 		$this->db->select('sale.*', false);
 		$this->db->from('sale');
+		$this->db->join('sale_to_checkout', 'sale_to_checkout.sale_id = sale.id', 'left');
+		$this->db->join('checkout', 'checkout.id = sale_to_checkout.checkout_id', 'left');		
 		$this->db->group_by('sale.id');
 		
 		if(!empty($data['filter_sale_id'])) 
@@ -613,22 +613,21 @@ class Sale_model extends CI_Model
 			$this->db->like('sale.name', $data['filter_name'], 'after');
 		}
 		
-		if(!empty($data['filter_status'])) 
-		{			
-			$this->db->where('sale.status_id', $data['filter_status']);
-		}
-		
 		if(!empty($data['filter_date_added'])) 
 		{			
 			$this->db->where('sale.date_added >=', $data['filter_date_added'] . " 00:00:00");
 			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
 		}
 		
+		if(!empty($data['filter_checkout_status'])) 
+		{			
+			$this->db->where('checkout.status', $data['filter_checkout_status']);
+		}
+		
 		$sort_data = array(
 			'sale.id',
 			'sale.store_sale_id',
 			'sale.tracking',
-			'sale.status_id',
 			'sale.date_added'
 		);
 		
@@ -673,6 +672,8 @@ class Sale_model extends CI_Model
 	{
 		$this->db->select("COUNT(sale.id) AS total", false);
 		$this->db->from('sale');
+		$this->db->join('sale_to_checkout', 'sale_to_checkout.sale_id = sale.id', 'left');
+		$this->db->join('checkout', 'checkout.id = sale_to_checkout.checkout_id', 'left');
 		
 		if(!empty($data['filter_sale_id'])) 
 		{			
@@ -704,15 +705,15 @@ class Sale_model extends CI_Model
 			$this->db->like('sale.name', $data['filter_name'], 'after');
 		}
 		
-		if(!empty($data['filter_status'])) 
-		{			
-			$this->db->where('sale.status_id', $data['filter_status']);
-		}
-		
 		if(!empty($data['filter_date_added'])) 
 		{			
 			$this->db->where('sale.date_added >=', $data['filter_date_added'] . " 00:00:00");
 			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
+		}
+		
+		if(!empty($data['filter_checkout_status'])) 
+		{			
+			$this->db->where('checkout.status', $data['filter_checkout_status']);
 		}
 		
 		$q = $this->db->get();
@@ -875,28 +876,6 @@ class Sale_model extends CI_Model
 				
 		$this->db->where('id', $sale_id);
 		$this->db->update('sale', $shipping_data);
-		
-		if($this->db->trans_status() === false) 
-		{
-			$this->db->trans_rollback();
-			
-			return false;
-		}
-		else
-		{
-			$this->db->trans_commit();
-			
-			return true;
-		}
-	}
-	
-	public function update_status($sale_id, $status_id) 
-	{
-		$this->db->trans_begin();
-			
-		$this->db->where('id', $sale_id);
-		$this->db->set('status_id', $status_id, false);
-		$this->db->update('sale');
 		
 		if($this->db->trans_status() === false) 
 		{

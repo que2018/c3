@@ -52,7 +52,7 @@
 		    </div>
 		  </div>
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-sale">
 			  <thead>
 			    <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 			    <?php if($sort == 'sale.id') { ?>
@@ -182,37 +182,27 @@
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
 					    <?php } ?>
 					  </td>
-					  <td class="status">
-					    <?php if($sale['status_id'] == 1) { ?>
-					      <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+                      <td class="status">
+						<?php if(!$sale['checkout']) { ?>
+						  <div class="input-group">
+						    <span class="checkout-status unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
+						<?php } else if($sale['checkout']['status'] == 1) { ?>  
+						  <div class="input-group">
+						    <span class="checkout-status checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } else { ?>
-					      <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
+						  <div class="input-group">
+						    <span class="checkout-status completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						    <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						  </div>
 					    <?php } ?>
-						&nbsp;
-						<?php if($sale['checkout']) { ?>      
-						<?php if($sale['checkout']['status'] == 1) { ?>
-						<span class="checkout-pending">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_pending'); ?>
-						  </a>
-						</span>
-						<?php } else { ?>
-						<span class="checkout-complete">
-						  <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-						    <?php echo $this->lang->line('text_checkout_complete'); ?>
-						  </a>
-						</span>
-						<?php } ?>
-						<?php } ?>
 					  </td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-					    <?php if(!$sale['checkout']) { ?>
-						<button onclick="checkout(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
-						<?php } else { ?>
-						<button class="btn btn-info btn-checkout-disable"><i class="fa fa-refresh"></i></button>
-						<?php } ?>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
@@ -233,37 +223,6 @@
     </div>
   </div>
 </div>
-<script>
-function checkout(handle, sale_id) {
-	$.ajax({
-		url: '<?php echo base_url(); ?>check/checkout_sale/add_checkout_ajax?sale_id=' + sale_id,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: 'json',
-		beforeSend: function() {
-			$(handle).html('<i class="fa fa-refresh fa-spin"></i>');
-		},
-		complete: function() {
-			$(handle).html('<i class="fa fa-refresh"></i>');
-		},
-		success: function(json) {					
-			if(json.success) {
-				html  = '<span class="checkout-pending">';
-				html += '<?php echo $this->lang->line('text_checkout_pending'); ?>';
-				html += '</span>';
-				
-				$(handle).closest('tr').find('.status').append(html);
-			} else {
-				window.open('<?php echo base_url(); ?>check/checkout_sale?sale_id=' + sale_id, '_blank');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
-</script>
 <script>
 function delete_sale(handle, sale_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {

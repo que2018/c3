@@ -4,27 +4,27 @@
 $lang['text_upc'] 	  	                 	  	= 'upc';
 $lang['text_sku'] 	  	                 	  	= 'sku';
 $lang['text_asin'] 	  	                 	  	= 'asin';
-$lang['text_name'] 	  	                 	  	= 'name';
-$lang['text_quantity'] 	  	             	  	= 'quantity';
+$lang['text_name'] 	  	                 	  	= '名称';
+$lang['text_quantity'] 	  	             	  	= '数量';
 $lang['text_report'] 	  	             	  	= 'Report';
-$lang['text_sale'] 	  	             	  	    = 'Sale';
-$lang['text_product'] 	  	             	  	= 'Product';
-$lang['text_product_detail'] 	  	            = 'Product Detail';
-$lang['text_product_sale'] 	  	         	  	= 'Product Sale';
+$lang['text_sale'] 	  	             	  	    = '订单';
+$lang['text_product'] 	  	             	  	= '产品';
+$lang['text_product_detail'] 	  	            = '产品 Detail';
+$lang['text_product_sale'] 	  	         	  	= '产品 订单';
 $lang['text_today'] 	  	         	  	    = 'Today';
 $lang['text_monthly'] 	  	         	  		= 'Monthly';
 $lang['text_annual'] 	  	         	  		= 'Annual';
-$lang['text_sale_product_description'] 	  	    = 'Display all the product sale records';
+$lang['text_sale_product_description'] 	  	    = '显示 all 这个 产品 订单 记录';
 
 // Column
-$lang['column_name'] 	  	             	  	= 'Name';
+$lang['column_name'] 	  	             	  	= '名称';
 $lang['column_upc'] 	  	             	  	= 'UPC';
 $lang['column_sku'] 	  	             	  	= 'SKU';
-$lang['column_quantity'] 	  	         	  	= 'Quantity';
-$lang['column_total'] 	  	         	  	    = 'Total';
-$lang['column_date_added'] 	  	         	  	= 'Date Added';
+$lang['column_quantity'] 	  	         	  	= '数量';
+$lang['column_total'] 	  	         	  	    = '总计';
+$lang['column_date_added'] 	  	         	  	= '添加时间';
 $lang['column_income'] 	  	         	  		= 'Income';
-$lang['column_action'] 	  	             	  	= 'Action';
+$lang['column_action'] 	  	             	  	= '操作';
 
 // Tab
 $lang['tab_overview'] 	  	             	  	= 'Overview';

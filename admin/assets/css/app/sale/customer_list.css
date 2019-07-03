@@ -37,6 +37,9 @@ input:focus {
 	top: 30px;    
 	right: 50px;
 }
+.table-customer {
+	min-width: 1500px;
+}
 
 
 

@@ -250,7 +250,7 @@ class Checkout_ajax extends CI_Controller
 	}
 	
 	public function change_status()
-	{
+	{		
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');

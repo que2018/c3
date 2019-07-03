@@ -23,7 +23,7 @@
 		<ul class="nav metismenu" id="side-menu">
 		  <li class="nav-header">
 			<div class="dropdown profile-element">
-			  <span><img alt="image" class="img-circle" src="<?php echo base_url(); ?>img/profile_small.jpg" /></span>
+			  <!--<span><img alt="image" class="img-circle" src="<?php echo base_url(); ?>img/profile_small.jpg" /></span>-->
 			</div>
 		  </li>
 		  <li>

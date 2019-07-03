@@ -1,17 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Shipping extends CI_Controller {
-
-	function __construct()
+class Shipping extends CI_Controller 
+{
+	public function index()
 	{
-		parent::__construct();
-		
 		$this->lang->load('extension/shipping');
-	}
-	
-	function index()
-	{
+		
 		$this->load->model('extension/extension_model');
 		
 		$data['success'] = $this->session->flashdata('success');
@@ -56,42 +50,8 @@ class Shipping extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 	
-	public function install() 
-	{
-		$this->load->model('extension/extension_model');
-		
-		$code = $this->input->get('code');
-		
-		$this->extension_model->install('shipping', $code);
-		
-		$this->load->model('shipping/'. $code .'_model');
-
-		$this->{$code . '_model'}->install();
-		
-		$this->session->set_flashdata('success', $this->lang->line('text_install_success'));
-
-		redirect(base_url() . 'extension/shipping', 'refresh');
-	}
-	
-	public function uninstall() 
-	{
-		$this->load->model('extension/extension_model');
-		
-		$code = $this->input->get('code');
-		
-		$this->extension_model->uninstall('shipping', $code);
-
-		$this->load->model('shipping/'. $code .'_model');
-
-		$this->{$code . '_model'}->uninstall();
-		
-		$this->session->set_flashdata('success', $this->lang->line('text_uninstall_success'));
-
-		redirect(base_url() . 'extension/shipping', 'refresh');
-	}
-	
 	public function get_shipping_services() 
-	{
+	{		
 		if($this->input->get('code'))
 		{
 			$code = $this->input->get('code');
@@ -129,32 +89,46 @@ class Shipping extends CI_Controller {
 	
 	public function get_shipping_rate() 
 	{
-		$shipping_method   = $this->input->post('shipping_method');
-		$postal_code       = $this->input->post('postal_code');	
-		$products          = $this->input->post('product');
-		
-		$this->load->model('shipping/' . $shipping_service . '_model');
-		
-		$result = $this->{$shipping_service . _model}->rating($products, $postal_code, $shipping_method);
+		$this->load->model('sale/sale_model');
 
-		if(isset($result['error']))
+		$this->lang->load('extension/shipping');
+		
+		if($this->input->get('sale_id')) 
+		{
+			$sale_id = $this->input->get('sale_id');
+			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$code = $sale['shipping_provider'];
+			
+			$this->load->model('shipping/'. $code .'_model');
+		
+			$result = $this->{$code . '_model'}->rating($sale);
+
+			if(!$result['success'])
+			{
+				$outdata = array(
+					'success'    => false,
+					'error'      => $result['error']
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'    => true,
+					'rate'       => $result['rate']
+				);
+			}
+		}
+		else
 		{
 			$outdata = array(
 				'success' => false,
-				'error'   => $result['error']
- 			);
-		}
-		else 
-		{			
-			$rate = $result['rate'];
-								
-			$outdata = array(
-				'success'      => true,
-				'rate'         => $rate
- 			);
+				'error'   => "sale id missing"
+			);
 		}
 		
-		echo json_encode($outdata);
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 }
 

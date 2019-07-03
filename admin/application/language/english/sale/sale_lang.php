@@ -3,6 +3,7 @@
 // Text
 $lang['text_print_label'] 	  	                = 'print label';
 $lang['text_sale_id'] 	  	                    = 'Order ID';
+$lang['text_order_detail'] 	  	                = 'Order Detail';
 $lang['text_all_orders'] 	  	                = 'All Orders';
 $lang['text_unsolved_order'] 	  	            = 'Unsolved Order';
 $lang['text_sale_add'] 	  	                	= 'Add Order';
@@ -34,6 +35,8 @@ $lang['text_edit'] 	  	             			= 'edit order';
 $lang['text_delete'] 	  	             		= 'delete order';
 $lang['text_save'] 	  	             			= 'save order';
 $lang['text_cancel'] 	  	             		= 'cancel';
+$lang['text_unsolved'] 	  	             		= 'unsolved';
+$lang['text_checking_out'] 	  	                = 'checking out';
 $lang['text_pending'] 	  	             		= 'pending';
 $lang['text_completed'] 	  	            	= 'completed';
 $lang['text_sale_product'] 	  	            	= 'order product';
@@ -52,6 +55,9 @@ $lang['text_pending'] 	  	     		        = 'Pending';
 $lang['text_completed'] 	  	     		    = 'Completed';
 $lang['text_bulk_print'] 	  	                = 'bulk print';
 $lang['text_print_pdf'] 	  	                = 'print PDF';
+$lang['text_checkout_record_generated'] 	  	= 'Order #%s is pending for checkout';
+$lang['text_checkout_record_checking_out'] 	  	= 'Order #%s is checking out';
+$lang['text_checkout_record_completed'] 	  	= 'Order #%s is completed';
 $lang['text_packing_list_title'] 	  	        = 'Order(#%s)';
 $lang['text_no_checkout'] 	  	                = 'no checkout';
 $lang['text_checkout_pending'] 	  	            = 'checkout pending';
@@ -114,6 +120,8 @@ $lang['entry_shipping_service'] 	  	        = 'Shipping Service';
 $lang['entry_order_id'] 	  	                = 'Order ID';
 $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';
+$lang['entry_product_name'] 	  	            = 'Name';
+$lang['entry_product_quantity'] 	  	        = 'Qty';
 
 // Column
 $lang['column_order_id'] 	  	     		    = 'Order Id';
@@ -163,6 +171,9 @@ $lang['error_update_tracking_error'] 	  	    = '<i class="fa fa-exclamation-tria
 $lang['error_location_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;location is not selected, please select a store first';
 $lang['error_sale_checkout_completed_notice'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;location can not be modified because checkout is compeleted';
 $lang['error_not_able_convert_image_to_pdf'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;convert image to pdf file fail';
+$lang['error_product_no_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has no inventory';
+$lang['error_product_multi_inventory'] 	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has multi inventory';
+$lang['error_product_inventory_insufficent'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;product %s has no sufficient inventory';
 
 
 

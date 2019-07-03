@@ -35,7 +35,7 @@
 </div>
 <div id="table-content">
   <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover dataTables-example" >
+    <table class="table table-striped table-bordered table-hover table-product">
       <thead>
         <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 	    <th class="text-center" style="width: 8%;"><?php echo $this->lang->line('column_image'); ?></th>

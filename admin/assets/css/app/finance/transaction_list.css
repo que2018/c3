@@ -43,6 +43,9 @@ input:focus {
     width: 230px;
     margin: 0 auto;
 }
+.table-transaction {
+	min-width: 1500px;
+}
 
 
 

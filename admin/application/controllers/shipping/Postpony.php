@@ -57,6 +57,7 @@ class Postpony extends MX_Controller
 				'postpony_phone'    	     => $this->input->post('postpony_phone'),	
 				'postpony_length_unit'    	 => $this->input->post('postpony_length_unit'),	
 				'postpony_weight_unit'    	 => $this->input->post('postpony_weight_unit'),	
+				'postpony_signature'    	 => $this->input->post('postpony_signature'),
 				'postpony_debug_mode'    	 => $this->input->post('postpony_debug_mode'),	
 				'postpony_status'   	     => $this->input->post('postpony_status'),
 				'postpony_sort_order'  		 => $this->input->post('postpony_sort_order'),
@@ -90,6 +91,7 @@ class Postpony extends MX_Controller
 			$data['postpony_phone']    	     	= $this->input->post('postpony_phone');
 			$data['postpony_length_unit']    	= $this->input->post('postpony_length_unit');	
 			$data['postpony_weight_unit']       = $this->input->post('postpony_weight_unit');	
+			$data['postpony_signature']         = $this->input->post('postpony_signature');	
 			$data['ostpony_debug_mode']    	 	= $this->input->post('postpony_debug_mode');	
 			$data['postpony_status']   	     	= $this->input->post('postpony_status');
 			$data['postpony_sort_order']  		= $this->input->post('postpony_sort_order');
@@ -116,6 +118,7 @@ class Postpony extends MX_Controller
 			$data['postpony_phone'] 			= $this->config->item('postpony_phone');
 			$data['postpony_length_unit'] 		= $this->config->item('postpony_length_unit');
 			$data['postpony_weight_unit'] 		= $this->config->item('postpony_weight_unit');
+			$data['postpony_signature'] 		= $this->config->item('postpony_signature');
 			$data['postpony_debug_mode'] 		= $this->config->item('postpony_debug_mode');
 			$data['postpony_status'] 			= $this->config->item('postpony_status');
 			$data['postpony_sort_order'] 		= $this->config->item('postpony_sort_order');

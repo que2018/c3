@@ -2,68 +2,68 @@
 
 // Text
 $lang['text_user_group'] 	  	              = 'User Group';
-$lang['text_cancel'] 	  	          		  = 'cancel';
-$lang['text_add_user_group'] 	  	          = 'add user group';
-$lang['text_save_user_group'] 	  	          = 'save user group';
-$lang['text_user_group_add'] 	  	          = 'Add User Group';
-$lang['text_user_group_edit'] 	  	          = 'Edit User Group';
-$lang['text_confirm_delete'] 	  	          = 'Are you sure to delete this user group?';
-$lang['text_user_group_list_description']     = 'Display All Users Groups';
-$lang['text_user_group_add_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User group add success';
-$lang['text_user_group_edit_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User group edits success';
-$lang['text_user_group_delete_success'] 	  = '<i class="fa fa-check-circle-o"></i>&nbsp;user group delete success';
-$lang['text_confirm_delete']                  = 'Are you sure to delete this user group?';
+$lang['text_cancel'] 	  	          		  = '取消';
+$lang['text_add_user_group'] 	  	          = '添加 user group';
+$lang['text_save_user_group'] 	  	          = '保存 user group';
+$lang['text_user_group_add'] 	  	          = '添加 User Group';
+$lang['text_user_group_edit'] 	  	          = '编辑 User Group';
+$lang['text_confirm_delete'] 	  	          = '您确定要 删除 这个 user group?';
+$lang['text_user_group_list_description']     = '显示 所有 Users Groups';
+$lang['text_user_group_add_success'] 	      = '<i 单位="fa fa-check-circle-o"></i>&nbsp;User group 添加 成功';
+$lang['text_user_group_edit_success'] 	      = '<i 单位="fa fa-check-circle-o"></i>&nbsp;User group edits 成功';
+$lang['text_user_group_delete_success'] 	  = '<i 单位="fa fa-check-circle-o"></i>&nbsp;user group 删除 成功';
+$lang['text_confirm_delete']                  = '您确定要 删除 这个 user group?';
 $lang['text_access']              		      = 'Access';
 $lang['text_modify']             		      = 'Modify';
-$lang['text_confirm_delete']                  = 'Are you sure to delete this user group?';
+$lang['text_confirm_delete']                  = '您确定要 删除 这个 user group?';
 
 // Column
-$lang['column_name'] 	  	                  = 'Name';
-$lang['column_action'] 	  	                  = 'Action';
+$lang['column_name'] 	  	                  = '名称';
+$lang['column_action'] 	  	                  = '操作';
 
 // Entry
-$lang['entry_name'] 	  	                  = 'Name';
-$lang['entry_description'] 	  	              = 'Description';
+$lang['entry_name'] 	  	                  = '名称';
+$lang['entry_description'] 	  	              = '描述';
 
 // Permission
-$lang['permission_access_catalog']      	  = 'View Catalog';
-$lang['permission_access_check']        	  = 'View Check';
-$lang['permission_access_inventory'] 		  = 'View Inventory';
-$lang['permission_access_warehouse']   		  = 'View Warehouse';
-$lang['permission_access_sale']           	  = 'View Sale';
-$lang['permission_access_store']              = 'View Store';
-$lang['permission_access_extension']    	  = 'View Extension';
-$lang['permission_access_finance']    	  	  = 'View Finance';	
-$lang['permission_access_fee']    	      	  = 'View Fee';
-$lang['permission_access_platform']    	      = 'View Platform';
-$lang['permission_access_shipping']    	      = 'View Shipping';
-$lang['permission_access_payment']    	      = 'View Payment';
-$lang['permission_access_report']   		  = 'View Report';
-$lang['permission_access_client']   	      = 'View Client';
-$lang['permission_access_user']   			  = 'View User';
-$lang['permission_access_system']   		  = 'View System';
-$lang['permission_access_log']   		  	  = 'View Log';
-$lang['permission_modify_catalog']      	  = 'Edit Catalog';
-$lang['permission_modify_check']        	  = 'Edit Check';
-$lang['permission_modify_inventory'] 		  = 'Edit Inventory';
-$lang['permission_modify_warehouse']   		  = 'Edit Warehouse';
-$lang['permission_modify_sale']           	  = 'Edit Sale';
-$lang['permission_modify_store']              = 'Edit Store';
-$lang['permission_modify_extension']    	  = 'Edit Extension';
-$lang['permission_modify_finance']    	      = 'Edit Finance';	
-$lang['permission_modify_fee']    	          = 'Edit Fee';
-$lang['permission_modify_platform']    	      = 'Edit Platform';
-$lang['permission_modify_shipping']    	      = 'Edit Shipping';
-$lang['permission_modify_payment']    	      = 'Edit Payment';
-$lang['permission_modify_report']   		  = 'Edit Report';
-$lang['permission_modify_client']   	      = 'Edit Client';
-$lang['permission_modify_user']   			  = 'Edit User';
-$lang['permission_modify_system']   		  = 'Edit System';
-$lang['permission_modify_log']   		  	  = 'Edit Log';
+$lang['permission_access_catalog']      	  = '查看 目录';
+$lang['permission_access_check']        	  = '查看 Check';
+$lang['permission_access_inventory'] 		  = '查看 库存';
+$lang['permission_access_warehouse']   		  = '查看 Warehouse';
+$lang['permission_access_sale']           	  = '查看 订单';
+$lang['permission_access_store']              = '查看 店铺';
+$lang['permission_access_extension']    	  = '查看 Extension';
+$lang['permission_access_finance']    	  	  = '查看 Finance';	
+$lang['permission_access_fee']    	      	  = '查看 费用';
+$lang['permission_access_platform']    	      = '查看 Platform';
+$lang['permission_access_shipping']    	      = '查看 配送';
+$lang['permission_access_payment']    	      = '查看 Payment';
+$lang['permission_access_report']   		  = '查看 Report';
+$lang['permission_access_client']   	      = '查看 客户';
+$lang['permission_access_user']   			  = '查看 User';
+$lang['permission_access_system']   		  = '查看 系统';
+$lang['permission_access_log']   		  	  = '查看 Log';
+$lang['permission_modify_catalog']      	  = '编辑 目录';
+$lang['permission_modify_check']        	  = '编辑 Check';
+$lang['permission_modify_inventory'] 		  = '编辑 库存';
+$lang['permission_modify_warehouse']   		  = '编辑 Warehouse';
+$lang['permission_modify_sale']           	  = '编辑 订单';
+$lang['permission_modify_store']              = '编辑 店铺';
+$lang['permission_modify_extension']    	  = '编辑 Extension';
+$lang['permission_modify_finance']    	      = '编辑 Finance';	
+$lang['permission_modify_fee']    	          = '编辑 费用';
+$lang['permission_modify_platform']    	      = '编辑 Platform';
+$lang['permission_modify_shipping']    	      = '编辑 配送';
+$lang['permission_modify_payment']    	      = '编辑 Payment';
+$lang['permission_modify_report']   		  = '编辑 Report';
+$lang['permission_modify_client']   	      = '编辑 客户';
+$lang['permission_modify_user']   			  = '编辑 User';
+$lang['permission_modify_system']   		  = '编辑 系统';
+$lang['permission_modify_log']   		  	  = '编辑 Log';
 
 // Tab
-$lang['tab_general'] 	  	                  = 'General';
+$lang['tab_general'] 	  	                  = '通用';
 $lang['tab_permission'] 	  	              = 'Permission';
 
 // Error
-$lang['error_user_group_is_in_use'] 	      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;This user group is in use and can not be deleted';
+$lang['error_user_group_is_in_use'] 	      = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 user group 是 in use and 不能被删除';

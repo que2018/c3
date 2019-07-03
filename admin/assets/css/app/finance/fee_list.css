@@ -41,7 +41,9 @@ input:focus {
 .pagination {
 	margin: 0px;
 }
-
+.table-fee {
+	min-width: 1500px;
+}
 
 
 

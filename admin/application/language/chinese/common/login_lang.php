@@ -13,4 +13,4 @@ $lang['text_pround_product']                 = 'GoodBox 来自 JIUTech Inc.';
 $lang['button_login']		                 = '登录';
 
 // Error 
-$lang['error_invalid_username_or_password']  = '<i class="fa fa-exclamation-triangle"></i>&nbsp;无效的用户名和密码';
+$lang['error_invalid_username_or_password']  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;无效的用户名和密码';

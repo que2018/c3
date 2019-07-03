@@ -85,5 +85,8 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
+.table-refund {
+	min-width: 1500px;
+}
 
 

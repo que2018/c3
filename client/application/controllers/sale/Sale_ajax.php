@@ -64,18 +64,21 @@ class Sale_ajax extends CI_Controller
 		//find product
 		$products = array();
 		
-		foreach($results as $result)
+		if($results)
 		{
-			$product_info = $this->product_model->get_product($result['id']);
-		
-			$products[] = array(
-				'label'       => $product_info[$key],
-				'product_id'  => $product_info['id'],
-				'upc'         => $product_info['upc'],
-				'sku'         => $product_info['sku'],
-				'asin'        => $product_info['asin'],
-				'name'        => $product_info['name']
-			);
+			foreach($results as $result)
+			{
+				$product_info = $this->product_model->get_product($result['id']);
+			
+				$products[] = array(
+					'label'       => $product_info[$key],
+					'product_id'  => $product_info['id'],
+					'upc'         => $product_info['upc'],
+					'sku'         => $product_info['sku'],
+					'asin'        => $product_info['asin'],
+					'name'        => $product_info['name']
+				);
+			}
 		}
 	
 		$outdata = array(

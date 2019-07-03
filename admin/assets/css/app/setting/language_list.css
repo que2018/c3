@@ -43,6 +43,9 @@ a:focus, a:hover {
 .pagination {
 	margin: 0px;
 }
+.table-language {
+	min-width: 1500px;
+}
 
 
 

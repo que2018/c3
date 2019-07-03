@@ -1,9 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/summernote/summernote.min.js"></script>
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">    
-<link href="<?php echo base_url(); ?>assets/css/app/sale/sale_view.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo sprintf($this->lang->line('text_order_view_id'), $sale_id); ?></h2>
@@ -215,4 +210,5 @@ $(document).ready(function() {
 	$('.summernote').summernote('disable');
 });
 </script>
+<?php echo $footer; ?>
 		

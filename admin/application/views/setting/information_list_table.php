@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover dataTables-example" >
+  <table class="table table-striped table-bordered table-hover table-information">
     <thead>
 	  <tr>
 	    <?php if($sort == 'inforamtion_content.title') { ?>

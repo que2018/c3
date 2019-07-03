@@ -47,4 +47,6 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
-
+.table-location {
+	min-width: 1500px;
+}

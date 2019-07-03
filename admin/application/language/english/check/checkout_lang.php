@@ -41,11 +41,10 @@ $lang['text_checkout_add'] 	  	    	 	  						= 'Add Checkout';
 $lang['text_checkout_edit']					  						= 'Edit Checkout';
 $lang['text_checkout_list'] 	  	     	  						= 'Checkout List';
 $lang['text_pending'] 	  	        	 	  						= 'Pending';
-$lang['text_completed'] 	  	    	 	  						= 'Completed';
-$lang['text_canceled'] 	  	        	 	  						= 'Canceled';
-$lang['text_pending'] 	  	        		  						= 'Pending';
-$lang['text_completed'] 	  	    		  						= 'Completed';
-$lang['text_canceled'] 	  	        		  						= 'Canceled';
+$lang['text_completed'] 	  	    	 	  						= 'completed';
+$lang['text_canceled'] 	  	        	 	  						= 'canceled';
+$lang['text_pending'] 	  	        		  						= 'pending';
+$lang['text_canceled'] 	  	        		  						= 'canceled';
 $lang['text_search'] 	  	        		  						= 'Search';
 $lang['text_checkout_id'] 	  	        		        			= 'Checkout ID(#)';
 $lang['text_sale_id'] 	  	        		        				= 'Order ID(#)';
@@ -114,6 +113,7 @@ $lang['column_label'] 	    		          						= 'Lable';
 $lang['column_tracking'] 	    		          				    = 'Tracking';
 
 // Entry
+$lang['entry_checkout_id'] 	  	    	 	  	  				    = 'Checkout ID';
 $lang['entry_sale_id'] 	  	    	 	  	  						= 'Order ID';
 $lang['entry_store_sale_id'] 	  	    	 	  	    			= 'Store Order ID';
 $lang['entry_location'] 	  	    	 	  						= 'Location';

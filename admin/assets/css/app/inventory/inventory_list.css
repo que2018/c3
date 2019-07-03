@@ -98,5 +98,8 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
+.table-inventory {
+	min-width: 1500px;
+}
 
 

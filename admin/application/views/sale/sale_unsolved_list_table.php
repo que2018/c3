@@ -24,7 +24,7 @@
   </div>
 </div>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover dataTables-example" >
+  <table class="table table-striped table-bordered table-hover table-sale">
     <thead>
 	  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 	  <?php if($sort == 'sale.id') { ?>
@@ -152,36 +152,26 @@
 			  <?php } ?>
 		    </td>
 			<td class="status">
-			  <?php if($sale['status_id'] == 1) { ?>
-			    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
+			  <?php if(!$sale['checkout']) { ?>
+			    <div class="input-group">
+				  <span class="checkout-status unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>				        
+				  <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+			    </div>
+			  <?php } else if($sale['checkout']['status'] == 1) { ?>  
+			    <div class="input-group">
+				  <span class="checkout-status checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>				        
+				  <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+			    </div>
 			  <?php } else { ?>
-			    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
-			  <?php } ?>
-			  &nbsp;
-			  <?php if($sale['checkout']) { ?>      
-			  <?php if($sale['checkout']['status'] == 1) { ?>
-			  <span class="checkout-pending">
-			    <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-				  <?php echo $this->lang->line('text_checkout_pending'); ?>
-			    </a>
-			  </span>
-			  <?php } else { ?>
-			  <span class="checkout-complete">
-			    <a href="<?php echo base_url(); ?>check/checkout/edit?checkout_id=<?php echo $sale['checkout']['id']?>">
-				  <?php echo $this->lang->line('text_checkout_complete'); ?>
-			    </a>
-			  </span>
-			  <?php } ?>
+			    <div class="input-group">
+				  <span class="checkout-status completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
+				  <span class="btn-reverse" onclick="change_sale_status(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-refresh"></i></span>
+			    </div>
 			  <?php } ?>
 		    </td>
 		    <td><?php echo $sale['date_added']; ?></td>
 		    <td class="text-center">
 			  <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-print"></i></button>
-			  <?php if(!$sale['checkout']) { ?>
-			  <button onclick="checkout(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-info btn-checkout"><i class="fa fa-refresh"></i></button>
-			  <?php } else { ?>
-			  <button class="btn btn-info btn-checkout-disable"><i class="fa fa-refresh"></i></button>
-			  <?php } ?>
 			  <a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>

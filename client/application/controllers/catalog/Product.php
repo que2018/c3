@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product extends CI_Controller 
+class Product extends MX_Controller 
 {
 	public function index()
 	{

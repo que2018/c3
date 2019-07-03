@@ -29,6 +29,7 @@
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#file"><?php echo $this->lang->line('tab_file'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#note"><?php echo $this->lang->line('tab_note'); ?></a></li>
 		</ul>
@@ -217,6 +218,44 @@
 			  </div>
 			  <div class="hr-line-dashed"></div>
 		    </div>
+		  </div>
+		  <div id="file" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="checkout_file" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_action') ?></th>							
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $checkout_file_row = 0; ?>
+					<?php if($checkout_files) { ?>
+					  <?php foreach ($checkout_files as $checkout_file) { ?>
+					  <tr id="checkout-file-row<?php echo $checkout_file_row; ?>">
+					    <td class="text-left">
+						  <?php echo $checkout_file['name']; ?>
+						  <input type="hidden" name="checkout_file[<?php echo $checkout_file_row; ?>][path]" value="<?php echo $checkout_file['path']; ?>"/>
+						</td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#checkout-file-row<?php echo $checkout_file_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						  <a class="btn btn-info btn-file-download" href="<?php echo $checkout_file['url']; ?>" download><i class="fa fa-download"></i></a>
+						</td>
+					  </tr>
+					  <?php $checkout_file_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+				  <tfoot>
+					<tr>
+					  <td></td>
+					  <td class="text-left"><button type="button" onclick="add_checkout_file();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					</tr>
+				  </tfoot>
+                </table>
+              </div> 
+			</div>
 		  </div>
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
@@ -423,6 +462,33 @@ function refresh_weight() {
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
+checkout_file_row = <?php echo $checkout_file_row; ?>;
+
+function add_checkout_file() {
+	html  = '<tr id="checkout-file-row' + checkout_file_row + '">';
+	html += '<td id="checkout-file-td' + checkout_file_row + '">';
+	html += '<form class="upload-box" id="dropzone' + checkout_file_row + '">';
+	html += '<input type="hidden" name="checkout_file[' + checkout_file_row + '][path]">';
+	html += '</form>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-file-row' + checkout_file_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#checkout_file tbody').append(html);
+	
+	$("#dropzone" + checkout_file_row).dropzone({
+		url: "<?php echo base_url(); ?>check/checkout_ajax/upload_file",
+		previewTemplate: "<div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></div>",
+		success: function(file, response){
+			html = response.name + '<input type="hidden" name="checkout_file[' + checkout_file_row + '][path]" value="' + response.path + '">';
+			$("#checkout-file-td" + checkout_file_row).html(html);
+			
+			checkout_file_row++;		
 		}
 	});
 }

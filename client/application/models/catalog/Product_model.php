@@ -174,7 +174,7 @@ class Product_model extends CI_Model
 	{
 		$this->db->select("*", false);
 		$this->db->from('product'); 
-		$this->dafterike('name', $name, 'after');
+		$this->db->like('name', $name, 'after');
 		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->limit($this->config->item('config_autocomplete_limit'));
 		

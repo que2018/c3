@@ -13,7 +13,7 @@ class Login extends CI_Controller
 	
 		if($this->auth->is_logged()) 
 		{
-			redirect(base_url() . 'catalog/product', 'refresh');
+			redirect(base_url() . 'sale/sale', 'refresh');
 		}
 		
 		$this->form_validation->set_rules('username', $this->lang->line('text_username'), 'required');
@@ -31,7 +31,7 @@ class Login extends CI_Controller
 			{
 				$this->session->set_userdata('language_id', $data['language_id']);
 
-				redirect(base_url() . 'catalog/product', 'refresh');
+				redirect(base_url() . 'sale/sale', 'refresh');
 			} 
 			else 
 			{

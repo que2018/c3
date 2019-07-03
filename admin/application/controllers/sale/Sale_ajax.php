@@ -282,6 +282,216 @@ class Sale_ajax extends CI_Controller
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));
 	}
+	
+	public function change_status()
+	{
+		$this->load->library('mail');
+		
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('client/client_model');
+		$this->load->model('check/checkout_model');
+		
+		if($this->input->get('sale_id'))
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$sale_products = $this->sale_model->get_sale_products($sale_id);
+			
+			$checkout = $this->checkout_model->get_sale_checkout($sale_id);
+
+			$status = 0;	
+			$message = null;
+
+			if(!$checkout) 
+			{
+				$result = $this->validate_sale_checkout($sale_id);
+
+				if($result['success'])
+				{		
+					$data = array(
+						'sale_id'            => $sale_id,
+						'tracking'           => '',
+						'status'             => 1,
+						'length'	         => $sale['length'],
+						'width'	             => $sale['width'],
+						'height'	         => $sale['height'],
+						'weight'	         => $sale['weight'],
+						'length_class_id'	 => $sale['length_class_id'],
+						'weight_class_id'	 => $sale['weight_class_id'],
+						'shipping_provider'	 => $sale['shipping_provider'],
+						'shipping_service'	 => $sale['shipping_service'],
+						'note'               => '',
+						'checkout_products'  => $result['checkout_products']
+					);
+					
+					$checkout_id = $this->checkout_model->add_checkout($data);
+
+					$success = true;
+					$status = 2;	
+				}
+				else
+				{
+					$success = false;
+					$status = 4;	
+					$message = $result['message'];
+				}
+			}
+			else
+			{
+				$checkout_id = $checkout['id'];
+				
+				if($checkout['status'] == 1) 
+				{
+					$result = $this->validate_sale_checkout($sale_id);
+					
+					if($result['success'])
+					{
+						$this->checkout_model->complete_checkout($checkout_id);
+					
+						$success = true;
+						$status = 3;	
+					}
+					else
+					{
+						$success = false;
+						$status = 4;
+						$message = $result['message'];
+					}
+				}
+				
+				if($checkout['status'] == 2)
+				{
+					$result = $this->checkout_model->uncomplete_checkout($checkout_id);
+					
+					$success = true;
+					$status = 2;
+				}
+			}
+			
+			//send mail
+			if($status != 4) 
+			{
+				$store_id = $sale['store_id'];
+				$store = $this->store_model->get_store($store_id);
+				
+				$client_id = $store['client_id'];
+				$client = $this->client_model->get_client($client_id);
+				
+				$this->mail->protocol = 'smtp';
+				$this->mail->smtp_hostname = $this->config->item('config_smtp_hostname');
+				$this->mail->smtp_username = $this->config->item('config_smtp_username');
+				$this->mail->smtp_password = $this->config->item('config_smtp_password');
+				$this->mail->smtp_port = $this->config->item('config_smtp_port');
+
+				$this->mail->setTo($client['email']);
+				$this->mail->setFrom($this->config->item('config_smtp_username'));
+				$this->mail->setSender($this->config->item('config_smtp_sender')); 
+				
+				if($status == 1) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_generated'), $sale_id));
+				}
+				
+				if($status == 2) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_checking_out'), $sale_id));
+				}
+				
+				if($status == 3) 
+				{
+					$this->mail->setSubject(sprintf($this->lang->line('text_checkout_record_completed'), $sale_id));
+				}
+							
+				$html  = '<div><strong>'.$this->lang->line('text_order_detail').'</strong></div>';
+				$html .= '<br>';
+				
+				foreach($sale_products as $sale_product)
+				{
+					$html .= '<div>';
+					$html .= '<span><strong>'.$this->lang->line('entry_product_name').':&nbsp;</strong>'.$sale_product['name'].'</spans>&nbsp;&nbsp;';
+					$html .= '<span><strong>'.$this->lang->line('entry_product_quantity').':&nbsp;</strong>'.$sale_product['quantity'].'</spans>';
+					$html .= '</div>';
+				}
+				
+				$this->mail->setHtml($html);
+			
+				$this->mail->send();
+			}
+			
+			$outdata = array(
+				'success'   => $success,
+				'status'    => $status,
+				'message'   => $message
+			);
+					
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
+	private function validate_sale_checkout($sale_id)
+	{
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('inventory/inventory_model');
+
+		$validated = true;
+		
+		$message = '';
+		
+		$checkout_products = array();
+		
+		$sale_products = $this->sale_model->get_sale_products($sale_id);
+		
+		foreach($sale_products as $sale_product)
+		{
+			$inventories = $this->inventory_model->get_inventories_by_product($sale_product['product_id']);
+				
+			if(!$inventories)
+			{
+				$message .= sprintf($this->lang->line('error_product_no_inventory'), $sale_product['name']).'<br>';
+								
+				if($validated)
+					$validated = false;
+			}
+			else if(sizeof($inventories) > 1)
+			{
+				$message .= sprintf($this->lang->line('error_product_multi_inventory'), $sale_product['name']).'<br>';
+				
+				if($validated)
+					$validated = false;
+			}
+			else if($inventories[0]['quantity'] < $sale_product['quantity'])
+			{
+				$message .= sprintf($this->lang->line('error_product_inventory_insufficent'), $sale_product['name']).'<br>';
+								
+				if($validated)
+					$validated = false;
+			}
+			else
+			{
+				$checkout_products[] = array(
+					'product_id'    => $sale_product['product_id'],
+					'inventory_id'  => $inventories[0]['id'],
+					'quantity'      => $sale_product['quantity']
+				);
+			}
+		}
+		
+		$result = array(
+			'success'           => ($validated)?true:false,
+			'message'           => $message,
+			'checkout_products' => $checkout_products
+		);
+		
+		return $result;
+	}
 }
 
 

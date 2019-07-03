@@ -67,6 +67,7 @@ $lang['entry_owner'] 	  	     	     	= 'Owner';
 $lang['entry_phone'] 	  	     	     	= 'Phone';
 $lang['entry_length_unit'] 	  	     	 	= 'Length Unit';
 $lang['entry_weight_unit'] 	  	     	 	= 'Weight Unit';
+$lang['entry_signature'] 	  	     	 	= 'Signature';
 $lang['entry_image_type'] 	  	     	 	= 'Image Type';
 $lang['entry_debug_mode'] 	  	     	 	= 'Debug Mode';
 $lang['entry_status'] 	  	             	= 'Status';

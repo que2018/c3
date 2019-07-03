@@ -2,23 +2,23 @@
 
 // Text
 $lang['text_title'] 	  	            = 'LTL';
-$lang['text_shipping'] 	  	            = 'Shipping';
+$lang['text_shipping'] 	  	            = '配送';
 $lang['text_ltl'] 	  	             	= 'LTL';
-$lang['text_sort_order'] 	  	        = 'sort order';
-$lang['text_status'] 	  	            = 'status';
-$lang['text_edit_success'] 	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;LTL edit success';
+$lang['text_sort_order'] 	  	        = 'sort 订单';
+$lang['text_status'] 	  	            = '转态';
+$lang['text_edit_success'] 	  			= '<i 单位="fa fa-check-circle-o"></i>&nbsp;LTL 编辑 成功';
 
 // Tab
-$lang['tab_service'] 	  	            = 'Service';
+$lang['tab_service'] 	  	            = '服务';
 
 // Column
-$lang['column_name'] 	  	                = 'Name';
-$lang['column_code'] 	  	                = 'Code';
+$lang['column_name'] 	  	                = '名称';
+$lang['column_code'] 	  	                = '代码';
 $lang['column_method'] 	  	             	= 'Method';
 $lang['column_package'] 	  	         	= 'Package';
 
 // Entry
-$lang['entry_sort_order'] 	  	        = 'Sort Order';
-$lang['entry_status'] 	  	            = 'Status';
+$lang['entry_sort_order'] 	  	        = 'Sort 订单';
+$lang['entry_status'] 	  	            = '转态';
 
 

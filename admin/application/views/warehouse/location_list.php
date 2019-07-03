@@ -23,7 +23,7 @@
 	    </div>
 	    <div class="ibox-content">
 		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover dataTables-example" >
+		    <table class="table table-striped table-bordered table-hover table-location">
 			  <thead>
 				<?php if($sort == 'location.name') { ?>
 				<th style="width: 25%;" class="sorting_<?php echo strtolower($order); ?>">

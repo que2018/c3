@@ -1,14 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sale extends CI_Controller 
+class Sale extends MX_Controller 
 {
 	public function index()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+		
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_order_list'));
 		
 		$data['success'] = $this->session->flashdata('success');
 		
@@ -279,13 +290,17 @@ class Sale extends CI_Controller
 		$data['filter_name']            = $filter_name;
 		$data['filter_date_added']      = $filter_date_added;		
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
 		$this->load->view('sale/sale_list', $data);
-		$this->load->view('common/footer');
 	}
 
 	public function add() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('sale/sale');
 		
 		$this->load->library('form_validation');
@@ -296,7 +311,19 @@ class Sale extends CI_Controller
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
-	
+		
+		$this->header->set_title($this->lang->line('text_order_list'));
+
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_add.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_order_add'));
+
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
 		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
 		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
@@ -310,48 +337,78 @@ class Sale extends CI_Controller
 		$this->form_validation->set_rules('store_id', $this->lang->line('text_store'), 'required');
 		$this->form_validation->set_rules('sale_product[]', $this->lang->line('text_sale_products'), 'required');
 		
-		$data = array(
-			'tracking'    		=> $this->input->post('tracking'),
-			'note'     		    => $this->input->post('note'),
-			'name'       		=> $this->input->post('name'),
-			'street'      		=> $this->input->post('street'),
-			'street2'      		=> $this->input->post('street2'),
-			'city'        		=> $this->input->post('city'),
-			'state'       		=> $this->input->post('state'),
-			'country'     		=> $this->input->post('country'),
-			'zipcode'           => $this->input->post('zipcode'),
-			'email'             => $this->input->post('email'),
-			'phone'             => $this->input->post('phone'),
-			'length'            => $this->input->post('length'),
-			'width'             => $this->input->post('width'),
-			'height'            => $this->input->post('height'),
-			'weight'            => $this->input->post('weight'),
-			'length_class_id'   => $this->input->post('length_class_id'),
-			'weight_class_id'   => $this->input->post('weight_class_id'),
-			'shipping_provider' => $this->input->post('shipping_provider'),
-			'shipping_service'  => $this->input->post('shipping_service'),
-			'store_id'          => $this->input->post('store_id'),
-			'store_sale_id'     => $this->input->post('store_sale_id')
-		);
-		
-		$data['sale_products'] = array();
-			
-		$sale_products_data = $this->input->post('sale_product');
-		
-		if($sale_products_data)
+		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
-			foreach($sale_products_data as $sale_product_data)
+			$data = array(
+				'tracking'    		=> $this->input->post('tracking'),
+				'note'     		    => $this->input->post('note'),
+				'name'       		=> $this->input->post('name'),
+				'street'      		=> $this->input->post('street'),
+				'street2'      		=> $this->input->post('street2'),
+				'city'        		=> $this->input->post('city'),
+				'state'       		=> $this->input->post('state'),
+				'country'     		=> $this->input->post('country'),
+				'zipcode'           => $this->input->post('zipcode'),
+				'email'             => $this->input->post('email'),
+				'phone'             => $this->input->post('phone'),
+				'length'            => $this->input->post('length'),
+				'width'             => $this->input->post('width'),
+				'height'            => $this->input->post('height'),
+				'weight'            => $this->input->post('weight'),
+				'length_class_id'   => $this->input->post('length_class_id'),
+				'weight_class_id'   => $this->input->post('weight_class_id'),
+				'shipping_provider' => $this->input->post('shipping_provider'),
+				'shipping_service'  => $this->input->post('shipping_service'),
+				'store_id'          => $this->input->post('store_id'),
+				'store_sale_id'     => $this->input->post('store_sale_id')
+			);
+			
+			$data['sale_products'] = array();
+			
+			$sale_products_data = $this->input->post('sale_product');
+			
+			if($sale_products_data)
 			{
-				$product_data = $this->product_model->get_product($sale_product_data['product_id']);
+				foreach($sale_products_data as $sale_product_data)
+				{
+					$product_data = $this->product_model->get_product($sale_product_data['product_id']);
 
-				$data['sale_products'][] = array(
-					'product_id'  => $product_data['id'],
-					'upc'         => $product_data['upc'],
-					'sku'         => $product_data['sku'],
-					'name'        => $product_data['name'],
-					'quantity'    => $sale_product_data['quantity']
-				);
+					$data['sale_products'][] = array(
+						'product_id'  => $product_data['id'],
+						'upc'         => $product_data['upc'],
+						'sku'         => $product_data['sku'],
+						'name'        => $product_data['name'],
+						'quantity'    => $sale_product_data['quantity']
+					);
+				}
 			}
+		}
+		else
+		{
+			$data = array(
+				'tracking'    		=> '',
+				'note'     		    => '',
+				'name'       		=> '',
+				'street'      		=> '',
+				'street2'      		=> '',
+				'city'        		=> '',
+				'state'       		=> '',
+				'country'     		=> '',
+				'zipcode'           => '',
+				'email'             => '',
+				'phone'             => '',
+				'length'            => '',
+				'width'             => '',
+				'height'            => '',
+				'weight'            => '',
+				'length_class_id'   => '',
+				'weight_class_id'   => '',
+				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
+				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
+				'store_id'          => '',
+				'store_sale_id'     => '',
+				'sale_products'     => array()
+			);
 		}
 		
 		if($this->form_validation->run() == true)
@@ -451,13 +508,17 @@ class Sale extends CI_Controller
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
 		$this->load->view('sale/sale_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('sale/sale');
 		
 		$this->load->library('form_validation');
@@ -468,6 +529,16 @@ class Sale extends CI_Controller
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_edit.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+	
+		$this->header->set_title($this->lang->line('text_order_edit'));
 	
 		$sale_id = $this->input->get('sale_id');
 	
@@ -716,14 +787,18 @@ class Sale extends CI_Controller
 		}
 		
 		$data['error'] = validation_errors();
+		
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
 	
-		$this->load->view('common/header');
 		$this->load->view('sale/sale_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function view() 
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
 		$this->lang->load('sale/sale');
 	
 		$this->load->model('sale/sale_model');		
@@ -732,6 +807,16 @@ class Sale extends CI_Controller
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
 		
+		$this->header->add_style(base_url(). 'assets/css/app/sale/sale_view.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
+		
+		$this->header->set_title($this->lang->line('text_order_view'));
+
 		$sale_id = $this->input->get('sale_id');
 	
 		$sale = $this->sale_model->get_sale($sale_id);
@@ -852,27 +937,10 @@ class Sale extends CI_Controller
 	
 		$data['sale_id'] = $sale_id;
 	
-		$this->load->view('common/header');
-		$this->load->view('sale/sale_view', $data);
-		$this->load->view('common/footer');
-	}
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
 	
-	public function delete()
-	{		
-		$this->load->model('sale/sale_model');
-		
-		if($this->input->get('sale_id'))
-		{
-			$sale_id = $this->input->get('sale_id');
-			
-			$result = $this->sale_model->delete_sale($sale_id);
-
-			$outdata = array(
-				'success'   => ($result)?true:false
-			);
-			
-			echo json_encode($outdata);
-		}
+		$this->load->view('sale/sale_view', $data);
 	}
 	
 	private function adjust_shipping($sale_id)

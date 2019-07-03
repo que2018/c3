@@ -41,3 +41,6 @@ a:focus, a:hover {
     width: 220px;
     margin: 0 auto;
 }
+.table-user {
+	min-width: 1500px;
+}

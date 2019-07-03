@@ -131,7 +131,7 @@ class Label extends CI_Controller
 				}
 				
 				//display info
-				$data['label_img'] = base_url() . $result['label_img'];
+				$data['label_img'] = $this->config->item('media_url') . '/label/' . $result['label_img'];
 				
 				$data['width']       = $this->config->item('config_label_width');
 				$data['width_type']  = $this->config->item('config_label_width_type');
@@ -226,11 +226,11 @@ class Label extends CI_Controller
 				}
 				
 				//submit print job
-				$image_path = FCPATH . $result['label_img'];
+				$image_path = LABELPATH . $result['label_img'];
 				
 				$filename = $this->file->get_filename($image_path);
 				
-				$dest_path = FCPATH . 'assets/pdf/' . $filename . '.pdf';
+				$dest_path = FILEPATH . $filename . '.pdf';
 				
 				$attrs = array(
 					'position_x'   => $this->config->item('config_printnode_position_x'),

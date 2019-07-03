@@ -85,7 +85,6 @@ input:focus {
 	height: 100px;
     background: #ffffff;
     position: absolute;
-	display: none;
 	left: 33%;
     padding: 20px 15px;
 	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
@@ -145,24 +144,33 @@ input:focus {
     padding: 4px 5px;
 	margin-right: 5px;
 }
-.checkout-pending {
-    font-size: 9px;
-    background: #fd895b;
+.checkout-status {	
+	font-size: 10px;
     color: #fff;
-    border-radius: 2px;
-    padding: 4px 5px;
-	margin-right: 5px;
+    padding: 5px 0px;
+    border-radius: 3px 0px 0px 3px;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
 }
-.checkout-complete {
-    font-size: 9px;
-    background: #21b9bb;
-    color: #fff;
-    border-radius: 2px;
-    padding: 4px 5px;
-	margin-right: 5px;
+.unsolved {	
+    background: #ff4f09;
 }
-.checkout-pending a, .checkout-complete a {
-	color: #ffffff;
+.checking-out {	
+    background: #f5e14d;
+}
+.completed {	
+    background: #3bbf7c;
+}
+.btn-reverse {
+    padding: 4px 7px;
+    background: #fff;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    border-radius: 3px;
+    font-size: 10px;
+    cursor: pointer;
 }
 .table-shipping {
 	margin-top: 15px;
@@ -170,6 +178,9 @@ input:focus {
 .alert-success {
     width: 200px;
     margin: 0 auto;
+}
+.table-sale {
+	min-width: 1500px;
 }
 
 
