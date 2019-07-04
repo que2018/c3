@@ -4,7 +4,7 @@
 $lang['text_name'] 	  	                 = '名称';
 $lang['text_user'] 	  	         		 = 'User';
 $lang['text_username'] 	  	             = 'usename';
-$lang['text_password'] 	  	             = 'password';
+$lang['text_password'] 	  	             = '密码';
 $lang['text_firstname'] 	  	         = '名';
 $lang['text_lastname'] 	  	             = '姓';
 $lang['text_user_add'] 	  	             = '添加 User';
@@ -36,7 +36,7 @@ $lang['entry_username'] 	  	         = 'Username';
 $lang['entry_firstname'] 	  	         = '名';
 $lang['entry_lastname'] 	  	         = '姓';
 $lang['entry_email'] 	  	         	 = '邮箱';
-$lang['entry_password'] 	  	         = 'Password';
+$lang['entry_password'] 	  	         = '密码';
 $lang['entry_confirm'] 	  	             = 'Confirm';
 $lang['entry_status'] 	  	             = '转态';
 $lang['entry_user_group'] 	  	         = 'User Group';

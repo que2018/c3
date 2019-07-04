@@ -32,6 +32,13 @@ class Sale extends MX_Controller
 		$this->load->view('sale/sale_list_table', $data);
 	}
 	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('sale/sale_list_filter', $data);
+	}
+	
 	protected function get_list()
 	{	
 		$this->lang->load('sale/sale');
@@ -59,6 +66,15 @@ class Sale extends MX_Controller
 		else 
 		{
 			$filter_store_sale_id = '';
+		}
+		
+		if($this->input->get('filter_status'))
+		{
+			$filter_status = $this->input->get('filter_status');
+		} 
+		else 
+		{
+			$filter_status = '';
 		}
 		
 		if($this->input->get('filter_tracking'))
@@ -118,6 +134,11 @@ class Sale extends MX_Controller
 			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
@@ -146,6 +167,7 @@ class Sale extends MX_Controller
 		$filter_data = array(
 			'filter_sale_id'        => $filter_sale_id,
 			'filter_store_sale_id'  => $filter_store_sale_id,
+			'filter_status'         => $filter_status,
 			'filter_tracking'       => $filter_tracking,
 			'sort'                  => $sort,
 			'order'                 => $order,
@@ -235,6 +257,11 @@ class Sale extends MX_Controller
 			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
@@ -272,6 +299,11 @@ class Sale extends MX_Controller
 		if($this->input->get('filter_store_sale_id')) 
 		{
 			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
 		}
 		
 		if($this->input->get('filter_tracking')) 
@@ -320,7 +352,7 @@ class Sale extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'sale/sale' . $url;
+		$data['filter_url'] = base_url() . 'sale/sale/filter' . $url;
 		
 		$url = '';
 		
@@ -358,6 +390,11 @@ class Sale extends MX_Controller
 			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
 		}
 		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
@@ -374,6 +411,7 @@ class Sale extends MX_Controller
 		
 		$data['filter_sale_id']   	  = $filter_sale_id;
 		$data['filter_store_sale_id'] = $filter_store_sale_id;
+		$data['filter_status']        = $filter_status;
 		$data['filter_tracking']      = $filter_tracking;
 		
 		return $data;

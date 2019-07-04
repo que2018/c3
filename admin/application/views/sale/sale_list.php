@@ -28,18 +28,18 @@
 		    <div class="row">
 		      <div class="col-md-2">
 			    <div class="form-group">
-			      <div class="col-sm-12"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_order_id'); ?>" ></div>
+			      <div class="col-sm-12"><input name="sale_id" class="form-control" autocomplete="new-password" value="<?php echo $filter_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_order_id'); ?>" ></div>
 				</div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <div class="col-sm-12"><input name="store_sale_id" class="form-control" value="<?php echo $filter_store_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_store_order_id'); ?>" ></div>
+			      <div class="col-sm-12"><input name="store_sale_id" class="form-control" autocomplete="new-password" value="<?php echo $filter_store_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_store_order_id'); ?>" ></div>
 			    </div>
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
 			      <div class="col-sm-12">
-				    <select name="status" class="form-control">
+				    <select name="status" class="form-control" autocomplete="new-password">
 					  <option value=""><?php echo $this->lang->line('entry_status'); ?></option>
 					  <?php if($filter_status == 1) { ?>
 					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
@@ -57,66 +57,64 @@
 			  </div>
 			  <div class="col-md-2">
 			    <div class="form-group">
-			      <div class="col-sm-12"><input name="tracking" class="form-control" value="<?php echo $filter_tracking; ?>" placeholder="<?php echo $this->lang->line('entry_tracking'); ?>" ></div>
+			      <div class="col-sm-12"><input name="tracking" class="form-control" autocomplete="new-password" value="<?php echo $filter_tracking; ?>" placeholder="<?php echo $this->lang->line('entry_tracking'); ?>" ></div>
 			    </div>
-			  </div>
-			  <div class="col-md-2">
-                <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
 			  </div>
 		    </div>
 		  </div>
-		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover table-sale">
-			  <thead>
-			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
-			    <?php if($sort == 'sale.id') { ?>
-				<th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
+		  <div id="table-content">
+		    <div class="table-responsive">
+		      <table class="table table-striped table-bordered table-hover table-sale">
+			    <thead>
+			      <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
+			      <?php if($sort == 'sale.id') { ?>
+				  <th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 8%;" class="sorting">
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 8%;" class="sorting">
 					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'sale.store_sale_id') { ?>
-				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'sale.store_sale_id') { ?>
+				  <th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 20.6%;" class="sorting">
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 20.6%;" class="sorting">
 					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'sale.tracking') { ?>
-				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'sale.tracking') { ?>
+				  <th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 20.6%;" class="sorting">
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 20.6%;" class="sorting">
 					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'sale.status_id') { ?>
-				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'sale.status_id') { ?>
+				  <th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16.6%;" class="sorting">
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 16.6%;" class="sorting">
 					<a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'sale.date_added') { ?>
-				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'sale.date_added') { ?>
+				  <th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
 					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16.6%;" class="sorting">
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 16.6%;" class="sorting">
 					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
-				</th>
-				<?php } ?>
-				<th></th>
-			  </thead>
-			  <tbody>
+				  </th>
+				  <?php } ?>
+				  <th></th>
+			    </thead>
+			    <tbody>
 				<?php if($sales) { ?>
 				  <?php $offset = 0; ?>
 				  <?php foreach($sales as $sale) { ?>
@@ -197,18 +195,68 @@
 					<?php $offset++; ?>
 				  <?php } ?>
 				<?php } ?>
-			  </tbody>			  
-		    </table>
-		  </div>
-		  <div class="pagination-block">
-			<div class="pull-left"><?php echo $results; ?></div>
-		    <div class="pull-right"><?php echo $pagination; ?></div>
+			    </tbody>			  
+		      </table>
+		    </div>
+		    <div class="pagination-block">
+			  <div class="pull-left"><?php echo $results; ?></div>
+		      <div class="pull-right"><?php echo $pagination; ?></div>
+		    </div>
 		  </div>
 	    </div>
 	  </div>
     </div>
   </div>
 </div>
+<script>
+$(document).ready(function() {
+	$(document).on('input', 'input[name=\'sale_id\']', function () {
+		filter_sale();
+	});
+	
+	$(document).on('input', 'input[name=\'store_sale_id\']', function () {
+		filter_sale();
+	});
+	
+	$(document).on('change', 'select[name=\'status\']', function () {
+		filter_sale();
+	});
+	
+	$(document).on('input', 'input[name=\'tracking\']', function () {		
+		filter_sale();
+	});
+});
+</script>
+<script>
+function filter_sale() {	
+	sale_id     	= $('input[name=\'sale_id\']').val();
+	store_sale_id   = $('input[name=\'store_sale_id\']').val();
+	status          = $('select[name=\'status\']').val();
+	tracking        = $('input[name=\'tracking\']').val();
+
+	url = '<?php echo $filter_url; ?>';
+
+	if(sale_id)
+		url += '&filter_sale_id=' + sale_id;
+	
+	if(store_sale_id)
+		url += '&filter_store_sale_id=' + store_sale_id;
+	
+	if(status)
+		url += '&filter_status=' + status;
+	
+	if(tracking)
+		url += '&filter_tracking=' + tracking;
+		
+	$.ajax({
+		url: url,
+		dataType: 'html',
+		success: function(html) {					
+			$('#table-content').html(html);
+		}
+	});
+}
+</script>
 <script>
 function active_tracking(handle) {	
 	if(!$(handle).find('input').length) 
@@ -404,40 +452,6 @@ function print_label_d(handle, sale_id)
 		}
 	});
 }
-</script>
-<script>
-$(document).ready(function() {
-	//filter
-	$(document).on('click', '#btn-search', function() {
-		sale_id     	= $('input[name=\'sale_id\']').val();
-		store_sale_id   = $('input[name=\'store_sale_id\']').val();
-		status          = $('select[name=\'status\']').val();
-		tracking        = $('input[name=\'tracking\']').val();
-
-		url = '<?php echo $filter_url; ?>';
-		
-		if(sale_id)
-			url += '&filter_sale_id=' + sale_id;
-		
-		if(store_sale_id)
-			url += '&filter_store_sale_id=' + store_sale_id;
-		
-		if(status)
-			url += '&filter_status=' + status;
-		
-		if(tracking)
-			url += '&filter_tracking=' + tracking;
-						
-		window.location.href = url;
-	});
-	
-	$(document).keypress(function (e) {
-		if(e.which == 13)  
-		{
-			$('#btn-search').trigger('click');
-		}
-	});
-});
 </script>
 <script>
 $(document).ready(function() {

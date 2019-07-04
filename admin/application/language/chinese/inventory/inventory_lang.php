@@ -68,7 +68,7 @@ $lang['error_row_quantity_empty'] 	  	   = '行%s: 数量 是空的';
 $lang['error_row_sku_not_found'] 	  	   = '行%s: sku <strong>%s</strong> 是 没有找到';
 $lang['error_update_quantity_error'] 	   = 'Update 数量 失败';
 $lang['error_row_location_not_found'] 	   = '行%s: 库位 <strong>%s</strong> 是 没有找到';
-$lang['error_row_duplicated_data'] 	  	   = '行%s: 库存 data duplicated: thare are more than one 行 of same 产品 and 库位';
+$lang['error_row_duplicated_data'] 	  	   = '行%s: 库存 所有客户 duplicated: thare are more than one 行 of same 产品 and 库位';
 $lang['error_inventory_add_unique'] 	   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and 批次 已被使用';
 
 

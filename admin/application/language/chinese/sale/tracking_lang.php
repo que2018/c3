@@ -50,7 +50,7 @@ $lang['text_only_excel_will_accepted'] 	 		= '( 只有Excel文件才能被接受
 $lang['text_import_order_description'] 	 		= '导入 订单 从 Excel 文件';
 $lang['text_drop_file_and_upload'] 	     		= '拖入文件或者点击上传';
 $lang['text_confirm_delete'] 	  	     		= '您确定要 删除 这个 订单?';
-$lang['text_sale_transaction_note']    	        = 'transaction for 订单 - ID: %s';
+$lang['text_sale_transaction_note']    	        = '费用 for 订单 - ID: %s';
 $lang['text_convert_success']		            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;转化 成功';
 $lang['text_sale_add_success']		            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 添加 成功';
 $lang['text_sale_edit_success']		            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
@@ -134,7 +134,7 @@ $lang['error_inventory_not_enough']      		= '<i 单位="fa fa-exclamation-trian
 $lang['error_store_name_empty']      		    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 名称 是空的';
 $lang['error_store_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 是 没有选择';
 $lang['error_location_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 是 not 选择的, 请 选择 a 店铺 first';
-$lang['error_sale_checkout_completed_notice'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 can not be modified because 出库 是 完成';
+$lang['error_sale_checkout_completed_notice'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 can not be modified 因为 出库 是 完成';
 
 
 

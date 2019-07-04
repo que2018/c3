@@ -6,7 +6,7 @@ $lang['text_shipping'] 	  	             	= '配送';
 $lang['text_fedex'] 	  	             	= 'FedEx';
 $lang['text_account_number'] 	  	     	= 'Account Number';
 $lang['text_meter_number'] 	  	         	= 'Meter Number';
-$lang['text_password'] 	  	         	 	= 'password';
+$lang['text_password'] 	  	         	 	= '密码';
 $lang['text_key'] 	  	                 	= 'FedEx Key';
 $lang['text_company'] 	  	     	     	= '公司';
 $lang['text_time_zone'] 	  	     	 	= 'time zone';
@@ -63,7 +63,7 @@ $lang['column_state_short'] 	  	     	= '州 Short';
 // Entry
 $lang['entry_account_number'] 	  	     	= 'Account Number';
 $lang['entry_meter_number'] 	  	     	= 'Meter Number';
-$lang['entry_password'] 	  	     	 	= 'Password';
+$lang['entry_password'] 	  	     	 	= '密码';
 $lang['entry_key'] 	  	                 	= 'FedEx Key';
 $lang['entry_company'] 	  	     	 	 	= '公司';
 $lang['entry_time_zone'] 	  	     	 	= 'Time Zone';

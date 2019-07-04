@@ -6,7 +6,7 @@ $lang['text_shipping'] 	  	             = '配送';
 $lang['text_ups'] 	  	             	 = 'UPS';
 $lang['text_access_key'] 	  	         = 'access key';
 $lang['text_username'] 	  	         	 = 'username';
-$lang['text_password'] 	  	         	 = 'password';
+$lang['text_password'] 	  	         	 = '密码';
 $lang['text_account_number'] 	  	     = 'account number';
 $lang['text_pickup_method'] 	  	     = 'pickup 方式';
 $lang['text_classification_code'] 	  	 = 'classification 代码';
@@ -77,7 +77,7 @@ $lang['column_state_short'] 	  	     = '州 Short';
 // Entry
 $lang['entry_access_key'] 	  	     	 = 'Access Key';
 $lang['entry_username'] 	  	     	 = 'Username';
-$lang['entry_password'] 	  	     	 = 'Password';
+$lang['entry_password'] 	  	     	 = '密码';
 $lang['entry_account_number'] 	  	     = 'Account Number';
 $lang['entry_pickup_method'] 	  	     = 'Pickup Method';
 $lang['entry_classification_code'] 	  	 = 'Classification 代码';

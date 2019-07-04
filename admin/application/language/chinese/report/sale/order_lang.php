@@ -94,7 +94,7 @@ $lang['column_date_added'] 	  	         		= '添加时间';
 $lang['button_search'] 	  	             		= '搜索';
 
 // Error
-$lang['error_no_data'] 	  	 					= '搜索 complate but NO data found!';
+$lang['error_no_data'] 	  	 					= '搜索 complate but NO 所有客户 found!';
 //$lang['error_sku_not_found'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> 是 not 存在';
 //$lang['error_order_exist'] 	  	         		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 订单 id <strong>%s</strong> 是 存在';
 $lang['error_client_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;客户 是 not 选择的';

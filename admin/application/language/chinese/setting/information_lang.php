@@ -23,7 +23,7 @@ $lang['text_information_edit_success'] 	    = '<i 单位="fa fa-check-circle-o">
 
 // Tab
 $lang['tab_content'] 	  	         		= 'Content';
-$lang['tab_data'] 	  	                    = 'Data';
+$lang['tab_data'] 	  	                    = '所有客户';
 
 // Column
 $lang['column_title'] 	  	         		= 'Title';
