@@ -40,7 +40,7 @@ $lang['entry_default_order_shipping_provider'] 	= 'Default 订单 配送 提供�
 $lang['entry_default_order_shipping_service']  	= 'Default 订单 配送 服务';
 
 
-$lang['entry_auto_download'] 	  	     		= 'Auto Download';
+$lang['entry_auto_download'] 	  	     		= 'Auto 下载';
 $lang['entry_auto_upload'] 	  	         		= 'Auto 上传';
 $lang['entry_sync_inventory'] 	         		= 'Sync 库存';
 $lang['entry_sync_single_warehouse'] 	 		= 'Sync Single Warehouse';

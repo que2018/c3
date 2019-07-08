@@ -4,9 +4,9 @@
 $lang['text_store'] 	  	                       = '店铺';
 $lang['text_store_sync_history'] 	  	           = '店铺 Sync History';
 $lang['text_store_sync_history_list_description']  = '显示 店铺 sync history';
-$lang['text_download']  						   = 'Download';
+$lang['text_download']  						   = '下载';
 $lang['text_upload']    						   = '上传';
-$lang['text_success']                              = 'Success';
+$lang['text_success']                              = '成功';
 $lang['text_fail']    							   = 'Fail';
 $lang['text_cancel']    						   = '取消';
 $lang['text_clear_sync_history']    		       = 'clear sync history';

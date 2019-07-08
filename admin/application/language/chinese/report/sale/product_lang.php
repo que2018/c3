@@ -11,9 +11,9 @@ $lang['text_sale'] 	  	             	  	    = '订单';
 $lang['text_product'] 	  	             	  	= '产品';
 $lang['text_product_detail'] 	  	            = '产品 Detail';
 $lang['text_product_sale'] 	  	         	  	= '产品 订单';
-$lang['text_today'] 	  	         	  	    = 'Today';
-$lang['text_monthly'] 	  	         	  		= 'Monthly';
-$lang['text_annual'] 	  	         	  		= 'Annual';
+$lang['text_today'] 	  	         	  	    = '日';
+$lang['text_monthly'] 	  	         	  		= '月';
+$lang['text_annual'] 	  	         	  		= '年';
 $lang['text_sale_product_description'] 	  	    = '显示 all 这个 产品 订单 记录';
 
 // Column
@@ -23,7 +23,7 @@ $lang['column_sku'] 	  	             	  	= 'SKU';
 $lang['column_quantity'] 	  	         	  	= '数量';
 $lang['column_total'] 	  	         	  	    = '总计';
 $lang['column_date_added'] 	  	         	  	= '添加时间';
-$lang['column_income'] 	  	         	  		= 'Income';
+$lang['column_income'] 	  	         	  		= '收入';
 $lang['column_action'] 	  	             	  	= '操作';
 
 // Tab

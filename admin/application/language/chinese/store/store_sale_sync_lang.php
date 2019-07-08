@@ -8,7 +8,7 @@ $lang['text_store_sale_id_info']                       = '店铺 名称: %s; 店
 $lang['text_store_sale_sync_list_description']  	   = '显示 all 这个 店铺 订单 sync';
 $lang['text_no_upload_order'] 	  	           		   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;No 追踪号 needs to be uploaded';
 $lang['text_syncing'] 	  	               			   = '<i 单位="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;syncing ...';
-$lang['text_import_total']                 			   = '<strong>总计: %s; Success: %s; Warning: %s; Fail: %s</strong>';
+$lang['text_import_total']                 			   = '<strong>总计: %s; 成功: %s; 警告: %s; Fail: %s</strong>';
 
 // Column
 $lang['column_client'] 	  	               			   = '客户';

@@ -39,6 +39,7 @@ class Sale_unsolved extends MX_Controller
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
+		$this->load->model('sale/sale_unsolved_model');
 		$this->load->model('extension/shipping_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
@@ -153,8 +154,8 @@ class Sale_unsolved extends MX_Controller
 			'limit'                 => $limit
 		);
 		
-		$sales = $this->sale_model->get_sales($filter_data);
-		$sale_total = $this->sale_model->get_sale_total($filter_data);
+		$sales = $this->sale_unsolved_model->get_unsolved_sales($filter_data);
+		$sale_total = $this->sale_unsolved_model->get_unsolved_sale_total($filter_data);
 		
 		$data['sales'] = array();
 		

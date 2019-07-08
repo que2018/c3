@@ -18,9 +18,9 @@ $lang['tab_setting'] 	  	             	 = 'Setting';
 // Entry
 $lang['entry_token'] 	  	             	 = 'Token';
 $lang['entry_start'] 	  	             	 = 'Start';
-$lang['entry_download_limit'] 	  	     	 = 'Download Limit';
+$lang['entry_download_limit'] 	  	     	 = '下载 Limit';
 $lang['entry_upload_limit'] 	  	     	 = '上传 Limit';
-$lang['entry_recent_days'] 	  	         	 = 'Recent Days';
+$lang['entry_recent_days'] 	  	         	 = '最近 Days';
 $lang['entry_order'] 	  	             	 = '订单';
 $lang['entry_field'] 	  	             	 = 'Field';
 $lang['entry_sort_order'] 	  	         	 = 'Sort 订单';
