@@ -18,6 +18,6 @@ $lang['column_action'] 	  	               			   = '操作';
  
 // Error
 $lang['error_not_import_alert']                        = '<strong>Not importing anything 因为 sync errors</strong>';
-$lang['error_store_sale_id_exist']          		   = '<a target="_blank" href="%s"><strong>订单 #%s</strong> 是 存在</a>';
-$lang['error_store_sale_product_sku_not_set']          = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has 产品 <strong>#%s</strong> that 这个 sku 是 未设置</a>';
-$lang['error_store_sale_product_sku_not_found']        = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has sku <strong>%s</strong> that 是 没有找到 in 系统</a>';
+$lang['error_store_sale_id_exist']          		   = '<一个 target="_blank" href="%s"><strong>订单 #%s</strong> 是 存在</一个>';
+$lang['error_store_sale_product_sku_not_set']          = '<一个 target="_blank" href="%s"><strong>订单 #%s</strong> has 产品 <strong>#%s</strong> that 这个 sku 是 未设置</一个>';
+$lang['error_store_sale_product_sku_not_found']        = '<一个 target="_blank" href="%s"><strong>订单 #%s</strong> has sku <strong>%s</strong> that 是 没有找到 in 系统</一个>';

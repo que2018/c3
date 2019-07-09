@@ -50,6 +50,6 @@ $lang['entry_net_total_money'] 	           = 'Net 总计 Money';
 $lang['entry_refunded_money'] 	           = 'Refunded Money';
 
 // Error
-$lang['error_order_sku_empty']             = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has 产品 with empty sku</a>';
-$lang['error_order_product_empty']         = '<a target="_blank" href="%s"><strong>订单 #%s</strong> has no 产品</a>';
+$lang['error_order_sku_empty']             = '<一个 target="_blank" href="%s"><strong>订单 #%s</strong> has 产品 with empty sku</一个>';
+$lang['error_order_product_empty']         = '<一个 target="_blank" href="%s"><strong>订单 #%s</strong> has no 产品</一个>';
 $lang['error_server_response_error']       = 'square server response 错误';

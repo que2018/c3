@@ -8,45 +8,8 @@ class Sale_unsolved_model extends CI_Model
 		$this->db->from('sale');
 		$this->db->join('sale_to_checkout', 'sale_to_checkout.sale_id = sale.id', 'left');
 		$this->db->join('checkout', 'checkout.id = sale_to_checkout.checkout_id', 'left');		
-		$this->db->group_by('sale.id');
-		
-		if(!empty($data['filter_sale_id'])) 
-		{			
-			$this->db->like('sale.id', $data['filter_sale_id'], 'both');
-		}
-		
-		if(!empty($data['filter_store_id'])) 
-		{			
-			$this->db->where('sale.store_id', $data['filter_store_id']);
-		}
-		
-		if(!empty($data['filter_store_sale_id'])) 
-		{			
-			$this->db->like('sale.store_sale_id', $data['filter_store_sale_id'], 'both');
-		}
-		
-		if(!empty($data['filter_tracking'])) 
-		{			
-			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
-		}
-		
-		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 
-		{			
-			$this->db->where('sale.tracking !=', '');
-		}
-				
-		if(!empty($data['filter_name'])) 
-		{			
-			$this->db->like('sale.name', $data['filter_name'], 'after');
-		}
-		
-		if(!empty($data['filter_date_added'])) 
-		{			
-			$this->db->where('sale.date_added >=', $data['filter_date_added'] . " 00:00:00");
-			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
-		}
-
 		$this->db->where("checkout.status != 2 OR sale.id NOT IN (SELECT sale_id FROM sale_to_checkout)");
+		$this->db->group_by('sale.id');
 		
 		$sort_data = array(
 			'sale.id',
@@ -98,43 +61,6 @@ class Sale_unsolved_model extends CI_Model
 		$this->db->from('sale');
 		$this->db->join('sale_to_checkout', 'sale_to_checkout.sale_id = sale.id', 'left');
 		$this->db->join('checkout', 'checkout.id = sale_to_checkout.checkout_id', 'left');
-		
-		if(!empty($data['filter_sale_id'])) 
-		{			
-			$this->db->like('sale.id', $data['filter_sale_id'], 'both');
-		}
-		
-		if(!empty($data['filter_store_id'])) 
-		{			
-			$this->db->where('sale.store_id', $data['filter_store_id']);
-		}
-		
-		if(!empty($data['filter_store_sale_id'])) 
-		{			
-			$this->db->like('sale.store_sale_id', $data['filter_store_sale_id'], 'both');
-		}
-		
-		if(!empty($data['filter_tracking'])) 
-		{			
-			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
-		}
-		
-		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 
-		{			
-			$this->db->where('sale.tracking !=', '');
-		}
-			
-		if(!empty($data['filter_name'])) 
-		{			
-			$this->db->like('sale.name', $data['filter_name'], 'after');
-		}
-		
-		if(!empty($data['filter_date_added'])) 
-		{			
-			$this->db->where('sale.date_added >=', $data['filter_date_added'] . " 00:00:00");
-			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
-		}
-		
 		$this->db->where("checkout.status != 2 OR sale.id NOT IN (SELECT sale_id FROM sale_to_checkout)");
 
 		$q = $this->db->get();

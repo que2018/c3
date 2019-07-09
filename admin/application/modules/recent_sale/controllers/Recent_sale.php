@@ -33,15 +33,13 @@ class Recent_sale extends MX_Controller
 
 				foreach($sale_products as $sale_product)
 				{
-					if($sale_product['name']) {
-						$total = $this->currency->format($sale_product['price'] * $sale_product['quantity']);
-						
+					if($sale_product['name']) 
+					{						
 						$recent_sale_products[] = array(
 							'product_id'  => $sale_product['product_id'],
 							'name'    	  => $sale_product['name'],
 							'date'        => $date_added,
-							'store'       => $store_data['name'],
-							'total'       => $total
+							'store'       => $store_data['name']
 						);
 					}
 				}

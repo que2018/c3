@@ -10,10 +10,9 @@
 	<table class="table table-hover no-margins">
 	  <thead>
 		<tr>
-		  <th><?php echo $this->lang->line('column_product'); ?></th>
-		  <th><?php echo $this->lang->line('column_date'); ?></th>
+		  <th style="width: 35%;"><?php echo $this->lang->line('column_product'); ?></th>
+		  <th style="width: 35%;"><?php echo $this->lang->line('column_date'); ?></th>
 		  <th><?php echo $this->lang->line('column_store'); ?></th>
-		  <th><?php echo $this->lang->line('column_total'); ?></th>
 		</tr>
 	  </thead>
 	  <tbody>
@@ -22,7 +21,6 @@
 			<td><a href="<?php echo base_url(); ?>catalog/product/edit?product_id=<?php echo $recent_sale_product['product_id']; ?>" target="_blank"><?php echo $recent_sale_product['name']; ?></a></td>
 			<td><i class="fa fa-clock-o"></i> <?php echo $recent_sale_product['date']; ?></td>
 			<td><?php echo $recent_sale_product['store']; ?></td>
-			<td class="text-navy"><?php echo $recent_sale_product['total']; ?></td> 
 		  </tr>
 		<?php } ?>
 	  </tbody>

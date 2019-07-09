@@ -10,7 +10,7 @@ Demo Link: http://ims.saminthebox.com
 <div><strong>TODO</strong></div>
 <div>login client from admin</div>
 <div>shipping price calcuation</div>
-<div>checkout file uploader beter UI</div>
 <div>better checkout experience</div>
-<div>order zip with dashb line</div>
 <div>charge fee when check out</div>
+<div>enable mail</div>
+<div>remove order checkout</div>

@@ -44,33 +44,6 @@ class Sale_unsolved extends MX_Controller
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 			
-		if($this->input->get('filter_sale_id'))
-		{
-			$filter_sale_id = $this->input->get('filter_sale_id');
-		} 
-		else 
-		{
-			$filter_sale_id = '';
-		}
-		
-		if($this->input->get('filter_store_sale_id'))
-		{
-			$filter_store_sale_id = $this->input->get('filter_store_sale_id');
-		} 
-		else 
-		{
-			$filter_store_sale_id = '';
-		}
-		
-		if($this->input->get('filter_tracking'))
-		{
-			$filter_tracking = $this->input->get('filter_tracking');
-		} 
-		else 
-		{
-			$filter_tracking = '';
-		}
-		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -109,21 +82,6 @@ class Sale_unsolved extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
-		if($this->input->get('filter_store_sale_id')) 
-		{
-			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
-		}
-		
-		if($this->input->get('filter_tracking')) 
-		{
-			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -145,13 +103,10 @@ class Sale_unsolved extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_sale_id'        => $filter_sale_id,
-			'filter_store_sale_id'  => $filter_store_sale_id,
-			'filter_tracking'       => $filter_tracking,
-			'sort'                  => $sort,
-			'order'                 => $order,
-			'start'                 => ($page - 1) * $limit,
-			'limit'                 => $limit
+			'sort'             => $sort,
+			'order'            => $order,
+			'start'            => ($page - 1) * $limit,
+			'limit'            => $limit
 		);
 		
 		$sales = $this->sale_unsolved_model->get_unsolved_sales($filter_data);
@@ -226,21 +181,6 @@ class Sale_unsolved extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
-		if($this->input->get('filter_store_sale_id')) 
-		{
-			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
-		}
-		
-		if($this->input->get('filter_tracking')) 
-		{
-			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
-		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -264,21 +204,6 @@ class Sale_unsolved extends MX_Controller
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($sale_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($sale_total - $limit)) ? $sale_total : ((($page - 1) * $limit) + $limit), $sale_total, ceil($sale_total / $limit));
 		
 		$url = '';
-		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
-		if($this->input->get('filter_store_sale_id')) 
-		{
-			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
-		}
-		
-		if($this->input->get('filter_tracking')) 
-		{
-			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
 		
 		if($this->input->get('limit')) 
 		{
@@ -317,7 +242,7 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 			
-		$data['filter_url'] = base_url() . 'sale/sale_unsolved' . $url;
+		$data['filter_url'] = base_url() . 'sale/sale_unsolved/filter' . $url;
 
 		$url = '';
 		
@@ -340,31 +265,12 @@ class Sale_unsolved extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 	
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
-		if($this->input->get('filter_store_sale_id')) 
-		{
-			$url .= '&filter_store_sale_id=' . $this->input->get('filter_store_sale_id');
-		}
-		
-		if($this->input->get('filter_tracking')) 
-		{
-			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
-		}
-			
 		$data['reload_url'] = base_url() . 'sale/sale_unsolved/reload' . $url;
 
 		$data['sort']  = $sort;
 		$data['order'] = $order;
 		$data['page']  = $page;
 		$data['limit'] = $limit;
-		
-		$data['filter_sale_id']   	  = $filter_sale_id;
-		$data['filter_store_sale_id'] = $filter_store_sale_id;
-		$data['filter_tracking']      = $filter_tracking;
 		
 		return $data;
 	}
