@@ -109,6 +109,7 @@ class Setting extends MX_Controller
 				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
+				'config_smtp_enabled'                   	=> $this->input->post('config_smtp_enabled'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
 				'config_smtp_password'                   	=> $this->input->post('config_smtp_password'),
@@ -167,6 +168,7 @@ class Setting extends MX_Controller
 				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
+				'config_smtp_enabled'                   	=> $this->input->post('config_smtp_enabled'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
 				'config_smtp_password'                   	=> $this->input->post('config_smtp_password'),
@@ -217,6 +219,7 @@ class Setting extends MX_Controller
 			$data['config_logo']     		                    = $this->config->item('config_logo');
 			$data['config_default_order_shipping_provider'] 	= $this->config->item('config_default_order_shipping_provider');
 			$data['config_default_order_shipping_service']  	= $this->config->item('config_default_order_shipping_service');
+			$data['config_smtp_enabled']                     	= $this->config->item('config_smtp_enabled');
 			$data['config_smtp_hostname']                   	= $this->config->item('config_smtp_hostname');
 			$data['config_smtp_username']                   	= $this->config->item('config_smtp_username');
 			$data['config_smtp_password']                   	= $this->config->item('config_smtp_password');

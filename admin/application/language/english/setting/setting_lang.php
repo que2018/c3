@@ -98,6 +98,7 @@ $lang['entry_printnode_width']                  = 'Printnode Width';
 $lang['entry_printnode_api_key']                = 'Printnode API Key';
 $lang['entry_printnode_active_label_printer']   = 'Printnode Active Label Printer';
 $lang['entry_printnode_active_general_printer'] = 'Printnode Active General Printer';
+$lang['entry_smtp_enabled']                     = 'Smtp Enabled';
 $lang['entry_smtp_hostname']                    = 'Smtp Hostname';
 $lang['entry_smtp_username']                    = 'Smtp Username';
 $lang['entry_smtp_password']                    = 'Smtp Password';

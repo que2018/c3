@@ -37,7 +37,7 @@ $lang['entry_state'] 	  	              = '州';
 $lang['entry_country'] 	  	              = '国家';
 $lang['entry_zipcode'] 	  	              = '邮编';
 
-// Error
+// 错误
 $lang['error_warehouse_location_in_use']  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse 是 in use for 库位 and 不能被删除';
 $lang['error_warehouse_employee_in_use']  = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 warehouse 是 in use for employees and 不能被删除';
 

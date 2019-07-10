@@ -374,7 +374,7 @@ class Sale_ajax extends CI_Controller
 			}
 			
 			//send mail
-			if($status != 4) 
+			if($this->config->item('config_smtp_enabled') && $status != 4) 
 			{
 				$store_id = $sale['store_id'];
 				$store = $this->store_model->get_store($store_id);

@@ -20,7 +20,7 @@ $lang['entry_move']       = '移动:';
 $lang['entry_copy']       = '名称:';
 $lang['entry_rename']     = '名称:';
 
-// Error
+// 错误
 $lang['error_select']     = '警告:请选择一个目录或者文件!';
 $lang['error_file']       = '警告:请选择一个文件!';
 $lang['error_directory']  = '警告:请选择一个目录!';

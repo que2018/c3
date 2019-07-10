@@ -381,6 +381,21 @@
 		  <div id="mail" class="tab-pane">
 			<div class="panel-body">
 			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_smtp_enabled'); ?></label>
+			    <div class="col-sm-10">
+				  <select name="config_smtp_enabled" class="form-control">
+				    <?php if($config_smtp_enabled) { ?>
+					<option value="1" selected><?php echo $this->lang->line('text_enabled'); ?></option>
+					<option value="0"><?php echo $this->lang->line('text_disabled'); ?></option>
+					<?php } else { ?>
+					<option value="1"><?php echo $this->lang->line('text_enabled'); ?></option>
+					<option value="0" selected><?php echo $this->lang->line('text_disabled'); ?></option>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_smtp_hostname'); ?></label>
 			    <div class="col-sm-10">
 				  <input name="config_smtp_hostname" value="<?php echo $config_smtp_hostname; ?>" class="form-control">

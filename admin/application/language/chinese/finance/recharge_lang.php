@@ -13,8 +13,8 @@ $lang['text_add_recharge'] 	  	         = '添加 充值记录';
 $lang['text_edit_recharge'] 	  	     = '编辑 充值记录';
 $lang['text_client'] 	  	             = '客户';
 $lang['text_method'] 	  	             = 'Method';
-$lang['text_status'] 	  	             = '转态';
-$lang['text_payment_method'] 	  	     = 'payment 方式';
+$lang['text_status'] 	  	             = '状态';
+$lang['text_payment_method'] 	  	     = '支付 方式';
 $lang['text_amount'] 	  	             = '总量';
 $lang['text_pending'] 	  	             = '待完成';
 $lang['text_completed'] 	  	         = '完成的';
@@ -25,14 +25,14 @@ $lang['text_recharge_edit_success']      = '<i 单位="fa fa-check-circle-o" ari
 
 // Entry
 $lang['entry_client'] 	  	             = '客户';
-$lang['entry_payment_method'] 	  	     = 'Payment Method';
+$lang['entry_payment_method'] 	  	     = '支付 Method';
 $lang['entry_amount'] 	  	             = '总量';
-$lang['entry_status'] 	  	             = '转态';
+$lang['entry_status'] 	  	             = '状态';
 
 // Column
 $lang['column_client'] 	  	             = '客户';
-$lang['column_payment_method'] 	  	     = 'Payment Method';
+$lang['column_payment_method'] 	  	     = '支付 Method';
 $lang['column_amount'] 	  	             = '总量';
-$lang['column_status'] 	  	             = '转态';
+$lang['column_status'] 	  	             = '状态';
 $lang['column_date_added'] 	  	         = '添加时间';
 $lang['column_action'] 	  	             = '操作';

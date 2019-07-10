@@ -20,6 +20,6 @@ $lang['text_upc'] 	  	                 	  		= 'UPC';
 $lang['text_code'] 	  	                 	  		= '代码';
 $lang['text_pending'] 	  	                 	    = '待完成';
 $lang['text_tracking'] 	  	                 	    = '追踪号';
-$lang['text_status'] 	  	                 	  	= '转态';
+$lang['text_status'] 	  	                 	  	= '状态';
 $lang['text_result'] 	  	                 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;%s results found for <strong>%s</strong>';
 $lang['text_no_result'] 	  	                 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;There 是 no result for <strong>%s</strong>';

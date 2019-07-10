@@ -19,7 +19,7 @@ $lang['text_shipping_provider'] 	  	 		= '配送 提供商';
 $lang['text_shipping_method'] 	  	     		= '配送 方式';
 $lang['text_order_products'] 	  	     		= '订单 产品';
 $lang['text_total'] 	  	             		= '总计';
-$lang['text_status'] 	  	             		= '转态';
+$lang['text_status'] 	  	             		= '状态';
 $lang['text_order'] 	  	             		= '订单';
 $lang['text_tracking'] 	  	             		= '追踪号';
 $lang['text_add'] 	  	             			= '添加';
@@ -69,7 +69,7 @@ $lang['tab_store'] 	  	                 		= '店铺';
 $lang['entry_select'] 	  	         		    = '选择';
 $lang['entry_client'] 	  	         		    = '客户';
 $lang['entry_total'] 	  	         		    = '总计';
-$lang['entry_status'] 	  	         		    = '转态';
+$lang['entry_status'] 	  	         		    = '状态';
 $lang['entry_tracking'] 	  	         		= '追踪号';
 $lang['entry_note'] 	  	             		= '备注';
 $lang['entry_name'] 	  	             		= '名称';
@@ -117,7 +117,7 @@ $lang['button_add_product'] 	  	     		= '添加 产品';
 $lang['button_select_file'] 	  	     		= '选择 文件';
 $lang['button_print'] 	  	             		= '打印';
 
-// Error
+// 错误
 $lang['error_file_type_not_excel'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;文件 类型 是 not excel';
 $lang['error_sku_not_found'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;第%s行: sku <strong>%s</strong> 是 没有找到 in 产品';
 $lang['error_sku_client_error'] 	  	        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;第%s行: sku <strong>%s</strong> 是 not belong to 这个 owner of 这个 店铺';

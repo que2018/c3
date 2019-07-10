@@ -18,7 +18,7 @@ $lang['text_shipping_provider'] 	  	 		= '配送 提供商';
 $lang['text_shipping_method'] 	  	     		= '配送 方式';
 $lang['text_sale_products'] 	  	     		= '订单 产品';
 $lang['text_total'] 	  	             		= '总计';
-$lang['text_status'] 	  	             		= '转态';
+$lang['text_status'] 	  	             		= '状态';
 $lang['text_unsolved_order'] 	  	     		= '未处理的 订单';
 $lang['text_order_add'] 	  	         		= '添加 订单';
 $lang['text_order_edit'] 	  	         		= '编辑 订单';
@@ -54,7 +54,7 @@ $lang['entry_total_amount'] 	  	         	= '总计 总量';
 $lang['entry_select'] 	  	         		    = '选择';
 $lang['entry_client'] 	  	         		    = '客户';
 $lang['entry_total'] 	  	         		    = '总计';
-$lang['entry_status'] 	  	         		    = '转态';
+$lang['entry_status'] 	  	         		    = '状态';
 $lang['entry_tracking'] 	  	         		= '追踪号';
 $lang['entry_note'] 	  	             		= '备注';
 $lang['entry_name'] 	  	             		= '名称';
@@ -93,7 +93,7 @@ $lang['column_date_added'] 	  	         		= '添加时间';
 //$lang['button_print'] 	  	             		= '打印';
 $lang['button_search'] 	  	             		= '搜索';
 
-// Error
+// 错误
 $lang['error_no_data'] 	  	 					= '搜索 complate but NO 所有客户 found!';
 //$lang['error_sku_not_found'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> 是 not 存在';
 //$lang['error_order_exist'] 	  	         		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 订单 id <strong>%s</strong> 是 存在';

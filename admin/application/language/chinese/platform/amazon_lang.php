@@ -2,7 +2,7 @@
 
 // Text
 $lang['text_title'] 	  	           		  = 'Amazon';
-$lang['text_logo'] 	  	               		  = 'assets/??/platform/amazon.png';
+$lang['text_logo'] 	  	               		  = 'assets/??/??/amazon.png';
 $lang['text_no_tracking_need_sync'] 		  = '<i ??="fa fa-check-circle-o"></i>&nbsp;No ?? need to be synced';
 $lang['text_amazon_no_tracking_need_sync']	  = '<i ??="fa fa-check-circle-o"></i>&nbsp;No ?? need to be synced';
 $lang['text_sync_tracking_success'] 	      = '<i ??="fa fa-check-circle-o"></i>&nbsp;?? ??? for ?? <strong>%s</strong> sync ??';
@@ -19,7 +19,7 @@ $lang['entry_application_id'] 	              = 'Application ID';
 $lang['entry_application_version'] 	          = 'Application Version';
 $lang['entry_hours'] 	         			  = 'Hours';
 
-// Error
-$lang['error_no_order_fetched_from_amazon']   = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;?? %s has no ?? ??';
-$lang['error_no_order_fetched_from_amazon']   = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;no ?? fetched 从 amazon';
-$lang['error_sync_tracking_error']     		  = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;??? sync for ?? <strong>%s</strong> ? ??: <strong>%s</strong>';
+// ??
+$lang['??_no_order_fetched_from_amazon']   = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;?? %s has no ?? ??';
+$lang['??_no_order_fetched_from_amazon']   = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;no ?? fetched 从 amazon';
+$lang['??_sync_tracking_??']     		  = '<i ??="fa fa-exclamation-triangle"></i>&nbsp;??? sync for ?? <strong>%s</strong> ? ??: <strong>%s</strong>';

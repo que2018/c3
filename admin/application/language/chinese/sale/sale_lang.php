@@ -28,7 +28,7 @@ $lang['text_shipping_provider'] 	  	 		= '配送提供商';
 $lang['text_shipping_method'] 	  	     		= '配送方式';
 $lang['text_order_products'] 	  	     		= 'sale产品';
 $lang['text_total'] 	  	             		= '总计';
-$lang['text_status'] 	  	             		= '转态';
+$lang['text_status'] 	  	             		= '状态';
 $lang['text_order'] 	  	             		= '订单';
 $lang['text_add'] 	  	             			= '添加sale';
 $lang['text_edit'] 	  	             			= '编辑sale';
@@ -98,7 +98,7 @@ $lang['tab_store'] 	  	                 		= '店铺';
 $lang['entry_select'] 	  	         		    = '选择';
 $lang['entry_client'] 	  	         		    = '客户';
 $lang['entry_total'] 	  	         		    = '总计';
-$lang['entry_status'] 	  	         		    = '转态';
+$lang['entry_status'] 	  	         		    = '状态';
 $lang['entry_tracking'] 	  	         		= '追踪号';
 $lang['entry_note'] 	  	             		= '备注';
 $lang['entry_name'] 	  	             		= '名称';
@@ -130,7 +130,7 @@ $lang['column_tracking'] 	  	         		= '追踪号';
 $lang['column_name'] 	  	            	 	= '名称';
 $lang['column_label'] 	  	            	 	= '标签';
 $lang['column_customer'] 	  	                = '客户';
-$lang['column_status'] 	  	                	= '转态';
+$lang['column_status'] 	  	                	= '状态';
 $lang['column_amount'] 	  	            	 	= '总量';
 $lang['column_product_name'] 	  	     		= '产品名称';
 $lang['column_upc'] 	  	     		 		= 'UPC';
@@ -151,7 +151,7 @@ $lang['button_add_product'] 	  	     		= '添加产品';
 $lang['button_select_file'] 	  	     		= '选择文件';
 $lang['button_print'] 	  	             		= '打印';
 
-// Error
+// 错误
 $lang['error_file_type_not_excel'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;文件类型不是excel';
 $lang['error_sku_not_found'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;第%s行: sku<strong>%s</strong>产品中没有找到';
 $lang['error_sku_client_error'] 	  	        = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;第%s行: sku<strong>%s</strong>不属于这个店铺';
@@ -167,7 +167,7 @@ $lang['error_shipping_method_not_set']   		= '<i 单位="fa fa-exclamation-trian
 $lang['error_inventory_not_enough']      		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库存不足';
 $lang['error_store_name_empty']      		    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺名称是空的';
 $lang['error_store_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺没有选择';
-$lang['error_update_tracking_error'] 	  	    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;更新追踪号错误';
+$lang['error_update_tracking_error'] 	  	    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;更新追踪号error';
 $lang['error_location_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位还未选择的, 请先选择店铺';
 $lang['error_sale_checkout_completed_notice'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位不能被修改因为出库已经完成';
 $lang['error_not_able_convert_image_to_pdf'] 	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;转化图片到pdf文件失败';

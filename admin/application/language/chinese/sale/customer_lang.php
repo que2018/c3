@@ -48,6 +48,6 @@ $lang['entry_company'] 	  	             = '公司';
 $lang['entry_email'] 	  	             = '邮箱';
 $lang['entry_phone'] 	  	             = '电话';
 
-// Error
+// 错误
 $lang['error_customer_not_found'] 	  	 = '错误:客户没有找到';
 

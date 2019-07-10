@@ -17,7 +17,7 @@ $lang['text_store_sync_clear_success']		       = '<i 单位="fa fa-check-circle-
 // Column
 $lang['column_store'] 	  	               		   = '店铺';
 $lang['column_type'] 	  	                       = '类型';
-$lang['column_status'] 	  	                       = '转态';
+$lang['column_status'] 	  	                       = '状态';
 $lang['column_date_added'] 	  	                   = '添加时间';
 $lang['column_messages'] 	  	                   = 'Messages';
 $lang['column_action'] 	  	                       = '操作';
@@ -29,6 +29,6 @@ $lang['tab_message'] 	  	               		   = 'Message';
 // 店铺
 $lang['entry_store'] 	  	               		   = '店铺';
 $lang['entry_type'] 	  	               		   = '类型';
-$lang['entry_status'] 	  	               		   = '转态';
+$lang['entry_status'] 	  	               		   = '状态';
 $lang['entry_date_added'] 	  	               	   = '添加时间';
 $lang['entry_message'] 	  	               		   = 'Message';

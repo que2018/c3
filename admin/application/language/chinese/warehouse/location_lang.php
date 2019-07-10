@@ -41,7 +41,7 @@ $lang['entry_label'] 	  	              = '标签';
 $lang['tab_general'] 	  	              = '通用';
 $lang['tab_client'] 	  	              = '客户';
  
-// Error
+// 错误
 $lang['error_row_name']                   = '第%s行: 名称 是空的';
 $lang['error_row_code']                   = '第%s行: 代码 是空的';
 $lang['error_row_name_used']              = '第%s行: 名称 <strong>%s</strong> 是 used';

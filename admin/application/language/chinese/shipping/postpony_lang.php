@@ -22,8 +22,8 @@ $lang['text_length_unit'] 	  	     	 	= '长 Unit';
 $lang['text_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['text_image_type'] 	  	     	 	= '图片 类型';
 $lang['text_debug_mode'] 	  	     	 	= 'Debug Mode';
-$lang['text_sort_order'] 	  	         	= 'sort 订单';
-$lang['text_status'] 	  	             	= '转态';
+$lang['text_sort_order'] 	  	         	= '排序 订单';
+$lang['text_status'] 	  	             	= '状态';
 $lang['text_service'] 	  	         	 	= '服务';
 $lang['text_state_mapping'] 	  	        = '州 mapping';
 $lang['text_cm'] 	  	        		 	= 'cm';
@@ -70,12 +70,12 @@ $lang['entry_weight_unit'] 	  	     	 	= '重量 Unit';
 $lang['entry_signature'] 	  	     	 	= '签名';
 $lang['entry_image_type'] 	  	     	 	= '图片 类型';
 $lang['entry_debug_mode'] 	  	     	 	= 'Debug Mode';
-$lang['entry_status'] 	  	             	= '转态';
-$lang['entry_sort_order'] 	  	         	= 'Sort 订单';
+$lang['entry_status'] 	  	             	= '状态';
+$lang['entry_sort_order'] 	  	         	= '排序 订单';
 $lang['entry_fee_type'] 	  	         	= '费用 类型';
 $lang['entry_fee_value'] 	  	         	= '费用 Value';
 
-// Error
-$lang['error_save_image_failed'] 	  	 	= 'Error: 保存 图片 failed';
-$lang['error_create_shipping_label_faild'] 	= 'Error: Create 配送 标签 Faild.';
+// 错误
+$lang['error_save_image_failed'] 	  	 	= '错误: 保存 图片 failed';
+$lang['error_create_shipping_label_faild'] 	= '错误: Create 配送 标签 Faild.';
 

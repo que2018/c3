@@ -12,7 +12,7 @@ $lang['text_title'] 	  	        		= 'title';
 $lang['text_content'] 	  	        		= 'content';
 $lang['text_front'] 	  	        		= 'front';
 $lang['text_redirect'] 	  	        		= 'redirect';
-$lang['text_status'] 	  	        		= '转态';
+$lang['text_status'] 	  	        		= '状态';
 $lang['text_information'] 	  	            = '信息';
 $lang['text_information_add'] 	  	        = '添加 信息';
 $lang['text_information_edit'] 	  	        = '编辑 信息';
@@ -28,14 +28,14 @@ $lang['tab_data'] 	  	                    = '所有客户';
 // Column
 $lang['column_title'] 	  	         		= 'Title';
 $lang['column_front'] 	  	                = 'Front';
-$lang['column_status'] 	  	                = '转态';
+$lang['column_status'] 	  	                = '状态';
 
 // Entry
 $lang['entry_title'] 	  	         		= 'Title';
 $lang['entry_content'] 	  	         		= 'Content';
 $lang['entry_front'] 	  	                = 'Front';
 $lang['entry_redirect'] 	  	            = 'Direct';
-$lang['entry_status'] 	  	                = '转态';
+$lang['entry_status'] 	  	                = '状态';
 
 
 

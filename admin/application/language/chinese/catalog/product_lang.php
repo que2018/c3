@@ -88,7 +88,7 @@ $lang['entry_weight_class'] 	  	     	  			= '重量单位';
 $lang['entry_shipping_provider'] 	  	      			= '配送提供商';
 $lang['entry_shipping_service'] 	  	        		= '配送服务';
 
-// Error 
+// 错误 
 $lang['error_row_name']                         		= '第%s行: 名称是空的';
 $lang['error_row_upc']                          		= '第%s行: upc是空的';
 $lang['error_row_sku']                          		= '第%s行: sku是空的';

@@ -49,7 +49,7 @@ $lang['entry_phone'] 	  	             		= '电话';
 $lang['entry_balance'] 	  	             		= '余额';
 $lang['entry_volume_total'] 	  	            = '总容量';
 
-// Error 
+// 错误 
 $lang['error_email_is_used']                    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;邮箱<strong>%s</strong>已被使用';
 $lang['error_can_not_delete_order_exist']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个订单存在';
 $lang['error_can_not_delete_product_exist']     = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个产品存在';

@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Fee_model extends CI_Model
 {	
 	public function get_shipping_providers() 

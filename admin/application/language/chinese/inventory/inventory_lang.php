@@ -61,7 +61,7 @@ $lang['entry_client'] 	  	           	   = '客户';
 $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
 
-// Error
+// 错误
 $lang['error_row_sku_empty'] 	  	       = '行%s: sku 是空的';
 $lang['error_row_location_empty'] 	  	   = '行%s: 库位 是空的';
 $lang['error_row_quantity_empty'] 	  	   = '行%s: 数量 是空的';

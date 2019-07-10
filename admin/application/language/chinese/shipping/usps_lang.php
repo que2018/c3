@@ -20,7 +20,7 @@ $lang['text_usps_country'] 	  	         = '国家';
 $lang['text_usps_postcode'] 	  	     = 'postcode';
 $lang['text_usps_debug_mode'] 	  	     = 'debug mode';
 $lang['text_usps_status'] 	  	         = '州';
-$lang['text_usps_sort_order'] 	  	     = 'sort 订单';
+$lang['text_usps_sort_order'] 	  	     = '排序 订单';
 $lang['text_usps_stamps_username'] 	  	 = 'stamps username';
 $lang['text_usps_stamps_password'] 	  	 = 'stamps 密码';
 $lang['text_usps_stamps_integration_id'] = 'stamps integration id';
@@ -61,8 +61,8 @@ $lang['entry_city'] 	  	             = '城市';
 $lang['entry_state'] 	  	             = '州';
 $lang['entry_country'] 	  	             = '国家';
 $lang['entry_postcode'] 	  	         = 'Postcode';
-$lang['entry_status'] 	  	             = '转态';
-$lang['entry_sort_order'] 	  	         = 'Sort 订单';
+$lang['entry_status'] 	  	             = '状态';
+$lang['entry_sort_order'] 	  	         = '排序 订单';
 $lang['entry_username'] 	  	         = 'Username';
 $lang['entry_password'] 	  	         = '密码';
 $lang['entry_integration_id'] 	  	     = 'Integration ID';
@@ -71,10 +71,10 @@ $lang['entry_fee_type'] 	  	         = '费用 类型';
 $lang['entry_fee_value'] 	  	         = '费用 Value';
 $lang['entry_debug_mode'] 	  	         = 'Debug Mode';
 
-// Error
-$lang['error_save_image_failed'] 	  	 = 'Error: 保存 iamge failed';
-$lang['error_stamps_credentials'] 	  	 = 'Error: stamps credentials 是 not valid';
-$lang['error_destination_address'] 	  	 = 'Error: destination address 是 not valid';
+// 错误
+$lang['error_save_image_failed'] 	  	 = '错误: 保存 iamge failed';
+$lang['error_stamps_credentials'] 	  	 = '错误: stamps credentials 是 无效';
+$lang['error_destination_address'] 	  	 = '错误: destination address 是 无效';
 
 
 
