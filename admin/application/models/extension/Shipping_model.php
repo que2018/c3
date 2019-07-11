@@ -8,7 +8,7 @@ class Shipping_model extends CI_Model
 	
 		$shipping_providers = array();
 	
-		foreach ($query->result_array() as $result) 
+		foreach($query->result_array() as $result) 
 		{
 			$code = $result['code'];
 			

@@ -9,7 +9,7 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-    <a href="<?php echo base_url(); ?>log/activity_Log/clear" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_clear_activity_log'); ?>" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
+    <a href="<?php echo base_url(); ?>log/activity_log/clear" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_clear_activity_log'); ?>" class="btn btn-danger btn-clear"><i class="fa fa-trash"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

@@ -12,15 +12,10 @@ Demo Link: http://ims.saminthebox.com
 <div>shipping price calcuation</div>
 <div>better checkout experience</div>
 <div>charge fee when check out</div>
-<div>delete log bug</div>
-<div>auto assign store in front order</div>
 <div>shipping state mapping empty bug</div>
 <div>order trend widget</div>
 <div>mail order detail info</div>
-<div>remove product fee</div>
 <div>setting localization bug</div>
 <div>checkin consider client Id</div>
-<div>remove product fee</div>
 <div>shipping fee running in the detail</div>
 <div>tracking in the detail</div>
-<div>seperate shipping and valume</div>

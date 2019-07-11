@@ -93,6 +93,7 @@ $lang['tab_product'] 	  	             		= '产品';
 $lang['tab_label'] 	  	             		    = '标签';
 $lang['tab_fee'] 	  	                 		= '费用';
 $lang['tab_store'] 	  	                 		= '店铺';
+$lang['tab_volume_weight'] 	  	                = '体积 & 重量';
 
 // Entry
 $lang['entry_select'] 	  	         		    = '选择';

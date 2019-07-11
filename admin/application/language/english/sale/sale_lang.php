@@ -91,6 +91,7 @@ $lang['tab_product'] 	  	             		= 'Product';
 $lang['tab_label'] 	  	             		    = 'Label';
 $lang['tab_fee'] 	  	                 		= 'Fee';
 $lang['tab_store'] 	  	                 		= 'Store';
+$lang['tab_volume_weight'] 	  	                = 'Volume & Weight';
 
 // Entry
 $lang['entry_select'] 	  	         		    = 'Select';

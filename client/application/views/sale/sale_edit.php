@@ -242,7 +242,6 @@
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_store'); ?></label>
                 <div class="col-sm-10">
 				  <select name="store_id" name="store_id" class="form-control">
-				    <option value=""></option>
 				    <?php foreach($stores as $store) { ?>
 				    <?php if($store['store_id'] == $store_id) { ?>
 				    <option value="<?php echo $store['store_id']; ?>" selected><?php echo $store['name']; ?></option>

@@ -37,6 +37,7 @@
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#volume_weight"><?php echo $this->lang->line('tab_volume_weight'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
@@ -149,7 +150,7 @@
 			  </table> 
 			</div>
 		  </div>
-		  <div id="shipping" class="tab-pane">
+		  <div id="volume_weight" class="tab-pane">
 			<div class="panel-body">
 			  <div class="form-group">
 				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_length'); ?></label>
@@ -220,7 +221,11 @@
 				  </select>
 			    </div>
 			  </div>				
-			  <div class="hr-line-dashed"></div> 
+			  <div class="hr-line-dashed"></div>  	
+			</div>
+		  </div>
+		  <div id="shipping" class="tab-pane">
+			<div class="panel-body">
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_provider'); ?></label>
 			    <div class="col-sm-10">
@@ -254,6 +259,11 @@
 			  <div class="hr-line-dashed"></div>  	
 			</div>
 		  </div>
+		  
+		  
+		  
+		  
+		  
 		  <div id="label" class="tab-pane">
 		    <div class="panel-body">
 			  <div class="table-responsive">
