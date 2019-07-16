@@ -80,4 +80,36 @@ class Checkout_weight_model extends CI_Model
 		
 		return $result;
 	}
+	
+	public function run_checkout($checkout_id)
+	{
+		$this->load->model('check/checkout_model');
+		
+		$weight = $this->checkout_model->get_checkout_products_weight($checkout_id);
+		
+		$amount = 0;
+		
+		$found = false;
+		
+		$checkout_weight_levels = $this->config->item('checkout_weight_level');
+		
+		foreach($checkout_weight_levels as $checkout_weight_level)
+		{
+			if($weight < $checkout_weight_level['weight'])
+			{
+				$amount = $checkout_weight_level['amount'] * $weight;
+				
+				$found = true;
+				
+				break;
+			}
+		}
+
+		if(!$found)
+		{
+			$amount = $this->config->item('checkout_weight_level_end') * $weight_total;
+		}			
+		
+		return $amount;
+	}
 }

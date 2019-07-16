@@ -8,11 +8,11 @@ $lang['text_platform'] 	  	               = '平台';
 $lang['text_payment_detail'] 	  	       = '支付 Detail';
 $lang['text_order_detail'] 	  	           = '订单 Detail';
 $lang['text_logo'] 	  	                   = 'assets/图片/平台/square.png';
-$lang['text_square_platform_edit_success'] = '<i 单位="fa fa-check-circle-o"></i>&nbsp;square 平台 编辑 成功';
+$lang['text_square_platform_edit_success'] = '<i class="fa fa-check-circle-o"></i>&nbsp;square 平台 编辑 成功';
 
 // Tab
 $lang['tab_fields'] 	  	               = 'Fields';
-$lang['tab_setting'] 	  	               = 'Setting';
+$lang['tab_setting'] 	  	               = '设定';
 $lang['tab_customer'] 	  	               = '客户';
 $lang['tab_product'] 	  	               = '产品';
 
@@ -30,7 +30,7 @@ $lang['entry_status'] 	  	               = '状态';
 $lang['entry_token'] 	  	               = 'Token';
 $lang['entry_location_id'] 	  	           = '库位 ID';
 $lang['entry_recent_days'] 	  	           = '最近 Days';
-$lang['entry_limit'] 	  	               = 'Limit';
+$lang['entry_limit'] 	  	               = '限制';
 $lang['entry_order'] 	  	               = '订单';
 $lang['entry_name'] 	  	               = '名称';
 $lang['entry_street'] 	  	               = '街道';

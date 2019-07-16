@@ -28,9 +28,9 @@ $lang['text_loading_locations']            = '加载 库位 ..';
 $lang['text_only_excel_will_accepted'] 	   = '( 只有Excel文件才能被接受 )';
 $lang['text_drop_file_and_upload'] 	       = '拖入文件或者点击上传';
 $lang['text_confirm_delete'] 	           = '您确定要 删除 这个 库存?';
-$lang['text_inventory_add_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 添加 成功';
-$lang['text_inventory_edit_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 编辑 成功';
-$lang['text_inventory_delete_success'] 	   = '<i 单位="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
+$lang['text_inventory_add_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 添加 成功';
+$lang['text_inventory_edit_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 编辑 成功';
+$lang['text_inventory_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;库存 删除 成功';
 $lang['text_rows_imported'] 	           = '<strong>共%s行 被导入</strong>';
 $lang['text_no_rows_imported'] 	           = '<strong>No 行 是 导入</strong>';
 
@@ -69,7 +69,7 @@ $lang['error_row_sku_not_found'] 	  	   = '行%s: sku <strong>%s</strong> 是 �
 $lang['error_update_quantity_error'] 	   = 'Update 数量 失败';
 $lang['error_row_location_not_found'] 	   = '行%s: 库位 <strong>%s</strong> 是 没有找到';
 $lang['error_row_duplicated_data'] 	  	   = '行%s: 库存 所有客户 duplicated: thare are more than one 行 of same 产品 and 库位';
-$lang['error_inventory_add_unique'] 	   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and 批次 已被使用';
+$lang['error_inventory_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;库存 with same 产品, 库位 and 批次 已被使用';
 
 
 

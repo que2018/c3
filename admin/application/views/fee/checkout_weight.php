@@ -8,7 +8,7 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_checkout_weight'); ?></strong></li>
 	</ol>
 	<div class="button-group tooltip-demo">
-	  <button type="button" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></a>
+	  <button type="button" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save_checkout_weight'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></a>
 	</div>
   </div>
 </div>

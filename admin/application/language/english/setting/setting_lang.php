@@ -58,7 +58,7 @@ $lang['tab_printnode'] 	  	                    = 'Printnode';
 $lang['tab_mail'] 	  	           			    = 'Mail';
 $lang['tab_order'] 	  	           				= 'Order';
 $lang['tab_shipping'] 	  	           			= 'Shipping';
-$lang['tab_operation'] 	  	           			= 'Operation';
+$lang['tab_fee'] 	  	           			    = 'Fee';
 
 // Entry
 $lang['entry_time_zone']              			= 'Time Zone';
@@ -75,6 +75,7 @@ $lang['entry_client_language']                  = 'Client Language';
 $lang['entry_information_front']                = 'Information Front';
 $lang['entry_length_class']                     = 'Length Class';
 $lang['entry_weight_class']                     = 'Weight Class';
+$lang['entry_logo']                             = 'Logo';
 $lang['entry_label_width_type']           	    = 'Label Width Type';
 $lang['entry_label_width']           			= 'Label Width';
 $lang['entry_label_posy']           			= 'Label Postion Y';
@@ -111,4 +112,6 @@ $lang['entry_checkout']                         = 'checkout';
 $lang['entry_complete_action']                  = 'Complete Action';
 $lang['entry_order_default_shipping_provider']  = 'Order Default Shipping Provider';
 $lang['entry_order_default_shipping_service']   = 'Order Default Shipping Service';
+$lang['entry_default_checkout_fee']             = 'Default Checkout Fee';
+
 

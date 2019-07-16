@@ -510,6 +510,18 @@ class Client extends MX_Controller
 		$this->load->view('client/client_edit', $data);
 	}
 	
+	public function view() 
+	{
+		if($this->input->get('client_id'))
+		{
+			$client_id = $this->input->get('client_id');
+			
+			$this->session->set_userdata('client_id', $client_id);
+			
+			redirect($this->config->item('client_url') . '/sale/sale', 'refresh');
+		}
+	}
+	
 	public function delete()
 	{
 		if($this->input->get('client_id'))

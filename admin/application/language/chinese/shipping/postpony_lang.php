@@ -31,11 +31,11 @@ $lang['text_inch'] 	  	 				 	= 'inch';
 $lang['text_kg'] 	  	 				 	= 'kg';
 $lang['text_lb'] 	  	 				 	= 'lb';
 $lang['text_png'] 	  	 				 	= 'png';
-$lang['text_fixed'] 	  			     	= 'fixed';
-$lang['text_ratio'] 	  			     	= 'ratio';
+$lang['text_fixed'] 	  			     	= '固定';
+$lang['text_ratio'] 	  			     	= '比率';
 $lang['text_fee_value'] 	  				= '费 value';
-$lang['text_save_setting'] 	  				= '保存 setting';
-$lang['text_edit_success'] 	  				= '<i 单位="fa fa-check-circle-o"></i>&nbsp;Postpony 编辑 成功';
+$lang['text_save_setting'] 	  				= '保存 设定';
+$lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Postpony 编辑 成功';
 
 // Tab
 $lang['tab_service'] 	  	             	= '服务';

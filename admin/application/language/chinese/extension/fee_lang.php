@@ -6,8 +6,8 @@ $lang['text_fee'] 	  	                 = '费用';
 $lang['text_extension'] 	  	         = '扩展';
 $lang['text_no_fees'] 	  	             = '没有费用';
 $lang['text_fee_description'] 	  	     = '显示所有费用';
-$lang['text_install_success'] 	  	     = '<i 单位="fa fa-check-circle-o"></i>&nbsp;费用安装成功';
-$lang['text_uninstall_success'] 	  	 = '<i 单位="fa fa-check-circle-o"></i>&nbsp;费用卸载成功';
+$lang['text_install_success'] 	  	     = '<i class="fa fa-check-circle-o"></i>&nbsp;费用安装成功';
+$lang['text_uninstall_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;费用卸载成功';
 
 // Column
 $lang['column_name'] 	  	             = '名称';

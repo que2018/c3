@@ -39,9 +39,9 @@ $lang['text_download_import_sample'] 	  	    		= '下载导入模板';
 $lang['text_import_product_description'] 	  			= '从excel导入产品';
 $lang['text_confirm_delete'] 	  	     	  			= '您确定要删除这个产品?';
 $lang['text_product_list_description'] 		  			= '显示所有产品';
-$lang['text_product_add_success'] 	     	  			= '<i 单位="fa fa-check-circle-o"></i>&nbsp;产品添加成功';
-$lang['text_product_edit_success'] 	     	  			= '<i 单位="fa fa-check-circle-o"></i>&nbsp;产品编辑成功';
-$lang['text_product_delete_success'] 	 	  			= '<i 单位="fa fa-check-circle-o"></i>&nbsp;产品删除成功';
+$lang['text_product_add_success'] 	     	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;产品添加成功';
+$lang['text_product_edit_success'] 	     	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;产品编辑成功';
+$lang['text_product_delete_success'] 	 	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;产品删除成功';
 $lang['text_loading_shipping_method'] 	 	  			= '加载配送方式 ...';
 $lang['text_confirm_delete'] 	 	  	        		= '您确定要删除这个产品?';
 $lang['text_confirm_bulk_delete'] 	 	  	    		= '您确定要删除选择的产品?';
@@ -108,10 +108,10 @@ $lang['error_row_upc_exist']                    		= '第%s行: upc<strong>%s</st
 $lang['error_row_upc_duplicate']                    	= '第%s行: upc<strong>%s</strong>是重复的';
 $lang['error_row_sku_exist']                    		= '第%s行: sku<strong>%s</strong>已存在';
 $lang['error_row_sku_duplicate']                        = '第%s行: sku<strong>%s</strong>是重复的';
-$lang['error_sku_is_used']                      		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;sku<strong>%s</strong>已在其他产品中使用';
-$lang['error_can_not_delete_inventory_exist']   		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个产品 不能被删除 因为库存存在';
-$lang['error_can_not_delete_transfer_exist']   			= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个不能被删除因为库存存在';
-$lang['error_product_can_not_delete_inventory_exist']   = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;%s不能被删除因为库存存在';
+$lang['error_sku_is_used']                      		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;sku<strong>%s</strong>已在其他产品中使用';
+$lang['error_can_not_delete_inventory_exist']   		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个产品 不能被删除 因为库存存在';
+$lang['error_can_not_delete_transfer_exist']   			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个不能被删除因为库存存在';
+$lang['error_product_can_not_delete_inventory_exist']   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;%s不能被删除因为库存存在';
 
 
 

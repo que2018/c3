@@ -25,7 +25,7 @@ $lang['text_date_since'] 	  	            = 'since %s';
 $lang['text_date_before'] 	  	            = 'before %s';
 $lang['text_all_the_date'] 	  	            = '所有 这个 时间';
 $lang['text_confirm_delete'] 	  	     = '您确定要 删除 这个 充值记录?';
-$lang['text_transaction_edit_success']      = '<i 单位="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;费用 编辑 成功';
+$lang['text_transaction_edit_success']      = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;费用 编辑 成功';
 
 // Column
 $lang['column_client'] 	  	             	= '客户';

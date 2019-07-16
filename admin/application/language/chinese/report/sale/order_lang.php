@@ -29,8 +29,8 @@ $lang['text_loading'] 	  	        		 	= '加载 ...';
 $lang['text_pending'] 	  	     		        = '待完成';
 $lang['text_completed'] 	  	     		    = '完成的';
 $lang['text_checkout_order_note'] 	  	        = '出库 for 订单 #%s';
-$lang['text_import_order_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 are 成功 导入';
-$lang['text_order_edit_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
+$lang['text_import_order_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;订单 are 成功 导入';
+$lang['text_order_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
 //$lang['text_order_list_description'] 	 		= '显示 所有未处理sale';
 $lang['text_unsolved_order_list_description']  	= '显示 所有sale';
 $lang['text_only_excel_will_accepted'] 	 		= '( 只有Excel文件才能被接受 )';
@@ -70,8 +70,8 @@ $lang['entry_shipping_provider'] 	  	 		= '配送 提供商';
 $lang['entry_shipping_service'] 	  	        = '配送 服务';
 $lang['entry_store'] 	  	                    = '店铺';
 $lang['entry_store_order_id'] 	  	            = '店铺 订单 ID';
-$lang['text_sale_add_success']		            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 添加 成功';
-$lang['text_sale_edit_success']		            = '<i 单位="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
+$lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单 添加 成功';
+$lang['text_sale_edit_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单 编辑 成功';
 
 // Column
 $lang['column_order_id'] 	  	     		    = '订单 Id';
@@ -95,19 +95,19 @@ $lang['button_search'] 	  	             		= '搜索';
 
 // 错误
 $lang['error_no_data'] 	  	 					= '搜索 complate but NO 所有客户 found!';
-//$lang['error_sku_not_found'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> 是 not 存在';
-//$lang['error_order_exist'] 	  	         		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 订单 id <strong>%s</strong> 是 存在';
-$lang['error_client_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;客户 是 not 选择的';
-//$lang['error_row_data'] 	  	         		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 <strong>%sth</strong> 行 has 无效数据';
-$lang['error_client_empty'] 	  	     		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;客户 是空的';
-//$lang['error_code_empty'] 	  	         		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;代码 是空的';
-//$lang['error_client_product_not_found']  		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个 产品 of 这个 客户 是 没有找到';
-//$lang['error_shipping_provider_not_set'] 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;配送 提供商 是 未设置';
-//$lang['error_shipping_method_not_set']   		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;配送 方式 是 未设置';
-//$lang['error_inventory_not_enough']      		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库存 是 不足';
-//$lang['error_store_name_empty']      		    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 名称 是空的';
-//$lang['error_store_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;店铺 是 not 选择的';
-//$lang['error_location_not_select'] 	  	 		= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位 是 not 选择的, 请 选择 一个 店铺 first';
+//$lang['error_sku_not_found'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;sku <strong>%s</strong> 是 not 存在';
+//$lang['error_order_exist'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺 订单 id <strong>%s</strong> 是 存在';
+$lang['error_client_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;客户 是 not 选择的';
+//$lang['error_row_data'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 <strong>%sth</strong> 行 has 无效数据';
+$lang['error_client_empty'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;客户 是空的';
+//$lang['error_code_empty'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;代码 是空的';
+//$lang['error_client_product_not_found']  		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 产品 of 这个 客户 是 没有找到';
+//$lang['error_shipping_provider_not_set'] 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送 提供商 是 未设置';
+//$lang['error_shipping_method_not_set']   		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送 方式 是 未设置';
+//$lang['error_inventory_not_enough']      		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库存 是 不足';
+//$lang['error_store_name_empty']      		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺 名称 是空的';
+//$lang['error_store_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺 是 not 选择的';
+//$lang['error_location_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位 是 not 选择的, 请 选择 一个 店铺 first';
 
 
 

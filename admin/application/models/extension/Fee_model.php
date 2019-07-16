@@ -2,7 +2,7 @@
 
 class Fee_model extends CI_Model
 {	
-	public function get_fees($type == '') 
+	public function get_fees($type = '') 
 	{
 		$fees = array();
 		
@@ -12,6 +12,8 @@ class Fee_model extends CI_Model
 		{
 			foreach($query->result_array() as $result) 
 			{
+				$code = $result['code'];
+			
 				if(($this->config->item($code . '_type') == $type) && ($this->config->item($code . '_status')))
 				{
 					$this->lang->load('fee/' . $code);			
@@ -25,14 +27,19 @@ class Fee_model extends CI_Model
 		}
 		else
 		{
-			if($this->config->item($code . '_status'))
+			foreach($query->result_array() as $result) 
 			{
-				$this->lang->load('fee/' . $code);			
+				$code = $result['code'];
 				
-				$fees[] = array(
-					'code'     => $code,
-					'name'     => $this->lang->line('text_title')
-				);
+				if($this->config->item($code . '_status'))
+				{
+					$this->lang->load('fee/' . $code);			
+					
+					$fees[] = array(
+						'code'     => $code,
+						'name'     => $this->lang->line('text_title')
+					);
+				}
 			}
 		}					
 	

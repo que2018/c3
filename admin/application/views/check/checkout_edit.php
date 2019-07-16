@@ -49,11 +49,11 @@
 			    <div class="row">
 				  <div class="col-lg-7">
 				    <div class="form-group">
-					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_checkout_id'); ?></label>
+					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_sale_id'); ?></label>
 					  <div class="col-sm-10">
 					    <div class="input-group">
 					      <span class="input-group-addon">#</span>
-						  <input type="text" name="checkout_id" value="<?php echo $checkout_id; ?>" class="form-control">
+						  <input type="text" name="sale_id" value="<?php echo $sale_id; ?>" class="form-control">
 					    </div>
 					  </div>
 				    </div>
@@ -302,41 +302,20 @@
 		  </div>
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
-			  <div class="table-responsive">
-                <table id="checkout_fees" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_name') ?></strong></td>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_amount') ?></strong></td>
-					<td></td>
-					</tr>
-				  </thead>
-				  <tbody>
-				    <?php $checkout_fee_row = 0; ?>
-					<?php if($checkout_fees) { ?>
-					  <?php foreach ($checkout_fees as $checkout_fee) { ?>
-					  <tr id="checkout-fee-row<?php echo $checkout_fee_row; ?>">
-					    <td><input name="checkout_fee[<?php echo $checkout_fee_row; ?>][name]" value="<?php echo $checkout_fee['name']; ?>" class="form-control" /></td>
-						<td class="text-right">
-						  <div class="input-group">
-						    <span class="input-group-addon">$</span>
-						    <input name="checkout_fee[<?php echo $checkout_fee_row; ?>][amount]" value="<?php echo $checkout_fee['amount']; ?>" class="form-control" /></td>
-						  </div>
-						</td>
-						<td class="text-left"><button type="button" onclick="$('#checkout-fee-row<?php echo $checkout_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
-					  </tr>
-					  <?php $checkout_fee_row ++; ?>
-					  <?php } ?>
+			  <div class="form-group">
+			    <div class="col-sm-12">
+				  <select name="checkout_fee_code" class="form-control">
+				    <option value=""></option>
+				    <?php foreach($checkout_fees as $checkout_fee) { ?>
+					<?php if($checkout_fee['code'] == $checkout_fee_code) { ?>
+					<option value="<?php echo $checkout_fee['code']; ?>" selected><?php echo $checkout_fee['name']; ?></option>
+					<?php } else { ?>
+					<option value="<?php echo $checkout_fee['code']; ?>"><?php echo $checkout_fee['name']; ?></option>					
 					<?php } ?>
-				  </tbody>
-				  <tfoot>
-					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_checkout_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-					</tr>
-				  </tfoot>
-                </table>
-              </div>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
 			</div>
 		  </div>
 		  <div id="note" class="tab-pane">
@@ -406,48 +385,6 @@ $('#checkout-product tbody tr').each(function(index, element) {
 	
 	set_checkout_locations(index, product_id, select_inventory_id);
 });
-</script>
-<script>
-function refresh_fee() {
-	data = new FormData();
-				
-	$('#checkout-product tbody tr').each(function(index) {
-		product_id = $(this).find('.product_id').val();
-		quantity = $(this).find('.quantity').val();
-		
-		data.append('product[' + product_id + ']', quantity);
-	});
-	
-	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_checkout_fees',
-		type: 'post',
-		data: data,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: 'json',
-		success: function(json) {	
-			$('#checkout_fees tbody').html('');	
-
-			$.each(json.checkout_fees, function(checkout_fee_row, checkout_fee) {	
-				html  = '<tr id="checkout-fee-row' + checkout_fee_row + '">';
-				html += '<td><input name="checkout_fee[' + checkout_fee_row + '][name]" value="' + checkout_fee.name + '" class="form-control" /></td>';
-				html += '<td class="text-right">';
-				html += '<div class="input-group">';
-				html += '<span class="input-group-addon">$</span>';
-				html += '<input name="checkout_fee[' + checkout_fee_row + '][amount]" value="' + checkout_fee.amount + '" class="form-control" /></td>';
-				html += '</div>';
-				html += '<td class="text-left"><button type="button" onclick="$(\'#checkout-fee-row' + checkout_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-				html += '</tr>';
-
-				$('#checkout_fees tbody').append(html);			
-			});
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
 </script>
 <script>
 function refresh_volume() {
@@ -537,25 +474,6 @@ function add_checkout_file() {
 }
 </script>
 <script>
-checkout_fee_row = <?php echo $checkout_fee_row; ?>;
-
-function add_checkout_fee() {
-	html  = '<tr id="checkout-fee-row' + checkout_fee_row + '">';
-	html += '<td><input name="checkout_fee[' + checkout_fee_row + '][name]" value="" class="form-control" /></td>';
-	html += '<td class="text-right">';
-	html += '<div class="input-group">';
-	html += '<span class="input-group-addon">$</span>';
-	html += '<input name="checkout_fee[' + checkout_fee_row + '][amount]" value="" class="form-control" /></td>';
-	html += '</div>';
-	html += '<td class="text-left"><button type="button" onclick="$(\'#checkout-fee-row' + checkout_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
-
-	$('#checkout_fees tbody').append(html);
-
-	checkout_fee_row++;
-}
-</script>
-<script>
 $(document).ready(function() {
 	checkout_product_row = <?php echo $checkout_product_row; ?>;
 	
@@ -615,7 +533,6 @@ $(document).ready(function() {
 			
 			$(this).val(''); 
 			
-			refresh_fee();
 			refresh_volume();
 			refresh_weight();
 			
@@ -627,7 +544,6 @@ $(document).ready(function() {
 	$('#checkout-product').on('click', '.btn-delete', function() {		
 		$(this).closest('tr').remove();		
 		
-		refresh_fee();
 		refresh_volume();
 		refresh_weight();
 	});
@@ -671,7 +587,6 @@ $(document).ready(function() {
 		else
 		{
 			shipping_service_html = '<option value=""></option>';
-			
 			$('select[name=\'shipping_service\']').html(shipping_service_html);
 		}
 	});
@@ -680,7 +595,6 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
 	$(document).on('input', '.quantity', function() {
-		refresh_fee();
 		refresh_volume();
 		refresh_weight();
 	});

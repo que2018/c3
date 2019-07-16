@@ -349,6 +349,7 @@ class Checkout extends MX_Controller
 		
 		$this->lang->load('check/checkout');
 		
+		$this->load->model('extension/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -381,7 +382,6 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
-		$this->form_validation->set_rules('checkout_fee', $this->lang->line('text_checkout_fee'), 'callback_validate_checkout_fee');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
@@ -398,7 +398,7 @@ class Checkout extends MX_Controller
 				'shipping_provider' => $this->input->post('shipping_provider'),
 				'shipping_service'  => $this->input->post('shipping_service'),
 				'checkout_files'  	=> $this->input->post('checkout_file'),
-				'checkout_fees'  	=> $this->input->post('checkout_fee'),
+				'checkout_fee_code' => $this->input->post('checkout_fee_code'),
 				'note'           	=> $this->input->post('note')
 			);
 			
@@ -466,7 +466,7 @@ class Checkout extends MX_Controller
 				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
 				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
 				'checkout_files'  	=> $this->input->post('checkout_file'),
-				'checkout_fees'  	=> $this->input->post('checkout_fee'),
+				'checkout_fee_code' => $this->config->item('config_default_checkout_fee'),
 				'note'           	=> $this->input->post('note'),
 				'checkout_products' => array()
 			);
@@ -540,6 +540,19 @@ class Checkout extends MX_Controller
 			}
 		}
 		
+		//checkout fees
+		$data['checkout_fees'] = array();
+		
+		$checkout_fees_data = $this->fee_model->get_fees('checkout');
+				
+		foreach($checkout_fees_data as $checkout_fee_data) 
+		{
+			$data['checkout_fees'][] = array(
+				'code'     => $checkout_fee_data['code'],
+				'name'     => $checkout_fee_data['name']
+			);
+		}
+		
 		if($this->form_validation->run() == true)
 		{
 			$this->checkout_model->add_checkout($data);
@@ -570,6 +583,7 @@ class Checkout extends MX_Controller
 		
 		$this->lang->load('check/checkout');
 		
+		$this->load->model('extension/fee_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('extension/shipping_model');
@@ -604,7 +618,6 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
-		$this->form_validation->set_rules('checkout_fee', $this->lang->line('text_checkout_fee'), 'callback_validate_checkout_fee');
 		
 		if($this->form_validation->run() == true)
 		{
@@ -620,11 +633,11 @@ class Checkout extends MX_Controller
 				'weight_class_id'    => $this->input->post('weight_class_id'),
 				'shipping_provider'  => $this->input->post('shipping_provider'),
 				'shipping_service'   => $this->input->post('shipping_service'),
+				'checkout_fee_code'  => $this->input->post('checkout_fee_code'),
 				'note'               => $this->input->post('note'),
 				'checkout_products'  => $this->input->post('checkout_product'),
 				'checkout_labels'    => $this->input->post('checkout_label'),
-				'checkout_files'     => $this->input->post('checkout_file'),
-				'checkout_fees'      => $this->input->post('checkout_fee')
+				'checkout_files'     => $this->input->post('checkout_file')
 			);
 			
 			$this->checkout_model->edit_checkout($checkout_id, $data);
@@ -648,10 +661,10 @@ class Checkout extends MX_Controller
 			$data['weight_class_id']    = $this->input->post('weight_class_id');
 			$data['shipping_provider']  = $this->input->post('shipping_provider');
 			$data['shipping_service']   = $this->input->post('shipping_service');
+			$data['checkout_fee_code']   = $this->input->post('checkout_fee_code');
 			$data['note']            	= $this->input->post('note');
 			$data['checkout_labels']    = $this->input->post('checkout_label');
 			$data['checkout_files']     = $this->input->post('checkout_file');
-			$data['checkout_fees']   	= $this->input->post('checkout_fee');
 			
 			$checkout_products = $this->input->post('checkout_product');
 			
@@ -716,6 +729,7 @@ class Checkout extends MX_Controller
 			$data['weight_class_id']    = $checkout['weight_class_id'];
 			$data['shipping_provider']  = $checkout['shipping_provider'];
 			$data['shipping_service']   = $checkout['shipping_service'];
+			$data['checkout_fee_code']  = $checkout['checkout_fee_code'];
 			$data['note']         		= $checkout['note'];
 			
 			//checkout products
@@ -808,22 +822,6 @@ class Checkout extends MX_Controller
 				}
 			}
 
-			//checkout fee
-			$data['checkout_fees'] = array();
-			
-			$checkout_fees = $this->checkout_model->get_checkout_fees($checkout_id);	
-			
-			if($checkout_fees) 
-			{
-				foreach($checkout_fees as $checkout_fee) 
-				{
-					$data['checkout_fees'][] = array(
-						'name'   => $checkout_fee['name'],
-						'amount' => $checkout_fee['amount']
-					);
-				}
-			}
-			
 			//excel export begin
 			$objPHPExcel = new PHPExcel();	
 			$objPHPExcel->createSheet();
@@ -966,6 +964,19 @@ class Checkout extends MX_Controller
 					'name'     => $shipping_service_data['name']
 				);
 			}
+		}
+		
+		//checkout fees
+		$data['checkout_fees'] = array();
+		
+		$checkout_fees_data = $this->fee_model->get_fees('checkout');
+				
+		foreach($checkout_fees_data as $checkout_fee_data) 
+		{
+			$data['checkout_fees'][] = array(
+				'code'     => $checkout_fee_data['code'],
+				'name'     => $checkout_fee_data['name']
+			);
 		}
 	
 		//label
@@ -1137,91 +1148,7 @@ class Checkout extends MX_Controller
 			return false;
 		}	
 	}
-	
-	public function validate_checkout_fee()
-	{	
-		if($this->input->post('checkout_fee'))
-		{
-			$validated = true;
-			
-			$error_message = '';
-			
-			$checkout_fees = $this->input->post('checkout_fee');
-			
-			foreach($checkout_fees as $row => $checkout_fee)
-			{
-				$name = $checkout_fee['name'];
-				$amount = $checkout_fee['amount'];
-				
-				if(!$name)
-				{
-					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_name_required'), ($row + 1));
-					$error_message .= '<br>';
-					
-					if($validated) 
-						$validated = false;
-				}
-				
-				if(!$amount)
-				{
-					$error_message .= sprintf($this->lang->line('error_checkout_fee_row_amount_required'), ($row + 1));
-					$error_message .= '<br>';
-					
-					if($validated) 
-						$validated = false;
-				}
-			}
-			
-			$clients_ids = array();
-			
-			$checkout_products = $this->input->post('checkout_product');
-			
-			foreach($checkout_products as $checkout_product)
-			{
-				$product = $this->product_model->get_product($checkout_product['product_id']);
-				
-				if(!$product['client_id']) 
-				{
-					$error_message .= $this->lang->line('error_no_client_fee_notice');
-					$error_message .= '<br>';
-				
-					if($validated) 
-						$validated = false;
-				}
-				else
-				{
-					$clients_ids[] = $product['client_id'];
-				}
-			}
-			
-			$clients_ids = array_unique($clients_ids);
-			
-			if(sizeof($clients_ids) > 1)
-			{
-				$error_message .= $this->lang->line('error_multi_client_fee_notice');
-				$error_message .= '<br>';
-				
-				if($validated) 
-					$validated = false;
-			}
-			
-			if(!$validated)
-			{
-				$this->form_validation->set_message('validate_checkout_fee', $error_message);
-				
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{			
-			return true;
-		}	
-	}
-	
+
 	public function validate_add_tracking($tracking)
 	{
 		$this->load->model('check/checkout_model');

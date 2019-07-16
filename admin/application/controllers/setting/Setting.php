@@ -14,6 +14,7 @@ class Setting extends MX_Controller
 		$this->lang->load('setting/setting');
 		
 		$this->load->model('tool/image_model');
+		$this->load->model('extension/fee_model');
 		$this->load->model('setting/setting_model');
 		$this->load->model('setting/language_model');
 		$this->load->model('extension/shipping_model');
@@ -109,6 +110,7 @@ class Setting extends MX_Controller
 				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
+				'config_default_checkout_fee'  	            => $this->input->post('config_default_checkout_fee'),
 				'config_smtp_enabled'                   	=> $this->input->post('config_smtp_enabled'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
@@ -168,6 +170,7 @@ class Setting extends MX_Controller
 				'config_logo'      			                => $this->input->post('config_logo'),
 				'config_default_order_shipping_provider' 	=> $this->input->post('config_default_order_shipping_provider'),
 				'config_default_order_shipping_service'  	=> $this->input->post('config_default_order_shipping_service'),
+				'config_default_checkout_fee'  	            => $this->input->post('config_default_checkout_fee'),
 				'config_smtp_enabled'                   	=> $this->input->post('config_smtp_enabled'),
 				'config_smtp_hostname'                   	=> $this->input->post('config_smtp_hostname'),
 				'config_smtp_username'                   	=> $this->input->post('config_smtp_username'),
@@ -219,6 +222,7 @@ class Setting extends MX_Controller
 			$data['config_logo']     		                    = $this->config->item('config_logo');
 			$data['config_default_order_shipping_provider'] 	= $this->config->item('config_default_order_shipping_provider');
 			$data['config_default_order_shipping_service']  	= $this->config->item('config_default_order_shipping_service');
+			$data['config_default_checkout_fee']  	            = $this->config->item('config_default_checkout_fee');			
 			$data['config_smtp_enabled']                     	= $this->config->item('config_smtp_enabled');
 			$data['config_smtp_hostname']                   	= $this->config->item('config_smtp_hostname');
 			$data['config_smtp_username']                   	= $this->config->item('config_smtp_username');
@@ -342,6 +346,19 @@ class Setting extends MX_Controller
 					);
 				}
 			}
+		}
+		
+		//checkout fees
+		$data['checkout_fees'] = array();
+		
+		$checkout_fees_data = $this->fee_model->get_fees('checkout');
+				
+		foreach($checkout_fees_data as $checkout_fee_data) 
+		{
+			$data['checkout_fees'][] = array(
+				'code'     => $checkout_fee_data['code'],
+				'name'     => $checkout_fee_data['name']
+			);
 		}
 		
 		$data['success'] = $this->session->flashdata('success');

@@ -36,6 +36,9 @@ input:focus {
 .btn-edit {
     margin-right: 8px;
 }
+.btn-view {
+	margin-right: 8px;
+}
 .detail {
 	width: 300px;
     left: 100px;

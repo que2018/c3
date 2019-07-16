@@ -12,7 +12,7 @@ $lang['text_offline_edit_success']        = 'Offline 是 成功 edited';
 
 // Tab
 $lang['tab_fields'] 	  	              = 'Fields';
-$lang['tab_setting'] 	  	              = 'Setting';
+$lang['tab_setting'] 	  	              = '设定';
 
 // Entry
 $lang['entry_sort_order'] 	  	          = '排序 订单';

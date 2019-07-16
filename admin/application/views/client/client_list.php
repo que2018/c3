@@ -88,6 +88,7 @@
 					  <td><?php echo $client['email']; ?></td>
 					  <td><?php echo $client['phone']; ?></td>
 					  <td style="text-align: center">
+					    <a href="<?php echo base_url(); ?>client/client/view?client_id=<?php echo $client['client_id']; ?>" target="_blank" class="btn btn-success btn-view"><i class="fa fa-eye"></i></a>
 						<a href="<?php echo base_url(); ?>client/client/edit?client_id=<?php echo $client['client_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_client(this, <?php echo $client['client_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>				

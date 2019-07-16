@@ -22,8 +22,8 @@ $lang['text_country'] 	  	     		 = '国家';
 $lang['text_zipcode'] 	  	     		 = '邮编';
 $lang['text_customer_list_description']  = '显示所有客户';
 $lang['text_confirm_delete'] 	         = '你是否想删除这个客户?';
-$lang['text_customer_add_success'] 	  	 = '<i 单位="fa fa-check-circle-o"></i>&nbsp;客户添加成功';
-$lang['text_customer_edit_success'] 	 = '<i 单位="fa fa-check-circle-o"></i>&nbsp;客户编辑成功';
+$lang['text_customer_add_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;客户添加成功';
+$lang['text_customer_edit_success'] 	 = '<i class="fa fa-check-circle-o"></i>&nbsp;客户编辑成功';
 
 // Column
 $lang['column_name'] 	  	             = '名称';

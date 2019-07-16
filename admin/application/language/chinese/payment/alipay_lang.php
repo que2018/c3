@@ -18,7 +18,7 @@ $lang['text_alipay_edit_success']         = 'Alipay 是 成功 edited';
 
 // Tab
 $lang['tab_fields'] 	  	              = 'Fields';
-$lang['tab_setting'] 	  	              = 'Setting';
+$lang['tab_setting'] 	  	              = '设定';
 
 // Entry
 $lang['entry_service'] 	  	              = '服务';

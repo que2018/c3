@@ -24,13 +24,13 @@
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>		  
 		  <li class=""><a data-toggle="tab" href="#option"><?php echo $this->lang->line('tab_option'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#operation"><?php echo $this->lang->line('tab_operation'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#localization"><?php echo $this->lang->line('tab_localization'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#barcode"><?php echo $this->lang->line('tab_barcode'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#printnode"><?php echo $this->lang->line('tab_printnode'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#mail"><?php echo $this->lang->line('tab_mail'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
@@ -42,15 +42,12 @@
 				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
-			</div>
-		  </div>
-		  <div id="operation" class="tab-pane">
-			<div class="panel-body">
-		      <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_label_checkout'); ?></label>
-			    <div class="col-sm-10">
-				
-				</div>
+			  <div class="form-group">
+		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_logo'); ?></label>
+                <div class="col-sm-10">
+				  <a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_logo; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a>
+				  <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />				
+                </div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			</div>
@@ -176,14 +173,6 @@
 					<?php } ?>
 				  </select>
 				</div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_logo'); ?></label>
-                <div class="col-sm-10">
-				  <a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_logo; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a>
-				  <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />				
-                </div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			</div>
@@ -474,6 +463,24 @@
 				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
+			</div>
+		  </div>
+		  <div id="fee" class="tab-pane">
+			<div class="panel-body">
+		      <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_default_checkout_fee'); ?></label>
+			    <div class="col-sm-10">
+				  <select name="config_default_checkout_fee" class="form-control">
+				    <?php foreach($checkout_fees as $checkout_fee) { ?>
+					<?php if($checkout_fee['code'] == $config_default_checkout_fee) { ?>
+					<option value="<?php echo $checkout_fee['code']; ?>" selected><?php echo $checkout_fee['name']; ?></option>
+					<?php } else { ?>
+					<option value="<?php echo $checkout_fee['code']; ?>"><?php echo $checkout_fee['name']; ?></option>					
+					<?php } ?>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
 			</div>
 		  </div>
 		</div>

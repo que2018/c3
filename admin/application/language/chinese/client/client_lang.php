@@ -20,8 +20,8 @@ $lang['text_client'] 	  	             		= '客户';
 $lang['text_client_list'] 	  	         		= '客户列表';
 $lang['text_add_client'] 	  	         		= '添加客户';
 $lang['text_edit_client'] 	  	         		= '编辑客户';
-$lang['text_client_add_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;客户添加成功';
-$lang['text_client_edit_success'] 	  	 		= '<i 单位="fa fa-check-circle-o"></i>&nbsp;客户编辑成功';
+$lang['text_client_add_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;客户添加成功';
+$lang['text_client_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>&nbsp;客户编辑成功';
 $lang['text_client_list_description'] 	 		= '显示所有客户';
 $lang['text_volume_total'] 	 	  	       		= '%s %s^3';
 $lang['text_confirm_delete'] 	 	  	        = '您确定要删除这个客户?';
@@ -50,11 +50,11 @@ $lang['entry_balance'] 	  	             		= '余额';
 $lang['entry_volume_total'] 	  	            = '总容量';
 
 // 错误 
-$lang['error_email_is_used']                    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;邮箱<strong>%s</strong>已被使用';
-$lang['error_can_not_delete_order_exist']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个订单存在';
-$lang['error_can_not_delete_product_exist']     = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个产品存在';
-$lang['error_can_not_delete_recharge_exist']    = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个充值记录存在';
-$lang['error_can_not_delete_transaction_exist'] = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个费用存在';
-$lang['error_client_location_required']        	= '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;你可能有一些库位还未被分配';
-$lang['error_client_location_duplicated']       = '<i 单位="fa fa-exclamation-triangle"></i>&nbsp;库位重复';
+$lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;邮箱<strong>%s</strong>已被使用';
+$lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个订单存在';
+$lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个产品存在';
+$lang['error_can_not_delete_recharge_exist']    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个充值记录存在';
+$lang['error_can_not_delete_transaction_exist'] = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个费用存在';
+$lang['error_client_location_required']        	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;你可能有一些库位还未被分配';
+$lang['error_client_location_duplicated']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位重复';
 

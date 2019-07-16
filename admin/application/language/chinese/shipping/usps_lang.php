@@ -5,9 +5,9 @@ $lang['text_title'] 	  	             = 'USPS';
 $lang['text_shipping'] 	  	             = '配送';
 $lang['text_usps'] 	  	             	 = 'USPS';
 $lang['text_usps_user_id'] 	  	         = 'user id';
-$lang['text_usps_time_zone'] 	  	     = 'time zone';
+$lang['text_usps_time_zone'] 	  	     = '时区';
 $lang['text_usps_owner'] 	  	         = 'owner';
-$lang['text_time_zone'] 	  	     	 = 'time zone';
+$lang['text_time_zone'] 	  	     	 = '时区';
 $lang['text_usps_first_name'] 	  	     = 'first 名称';
 $lang['text_usps_last_name'] 	  	     = 'last 名称';
 $lang['text_usps_company'] 	  	         = '公司';
@@ -21,14 +21,14 @@ $lang['text_usps_postcode'] 	  	     = 'postcode';
 $lang['text_usps_debug_mode'] 	  	     = 'debug mode';
 $lang['text_usps_status'] 	  	         = '州';
 $lang['text_usps_sort_order'] 	  	     = '排序 订单';
-$lang['text_usps_stamps_username'] 	  	 = 'stamps username';
+$lang['text_usps_stamps_username'] 	  	 = 'stamps 用户名';
 $lang['text_usps_stamps_password'] 	  	 = 'stamps 密码';
 $lang['text_usps_stamps_integration_id'] = 'stamps integration id';
 $lang['text_usps_stamps_wsdl_file'] 	 = 'wsdl 文件';
 $lang['text_service'] 	  	         	 = '服务';
-$lang['text_usps_edit_success'] 	  	 = '<i 单位="fa fa-check-circle-o"></i>&nbsp;USPS 编辑 成功';
-$lang['text_fixed'] 	  			     = 'fixed';
-$lang['text_ratio'] 	  			     = 'ratio';
+$lang['text_usps_edit_success'] 	  	 = '<i class="fa fa-check-circle-o"></i>&nbsp;USPS 编辑 成功';
+$lang['text_fixed'] 	  			     = '固定';
+$lang['text_ratio'] 	  			     = '比率';
 $lang['text_fee_value'] 	  			 = '费 value';
 
 // Column
@@ -49,7 +49,7 @@ $lang['tab_fee'] 	  	                 = '费用';
 
 // Entry
 $lang['entry_user_id'] 	  	     	     = 'User ID';
-$lang['entry_time_zone'] 	  	     	 = 'Time Zone';
+$lang['entry_time_zone'] 	  	     	 = '时区';
 $lang['entry_owner'] 	  	     	     = 'Owner';
 $lang['entry_first_name'] 	  	         = 'First 名称';
 $lang['entry_last_name'] 	  	         = 'Last 名称';
@@ -63,7 +63,7 @@ $lang['entry_country'] 	  	             = '国家';
 $lang['entry_postcode'] 	  	         = 'Postcode';
 $lang['entry_status'] 	  	             = '状态';
 $lang['entry_sort_order'] 	  	         = '排序 订单';
-$lang['entry_username'] 	  	         = 'Username';
+$lang['entry_username'] 	  	         = '用户名';
 $lang['entry_password'] 	  	         = '密码';
 $lang['entry_integration_id'] 	  	     = 'Integration ID';
 $lang['entry_wsdl_file'] 	  	         = 'WSDL 文件';
