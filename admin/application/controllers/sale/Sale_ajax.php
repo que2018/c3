@@ -325,6 +325,7 @@ class Sale_ajax extends CI_Controller
 						'weight_class_id'	 => $sale['weight_class_id'],
 						'shipping_provider'	 => $sale['shipping_provider'],
 						'shipping_service'	 => $sale['shipping_service'],
+						'checkout_fee_code'	 => $this->config->item('config_default_checkout_fee'),
 						'note'               => '',
 						'checkout_products'  => $result['checkout_products']
 					);

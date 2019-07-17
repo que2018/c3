@@ -84,32 +84,37 @@ class Checkout_weight_model extends CI_Model
 	public function run_checkout($checkout_id)
 	{
 		$this->load->model('check/checkout_model');
+		$this->load->model('setting/weight_class_model');
 		
-		$weight = $this->checkout_model->get_checkout_products_weight($checkout_id);
+		$checkout_weight_levels = $this->config->item('checkout_weight_level');
+
+		$checkout_products = $this->checkout_model->get_checkout_products($checkout_id);
 		
 		$amount = 0;
 		
-		$found = false;
-		
-		$checkout_weight_levels = $this->config->item('checkout_weight_level');
-		
-		foreach($checkout_weight_levels as $checkout_weight_level)
+		foreach($checkout_products as $checkout_product)
 		{
-			if($weight < $checkout_weight_level['weight'])
+			$weight = $checkout_product['weight'];
+			$quantity = $checkout_product['quantity'];
+			
+			$found = false;
+			
+			$weight = $this->weight_class_model->to_config($this->config->item('config_weight_class_id'), $weight);
+
+			foreach($checkout_weight_levels as $checkout_weight_level)
 			{
-				$amount = $checkout_weight_level['amount'] * $weight;
-				
-				$found = true;
-				
-				break;
+				if($weight < $checkout_weight_level['weight'])
+				{
+					$amount += ($checkout_weight_level['amount'] * $quantity);
+					
+					$found = true;
+					
+					break;
+				}
 			}
 		}
-
-		if(!$found)
-		{
-			$amount = $this->config->item('checkout_weight_level_end') * $weight_total;
-		}			
 		
 		return $amount;
 	}
+	
 }

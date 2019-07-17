@@ -1,8 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Text
-$lang['text_order_report'] 	  	             	= '订单 Report';
-$lang['text_report'] 	  	             	    = 'Report';
+$lang['text_order_report'] 	  	             	= '订单 报告';
+$lang['text_report'] 	  	             	    = '报告';
 $lang['text_order'] 	  	             	    = '订单';
 $lang['text_search_condition'] 	 				= '搜索 condition';
 

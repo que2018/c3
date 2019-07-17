@@ -7,7 +7,7 @@ $lang['text_add'] 	  	                  = '添加';
 $lang['text_save'] 	  	                  = '保存';
 $lang['text_print'] 	  	              = '打印';
 $lang['text_cancel'] 	  	              = '取消';
-$lang['text_warehouse'] 	  	          = 'warehouse';
+$lang['text_warehouse'] 	  	          = '仓库';
 $lang['text_location'] 	  	              = '库位';
 $lang['text_inventory'] 	  	          = '库存';
 $lang['text_location_add'] 	  	          = '添加 库位';
@@ -28,13 +28,13 @@ $lang['text_rows_imported'] 	 	  	  = '<strong>共%s行 被导入</strong>';
 // Column
 $lang['column_name'] 	  	              = '名称';
 $lang['column_code'] 	  	              = '代码';
-$lang['column_warehouse'] 	  	          = 'Warehouse';
+$lang['column_warehouse'] 	  	          = '仓库';
 $lang['column_action'] 	  	              = '操作';
 
 // Entry
 $lang['entry_name'] 	  	              = '名称';
 $lang['entry_code'] 	  	              = '代码';
-$lang['entry_warehouse'] 	  	          = 'Warehouse';
+$lang['entry_warehouse'] 	  	          = '仓库';
 $lang['entry_label'] 	  	              = '标签';
 
 // Tab

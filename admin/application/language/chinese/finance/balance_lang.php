@@ -2,10 +2,10 @@
 
 // Text
 $lang['text_title'] 	  	             = '余额';
-$lang['text_finance'] 	  	             = 'Finance';
+$lang['text_finance'] 	  	             = '财务';
 $lang['text_balance'] 	  	             = '余额';
 $lang['text_amount'] 	  	             = '总量';
-$lang['text_balance_list_description'] 	 = '显示 余额 列表';
+$lang['text_balance_list_description'] 	 = '余额描述';
 
 // Column
 $lang['column_client'] 	  	             = '客户';

@@ -3,7 +3,7 @@
 // Text
 $lang['text_refund'] 	  	               = '返回';
 $lang['text_inventory'] 	  	           = '库存';
-$lang['text_warehouse'] 	  	           = 'Warehouse';
+$lang['text_warehouse'] 	  	           = '仓库';
 $lang['text_product'] 	  	               = '产品';
 $lang['text_location'] 	  	         	   = '库位';
 $lang['text_refund_list'] 	  	           = '返回 列表';
@@ -47,7 +47,7 @@ $lang['column_client'] 	  	           	   = '客户';
 $lang['column_batch'] 	  	           	   = '批次';
 $lang['column_quantity'] 	  	           = '数量';
 $lang['column_date_added'] 	  	           = '添加时间';
-$lang['column_date_modified'] 	  	       = '时间 Modified';
+$lang['column_date_modified'] 	  	       = '时间 修改';
 
 // Entry
 $lang['entry_client'] 	  	               = '客户';
@@ -64,9 +64,9 @@ $lang['error_row_sku_empty'] 	  	       = '行%s: sku 是空的';
 $lang['error_row_location_empty'] 	  	   = '行%s: 库位 是空的';
 $lang['error_row_quantity_empty'] 	  	   = '行%s: 数量 是空的';
 $lang['error_row_sku_not_found'] 	  	   = '行%s: sku <strong>%s</strong> 是 没有找到';
-$lang['error_update_quantity_error'] 	   = 'Update 数量 失败';
+$lang['error_update_quantity_error'] 	   = '更新 数量 失败';
 $lang['error_row_location_not_found'] 	   = '行%s: 库位 <strong>%s</strong> 是 没有找到';
-$lang['error_row_duplicated_data'] 	  	   = '行%s: refund 所有客户 duplicated: thare are more than one 行 of same 产品 and 库位';
+$lang['error_row_duplicated_data'] 	  	   = '行%s: refund 所有客户 重复: thare are more than one 行 of same 产品 and 库位';
 $lang['error_refund_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and 批次 已被使用';
 
 

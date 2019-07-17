@@ -14,7 +14,7 @@ $lang['tab_service'] 	  	            = '服务';
 // Column
 $lang['column_name'] 	  	                = '名称';
 $lang['column_code'] 	  	                = '代码';
-$lang['column_method'] 	  	             	= 'Method';
+$lang['column_method'] 	  	             	= '方式';
 $lang['column_package'] 	  	         	= 'Package';
 
 // Entry

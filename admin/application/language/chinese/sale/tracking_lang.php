@@ -134,7 +134,7 @@ $lang['error_inventory_not_enough']      		= '<i class="fa fa-exclamation-triang
 $lang['error_store_name_empty']      		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺 名称 是空的';
 $lang['error_store_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺 是 没有选择';
 $lang['error_location_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位 是 not 选择的, 请 选择 一个 店铺 first';
-$lang['error_sale_checkout_completed_notice'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位 can not be modified 因为 出库 是 完成';
+$lang['error_sale_checkout_completed_notice'] 	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位 can not be 修改 因为 出库 是 完成';
 
 
 
