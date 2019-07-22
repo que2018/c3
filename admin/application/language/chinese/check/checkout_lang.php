@@ -175,6 +175,8 @@ $lang['error_checkout_fee_row_name_required']     					= '<i class="fa fa-exclam
 $lang['error_checkout_fee_row_amount_required']   					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;出库费在<strong>%s</strong>行需要总量';
 $lang['error_no_client_fee_notice']              					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用是不能被计算因为没有客户被找到';
 $lang['error_multi_client_fee_notice']           					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;费用是不能被计算因为多个客户被找到';
+$lang['error_checkout_product_multi_client']           		        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;出库产品归属于多个客户';
+
 
 
 

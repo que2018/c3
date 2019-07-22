@@ -32,6 +32,13 @@ class Checkout extends MX_Controller
 			
 		$this->load->view('check/checkout_list_table', $data);
 	}
+	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('check/checkout_list_filter', $data);
+	}
 
 	protected function get_list()
 	{	
@@ -274,7 +281,7 @@ class Checkout extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 				
-		$data['filter_url'] = base_url() . 'check/checkout' . $url;
+		$data['filter_url'] = base_url() . 'check/checkout/filter' . $url;
 		
 		$url = '';
 		
@@ -382,6 +389,7 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
+		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
@@ -618,7 +626,8 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
-		
+		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
+
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
@@ -1147,6 +1156,38 @@ class Checkout extends MX_Controller
 			
 			return false;
 		}	
+	}
+	
+	public function validate_checkout_client()
+	{	
+		$this->load->model('catalog/product_model');
+
+		$client_ids = array();
+
+		if($this->input->post('checkout_product'))
+		{
+			$checkout_products = $this->input->post('checkout_product');
+			
+			foreach($checkout_products as $checkout_product)
+			{
+				$product_id = $checkout_product['product_id'];
+				
+				$product_info = $this->product_model->get_product($product_id);
+				
+				array_push($client_ids, $product_info['client_id']);
+			}
+			
+			if(count($client_ids) > 1)
+			{
+				$this->form_validation->set_message('validate_checkout_client', $this->lang->line('error_checkout_product_multi_client'));
+							
+				return false;
+			}
+			else 
+			{
+				return true;
+			}
+		}
 	}
 
 	public function validate_add_tracking($tracking)

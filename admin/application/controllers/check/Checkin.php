@@ -32,6 +32,13 @@ class Checkin extends MX_Controller
 		$this->load->view('check/checkin_list_table', $data);
 	}
 	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('check/checkin_list_filter', $data);
+	}
+	
 	protected function get_list()
 	{
 		$this->lang->load('check/checkin');
@@ -273,7 +280,7 @@ class Checkin extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'check/checkin' . $url;
+		$data['filter_url'] = base_url() . 'check/checkin/filter' . $url;
 	
 		$url = '';
 		

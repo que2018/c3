@@ -4,7 +4,7 @@
 $lang['text_title'] 	  	             = 'USPS';
 $lang['text_shipping'] 	  	             = '配送';
 $lang['text_usps'] 	  	             	 = 'USPS';
-$lang['text_usps_user_id'] 	  	         = 'user id';
+$lang['text_usps_user_id'] 	  	         = '用户 id';
 $lang['text_usps_time_zone'] 	  	     = '时区';
 $lang['text_usps_owner'] 	  	         = 'owner';
 $lang['text_time_zone'] 	  	     	 = '时区';

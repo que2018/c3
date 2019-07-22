@@ -575,7 +575,7 @@ class Sale_model extends CI_Model
 		return false;
 	}
 
-	public function get_sales($data)
+	public function get_sales($data = array())
 	{
 		$this->db->select('sale.*', false);
 		$this->db->from('sale');
@@ -603,6 +603,24 @@ class Sale_model extends CI_Model
 			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
 		}
 		
+		if(!empty($data['filter_status'])) 
+		{		
+			if($data['filter_status'] == 'unsolved')
+			{
+				$this->db->where('sale_to_checkout.sale_id', null);
+			}
+			
+			if($data['filter_status'] == 'checking_out')
+			{
+				$this->db->where('checkout.status', 1);
+			}
+			
+			if($data['filter_status'] == 'completed')
+			{
+				$this->db->where('checkout.status', 2);
+			}
+		}
+		
 		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 
 		{			
 			$this->db->where('sale.tracking !=', '');
@@ -619,9 +637,22 @@ class Sale_model extends CI_Model
 			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
 		}
 		
-		if(!empty($data['filter_checkout_status'])) 
-		{			
-			$this->db->where('checkout.status', $data['filter_checkout_status']);
+		if(!empty($data['filter_status'])) 
+		{		
+			if($data['filter_status'] == 'unsolved')
+			{
+				
+			}
+			
+			if($data['filter_status'] == 'checking_out')
+			{
+				$this->db->where('checkout.status', 1);
+			}
+			
+			if($data['filter_status'] == 'completed')
+			{
+				$this->db->where('checkout.status', 2);
+			}
 		}
 		
 		$sort_data = array(
@@ -668,7 +699,7 @@ class Sale_model extends CI_Model
 		}
 	}
 	
-	public function get_sale_total($data)
+	public function get_sale_total($data = array())
 	{
 		$this->db->select("COUNT(sale.id) AS total", false);
 		$this->db->from('sale');
@@ -693,6 +724,24 @@ class Sale_model extends CI_Model
 		if(!empty($data['filter_tracking'])) 
 		{			
 			$this->db->like('sale.tracking', $data['filter_tracking'], 'both');
+		}
+		
+		if(!empty($data['filter_status'])) 
+		{		
+			if($data['filter_status'] == 'unsolved')
+			{
+				$this->db->where('sale_to_checkout.sale_id', null);
+			}
+			
+			if($data['filter_status'] == 'checking_out')
+			{
+				$this->db->where('checkout.status', 1);
+			}
+			
+			if($data['filter_status'] == 'completed')
+			{
+				$this->db->where('checkout.status', 2);
+			}
 		}
 		
 		if(isset($data['filter_tracking_filled']) && $data['filter_tracking_filled']) 

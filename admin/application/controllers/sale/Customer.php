@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Customer extends MX_Controller 
 {
 	public function index()
@@ -42,15 +41,6 @@ class Customer extends MX_Controller
 		else 
 		{
 			$filter_name = '';
-		}
-		
-		if($this->input->get('filter_client'))
-		{
-			$filter_client = $this->input->get('filter_client');
-		} 
-		else 
-		{
-			$filter_client = '';
 		}
 		
 		if($this->input->get('filter_company'))
@@ -118,7 +108,6 @@ class Customer extends MX_Controller
 		
 		$filter_data = array(
 			'filter_name'     => $filter_name,
-			'filter_client'   => $filter_client,
 			'filter_company'  => $filter_company,
 			'filter_email'    => $filter_email,
 			'filter_phone'    => $filter_phone,
@@ -141,7 +130,6 @@ class Customer extends MX_Controller
 				$data['customers'][] = array(
 					'customer_id' => $customer['id'],
 					'name'        => $customer['name'],
-					'client'      => $customer['client'],
 					'company'     => $customer['company'],
 					'email'       => $customer['email'],
 					'phone'       => $customer['phone']
@@ -154,11 +142,6 @@ class Customer extends MX_Controller
 		if($this->input->get('filter_name')) 
 		{
 			$url .= '&filter_name=' . $this->input->get('filter_name');
-		}
-		
-		if($this->input->get('filter_client')) 
-		{
-			$url .= '&filter_client=' . $this->input->get('filter_client');
 		}
 		
 		if($this->input->get('filter_company')) 
@@ -205,11 +188,6 @@ class Customer extends MX_Controller
 			$url .= '&filter_name=' . $this->input->get('filter_name');
 		}
 		
-		if($this->input->get('filter_client')) 
-		{
-			$url .= '&filter_client=' . $this->input->get('filter_client');
-		}
-		
 		if($this->input->get('filter_company')) 
 		{
 			$url .= '&filter_company=' . $this->input->get('filter_company');
@@ -242,7 +220,6 @@ class Customer extends MX_Controller
 		}
 		
 		$data['sort_name']     = base_url() . 'sale/customer?sort=customer.name' . $url;
-		$data['sort_client']   = base_url() . 'sale/customer?sort=client' . $url;
 		$data['sort_company']  = base_url() . 'sale/customer?sort=customer.company' . $url;
 		$data['sort_email']    = base_url() . 'sale/customer?sort=customer.email' . $url;
 		$data['sort_phone']    = base_url() . 'sale/customer?sort=customer.phone' . $url;
@@ -272,7 +249,6 @@ class Customer extends MX_Controller
 		$data['limit'] = $limit;
 		
 		$data['filter_name']     = $filter_name;
-		$data['filter_client']   = $filter_client;
 		$data['filter_company']  = $filter_company;
 		$data['filter_email']    = $filter_email;
 		$data['filter_phone']    = $filter_phone;

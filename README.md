@@ -1,7 +1,7 @@
 
 # C3 Inventory Management System
 
-version: 2.1.3
+version: 2.3.5
 
 Demo Link: http://ims.saminthebox.com
 
@@ -16,8 +16,12 @@ Demo Link: http://ims.saminthebox.com
 <div>checkin consider client Id</div>
 <div>shipping fee running in the detail</div>
 <div>tracking in the detail</div>
-<div>customer bug</div>
-<div>checkout client fee uniquness</div>
-<div>checkout filter</div>
+<div>checkin bug</div>
+<div>checkin fee</div>
+<div>delete order, remove correspoing data</div>
+<div>version into config</div>
+
+
+
 
 

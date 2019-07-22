@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Customer_model extends CI_Model
 {	
 	public function add_customer($data)
@@ -139,33 +138,27 @@ class Customer_model extends CI_Model
 	
 	public function get_customers($data = array()) 
 	{			
-		$this->db->select("customer.*, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
-		$this->db->join('client', 'client.id = customer.client_id', 'left');
+		$this->db->select('*', false);
 		$this->db->from('customer');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('customer.name', $data['filter_name'], 'both');
-		}
-		
-		if(!empty($data['filter_client'])) 
-		{			
-			$this->db->like('client', $data['filter_client'], 'both');
+			$this->db->like('name', $data['filter_name'], 'both');
 		}
 		
 		if(!empty($data['filter_company'])) 
 		{			
-			$this->db->where('customer.company', $data['filter_company']);
+			$this->db->where('company', $data['filter_company']);
 		}
 		
 		if(!empty($data['filter_email'])) 
 		{			
-			$this->db->where('customer.email', $data['filter_email']);
+			$this->db->where('email', $data['filter_email']);
 		}
 		
 		if(!empty($data['filter_phone'])) 
 		{			
-			$this->db->where('customer.phone', $data['filter_phone']);
+			$this->db->where('phone', $data['filter_phone']);
 		}
 	
 		$sort_data = array(
@@ -173,7 +166,6 @@ class Customer_model extends CI_Model
 			'customer.company',
 			'customer.email',
 			'customer.phone',
-			'client'
 		);
 		
 		if(isset($data['start']) || isset($data['limit'])) {
@@ -214,33 +206,27 @@ class Customer_model extends CI_Model
 	
 	public function get_customer_total($data = array())
 	{
-		$this->db->select("COUNT(customer.id) AS total, CONCAT(client.firstname, ' ', client.lastname) AS client", false);
-		$this->db->join('client', 'client.id = customer.client_id', 'left');
+		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('customer');
 		
 		if(!empty($data['filter_name'])) 
 		{			
-			$this->db->like('customer.name', $data['filter_name'], 'both');
-		}
-		
-		if(!empty($data['filter_client'])) 
-		{			
-			$this->db->like('client', $data['filter_client'], 'both');
+			$this->db->like('name', $data['filter_name'], 'both');
 		}
 		
 		if(!empty($data['filter_company'])) 
 		{			
-			$this->db->where('customer.company', $data['filter_company']);
+			$this->db->where('company', $data['filter_company']);
 		}
 		
 		if(!empty($data['filter_email'])) 
 		{			
-			$this->db->where('customer.email', $data['filter_email']);
+			$this->db->where('email', $data['filter_email']);
 		}
 		
 		if(!empty($data['filter_phone'])) 
 		{			
-			$this->db->where('customer.phone', $data['filter_phone']);
+			$this->db->where('phone', $data['filter_phone']);
 		}
 		
 		$q = $this->db->get();

@@ -52,7 +52,6 @@ $lang['text_unsolved_order_list'] 	  	        = 'Unsolved Order List';
 $lang['text_import_order'] 	  	         		= 'Import Order';
 $lang['text_loading'] 	  	        		 	= 'loading ...';
 $lang['text_pending'] 	  	     		        = 'Pending';
-$lang['text_completed'] 	  	     		    = 'Completed';
 $lang['text_bulk_print'] 	  	                = 'bulk print';
 $lang['text_print_pdf'] 	  	                = 'print PDF';
 $lang['text_checkout_record_generated'] 	  	= 'Order #%s is pending for checkout';

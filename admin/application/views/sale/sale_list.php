@@ -40,16 +40,26 @@
 			    <div class="form-group">
 			      <div class="col-sm-12">
 				    <select name="status" class="form-control" autocomplete="new-password">
-					  <option value=""><?php echo $this->lang->line('entry_status'); ?></option>
 					  <?php if($filter_status == 1) { ?>
-					  <option value="1" selected><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
+					  <option value=""></option>
+					  <option value="unsolved" selected><?php echo $this->lang->line('text_unsolved'); ?></option>
+					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
+					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
 					  <?php } else if($filter_status == 2) { ?>
-					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2" selected><?php echo $this->lang->line('text_completed'); ?></option>
+					  <option value=""></option>
+					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
+					  <option value="checking_out" selected><?php echo $this->lang->line('text_checking_out'); ?></option>
+					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
+					  <?php } else if($filter_status == 3) { ?>
+					  <option value=""></option>
+					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
+					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
+					  <option value="completed" selected><?php echo $this->lang->line('text_completed'); ?></option>
 					  <?php } else { ?>
-					  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					  <option value="2"><?php echo $this->lang->line('text_completed'); ?></option>
+					  <option value=""></option>
+					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
+					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
+					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
 					  <?php } ?>
 					</select>
 				  </div>

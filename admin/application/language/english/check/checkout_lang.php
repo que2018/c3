@@ -175,6 +175,7 @@ $lang['error_checkout_fee_row_name_required']     					= '<i class="fa fa-exclam
 $lang['error_checkout_fee_row_amount_required']   					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkout fee at row <strong>%s</strong> is require amount';
 $lang['error_no_client_fee_notice']              					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to no client found';
 $lang['error_multi_client_fee_notice']           					= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to multi client found';
+$lang['error_checkout_product_multi_client']           		        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkout products belong to multiple clients';
 
 
 

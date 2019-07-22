@@ -3,19 +3,19 @@
 // Text
 $lang['text_user_group'] 	  	              = 'User Group';
 $lang['text_cancel'] 	  	          		  = '取消';
-$lang['text_add_user_group'] 	  	          = '添加 user group';
-$lang['text_save_user_group'] 	  	          = '保存 user group';
+$lang['text_add_user_group'] 	  	          = '添加 用户 组';
+$lang['text_save_user_group'] 	  	          = '保存 用户 组';
 $lang['text_user_group_add'] 	  	          = '添加 User Group';
 $lang['text_user_group_edit'] 	  	          = '编辑 User Group';
-$lang['text_confirm_delete'] 	  	          = '您确定要 删除 这个 user group?';
+$lang['text_confirm_delete'] 	  	          = '您确定要 删除 这个 用户 组?';
 $lang['text_user_group_list_description']     = '显示 所有 Users Groups';
-$lang['text_user_group_add_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User group 添加 成功';
-$lang['text_user_group_edit_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User group edits 成功';
-$lang['text_user_group_delete_success'] 	  = '<i class="fa fa-check-circle-o"></i>&nbsp;user group 删除 成功';
-$lang['text_confirm_delete']                  = '您确定要 删除 这个 user group?';
+$lang['text_user_group_add_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User 组 添加 成功';
+$lang['text_user_group_edit_success'] 	      = '<i class="fa fa-check-circle-o"></i>&nbsp;User 组 edits 成功';
+$lang['text_user_group_delete_success'] 	  = '<i class="fa fa-check-circle-o"></i>&nbsp;用户 组 删除 成功';
+$lang['text_confirm_delete']                  = '您确定要 删除 这个 用户 组?';
 $lang['text_access']              		      = 'Access';
 $lang['text_modify']             		      = '修改';
-$lang['text_confirm_delete']                  = '您确定要 删除 这个 user group?';
+$lang['text_confirm_delete']                  = '您确定要 删除 这个 用户 组?';
 
 // Column
 $lang['column_name'] 	  	                  = '名称';
@@ -66,4 +66,4 @@ $lang['tab_general'] 	  	                  = '通用';
 $lang['tab_permission'] 	  	              = '权限';
 
 // 错误
-$lang['error_user_group_is_in_use'] 	      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 user group 是 in use and 不能被删除';
+$lang['error_user_group_is_in_use'] 	      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个 用户 组 是 in use and 不能被删除';

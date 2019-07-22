@@ -6,35 +6,35 @@ $lang['text_inventory'] 	  	           = '库存';
 $lang['text_warehouse'] 	  	           = '仓库';
 $lang['text_product'] 	  	               = '产品';
 $lang['text_location'] 	  	         	   = '库位';
-$lang['text_refund_list'] 	  	           = '返回 列表';
-$lang['text_refund_import'] 	  	       = '返回 导入';
-$lang['text_add'] 	  	         	   	   = '添加 return';
-$lang['text_edit'] 	  	         	   	   = '编辑 return';
-$lang['text_delete'] 	  	         	   = '删除 return';
-$lang['text_save'] 	  	         	   	   = '保存 return';
-$lang['text_bulk_delete'] 	  	           = '批量 删除 return';
+$lang['text_refund_list'] 	  	           = '返回列表';
+$lang['text_refund_import'] 	  	       = '返回导入';
+$lang['text_add'] 	  	         	   	   = '添加退货';
+$lang['text_edit'] 	  	         	   	   = '编辑退货';
+$lang['text_delete'] 	  	         	   = '删除退货';
+$lang['text_save'] 	  	         	   	   = '保存退货';
+$lang['text_bulk_delete'] 	  	           = '批量删除退货';
 $lang['text_cancel'] 	  	         	   = '取消';
-$lang['text_download'] 	  	         	   = '下载 return';
-$lang['text_export'] 	  	         	   = '导出 return';
+$lang['text_download'] 	  	         	   = '下载退货';
+$lang['text_export'] 	  	         	   = '导出退货';
 $lang['text_batch'] 	  	               = '批次';
 $lang['text_quantity'] 	  	               = '数量';
 $lang['text_search'] 	  	               = '搜索';
-$lang['text_download_sample'] 	  	       = '下载 模板';
-$lang['text_refund_add'] 	  	           = '添加 返回';
-$lang['text_refund_edit'] 	  	           = '编辑 返回';
-$lang['text_import_refund'] 	  	       = '导入 返回';
-$lang['text_confirm_delete'] 	  	       = '您确定要 删除 这个 return?';
-$lang['text_refund_list_description']  	   = '显示 所有 Returns';
-$lang['text_import_refund_description']    = '导入 return 从 excel 文件';
-$lang['text_loading_locations']            = '加载 库位 ..';
+$lang['text_download_sample'] 	  	       = '下载模板';
+$lang['text_refund_add'] 	  	           = '添加退货';
+$lang['text_refund_edit'] 	  	           = '编辑退货';
+$lang['text_import_refund'] 	  	       = '导入退货';
+$lang['text_confirm_delete'] 	  	       = '您确定要删除这个退货?';
+$lang['text_refund_list_description']  	   = '显示所退货';
+$lang['text_import_refund_description']    = '从excel文件导入退货';
+$lang['text_loading_locations']            = '加载库位 ..';
 $lang['text_only_excel_will_accepted'] 	   = '( 只有Excel文件才能被接受 )';
 $lang['text_drop_file_and_upload'] 	       = '拖入文件或者点击上传';
-$lang['text_confirm_delete'] 	           = '您确定要 删除 这个 return?';
-$lang['text_refund_add_success'] 	       = '<i class="fa fa-check-circle-o"></i>&nbsp;return 添加 成功';
-$lang['text_refund_edit_success'] 	       = '<i class="fa fa-check-circle-o"></i>&nbsp;return 编辑 成功';
-$lang['text_refund_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;return 删除 成功';
-$lang['text_rows_imported'] 	           = '<strong>共%s行 被导入</strong>';
-$lang['text_no_rows_imported'] 	           = '<strong>No 行 是 导入</strong>';
+$lang['text_confirm_delete'] 	           = '您确定要删除这个退货?';
+$lang['text_refund_add_success'] 	       = '<i class="fa fa-check-circle-o"></i>&nbsp;退货添加成功';
+$lang['text_refund_edit_success'] 	       = '<i class="fa fa-check-circle-o"></i>&nbsp;退货编辑成功';
+$lang['text_refund_delete_success'] 	   = '<i class="fa fa-check-circle-o"></i>&nbsp;退货删除成功';
+$lang['text_rows_imported'] 	           = '<strong>共%s行被导入</strong>';
+$lang['text_no_rows_imported'] 	           = '<strong>没有一行被导入</strong>';
 
 // Column
 $lang['column_name'] 	  	               = '名称';
@@ -47,7 +47,7 @@ $lang['column_client'] 	  	           	   = '客户';
 $lang['column_batch'] 	  	           	   = '批次';
 $lang['column_quantity'] 	  	           = '数量';
 $lang['column_date_added'] 	  	           = '添加时间';
-$lang['column_date_modified'] 	  	       = '时间 修改';
+$lang['column_date_modified'] 	  	       = '修改时间';
 
 // Entry
 $lang['entry_client'] 	  	               = '客户';
@@ -60,14 +60,14 @@ $lang['entry_sku'] 	  	                   = 'SKU';
 $lang['entry_upc'] 	  	                   = 'UPC';
 
 // 错误
-$lang['error_row_sku_empty'] 	  	       = '行%s: sku 是空的';
-$lang['error_row_location_empty'] 	  	   = '行%s: 库位 是空的';
-$lang['error_row_quantity_empty'] 	  	   = '行%s: 数量 是空的';
-$lang['error_row_sku_not_found'] 	  	   = '行%s: sku <strong>%s</strong> 是 没有找到';
-$lang['error_update_quantity_error'] 	   = '更新 数量 失败';
-$lang['error_row_location_not_found'] 	   = '行%s: 库位 <strong>%s</strong> 是 没有找到';
-$lang['error_row_duplicated_data'] 	  	   = '行%s: refund 所有客户 重复: thare are more than one 行 of same 产品 and 库位';
-$lang['error_refund_add_unique'] 	   = '<i class="fa fa-exclamation-triangle"></i>&nbsp;refund with same 产品, 库位 and 批次 已被使用';
+$lang['error_row_sku_empty'] 	  	       = '行%s:sku是空的';
+$lang['error_row_location_empty'] 	  	   = '行%s:库位是空的';
+$lang['error_row_quantity_empty'] 	  	   = '行%s:数量是空的';
+$lang['error_row_sku_not_found'] 	  	   = '行%s:sku<strong>%s</strong>没有找到';
+$lang['error_update_quantity_error'] 	   = '更新数量失败';
+$lang['error_row_location_not_found'] 	   = '行%s:库位<strong>%s</strong>没有找到';
+$lang['error_row_duplicated_data'] 	  	   = '行%s:退货客户重复:有多行相同的产品和库位';
+$lang['error_refund_add_unique'] 	       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;相同的产品, 库位和批次已被使用';
 
 
 
