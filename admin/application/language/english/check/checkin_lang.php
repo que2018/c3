@@ -109,6 +109,8 @@ $lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-
 $lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;checkin fee at row <strong>%s</strong> requires amount';
 $lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to no client found';
 $lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Fee is not able to calculate due to multi client found';
+$lang['error_checkin_product_multi_client']      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Checkin product belongs to multiple clients';
+
 
 
 

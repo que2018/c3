@@ -32,6 +32,13 @@ class Transaction extends MX_Controller
 		$this->load->view('finance/transaction_list_table', $data);
 	}
 	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('finance/transaction_list_filter', $data);
+	}
+	
 	protected function get_list()
 	{	
 		$this->load->library('currency');
@@ -275,7 +282,6 @@ class Transaction extends MX_Controller
 		
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 		$objWriter->save(FCPATH  . 'assets/file/export/transaction.xlsx');
-		
 		//excel export end
 		
 		$url = '';
@@ -417,7 +423,7 @@ class Transaction extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'finance/transaction' . $url;
+		$data['filter_url'] = base_url() . 'finance/transaction/filter' . $url;
 	
 		$url = '';
 		

@@ -46,24 +46,24 @@
 </div>	
 <script>
 $(document).ready(function() {
-		var data1 = [];
+		var order_data = [];
 		
 		<?php foreach($total_sales_by_date as $total_sale_by_date) { ?>
-			group1 = [gd(<?php echo $total_sale_by_date['year']; ?>, <?php echo $total_sale_by_date['month']; ?>, <?php echo $total_sale_by_date['day']; ?>), <?php echo $total_sale_by_date['total']; ?>];
-			data1.push(group1);
+			order_group = [gd(<?php echo $total_sale_by_date['year']; ?>, <?php echo $total_sale_by_date['month']; ?>, <?php echo $total_sale_by_date['day']; ?>), <?php echo $total_sale_by_date['total']; ?>];
+			order_data.push(order_group);
 		<?php } ?>
 		
-		var data2 = [];
+		var income_data = [];
 		
-		<?php foreach($sum_sales_by_date as $sum_sale_by_date) { ?>
-			group2 = [gd(<?php echo $sum_sale_by_date['year']; ?>, <?php echo $sum_sale_by_date['month']; ?>, <?php echo $sum_sale_by_date['day']; ?>), <?php echo $sum_sale_by_date['sum']; ?>];
-			data2.push(group2);
+		<?php foreach($total_incomes_by_date as $total_income_by_date) { ?>
+			income_group = [gd(<?php echo $total_income_by_date['year']; ?>, <?php echo $total_income_by_date['month']; ?>, <?php echo $total_income_by_date['day']; ?>), <?php echo $total_income_by_date['sum']; ?>];
+			income_data.push(income_group);
 		<?php } ?>
 
 		var dataset = [
 			{
 				label: "<?php echo $this->lang->line('text_number_of_orders'); ?>",
-				data: data1,
+				data: order_data,
 				color: "#1ab394",
 				bars: {
 					show: true,
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			}, 
 			{
 				label: "<?php echo $this->lang->line('text_income'); ?>",
-				data: data2,
+				data: income_data,
 				yaxis: 2,
 				color: "#1C84C6",
 				lines: {

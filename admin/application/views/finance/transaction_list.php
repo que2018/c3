@@ -55,98 +55,97 @@
 				</div>
 			  </div>
 			</div>
-			<div class="col-md-3">
-              <button id="btn-search" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;<?php echo $this->lang->line('text_search'); ?></button>
-			</div>
 		  </div>
 		  </div>
-		  <div class="table-responsive">
-		    <table class="table table-striped table-bordered table-hover table-transaction">
-			  <thead>
-				<?php if($sort == 'client.name') { ?>
-				<th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
-			      <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line("column_client"); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 16%;" class="sorting">
-				  <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'transaction.cost') { ?>
-				<th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 5%;" class="sorting">
-				  <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
-				</th>
-				<?php } ?>
-				
-				<?php if($sort == 'transaction.markup') { ?>
-				<th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 5%;" class="sorting">
-				  <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'transaction.amount') { ?>
-				<th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 5%;" class="sorting">
-				  <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'transaction.comment') { ?>
-				<th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 30%;" class="sorting">
-				  <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
-				</th>
-				<?php } ?>
-				<?php if($sort == 'transaction.date_added') { ?>
-				<th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
-				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
-				</th>
-				<?php } else { ?>
-				<th style="width: 15%;" class="sorting">
-				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
-				</th>
-				<?php } ?>
-				<th><center><?php echo $this->lang->line('column_action'); ?></center></th>
-			  </thead>
-			  <tbody>
-				<?php if($transactions) { ?>
-				  <?php foreach($transactions as $transaction) { ?>
-					<tr>
-					  <td><?php echo $transaction['client']; ?></td>
-					  <td><?php echo $transaction['cost']; ?></td>
-					  <td><?php echo $transaction['markup']; ?></td>
-					  <td><?php echo $transaction['amount']; ?></td>
-					  <td><?php echo $transaction['comment']; ?></td>
-					  <td><?php echo $transaction['date_added']; ?></td>
-					  <td>
-					    <center>
-						  <a href="<?php echo base_url(); ?>finance/transaction/edit?transaction_id=<?php echo $transaction['transaction_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						  <button class="btn btn-danger btn-delete" onclick="delete_transaction(this, <?php echo $transaction['transaction_id']; ?>)"><i class="fa fa-trash"></i></button>
-					    </center>
-					  </td>
-					</tr>
+		  <div id="table-content">
+
+		    <div class="table-responsive">
+		      <table class="table table-striped table-bordered table-hover table-transaction">
+			    <thead>
+				  <?php if($sort == 'client.name') { ?>
+				  <th style="width: 16%;" class="sorting_<?php echo strtolower($order); ?>">
+			        <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line("column_client"); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 16%;" class="sorting">
+				    <a href="<?php echo $sort_client; ?>"><?php echo $this->lang->line('column_client'); ?></a>
+				  </th>
 				  <?php } ?>
-				<?php } ?>
-			  </tbody>			  
-		    </table>
-		  </div>
-		  <div class="pagination-block">
-			<div class="pull-left"><?php echo $results; ?></div>
-		    <div class="pull-right"><?php echo $pagination; ?></div>
-		  </div>
-	    </div>
+				  <?php if($sort == 'transaction.cost') { ?>
+				  <th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
+				    <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 5%;" class="sorting">
+				    <a href="<?php echo $sort_cost; ?>"><?php echo $this->lang->line('column_cost'); ?></a>
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'transaction.markup') { ?>
+				  <th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
+				    <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 5%;" class="sorting">
+				    <a href="<?php echo $sort_markup; ?>"><?php echo $this->lang->line('column_markup'); ?></a>
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'transaction.amount') { ?>
+				  <th style="width: 5%;" class="sorting_<?php echo strtolower($order); ?>">
+				    <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 5%;" class="sorting">
+				    <a href="<?php echo $sort_amount; ?>"><?php echo $this->lang->line('column_amount'); ?></a>
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'transaction.comment') { ?>
+				  <th style="width: 30%;" class="sorting_<?php echo strtolower($order); ?>">
+				    <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 30%;" class="sorting">
+				    <a href="<?php echo $sort_comment; ?>"><?php echo $this->lang->line('column_comment'); ?></a>
+				  </th>
+				  <?php } ?>
+				  <?php if($sort == 'transaction.date_added') { ?>
+				  <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
+				    <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  </th>
+				  <?php } else { ?>
+				  <th style="width: 15%;" class="sorting">
+				    <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  </th>
+				  <?php } ?>
+				  <th><center><?php echo $this->lang->line('column_action'); ?></center></th>
+			    </thead>
+			    <tbody>
+				  <?php if($transactions) { ?>
+				    <?php foreach($transactions as $transaction) { ?>
+					  <tr>
+					    <td><?php echo $transaction['client']; ?></td>
+					    <td><?php echo $transaction['cost']; ?></td>
+					    <td><?php echo $transaction['markup']; ?></td>
+					    <td><?php echo $transaction['amount']; ?></td>
+					    <td><?php echo $transaction['comment']; ?></td>
+					    <td><?php echo $transaction['date_added']; ?></td>
+					    <td>
+					      <center>
+						    <a href="<?php echo base_url(); ?>finance/transaction/edit?transaction_id=<?php echo $transaction['transaction_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+						    <button class="btn btn-danger btn-delete" onclick="delete_transaction(this, <?php echo $transaction['transaction_id']; ?>)"><i class="fa fa-trash"></i></button>
+					      </center>
+					    </td>
+					  </tr>
+				    <?php } ?>
+				  <?php } ?>
+			    </tbody>			  
+		      </table>
+		    </div>
+		    <div class="pagination-block">
+			  <div class="pull-left"><?php echo $results; ?></div>
+		      <div class="pull-right"><?php echo $pagination; ?></div>
+		    </div>
+	      </div>
+		</div>
 	  </div>
     </div>
   </div>
@@ -183,58 +182,47 @@ function delete_transaction(handle, transaction_id) {
 </script>
 <script>
 $(document).ready(function() {
-	//filter
-	$('#btn-search').click(function() {
-		client_id   = $('select[name=\'client_id\']').val();
-		cost        = $('input[name=\'cost\']').val();
-		markup      = $('input[name=\'markup\']').val();
-		amount      = $('input[name=\'amount\']').val();
-		comment     = $('input[name=\'comment\']').val();
-		date_from   = $('input[name=\'date_from\']').val();
-		date_to     = $('input[name=\'date_to\']').val();
-
-		url = '<?php echo $filter_url; ?>';
-		
-		if(client_id)
-			url += '&filter_client_id=' + client_id;
-	
-		if(cost)
-			url += '&filter_cost=' + cost;	
-		
-		if(markup)
-			url += '&filter_markup=' + markup;	
-	
-		if(amount)
-			url += '&filter_amount=' + amount;	
-		
-		if(comment)
-			url += '&filter_comment=' + comment;	
-	
-		if(date_from)
-			url += '&filter_date_from=' + date_from;
-		
-		if(date_to)
-			url += '&filter_date_to=' + date_to;
-			
-		window.location.href = url;
+	$(document).on('change', 'select[name=\'client_id\']', function () {
+		filter_transaction();
 	});
 	
-	$(document).keypress(function (e) {
-		if(e.which == 13)  
-		{
-			$('#btn-search').trigger('click');
-		}
+	$(document).on('change', 'input[name=\'date_from\']', function () {
+		filter_transaction();
+	});
+	
+	$(document).on('change', 'input[name=\'date_to\']', function () {
+		filter_transaction();
 	});
 });
 </script>
 <script>
-$(document).ready(function() {
-	//date picker
-	$("input[name='date_added']").datetimepicker({
-		pickTime: false,
-		format: 'YYYY-MM-DD'
-	});
+function filter_transaction() {	
+	client_id   = $('select[name=\'client_id\']').val();
+	date_from   = $('input[name=\'date_from\']').val();
+	date_to     = $('input[name=\'date_to\']').val();
 	
+	url = '<?php echo $filter_url; ?>';
+
+	if(client_id)
+		url += '&filter_client_id=' + client_id;
+	
+	if(date_from)
+		url += '&filter_date_from=' + date_from;
+	
+	if(date_to)
+		url += '&filter_date_to=' + date_to;
+		
+	$.ajax({
+		url: url,
+		dataType: 'html',
+		success: function(html) {					
+			$('#table-content').html(html);
+		}
+	});
+}
+</script>
+<script>
+$(document).ready(function() {
 	$("input[name='date_from']").datetimepicker({
 		pickTime: false,
 		format: 'YYYY-MM-DD'

@@ -1,14 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Sale_report_model extends CI_Model
 {	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-	
-	function get_total_sales_by_date($data)
+	public function get_total_sales_by_date($data = array())
 	{
 		$this->db->select('COUNT(id) AS total, DATE(date_added) AS date_added', false);
 		$this->db->from('sale');
@@ -63,10 +57,10 @@ class Sale_report_model extends CI_Model
 		}
 	}
 	
-	function get_sum_sales_by_date($data)
+	public function get_total_income_by_date($data = array())
 	{
-		$this->db->select('SUM(total) AS sum, DATE(date_added) AS date_added', false);
-		$this->db->from('sale');
+		$this->db->select('SUM(amount) AS sum, DATE(date_added) AS date_added', false);
+		$this->db->from('transaction');
 		$this->db->group_by('DATE(date_added)');
 		
 		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
@@ -76,10 +70,7 @@ class Sale_report_model extends CI_Model
 		}
 		
 		$sort_data = array(
-			'store_sale_id',
-			'tracking',
-			'name',
-			'date_added'
+			'client_id'
 		);
 		
 		if(isset($data['start']) || isset($data['limit'])) {

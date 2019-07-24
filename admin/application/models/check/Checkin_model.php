@@ -11,6 +11,7 @@ class Checkin_model extends CI_Model
 		//checkin data
 		$checkin_data = array(
 			'tracking' 		    => $data['tracking'],
+			'fee_code' 		    => $data['fee_code'],
 			'note' 		        => $data['note'],
 			'status' 		    => $data['status'],
 			'date_added'   		=> date('Y-m-d H:i:s'),
@@ -36,22 +37,6 @@ class Checkin_model extends CI_Model
 		}
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);	
-		
-		//checkin fee
-		if(isset($data['checkin_fees']) && $data['checkin_fees'])
-		{
-			$checkin_fees = array();
-						
-			foreach($data['checkin_fees'] as $checkin_fee){					
-				$checkin_fees[] = array(
-					'checkin_id'   => $checkin_id,
-					'name' 	       => $checkin_fee['name'],
-					'amount' 	   => $checkin_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('checkin_fee', $checkin_fees);
-		}
 		
 		//if completed, change inventory
 		if($data['status'] == 2)
@@ -313,6 +298,7 @@ class Checkin_model extends CI_Model
 		//checkin data
 		$checkin_data = array(
 			'tracking'     => $data['tracking'],
+			'fee_code' 	   => $data['fee_code'],
 			'status'       => $data['status'],
 			'note' 		   => $data['note']
 		);
@@ -337,24 +323,6 @@ class Checkin_model extends CI_Model
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);
 
-		//checkin fee
-		$this->db->delete('checkin_fee', array('checkin_id' => $checkin_id));
-		
-		if(isset($data['checkin_fees']) && $data['checkin_fees'])
-		{
-			$checkin_fees = array();
-						
-			foreach($data['checkin_fees'] as $checkin_fee){					
-				$checkin_fees[] = array(
-					'checkin_id'   => $checkin_id,
-					'name' 	       => $checkin_fee['name'],
-					'amount' 	   => $checkin_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('checkin_fee', $checkin_fees);
-		}	
-		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();

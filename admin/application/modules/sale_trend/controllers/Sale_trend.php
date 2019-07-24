@@ -20,6 +20,7 @@ class Sale_trend extends MX_Controller
 			'filter_date_added_to'   => $filter_date_added_to
 		);
 		
+		//get total order by date
 		$data['total_sales_by_date'] = array();
 		
 		$total_sales_by_date = $this->sale_report_model->get_total_sales_by_date($filter_data);
@@ -54,23 +55,24 @@ class Sale_trend extends MX_Controller
 			'filter_date_added_to'   => $filter_date_added_to
 		);
 		
-		$data['sum_sales_by_date'] = array();
+		//get total income by date
+		$data['total_incomes_by_date'] = array();
 		
-		$sum_sales_by_date = $this->sale_report_model->get_sum_sales_by_date($filter_data);
+		$total_incomes_by_date = $this->sale_report_model->get_total_income_by_date($filter_data);
 		
-		if($sum_sales_by_date)
+		if($total_incomes_by_date)
 		{
-			foreach($sum_sales_by_date as $sum_sale_by_date)
+			foreach($total_incomes_by_date as $total_income_by_date)
 			{
-				$year = $this->datetimer->get_year($sum_sale_by_date['date_added']);
+				$year = $this->datetimer->get_year($total_income_by_date['date_added']);
 				
-				$month = $this->datetimer->get_month($sum_sale_by_date['date_added']);
+				$month = $this->datetimer->get_month($total_income_by_date['date_added']);
 				
-				$day = $this->datetimer->get_day($sum_sale_by_date['date_added']);
+				$day = $this->datetimer->get_day($total_income_by_date['date_added']);
 				
-				$sum = $sum_sale_by_date['sum'];
+				$sum = $total_income_by_date['sum'];
 				
-				$data['sum_sales_by_date'][] = array(
+				$data['total_incomes_by_date'][] = array(
 					'year'    => $year,
 					'month'   => $month,
 					'day'     => $day,

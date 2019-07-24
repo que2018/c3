@@ -93,7 +93,7 @@ $lang['entry_status'] 	  	        	 		 = '状态';
 $lang['entry_note'] 	  	        	 		 = '备注';
 $lang['entry_date_added'] 	  	        	     = '添加时间';
 
-// 错误 
+// Error 
 $lang['error_code_empty'] 	  	                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;代码是空的';
 $lang['error_checkin_status_invalid'] 	  	     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个入库是取消或者完成的';
 $lang['error_product_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;产品没有找到';
@@ -109,7 +109,7 @@ $lang['error_checkin_fee_row_amount_required']   = '<i class="fa fa-exclamation-
 $lang['error_checkin_fee_amount_required']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行入库费金额是必须的';
 $lang['error_no_client_fee_notice']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为没有customer被找到,所以费用不确定';
 $lang['error_multi_client_fee_notice']           = '<i class="fa fa-exclamation-triangle"></i>&nbsp;因为多个customer被找到，所以费用不能被计算';
-
+$lang['error_checkin_product_multi_client']      = '<i class="fa fa-exclamation-triangle"></i>&nbsp;出库产品属于多个客户';
 
 
 

@@ -109,41 +109,21 @@
 		  </div>
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
-			  <div class="table-responsive">
-                <table id="checkin_fees" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_name') ?></strong></td>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_amount') ?></strong></td>
-					<td></td>
-					</tr>
-				  </thead>
-				  <tbody>
-				    <?php $checkin_fee_row = 0; ?>
-					<?php if($checkin_fees) { ?>
-					  <?php foreach ($checkin_fees as $checkin_fee) { ?>
-					  <tr id="checkin-fee-row<?php echo $checkin_fee_row; ?>">
-					    <td><input name="checkin_fee[<?php echo $checkin_fee_row; ?>][name]" value="<?php echo $checkin_fee['name']; ?>" class="form-control" /></td>
-						<td class="text-right">
-						  <div class="input-group">
-						    <span class="input-group-addon">$</span>
-						    <input name="checkin_fee[<?php echo $checkin_fee_row; ?>][amount]" value="<?php echo $checkin_fee['amount']; ?>" class="form-control" /></td>
-						  </div>
-						</td>
-						<td class="text-left"><button type="button" onclick="$('#checkin-fee-row<?php echo $checkin_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
-					  </tr>
-					  <?php $checkin_fee_row ++; ?>
-					  <?php } ?>
+			  <div class="form-group">
+			    <div class="col-sm-12">
+				  <select name="checkout_fee_code" class="form-control">
+				    <option value=""></option>
+				    <?php foreach($checkin_fees as $checkin_fee) { ?>
+					<?php if($checkin_fee['code'] == $fee_code) { ?>
+					<option value="<?php echo $checkin_fee['code']; ?>" selected><?php echo $checkin_fee['name']; ?></option>
+					<?php } else { ?>
+					<option value="<?php echo $checkin_fee['code']; ?>"><?php echo $checkin_fee['name']; ?></option>					
 					<?php } ?>
-				  </tbody>
-				  <tfoot>
-					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_checkin_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-					</tr>
-				  </tfoot>
-                </table>
-              </div>
+					<?php } ?>
+				  </select>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
 			</div>
 		  </div>
 		  <div id="note" class="tab-pane">

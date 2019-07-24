@@ -355,17 +355,17 @@ class Checkin extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
+		$this->load->model('extension/fee_model');
 		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 	
-		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
-		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
-		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
-		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
-		
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
 		
@@ -374,38 +374,64 @@ class Checkin extends MX_Controller
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
-		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
+		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_client');
 
-		$data = array(
-			'tracking'          => $this->input->post('tracking'),
-			'status'            => $this->input->post('status'),
-			'checkin_fees'  	=> $this->input->post('checkin_fee'),
-			'note'              => $this->input->post('note')
-		);
-		  
-		$checkin_products = $this->input->post('checkin_product');
-		
-		$data['checkin_products'] = array();
+		if($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+			$data = array(
+				'tracking'    => $this->input->post('tracking'),
+				'fee_code'    => $this->input->post('fee_code'),
+				'status'      => $this->input->post('status'),
+				'note'        => $this->input->post('note')
+			);
+			  
+			$checkin_products = $this->input->post('checkin_product');
 			
-		if($checkin_products)
-		{	
-			foreach($checkin_products as $checkin_product) 
-			{
-				$product_id = $checkin_product['product_id'];
+			$data['checkin_products'] = array();
 				
-				$product_info = $this->product_model->get_product($product_id);	
-				
-				$data['checkin_products'][] = array(
-					'product_id'     => $product_id,
-					'name'           => $product_info['name'],
-					'upc'            => $product_info['upc'],
-					'sku'            => $product_info['sku'],
-					'batch'          => $checkin_product['batch'],
-					'quantity'       => $checkin_product['quantity'],
-					'location_id'    => $checkin_product['location_id'],
-					'location_name'  => $checkin_product['location_name']
-				);
+			if($checkin_products)
+			{	
+				foreach($checkin_products as $checkin_product) 
+				{
+					$product_id = $checkin_product['product_id'];
+					
+					$product_info = $this->product_model->get_product($product_id);	
+					
+					$data['checkin_products'][] = array(
+						'product_id'     => $product_id,
+						'name'           => $product_info['name'],
+						'upc'            => $product_info['upc'],
+						'sku'            => $product_info['sku'],
+						'batch'          => $checkin_product['batch'],
+						'quantity'       => $checkin_product['quantity'],
+						'location_id'    => $checkin_product['location_id'],
+						'location_name'  => $checkin_product['location_name']
+					);
+				}
 			}
+		}
+		else
+		{
+			$data = array(
+				'tracking'          => $this->input->post('tracking'),
+				'fee_code'          => $this->config->item('config_default_checkin_fee'),
+				'status'            => $this->input->post('status'),
+				'note'              => $this->input->post('note'),
+				'checkout_products' => array()
+			);
+		}
+		
+		//checkin fees
+		$data['checkin_fees'] = array();
+		
+		$checkin_fees_data = $this->fee_model->get_fees('checkin');
+				
+		foreach($checkin_fees_data as $checkin_fee_data) 
+		{
+			$data['checkin_fees'][] = array(
+				'code'     => $checkin_fee_data['code'],
+				'name'     => $checkin_fee_data['name']
+			);
 		}
 		
 		if($this->form_validation->run() == true)
@@ -438,17 +464,17 @@ class Checkin extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
+		$this->load->model('extension/fee_model');
 		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 	
-		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
-		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
-		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
-		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_edit.css');
-		
+		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
+
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
 		
@@ -457,17 +483,16 @@ class Checkin extends MX_Controller
 		$checkin_id = $this->input->get('checkin_id');
 		
 		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
-		//$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_edit_tracking');
 		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_product');
-		$this->form_validation->set_rules('checkin_fee', $this->lang->line('text_checkin_fee'), 'callback_validate_checkin_fee');
+		$this->form_validation->set_rules('checkin_product', $this->lang->line('text_product'), 'callback_validate_checkin_client');
 
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
 				'tracking'          => $this->input->post('tracking'),
+				'fee_code'          => $this->input->post('fee_code'),
 				'status'            => $this->input->post('status'),
 				'checkin_products'  => $this->input->post('checkin_product'),
-				'checkin_fees'     => $this->input->post('checkin_fee'),
 				'note'              => $this->input->post('note')		
 			);
 				
@@ -482,6 +507,7 @@ class Checkin extends MX_Controller
 		{			
 			$data['checkin_id']     = $this->input->get('checkin_id');
 			$data['tracking']       = $this->input->post('tracking');
+			$data['fee_code']       = $this->input->post('fee_code');
 			$data['note']           = $this->input->post('note');
 			$data['status']         = $this->input->post('status');
 			$data['checkin_fees']   = $this->input->post('checkin_fee');
@@ -514,6 +540,7 @@ class Checkin extends MX_Controller
 			$checkin = $this->checkin_model->get_checkin($checkin_id);	
 		
 			$data['tracking']      = $checkin['tracking'];
+			$data['fee_code']      = $checkin['fee_code'];
 			$data['note']          = $checkin['note'];
 			$data['status']        = $checkin['status'];
 
@@ -612,6 +639,19 @@ class Checkin extends MX_Controller
 			$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 			$objWriter->save(FCPATH  . 'assets/file/export/checkin.xlsx');
 			//excel export end
+		}
+		
+		//checkin fees
+		$data['checkin_fees'] = array();
+		
+		$checkin_fees_data = $this->fee_model->get_fees('checkin');
+				
+		foreach($checkin_fees_data as $checkin_fee_data) 
+		{
+			$data['checkin_fees'][] = array(
+				'code'     => $checkin_fee_data['code'],
+				'name'     => $checkin_fee_data['name']
+			);
 		}
 		
 		$data['checkin_id'] = $checkin_id;		
@@ -765,93 +805,36 @@ class Checkin extends MX_Controller
 		}	
 	}
 	
-	public function validate_checkin_fee()
+	public function validate_checkin_client()
 	{	
-		$this->lang->load('check/checkin');
-		
-		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
-		
-		if($this->input->post('checkin_fee'))
+
+		$client_ids = array();
+
+		if($this->input->post('checkin_product'))
 		{
-			$validated = true;
-			
-			$error_message = '';
-			
-			$checkin_fees = $this->input->post('checkin_fee');
-			
-			foreach($checkin_fees as $row => $checkin_fee)
-			{
-				$name = $checkin_fee['name'];
-				$amount = $checkin_fee['amount'];
-				
-				if(!$name)
-				{
-					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_name_required'), ($row + 1));
-					$error_message .= '<br>';
-					
-					if($validated) 
-						$validated = false;
-				}
-				
-				if(!$amount)
-				{
-					$error_message .= sprintf($this->lang->line('error_checkin_fee_row_amount_required'), ($row + 1));
-					$error_message .= '<br>';
-					
-					if($validated) 
-						$validated = false;
-				}
-			}
-			
-			$clients_ids = array();
-			
 			$checkin_products = $this->input->post('checkin_product');
 			
 			foreach($checkin_products as $checkin_product)
 			{
-				$product = $this->product_model->get_product($checkin_product['product_id']);
+				$product_id = $checkin_product['product_id'];
 				
-				if(!$product['client_id']) 
-				{
-					$error_message .= $this->lang->line('error_no_client_fee_notice');
-					$error_message .= '<br>';
+				$product_info = $this->product_model->get_product($product_id);
 				
-					if($validated) 
-						$validated = false;
-				}
-				else
-				{
-					$clients_ids[] = $product['client_id'];
-				}
+				array_push($client_ids, $product_info['client_id']);
 			}
 			
-			$clients_ids = array_unique($clients_ids);
-			
-			if(sizeof($clients_ids) > 1)
+			if(count($client_ids) > 1)
 			{
-				$error_message .= $this->lang->line('error_multi_client_fee_notice');
-				$error_message .= '<br>';
-				
-				if($validated) 
-					$validated = false;
-			}
-			 
-			if(!$validated)
-			{
-				$this->form_validation->set_message('validate_checkin_fee', $error_message);
-				
+				$this->form_validation->set_message('validate_checkin_client', $this->lang->line('error_checkin_product_multi_client'));
+							
 				return false;
 			}
-			else
+			else 
 			{
 				return true;
 			}
 		}
-		else
-		{			
-			return true;
-		}	
 	}
 }
 
