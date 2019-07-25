@@ -6,18 +6,19 @@ class Sale_trend extends MX_Controller
 	{	
 		$this->load->library('currency');
 	
-		$this->load->model('sale/sale_model');
 		$this->load->model('sale/sale_report_model');
+		$this->load->model('finance/transaction_model');
 		
-		$filter_date_added_to = $this->datetimer->current_datetime();
-		
-		$current_datetime = $this->datetimer->current_datetime();
-		
-		$filter_date_added_from = $this->datetimer->mins_days($current_datetime, 30);
-		
+		//this month filter
 		$filter_data = array(
-			'filter_date_added_from' => $filter_date_added_from,
-			'filter_date_added_to'   => $filter_date_added_to
+			'filter_date_added_from' => $this->datetimer->first_date_this_month(),
+			'filter_date_added_to'   => $this->datetimer->current_datetime()
+		);
+		
+		//last month filter
+		$last_month_filter_data = array(
+			'filter_date_added_from' => $this->datetimer->first_date_last_month(),
+			'filter_date_added_to'   =>$this->datetimer->last_date_last_month()
 		);
 		
 		//get total order by date
@@ -29,11 +30,9 @@ class Sale_trend extends MX_Controller
 		{
 			foreach($total_sales_by_date as $total_sale_by_date)
 			{
-				$year = $this->datetimer->get_year($total_sale_by_date['date_added']);
-				
-				$month = $this->datetimer->get_month($total_sale_by_date['date_added']);
-				
-				$day = $this->datetimer->get_day($total_sale_by_date['date_added']);
+				$year   = $this->datetimer->get_year($total_sale_by_date['date_added']);
+				$month  = $this->datetimer->get_month($total_sale_by_date['date_added']);
+				$day    = $this->datetimer->get_day($total_sale_by_date['date_added']);
 				
 				$total = $total_sale_by_date['total'];
 				
@@ -46,15 +45,6 @@ class Sale_trend extends MX_Controller
 			}
 		}
 				
-		$filter_date_added_to = $this->datetimer->current_datetime();
-		
-		$filter_date_added_from = $this->datetimer->mins_days($current_datetime, 30);
-		
-		$filter_data = array(
-			'filter_date_added_from' => $filter_date_added_from,
-			'filter_date_added_to'   => $filter_date_added_to
-		);
-		
 		//get total income by date
 		$data['total_incomes_by_date'] = array();
 		
@@ -64,11 +54,9 @@ class Sale_trend extends MX_Controller
 		{
 			foreach($total_incomes_by_date as $total_income_by_date)
 			{
-				$year = $this->datetimer->get_year($total_income_by_date['date_added']);
-				
-				$month = $this->datetimer->get_month($total_income_by_date['date_added']);
-				
-				$day = $this->datetimer->get_day($total_income_by_date['date_added']);
+				$year   = $this->datetimer->get_year($total_income_by_date['date_added']);
+				$month  = $this->datetimer->get_month($total_income_by_date['date_added']);
+				$day    = $this->datetimer->get_day($total_income_by_date['date_added']);
 				
 				$sum = $total_income_by_date['sum'];
 				
@@ -76,16 +64,23 @@ class Sale_trend extends MX_Controller
 					'year'    => $year,
 					'month'   => $month,
 					'day'     => $day,
-					'sum'     => $sum
+					'sum'     => $sum  
 				);
 			}
 		}
 		
-		$sale_income_num = $this->sale_model->get_period_sale_income($filter_data);
+		//this month total
+		$sale_total_month = $this->sale_report_model->get_period_sale_total($filter_data);
+		$sale_income_month = $this->transaction_model->get_total_income($filter_data);
+		$data['sale_income_month'] = $this->currency->format($sale_income_month);
+		$data['sale_total_month'] = $sale_total_month;
+
+		//last month total
+		$sale_total_last_month = $this->sale_report_model->get_period_sale_total($last_month_filter_data);
+		$sale_income_last_month = $this->transaction_model->get_total_income($last_month_filter_data);
 		
-		$data['sale_income_num'] = $this->currency->format($sale_income_num);
-		
-		$data['sale_total_num'] = $this->sale_model->get_period_sale_total($filter_data);
+		$data['sale_total_trend'] = number_format(($sale_total_month - $sale_total_last_month) / $sale_total_last_month * 100);
+		$data['sale_income_trend'] = number_format(($sale_income_month - $sale_income_last_month) / $sale_income_last_month * 100);
 
 		$this->load->view('sale_trend', $data);
 	}

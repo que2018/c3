@@ -108,4 +108,50 @@ class Sale_report_model extends CI_Model
 			return false;
 		}
 	}
+	
+	public function get_period_sale_total($data = array())
+	{
+		$this->db->select("COUNT(id) AS total", false);
+		$this->db->from('sale');
+		
+		if(!empty($data['filter_date_added_since'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_since']);
+		}
+		
+		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_from']);
+			$this->db->where('date_added <=', $data['filter_date_added_to']);
+		}
+		
+		$q = $this->db->get();
+		
+		$result = $q->row_array();
+		
+		return $result['total'];
+	}
+	
+	public function get_period_sale_income($data = array())
+	{
+		$this->db->select('SUM(amount) AS total', false);
+		$this->db->from('transaction');
+		
+		if(!empty($data['filter_date_added_since'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_since']);
+		}
+		
+		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
+		{			
+			$this->db->where('date_added >=', $data['filter_date_added_from']);
+			$this->db->where('date_added <=', $data['filter_date_added_to']);
+		}
+		
+		$q = $this->db->get();
+		
+		$result = $q->row_array();
+		
+		return $result['total'];
+	}
 }

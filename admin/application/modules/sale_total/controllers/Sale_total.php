@@ -8,7 +8,7 @@ class Sale_total extends MX_Controller
 		$this->load->library('currency');
 		$this->load->library('datetimer');		
 
-		$this->load->model('sale/sale_model');
+		$this->load->model('sale/sale_report_model');
 		
 		$first_date_this_month = $this->datetimer->first_date_this_month();
 		
@@ -18,7 +18,7 @@ class Sale_total extends MX_Controller
 			'filter_date_added_since' => $first_date_this_month
 		);
 		
-		$sale_total = $this->sale_model->get_period_sale_total($filter_data);
+		$sale_total = $this->sale_report_model->get_period_sale_total($filter_data);
 		
 		$first_date_last_month = $this->datetimer->first_date_last_month();
 		
@@ -31,7 +31,7 @@ class Sale_total extends MX_Controller
 			'filter_date_added_to'   => $relative_date_last_month
 		);
 		
-		$sale_total_last_month = $this->sale_model->get_period_sale_total($filter_data);
+		$sale_total_last_month = $this->sale_report_model->get_period_sale_total($filter_data);
 		
 		if($sale_total_last_month > 0)
 		{

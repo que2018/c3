@@ -19,24 +19,17 @@
 	  <div class="col-lg-3">
 		<ul class="stat-list">
 		  <li>
-			<h2 class="no-margins"><?php echo $sale_total_num; ?></h2><small><?php echo $this->lang->line('text_total_order_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_total_trend; ?>% <i class="fa fa-level-up text-navy"></i></div>
+			<h2 class="no-margins"><?php echo $sale_total_month; ?></h2><small><?php echo $this->lang->line('text_total_order_this_month'); ?></small>
+			<div class="stat-percent"><?php echo $sale_total_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
-			  <div style="width: 48%;" class="progress-bar"></div>
+			  <div style="width: <?php echo $sale_total_trend; ?>%;" class="progress-bar"></div>
 			</div>
 		  </li>
 		  <li>
-			<h2 class="no-margins ">100</h2><small><?php echo $this->lang->line('text_total_order_last_month'); ?></small>
-			<div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
+			<h2 class="no-margins "><?php echo $sale_income_month; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
+			<div class="stat-percent"><?php echo $sale_income_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
-			  <div style="width: 60%;" class="progress-bar"></div>
-			</div>
-		  </li>
-		  <li>
-			<h2 class="no-margins "><?php echo $sale_income_num; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
-			<div class="stat-percent"><?php //echo $sale_income_trend; ?>% <i class="fa fa-level-up text-navy"></i></div>
-			<div class="progress progress-mini">
-			  <div style="width: 22%;" class="progress-bar"></div>
+			  <div style="width: <?php echo $sale_income_trend; ?>%;" class="progress-bar"></div>
 			</div>
 		  </li>
 		</ul>
@@ -73,7 +66,7 @@ $(document).ready(function() {
 				}
 			}, 
 			{
-				label: "<?php echo $this->lang->line('text_income'); ?>",
+				label: "<?php echo $this->lang->line('text_income'); ?>($)",
 				data: income_data,
 				yaxis: 2,
 				color: "#1C84C6",
@@ -144,6 +137,5 @@ $(document).ready(function() {
 		var previousPoint = null, previousLabel = null;
 
 		$.plot($("#flot-dashboard-chart"), dataset, options);
-
 });
 </script>		
