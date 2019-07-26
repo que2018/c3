@@ -84,7 +84,7 @@ class Activity_log extends MX_Controller
 		} 
 		else 
 		{
-			$limit = $this->config->item('config_page_limit');
+			$limit = 15;
 		}
 		
 		if($this->input->get('page')) 

@@ -2,7 +2,7 @@
 
 class Sale_report_model extends CI_Model
 {	
-	public function get_total_sales_by_date($data = array())
+	public function get_group_sales($data = array())
 	{
 		$this->db->select('COUNT(id) AS total, DATE(date_added) AS date_added', false);
 		$this->db->from('sale');
@@ -57,7 +57,7 @@ class Sale_report_model extends CI_Model
 		}
 	}
 	
-	public function get_total_income_by_date($data = array())
+	public function get_group_income($data = array())
 	{
 		$this->db->select('SUM(amount) AS sum, DATE(date_added) AS date_added', false);
 		$this->db->from('transaction');

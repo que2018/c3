@@ -3,9 +3,9 @@
 	<h5><?php echo $this->lang->line('text_orders'); ?></h5>
 	<div class="pull-right">
 	  <div class="btn-group">
-		<button type="button" class="btn btn-xs btn-white"><?php echo $this->lang->line('text_today'); ?></button>
-		<button type="button" class="btn btn-xs btn-white active"><?php echo $this->lang->line('text_monthly'); ?></button>
-		<button type="button" class="btn btn-xs btn-white"><?php echo $this->lang->line('text_annual'); ?></button>
+		<button type="button" class="btn btn-xs btn-white" onclick="updateData(this,'today')"><?php echo $this->lang->line('text_today'); ?></button>
+		<button type="button" class="btn btn-xs btn-white active" onclick="updateData(this,'month')"><?php echo $this->lang->line('text_monthly'); ?></button>
+		<button type="button" class="btn btn-xs btn-white" onclick="updateData(this,'year')"><?php echo $this->lang->line('text_annual'); ?></button>
 	  </div>
 	</div>
   </div>
@@ -26,7 +26,7 @@
 			</div>
 		  </li>
 		  <li>
-			<h2 class="no-margins "><?php echo $sale_income_month; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
+			<h2 class="no-margins"><?php echo $sale_income_month; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
 			<div class="stat-percent"><?php echo $sale_income_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
 			  <div style="width: <?php echo $sale_income_trend; ?>%;" class="progress-bar"></div>
@@ -37,6 +37,12 @@
 	</div>
   </div>
 </div>	
+<script>
+function updateData(elemtnt, param) {
+	$('.btn-white').removeClass('active');
+	$(elemtnt).addClass('active');
+}
+</script>
 <script>
 $(document).ready(function() {
 		var order_data = [];
