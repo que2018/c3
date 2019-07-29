@@ -117,41 +117,16 @@
 		  </div>
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
-			  <div class="table-responsive">
-                <table id="checkin_fees" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_name') ?></strong></td>
-					<td class="text-left" style="width: 40%;"><strong><?php echo $this->lang->line('column_amount') ?></strong></td>
-					<td></td>
-					</tr>
-				  </thead>
-				  <tbody>
-					<?php $checkin_fee_row = 0; ?>
-					<?php if($checkin_fees) { ?>
-					  <?php foreach ($checkin_fees as $checkin_fee) { ?>
-					  <tr id="checkin-fee-row<?php echo $checkin_fee_row; ?>">
-					    <td><input name="checkin_fee[<?php echo $checkin_fee_row; ?>][name]" value="<?php echo $checkin_fee['name']; ?>" class="form-control" /></td>
-						<td class="text-right">
-						  <div class="input-group">
-						    <span class="input-group-addon">$</span>
-						    <input name="checkin_fee[<?php echo $checkin_fee_row; ?>][amount]" value="<?php echo $checkin_fee['amount']; ?>" class="form-control" /></td>
-						  </div>
-						</td>
-						<td class="text-left"><button type="button" onclick="$('#checkin-fee-row<?php echo $checkin_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
-					  </tr>
-					  <?php $checkin_fee_row ++; ?>
-					  <?php } ?>
-					<?php } ?>
-				  </tbody>
-				  <tfoot>
-					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_checkin_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-					</tr>
-				  </tfoot>
-                </table>
-              </div>
+			  <select name="fee_code" class="form-control">
+				<option value=""></option>
+				<?php foreach($checkin_fees as $checkin_fee) { ?>
+				<?php if($checkin_fee['code'] == $fee_code) { ?>
+				<option value="<?php echo $checkin_fee['code']; ?>" selected><?php echo $checkin_fee['name']; ?></option>
+				<?php } else { ?>
+				<option value="<?php echo $checkin_fee['code']; ?>"><?php echo $checkin_fee['name']; ?></option>					
+				<?php } ?>
+				<?php } ?>
+			  </select>
 			</div>
 		  </div>
 		  <div id="note" class="tab-pane">
@@ -168,48 +143,6 @@
 	</div>
   </div>  
 </div>
-<script>
-function refresh_fee() {
-	data = new FormData();
-				
-	$('#checkin-product tbody tr').each(function(index) {
-		product_id = $(this).find('.product_id').val();
-		quantity = $(this).find('.quantity').val();
-		
-		data.append('product[' + product_id + ']', quantity);
-	});
-	
-	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_checkin_fees',
-		type: 'post',
-		data: data,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: 'json',
-		success: function(json) {	
-			$('#checkin_fees tbody').html('');	
-		
-			$.each(json.checkin_fees, function(checkin_fee_row, checkin_fee) {	
-				html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
-				html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="' + checkin_fee.name + '" class="form-control" /></td>';
-				html += '<td class="text-right">';
-				html += '<div class="input-group">';
-				html += '<span class="input-group-addon">$</span>';
-				html += '<input name="checkin_fee[' + checkin_fee_row + '][amount]" value="' + checkin_fee.amount + '" class="form-control" /></td>';
-				html += '</div>';
-				html += '<td class="text-left"><button type="button" onclick="$(\'#checkin-fee-row' + checkin_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-				html += '</tr>';
-
-				$('#checkin_fees tbody').append(html);			
-			});
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
-</script>
 <script>
 function locationautocomplete(checkin_product_row) {
 	$('input[name=\'checkin_product[' + checkin_product_row + '][location_name]\']').autocomplete({
@@ -305,9 +238,7 @@ $(document).ready(function() {
 			checkin_product_row++;
 			
 			$(this).val(''); 
-			
-			refresh_fee();
-			
+						
 			return false;
 		}
 	});
@@ -319,29 +250,8 @@ $(document).ready(function() {
 	//remove product
 	$('#checkin-product').on('click', '.btn-delete', function() {		
 		$(this).closest('tr').remove();	
-
-		refresh_fee();		
 	});
 });
-</script>
-<script>
-checkin_fee_row = <?php echo $checkin_fee_row; ?>;
-
-function add_checkin_fee() {
-	html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
-	html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="" class="form-control" /></td>';
-	html += '<td class="text-right">';
-	html += '<div class="input-group">';
-	html += '<span class="input-group-addon">$</span>';
-	html += '<input name="checkin_fee[' + checkin_fee_row + '][amount]" value="" class="form-control" /></td>';
-	html += '</div>';
-	html += '<td class="text-left"><button type="button" onclick="$(\'#checkin-fee-row' + checkin_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
-
-	$('#checkin_fees tbody').append(html);
-
-	checkin_fee_row++;
-}
 </script>
 <script>
 $(document).ready(function() {

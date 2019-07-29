@@ -116,5 +116,4 @@ class Checkout_weight_model extends CI_Model
 		
 		return $amount;
 	}
-	
 }

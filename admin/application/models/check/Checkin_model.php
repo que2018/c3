@@ -231,13 +231,20 @@ class Checkin_model extends CI_Model
 		}
 		
 		//transaction		
-		if(isset($data['checkin_fees']))
+		if($data['fee_code'])
 		{
+			//run checkin fee
+			$code = $data['fee_code'];
+			
+			$this->load->model('fee/'. $code .'_model');
+
+			$amount = $this->{$code . '_model'}->run_checkin($checkin_id);
+			
+			//modify transition
+			$this->load->model('catalog/product_model');
 			$this->load->model('finance/transaction_model');
 
 			$checkin_product = $data['checkin_products'][0];
-			
-			$this->load->model('catalog/product_model');
 			
 			$product_info = $this->product_model->get_product($checkin_product['product_id']);
 			
@@ -245,13 +252,6 @@ class Checkin_model extends CI_Model
 			
 			if(($checkin['status'] == 1) && ($data['status'] == 2))
 			{
-				$amount = 0;
-				
-				foreach($data['checkin_fees'] as $checkin_fee) 
-				{
-					$amount += $checkin_fee['amount'];
-				}
-				
 				$transaction_data = array(					
 					'client_id'		  => $client_id,
 					'type'		      => 'checkin',
@@ -267,15 +267,6 @@ class Checkin_model extends CI_Model
 			
 			if(($checkin['status'] == 2) && ($data['status'] == 2))
 			{
-				$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
-
-				$amount = 0;
-								
-				foreach($data['checkin_fees'] as $checkin_fee) 
-				{
-					$amount += $checkin_fee['amount'];
-				}
-				
 				$transaction_data = array(					
 					'client_id'		  => $client_id,
 					'type'		      => 'checkin',
@@ -285,7 +276,9 @@ class Checkin_model extends CI_Model
 					'amount'   		  => $amount,
 					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
 				);
-												
+				
+				$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
+								
 				$this->transaction_model->add_transaction($transaction_data);
 			}
 				
@@ -294,7 +287,7 @@ class Checkin_model extends CI_Model
 				$this->transaction_model->delete_transaction_by_type('checkin', $checkin_id);				   
 			}
 		} 
-				
+		
 		//checkin data
 		$checkin_data = array(
 			'tracking'     => $data['tracking'],
@@ -379,27 +372,25 @@ class Checkin_model extends CI_Model
 				}
 			}
 			
-			//transaction
-			$checkin_fees = $this->get_checkin_fees($checkin_id);
-			
-			if($checkin_fees)
+			//transaction		
+			if($checkin['fee_code'])
 			{
-				$checkin_product = $checkin_products[0];
+				//run checkin fee
+				$code = $checkin['fee_code'];
 				
+				$this->load->model('fee/'. $code .'_model');
+
+				$amount = $this->{$code . '_model'}->run_checkin($checkin_id);
+				
+				//modify transition
 				$this->load->model('catalog/product_model');
+				$this->load->model('finance/transaction_model');
+
+				$checkin_product = $checkin_products[0];
 				
 				$product_info = $this->product_model->get_product($checkin_product['product_id']);
 				
 				$client_id = $product_info['client_id'];
-		
-				$amount = 0;
-				
-				foreach($checkin_fees as $checkin_fee) 
-				{
-					$amount += $checkin_fee['amount'];
-				}
-				
-				$this->load->model('finance/transaction_model');
 				
 				$transaction_data = array(					
 					'client_id'		  => $client_id,
@@ -410,7 +401,7 @@ class Checkin_model extends CI_Model
 					'amount'   		  => $amount,
 					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
 				);
-				
+							
 				$this->transaction_model->add_transaction($transaction_data); 
 			}				
 			
