@@ -20,16 +20,16 @@
 		<ul class="stat-list">
 		  <li>
 			<h2 class="no-margins"><?php echo $sale_total_month; ?></h2><small><?php echo $this->lang->line('text_total_order_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_total_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
+			<div class="stat-percent"><?php echo $sale_total_month_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
-			  <div style="width: <?php echo $sale_total_trend; ?>%;" class="progress-bar"></div>
+			  <div style="width: <?php echo $sale_total_month_trend; ?>%;" class="progress-bar"></div>
 			</div>
 		  </li>
 		  <li>
-			<h2 class="no-margins"><?php echo $sale_income_month; ?></h2> <small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_income_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
+			<h2 class="no-margins">$<?php echo $income_total_month; ?></h2><small><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
+			<div class="stat-percent"><?php echo $sale_income_month_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
 			<div class="progress progress-mini">
-			  <div style="width: <?php echo $sale_income_trend; ?>%;" class="progress-bar"></div>
+			  <div style="width: <?php echo $sale_income_month_trend; ?>%;" class="progress-bar"></div>
 			</div>
 		  </li>
 		</ul>
@@ -47,15 +47,15 @@ function updateData(elemtnt, param) {
 $(document).ready(function() {
 		var order_data = [];
 		
-		<?php foreach($total_sales_by_date as $total_sale_by_date) { ?>
-			order_group = [gd(<?php echo $total_sale_by_date['year']; ?>, <?php echo $total_sale_by_date['month']; ?>, <?php echo $total_sale_by_date['day']; ?>), <?php echo $total_sale_by_date['total']; ?>];
+		<?php foreach($group_sales_month as $group_sale_month) { ?>
+			order_group = [gd(<?php echo $group_sale_month['year']; ?>, <?php echo $group_sale_month['month']; ?>, <?php echo $group_sale_month['day']; ?>), <?php echo $group_sale_month['total']; ?>];
 			order_data.push(order_group);
 		<?php } ?>
 		
 		var income_data = [];
 		
-		<?php foreach($total_incomes_by_date as $total_income_by_date) { ?>
-			income_group = [gd(<?php echo $total_income_by_date['year']; ?>, <?php echo $total_income_by_date['month']; ?>, <?php echo $total_income_by_date['day']; ?>), <?php echo $total_income_by_date['sum']; ?>];
+		<?php foreach($group_incomes_month as $group_income_month) { ?>
+			income_group = [gd(<?php echo $group_income_month['year']; ?>, <?php echo $group_income_month['month']; ?>, <?php echo $group_income_month['day']; ?>), <?php echo $group_income_month['sum']; ?>];
 			income_data.push(income_group);
 		<?php } ?>
 

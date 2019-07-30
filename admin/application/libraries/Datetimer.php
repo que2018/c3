@@ -28,6 +28,11 @@ class Datetimer
 		return $datetime->format('d');
 	}
 	
+	public function beginning_today() 
+	{
+		return date('Y-m-d', strtotime('today midnight'));
+	}
+	
 	public function current_datetime() 
 	{
 		return date('Y-m-d H:i:s');
