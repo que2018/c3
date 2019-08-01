@@ -293,13 +293,35 @@ class Transaction_model extends CI_Model
 	{
 		$this->db->select('SUM(amount) AS sum, DATE(date_added) AS date_added', false);
 		$this->db->from('transaction');
-		$this->db->group_by('DATE(date_added)');
 		
 		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
 		{			
 			$this->db->where('date_added >=', $data['filter_date_added_from']);
 			$this->db->where('date_added <=', $data['filter_date_added_to']);
 		}
+		
+		if(isset($data['filter_group_type']))
+		{
+			if($data['filter_group_type'] == 'HOUR')
+			{
+				$this->db->group_by('HOUR(date_added)');
+			}
+			
+			if($data['filter_group_type'] == 'DATE')
+			{
+				$this->db->group_by('DATE(date_added)');
+			}
+			
+			if($data['filter_group_type'] == 'MONTH')
+			{
+				$this->db->group_by('MONTH(date_added)');
+			}
+			
+			if($data['filter_group_type'] == 'YEAR')
+			{
+				$this->db->group_by('YEAR(date_added)');
+			}
+		} 
 		
 		$sort_data = array(
 			'client_id'

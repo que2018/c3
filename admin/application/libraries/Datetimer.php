@@ -58,6 +58,11 @@ class Datetimer
 		return date('Y-m-d H:i:s', strtotime('last day of previous month'));
 	}
 	
+	public function first_date_this_year() 
+	{
+		return date('Y-m-d H:i:s', strtotime('first day of January'));
+	}
+	
 	public function plus_days($datetime, $days) 
 	{
 		$datetime_str = strtotime($datetime);
