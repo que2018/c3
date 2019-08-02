@@ -28,9 +28,21 @@ class Datetimer
 		return $datetime->format('d');
 	}
 	
+	public function get_time($datetime_str)
+	{
+		$datetime = new DateTime($datetime_str);
+		
+		return $datetime->format('H:i:s');
+	}
+	
 	public function beginning_today() 
 	{
 		return date('Y-m-d', strtotime('today midnight'));
+	}
+	
+	public function beginning_yesterday() 
+	{
+		return date('Y-m-d', strtotime('yesterday midnight'));
 	}
 	
 	public function current_datetime() 
@@ -50,7 +62,7 @@ class Datetimer
 	
 	public function first_date_last_month() 
 	{
-		return date('Y-m-d H:i:s', strtotime('first day of previous month'));
+		return date('Y-m-d 00:00:00', strtotime('first day of last month'));
 	}
 	
 	public function last_date_last_month() 
@@ -60,7 +72,12 @@ class Datetimer
 	
 	public function first_date_this_year() 
 	{
-		return date('Y-m-d H:i:s', strtotime('first day of January'));
+		return date('Y-m-d 00:00:00', strtotime('first day of January'));
+	}
+	
+	public function first_date_last_year() 
+	{
+		return date('Y-m-d 00:00:00', strtotime('first day of January Last Year'));
 	}
 	
 	public function plus_days($datetime, $days) 

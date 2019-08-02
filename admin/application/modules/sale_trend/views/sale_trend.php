@@ -21,7 +21,14 @@
 		  <li>
 			<h2 id="total-sale" class="no-margins"><?php echo $sale_total_month; ?></h2>
 			<small id="total-sale-period"><?php echo $this->lang->line('text_total_order_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_total_month_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
+			<div class="stat-percent" id="sale-trend">
+			  <?php echo $sale_total_month_trend; ?>%
+			  <?php if($sale_total_month_trend > 0) { ?>
+		      <i class="fa fa-level-up text-navy"></i>
+			  <?php } else { ?>
+			  <i class="fa fa-level-down text-navy"></i>
+			  <?php } ?>
+			</div>
 			<div class="progress progress-mini">
 			  <div style="width: <?php echo $sale_total_month_trend; ?>%;" class="progress-bar"></div>
 			</div>
@@ -29,9 +36,16 @@
 		  <li>
 			<h2 id="total-income" class="no-margins">$<?php echo $income_total_month; ?></h2>
 			<small id="total-income-period"><?php echo $this->lang->line('text_total_income_this_month'); ?></small>
-			<div class="stat-percent"><?php echo $sale_income_month_trend; ?>%<i class="fa fa-level-up text-navy"></i></div>
+			<div class="stat-percent" id="income-trend">
+			  <?php echo $income_month_trend; ?>%
+			  <?php if($income_month_trend > 0) { ?>
+		      <i class="fa fa-level-up text-navy"></i>
+			  <?php } else { ?>
+			  <i class="fa fa-level-down text-navy"></i>
+			  <?php } ?>
+			</div>
 			<div class="progress progress-mini">
-			  <div style="width: <?php echo $sale_income_month_trend; ?>%;" class="progress-bar"></div>
+			  <div style="width: <?php echo $income_month_trend; ?>%;" class="progress-bar"></div>
 			</div>
 		  </li>
 		</ul>
@@ -47,9 +61,21 @@ function updateData(elemtnt, period) {
 	if(period == 'today') {
 		$('#total-sale-period').html('<?php echo $this->lang->line("text_total_order_today"); ?>');
 		$('#total-income-period').html('<?php echo $this->lang->line("text_total_income_today"); ?>');
-
+		
+		if(<?php echo $sale_total_today_trend ?> > 0) {
+			$('#sale-trend').html('<?php echo $sale_total_today_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#sale-trend').html('<?php echo $sale_total_today_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
+		
 		$('#total-sale').html('<?php echo $sale_total_today; ?>');
 		$('#total-income').html('$<?php echo $income_total_today; ?>');
+		
+		if(<?php echo $income_today_trend ?> > 0) {
+			$('#income-trend').html('<?php echo $income_today_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#income-trend').html('<?php echo $income_today_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
 		
 		plot_today();
 	}
@@ -58,19 +84,44 @@ function updateData(elemtnt, period) {
 		$('#total-sale-period').html('<?php echo $this->lang->line("text_total_order_this_month"); ?>');
 		$('#total-income-period').html('<?php echo $this->lang->line("text_total_income_this_month"); ?>');
 		
+		if(<?php echo $sale_total_month_trend ?> > 0) {
+			$('#sale-trend').html('<?php echo $sale_total_month_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#sale-trend').html('<?php echo $sale_total_month_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
+		
 		$('#total-sale').html('<?php echo $sale_total_month; ?>');
 		$('#total-income').html('$<?php echo $income_total_month; ?>');
-		
+	
+		if(<?php echo $income_month_trend ?> > 0) {
+			$('#income-trend').html('<?php echo $income_month_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#income-trend').html('<?php echo $income_month_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
+
 		plot_month();
 	}
 	
 	if(period == 'year') {
 		$('#total-sale-period').html('<?php echo $this->lang->line("text_total_order_this_year"); ?>');
 		$('#total-income-period').html('<?php echo $this->lang->line("text_total_income_this_year"); ?>');
-		
+		$('#sale-trend').html('<?php echo $sale_total_year_trend ?>');
+
+		if(<?php echo $sale_total_year_trend ?> > 0) {
+			$('#sale-trend').html('<?php echo $sale_total_month_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#sale-trend').html('<?php echo $sale_total_month_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
+
 		$('#total-sale').html('<?php echo $sale_total_year; ?>');
 		$('#total-income').html('$<?php echo $income_total_year; ?>');
-		
+
+		if(<?php echo $income_year_trend ?> > 0) {
+			$('#income-trend').html('<?php echo $income_year_trend ?>%<i class="fa fa-level-up text-navy"></i>');	
+		} else {
+			$('#income-trend').html('<?php echo $income_year_trend ?>%<i class="fa fa-level-down text-navy"></i>');	
+		}
+
 		plot_year();
 	}
 }
@@ -237,7 +288,7 @@ function plot_month() {
 	var options = {
 		xaxis: {
 			mode: "time",
-			tickSize: [3, "day"],
+			tickSize: [1, "day"],
 			tickLength: 0,
 			axisLabel: "Date",
 			axisLabelUseCanvas: true,

@@ -22,10 +22,10 @@ class Sale_trend extends MX_Controller
 		//yesterday filter
 		$filter_data_yesterday = array(
 			'filter_group_type'      => 'HOUR',
-			'filter_date_added_from' => $this->datetimer->first_date_this_month(),
+			'filter_date_added_from' => $this->datetimer->beginning_yesterday(),
 			'filter_date_added_to'   => $this->datetimer->current_datetime()
 		);
-		
+				
 		//month filter
 		$filter_data_month = array(
 			'filter_group_type'      => 'DATE',
@@ -36,7 +36,7 @@ class Sale_trend extends MX_Controller
 		//last month filter
 		$filter_data_last_month = array(
 			'filter_group_type'      => 'DATE',
-			'filter_date_added_from' => $this->datetimer->first_date_this_month(),
+			'filter_date_added_from' => $this->datetimer->first_date_last_month(),
 			'filter_date_added_to'   => $this->datetimer->current_datetime()
 		);
 		
@@ -50,7 +50,7 @@ class Sale_trend extends MX_Controller
 		//last year filter
 		$filter_data_last_year = array(
 			'filter_group_type'      => 'MONTH',
-			'filter_date_added_from' => $this->datetimer->first_date_this_month(),
+			'filter_date_added_from' => $this->datetimer->first_date_last_year(),
 			'filter_date_added_to'   => $this->datetimer->current_datetime()
 		);
 		
@@ -88,13 +88,14 @@ class Sale_trend extends MX_Controller
 		$data['income_total_year']  = $income_total_year;
 
 		//trend
-		$data['sale_total_today_trend']  = ($sale_total_yesterday)?number_format(($sale_total_today - $sale_total_yesterday) / $sale_total_yesterday * 100):100;	
-		$data['sale_income_today_trend'] = ($income_total_yesterday)?number_format(($income_total_today - $income_total_yesterday) / $income_total_yesterday * 100):100;
-		$data['sale_total_month_trend']  = ($sale_total_last_month)?number_format(($sale_total_month - $sale_total_last_month) / $sale_total_last_month * 100):100;
-		$data['sale_income_month_trend'] = ($income_total_last_month)?number_format(($income_total_month - $income_total_last_month) / $income_total_last_month * 100):100;
-		$data['sale_total_year_trend']   = ($sale_total_year)?number_format(($sale_total_year - $sale_total_year) / $sale_total_year * 100):100;
-		$data['sale_income_year_trend']  = ($income_total_last_year)?number_format(($income_total_year - $income_total_last_year) / $income_total_last_year * 100):100;
+		$data['sale_total_today_trend'] = ($sale_total_yesterday)?number_format(($sale_total_today - $sale_total_yesterday) / $sale_total_yesterday * 100):100;	
+		$data['sale_total_month_trend'] = ($sale_total_last_month)?number_format(($sale_total_month - $sale_total_last_month) / $sale_total_last_month * 100):100;
+		$data['sale_total_year_trend']  = ($sale_total_year)?number_format(($sale_total_year - $sale_total_year) / $sale_total_year * 100):100;
 		
+		$data['income_today_trend'] = ($income_total_yesterday)?number_format(($income_total_today - $income_total_yesterday) / $income_total_yesterday * 100):100;
+		$data['income_month_trend'] = ($income_total_last_month)?number_format(($income_total_month - $income_total_last_month) / $income_total_last_month * 100):100;
+		$data['income_year_trend']  = ($income_total_last_year)?number_format(($income_total_year - $income_total_last_year) / $income_total_last_year * 100):100;
+				
 		$this->load->view('sale_trend', $data);
 	}
 	
@@ -116,13 +117,15 @@ class Sale_trend extends MX_Controller
 				$year  = $this->datetimer->get_year($group_sale_data['date_added']);
 				$month = $this->datetimer->get_month($group_sale_data['date_added']);
 				$day   = $this->datetimer->get_day($group_sale_data['date_added']);
-				
+				$time  = $this->datetimer->get_time($group_sale_data['date_added']);
+
 				$total = $group_sale_data['total'];
 				
 				$group_sales[] = array(
 					'year'    => $year,
 					'month'   => $month,
 					'day'     => $day,
+					'time'    => $time,
 					'total'   => $total
 				);
 			}
@@ -149,6 +152,7 @@ class Sale_trend extends MX_Controller
 				$year  = $this->datetimer->get_year($group_income_data['date_added']);
 				$month = $this->datetimer->get_month($group_income_data['date_added']);
 				$day   = $this->datetimer->get_day($group_income_data['date_added']);
+				$time  = $this->datetimer->get_time($group_income_data['date_added']);
 				
 				$sum = $group_income_data['sum'];
 				
@@ -156,6 +160,7 @@ class Sale_trend extends MX_Controller
 					'year'    => $year,
 					'month'   => $month,
 					'day'     => $day,
+					'time'    => $time,
 					'sum'     => $sum  
 				);
 			}
