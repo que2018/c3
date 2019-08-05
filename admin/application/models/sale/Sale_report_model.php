@@ -4,7 +4,7 @@ class Sale_report_model extends CI_Model
 {	
 	public function get_group_sales($data = array())
 	{
-		$this->db->select('COUNT(id) AS total, DATE(date_added) AS date_added', false);
+		$this->db->select('COUNT(id) AS total, date_added', false);
 		$this->db->from('sale');
 		
 		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 

@@ -11,20 +11,6 @@ class Sale_trend extends MX_Controller
 
 		$this->load->model('sale/sale_report_model');
 		$this->load->model('finance/transaction_model');
-		
-		//today filter
-		$filter_data_today = array(
-			'filter_group_type'      => 'HOUR',
-			'filter_date_added_from' => $this->datetimer->beginning_today(),
-			'filter_date_added_to'   => $this->datetimer->current_datetime()
-		);
-		
-		//yesterday filter
-		$filter_data_yesterday = array(
-			'filter_group_type'      => 'HOUR',
-			'filter_date_added_from' => $this->datetimer->beginning_yesterday(),
-			'filter_date_added_to'   => $this->datetimer->current_datetime()
-		);
 				
 		//month filter
 		$filter_data_month = array(
@@ -55,44 +41,34 @@ class Sale_trend extends MX_Controller
 		);
 		
 		//get group data
-		$data['group_sales_today'] = $this->group_sales($filter_data_today);
 		$data['group_sales_month'] = $this->group_sales($filter_data_month);
 		$data['group_sales_year']  = $this->group_sales($filter_data_year);
 
-		$data['group_incomes_today'] = $this->group_income($filter_data_today);
 		$data['group_incomes_month'] = $this->group_income($filter_data_month);
 		$data['group_incomes_year']  = $this->group_income($filter_data_year);
 
 		//get total data
-		$sale_total_today      = $this->sale_report_model->get_period_sale_total($filter_data_today);
-		$sale_total_yesterday  = $this->sale_report_model->get_period_sale_total($filter_data_yesterday);
 		$sale_total_month      = $this->sale_report_model->get_period_sale_total($filter_data_month);
 		$sale_total_last_month = $this->sale_report_model->get_period_sale_total($filter_data_last_month);
 		$sale_total_year       = $this->sale_report_model->get_period_sale_total($filter_data_year);
 		$sale_total_last_year  = $this->sale_report_model->get_period_sale_total($filter_data_last_year);
 
-		$income_total_today      = $this->transaction_model->get_total_income($filter_data_today);
-		$income_total_yesterday  = $this->transaction_model->get_total_income($filter_data_yesterday);
 		$income_total_month      = $this->transaction_model->get_total_income($filter_data_month);
 		$income_total_last_month = $this->transaction_model->get_total_income($filter_data_last_month);
 		$income_total_year       = $this->transaction_model->get_total_income($filter_data_year);
 		$income_total_last_year  = $this->transaction_model->get_total_income($filter_data_last_year);
 
 		//total
-		$data['sale_total_today'] = $sale_total_today;
 		$data['sale_total_month'] = $sale_total_month;
 		$data['sale_total_year']  = $sale_total_year;
 		
-		$data['income_total_today'] = $income_total_today;
 		$data['income_total_month'] = $income_total_month;
 		$data['income_total_year']  = $income_total_year;
 
 		//trend
-		$data['sale_total_today_trend'] = ($sale_total_yesterday)?number_format(($sale_total_today - $sale_total_yesterday) / $sale_total_yesterday * 100):100;	
 		$data['sale_total_month_trend'] = ($sale_total_last_month)?number_format(($sale_total_month - $sale_total_last_month) / $sale_total_last_month * 100):100;
 		$data['sale_total_year_trend']  = ($sale_total_year)?number_format(($sale_total_year - $sale_total_year) / $sale_total_year * 100):100;
 		
-		$data['income_today_trend'] = ($income_total_yesterday)?number_format(($income_total_today - $income_total_yesterday) / $income_total_yesterday * 100):100;
 		$data['income_month_trend'] = ($income_total_last_month)?number_format(($income_total_month - $income_total_last_month) / $income_total_last_month * 100):100;
 		$data['income_year_trend']  = ($income_total_last_year)?number_format(($income_total_year - $income_total_last_year) / $income_total_last_year * 100):100;
 				
@@ -117,15 +93,14 @@ class Sale_trend extends MX_Controller
 				$year  = $this->datetimer->get_year($group_sale_data['date_added']);
 				$month = $this->datetimer->get_month($group_sale_data['date_added']);
 				$day   = $this->datetimer->get_day($group_sale_data['date_added']);
-				$time  = $this->datetimer->get_time($group_sale_data['date_added']);
-
+				
 				$total = $group_sale_data['total'];
 				
 				$group_sales[] = array(
+					'date_added'    => $group_sale_data['date_added'],
 					'year'    => $year,
 					'month'   => $month,
 					'day'     => $day,
-					'time'    => $time,
 					'total'   => $total
 				);
 			}

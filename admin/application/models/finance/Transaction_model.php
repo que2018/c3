@@ -291,7 +291,7 @@ class Transaction_model extends CI_Model
 	
 	public function get_group_income($data = array())
 	{
-		$this->db->select('SUM(amount) AS sum, DATE(date_added) AS date_added', false);
+		$this->db->select('SUM(amount) AS sum, date_added', false);
 		$this->db->from('transaction');
 		
 		if(!empty($data['filter_date_added_from']) && !empty($data['filter_date_added_to'])) 
