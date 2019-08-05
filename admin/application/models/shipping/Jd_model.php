@@ -60,7 +60,7 @@ class Jd_model extends CI_Model
 		);
 					
 		//$payload = "[".json_encode($data)."]";	
-        $payload = "[{'source':'ISV','salePlat':'0010001','customerCode':'010K101','customerName':'ec139','orderId':'676555512','thrOrderId':'676555512','senderName':'MrGao','senderAddress':'Pergudangan Marunda Center, Sagara Makmur','senderMobile':'18811700000','senderProvince':'California','senderCity':'Fullerton','senderPostcode':'92831','receiveName':'GaoYaofei','receiveAddress':'Beijingdaxin','receiveTel':'1321313213','receiveMobile':'18811766317','province':'Arizona','city':'CasaGrande','postcode':'85193','packageCount':1,'collectionValue':1,'collectionMoney':100.00,'country':'US','urlArgs':'lyz'}]";
+        $payload = "[{'source':'ISV','salePlat':'0010001','customerCode':'010K101','customerName':'ec139','orderId':'676555512','thrOrderId':'676555512','senderName':'MrGao','senderAddress':'Pergudangan Marunda Center, Sagara Makmur','senderMobile':'18811700000','senderProvince':'California','senderCity':'Fullerton','senderPostcode':'92831','receiveName':'GaoYaofei','receiveAddress':'Beijingdaxin','receiveTel':'1321313213','receiveMobile':'18811766317','province':'Arizona','city':'Casa Grande','postcode':'85193','packageCount':1,'collectionValue':1,'collectionMoney':100.00,'country':'US','urlArgs':'lyz'}]";
 				
 		$post_url = "http://test-gateway.jdwl.com/b2b/qli18n_waybill/glscOuterMerchantOrder/i18nReceiveOrderIsv";
 
@@ -116,16 +116,16 @@ class Jd_model extends CI_Model
 		/* ------------------------ login end ------------------------ */
 	}
 	
-	private function generate_jd_label($sale_id)
+	private function generate_jd_label($sale_id, $deliveryId)
 	{
 		$data = array(
-			'customerId'  => $this->config->item('jd_url_args'),
-			'orderId'     => $this->config->item('jd_customer_code'),
-			'deliveryId'  => '',
-			'urlArgs'     => $sale['id']
+			'customerId'  => '',
+			'orderId'     => $sale_id,
+			'deliveryId'  => $deliveryId,
+			'urlArgs'     => $this->config->item('jd_url_args')
 		);
 						
-		/* $ch = curl_init();	
+		$ch = curl_init();	
 
 		curl_setopt($ch, CURLOPT_URL,"https://sit-api.sf-express-us.com/api/orderservice/submitorder");
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -134,14 +134,12 @@ class Jd_model extends CI_Model
 
 		$output = curl_exec($ch);
 		
-		file_put_contents("log.txt", serialize($output));
+		file_put_contents("label.txt", serialize($output));
 
-		curl_close ($ch); */
+		curl_close ($ch); 
 	}
 	
-	private function get_server_time() {
-		//return "Sun, 04 Aug 2019 22:12:24 GMT";
-		
+	private function get_server_time() {		
 		$dateTime = gmdate("D, d M Y H:i:s") . " GMT";
 		
 		return $dateTime;
