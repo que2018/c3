@@ -117,6 +117,7 @@ $lang['entry_length_class'] 	  	     	 	= 'Length Class';
 $lang['entry_weight_class'] 	  	     	  	= 'Weight Class';
 $lang['entry_shipping_provider'] 	  	 		= 'Shipping Provider';
 $lang['entry_shipping_service'] 	  	        = 'Shipping Service';
+$lang['entry_shipping_fee'] 	  	            = 'Shipping Fee';
 $lang['entry_order_id'] 	  	                = 'Order ID';
 $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';

@@ -26,6 +26,7 @@ $lang['text_length_class'] 	  	             	= '长度单位';
 $lang['text_weight_class'] 	  	             	= '重量单位';
 $lang['text_shipping_provider'] 	  	 		= '配送提供商';
 $lang['text_shipping_method'] 	  	     		= '配送方式';
+$lang['entry_shipping_fee'] 	  	            = '配送费用';
 $lang['text_order_products'] 	  	     		= '订单产品';
 $lang['text_total'] 	  	             		= '总计';
 $lang['text_status'] 	  	             		= '状态';
