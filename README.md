@@ -9,17 +9,11 @@ Demo Link: http://ims.saminthebox.com
 
 <div><strong>TODO</strong></div>
 <div>shipping price calcuation</div>
-<div>better checkout experience</div>
 <div>shipping state mapping empty bug</div>
-<div>order trend widget</div>
 <div>mail order detail info</div>
 <div>checkin consider client Id</div>
 <div>shipping fee running in the detail</div>
 <div>tracking in the detail</div>
-<div>checkin bug</div>
-<div>checkin fee</div>
-<div>delete order, remove correspoing data</div>
-<div>version into config</div>
 
 
 
