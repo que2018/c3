@@ -77,7 +77,7 @@ class Import extends MX_Controller
 				die();
 			}
 			
-			$target_file = UPLOADPATH . $_FILES['file']['name'];  
+			$target_file = FILEPATH . $_FILES['file']['name'];  
 	 
 			move_uploaded_file($temp_file, $target_file);
 												
@@ -216,9 +216,7 @@ class Import extends MX_Controller
 					'weight_class_id'    => $weight['weight_class_id'],
 					'shipping_provider'  => $this->config->item('config_default_order_shipping_provider'),
 					'shipping_service'   => $this->config->item('config_default_order_shipping_service'),
-					'total'              => 0,
 					'tracking'           => '',
-					'status_id'          => 1,
 					'note'               => '',
 					'sale_products'      => $sale_products
 				);
