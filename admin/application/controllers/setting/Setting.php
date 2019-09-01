@@ -31,6 +31,7 @@ class Setting extends MX_Controller
 		$this->header->set_title($this->lang->line('text_setting'));
 
 		$this->form_validation->set_rules('config_time_zone', $this->lang->line('text_time_zone'), 'required');
+		$this->form_validation->set_rules('config_google_map_key', $this->lang->line('text_google_map_key'), 'required');
 		$this->form_validation->set_rules('config_page_limit', $this->lang->line('text_page_limit'), 'required');
 		$this->form_validation->set_rules('config_sale_product_page_limit', $this->lang->line('text_sale_product_page_limit'), 'required');
 		$this->form_validation->set_rules('config_dashboard_activity_limit', $this->lang->line('text_dashboard_activity_limit'), 'required');
@@ -72,6 +73,7 @@ class Setting extends MX_Controller
 		{
 			$data = array(
 				'config_time_zone'                       	=> $this->input->post('config_time_zone'),
+				'config_google_map_key'                    	=> $this->input->post('config_google_map_key'),
 				'config_page_limit'                      	=> $this->input->post('config_page_limit'),
 				'config_sale_product_page_limit'         	=> $this->input->post('config_sale_product_page_limit'),
 				'config_dashboard_activity_limit'        	=> $this->input->post('config_dashboard_activity_limit'),
@@ -132,6 +134,7 @@ class Setting extends MX_Controller
 		{			
 			$data = array(
 				'config_time_zone'                       	=> $this->input->post('config_time_zone'),
+				'config_google_map_key'                     => $this->input->post('config_google_map_key'),
 				'config_page_limit'              		 	=> $this->input->post('config_page_limit'),
 				'config_sale_product_page_limit'         	=> $this->input->post('config_sale_product_page_limit'),
 				'config_dashboard_activity_limit'        	=> $this->input->post('config_dashboard_activity_limit'),
@@ -184,6 +187,7 @@ class Setting extends MX_Controller
 		else
 		{
 			$data['config_time_zone']             				= $this->config->item('config_time_zone');
+			$data['config_google_map_key']             		    = $this->config->item('config_google_map_key');
 			$data['config_page_limit']             				= $this->config->item('config_page_limit');
 			$data['config_sale_product_page_limit']         	= $this->config->item('config_sale_product_page_limit');
 			$data['config_dashboard_activity_limit']        	= $this->config->item('config_dashboard_activity_limit');

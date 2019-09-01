@@ -126,13 +126,28 @@ class Label extends CI_Controller
 							'comment'         => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);							
+						$this->transaction_model->add_transaction($transaction_data);	
+
+						//additional charge
+						if(isset($result['amount_addi']))
+						{
+							$transaction_data = array(					
+								'client_id'		=> $client_id,
+								'type'		    => 'sale',
+								'type_id'       => $sale_id,
+								'cost'          => $result['amount_addi'],
+								'markup'        => 0,
+								'amount'   		=> $result['amount_addi'],
+								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
+							);
+											
+							$this->transaction_model->add_transaction($transaction_data);
+						}						
 					}
 				}
 				
 				//display info
-				$data['label_img'] = $this->config->item('media_url') . '/label/' . $result['label_img'];
-				
+				$data['label_img']   = $this->config->item('media_url') . '/label/' . $result['label_img'];
 				$data['width']       = $this->config->item('config_label_width');
 				$data['width_type']  = $this->config->item('config_label_width_type');
 				$data['margin_top']  = $this->config->item('config_label_posy');
@@ -171,7 +186,7 @@ class Label extends CI_Controller
 			$this->load->model('shipping/'. $code .'_model');
 
 			$result = $this->{$code . '_model'}->generate_sale_label($sale_id);
-			
+						
 			if(!isset($result['error']))
 			{	
 				if(!$this->config->item($code . '_debug_mode'))
@@ -212,16 +227,32 @@ class Label extends CI_Controller
 							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);						
 										
 						$transaction_data = array(					
-							'client_id'		  => $client_id,
-							'type'		      => 'sale',
-							'type_id'         => $sale_id,
-							'cost'            => $result['amount'],
-							'markup'          => $markup,
-							'amount'   		  => $amount,
-							'comment'         => $comment
+							'client_id'	 	=> $client_id,
+							'type'		 	=> 'sale',
+							'type_id'    	=> $sale_id,
+							'cost'          => $result['amount'],
+							'markup'        => $markup,
+							'amount'   		=> $amount,
+							'comment'       => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);							
+						$this->transaction_model->add_transaction($transaction_data);
+
+						//additional charge
+						if(isset($result['amount_addi']))
+						{
+							$transaction_data = array(					
+								'client_id'		=> $client_id,
+								'type'		    => 'sale',
+								'type_id'       => $sale_id,
+								'cost'          => $result['amount_addi'],
+								'markup'        => 0,
+								'amount'   		=> $result['amount_addi'],
+								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
+							);
+											
+							$this->transaction_model->add_transaction($transaction_data);
+						}
 					}
 				}
 				

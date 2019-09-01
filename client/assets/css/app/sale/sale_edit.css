@@ -10,7 +10,22 @@
 .btn-commit {
 	margin-right: 6px;
 }
-
+.btn-print {
+	background: #f5e14d;
+    border-color: #f5e14d;
+	color: #fff;
+	margin-right: 6px;
+}
+.btn-print:hover,
+.btn-print:focus,
+.btn-print:active,
+.btn-print.active,
+.btn-print:active:focus,
+.btn-print:active:hover,
+.btn-print.active:hover,
+.btn-print.active:focus {
+  color: #fff;
+}
 .panel-body {
 	min-height: 650px;
 	padding-top: 25px !important;

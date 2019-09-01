@@ -492,6 +492,22 @@ class Sale_model extends CI_Model
 		return $weight;
 	}
 	
+	public function get_sale_labels($sale_id) 
+	{	
+		$this->db->select('*', false);
+		$this->db->from('sale_label');
+		$this->db->where('sale_id', $sale_id);
+
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_sales($data)
 	{
 		$this->db->select('sale.*', false);
@@ -730,7 +746,33 @@ class Sale_model extends CI_Model
 			
 			return true;
 		}
-	}	
+	}
+
+	public function add_label($sale_id, $data) 
+	{
+		$this->db->trans_begin();
+		
+		$label_data = array(	
+			'sale_id'	=> $sale_id,
+			'tracking'	=> $data['tracking'],
+			'path'	    => $data['path']
+		);
+		
+		$this->db->insert('sale_label', $label_data);
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
+	}		
 	
 	public function update_tracking($sale_id, $tracking) 
 	{

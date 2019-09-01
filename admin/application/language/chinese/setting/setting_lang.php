@@ -11,6 +11,7 @@ $lang['text_cancel'] 	  	           			= '取消';
 $lang['text_google_key'] 	  	       			= 'google key';
 $lang['text_page_limit'] 	  	       			= '页面限制';
 $lang['text_time_zone'] 	  	       			= '时区';
+$lang['text_google_map_key'] 	  	       	    = 'google map key';
 $lang['text_sale_product_page_limit'] 	  	    = '订单产品页面限制';
 $lang['text_dashboard_activity_limit'] 	  	    = '控制台活动限制';
 $lang['text_dashboard_order_limit'] 	  	    = '控制台订单限制';
@@ -50,7 +51,8 @@ $lang['text_setting_edit_success']	   			= '<i class="fa fa-check-circle-o"></i>
 
 // Tab
 $lang['tab_general'] 	  	           			= '通用';
-$lang['tab_option'] 	  	           			= 'Option';
+$lang['tab_auth'] 	  	           			    = '授权';
+$lang['tab_option'] 	  	           			= '选项';
 $lang['tab_localization'] 	  	                = '本地化';
 $lang['tab_label'] 	  	                    	= '标签';
 $lang['tab_barcode'] 	  	                    = '条码';
@@ -62,6 +64,7 @@ $lang['tab_fee'] 	  	           			    = '费用';
 
 // Entry
 $lang['entry_time_zone']              			= '时区';
+$lang['entry_google_map_key']              	    = 'Google Map Key';
 $lang['entry_page_limit']              			= '页面限制';
 $lang['entry_label_checkout']               	= '打印标签时出库';
 $lang['entry_sale_product_page_limit']          = '订单产品页面限制';

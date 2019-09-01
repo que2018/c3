@@ -23,12 +23,12 @@
 	margin-left: 6px;
 }
 .btn-print:hover,
-.btn-print:focus,
-.btn-print:active,
-.btn-print.active,
-.btn-print:active:focus,
-.btn-print:active:hover,
-.btn-print.active:hover,
+.btn-print:focus,
+.btn-print:active,
+.btn-print.active,
+.btn-print:active:focus,
+.btn-print:active:hover,
+.btn-print.active:hover,
 .btn-print.active:focus {
   color: #fff;
 }

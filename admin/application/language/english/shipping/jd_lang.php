@@ -8,6 +8,7 @@ $lang['text_user'] 	  	    			= 'user';
 $lang['text_secret_key'] 	  	    	= 'secret key';
 $lang['text_url_args'] 	  	    		= 'url args';
 $lang['text_source'] 	  	    		= 'source';
+$lang['text_customer_id'] 	  	        = 'customer id';
 $lang['text_customer_code'] 	  	    = 'customer code';
 $lang['jd_sender_name'] 	  	    	= 'sender name';
 $lang['text_sender_mobile'] 	  	   	= 'sender mobile';
@@ -48,18 +49,30 @@ $lang['text_country_vn'] 	  			= 'VN';
 $lang['text_country_id'] 	  			= 'ID';
 $lang['text_sort_order'] 	  	        = 'sort order';
 $lang['text_status'] 	  	            = 'status';
+$lang['text_png'] 	  	 				= 'png';
+$lang['text_fixed'] 	  			    = 'Fixed';
+$lang['text_ratio'] 	  			    = 'Ratio';
+$lang['text_gas_fee'] 	  			    = 'gas fee';
+$lang['text_price_table'] 	  			= 'Price Table';
+$lang['text_order_error'] 	  			= 'Order Error: ';
+$lang['text_print_error'] 	  			= 'Print Error: ';
 $lang['text_edit_success'] 	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;JD edit success';
 
 // Tab
 $lang['tab_service'] 	  	            = 'Service';
+$lang['tab_price_table'] 	  	        = 'Price Table';
+$lang['tab_fee'] 	  	                = 'Fee';
 
 // Column
 $lang['column_name'] 	  	            = 'Name';
 $lang['column_code'] 	  	            = 'Code';
 $lang['column_method'] 	  	            = 'Method';
+$lang['column_client'] 	  	            = 'Client';
+$lang['column_fee'] 	  	            = 'Fee';
 $lang['column_package'] 	  	        = 'Package';
 
 // Entry
+$lang['entry_customer_id'] 	  	    	= 'Customer ID';
 $lang['entry_customer_code'] 	  	    = 'Customer Code';
 $lang['entry_user'] 	  	        	= 'User';
 $lang['entry_secret_Key'] 	  	        = 'Secret Key';
@@ -80,9 +93,25 @@ $lang['entry_service_pickup_method'] 	= 'Pickup Method';
 $lang['entry_collection_value'] 		= 'Collection Value';
 $lang['entry_good_type'] 				= 'Good Type';
 $lang['entry_country'] 					= 'Country';
-
-
 $lang['entry_status'] 	  	        	= 'Status';
 $lang['entry_sort_order'] 	  	        = 'Sort Order';
+$lang['entry_fee_type'] 	  	        = 'Fee Type';
+$lang['entry_fee_value'] 	  	        = 'Fee Value';
+$lang['entry_gas_fee'] 	  	        	= 'Gas Fee(%)';
+$lang['entry_fedex_ground_price_table'] 	  		= 'Fedex Ground Price Table';
+$lang['entry_fedex_two_day_price_table'] 	  		= 'Fedex Two Day Price Table';
+$lang['entry_dhl_express_price_table'] 	  	    	= 'DHL Express Price Table';
+$lang['entry_upload_fedex_ground_price_table'] 		= 'Upload Fedex Ground Price Table';
+$lang['entry_upload_fedex_two_day_price_table']		= 'Upload Fedex Two Day Price Table';
+$lang['entry_upload_dhl_express_price_table'] 	  	= 'Upload DHL Express Price Table';
+
+// Error
+$lang['error_jd_gateway_no_response']  			   = 'JD gateway no response';
+$lang['error_jd_response_format']  			       = 'JD gateway response format is incorrect';
+$lang['error_fedex_ground_price_table_extension']  = 'fedex ground price table file is not excel';
+$lang['error_fedex_two_day_price_table_extension'] = 'fedex two days price table file is not excel';
+$lang['error_dhl_express_price_table_extension']   = 'dhl express price table file is not excel';
+
+
 
 

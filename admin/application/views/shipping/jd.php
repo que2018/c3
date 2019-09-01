@@ -16,11 +16,13 @@
 	  <?php if($error) { ?>
         <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $error; ?></div>
       <?php } ?>
-	  <form method="post" class="form-horizontal">
+	  <form method="post" class="form-horizontal" enctype="multipart/form-data">
 	    <div class="tabs-container">
 	      <ul class="nav nav-tabs">
 		    <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		    <li><a data-toggle="tab" href="#service"><?php echo $this->lang->line('tab_service'); ?></a></li>
+			<li><a data-toggle="tab" href="#price-table"><?php echo $this->lang->line('tab_price_table'); ?></a></li>
+			<li><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  </ul>
 		  <div class="tab-content">
 		    <div id="general" class="tab-pane active">
@@ -44,6 +46,11 @@
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_source'); ?></label>
 				  <div class="col-sm-10"><input name="jd_source" value="<?php echo $jd_source; ?>" class="form-control"></div>	  
 			    </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_customer_id'); ?></label>
+				  <div class="col-sm-10"><input name="jd_customer_id" value="<?php echo $jd_customer_id; ?>" class="form-control"></div>	  
+			    </div>	
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_customer_code'); ?></label>
@@ -128,11 +135,6 @@
 					  <?php } ?>
 				    </select>
 				  </div>	  
-			    </div>	
-				<div class="hr-line-dashed"></div>
-				<div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_service_level'); ?></label>
-				  <div class="col-sm-10"><input name="jd_service_level" value="<?php echo $jd_service_level; ?>" class="form-control"></div>	  
 			    </div>	
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
@@ -251,8 +253,121 @@
                   </table>
 				</div>	
 			  </div>
-			  </div>
 		    </div>
+			<div id="price-table" class="tab-pane">
+			  <div class="panel-body">
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fedex_ground_price_table'); ?></label>
+				  <div class="col-sm-10">
+					<span class="form-control"><?php echo $jd_fedex_ground_price_table; ?></span>
+				  </div>	  
+			    </div>	
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_fedex_ground_price_table'); ?></label>
+				  <div class="col-sm-10">
+				    <input type="file" name="fedex_ground_price_table" class="form-control-file" id="fedex-ground-price-table-input">
+				  </div>	  
+			    </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fedex_two_day_price_table'); ?></label>
+				  <div class="col-sm-10">
+					<span class="form-control"><?php echo $jd_fedex_two_day_price_table; ?></span>
+				  </div>	  
+			    </div>	
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_fedex_two_day_price_table'); ?></label>
+				  <div class="col-sm-10">
+				    <input type="file" name="fedex_two_day_price_table" class="form-control-file" id="fedex-two-day-price-table-input">
+				  </div>	  
+			    </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_dhl_express_price_table'); ?></label>
+				  <div class="col-sm-10">
+					<span class="form-control"><?php echo $jd_dhl_express_price_table; ?></span>
+				  </div>	  
+			    </div>	
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_dhl_express_price_table'); ?></label>
+				  <div class="col-sm-10">
+				    <input type="file" name="dhl_express_price_table" class="form-control-file" id="dhl-express-price-table-input">
+				  </div>	  
+			    </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_gas_fee'); ?></label>
+				  <div class="col-sm-10"><input name="jd_gas_fee" value="<?php echo $jd_gas_fee; ?>" class="form-control"></div>	  
+			    </div>	
+				<div class="hr-line-dashed"></div>
+			  </div>
+			</div>
+			<div id="fee" class="tab-pane">
+			  <div class="panel-body">
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_type'); ?></label>
+			      <div class="col-sm-10">
+				    <select name="jd_fee_type" class="form-control">
+					  <?php if($jd_fee_type) { ?>
+					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1" selected><?php echo $this->lang->line('text_ratio'); ?></option>
+					  <?php } else { ?>
+					    <option value="0" selected><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
+					  <?php } ?>
+					</select>
+				  </div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				 <div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
+			      <div class="col-sm-10">
+				    <div class="input-group">
+					  <?php if($jd_fee_type) { ?>
+					    <span class="input-group-addon fee-symbol">%</span>
+					  <?php } else { ?>
+					    <span class="input-group-addon fee-symbol">$</span>
+					  <?php } ?>
+				      <input type="text" name="jd_fee_value" value="<?php echo $jd_fee_value; ?>" class="form-control">
+				    </div>
+				  </div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="table-responsive">
+				  <table class="table table-striped table-bordered table-hover dataTables-example" >
+				    <thead>
+					  <tr>
+					    <th style="width:60%;"><?php echo $this->lang->line('column_client'); ?></th>
+						<th><?php echo $this->lang->line('column_fee'); ?></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php if($clients) { ?>
+					    <?php foreach($clients as $i => $client) { ?>
+						<tr>
+						  <td><?php echo $client['name']; ?></td>
+						  <td>  
+						    <div class="input-group">
+						    <?php if($jd_fee_type) { ?>
+						    <span class="input-group-addon fee-symbol">%</span>
+							<?php } else { ?>
+							<span class="input-group-addon fee-symbol">$</span>
+							<?php } ?>
+							<input type="text" name="jd_client_fee[<?php echo $i; ?>][fee]" value="<?php echo $client['fee']; ?>" class="form-control">
+							<input type="hidden" name="jd_client_fee[<?php echo $i; ?>][client_id]" value="<?php echo $client['client_id']; ?>">
+							</div>
+						  </td>
+						</tr>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+				  </table>
+				</div>
+			  </div>
+			</div>
 		  </div>
 	    </div>
 	  </form>

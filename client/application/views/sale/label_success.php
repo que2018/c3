@@ -1,22 +1,17 @@
-<div id="label"><img src="<?php echo $label_img; ?>"></div>
-<div id="packing-slip">
-  <table class="table table-packing">
-    <thead>
-	  <tr>
-	    <th><?php echo $this->lang->line('text_sku'); ?></th>
-		<th><?php echo $this->lang->line('text_quantity'); ?></th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <?php foreach($sale_products as $sale_product) { ?>
-	    <tr>
-		  <td><?php echo $sale_product['sku']; ?></td>
-		  <td><?php echo $sale_product['quantity']; ?></td>
-		</tr>
-	  <?php } ?>
-	</tbody>
-  </table>
+<div id="label">
+<?php if($ext == 'pdf') { ?>
+  <embed src="<?php echo $label_img; ?>" width="100%" height="700px" />
+<?php } else { ?>
+  <?php if($width_type) { ?>
+  <img style="width: <?php echo $width; ?>px; top: <?php echo $margin_top; ?>px;" src="<?php echo $label_img; ?>">
+  <?php } else { ?>
+  <img style="width: <?php echo $width; ?>%; top: <?php echo $margin_top; ?>px;" src="<?php echo $label_img; ?>">
+  <?php } ?>
+<?php } ?>
 </div>
+
+
+
 
 		
 		

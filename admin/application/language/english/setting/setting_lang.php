@@ -11,6 +11,7 @@ $lang['text_cancel'] 	  	           			= 'cancel';
 $lang['text_google_key'] 	  	       			= 'google key';
 $lang['text_page_limit'] 	  	       			= 'page limit';
 $lang['text_time_zone'] 	  	       			= 'time zone';
+$lang['text_google_map_key'] 	  	       			= 'google map key';
 $lang['text_sale_product_page_limit'] 	  	    = 'sale product page limit';
 $lang['text_dashboard_activity_limit'] 	  	    = 'dashboard activity limit';
 $lang['text_dashboard_order_limit'] 	  	    = 'dashboard order limit';
@@ -50,6 +51,7 @@ $lang['text_setting_edit_success']	   			= '<i class="fa fa-check-circle-o"></i>
 
 // Tab
 $lang['tab_general'] 	  	           			= 'General';
+$lang['tab_auth'] 	  	           			    = 'Auth';
 $lang['tab_option'] 	  	           			= 'Option';
 $lang['tab_localization'] 	  	                = 'Localization';
 $lang['tab_label'] 	  	                    	= 'Label';
@@ -62,6 +64,7 @@ $lang['tab_fee'] 	  	           			    = 'Fee';
 
 // Entry
 $lang['entry_time_zone']              			= 'Time Zone';
+$lang['entry_google_map_key']              	    = 'Google Map Key';
 $lang['entry_page_limit']              			= 'Page Limit';
 $lang['entry_label_checkout']               	= 'Checkout when print label';
 $lang['entry_sale_product_page_limit']          = 'Sale Product Page Limit';

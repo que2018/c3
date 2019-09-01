@@ -22,7 +22,8 @@
     <form method="post" class="form-horizontal">
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
-		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>		  
+		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>	
+		  <li class=""><a data-toggle="tab" href="#auth"><?php echo $this->lang->line('tab_auth'); ?></a></li>		  
 		  <li class=""><a data-toggle="tab" href="#option"><?php echo $this->lang->line('tab_option'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#localization"><?php echo $this->lang->line('tab_localization'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
@@ -48,6 +49,17 @@
 				  <a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_logo; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a>
 				  <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />				
                 </div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			</div>
+		  </div>
+		  <div id="auth" class="tab-pane">
+			<div class="panel-body">
+		      <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_google_map_key'); ?></label>
+			    <div class="col-sm-10">
+				  <input name="config_google_map_key" value="<?php echo $config_google_map_key; ?>" class="form-control">
+				</div>
 			  </div>
 			  <div class="hr-line-dashed"></div>
 			</div>

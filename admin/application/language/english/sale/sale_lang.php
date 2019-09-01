@@ -76,6 +76,7 @@ $lang['text_drop_file_and_upload'] 	     		= 'Drop files here or click to upload
 $lang['text_confirm_delete'] 	  	     		= 'Are you sure to delete this order?';
 $lang['text_label_fee_note1']    	            = 'label fee for order - ID: %s  store order ID: %s';
 $lang['text_label_fee_note2']    	            = 'label fee for order - ID: %s';
+$lang['text_label_fee_additional']    	        = 'label fee additional for order - ID: %s';
 $lang['text_sale_transaction_note']    	        = 'transaction for order - ID: %s';
 $lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;order add success';
 $lang['text_sale_edit_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;order edit success';
@@ -117,7 +118,6 @@ $lang['entry_length_class'] 	  	     	 	= 'Length Class';
 $lang['entry_weight_class'] 	  	     	  	= 'Weight Class';
 $lang['entry_shipping_provider'] 	  	 		= 'Shipping Provider';
 $lang['entry_shipping_service'] 	  	        = 'Shipping Service';
-$lang['entry_shipping_fee'] 	  	            = 'Shipping Fee';
 $lang['entry_order_id'] 	  	                = 'Order ID';
 $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';

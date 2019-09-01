@@ -8,8 +8,9 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_order_edit'); ?></strong></li>
 	</ol>
   </div>
-  <div class="button-group  tooltip-demo">
+  <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print_label'); ?>" class="btn btn-print" onclick="print_label()"><i class="fa fa-file-image-o"></i></button>   
     <a href="<?php echo base_url(); ?>sale/sale" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_return'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
@@ -27,6 +28,7 @@
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
 		</ul>
 		<div class="tab-content">
@@ -236,6 +238,43 @@
 			  <div class="hr-line-dashed"></div>  	
 			</div>
 		  </div>
+		  <div id="label" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="sale_label" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 30%;"><?php echo $this->lang->line('column_label') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_tracking') ?></th>							
+					  <th></th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $sale_label_row = 0; ?>
+					<?php if($sale_labels) { ?>
+					  <?php foreach ($sale_labels as $sale_label) { ?>
+					  <tr id="sale-label-row<?php echo $sale_label_row; ?>">
+					    <td class="text-right" style="padding: 20px;">
+						  <?php if($sale_label['ext']) { ?>
+						  <embed src="<?php echo $sale_label['link']; ?>" width="560px" height="700px" />
+						  <?php } else { ?>
+						  <img src="<?php echo $sale_label['link']; ?>" class="label-img" />
+						  <?php } ?>
+						  <input type="hidden" name="sale_label[<?php echo $sale_label_row; ?>][path]" value="<?php echo $sale_label['path']; ?>"/>
+						</td>
+					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="sale_label[<?php echo $sale_label_row; ?>][tracking]" value="<?php echo $sale_label['tracking']; ?>" class="form-control" /></div></td>
+					    <td class="text-center">
+						  <a class="btn btn-info btn-download" href="<?php echo $sale_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						</td>
+					  </tr>
+					  <?php $sale_label_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+                </table>
+              </div> 
+			</div>
+		  </div>
 		  <div id="store" class="tab-pane">
 			<div class="panel-body">
 		      <div class="form-group">
@@ -266,6 +305,12 @@
     </div>
   </div>
 </div>
+<script>
+function print_label() {
+	url = '<?php echo base_url();?>sale/label?sale_id=<?php echo $sale_id; ?>';		
+	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
+}
+</script>
 <script>
 function refresh_volume() {
 	data = new FormData();

@@ -30,7 +30,6 @@
 		      <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_store'); ?></label>
 			  <div class="col-sm-10">
 			  <select name="store_id" class="form-control">
-			    <option value=""></option>
 				<?php foreach($stores as $store) { ?>
 			    <option value="<?php echo $store['store_id']; ?>"><?php echo $store['name']; ?></option>
 				<?php } ?>

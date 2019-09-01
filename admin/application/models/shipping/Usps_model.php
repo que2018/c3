@@ -166,16 +166,19 @@ class Usps_model extends CI_Model
 					
 					try {
 						$response = $client->CreateIndicium($requestParams);
-												
-						$label_img_path = FCPATH . 'img/shipping_label/stamps_' . $sale_id . '.png';  
+								
+						$amount = $response->Rate->Amount;			
+						$tracking = $response->TrackingNumber;
 						
-						$label_img = 'img/shipping_label/stamps_' . $sale_id . ".png";  
+						$label_img = LABELPATH . $tracking . '.png';
 						
-						if(file_put_contents($label_img_path, file_get_contents($response->URL)))
+						if(file_put_contents($label_img, file_get_contents($response->URL)))
 						{
-							$result['amount']    = $response->Rate->Amount;
-							$result['label_img'] = $label_img;	
-							$result['tracking']  = $response->TrackingNumber;	
+							$result = array(
+								'tracking'   => $tracking,
+								'label_img'  => $tracking . '.png',
+								'amount'     => $amount
+							);
 						}
 						else
 						{

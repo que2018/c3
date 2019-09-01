@@ -153,7 +153,7 @@ class Product extends MX_Controller
 				} 
 				else
 				{
-					$image = $this->image_model->resize('no_image.png', 40, 40);
+					$image = $this->image_model->resize('no_image.jpg', 40, 40);
 				}
 				
 				$data['products'][] = array(
@@ -829,26 +829,17 @@ class Product extends MX_Controller
 		$this->lang->load('catalog/product');
 
 		$this->load->model('catalog/product_model');
-		$this->load->model('inventory/transfer_model');
 		$this->load->model('inventory/inventory_model');
 		
 		if($this->input->get('product_id'))
 		{
 			$product_id = $this->input->get('product_id');
-			
-			$transfer = $this->transfer_model->get_transfer_by_product($product_id);
-			
+						
 			$inventory = $this->inventory_model->get_inventories_by_product($product_id);
 			
-			if($transfer || $inventory)
+			if($inventory) 
 			{
-				$messages = [];
-				
-				if($transfer) 
-					$messages[] = $this->lang->line('error_can_not_delete_transfer_exist');
-
-				if($inventory) 
-					$messages[] = $this->lang->line('error_can_not_delete_inventory_exist');
+				$messages[] = $this->lang->line('error_can_not_delete_inventory_exist');
 
 				$outdata = array(
 					'success'    => false,

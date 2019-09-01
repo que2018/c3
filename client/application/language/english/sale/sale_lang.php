@@ -54,6 +54,7 @@ $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triang
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';
 $lang['tab_product'] 	  	             		= 'Product';
+$lang['tab_label'] 	  	             		    = 'Label';
 $lang['tab_fee'] 	  	                 		= 'Fee';
 $lang['tab_store'] 	  	                 		= 'Store';
 

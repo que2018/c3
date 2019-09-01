@@ -743,6 +743,7 @@ class Sale extends MX_Controller
 		$this->form_validation->CI =& $this;
 		
 		$this->load->model('sale/sale_model');
+		$this->load->model('tool/image_model');
 		$this->load->model('store/store_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
@@ -924,9 +925,12 @@ class Sale extends MX_Controller
 				{					
 					if(is_file(LABELPATH . $sale_label['path'])) 
 					{
+						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
+						
 						$data['sale_labels'][] = array(
 							'tracking'  => $sale_label['tracking'],
-							'path'      => $sale_label['path'],
+							'ext'       => $ext,
+ 							'path'      => $sale_label['path'],
 							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
 						);
 					}
@@ -988,9 +992,12 @@ class Sale extends MX_Controller
 				{					
 					if(is_file(LABELPATH . $sale_label['path'])) 
 					{
+						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
+						
 						$data['sale_labels'][] = array(
 							'tracking'  => $sale_label['tracking'],
-							'path'      => $sale_label['path'],
+							'ext'       => $ext,
+ 							'path'      => $sale_label['path'],
 							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
 						);
 					}

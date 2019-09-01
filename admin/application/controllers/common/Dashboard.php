@@ -65,7 +65,7 @@ class Dashboard extends MX_Controller
 		//sale trend
 		$this->load->module('sale_trend');
 	
-		$data['sale_trend'] = Modules::run('module/sale_trend/index');
+		//$data['sale_trend'] = Modules::run('module/sale_trend/index');
 		
 		//header & footer
 		$data['header'] = Modules::run('module/header/index');

@@ -12,14 +12,14 @@
 <body>
 <div id="content" class="content">
   <img id="loading" class="loading" src="<?php echo base_url(); ?>assets/image/loading.gif" >
-  <div id="msg"></div>
+  <div id="message"></div>
 </div>
-<button class="btn btn-primary btn-print" onClick="printLabel()"><?php echo $this->lang->line('button_print'); ?></button>
+<!--<button class="btn btn-primary btn-print" onClick="print_label()"><?php echo $this->lang->line('button_print'); ?></button>-->
 <script>
 $(document).ready(function() {
 	
 	data = new FormData();
-	data.append("id", '<?php echo $id; ?>');
+	data.append('sale_id', '<?php echo $sale_id; ?>');
 	
 	$.ajax({
 		url: '<?php echo base_url(); ?>sale/label/check',
@@ -37,7 +37,7 @@ $(document).ready(function() {
 			if(json.success) 
 			{				
 				data = new FormData();
-				data.append("id", '<?php echo $id; ?>');
+				data.append('sale_id', '<?php echo $sale_id; ?>');
 							
 				$.ajax({
 					url: '<?php echo base_url(); ?>sale/label/execute',
@@ -54,21 +54,26 @@ $(document).ready(function() {
 						$('#content').html(html);
 					},
 					error: function(xhr, ajaxOptions, thrownError) {						
-						$('#msg').html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						$('#message').html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
 				});
 			} 
 			else 
 			{
 				$('#loading').hide();
-				$('#msg').html(json.msg);
+				$('#message').html(json.message);
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
-			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			$("#message").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
 });
+</script>
+<script>
+function print_label() {
+    window.print();
+}
 </script>
 </body>
 </html>

@@ -54,6 +54,7 @@ $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triang
 // Tab
 $lang['tab_customer'] 	  	             		= '客户';
 $lang['tab_product'] 	  	             		= '产品';
+$lang['tab_label'] 	  	             		    = '标签';
 $lang['tab_fee'] 	  	                 		= '费用';
 $lang['tab_store'] 	  	                 		= '店铺';
 

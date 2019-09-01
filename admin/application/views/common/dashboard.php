@@ -8,7 +8,7 @@
   </div>
   <div class="row">
   <div class="col-lg-12">
-	<?php echo $sale_trend; ?>
+	<?php //echo $sale_trend; ?>
   </div>
   </div>
   <div class="row">

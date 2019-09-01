@@ -647,6 +647,29 @@ class Sale extends MX_Controller
 					);
 				}
 			}
+			
+			//sale labels
+			$data['sale_labels'] = array();
+			
+			$sale_labels = $this->input->post('sale_label');
+			
+			if($sale_labels)
+			{
+				foreach($sale_labels as $sale_label)
+				{					
+					if(is_file(LABELPATH . $sale_label['path'])) 
+					{
+						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
+						
+						$data['sale_labels'][] = array(
+							'tracking'  => $sale_label['tracking'],
+							'ext'       => $ext,
+ 							'path'      => $sale_label['path'],
+							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
+						);
+					}
+				}
+			}
 		}
 		else
 		{
@@ -694,6 +717,29 @@ class Sale extends MX_Controller
 					'quantity'           => $sale_product_data['quantity'],
 					'checkout_locations' => $checkout_locations
 				);
+			}
+			
+			//sale labels
+			$data['sale_labels'] = array();
+			
+			$sale_labels = $this->sale_model->get_sale_labels($sale_id);
+			
+			if($sale_labels)
+			{
+				foreach($sale_labels as $sale_label)
+				{					
+					if(is_file(LABELPATH . $sale_label['path'])) 
+					{
+						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
+						
+						$data['sale_labels'][] = array(
+							'tracking'  => $sale_label['tracking'],
+							'ext'       => $ext,
+ 							'path'      => $sale_label['path'],
+							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
+						);
+					}
+				}
 			}
 		}
 		

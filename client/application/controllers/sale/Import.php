@@ -70,7 +70,7 @@ class Import extends CI_Controller
 				die();
 			}
 			
-			$target_file = UPLOADPATH . $_FILES['file']['name'];  
+			$target_file = FILEPATH . $_FILES['file']['name'];  
 	 
 			move_uploaded_file($temp_file, $target_file);
 									
@@ -117,24 +117,25 @@ class Import extends CI_Controller
 		
 		for($i = 2; $i <= $rows; $i++)
 		{ 
-			$row = $sheet->rangeToArray('A' . $i . ':M' . $i, null, true, false);
+			$row = $sheet->rangeToArray('A' . $i . ':N' . $i, null, true, false);
 
 			$store_sale_id  = $row[0][0];
-			$date_added     = $row[0][1];
+			$date_added     = isset($row[0][1])?$row[0][1]:date('Y-m-d H:i:s');
 			$sku 			= $row[0][2];
-			$quantity 	    = $row[0][3];
+			$quantity 	    = isset($row[0][3])?$row[0][3]:1;
 			$name 	    	= $row[0][4];
 			$street 	    = $row[0][5];
 			$street2 		= isset($row[0][6])?$row[0][6]:'';
 			$city 			= $row[0][7];
 			$state 			= $row[0][8];
 			$zipcode 		= $row[0][9];	
-			$country 		= $row[0][10];
+			$country 		= isset($row[0][10])?$row[0][10]:'US';
 			$email 		    = isset($row[0][11])?$row[0][11]:'';
 			$phone 		    = isset($row[0][12])?$row[0][12]:'';
+			$weight_value   = isset($row[0][13])?$row[0][13]:'';
 					
 			//data error
-			if(!$store_sale_id || !$date_added || !$sku || !$quantity || !$name || !$street || !$city || !$state || !$zipcode || !$country)
+			if(!$store_sale_id || !$sku || !$name || !$street || !$city || !$state || !$zipcode)
 			{
 				$messages[] = sprintf($this->lang->line('error_row_data'), $i);
 				
@@ -173,6 +174,11 @@ class Import extends CI_Controller
 				$volume = $this->sale_model->get_sale_products_volume($sale_products_params);
 				
 				$weight = $this->sale_model->get_sale_products_weight($sale_products_params);
+					
+				if($weight_value)
+				{
+					$weight['weight'] = $weight_value;
+				}	
 					
 				$sale_products = [];
 					
