@@ -254,12 +254,8 @@
 					<?php if($sale_labels) { ?>
 					  <?php foreach ($sale_labels as $sale_label) { ?>
 					  <tr id="sale-label-row<?php echo $sale_label_row; ?>">
-					    <td class="text-right" style="padding: 20px;">
-						  <?php if($sale_label['ext']) { ?>
-						  <embed src="<?php echo $sale_label['link']; ?>" width="560px" height="700px" />
-						  <?php } else { ?>
+					    <td class="text-center" style="padding: 20px;">
 						  <img src="<?php echo $sale_label['link']; ?>" class="label-img" />
-						  <?php } ?>
 						  <input type="hidden" name="sale_label[<?php echo $sale_label_row; ?>][path]" value="<?php echo $sale_label['path']; ?>"/>
 						</td>
 					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="sale_label[<?php echo $sale_label_row; ?>][tracking]" value="<?php echo $sale_label['tracking']; ?>" class="form-control" /></div></td>

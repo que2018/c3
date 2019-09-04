@@ -14,7 +14,7 @@
   <img id="loading" class="loading" src="<?php echo base_url(); ?>assets/image/loading.gif" >
   <div id="message"></div>
 </div>
-<!--<button class="btn btn-primary btn-print" onClick="print_label()"><?php echo $this->lang->line('button_print'); ?></button>-->
+<button class="btn btn-primary btn-print" onClick="print_label()"><?php echo $this->lang->line('button_print'); ?></button>
 <script>
 $(document).ready(function() {
 	

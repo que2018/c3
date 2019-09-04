@@ -12,7 +12,10 @@ class Pdftoimage
 	public function convert($pdf_path, $image_path) 
 	{
 		$pdf = new Spatie\PdfToImage\Pdf($pdf_path);
-		$pdf->saveImage($image_path);
+		
+		$result = $pdf->saveImage($image_path);
+		
+		return $result;
 	}
 }
 

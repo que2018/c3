@@ -197,6 +197,7 @@
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td class="text-center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-file-image-o"></i></button>
+						<button onclick="print_label_c(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-print-c"><i class="fa fa-print"></i></button>
 						<a href="<?php echo $sale['edit']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						<button class="btn btn-danger btn-delete" onclick="delete_sale(this, <?php echo $sale['sale_id']; ?>)"><i class="fa fa-trash"></i></button>
 					  </td>
@@ -396,6 +397,43 @@ function print_label(handle)
 }
 </script>
 <script>
+function print_label_c(handle, sale_id) 
+{	
+	data = new FormData();
+	data.append('sale_id', sale_id);
+				
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/label/execute_c',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
+		},
+		complete: function() {
+			$(handle).html('<i class="fa fa-print"></i>');
+		},
+		success: function(json) {
+			if(!json.success) {
+				html = '<div class="alert alert-danger">';
+				html += '<span><strong>#' + sale_id + ":</strong> " + json.message + '</span>';
+				html += '<button type="button" class="close" onclick="$(this).closest(\'.alert-danger\').remove()">';
+				html += '&times;</button></div>';
+				
+				$('#alerts').append(html);
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {						
+			$('#alert-error span').html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			$('#alert-error').show();
+		}
+	});
+}
+</script>
+<script>
 function print_label_d(handle, sale_id) 
 {	
 	data = new FormData();
@@ -427,7 +465,7 @@ function print_label_d(handle, sale_id)
 					contentType: false,
 					processData: false,
 					complete: function() {
-						$(handle).html('<i class="fa fa-print"></i>');
+						$(handle).html('<i class="fa fa-file-image-o"></i>');
 					},
 					success: function(json) {
 						if(json.success) {

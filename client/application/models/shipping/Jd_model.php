@@ -214,20 +214,34 @@ class Jd_model extends CI_Model
 					$label_pdf = LABELPATH . $tracking . '.pdf';
 					
 					$pdf = fopen($label_pdf, 'w');
-					fwrite($pdf, $pdf_decoded);
+					$write_result = fwrite($pdf, $pdf_decoded);
 					fclose($pdf);
 					
-					$label_img = LABELPATH . $tracking . '.png';
-					
-					$this->pdftoimage->convert($label_pdf, $label_img);
+					if($write_result)
+					{
+						$label_img = LABELPATH . $tracking . '.jpg';
+						
+						$convert_result = $this->pdftoimage->convert($label_pdf, $label_img);
 
-					$amount = $this->get_shipping_fee($sale_id);
-					$gas_fee = (int)$this->config->item('jd_gas_fee');
+						if($convert_result)
+						{
+							$amount = $this->get_shipping_fee($sale_id);
+							$gas_fee = (int)$this->config->item('jd_gas_fee');
 
-					$result['tracking'] = $tracking;
-					$result['amount'] = $this->get_shipping_fee($sale_id);
-					$result['amount_addi'] = (int)$amount * $gas_fee / 100;	
-					$result['label_img'] = $tracking . '.png';	
+							$result['tracking'] = $tracking;
+							$result['amount'] = $this->get_shipping_fee($sale_id);
+							$result['amount_addi'] = (int)$amount * $gas_fee / 100;	
+							$result['label_img'] = $tracking . '.jpg';	
+						}
+						else
+						{
+							$result['error'] = $this->lang->line('error_pdf_image_conversion');
+						}	
+					}
+					else
+					{
+						$result['error'] = $this->lang->line('error_write_pdf');
+					}
 				}
 				else
 				{			

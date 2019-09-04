@@ -106,6 +106,8 @@ $lang['entry_upload_fedex_two_day_price_table']		= 'Upload Fedex Two Day Price T
 $lang['entry_upload_dhl_express_price_table'] 	  	= 'Upload DHL Express Price Table';
 
 // Error
+$lang['error_write_pdf']  			   			   = 'write pdf to disk error';
+$lang['error_pdf_image_conversion']  			   = 'convert pdf to image error';
 $lang['error_jd_gateway_no_response']  			   = 'JD gateway no response';
 $lang['error_jd_response_format']  			       = 'JD gateway response format is incorrect';
 $lang['error_fedex_ground_price_table_extension']  = 'fedex ground price table file is not excel';

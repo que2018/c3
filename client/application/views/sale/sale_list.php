@@ -18,6 +18,9 @@
 	  <?php if($success) { ?>
 	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
 	  <?php } ?>
+	  <div id="alerts">
+	    <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
+	  </div>
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
 		  <h5><?php echo $this->lang->line('text_order_list_description'); ?></h5>
@@ -28,47 +31,47 @@
 			  <thead>
 			    <?php if($sort == 'sale.id') { ?>
 				<th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
+				  <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 8%;" class="sorting">
-					<a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
+				  <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.store_sale_id') { ?>
 				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
+				  <a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 20.6%;" class="sorting">
-					<a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
+				  <a href="<?php echo $sort_store_sale_id; ?>"><?php echo $this->lang->line('column_store_order_id'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.tracking') { ?>
 				<th style="width: 20.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
+				  <a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 20.6%;" class="sorting">
-					<a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
+				  <a href="<?php echo $sort_tracking; ?>"><?php echo $this->lang->line('column_tracking'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.name') { ?>
 				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_customer'); ?></a>
+				  <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_customer'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 16.6%;" class="sorting">
-					<a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_customer'); ?></a>
+				  <a href="<?php echo $sort_name; ?>"><?php echo $this->lang->line('column_customer'); ?></a>
 				</th>
 				<?php } ?>
 				<?php if($sort == 'sale.date_added') { ?>
 				<th style="width: 16.6%;" class="sorting_<?php echo strtolower($order); ?>">
-					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } else { ?>
 				<th style="width: 16.6%;" class="sorting">
-					<a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
+				  <a href="<?php echo $sort_date_added; ?>"><?php echo $this->lang->line('column_date_added'); ?></a>
 				</th>
 				<?php } ?>
 				<th></th>
@@ -145,6 +148,7 @@
 					  <td><?php echo $sale['name']; ?></td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td style="text-align: center">
+					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-file-image-o"></i></button>
 					    <?php if($sale['status_id'] == 1) { ?>
 						<a href="<?php echo base_url(); ?>sale/sale/edit?sale_id=<?php echo $sale['sale_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil"></i></a>
                         <?php } else { ?>
@@ -262,6 +266,74 @@ function print_label(handle)
 }
 </script>
 <script>
+function print_label_d(handle, sale_id) 
+{	
+	data = new FormData();
+	data.append('sale_id', sale_id);
+	
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/label/check',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
+		},
+		success: function(json) {			
+			if(json.success) 
+			{				
+				data = new FormData();
+				data.append('sale_id', sale_id);
+							
+				$.ajax({
+					url: '<?php echo base_url(); ?>sale/label/execute_d',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					cache: false,
+					contentType: false,
+					processData: false,
+					complete: function() {
+						$(handle).html('<i class="fa fa-file-image-o"></i>');
+					},
+					success: function(json) {
+						if(json.success) {
+							html = '<span class="tracking">' + json.tracking + '</span>';
+							$(handle).closest('tr').find('.tracking-td').html(html);
+						}
+						else {
+							html = '<div class="alert alert-danger">';
+							html += '<span><strong>#' + sale_id + ":</strong> " + json.message + '</span>';
+							html += '<button type="button" class="close" onclick="$(this).closest(\'.alert-danger\').remove()">';
+							html += '&times;</button></div>';
+							
+							$('#alerts').append(html);
+						}
+					},
+					error: function(xhr, ajaxOptions, thrownError) {						
+						$('#alert-error span').html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						$('#alert-error').show();
+					}
+				});
+			} 
+			else 
+			{
+				$(handle).html('<i class="fa fa-print"></i>');
+				
+				$('#alert-error span').html(json.message);		
+				$('#alert-error').show();
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 $(document).ready(function() {
 	$(document).on('mouseenter', 'td:nth-child(1)', function() {
 		$(this).find('.detail').show();
@@ -269,55 +341,6 @@ $(document).ready(function() {
 	
 	$(document).on('mouseleave', 'td:nth-child(1)', function() {
 		$(this).find('.detail').hide();
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$(document).on('mouseenter', 'td:nth-child(3)', function() {
-		$(this).find('.trac-detail').show();
-		
-		handle = $(this);
-		
-		var trackBox = handle.find('.trac-detail');
-		
-		sale_id = $(this).closest('tr').find("input[name='sale_id']").val();
-		
-		$.ajax({
-			url: '<?php echo base_url(); ?>sale/sale_ajax/get_tracking_detail?sale_id=' + sale_id,
-			dataType: 'json',
-			cache: false,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				trackBox.html('<i class="fa fa-spinner fa-spin trac-spin"></i>');
-			},
-			success: function(json) {
-				html = '<table class="table">';
-				html += '<thead>';
-				html += '<tr>';
-				html += '<th><?php echo $this->lang->line('column_action'); ?></th>';
-				html += '<th><?php echo $this->lang->line('column_date'); ?></th>';
-				html += '</thead>';
-				html += '<tbody>';
-				
-				$.each(json.tracking_details, function(index, tracking_detail) {
-					html += '<tr>';
-					html += '<td>' + tracking_detail.description + '</td>';
-					html += '<td>' + tracking_detail.time + '</td>';
-					html += '</tr>';
-				});
-				
-				html += '</tbody>';
-				html += '</table>'; 
-				
-				trackBox.html(html);
-			}
-		});
-	});
-	
-	$(document).on('mouseleave', 'td:nth-child(3)', function() {
-		$(this).find('.trac-detail').hide();
 	});
 });
 </script>	

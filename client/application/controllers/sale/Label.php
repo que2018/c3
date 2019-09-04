@@ -126,7 +126,23 @@ class Label extends CI_Controller
 							'comment'         => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);							
+						$this->transaction_model->add_transaction($transaction_data);
+
+						//additional charge
+						if(isset($result['amount_addi']))
+						{
+							$transaction_data = array(					
+								'client_id'		=> $client_id,
+								'type'		    => 'sale',
+								'type_id'       => $sale_id,
+								'cost'          => $result['amount_addi'],
+								'markup'        => 0,
+								'amount'   		=> $result['amount_addi'],
+								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
+							);
+											
+							$this->transaction_model->add_transaction($transaction_data);
+						}							
 					}
 				}
 				
@@ -222,7 +238,23 @@ class Label extends CI_Controller
 							'comment'         => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);							
+						$this->transaction_model->add_transaction($transaction_data);	
+
+						//additional charge
+						if(isset($result['amount_addi']))
+						{
+							$transaction_data = array(					
+								'client_id'		=> $client_id,
+								'type'		    => 'sale',
+								'type_id'       => $sale_id,
+								'cost'          => $result['amount_addi'],
+								'markup'        => 0,
+								'amount'   		=> $result['amount_addi'],
+								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
+							);
+											
+							$this->transaction_model->add_transaction($transaction_data);
+						}
 					}
 				}
 				

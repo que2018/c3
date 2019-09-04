@@ -153,6 +153,7 @@ $lang['button_select_file'] 	  	     		= 'Select file';
 $lang['button_print'] 	  	             		= 'Print';
 
 // Error
+$lang['error_label_not_exist']      		    = 'error: label is not exist';
 $lang['error_file_type_not_excel'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;file type is not excel';
 $lang['error_sku_not_found'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: sku <strong>%s</strong> is not found in product';
 $lang['error_sku_client_error'] 	  	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: sku <strong>%s</strong> is not belong to the owner of the store';

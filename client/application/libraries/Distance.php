@@ -20,7 +20,7 @@ class Distance
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		
 		$output = curl_exec($ch);
-						
+				
 		curl_close($ch);
 						
 		$response = json_decode($output);
@@ -30,8 +30,11 @@ class Distance
 			$rows = $response->rows;
 			$elements = $rows[0]->elements;
 			$distance = $elements[0]->distance;
+			$meters = $distance->value;
 			
-			return $distance->value;
+			$miles = $meters / 1000 * 0.621;
+			
+			return $miles;
 		}
 		else
 		{

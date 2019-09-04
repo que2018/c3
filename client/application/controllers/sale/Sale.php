@@ -657,17 +657,20 @@ class Sale extends MX_Controller
 			{
 				foreach($sale_labels as $sale_label)
 				{					
-					if(is_file(LABELPATH . $sale_label['path'])) 
+					if(file_exists(LABELPATH . $sale_label['path'])) 
 					{
-						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
-						
-						$data['sale_labels'][] = array(
-							'tracking'  => $sale_label['tracking'],
-							'ext'       => $ext,
- 							'path'      => $sale_label['path'],
-							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
-						);
+						$link = $this->config->item('media_url') . 'label/' . $sale_label['path'];
 					}
+					else
+					{
+						$link = $this->config->item('media_url') . 'image/label_placeholder.jpg';
+					}
+						
+					$data['sale_labels'][] = array(
+						'tracking'  => $sale_label['tracking'],
+						'path'      => $sale_label['path'],
+						'link'      => $link
+					);
 				}
 			}
 		}
@@ -728,17 +731,20 @@ class Sale extends MX_Controller
 			{
 				foreach($sale_labels as $sale_label)
 				{					
-					if(is_file(LABELPATH . $sale_label['path'])) 
+					if(file_exists(LABELPATH . $sale_label['path'])) 
 					{
-						$ext = pathinfo($sale_label['path'], PATHINFO_EXTENSION);
-						
-						$data['sale_labels'][] = array(
-							'tracking'  => $sale_label['tracking'],
-							'ext'       => $ext,
- 							'path'      => $sale_label['path'],
-							'link'      => $this->config->item('media_url') . 'label/' . $sale_label['path']
-						);
+						$link = $this->config->item('media_url') . 'label/' . $sale_label['path'];
 					}
+					else
+					{
+						$link = $this->config->item('media_url') . 'image/label_placeholder.jpg';
+					}
+						
+					$data['sale_labels'][] = array(
+						'tracking'  => $sale_label['tracking'],
+						'path'      => $sale_label['path'],
+						'link'      => $link
+					);
 				}
 			}
 		}

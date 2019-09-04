@@ -163,6 +163,68 @@ class Label extends CI_Controller
 		}
 	}
 	
+	public function execute_c()
+	{
+		$this->load->library('pdf');
+		$this->load->library('file');
+		$this->load->library('printnode');
+		
+		$this->lang->load('sale/sale');
+		
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->post('sale_id'))
+		{
+			$sale_id = $this->input->post('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);
+			
+			$result = $this->sale_model->get_label_by_tracking($sale['tracking']);
+			
+			$image_path = LABELPATH . $result['path'];
+			
+			if(is_file($image_path))
+			{
+				//submit print job				
+				$filename = $this->file->get_filename($image_path);
+				
+				$dest_path = FILEPATH . $filename . '.pdf';
+				
+				$attrs = array(
+					'position_x'   => $this->config->item('config_printnode_position_x'),
+					'position_y'   => $this->config->item('config_printnode_position_y'),
+					'width'        => $this->config->item('config_printnode_width')
+				);
+												
+				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
+				{
+					$this->printnode->submit_print_job($dest_path);
+					
+					$outdata = array(
+						'success'   => true
+					);
+				}
+				else
+				{
+					$outdata = array(
+						'success'   => false,
+						'message'   => $this->lang->line('error_not_able_convert_image_to_pdf')
+					);
+				}
+			}
+			else
+			{
+				$outdata = array(
+					'success'   => false,
+					'message'   => $this->lang->line('error_label_not_exist')
+				);
+			}
+
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
 	public function execute_d()
 	{
 		$this->load->library('pdf');

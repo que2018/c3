@@ -56,11 +56,21 @@ input:focus {
 	background-color: #b7b7b7;
     border-color: #b7b7b7;
 }
-.btn-print-d {
-	margin-right: 8px;
-}
 .btn-edit {
-	margin-right: 8px;
+	margin-right: 4px;
+}
+.btn-print-d {
+	margin-right: 4px;
+}
+.btn-print-c {
+	margin-right: 4px;
+	background: #f5e14d;
+}
+.btn-print-c:hover, 
+.btn-print-c:focus, 
+.btn-print-c:active, 
+.btn-print-c {
+	color: #fff;
 }
 .btn-bulk-print {
 	margin-right: 8px;
