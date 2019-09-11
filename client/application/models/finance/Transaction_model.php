@@ -123,6 +123,7 @@ class Transaction_model extends CI_Model
 	{			
 		$this->db->select("transaction.*, CONCAT(client.firstname, ' ', client.lastname) AS name", false);
 		$this->db->from('transaction');
+		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->join('client', 'client.id = transaction.client_id', 'left');
 		
 		if(!empty($data['filter_client'])) 
@@ -235,6 +236,7 @@ class Transaction_model extends CI_Model
 	{
 		$this->db->select("COUNT(transaction.id) AS total", false);
 		$this->db->from('transaction');
+		$this->db->where('client_id', $this->auth->get_client_id());
 		$this->db->join('client', 'client.id = transaction.client_id', 'left');
 		
 		if(!empty($data['filter_client'])) 

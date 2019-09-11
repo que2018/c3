@@ -46,7 +46,7 @@ class Fedex extends MX_Controller
 				'fedex_sort_order'  		 => $this->input->post('fedex_sort_order'),
 				'fedex_service'     		 => $this->input->post('fedex_service'),
 				'fedex_state_mapping'        => $this->input->post('fedex_state_mapping'),
-				'fedex_fee_type'     		   => $this->input->post('fedex_fee_type'),
+				'fedex_fee_type'     		 => $this->input->post('fedex_fee_type'),
 				'fedex_fee_value'            => $this->input->post('fedex_fee_value'),
 				'fedex_client_fee'           => $this->input->post('fedex_client_fee')
 			);

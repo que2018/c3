@@ -139,17 +139,17 @@
 						</div>
 					  </td>
 					  <td><?php echo $sale['store_sale_id']; ?></td>
-					  <td>
+					  <td class="tracking-td">
 					    <?php if($sale['tracking']) { ?>
 					      <span class="tracking"><?php echo $sale['tracking']; ?></span>
-						  <div class="trac-detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
 						<?php } ?>
 					  </td>
 					  <td><?php echo $sale['name']; ?></td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td style="text-align: center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-file-image-o"></i></button>
-					    <?php if($sale['status_id'] == 1) { ?>
+					    <button onclick="print_label_c(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-c"><i class="fa fa-print"></i></button>
+						<?php if($sale['status_id'] == 1) { ?>
 						<a href="<?php echo base_url(); ?>sale/sale/edit?sale_id=<?php echo $sale['sale_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil"></i></a>
                         <?php } else { ?>
 						<a href="<?php echo base_url(); ?>sale/sale/view?sale_id=<?php echo $sale['sale_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>
@@ -263,6 +263,43 @@ function print_label(handle)
 	url = '<?php echo base_url();?>sale/label?unsolved=0&id=' + id;
 			
 	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
+}
+</script>
+<script>
+function print_label_c(handle, sale_id) 
+{	
+	data = new FormData();
+	data.append('sale_id', sale_id);
+				
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/label/execute_c',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
+		},
+		complete: function() {
+			$(handle).html('<i class="fa fa-print"></i>');
+		},
+		success: function(json) {
+			if(!json.success) {
+				html = '<div class="alert alert-danger">';
+				html += '<span><strong>#' + sale_id + ":</strong> " + json.message + '</span>';
+				html += '<button type="button" class="close" onclick="$(this).closest(\'.alert-danger\').remove()">';
+				html += '&times;</button></div>';
+				
+				$('#alerts').append(html);
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {						
+			$('#alert-error span').html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			$('#alert-error').show();
+		}
+	});
 }
 </script>
 <script>

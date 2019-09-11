@@ -52,6 +52,9 @@ class Jd extends MX_Controller
 				'jd_sort_order'  				=> $this->input->post('jd_sort_order'),
 				'jd_status'   	 				=> $this->input->post('jd_status'),
 				'jd_service'     				=> $this->input->post('jd_service'),
+				'jd_fedex_zone_mapping'         => $this->input->post('jd_fedex_zone_mapping'),
+				'jd_fedex_zone_mapping_addi'    => $this->input->post('jd_fedex_zone_mapping_addi'),
+				'jd_state_mapping'     			=> $this->input->post('jd_state_mapping'),
 				'jd_fee_type'         			=> $this->input->post('jd_fee_type'),
 				'jd_fee_value'        			=> $this->input->post('jd_fee_value'),
 				'jd_client_fee'       			=> $this->input->post('jd_client_fee'),
@@ -275,6 +278,33 @@ class Jd extends MX_Controller
 			$data['jd_services'] = $this->config->item('jd_service');
 		}
 		
+		if($this->input->post('jd_fedex_zone_mapping')) 
+		{
+			$data['jd_fedex_zones_mapping'] = $this->input->post('jd_fedex_zone_mapping');
+		} 
+		else 
+		{
+			$data['jd_fedex_zones_mapping'] = $this->config->item('jd_fedex_zone_mapping');
+		}
+		
+		if($this->input->post('jd_fedex_zone_mapping_addi')) 
+		{
+			$data['jd_fedex_zones_mapping_addi'] = $this->input->post('jd_fedex_zone_mapping_addi');
+		} 
+		else 
+		{
+			$data['jd_fedex_zones_mapping_addi'] = $this->config->item('jd_fedex_zone_mapping_addi');
+		}
+		
+		if($this->input->post('jd_state_mapping')) 
+		{
+			$data['jd_states_mapping'] = $this->input->post('jd_state_mapping');
+		} 
+		else 
+		{
+			$data['jd_states_mapping'] = $this->config->item('jd_state_mapping');
+		}
+		
 		if($this->input->post('jd_fee_type')) 
 		{
 			$data['jd_fee_type'] = $this->input->post('jd_fee_type');
@@ -308,7 +338,14 @@ class Jd extends MX_Controller
 		}
 		else
 		{
-			$data['jd_fedex_ground_price_table'] = $this->config->item('jd_fedex_ground_price_table');
+			if(is_file($this->config->item('jd_fedex_ground_price_table')))
+			{
+				$data['jd_fedex_ground_price_table'] = $this->config->item('jd_fedex_ground_price_table');
+			}
+			else
+			{
+				$data['jd_fedex_ground_price_table'] = '';
+			}	
 		}
 		
 		if(isset($_FILES['fedex_two_day_price_table']))
@@ -317,7 +354,14 @@ class Jd extends MX_Controller
 		}
 		else
 		{
-			$data['jd_fedex_two_day_price_table'] = $this->config->item('jd_fedex_two_day_price_table');
+			if(is_file($this->config->item('jd_fedex_two_day_price_table')))
+			{
+				$data['jd_fedex_two_day_price_table'] = $this->config->item('jd_fedex_two_day_price_table');
+			}
+			else
+			{
+				$data['jd_fedex_two_day_price_table'] = '';
+			}	
 		}
 		
 		if(isset($_FILES['dhl_express_price_table']))
@@ -326,7 +370,14 @@ class Jd extends MX_Controller
 		}
 		else
 		{
-			$data['jd_dhl_express_price_table'] = $this->config->item('jd_dhl_express_price_table');
+			if(is_file($this->config->item('jd_dhl_express_price_table')))
+			{
+				$data['jd_dhl_express_price_table'] = $this->config->item('jd_dhl_express_price_table');
+			}
+			else
+			{
+				$data['jd_dhl_express_price_table'] = '';
+			}	
 		}
 	
 		$data['order_types'] = array(
@@ -449,7 +500,7 @@ class Jd extends MX_Controller
 	
 	protected function upload_price_table($price_table)
 	{
-		if(isset($_FILES[$price_table])) 
+		if($_FILES[$price_table]['size'] > 0) 
 		{
 			$temp_file = $_FILES[$price_table]['tmp_name'];    
 			
@@ -466,8 +517,8 @@ class Jd extends MX_Controller
 	}
 	
 	public function validate_fedex_ground_price_table()
-	{
-		if(isset($_FILES['fedex_ground_price_table'])) 
+	{		
+		if($_FILES['fedex_ground_price_table']['size'] > 0) 
 		{	
 			$temp_file = $_FILES['fedex_ground_price_table']['tmp_name'];    
 			
@@ -493,7 +544,7 @@ class Jd extends MX_Controller
 	
 	public function validate_fedex_two_day_price_table()
 	{
-		if(isset($_FILES['fedex_two_day_price_table'])) 
+		if($_FILES['fedex_two_day_price_table']['size'] > 0) 
 		{	
 			$temp_file = $_FILES['fedex_two_day_price_table']['tmp_name'];    
 			
@@ -519,7 +570,7 @@ class Jd extends MX_Controller
 	
 	public function validate_dhl_express_price_table()
 	{
-		if(isset($_FILES['dhl_express_price_table'])) 
+		if($_FILES['dhl_express_price_table']['size'] > 0) 
 		{	
 			$temp_file = $_FILES['dhl_express_price_table']['tmp_name'];    
 			

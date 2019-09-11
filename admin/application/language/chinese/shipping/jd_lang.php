@@ -56,11 +56,27 @@ $lang['text_gas_fee'] 	  			    = 'gas fee';
 $lang['text_price_table'] 	  			= 'Price Table';
 $lang['text_order_error'] 	  			= 'Order Error: ';
 $lang['text_print_error'] 	  			= 'Print Error: ';
+$lang['text_zone_one'] 	  				= 'Zone1';
+$lang['text_zone_two'] 	  				= 'Zone2';
+$lang['text_zone_three'] 	  			= 'Zone3';
+$lang['text_zone_four'] 	  			= 'Zone4';
+$lang['text_zone_five'] 	  			= 'Zone5';
+$lang['text_zone_six'] 	  				= 'Zone6';
+$lang['text_zone_seven'] 	  			= 'Zone7';
+$lang['text_zone_eight'] 	  			= 'Zone8';
+$lang['text_zone_nine'] 	  			= 'Zone9';
+$lang['text_zone_ten'] 	  				= 'Zone10';
+$lang['text_zone_eleven'] 	  			= 'Zone11';
+$lang['text_zone_twelve'] 	  			= 'Zone12';
+$lang['text_zone_seventeen'] 	  		= 'Zone17';
 $lang['text_edit_success'] 	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;JD edit success';
 
 // Tab
 $lang['tab_service'] 	  	            = 'Service';
 $lang['tab_price_table'] 	  	        = 'Price Table';
+$lang['tab_fedex_zone_mapping'] 	  	= 'Fedex Zone Mapping';
+$lang['tab_fedex_zone_mapping_addi'] 	= 'Fedex Zone Additional Mapping';
+$lang['tab_state_mapping'] 	  	        = 'State Mapping';
 $lang['tab_fee'] 	  	                = 'Fee';
 
 // Column
@@ -70,6 +86,12 @@ $lang['column_method'] 	  	            = 'Method';
 $lang['column_client'] 	  	            = 'Client';
 $lang['column_fee'] 	  	            = 'Fee';
 $lang['column_package'] 	  	        = 'Package';
+$lang['column_state_long'] 	  	        = 'State Long';
+$lang['column_state_short'] 	  	    = 'State Short';
+$lang['column_zipcode_from'] 	  	    = 'Zipcode From';
+$lang['column_zipcode_to'] 	  	    	= 'Zipcode To';
+$lang['column_ground_zone'] 	  	    = 'Ground Zone';
+$lang['column_express_zone'] 	  	    = 'Express Zone';
 
 // Entry
 $lang['entry_customer_id'] 	  	    	= 'Customer ID';

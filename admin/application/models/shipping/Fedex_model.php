@@ -260,7 +260,7 @@ class Fedex_model extends CI_Model
 	{	
 		$state_short = $state;
 	
-		$states_mappping = $this->config->item('ups_state_mapping');
+		$states_mappping = $this->config->item('fedex_state_mapping');
 		
 		if($states_mappping)
 		{			

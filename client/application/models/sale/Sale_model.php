@@ -251,6 +251,18 @@ class Sale_model extends CI_Model
 		return false;
 	}
 	
+	public function get_label_by_tracking($tracking) 
+	{
+		$q = $this->db->get_where('sale_label', array('tracking' => $tracking), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_sale_by_store_sale_id($store_sale_id) 
 	{
 		$q = $this->db->get_where('sale', array('store_sale_id' => $store_sale_id), 1); 
@@ -262,6 +274,8 @@ class Sale_model extends CI_Model
 		
 		return false;
 	}
+	
+	
 	
 	public function get_sale_product($sale_id, $product_id) 
 	{

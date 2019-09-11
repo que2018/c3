@@ -57,7 +57,7 @@ class Jd_model extends CI_Model
 			'receiveAddress'    => trim($sale['street']),
 			'receiveTel'    	=> ($sale['phone'])?$sale['phone']:$client['phone'],
 			'receiveMobile'    	=> ($sale['phone'])?$sale['phone']:$client['phone'],
-			'province'          => trim($sale['state']),	
+			'province'          => $this->get_state_long(trim($sale['state'])),	
 			'city'              => trim($sale['city']),	
 			'postcode'          => trim($sale['zipcode']),	
 			'packageCount'      => 1,
@@ -71,6 +71,7 @@ class Jd_model extends CI_Model
 		$payload = "[".json_encode($data)."]";	
 								
 		$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderUat";
+		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderIsv";
 
 		$content_md5 = MD5($payload);
 		
@@ -109,7 +110,7 @@ class Jd_model extends CI_Model
 			{
 				if($response->resultCode == 100)
 				{	
-					sleep(16);
+					sleep(20);
 			
 					$delivery_id = $response->deliveryId;
 											
@@ -162,6 +163,7 @@ class Jd_model extends CI_Model
 		$payload = "[".json_encode($data)."]";	
 				
 		$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint4Uat";
+		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint";
 					
 		$content_md5 = MD5($payload);
 		
@@ -229,7 +231,7 @@ class Jd_model extends CI_Model
 							$gas_fee = (int)$this->config->item('jd_gas_fee');
 
 							$result['tracking'] = $tracking;
-							$result['amount'] = $this->get_shipping_fee($sale_id);
+							$result['amount'] = $amount;
 							$result['amount_addi'] = (int)$amount * $gas_fee / 100;	
 							$result['label_img'] = $tracking . '.jpg';	
 						}
@@ -269,20 +271,97 @@ class Jd_model extends CI_Model
 		$this->load->model('sale/sale_model');
 		$this->load->model('setting/weight_class_model');
 
+		$zone_column_mapping = array(
+			2   => 'B',
+			3   => 'C',
+			4   => 'D',
+			5   => 'E',
+			6   => 'F',
+			7   => 'G',
+			8   => 'H',
+			9   => 'I',
+			10  => 'J'
+		);
+
 		$sale = $this->sale_model->get_sale($sale_id);	
 		
-		//get weight in lbs
-		$weight = $sale['weight'];
-		$weight_class_id = $sale['weight_class_id'];
-		$weight = $this->weight_class_model->to_config($weight_class_id, $weight);	
-
-		//get distance in miles
-		$origins = $this->config->item('jd_sender_city').','.$this->config->item('jd_sender_province');	
-		$destinations = $sale['city'].','.$sale['state'];	
-		$distance = $this->distance->get_distance($origins, $destinations);
+		//get zone
+		$column = null;
 		
-		if($distance)
+		$state = $this->get_state_long(trim($sale['state']));
+
+		if((strtolower($state) == 'hawaii')||(strtolower($state) == 'alaska'))
 		{
+			$zipcode = (int)$sale['zipcode'];
+
+			$jd_fedex_zones_mapping_addi = $this->config->item('jd_fedex_zone_mapping_addi');
+			
+			if($jd_fedex_zones_mapping_addi)
+			{
+				foreach($jd_fedex_zones_mapping_addi as $jd_fedex_zone_mapping_addi)
+				{
+					$zipcode_from = (int)$jd_fedex_zone_mapping_addi['zipcode_from'];
+					$zipcode_to   = (int)$jd_fedex_zone_mapping_addi['zipcode_to'];
+						
+					if($sale['shipping_service'] == 'FEDEX_GRD')
+					{
+						$zone = $jd_fedex_zone_mapping_addi['ground_zone'];
+					}
+					else
+					{
+						$zone = $jd_fedex_zone_mapping_addi['express_zone'];
+					}	
+						
+					if(($zipcode_from <= $zipcode) && ($zipcode <= $zipcode_to))
+					{
+						$column = $zone_column_mapping[$zone];
+						
+						break;
+					}	
+				}
+			}
+		}
+		else
+		{
+			$zipcode_prefix = (int)substr($sale['zipcode'], 0, 3);
+
+			$jd_fedex_zones_mapping = $this->config->item('jd_fedex_zone_mapping');
+			
+			if($jd_fedex_zones_mapping)
+			{
+				foreach($jd_fedex_zones_mapping as $jd_fedex_zone_mapping)
+				{
+					$zipcode_from = (int)$jd_fedex_zone_mapping['zipcode_from'];
+					$zipcode_to   = (int)$jd_fedex_zone_mapping['zipcode_to'];
+					
+					if($sale['shipping_service'] == 'FEDEX_GRD')
+					{
+						$zone = $jd_fedex_zone_mapping['ground_zone'];
+					}
+					else
+					{
+						$zone = $jd_fedex_zone_mapping['express_zone'];
+					}
+					
+					if(($zipcode_from <= $zipcode_prefix) && ($zipcode_prefix <= $zipcode_to))
+					{
+						$column = $zone_column_mapping[$zone];
+						
+						break;
+					}	
+				}
+			}
+		}
+		
+		file_put_contents("log.txt", $column . "\n", FILE_APPEND);
+				
+		if($column)
+		{
+			//get weight in lbs
+			$weight = $sale['weight'];
+			$weight_class_id = $sale['weight_class_id'];
+			$weight = $this->weight_class_model->to_config($weight_class_id, $weight);	
+			
 			//run pricing table
 			if($sale['shipping_service'] == 'FEDEX_GRD') 
 				$jd_price_table = $this->config->item('jd_fedex_ground_price_table');
@@ -304,45 +383,7 @@ class Jd_model extends CI_Model
 					$sheet = $objPHPExcel->getSheet(0); 
 					$highestRow = $sheet->getHighestRow(); 
 					$highestColumn = $sheet->getHighestColumn();
-				
-					$column = null;
-					
-					//AH, HW status 
-					if($distance > 2000)
-					{
-						if((strtolower($sale['state']) == 'alaska')||(strtolower($sale['state']) == 'ak')||(strtolower($sale['state']) == 'hawaii')||(strtolower($sale['state']) == 'hi'))	
-						{							
-							$column = 'J';
-						}
-						else
-						{
-							$column = 'H';
-						}
-					}
-					else
-					{
-						$row = $objPHPExcel->getActiveSheet()->getRowIterator(1)->current();
-						$cellIterator = $row->getCellIterator();
-						$cellIterator->setIterateOnlyExistingCells(false);
-
-						//identify the distance
-						foreach($cellIterator as $cell) 
-						{
-							$distance_threshold = $cell->getValue();
-							
-							if($distance > $distance_threshold)
-							{
-								continue;
-							}
-							else
-							{
-								$column = $cell->getColumn();
-							
-								break;
-							}
-						}	
-					}
-					
+									
 					$price = null;
 
 					for($row = 2; $row <= $highestRow; $row++) 
@@ -350,7 +391,7 @@ class Jd_model extends CI_Model
 						$cell = $sheet->getCell("A".$row);
 						
 						$weight_threshold = $cell->getValue();
-						
+												
 						if($weight > $weight_threshold)
 						{
 							continue;
@@ -371,7 +412,7 @@ class Jd_model extends CI_Model
 					}
 					else
 					{
-						return 500;
+						return false;
 					}
 					
 				} catch(Exception $e) {
@@ -422,6 +463,28 @@ class Jd_model extends CI_Model
 		}
 		
 		return $signature;
+	}
+	
+	private function get_state_long($state)
+	{	
+		$state_long = $state;
+	
+		$states_mappping = $this->config->item('jd_state_mapping');
+		
+		if($states_mappping)
+		{			
+			foreach($states_mappping as $state_mappping)
+			{
+				if(strtolower($state_mappping['state_short']) == strtolower($state))
+				{
+					$state_long = $state_mappping['state_long'];
+					
+					break;
+				}
+			}
+		}
+		
+		return $state_long;	
 	}
 }
 

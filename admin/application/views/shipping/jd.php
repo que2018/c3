@@ -21,6 +21,9 @@
 	      <ul class="nav nav-tabs">
 		    <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		    <li><a data-toggle="tab" href="#service"><?php echo $this->lang->line('tab_service'); ?></a></li>
+			<li><a data-toggle="tab" href="#fedex-zone-mapping"><?php echo $this->lang->line('tab_fedex_zone_mapping'); ?></a></li>
+			<li><a data-toggle="tab" href="#fedex-zone-mapping-addi"><?php echo $this->lang->line('tab_fedex_zone_mapping_addi'); ?></a></li>
+			<li><a data-toggle="tab" href="#state-mapping"><?php echo $this->lang->line('tab_state_mapping'); ?></a></li>
 			<li><a data-toggle="tab" href="#price-table"><?php echo $this->lang->line('tab_price_table'); ?></a></li>
 			<li><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  </ul>
@@ -254,6 +257,268 @@
 				</div>	
 			  </div>
 		    </div>
+			<div id="fedex-zone-mapping" class="tab-pane">
+			  <div class="panel-body">
+			   	<div class="table-responsive">
+                  <table id="jd-fedex-zones-mapping" class="table table-striped table-bordered table-hover">
+					<thead>
+					  <tr>
+					  	<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_zipcode_from') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_zipcode_to') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_express_zone') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_ground_zone') ?></th>
+						<th></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php $jd_fedex_zone_mapping_row = 0; ?>
+					  <?php if($jd_fedex_zones_mapping) { ?>
+						<?php foreach ($jd_fedex_zones_mapping as $jd_fedex_zone_mapping) { ?>
+						<tr id="jd-fedex-zone-mapping-row<?php echo $jd_fedex_zone_mapping_row; ?>">
+						  <td class="text-right"><input type="text" name="jd_fedex_zone_mapping[<?php echo $jd_fedex_zone_mapping_row; ?>][zipcode_from]" value="<?php echo $jd_fedex_zone_mapping['zipcode_from']; ?>" class="form-control" /></td>
+						  <td class="text-right"><input type="text" name="jd_fedex_zone_mapping[<?php echo $jd_fedex_zone_mapping_row; ?>][zipcode_to]" value="<?php echo $jd_fedex_zone_mapping['zipcode_to']; ?>" class="form-control" /></td>
+						  <td>
+						    <select name="jd_fedex_zone_mapping[<?php echo $jd_fedex_zone_mapping_row; ?>][express_zone]" class="form-control">
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 1) { ?>
+							  <option value="1" selected><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } else { ?>
+							  <option value="1"><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 2) { ?>
+							  <option value="2" selected><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } else { ?>
+							  <option value="2"><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 3) { ?>
+							  <option value="3" selected><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } else { ?>
+							  <option value="3"><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 4) { ?>
+							  <option value="4" selected><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } else { ?>
+							  <option value="4"><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 5) { ?>
+							  <option value="5" selected><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } else { ?>
+							  <option value="5"><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 6) { ?>
+							  <option value="6" selected><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } else { ?>
+							  <option value="6"><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 7) { ?>
+							  <option value="7" selected><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } else { ?>
+							  <option value="7"><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 8) { ?>
+							  <option value="8" selected><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } else { ?>
+							  <option value="8"><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['express_zone'] == 9) { ?>
+							  <option value="9" selected><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } else { ?>
+							  <option value="9"><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } ?>
+							</select>
+						  </td>
+						  <td>
+						    <select name="jd_fedex_zone_mapping[<?php echo $jd_fedex_zone_mapping_row; ?>][ground_zone]" class="form-control">
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 1) { ?>
+							  <option value="1" selected><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } else { ?>
+							  <option value="1"><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 2) { ?>
+							  <option value="2" selected><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } else { ?>
+							  <option value="2"><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 3) { ?>
+							  <option value="3" selected><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } else { ?>
+							  <option value="3"><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 4) { ?>
+							  <option value="4" selected><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } else { ?>
+							  <option value="4"><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 5) { ?>
+							  <option value="5" selected><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } else { ?>
+							  <option value="5"><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 6) { ?>
+							  <option value="6" selected><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } else { ?>
+							  <option value="6"><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 7) { ?>
+							  <option value="7" selected><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } else { ?>
+							  <option value="7"><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 8) { ?>
+							  <option value="8" selected><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } else { ?>
+							  <option value="8"><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping['ground_zone'] == 9) { ?>
+							  <option value="9" selected><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } else { ?>
+							  <option value="9"><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } ?>
+							</select>
+						  </td>
+						  <td class="text-center"><button type="button" onclick="$('#jd-fedex-zone-mapping-row<?php echo $jd_fedex_zone_mapping_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+						</tr>
+						<?php $jd_fedex_zone_mapping_row++; ?>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+					<tfoot>
+					  <tr>
+						<td colspan="4"></td>
+						<td class="text-center"><button type="button" onclick="addFedexZoneMapping();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  </tr>
+					</tfoot>
+                  </table>
+				</div>	
+			  </div>
+		    </div>
+			<div id="fedex-zone-mapping-addi" class="tab-pane">
+			  <div class="panel-body">
+			   	<div class="table-responsive">
+                  <table id="jd-fedex-zones-mapping-addi" class="table table-striped table-bordered table-hover">
+					<thead>
+					  <tr>
+					  	<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_zipcode_from') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_zipcode_to') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_express_zone') ?></th>
+						<th class="text-left" style="width: 20%;"><?php echo $this->lang->line('column_ground_zone') ?></th>
+						<th></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php $jd_fedex_zone_mapping_addi_row = 0; ?>
+					  <?php if($jd_fedex_zones_mapping_addi) { ?>
+						<?php foreach ($jd_fedex_zones_mapping_addi as $jd_fedex_zone_mapping_addi) { ?>
+						<tr id="jd-fedex-zone-mapping-addi-row<?php echo $jd_fedex_zone_mapping_addi_row; ?>">
+						  <td class="text-right"><input type="text" name="jd_fedex_zone_mapping_addi[<?php echo $jd_fedex_zone_mapping_addi_row; ?>][zipcode_from]" value="<?php echo $jd_fedex_zone_mapping_addi['zipcode_from']; ?>" class="form-control" /></td>
+						  <td class="text-right"><input type="text" name="jd_fedex_zone_mapping_addi[<?php echo $jd_fedex_zone_mapping_addi_row; ?>][zipcode_to]" value="<?php echo $jd_fedex_zone_mapping_addi['zipcode_to']; ?>" class="form-control" /></td>
+						  <td>
+						    <select name="jd_fedex_zone_mapping_addi[<?php echo $jd_fedex_zone_mapping_addi_row; ?>][express_zone]" class="form-control">
+							  <?php if($jd_fedex_zone_mapping_addi['express_zone'] == 9) { ?>
+							  <option value="9" selected><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } else { ?>
+							  <option value="9"><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['express_zone'] == 10) { ?>
+							  <option value="10" selected><?php echo $this->lang->line('text_zone_ten');  ?></option>
+							  <?php } else { ?>
+							  <option value="10"><?php echo $this->lang->line('text_zone_ten');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['express_zone'] == 11) { ?>
+							  <option value="11" selected><?php echo $this->lang->line('text_zone_eleven');  ?></option>
+							  <?php } else { ?>
+							  <option value="11"><?php echo $this->lang->line('text_zone_eleven');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['express_zone'] == 12) { ?>
+							  <option value="12" selected><?php echo $this->lang->line('text_zone_twelve');  ?></option>
+							  <?php } else { ?>
+							  <option value="12"><?php echo $this->lang->line('text_zone_twelve');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['express_zone'] == 17) { ?>
+							  <option value="17" selected><?php echo $this->lang->line('text_zone_seventeen');  ?></option>
+							  <?php } else { ?>
+							  <option value="17"><?php echo $this->lang->line('text_zone_seventeen');  ?></option>
+							  <?php } ?>
+							</select>
+						  </td>
+						  <td>
+						     <select name="jd_fedex_zone_mapping_addi[<?php echo $jd_fedex_zone_mapping_addi_row; ?>][ground_zone]" class="form-control">
+							  <?php if($jd_fedex_zone_mapping_addi['ground_zone'] == 9) { ?>
+							  <option value="9" selected><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } else { ?>
+							  <option value="9"><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['ground_zone'] == 10) { ?>
+							  <option value="10" selected><?php echo $this->lang->line('text_zone_ten');  ?></option>
+							  <?php } else { ?>
+							  <option value="10"><?php echo $this->lang->line('text_zone_ten');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['ground_zone'] == 11) { ?>
+							  <option value="11" selected><?php echo $this->lang->line('text_zone_eleven');  ?></option>
+							  <?php } else { ?>
+							  <option value="11"><?php echo $this->lang->line('text_zone_eleven');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['ground_zone'] == 12) { ?>
+							  <option value="12" selected><?php echo $this->lang->line('text_zone_twelve');  ?></option>
+							  <?php } else { ?>
+							  <option value="12"><?php echo $this->lang->line('text_zone_twelve');  ?></option>
+							  <?php } ?>
+							  <?php if($jd_fedex_zone_mapping_addi['ground_zone'] == 17) { ?>
+							  <option value="17" selected><?php echo $this->lang->line('text_zone_seventeen');  ?></option>
+							  <?php } else { ?>
+							  <option value="17"><?php echo $this->lang->line('text_zone_seventeen');  ?></option>
+							  <?php } ?>
+							</select>
+						  </td>
+						  <td class="text-center"><button type="button" onclick="$('#jd-fedex-zone-mapping-addi-row<?php echo $jd_fedex_zone_mapping_addi_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+						</tr>
+						<?php $jd_fedex_zone_mapping_addi_row++; ?>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+					<tfoot>
+					  <tr>
+						<td colspan="4"></td>
+						<td class="text-center"><button type="button" onclick="addFedexZoneMappingAddi();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  </tr>
+					</tfoot>
+                  </table>
+				</div>	
+			  </div>
+		    </div>
+			<div id="state-mapping" class="tab-pane">
+			  <div class="panel-body">
+			   	<div class="table-responsive">
+                  <table id="jd_states_mapping" class="table table-striped table-bordered table-hover">
+					<thead>
+					  <tr>
+					  	<th class="text-left" style="width: 35%;"><?php echo $this->lang->line('column_state_short') ?></th>
+						<th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_state_long') ?></th>
+						<th></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php $jd_state_mapping_row = 0; ?>
+					  <?php if($jd_states_mapping) { ?>
+						<?php foreach ($jd_states_mapping as $jd_state_mapping) { ?>
+						<tr id="jd-state-mapping-row<?php echo $jd_state_mapping_row; ?>">
+						  <td class="text-right"><input type="text" name="jd_state_mapping[<?php echo $jd_state_mapping_row; ?>][state_short]" value="<?php echo $jd_state_mapping['state_short']; ?>" class="form-control" /></td>
+						  <td class="text-right"><input type="text" name="jd_state_mapping[<?php echo $jd_state_mapping_row; ?>][state_long]" value="<?php echo $jd_state_mapping['state_long']; ?>" class="form-control" /></td>
+						  <td class="text-center"><button type="button" onclick="$('#jd-state-mapping-row<?php echo $jd_state_mapping_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+						</tr>
+						<?php $jd_state_mapping_row++; ?>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+					<tfoot>
+					  <tr>
+						<td colspan="2"></td>
+						<td class="text-center"><button type="button" onclick="addStateMapping();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  </tr>
+					</tfoot>
+                  </table>
+				</div>	
+			  </div>
+		    </div>
 			<div id="price-table" class="tab-pane">
 			  <div class="panel-body">
 				<div class="form-group">
@@ -266,7 +531,7 @@
 				<div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_fedex_ground_price_table'); ?></label>
 				  <div class="col-sm-10">
-				    <input type="file" name="fedex_ground_price_table" class="form-control-file" id="fedex-ground-price-table-input">
+				    <input type="file" name="fedex_ground_price_table" class="form-control-file" id="jd-ground-price-table-input">
 				  </div>	  
 			    </div>
 				<div class="hr-line-dashed"></div>
@@ -280,7 +545,7 @@
 				<div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_fedex_two_day_price_table'); ?></label>
 				  <div class="col-sm-10">
-				    <input type="file" name="fedex_two_day_price_table" class="form-control-file" id="fedex-two-day-price-table-input">
+				    <input type="file" name="fedex_two_day_price_table" class="form-control-file" id="jd-two-day-price-table-input">
 				  </div>	  
 			    </div>
 				<div class="hr-line-dashed"></div>
@@ -388,6 +653,94 @@ function addService() {
 	$('#jd-service tbody').append(html);
 
 	jd_service_row ++;
+}
+</script>
+<script>
+var jd_fedex_zone_mapping_row = <?php echo $jd_fedex_zone_mapping_row; ?>;
+         
+function addFedexZoneMapping() {
+	html  = '<tr id="jd-fedex-zone-mapping-row' + jd_fedex_zone_mapping_row + '">';
+	html += '<td class="text-right"><input type="text" name="jd_fedex_zone_mapping[' + jd_fedex_zone_mapping_row + '][zipcode_from]" value="" class="form-control" /></td>';
+	html += '<td class="text-right"><input type="text" name="jd_fedex_zone_mapping[' + jd_fedex_zone_mapping_row + '][zipcode_to]" value="" class="form-control" /></td>';
+	html += '<td class="text-center">';
+	html += '<select name="jd_fedex_zone_mapping[' + jd_fedex_zone_mapping_row + '][express_zone]" class="form-control">';
+	html += '<option value="1"><?php echo $this->lang->line("text_zone_one"); ?></option>';
+	html += '<option value="2"><?php echo $this->lang->line("text_zone_two"); ?></option>';
+	html += '<option value="3"><?php echo $this->lang->line("text_zone_three"); ?></option>';
+	html += '<option value="4"><?php echo $this->lang->line("text_zone_four"); ?></option>';
+	html += '<option value="5"><?php echo $this->lang->line("text_zone_five"); ?></option>';
+	html += '<option value="6"><?php echo $this->lang->line("text_zone_six"); ?></option>';
+	html += '<option value="7"><?php echo $this->lang->line("text_zone_seven"); ?></option>';
+	html += '<option value="8"><?php echo $this->lang->line("text_zone_eight"); ?></option>';
+	html += '<option value="9"><?php echo $this->lang->line("text_zone_nine"); ?></option>';
+	html += '</select>';
+	html += '</td>';
+	html += '<td class="text-center">';
+	html += '<select name="jd_fedex_zone_mapping[' + jd_fedex_zone_mapping_row + '][ground_zone]" class="form-control">';
+	html += '<option value="1"><?php echo $this->lang->line("text_zone_one"); ?></option>';
+	html += '<option value="2"><?php echo $this->lang->line("text_zone_two"); ?></option>';
+	html += '<option value="3"><?php echo $this->lang->line("text_zone_three"); ?></option>';
+	html += '<option value="4"><?php echo $this->lang->line("text_zone_four"); ?></option>';
+	html += '<option value="5"><?php echo $this->lang->line("text_zone_five"); ?></option>';
+	html += '<option value="6"><?php echo $this->lang->line("text_zone_six"); ?></option>';
+	html += '<option value="7"><?php echo $this->lang->line("text_zone_seven"); ?></option>';
+	html += '<option value="8"><?php echo $this->lang->line("text_zone_eight"); ?></option>';
+	html += '<option value="9"><?php echo $this->lang->line("text_zone_nine"); ?></option>';
+	html += '</select>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#jd-fedex-zone-mapping-row' + jd_fedex_zone_mapping_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#jd-fedex-zones-mapping tbody').append(html);
+
+	jd_fedex_zone_mapping_row++;
+}
+</script>  
+<script>
+var jd_fedex_zone_mapping_addi_row = <?php echo $jd_fedex_zone_mapping_addi_row; ?>;
+         
+function addFedexZoneMappingAddi() {
+	html  = '<tr id="jd-fedex-zone-mapping-addi-row' + jd_fedex_zone_mapping_addi_row + '">';
+	html += '<td class="text-right"><input type="text" name="jd_fedex_zone_mapping_addi[' + jd_fedex_zone_mapping_addi_row + '][zipcode_from]" value="" class="form-control" /></td>';
+	html += '<td class="text-right"><input type="text" name="jd_fedex_zone_mapping_addi[' + jd_fedex_zone_mapping_addi_row + '][zipcode_to]" value="" class="form-control" /></td>';
+	html += '<td class="text-center">';
+	html += '<select name="jd_fedex_zone_mapping_addi[' + jd_fedex_zone_mapping_addi_row + '][express_zone]" class="form-control">';
+	html += '<option value="9"><?php echo $this->lang->line("text_zone_nine"); ?></option>';
+	html += '<option value="10"><?php echo $this->lang->line("text_zone_ten"); ?></option>';
+	html += '<option value="11"><?php echo $this->lang->line("text_zone_eleven"); ?></option>';
+	html += '<option value="12"><?php echo $this->lang->line("text_zone_twelve"); ?></option>';
+	html += '<option value="17"><?php echo $this->lang->line("text_zone_seventeen"); ?></option>';
+	html += '</select>';
+	html += '</td>';
+	html += '<td class="text-center">';
+	html += '<select name="jd_fedex_zone_mapping_addi[' + jd_fedex_zone_mapping_addi_row + '][ground_zone]" class="form-control">';
+	html += '<option value="9"><?php echo $this->lang->line("text_zone_nine"); ?></option>';
+	html += '<option value="10"><?php echo $this->lang->line("text_zone_ten"); ?></option>';
+	html += '<option value="11"><?php echo $this->lang->line("text_zone_eleven"); ?></option>';
+	html += '<option value="12"><?php echo $this->lang->line("text_zone_twelve"); ?></option>';
+	html += '<option value="17"><?php echo $this->lang->line("text_zone_seventeen"); ?></option>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#jd-fedex-zone-mapping-addi-row' + jd_fedex_zone_mapping_addi_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#jd-fedex-zones-mapping-addi tbody').append(html);
+
+	jd_fedex_zone_mapping_addi_row++;
+}
+</script> 
+<script>
+var jd_state_mapping_row = <?php echo $jd_state_mapping_row; ?>;
+         
+function addStateMapping() {
+	html  = '<tr id="jd-state-mapping-row' + jd_state_mapping_row + '">';
+	html += '  <td class="text-right"><input type="text" name="jd_state_mapping[' + jd_state_mapping_row + '][state_short]" value="" class="form-control" /></td>';
+	html += '  <td class="text-right"><input type="text" name="jd_state_mapping[' + jd_state_mapping_row + '][state_long]" value="" class="form-control" /></td>';
+	html += '  <td class="text-center"><button type="button" onclick="$(\'#jd-state-mapping-row' + jd_state_mapping_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#jd_states_mapping tbody').append(html);
+
+	jd_state_mapping_row++;
 }
 </script> 
 <?php echo $footer; ?>		
