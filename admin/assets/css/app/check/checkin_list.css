@@ -38,6 +38,16 @@ a:focus, a:hover {
     font-size: 10px;
     cursor: pointer;
 }
+.btn-checkin-disable {
+	padding: 4px 7px;
+    background: #e2e1e1;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    border-radius: 3px;
+    font-size: 10px;
+    cursor: pointer;
+}
 .page-heading {
 	position: relative;
 }

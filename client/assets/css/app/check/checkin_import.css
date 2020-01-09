@@ -1,0 +1,27 @@
+.client {
+	min-height: 60px;
+}
+.client label {
+	margin-top: 7px;
+	text-align: right;
+}
+.alert {
+	position: relative;
+}
+.close {
+	position: absolute;
+    right: 14px;
+    top: 14px;
+}
+.button-group {	
+	position: absolute;    
+	top: 30px;    
+	right: 50px;
+}
+.page-heading {	
+	position: relative;
+}
+.btn-download {	
+	margin-right: 6px;
+}
+

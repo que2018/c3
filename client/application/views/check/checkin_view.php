@@ -1,4 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkin_view.css" rel="stylesheet">
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_checkin_view'); ?></h2>
@@ -46,9 +46,10 @@
 					  <table id="ptable" class="table table-bordered">
 					    <thead>
 						  <tr>
-						    <th style="width: 30%"><?php echo $this->lang->line('column_product_name'); ?></th>
+						    <th style="width: 20%"><?php echo $this->lang->line('column_product_name'); ?></th>
 						    <th style="width: 20%"><?php echo $this->lang->line('column_upc'); ?></th>
 						    <th style="width: 20%"><?php echo $this->lang->line('column_sku'); ?></th>
+							<th style="width: 10%"><?php echo $this->lang->line('column_quantity_draft'); ?></th>
 						    <th style="width: 10%"><?php echo $this->lang->line('column_quantity'); ?></th>
 						    <th style="width: 20%"><?php echo $this->lang->line('column_location'); ?></th>
 						  </tr>
@@ -61,7 +62,8 @@
 						    <td class="text-left"><input name="checkin_product[<?php echo $checkin_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkin_product['product_id']; ?>"><div class="text-left"><?php echo $checkin_product['product_name']; ?></div></td>
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
-						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>" disabled></td>
+							<td class="text-center"><?php echo $checkin_product['quantity_draft']; ?></td>
+						    <td class="text-center"><?php echo $checkin_product['quantity']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['location']; ?></td>
 							<?php $checkin_product_row ++; ?>
 						    <?php } ?>
@@ -152,6 +154,7 @@
 	</div>
   </div>  
 </div>
+<?php echo $footer; ?>
 
 		
 		

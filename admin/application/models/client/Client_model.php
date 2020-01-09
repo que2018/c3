@@ -16,6 +16,11 @@ class Client_model extends CI_Model
 			'firstname'	      => $data['firstname'],
 			'lastname'	      => $data['lastname'],
 			'company'	      => $data['company'],
+			'street'	      => $data['street'],
+			'city'	          => $data['city'],
+			'state'	          => $data['state'],
+			'country'	      => $data['country'],
+			'zipcode'	      => $data['zipcode'],
 			'phone'   		  => $data['phone']
 		);
 		
@@ -68,6 +73,11 @@ class Client_model extends CI_Model
 			'firstname'	      => $data['firstname'],
 			'lastname'	      => $data['lastname'],
 			'company'	      => $data['company'],
+			'street'	      => $data['street'],
+			'city'	          => $data['city'],
+			'state'	          => $data['state'],
+			'country'	      => $data['country'],
+			'zipcode'	      => $data['zipcode'],
 			'phone'   		  => $data['phone']
 		);
 		
@@ -147,11 +157,11 @@ class Client_model extends CI_Model
 				'firstname'   => $row['firstname'],
 				'lastname'    => $row['lastname'],				
 				'company'     => $row['company'],
-				'address'     => $row['address'],
+				'street'      => $row['street'],
 				'city'        => $row['city'],
 				'state'       => $row['state'],
 				'country'     => $row['country'],
-				'postal_code' => $row['postal_code'],
+				'zipcode'     => $row['zipcode'],
 				'phone'       => $row['phone'],
 				'data'        => unserialize($row['data'])
 			);

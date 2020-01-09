@@ -372,6 +372,11 @@ class Client extends MX_Controller
 		$this->form_validation->set_rules('password', $this->lang->line('text_company'), 'required');		
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
+		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
+		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
+		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
+		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
+		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required');
 		$this->form_validation->set_rules('location', $this->lang->line('text_location'), 'callback_validate_client_location');
 
 		$data = array(
@@ -380,6 +385,11 @@ class Client extends MX_Controller
 			'firstname'  => $this->input->post('firstname'),
 			'lastname'   => $this->input->post('lastname'),
 			'company'    => $this->input->post('company'),
+			'street'     => $this->input->post('street'),
+			'city'    	 => $this->input->post('city'),
+			'state'      => $this->input->post('state'),
+			'country'    => $this->input->post('country'),
+			'zipcode'    => $this->input->post('zipcode'),
 			'phone'      => $this->input->post('phone'),
 			'data'       => $this->input->post('data'),
 			'locations'  => $this->input->post('location')
@@ -435,6 +445,11 @@ class Client extends MX_Controller
 		$this->form_validation->set_rules('company', $this->lang->line('text_company'), 'required');		
 		$this->form_validation->set_rules('firstname', $this->lang->line('text_firstname'), 'required');
 		$this->form_validation->set_rules('lastname', $this->lang->line('text_lastname'), 'required');
+		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
+		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
+		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
+		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
+		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required');
 		$this->form_validation->set_rules('location', $this->lang->line('text_location'), 'callback_validate_client_location');
 
 		if($this->form_validation->run() == true)
@@ -445,6 +460,11 @@ class Client extends MX_Controller
 				'firstname'  => $this->input->post('firstname'),
 				'lastname'   => $this->input->post('lastname'),
 				'company'    => $this->input->post('company'),
+				'street'     => $this->input->post('street'),
+				'city'    	 => $this->input->post('city'),
+				'state'      => $this->input->post('state'),
+				'country'    => $this->input->post('country'),
+				'zipcode'    => $this->input->post('zipcode'),
 				'phone'      => $this->input->post('phone'),
 				'data'       => $this->input->post('data'),
 				'locations'  => $this->input->post('location')
@@ -463,7 +483,12 @@ class Client extends MX_Controller
 			$data['password']   = $this->input->post('password');
 			$data['firstname']  = $this->input->post('firstname');	
 			$data['lastname']   = $this->input->post('lastname');						
-			$data['company']    = $this->input->post('company');			
+			$data['company']    = $this->input->post('company');	
+			$data['street']     = $this->input->post('street');	
+			$data['city']       = $this->input->post('city');	
+			$data['state']      = $this->input->post('state');	
+			$data['country']    = $this->input->post('country');	
+			$data['zipcode']    = $this->input->post('zipcode');	
 			$data['phone']      = $this->input->post('phone');	
 			$data['data']       = $this->input->post('data');	
 			$data['locations']  = $this->input->post('location');							
@@ -493,6 +518,11 @@ class Client extends MX_Controller
 			$data['firstname']  = $client['firstname'];
 			$data['lastname']   = $client['lastname'];				
 			$data['company']    = $client['company'];
+			$data['street']     = $client['street'];
+			$data['city']       = $client['city'];
+			$data['state']      = $client['state'];
+			$data['country']    = $client['country'];
+			$data['zipcode']    = $client['zipcode'];
 			$data['phone']      = $client['phone'];
 			$data['data']       = $client['data'];
 			$data['locations']  = $locations;				

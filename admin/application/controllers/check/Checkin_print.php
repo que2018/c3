@@ -35,13 +35,13 @@ class Checkin_print extends CI_Controller {
 		foreach($checkin_products as $checkin_product) 
 		{
 			$data['checkin_products'][] = array(
-				'product_id'    => $checkin_product['product_id'],
-				'name'          => $checkin_product['name'],
-				'upc'           => $checkin_product['upc'],
-				'sku'           => $checkin_product['sku'],
-				'location_name' => $checkin_product['location_name'],
-				'batch' 		=> $checkin_product['batch'],
-				'quantity'      => $checkin_product['quantity']
+				'product_id'     => $checkin_product['product_id'],
+				'name'           => $checkin_product['name'],
+				'upc'            => $checkin_product['upc'],
+				'sku'            => $checkin_product['sku'],
+				'location_name'  => $checkin_product['location_name'],
+				'batch' 		 => $checkin_product['batch'],
+				'quantity_draft' => $checkin_product['quantity_draft']
 			);
 		}
 		

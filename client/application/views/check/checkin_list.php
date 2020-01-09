@@ -1,7 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/moment.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="<?php echo base_url(); ?>assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkin_list.css" rel="stylesheet"> 
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_title'); ?></h2>
@@ -74,12 +71,16 @@
 				  <?php foreach($checkins as $checkin) { ?>
 					<tr>
 					  <td>#<?php echo $checkin['id']; ?></td>
-					  <td><?php echo $checkin['tracking']; ?></td>
+					  <td>
+					    <?php if($checkin['tracking']) { ?>
+						  <span class="tracking"><?php echo $checkin['tracking']; ?></span>
+					    <?php } ?>
+					  </td>
 					  <td>
 					    <?php if($checkin['status'] == 1) { ?>
-						  <?php echo $this->lang->line('text_pending'); ?>
+						  <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
 						<?php } else { ?>
-			              <?php echo $this->lang->line('text_completed'); ?>
+			              <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
 						<?php } ?>
 					  </td>
 					  <td><?php echo $checkin['date_added']; ?></td>
@@ -193,5 +194,6 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php echo $footer; ?>
 		
 		

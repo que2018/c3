@@ -1,13 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Checkin_model extends CI_Model
-{	
-	public function __construct()
-	{
-		parent::__construct();
-	}	
-		
+{		
 	public function add_checkin($data)
 	{
 		$this->db->trans_begin();
@@ -17,7 +11,7 @@ class Checkin_model extends CI_Model
 			'client_id' 	    => $this->auth->get_client_id(),
 			'tracking' 		    => $data['tracking'],
 			'note' 		        => $data['note'],
-			'status' 		    => $data['status'],
+			'status' 		    => 1,
 			'date_added'   		=> date('Y-m-d H:i:s'),
 			'date_modified'   	=> date('Y-m-d H:i:s')			
 		);
@@ -29,32 +23,17 @@ class Checkin_model extends CI_Model
 		//checkin products
 		$checkin_products = array();
 					
-		foreach($data['checkin_products'] as $checkin_product){					
+		foreach($data['checkin_products'] as $checkin_product)
+		{					
 			$checkin_products[] = array(
-				'checkin_id'	=> $checkin_id,
-				'product_id' 	=> $checkin_product['product_id'],
-				'quantity' 		=> $checkin_product['quantity']
+				'checkin_id'	 => $checkin_id,
+				'product_id' 	 => $checkin_product['product_id'],
+				'quantity_draft' => $checkin_product['quantity_draft']
 			);
 		}
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);	
 		
-		//checkin fee
-		if(isset($data['checkin_fees']) && $data['checkin_fees'])
-		{
-			$checkin_fees = array();
-						
-			foreach($data['checkin_fees'] as $checkin_fee){					
-				$checkin_fees[] = array(
-					'checkin_id'  => $checkin_id,
-					'name' 	      => $checkin_fee['name'],
-					'amount'      => $checkin_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('checkin_fee', $checkin_fees);
-		}
-
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -75,7 +54,7 @@ class Checkin_model extends CI_Model
 		//checkin data
 		$checkin_data = array(
 			'tracking'     => $data['tracking'],
-			'status'       => $data['status'],
+			'status'       => 1,
 			'note' 		   => $data['note']
 		);
 		
@@ -87,33 +66,17 @@ class Checkin_model extends CI_Model
 	
 		$checkin_products = array();
 		
-		foreach($data['checkin_products'] as $checkin_product){
+		foreach($data['checkin_products'] as $checkin_product)
+		{
 			$checkin_products[] = array(
-				'checkin_id'   => $checkin_id,
-				'product_id'   => $checkin_product['product_id'],
-				'quantity' 	   => $checkin_product['quantity'],
+				'checkin_id'     => $checkin_id,
+				'product_id'     => $checkin_product['product_id'],
+				'quantity'       => $checkin_product['quantity'],
+				'quantity_draft' => $checkin_product['quantity_draft']
 			);
 		}
 		
 		$this->db->insert_batch('checkin_product', $checkin_products);
-
-		//checkin fee
-		$this->db->delete('checkin_fee', array('checkin_id' => $checkin_id));
-		
-		if(isset($data['checkin_fees']) && $data['checkin_fees'])
-		{
-			$checkin_fees = array();
-						
-			foreach($data['checkin_fees'] as $checkin_fee){					
-				$checkin_fees[] = array(
-					'checkin_id'  => $checkin_id,
-					'name' 	      => $checkin_fee['name'],
-					'amount'      => $checkin_fee['amount']
-				);
-			}
-			
-			$this->db->insert_batch('checkin_fee', $checkin_fees);
-		}	
 
 		if($this->db->trans_status() === false) 
 		{
@@ -163,7 +126,7 @@ class Checkin_model extends CI_Model
 	
 	public function get_checkin_products($checkin_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.quantity, checkin_product.location_id, location.name AS location_name', false);
+		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.quantity, checkin_product.quantity_draft, checkin_product.location_id, location.name AS location_name', false);
 		$this->db->from('checkin_product');
 		$this->db->join('product', 'product.id = checkin_product.product_id', 'left');
 		$this->db->join('location', 'location.id = checkin_product.location_id', 'left');
@@ -194,55 +157,7 @@ class Checkin_model extends CI_Model
 		
 		return false;
 	}
-	
-	function delete_checkin($id)
-	{
-		$this->db->trans_begin();
 		
-		//restore inventory
-		$checkin = $this->get_checkin($id);
-		
-		if($checkin['status'] == 2)
-		{
-			$checkin_products = $this->get_checkin_products($id);
-			
-			foreach($checkin_products as $checkin_product)
-			{
-				$q = $this->db->get_where('inventory', array('product_id' => $checkin_product['product_id'], 'location_id' => $checkin_product['location_id']));
-		
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $checkin_product['product_id']);
-					$this->db->where('location_id', $checkin_product['location_id']);
-					$this->db->set('quantity', 'quantity-'.$checkin_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $checkin_product['product_id']);
-					$this->db->where('location_id', $checkin_product['location_id']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				} 
-			}
-		}
-		
-		//delete checkin
-		$this->db->delete('checkin', array('id' => $id));
-		$this->db->delete('checkin_product', array('checkin_id' => $id));		
-		$this->db->delete('checkin_fee', array('checkin_id' => $id));
-		
-		if($this->db->trans_status() === false) 
-		{
-			$this->db->trans_rollback();
-			
-			return false;
-		}
-		else
-		{
-			$this->db->trans_commit();
-
-			return true;
-		}	
-	}		
-	
 	public function find_checkins($data) 
 	{	
 		$this->db->select('*', false);
@@ -382,7 +297,7 @@ class Checkin_model extends CI_Model
 		}
 	}
 
-	function get_checkin_total($data)
+	public function get_checkin_total($data)
 	{		
 		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('checkin');
@@ -414,5 +329,27 @@ class Checkin_model extends CI_Model
 		$result = $q->row_array();
 		
 		return $result['total'];
-	}	
+	}
+
+	public function delete_checkin($checkin_id)
+	{
+		$this->db->trans_begin();
+		
+		//delete checkin
+		$this->db->delete('checkin', array('id' => $checkin_id));
+		$this->db->delete('checkin_product', array('checkin_id' => $checkin_id));		
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+			return true;
+		}	
+	}			
 }

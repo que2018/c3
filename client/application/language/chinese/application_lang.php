@@ -5,6 +5,7 @@ $lang['menu_dashboard']	             = '控制台';
 $lang['menu_checkin']	             = '入库';
 $lang['menu_checkout']	             = '出库';
 $lang['menu_checkin_list']	         = '入库列表';
+$lang['menu_checkin_import']	     = '入库导入';
 $lang['menu_checkin_add']	         = '添加入库';
 $lang['menu_checkin_rapid']	         = '快速入库';
 $lang['menu_checkout_list']	         = '出库列表';

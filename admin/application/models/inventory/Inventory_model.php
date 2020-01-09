@@ -248,7 +248,6 @@ class Inventory_model extends CI_Model
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
 		$this->db->group_by(array('inventory.product_id', 'inventory.location_id'));
-		$this->db->where('inventory.quantity >', 0);
 		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 
@@ -352,7 +351,6 @@ class Inventory_model extends CI_Model
 		$this->db->join('product', 'product.id = inventory.product_id', 'left');
 		$this->db->join('location', 'location.id = inventory.location_id', 'left');
 		$this->db->join('client', 'client.id = product.client_id', 'left');
-		$this->db->where('inventory.quantity >', 0);
 		$this->db->where('inventory.type', 0);
 		
 		if(!empty($data['filter_product'])) 

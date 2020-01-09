@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Checkin extends CI_Controller {
-
+class Checkin extends MX_Controller 
+{
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +13,22 @@ class Checkin extends CI_Controller {
 	
 	public function index()
 	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+	
 		$data['success'] = $this->session->flashdata('success');
+				
+		$this->header->add_style(base_url(). 'assets/css/app/check/checkin_list.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
+		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkin_list'));
 		
 		if($this->input->get('filter_id'))
 		{
@@ -251,25 +266,36 @@ class Checkin extends CI_Controller {
 		$data['filter_status']       = $filter_status;
 		$data['filter_date_added']   = $filter_date_added;
 				
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+	
 		$this->load->view('check/checkin_list', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function add()
 	{
-		$this->load->library('form_validation');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
+		$this->lang->load('check/checkin');
+		
+		$this->load->library('form_validation');
+
+		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
 		
-		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
+		$this->header->add_style(base_url().'assets/css/app/check/checkin_add.css');
+		$this->header->add_style(base_url().'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url().'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkin_add'));
+				
 		$this->form_validation->set_rules('checkin_product[]', $this->lang->line('text_checkin_product'), 'required');
 
 		$data = array(
-			'tracking'          => $this->input->post('tracking'),
-			'status'            => $this->input->post('status'),
-			'note'              => $this->input->post('note'),
-			'checkin_fees'      => $this->input->post('checkin_fee')
+			'tracking'   => $this->input->post('tracking'),
+			'note'       => $this->input->post('note')
 		);
 		
 		$checkin_products = $this->input->post('checkin_product');
@@ -289,7 +315,7 @@ class Checkin extends CI_Controller {
 					'name'           => $product_data['name'],
 					'upc'            => $product_data['upc'],
 					'sku'            => $product_data['sku'],
-					'quantity'       => $checkin_product['quantity']
+					'quantity_draft' => $checkin_product['quantity_draft']
 				);
 			}
 		}
@@ -305,30 +331,41 @@ class Checkin extends CI_Controller {
 		
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_add', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function edit()
 	{
-		$this->load->library('form_validation');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
+		$this->lang->load('check/checkin');
+		
+		$this->load->library('form_validation');
+
+		$this->load->model('check/checkin_model');
 		$this->load->model('catalog/product_model');
+		
+		$this->header->add_style(base_url().'assets/css/app/check/checkin_add.css');
+		$this->header->add_style(base_url().'assets/js/plugins/jquery-ui/jquery-ui.min.css');
+
+		$this->header->add_script(base_url().'assets/js/plugins/jquery-ui/jquery-ui.min.js');
+
+		$this->header->set_title($this->lang->line('text_checkin_edit'));
 		
 		$id = $this->input->get('id');
 		
-		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('checkin_product[]', $this->lang->line('text_product'), 'required');
 
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
 				'tracking'          => $this->input->post('tracking'),
-				'status'            => $this->input->post('status'),
 				'note'              => $this->input->post('note'),
-				'checkin_products'  => $this->input->post('checkin_product'),
-				'checkin_fees'      => $this->input->post('checkin_fee')
+				'checkin_products'  => $this->input->post('checkin_product')
 			);
 				
 			$this->checkin_model->edit_checkin($id, $data);
@@ -342,9 +379,7 @@ class Checkin extends CI_Controller {
 		{			
 			$data['id']             = $this->input->get('id');
 			$data['tracking']       = $this->input->post('tracking');
-			$data['status']         = $this->input->post('status');
 			$data['note']           = $this->input->post('note');
-			$data['checkin_fees']   = $this->input->post('checkin_fee');
 		
 			$checkin_products = $this->input->post('checkin_product');
 			
@@ -361,7 +396,8 @@ class Checkin extends CI_Controller {
 						'name'           => $product_data['name'],
 						'upc'            => $product_data['upc'],
 						'sku'            => $product_data['sku'],
-						'quantity'       => $checkin_product['quantity']
+						'quantity'       => $checkin_product['quantity'],
+						'quantity_draft' => $checkin_product['quantity_draft']
 					);
 				}
 			}
@@ -372,34 +408,21 @@ class Checkin extends CI_Controller {
 		
 			$data['tracking']      = $checkin['tracking'];
 			$data['note']          = $checkin['note'];
-			$data['status']        = $checkin['status'];
 
 			$data['checkin_products'] = array();
 			
 			$checkin_products = $this->checkin_model->get_checkin_products($id);	
 			
-			foreach($checkin_products as $checkin_product) {
+			foreach($checkin_products as $checkin_product) 
+			{
 				$data['checkin_products'][] = array(
 					'product_id'     => $checkin_product['product_id'],
 					'name'           => $checkin_product['name'],
 					'upc'            => $checkin_product['upc'],
 					'sku'            => $checkin_product['sku'],
-					'quantity'       => $checkin_product['quantity']
+					'quantity'       => $checkin_product['quantity'],
+					'quantity_draft' => $checkin_product['quantity_draft']
 				);
-			}
-			
-			$data['checkin_fees'] = array();
-			
-			$checkin_fees_data = $this->checkin_model->get_checkin_fees($id);	
-			
-			if($checkin_fees_data) 
-			{
-				foreach($checkin_fees_data as $checkin_fee_data) {
-					$data['checkin_fees'][] = array(
-						'name'   => $checkin_fee_data['name'],
-						'amount' => $checkin_fee_data['amount']
-					);
-				}
 			}
 		}
 			
@@ -409,13 +432,25 @@ class Checkin extends CI_Controller {
 							
 		$data['error'] = validation_errors();
 		
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_edit', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function view()
 	{
+		$this->load->module('header');
+		$this->load->module('footer');
+		
+		$this->lang->load('check/checkin');
+		
+		$this->load->model('check/checkin_model');
+		
+		$this->header->add_style(base_url().'assets/css/app/check/checkin_view.css');
+
+		$this->header->set_title($this->lang->line('text_checkin_view'));
+		
 		$id = $this->input->get('id');
 		
 		$checkin = $this->checkin_model->get_checkin($id);	
@@ -434,7 +469,8 @@ class Checkin extends CI_Controller {
 				'product_name'   => $checkin_product['product_name'],
 				'upc'            => $checkin_product['upc'],
 				'sku'            => $checkin_product['sku'],
-				'quantity'       => $checkin_product['quantity'],
+				'quantity' 		 => $checkin_product['quantity'],
+				'quantity_draft' => $checkin_product['quantity_draft'],
 				'location'       => $checkin_product['location_name']
 			);
 		}
@@ -455,9 +491,10 @@ class Checkin extends CI_Controller {
 		
 		$data['id'] = $id;
 			
-		$this->load->view('common/header');
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
 		$this->load->view('check/checkin_view', $data);
-		$this->load->view('common/footer');
 	}
 	
 	public function delete()

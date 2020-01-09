@@ -8,13 +8,11 @@
 	margin-right: 6px;
 }
 .code-box {
-	position: absolute;
-    right: 40px;
-    top: 40px;
-    width: 500px;
+	width: 95%;
     padding: 10px;
     background: #1ab394;
     border-radius: 2px;
+    float: right;
 }
 .code-box input {
 	width: 100%;

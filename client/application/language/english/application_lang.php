@@ -5,6 +5,7 @@ $lang['menu_dashboard']	             = 'Dashboard';
 $lang['menu_checkin']	             = 'Checkin';
 $lang['menu_checkout']	             = 'Checkout';
 $lang['menu_checkin_list']	         = 'Checkin List';
+$lang['menu_checkin_import']	     = 'Checkin Import';
 $lang['menu_checkin_add']	         = 'Add Checkin';
 $lang['menu_checkin_rapid']	         = 'Rapid Checkin';
 $lang['menu_checkout_list']	         = 'Checkout List';

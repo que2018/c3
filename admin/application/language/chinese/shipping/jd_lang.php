@@ -70,6 +70,7 @@ $lang['text_zone_eleven'] 	  			= 'Zone11';
 $lang['text_zone_twelve'] 	  			= 'Zone12';
 $lang['text_zone_seventeen'] 	  		= 'Zone17';
 $lang['text_edit_success'] 	  			= '<i class="fa fa-check-circle-o"></i>&nbsp;JD edit success';
+$lang['text_delivery_id_success'] 	    = '<i class="fa fa-check-circle-o"></i>&nbsp;JD Delivery Id generate success';
 
 // Tab
 $lang['tab_service'] 	  	            = 'Service';
@@ -129,6 +130,7 @@ $lang['entry_upload_dhl_express_price_table'] 	  	= 'Upload DHL Express Price Ta
 
 // Error
 $lang['error_write_pdf']  			   			   = 'write pdf to disk error';
+$lang['error_label_printed']  			   		   = 'label has been printed';
 $lang['error_pdf_image_conversion']  			   = 'convert pdf to image error';
 $lang['error_jd_gateway_no_response']  			   = 'JD gateway no response';
 $lang['error_jd_response_format']  			       = 'JD gateway response format is incorrect';

@@ -11,7 +11,6 @@ class Checkin_model extends CI_Model
 		//checkin data
 		$checkin_data = array(
 			'tracking' 		    => $data['tracking'],
-			'fee_code' 		    => $data['fee_code'],
 			'note' 		        => $data['note'],
 			'status' 		    => $data['status'],
 			'date_added'   		=> date('Y-m-d H:i:s'),
@@ -291,7 +290,6 @@ class Checkin_model extends CI_Model
 		//checkin data
 		$checkin_data = array(
 			'tracking'     => $data['tracking'],
-			'fee_code' 	   => $data['fee_code'],
 			'status'       => $data['status'],
 			'note' 		   => $data['note']
 		);
@@ -306,11 +304,12 @@ class Checkin_model extends CI_Model
 		
 		foreach($data['checkin_products'] as $checkin_product){
 			$checkin_products[] = array(
-				'checkin_id'   => $checkin_id,
-				'product_id'   => $checkin_product['product_id'],
-				'location_id'  => $checkin_product['location_id'],
-				'batch' 	   => $checkin_product['batch'],
-				'quantity' 	   => $checkin_product['quantity']
+				'checkin_id'     => $checkin_id,
+				'product_id'     => $checkin_product['product_id'],
+				'location_id'    => $checkin_product['location_id'],
+				'batch' 	     => $checkin_product['batch'],
+				'quantity' 	     => $checkin_product['quantity'],
+				'quantity_draft' => $checkin_product['quantity_draft']
 			);
 		}
 		
@@ -371,39 +370,6 @@ class Checkin_model extends CI_Model
 					$this->db->insert('inventory', $inventory_data);
 				}
 			}
-			
-			//transaction		
-			if($checkin['fee_code'])
-			{
-				//run checkin fee
-				$code = $checkin['fee_code'];
-				
-				$this->load->model('fee/'. $code .'_model');
-
-				$amount = $this->{$code . '_model'}->run_checkin($checkin_id);
-				
-				//modify transition
-				$this->load->model('catalog/product_model');
-				$this->load->model('finance/transaction_model');
-
-				$checkin_product = $checkin_products[0];
-				
-				$product_info = $this->product_model->get_product($checkin_product['product_id']);
-				
-				$client_id = $product_info['client_id'];
-				
-				$transaction_data = array(					
-					'client_id'		  => $client_id,
-					'type'		      => 'checkin',
-					'type_id'         => $checkin_id,
-					'cost'   		  => 0,
-					'markup'   		  => $amount,
-					'amount'   		  => $amount,
-					'comment'         => sprintf($this->lang->line('text_checkin_transaction_note'), $checkin_id)
-				);
-							
-				$this->transaction_model->add_transaction($transaction_data); 
-			}				
 			
 			//checkin data
 			$this->db->where('id', $checkin_id);
@@ -504,7 +470,7 @@ class Checkin_model extends CI_Model
 	
 	public function get_checkin_products($checkin_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.batch, checkin_product.quantity, checkin_product.location_id, location.name AS location_name', false);
+		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.batch, checkin_product.quantity, checkin_product.quantity_draft, checkin_product.location_id, location.name AS location_name', false);
 		$this->db->from('checkin_product');
 		$this->db->join('product', 'product.id = checkin_product.product_id', 'left');
 		$this->db->join('location', 'location.id = checkin_product.location_id', 'left');
@@ -532,7 +498,7 @@ class Checkin_model extends CI_Model
 		return false;
 	}
 	
-	function delete_checkin($checkin_id)
+	public function delete_checkin($checkin_id)
 	{
 		$this->db->trans_begin();
 		
@@ -739,7 +705,7 @@ class Checkin_model extends CI_Model
 		}
 	}
 
-	function get_checkin_total($data)
+	public function get_checkin_total($data)
 	{		
 		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('checkin');

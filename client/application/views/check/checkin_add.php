@@ -1,6 +1,4 @@
-<link href="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">  
-<link href="<?php echo base_url(); ?>assets/css/app/check/checkin_add.css" rel="stylesheet">
-<script src="<?php echo base_url(); ?>assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
 	<h2><?php echo $this->lang->line('text_checkin_add'); ?></h2>
@@ -30,15 +28,11 @@
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#note"><?php echo $this->lang->line('tab_note'); ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
 			<div class="panel-body">
-			  <div class="code-box">
-				<input name="code" placeholder="<?php echo $this->lang->line('text_code_hint'); ?>" class="form-control">
-			  </div>
 			  <div class="container-fluid">
 			    <div class="row" style="padding-bottom: 10px;">
 				  <div class="col-lg-7">
@@ -47,14 +41,11 @@
 					  <div class="col-sm-10"><input name="tracking" value="<?php echo $tracking; ?>" class="form-control" ></div>
 				    </div>
 				    <div class="hr-line-dashed"></div>
-				    <div class="form-group">
-					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_status'); ?></label>
-					  <div class="col-sm-10">
-					    <select name="status" class="form-control">
-						  <option value="1"><?php echo $this->lang->line('text_pending'); ?></option>
-					    </select>
-					  </div>			  
-				    </div>
+				  </div>
+				  <div class="col-lg-5">
+				    <div class="code-box">
+					  <input name="code" placeholder="<?php echo $this->lang->line('text_code_hint'); ?>" class="form-control">
+					</div>
 				  </div>
 			    </div>
 			    <div class="row">
@@ -66,7 +57,7 @@
 						    <th style="width: 30%"><?php echo $this->lang->line('column_product_name'); ?></th>
 						    <th style="width: 20%"><?php echo $this->lang->line('column_upc'); ?></th>
 						    <th style="width: 20%"><?php echo $this->lang->line('column_sku'); ?></th>
-						    <th style="width: 10%"><?php echo $this->lang->line('column_quantity'); ?></th>
+						    <th style="width: 10%"><?php echo $this->lang->line('column_quantity_draft'); ?></th>
 							<th></th>
 						  </tr>
 					    </thead>
@@ -78,7 +69,7 @@
 						    <td class="text-left"><input name="checkin_product[<?php echo $checkin_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkin_product['product_id']; ?>"><div class="text-left"><?php echo $checkin_product['name']; ?></div></td>
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
-						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
+						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity_draft]" value="<?php echo $checkin_product['quantity_draft']; ?>"></td>
 							<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $checkin_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
 						    <?php $checkin_product_row ++; ?>
 						    <?php } ?>
@@ -89,40 +80,6 @@
 				  </div>
 			    </div>
               </div>			  
-			</div>
-		  </div>
-		  <div id="fee" class="tab-pane">
-			<div class="panel-body">
-			  <div class="table-responsive">
-                <table id="checkin_fees" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					<td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_name') ?></td>
-					<td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_amount') ?></td>							
-					<td></td>
-					</tr>
-				  </thead>
-				  <tbody>
-					<?php $checkin_fee_row = 0; ?>
-					<?php if($checkin_fees) { ?>
-					  <?php foreach ($checkin_fees as $checkin_fee) { ?>
-					  <tr id="checkin-fee-row<?php echo $checkin_fee_row; ?>">
-					    <td class="text-right"><input type="text" name="checkin_fee[<?php echo $checkin_fee_row; ?>][value]" value="<?php echo $checkin_fee['name']; ?>" class="form-control" /></td>
-					    <td class="text-right"><div class="input-group"><span class="input-group-addon">$</span><input type="text" name="checkin_fee[<?php echo $checkin_fee_row; ?>][class_id]" value="<?php echo $checkin_fee['amount']; ?>" class="form-control" /></div></td>
-					    <td class="text-left"><button type="button" onclick="$('#checkin-fee-row<?php echo $checkin_fee_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
-					  </tr>
-					  <?php $checkin_fee_row++; ?>
-					  <?php } ?>
-					<?php } ?>
-				  </tbody>
-				  <tfoot>
-					<tr>
-					  <td colspan="2"></td>
-					  <td class="text-left"><button type="button" onclick="add_checkin_fee();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-					</tr>
-				  </tfoot>
-                </table>
-              </div>
 			</div>
 		  </div>
 		  <div id="note" class="tab-pane">
@@ -183,7 +140,7 @@ $(document).ready(function() {
 			html  = '<td><input class="product_id" name="checkin_product[' + checkin_product_row + '][product_id]" type="hidden" value="' + product.product_id + '"><div class="text-left">' + product.name + '</div></td>';
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
-			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][quantity_draft]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
 			
 			new_tr.html(html);
@@ -219,4 +176,5 @@ function add_checkin_fee() {
 	checkin_fee_row++;
 }
 </script>
+<?php echo $footer; ?>
 		

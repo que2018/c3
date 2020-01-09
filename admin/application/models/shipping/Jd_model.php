@@ -12,6 +12,30 @@ class Jd_model extends CI_Model
 	public function generate_sale_label($sale_id)
 	{
 		$this->lang->load('shipping/jd');
+
+		$this->load->model('sale/sale_model');
+	
+		$sale = $this->sale_model->get_sale($sale_id);	
+		
+		if(empty($sale['jd_delivery_id']))
+		{
+			$result = $this->generate_delivery_id($sale_id);
+		}
+		else if(!empty($sale['jd_delivery_id']) && empty($sale['tracking']))
+		{
+			$result = $this->print_label($sale_id);
+		}
+		else
+		{
+			$result['error'] = $this->lang->line('error_label_printed');
+		}
+		
+		return $result;
+	}
+	
+	private function generate_delivery_id($sale_id) 
+	{
+		$this->lang->load('shipping/jd');
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
@@ -47,12 +71,12 @@ class Jd_model extends CI_Model
 			'customerName'      => $sale['name'],
 			'orderId'           => $sale['id'],
 			'thrOrderId'        => $sale['id'],
-			'senderName'        => $this->config->item('jd_sender_name'),
-			'senderAddress'     => trim($this->config->item('jd_sender_address')),	
-			'senderMobile'      => $this->config->item('jd_sender_mobile'),	
-			'senderProvince'    => trim($this->config->item('jd_sender_province')),	
-			'senderCity'        => trim($this->config->item('jd_sender_city')),	
-			'senderPostcode'    => trim($this->config->item('jd_sender_postcode')),	
+			'senderName'        => $client['firstname'].' '.$client['lastname'],
+			'senderAddress'     => trim($client['street']),	
+			'senderMobile'      => trim($client['phone']),	
+			'senderProvince'    => trim($client['state']),	
+			'senderCity'        => trim($client['city']),	
+			'senderPostcode'    => trim($client['zipcode']),	
 			'receiveName'       => $sale['name'],	
 			'receiveAddress'    => trim($sale['street']),
 			'receiveTel'    	=> ($sale['phone'])?$sale['phone']:$client['phone'],
@@ -70,8 +94,8 @@ class Jd_model extends CI_Model
 				
 		$payload = "[".json_encode($data)."]";	
 								
-		$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderUat";
-		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderIsv";
+		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderUat";
+		$post_url = "https://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantOrder/glscReceiveOrderIsv";
 
 		$content_md5 = MD5($payload);
 		
@@ -110,48 +134,45 @@ class Jd_model extends CI_Model
 			{
 				if($response->resultCode == 100)
 				{	
-					sleep(20);
-			
 					$delivery_id = $response->deliveryId;
-											
-					$print_result = $this->print_label($sale_id, $delivery_id);
-								
-					if(!isset($print_result['error']))
-					{
-						$result = array(
-							'tracking'     => $print_result['tracking'],
-							'amount'       => $print_result['amount'],
-							'amount_addi'  => $print_result['amount_addi'],
-							'label_img'    => $print_result['label_img']
-						);
-					}
-					else
-					{
-						$result['error'] = $this->lang->line('text_order_error').$print_result['error'];
-					}
+					
+					$this->sale_model->update_jd_delivery_id($sale_id, $delivery_id);
+
+					$result['success'] = true; 
+					$result['pending'] = true; 
+					$result['message'] = $this->lang->line('text_delivery_id_success');						
 				} 
 				else
 				{
-					$result['error'] = $this->lang->line('text_order_error').$response->resultMessage;
+					$result['success'] = false; 
+					$result['message'] = $this->lang->line('text_order_error').$response->resultMessage;
 				}
 			}
 			else
 			{
-				$result['error'] = $this->lang->line('error_jd_response_format');
+				$result['success'] = false; 
+				$result['message'] = $this->lang->line('error_jd_response_format');
 			}
 		}
 		else
 		{
-			$result['error'] = $this->lang->line('error_jd_gateway_no_response');
+			$result['success'] = false; 
+			$result['message'] = $this->lang->line('error_jd_gateway_no_response');
 		}
-	
+		
 		return $result;
 	}
 	
-	public function print_label($sale_id, $delivery_id)
+	public function print_label($sale_id)
 	{
 		$this->load->library('distance');
 		$this->load->library('pdftoimage');
+		
+		$this->load->model('sale/sale_model');
+
+		$sale = $this->sale_model->get_sale($sale_id);	
+		
+		$delivery_id = $sale['jd_delivery_id'];
 		
 		$data = array(
 			'customerId'  => $this->config->item('jd_customer_id'),
@@ -162,8 +183,8 @@ class Jd_model extends CI_Model
 		
 		$payload = "[".json_encode($data)."]";	
 				
-		$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint4Uat";
-		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint";
+		//$post_url = "http://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint4Uat";
+		$post_url = "https://us-api.jd.com/b2b/ql_i18n_ldop_us/outerMerchantPrint/glscPrint";
 					
 		$content_md5 = MD5($payload);
 		
@@ -230,6 +251,7 @@ class Jd_model extends CI_Model
 							$amount = $this->get_shipping_fee($sale_id);
 							$gas_fee = (int)$this->config->item('jd_gas_fee');
 
+							$result['success'] = true; 
 							$result['tracking'] = $tracking;
 							$result['amount'] = $amount;
 							$result['amount_addi'] = (int)$amount * $gas_fee / 100;	
@@ -237,27 +259,32 @@ class Jd_model extends CI_Model
 						}
 						else
 						{
-							$result['error'] = $this->lang->line('error_pdf_image_conversion');
+							$result['success'] = false; 
+							$result['message'] = $this->lang->line('error_pdf_image_conversion');
 						}	
 					}
 					else
 					{
-						$result['error'] = $this->lang->line('error_write_pdf');
+						$result['success'] = false; 
+						$result['message'] = $this->lang->line('error_write_pdf');
 					}
 				}
 				else
-				{			
-					$result['error'] = $this->lang->line('text_print_error').$response['statusMessage'];
+				{		
+					$result['success'] = false; 
+					$result['message'] = $this->lang->line('text_print_error').$response['statusMessage'];
 				}
 			}
 			else
 			{
-				$result['error'] = $this->lang->line('error_jd_response_format');
+				$result['success'] = false; 
+				$result['message'] = $this->lang->line('error_jd_response_format');
 			}
 		}
 		else
 		{
-			$result['error'] = $this->lang->line('error_jd_gateway_no_response');
+			$result['success'] = false; 
+			$result['message'] = $this->lang->line('error_jd_gateway_no_response');
 		}
 		
 		return $result;
@@ -352,9 +379,7 @@ class Jd_model extends CI_Model
 				}
 			}
 		}
-		
-		file_put_contents("log.txt", $column . "\n", FILE_APPEND);
-				
+						
 		if($column)
 		{
 			//get weight in lbs

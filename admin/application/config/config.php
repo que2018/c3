@@ -24,11 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://admin.bhlintl.com';
+$config['base_url'] = 'http://bhlintl.com';
 
-$config['client_url'] = 'http://client.bhlintl.com';
+$config['client_url'] = 'http://c.bhlintl.com';
 
-$config['media_url'] = 'http://media.bhlintl.com/';
+$config['media_url'] = 'http://m.bhlintl.com/';
 
 /*
 |--------------------------------------------------------------------------

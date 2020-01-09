@@ -8,6 +8,7 @@ $lang['menu_dashboard']	             = '控制面板';
 $lang['menu_checkin']	             = '入库';
 $lang['menu_checkout']	             = '出库';
 $lang['menu_checkin_list']	         = '入库列表';
+$lang['menu_checkin_import']	     = '入库导入';
 $lang['menu_checkin_add']	         = '增加入库';
 $lang['menu_checkin_scan']	         = '扫描入库';
 $lang['menu_checkin_rapid']	         = '快速入库';

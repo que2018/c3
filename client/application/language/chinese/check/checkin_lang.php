@@ -13,6 +13,7 @@ $lang['text_checkin_edit'] 	  	    			 = '编辑入库';
 $lang['text_checkin_view'] 	  	    			 = '查看入库';
 $lang['text_checkin_rapid'] 	  	    		 = '快速入库';
 $lang['text_checkin_list'] 	  	    			 = '入库列表';
+$lang['text_import_chcekin'] 	  	    	     = '入库导入';
 $lang['text_pending'] 	  	        			 = '待处理';
 $lang['text_completed'] 	  	    			 = '完成';
 $lang['text_canceled'] 	  	        			 = '已取消';
@@ -29,6 +30,10 @@ $lang['text_checkin_rapid_hint'] 	  	         = '入库ID / 追踪号';
 $lang['text_checkin_edit_title'] 	  	         = '入库编辑(#%s)';
 $lang['text_code_hint'] 	  	    			 = 'UPC / SKU / ASIN / product名称';
 $lang['text_checkin_description']				 = '展示all入库记录';
+$lang['text_import_checkin_description'] 	     = '从excel导入入库表单';
+$lang['text_drop_file_and_upload'] 	     		 = '拖动或者点击上传';
+$lang['text_download_sample_file'] 	  	         = '下载式样文件';
+$lang['text_only_excel_will_accepted'] 	 		 = '( 只有excel允许上传 )';
 $lang['text_checkin_add_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库添加成功';
 $lang['text_checkin_edit_success']				 = '<i class="fa fa-check-circle-o"></i>&nbsp;入库编辑成功';
 $lang['text_rapid_checkin_add_success'] 		 = '<i class="fa fa-check-circle-o"></i>&nbsp;快速入库添加成功';
@@ -52,6 +57,7 @@ $lang['column_product_name'] 	        	     = 'product名称';
 $lang['column_upc'] 	        	     		 = 'UPC';
 $lang['column_sku'] 	        	             = 'SKU';
 $lang['column_quantity'] 	        	         = '数量';
+$lang['column_quantity_draft'] 	        	     = '起草数量';
 $lang['column_amount'] 	        	    		 = '量';
 $lang['column_location'] 	        			 = '库位';
 $lang['column_tracking']        				 = '追踪号';
@@ -79,6 +85,12 @@ $lang['error_product_not_found']                 = '<i class="fa fa-exclamation-
 $lang['error_select_checkin_first']              = '<i class="fa fa-exclamation-triangle"></i>&nbsp;请先选择入库记录';
 $lang['error_checkin_not_found']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库记录没有找到';
 $lang['error_checkin_already_acompleted']        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;入库已经完成';
+$lang['error_file_type_not_excel'] 	  	 		 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;文件不是excel';
+$lang['error_row_data'] 	  	         		 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第<strong>%s</strong>行有无效数据';
+$lang['error_sku_not_found'] 	  	     		 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第%s行有sku<strong>%s</strong>不存在';
+$lang['error_checkin_internal'] 	  	     	 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;系统内部错误';
+
+
 
 
 

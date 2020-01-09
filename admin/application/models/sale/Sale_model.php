@@ -905,4 +905,25 @@ class Sale_model extends CI_Model
 			return true;
 		}
 	}
+	
+	public function update_jd_delivery_id($sale_id, $jd_delivery_id) 
+	{
+		$this->db->trans_begin();
+		
+		$this->db->where('id', $sale_id);
+		$this->db->update('sale', array('jd_delivery_id' => $jd_delivery_id, 'jd_order_date_added' => date('Y-m-d H:i:s'))); 
+		
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
+	}
 }

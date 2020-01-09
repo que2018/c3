@@ -148,17 +148,25 @@ class Checkin extends MX_Controller
 		{
 			foreach($checkins as $checkin)
 			{	
+				$enable_toggle = true;
+			
 				$checkin_products = array();
 				
 				$checkin_products_data = $this->checkin_model->get_checkin_products($checkin['id']);	
 				
-				foreach($checkin_products_data as $checkin_product_data) {
+				foreach($checkin_products_data as $checkin_product_data) 
+				{
 					$checkin_products[] = array(
-						'name'        => $checkin_product_data['name'],
-						'batch'       => $checkin_product_data['batch'],
-						'quantity'    => $checkin_product_data['quantity'],
-						'location'    => $checkin_product_data['location_name']
+						'name'           => $checkin_product_data['name'],
+						'batch'       	 => $checkin_product_data['batch'],
+						'quantity'    	 => $checkin_product_data['quantity'],
+						'location'       => $checkin_product_data['location_name']
 					);
+					
+					if(!$checkin_product_data['location_id'] && $enable_toggle) 
+					{
+						$enable_toggle = false;
+					}
 				}
 			
 				$data['checkins'][] = array(
@@ -167,6 +175,7 @@ class Checkin extends MX_Controller
 					'note'             => $checkin['note'],
 					'status'           => $checkin['status'],			
 					'date_added'       => $checkin['date_added'],
+					'enable_toggle'    => $enable_toggle,
 					'checkin_products' => $checkin_products
 				);
 			}
@@ -417,7 +426,7 @@ class Checkin extends MX_Controller
 				'fee_code'          => $this->config->item('config_default_checkin_fee'),
 				'status'            => $this->input->post('status'),
 				'note'              => $this->input->post('note'),
-				'checkout_products' => array()
+				'checkin_products' => array()
 			);
 		}
 		
@@ -529,6 +538,7 @@ class Checkin extends MX_Controller
 						'sku'            => $product_info['sku'],
 						'batch'          => $checkin_product['batch'],
 						'quantity'       => $checkin_product['quantity'],
+						'quantity_draft' => $checkin_product['quantity_draft'],
 						'location_id'    => $checkin_product['location_id'],
 						'location_name'  => $checkin_product['location_name']
 					);
@@ -540,7 +550,6 @@ class Checkin extends MX_Controller
 			$checkin = $this->checkin_model->get_checkin($checkin_id);	
 		
 			$data['tracking']      = $checkin['tracking'];
-			$data['fee_code']      = $checkin['fee_code'];
 			$data['note']          = $checkin['note'];
 			$data['status']        = $checkin['status'];
 
@@ -556,6 +565,7 @@ class Checkin extends MX_Controller
 					'sku'            => $checkin_product['sku'],
 					'batch'          => $checkin_product['batch'],
 					'quantity'       => $checkin_product['quantity'],
+					'quantity_draft' => $checkin_product['quantity_draft'],
 					'location_id'    => $checkin_product['location_id'],
 					'location_name'  => $checkin_product['location_name']
 				);
@@ -814,7 +824,7 @@ class Checkin extends MX_Controller
 		if($this->input->post('checkin_product'))
 		{
 			$checkin_products = $this->input->post('checkin_product');
-			
+						
 			foreach($checkin_products as $checkin_product)
 			{
 				$product_id = $checkin_product['product_id'];
@@ -823,6 +833,8 @@ class Checkin extends MX_Controller
 				
 				array_push($client_ids, $product_info['client_id']);
 			}
+						
+			$client_ids = array_unique($client_ids);
 			
 			if(count($client_ids) > 1)
 			{

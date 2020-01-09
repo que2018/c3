@@ -468,11 +468,20 @@ function print_label_d(handle, sale_id)
 						$(handle).html('<i class="fa fa-file-image-o"></i>');
 					},
 					success: function(json) {
-						if(json.success) {
+						if(json.success && json.pending) {
+							html = '<div class="alert-wrapper">';
+							html += '<div class="alert alert-success" style="width: 270px;">';
+							html += '<span>' + json.message + '</span>';
+							html += '<button type="button" class="close" onclick="$(this).closest(\'.alert-success\').remove()">';
+							html += '&times;</button></div>';
+							html += '</div>';
+
+							$('#wrapper').append(html);
+							
+						} else if(json.success && !json.pending) {
 							html = '<span class="tracking">' + json.tracking + '</span>';
 							$(handle).closest('tr').find('.tracking-td').html(html);
-						}
-						else {
+						} else {
 							html = '<div class="alert alert-danger">';
 							html += '<span><strong>#' + sale_id + ":</strong> " + json.message + '</span>';
 							html += '<button type="button" class="close" onclick="$(this).closest(\'.alert-danger\').remove()">';

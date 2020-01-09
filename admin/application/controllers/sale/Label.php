@@ -248,8 +248,23 @@ class Label extends CI_Controller
 			$this->load->model('shipping/'. $code .'_model');
 
 			$result = $this->{$code . '_model'}->generate_sale_label($sale_id);
-						
-			if(!isset($result['error']))
+			
+			if(!$result['success'])
+			{
+				$outdata = array(
+					'success'   => false,
+					'message'   => $result['message']
+				);
+			}
+			else if($result['success'] && (isset($result['pending'])))
+			{
+				$outdata = array(
+					'success'   => true,
+					'pending'   => true,
+					'message'   => $result['message']
+				);
+			}
+			else 
 			{	
 				if(!$this->config->item($code . '_debug_mode'))
 				{
@@ -337,6 +352,7 @@ class Label extends CI_Controller
 					
 					$outdata = array(
 						'success'   => true,
+						'pending'   => false,
 						'tracking'  => $result['tracking']
 					);
 				}
@@ -348,14 +364,7 @@ class Label extends CI_Controller
 					);
 				}
 			}
-			else 
-			{
-				$outdata = array(
-					'success'   => false,
-					'message'   => $result['error']
-				);
-			}
-			
+		
 			$this->output->set_content_type('application/json');
 			$this->output->set_output(json_encode($outdata));
 		}
