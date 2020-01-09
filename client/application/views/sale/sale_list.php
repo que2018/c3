@@ -8,16 +8,13 @@
 	  <li class="active"><strong><?php echo $this->lang->line('text_order_list'); ?></strong></li>
 	</ol>
   </div>
-  <div class="tooltip-demo">
+  <div class="button-group tooltip-demo">
     <a href="<?php echo base_url(); ?>sale/sale/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
 	<div class="col-lg-12">
-	  <?php if($success) { ?>
-	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
-	  <?php } ?>
 	  <div id="alerts">
 	    <div id="alert-error" class="alert alert-danger" style="display:none;"><button type="button" class="close" onclick="$('#alert-error').hide()">&times;</button><span></span></div>
 	  </div>
@@ -148,7 +145,7 @@
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td style="text-align: center">
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-file-image-o"></i></button>
-					    <button onclick="print_label_c(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-c"><i class="fa fa-print"></i></button>
+					    <!--<button onclick="print_label_c(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-c"><i class="fa fa-print"></i></button>-->
 						<?php if($sale['status_id'] == 1) { ?>
 						<a href="<?php echo base_url(); ?>sale/sale/edit?sale_id=<?php echo $sale['sale_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil"></i></a>
                         <?php } else { ?>

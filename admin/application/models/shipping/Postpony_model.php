@@ -107,6 +107,7 @@ class Postpony_model extends CI_Model
 			if(@file_put_contents($label_img, base64_decode($label_data)))
 			{					
 				$result = array(
+					'success'    => true,
 					'tracking'   => $tracking,
 					'label_img'  => $tracking . '.png',
 					'amount'     => $amount
@@ -114,12 +115,18 @@ class Postpony_model extends CI_Model
 			}
 			else
 			{
-				$result['error'] = $this->lang->line('error_save_image_failed');
+				$result = array(
+					'success'   => false,
+					'message'   => $this->lang->line('error_save_image_failed')
+				);
 			}
 		}
 		else
 		{
-			$result['error'] = $response->Msg;
+			$result = array(
+				'success'   => false,
+				'message'   => (string)$response->Msg
+			);
 		}
 			
 		return $result;

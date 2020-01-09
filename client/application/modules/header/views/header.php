@@ -29,6 +29,11 @@
 </head>
 <body>
   <div id="wrapper">
+    <?php if($success) { ?>
+      <div class="alert-wrapper">
+	    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $success; ?></div>
+	  </div>
+    <?php } ?>
 	<nav class="navbar-default navbar-static-side" role="navigation">
 	  <div class="sidebar-collapse">
 		<ul class="nav metismenu" id="side-menu">

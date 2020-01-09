@@ -29,6 +29,120 @@ class Postpony_model extends CI_Model
 		}
 	}
 	
+	public function generate_sale_label($sale_id)
+	{
+		$this->lang->load('shipping/postpony');
+
+		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('client/client_model');
+			
+		//get shipping info
+		$sale = $this->sale_model->get_sale($sale_id);
+		
+		$store_id = $sale['store_id'];
+		$store = $this->store_model->get_store($store_id);		
+		$client = $this->client_model->get_client($store['client_id']);
+		
+		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
+	
+		$data['key'] = $this->config->item('postpony_key');
+		$data['pwd'] = $this->config->item('postpony_pwd');
+		$data['authorized_key'] = $this->config->item('postpony_authorized_key');
+		$data['debug_mode'] = $this->config->item('postpony_debug_mode');
+		
+		/*
+		$data['owner'] = $this->config->item('postpony_owner');
+		$data['company'] = $this->config->item('postpony_company');
+		$data['street'] = $this->config->item('postpony_street');
+		$data['street2'] = $this->config->item('postpony_street2');
+		$data['city'] = $this->config->item('postpony_city');
+		$data['state'] = $this->config->item('postpony_state');
+		$data['postcode'] = $this->config->item('postpony_postcode');
+		$data['country'] = $this->config->item('postpony_country');
+		$data['phone'] = $this->config->item('postpony_phone');
+		*/
+		
+		$data['owner'] = $client['firstname'].' '.$client['lastname'];
+		$data['company'] = $client['company'];
+		$data['street'] = $client['street'];
+		$data['street2'] = '';
+		$data['city'] = $client['city'];
+		$data['state'] = $client['state'];
+		$data['postcode'] = $client['zipcode'];
+		$data['country'] = $client['country'];
+		$data['phone'] = $client['phone'];
+		
+		$data['signature'] = $this->config->item('postpony_signature');
+		
+		//service 
+		$shipping_service = $this->get_service($sale['shipping_service']);
+		
+		$data['method'] = $shipping_service['method'];
+		
+		//recipient
+		$data['to_name'] = $sale['name'];
+		$data['to_company'] = '';
+		$data['to_phone'] = $sale['phone'];
+		
+		if($sale['street2'])
+		{
+			$data['to_street'] = $sale['street'] .' '. $sale['street2'];
+		}
+		else
+		{
+			$data['to_street'] = $sale['street'];
+		}
+		
+		$data['to_city'] = $sale['city'];		
+		$data['to_state'] = $this->get_state_short($sale['state']);
+		$data['to_postcode'] = $this->get_clean_zipcode($sale['zipcode']);
+		
+		//length & weight
+		$data['length'] = $sale['length'];
+		$data['width'] = $sale['width'];
+		$data['height'] = $sale['height'];
+		$data['weight'] = $sale['weight'];
+		
+		$response = $this->send_request($data);
+								
+		if($response->Sucess == 'true')
+		{			
+			$label_data = $response->LableData->base64Binary;
+			
+			$response_array = @json_decode(@json_encode($response), 1);
+			
+			$amount = $response_array['TotalFreight'];		
+			$tracking = $response_array['MainTrackingNum'];
+											
+			$label_img = LABELPATH . $tracking . '.png';
+						
+			if(@file_put_contents($label_img, base64_decode($label_data)))
+			{					
+				$result = array(
+					'tracking'   => $tracking,
+					'label_img'  => $tracking . '.png',
+					'amount'     => $amount
+				);
+			}
+			else
+			{
+				$result['error'] = $this->lang->line('error_save_image_failed');
+			}
+		}
+		else
+		{
+			$result['error'] = (string)$response->Msg;
+		}
+			
+		return $result;
+	}
+	
+	public function generate_checkout_label($checkout_id)
+	{
+		
+	}
+	
 	public function rating($sale) 
 	{		
 		if($this->config->item('postpony_debug_mode'))
@@ -276,6 +390,15 @@ class Postpony_model extends CI_Model
 		{
 			$url = 'https://api.postpony.com/api/Ship';
 		}
+		
+		if($data['signature'])
+		{
+			$signature = 'Direct';
+		}
+		else
+		{
+			$signature = 'None';
+		}
 			
 		$shipDate = date("Y-m-d\TH:i:s");
 							
@@ -351,7 +474,7 @@ class Postpony_model extends CI_Model
 		$xml .= '</CustomsItem>';
 		$xml .= '</CustomsList>'; 
  		$xml .= '<LbSize>S4X6</LbSize>';
-		$xml .= '<Signature>None</Signature>';
+		$xml .= '<Signature>'.$signature.'</Signature>';
 		$xml .= '</RequstInfo>'; 
 		$xml .= '<ShipType>'.$data['method'].'</ShipType>';
 		$xml .= '</ShipRequest>';

@@ -239,6 +239,37 @@ class Sale_model extends CI_Model
 		return false;
 	}
 	
+	public function get_sale_detail($sale_id) 
+	{
+		$this->db->select('sale_product.id, sale_product.quantity, product.*, product.id AS product_id', false);
+		$this->db->from('sale_product');
+		$this->db->join('product', 'product.id = sale_product.product_id', 'left');
+		$this->db->where('sale_product.sale_id', $sale_id);
+		
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			$sale_detail = '';
+			
+			$results = $q->result_array();
+			
+			$count = count($results);
+			
+			foreach($results as $i => $result) 
+			{
+				$sale_detail .= $result['sku'] . ':  ' . $result['quantity'];
+				
+				if($i < ($count - 1))
+					$sale_detail .= ', ';
+			}
+			
+			return $sale_detail;
+		} 
+		
+		return false;
+	}
+	
 	public function get_sale_by_tracking($tracking) 
 	{
 		$q = $this->db->get_where('sale', array('tracking' => $tracking), 1); 

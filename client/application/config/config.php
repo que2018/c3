@@ -23,9 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://c.bhlintl.com';
+$config['base_url'] = 'http://localhost/c3/client';
 
-$config['media_url'] = 'http://m.bhlintl.com/';
+$config['media_url'] = 'http://localhost/c3/media/';
 
 /*
 |--------------------------------------------------------------------------

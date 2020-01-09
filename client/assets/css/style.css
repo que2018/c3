@@ -8551,3 +8551,9 @@ body.md-skin {
     margin: 0;
   }
 }
+.alert-wrapper {
+	position: fixed;
+    z-index: 10000;
+    width: 100%;
+    top: 20px;
+}
