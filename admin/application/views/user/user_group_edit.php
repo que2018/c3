@@ -55,6 +55,11 @@
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="check" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_check'); ?></label></div>
 						<?php } else { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="check"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_check'); ?></label></div>
+						<?php } ?>	
+						<?php if(isset($permission['access']) && in_array('fba', $permission['access'])) { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="fba" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_fba'); ?></label></div>
+						<?php } else { ?>
+						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="fba"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_fba'); ?></label></div>
 						<?php } ?>
 						<?php if(isset($permission['access']) && in_array('catalog', $permission['access'])) { ?>
 						  <div class="i-checks"><label><input type="checkbox" name="permission[access][]" value="catalog" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_access_catalog'); ?></label></div>
@@ -146,6 +151,11 @@
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="check" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_check'); ?></label></div>
 					  <?php } else { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="check"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_check'); ?></label></div>
+					  <?php } ?>
+					  <?php if(isset($permission['modify']) && in_array('fba', $permission['modify'])) { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="fba" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_fba'); ?></label></div>
+					  <?php } else { ?>
+					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="fba"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_fba'); ?></label></div>
 					  <?php } ?>
 					  <?php if(isset($permission['modify']) && in_array('catalog', $permission['modify'])) { ?>
 					    <div class="i-checks"><label><input type="checkbox" name="permission[modify][]" value="catalog" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('permission_modify_catalog'); ?></label></div>

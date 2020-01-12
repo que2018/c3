@@ -28,6 +28,7 @@ $lang['entry_description'] 	  	              = 'Description';
 // Permission
 $lang['permission_access_catalog']      	  = 'View Catalog';
 $lang['permission_access_check']        	  = 'View Check';
+$lang['permission_access_fba']        	  	  = 'View FBA';
 $lang['permission_access_inventory'] 		  = 'View Inventory';
 $lang['permission_access_warehouse']   		  = 'View Warehouse';
 $lang['permission_access_sale']           	  = 'View Sale';
@@ -45,6 +46,7 @@ $lang['permission_access_system']   		  = 'View System';
 $lang['permission_access_log']   		      = 'View Log';
 $lang['permission_modify_catalog']      	  = 'Edit Catalog';
 $lang['permission_modify_check']        	  = 'Edit Check';
+$lang['permission_modify_fba']        	  	  = 'Edit FBA';
 $lang['permission_modify_inventory'] 		  = 'Edit Inventory';
 $lang['permission_modify_warehouse']   		  = 'Edit Warehouse';
 $lang['permission_modify_sale']           	  = 'Edit Sale';

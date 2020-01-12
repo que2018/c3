@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 08, 2020 at 05:01 PM
--- Server version: 5.6.46-cll-lve
--- PHP Version: 7.2.7
+-- Host: 127.0.0.1
+-- Generation Time: Jan 12, 2020 at 07:10 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.0.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bhlintl_company`
+-- Database: `c3`
 --
 
 -- --------------------------------------------------------
@@ -2000,7 +2000,35 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (12114, 1, '142.129.145.149', 'client/client', 'view the client page', 'GET', '2020-01-08 23:49:13'),
 (12115, 1, '142.129.145.149', 'client/client/edit', 'view the client edit page', 'GET', '2020-01-08 23:49:16'),
 (12116, 1, '142.129.145.149', 'extension/shipping', 'view the shipping page', 'GET', '2020-01-08 23:49:47'),
-(12117, 1, '142.129.145.149', 'shipping/postpony', '0', 'GET', '2020-01-08 23:49:50');
+(12117, 1, '142.129.145.149', 'shipping/postpony', '0', 'GET', '2020-01-08 23:49:50'),
+(12118, 1, '::1', '', 'view the dashboard', 'GET', '2020-01-12 06:36:49'),
+(12119, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-12 06:36:49'),
+(12120, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-01-12 06:36:53'),
+(12121, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-01-12 06:39:29'),
+(12122, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-01-12 06:41:48'),
+(12123, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-01-12 06:44:24'),
+(12124, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-12 06:44:34'),
+(12125, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-01-12 06:58:57'),
+(12126, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2020-01-12 06:59:08'),
+(12127, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2020-01-12 07:01:18'),
+(12128, 1, '::1', 'error/permission', 'view the permission error page', 'GET', '2020-01-12 07:01:22'),
+(12129, 1, '::1', 'setting/setting', 'view the setting page', 'GET', '2020-01-12 07:02:38'),
+(12130, 1, '::1', 'setting/setting/get_printers', 'setting try to get printers', 'GET', '2020-01-12 07:02:39'),
+(12131, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2020-01-12 07:02:41'),
+(12132, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2020-01-12 07:02:42');
+INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
+(12133, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2020-01-12 07:09:52'),
+(12134, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'POST', '2020-01-12 07:09:57'),
+(12135, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2020-01-12 07:09:57'),
+(12136, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2020-01-12 07:09:59'),
+(12137, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2020-01-12 07:10:00'),
+(12138, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-12 07:10:04'),
+(12139, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2020-01-12 07:10:08'),
+(12140, 1, '::1', 'user/user_group', 'view the user group page', 'GET', '2020-01-12 07:10:11'),
+(12141, 1, '::1', 'user/user_group/edit', 'view the user group edit page', 'GET', '2020-01-12 07:10:12'),
+(12142, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2020-01-12 07:10:20'),
+(12143, 1, '::1', 'check/checkout/edit', 'view the checkout edit page', 'GET', '2020-01-12 07:10:22'),
+(12144, 1, '::1', 'check/checkout_ajax/get_product_inventories', 'try to get product inventories', 'GET', '2020-01-12 07:10:23');
 
 -- --------------------------------------------------------
 
@@ -2432,6 +2460,38 @@ INSERT INTO `extension` (`extension_id`, `type`, `code`) VALUES
 (123, 'fee', 'checkout_weight'),
 (124, 'shipping', 'ltl'),
 (125, 'shipping', 'jd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fba`
+--
+
+CREATE TABLE `fba` (
+  `fba_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `tracking` varchar(255) NOT NULL,
+  `note` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fba_product`
+--
+
+CREATE TABLE `fba_product` (
+  `fba_product_id` int(11) NOT NULL,
+  `fba_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `batch` varchar(32) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `quantity_draft` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3232,7 +3292,7 @@ CREATE TABLE `user_group` (
 --
 
 INSERT INTO `user_group` (`user_group_id`, `name`, `description`, `permission`) VALUES
-(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"],\"modify\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"]}'),
+(1, 'Administrator', 'The administrator user group', '{\"access\":[\"check\",\"fba\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"],\"modify\":[\"check\",\"fba\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"fee\",\"platform\",\"shipping\",\"payment\",\"report\",\"client\",\"user\",\"setting\",\"log\"]}'),
 (12, 'Clerk', 'The clerk user group', '{\"access\":[\"inventory\"]}'),
 (13, 'Client', '', '{\"access\":[\"check\",\"catalog\",\"inventory\",\"warehouse\",\"sale\",\"store\",\"extension\",\"finance\",\"platform\",\"shipping\",\"payment\",\"report\",\"setting\"]}');
 
@@ -3391,6 +3451,21 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `extension`
   ADD PRIMARY KEY (`extension_id`);
+
+--
+-- Indexes for table `fba`
+--
+ALTER TABLE `fba`
+  ADD PRIMARY KEY (`fba_id`),
+  ADD KEY `id` (`fba_id`);
+
+--
+-- Indexes for table `fba_product`
+--
+ALTER TABLE `fba_product`
+  ADD PRIMARY KEY (`fba_product_id`),
+  ADD KEY `purchase_id` (`fba_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `information`
@@ -3569,7 +3644,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12145;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -3660,6 +3735,18 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `extension`
   MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT for table `fba`
+--
+ALTER TABLE `fba`
+  MODIFY `fba_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fba_product`
+--
+ALTER TABLE `fba_product`
+  MODIFY `fba_product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `information`

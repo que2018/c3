@@ -7,9 +7,9 @@ class Fba extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 	
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->header->add_style(base_url(). 'assets/css/app/check/fba_list.css');
+		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_list.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css');
 	
 		$this->header->add_script(base_url(). 'assets/js/plugins/datetimepicker/moment.js');
@@ -22,28 +22,28 @@ class Fba extends MX_Controller
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
-		$this->load->view('check/fba_list', $data);
+		$this->load->view('fba/fba_list', $data);
 	}
 	
 	public function reload()
 	{
 		$data = $this->get_list();
 			
-		$this->load->view('check/fba_list_table', $data);
+		$this->load->view('fba/fba_list_table', $data);
 	}
 	
 	public function filter()
 	{
 		$data = $this->get_list();
 			
-		$this->load->view('check/fba_list_filter', $data);
+		$this->load->view('fba/fba_list_filter', $data);
 	}
 	
 	protected function get_list()
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 			
 		if($this->input->get('filter_id'))
 		{
@@ -157,10 +157,10 @@ class Fba extends MX_Controller
 				foreach($fba_products_data as $fba_product_data) 
 				{
 					$fba_products[] = array(
-						'name'           => $fba_product_data['name'],
-						'batch'       	 => $fba_product_data['batch'],
-						'quantity'    	 => $fba_product_data['quantity'],
-						'location'       => $fba_product_data['location_name']
+						'name'       => $fba_product_data['name'],
+						'batch'      => $fba_product_data['batch'],
+						'quantity'   => $fba_product_data['quantity'],
+						'location'   => $fba_product_data['location_name']
 					);
 					
 					if(!$fba_product_data['location_id'] && $enable_toggle) 
@@ -170,13 +170,13 @@ class Fba extends MX_Controller
 				}
 			
 				$data['fbas'][] = array(
-					'fba_id'       => $fba['id'],
-					'tracking'         => $fba['tracking'],
-					'note'             => $fba['note'],
-					'status'           => $fba['status'],			
-					'date_added'       => $fba['date_added'],
-					'enable_toggle'    => $enable_toggle,
-					'fba_products' => $fba_products
+					'fba_id'         => $fba['id'],
+					'tracking'       => $fba['tracking'],
+					'note'           => $fba['note'],
+					'status'         => $fba['status'],			
+					'date_added'     => $fba['date_added'],
+					'enable_toggle'  => $enable_toggle,
+					'fba_products'   => $fba_products
 				);
 			}
 		}
@@ -226,7 +226,7 @@ class Fba extends MX_Controller
 		$this->pagination->total  = $fba_total;
 		$this->pagination->page   = $page;
 		$this->pagination->limit  = $limit;
-		$this->pagination->url    = base_url().'check/fba?page={page}'.$url;
+		$this->pagination->url    = base_url().'fba/fba?page={page}'.$url;
 		$data['pagination']       = $this->pagination->render();
 		$data['results']          = sprintf($this->lang->line('text_pagination'), ($fba_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($fba_total - $limit)) ? $fba_total : ((($page - 1) * $limit) + $limit), $fba_total, ceil($fba_total / $limit));
 
@@ -267,11 +267,11 @@ class Fba extends MX_Controller
 			$url .= '&sort=' . $this->input->get('sort');
 		}
 		
-		$data['sort_id']           = base_url() . 'check/fba?sort=id' . $url;
-		$data['sort_tracking']     = base_url() . 'check/fba?sort=tracking' . $url;
-		$data['sort_note']         = base_url() . 'check/fba?sort=note' . $url;
-		$data['sort_status']       = base_url() . 'check/fba?sort=status' . $url;
-		$data['sort_date_added']   = base_url() . 'check/fba?sort=date_added' . $url;
+		$data['sort_id']           = base_url() . 'fba/fba?sort=id' . $url;
+		$data['sort_tracking']     = base_url() . 'fba/fba?sort=tracking' . $url;
+		$data['sort_note']         = base_url() . 'fba/fba?sort=note' . $url;
+		$data['sort_status']       = base_url() . 'fba/fba?sort=status' . $url;
+		$data['sort_date_added']   = base_url() . 'fba/fba?sort=date_added' . $url;
 	
 		$url = '';
 		
@@ -289,7 +289,7 @@ class Fba extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		$data['filter_url'] = base_url() . 'check/fba/filter' . $url;
+		$data['filter_url'] = base_url() . 'fba/fba/filter' . $url;
 	
 		$url = '';
 		
@@ -337,7 +337,7 @@ class Fba extends MX_Controller
 			$url .= '&filter_date_added=' . $this->input->get('filter_date_added');
 		}
 	
-		$data['reload_url'] = base_url() . 'check/fba/reload' . $url;
+		$data['reload_url'] = base_url() . 'fba/fba/reload' . $url;
 
 		$data['sort']   = $sort;
 		$data['order']  = $order;
@@ -357,7 +357,7 @@ class Fba extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 		
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
 		$this->load->library('currency');
 		$this->load->library('form_validation');
@@ -365,10 +365,10 @@ class Fba extends MX_Controller
 		$this->form_validation->CI =& $this;
 		
 		$this->load->model('extension/fee_model');
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		$this->load->model('catalog/product_model');
 	
-		$this->header->add_style(base_url(). 'assets/css/app/check/fba_edit.css');
+		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_edit.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -449,7 +449,7 @@ class Fba extends MX_Controller
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_fba_add_success'));
 			
-			redirect(base_url() . 'check/fba', 'refresh');
+			redirect(base_url() . 'fba/fba', 'refresh');
 		}
 		
 		$data['error'] = validation_errors();
@@ -457,7 +457,7 @@ class Fba extends MX_Controller
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
-		$this->load->view('check/fba_add', $data);
+		$this->load->view('fba/fba_add', $data);
 	}
 	
 	public function edit()
@@ -465,7 +465,7 @@ class Fba extends MX_Controller
 		$this->load->module('header');
 		$this->load->module('footer');
 		
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
 		$this->load->library('phpexcel');
 		$this->load->library('currency');
@@ -474,10 +474,10 @@ class Fba extends MX_Controller
 		$this->form_validation->CI =& $this;
 		
 		$this->load->model('extension/fee_model');
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		$this->load->model('catalog/product_model');
 	
-		$this->header->add_style(base_url(). 'assets/css/app/check/fba_edit.css');
+		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_edit.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -509,7 +509,7 @@ class Fba extends MX_Controller
 			
 			$this->session->set_flashdata('success', $this->lang->line('text_fba_edit_success'));
 			
-			redirect(base_url() . 'check/fba', 'refresh');
+			redirect(base_url() . 'fba/fba', 'refresh');
 		}
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
@@ -671,12 +671,12 @@ class Fba extends MX_Controller
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
 		
-		$this->load->view('check/fba_edit', $data);
+		$this->load->view('fba/fba_edit', $data);
 	}
 	
 	public function delete()
 	{
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		
 		if($this->input->get('fba_id'))
 		{
@@ -695,9 +695,9 @@ class Fba extends MX_Controller
 	
 	public function validate_add_tracking($tracking)
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 
 		if($tracking)
 		{
@@ -722,9 +722,9 @@ class Fba extends MX_Controller
 	
 	public function validate_edit_tracking($tracking)
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 
 		if($tracking)
 		{
@@ -758,9 +758,9 @@ class Fba extends MX_Controller
 
 	public function validate_fba_product($fba_products)
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		$this->load->model('catalog/product_model');
 	
 		if($this->input->post('fba_product'))

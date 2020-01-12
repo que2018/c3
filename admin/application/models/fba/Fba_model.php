@@ -4,7 +4,7 @@ class Fba_model extends CI_Model
 {		
 	public function add_fba($data)
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
 		$this->db->trans_begin();
 		
@@ -27,7 +27,7 @@ class Fba_model extends CI_Model
 		foreach($data['fba_products'] as $fba_product)
 		{					
 			$fba_products[] = array(
-				'fba_id'	=> $fba_id,
+				'fba_id'		=> $fba_id,
 				'product_id' 	=> $fba_product['product_id'],
 				'batch' 		=> $fba_product['batch'],
 				'quantity' 		=> $fba_product['quantity'],
@@ -122,7 +122,7 @@ class Fba_model extends CI_Model
 
 	public function edit_fba($fba_id, $data)
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
 		$this->db->trans_begin();
 		

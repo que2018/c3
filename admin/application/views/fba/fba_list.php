@@ -4,11 +4,11 @@
 	<h2><?php echo $this->lang->line('text_title'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('text_checkin'); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line('text_checkin_list'); ?></strong></li>
+	  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('text_fba'); ?></a></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_fba_list'); ?></strong></li>
 	</ol>
 	<div class="button-group tooltip-demo">
-	  <a href="<?php echo base_url(); ?>check/checkin/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+	  <a href="<?php echo base_url(); ?>check/fba/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
 	</div>
   </div>
 </div>
@@ -17,7 +17,7 @@
 	<div class="col-lg-12">
 	  <div class="ibox float-e-margins">
 	    <div class="ibox-title">
-		  <h5><?php echo $this->lang->line('text_checkin_description'); ?></h5>
+		  <h5><?php echo $this->lang->line('text_fba_description'); ?></h5>
 	    </div>
 	    <div class="ibox-content">
 		  <div class="form-horizontal">
@@ -25,7 +25,7 @@
 		      <div class="col-md-2">
 			    <div class="form-group">
 			      <div class="col-sm-12">
-				     <input name="id" class="form-control" value="<?php echo $filter_id; ?>" placeholder="<?php echo $this->lang->line('entry_checkin_id'); ?>">
+				     <input name="id" class="form-control" value="<?php echo $filter_id; ?>" placeholder="<?php echo $this->lang->line('entry_fba_id'); ?>">
 				  </div>
 				</div>
 			  </div>
@@ -67,16 +67,16 @@
 		  <div id="table-content">
 			<div class="table-responsive">
 			  <div id="detail" style="display:none;"></div>
-				<table class="table table-striped table-bordered table-hover table-checkin">
+				<table class="table table-striped table-bordered table-hover table-fba">
 				  <thead>
 				    <tr>
 				    <?php if($sort == 'id') { ?>
 				    <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
-					  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkin_id'); ?></a>
+					  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 				    </th>
 				    <?php } else { ?>
 				    <th style="width: 20%;" class="sorting">
-					  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkin_id'); ?></a>
+					  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 				    </th>
 				    <?php } ?>
 				    <?php if($sort == 'tracking') { ?>
@@ -110,12 +110,12 @@
 				  </tr>
 			    </thead>
 			    <tbody>
-				  <?php if($checkins) { ?>
+				  <?php if($fbas) { ?>
 				    <?php $offset = 0; ?>
-				    <?php foreach($checkins as $checkin) { ?>
+				    <?php foreach($fbas as $fba) { ?>
 					  <tr>
 					    <td>
-						  <span>#<?php echo $checkin['checkin_id']; ?></span>
+						  <span>#<?php echo $fba['fba_id']; ?></span>
 						  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						    <table class="table">
 							  <thead>
@@ -125,12 +125,12 @@
 							    <th style="width: 18%;"><?php echo $this->lang->line('column_qty'); ?></th>
 							  </thead>
 							  <tbody>
-							    <?php foreach($checkin['checkin_products'] as $checkin_product) { ?>
+							    <?php foreach($fba['fba_products'] as $fba_product) { ?>
 							    <tr>
-								  <td><?php echo $checkin_product['name']; ?></td>
-								  <td><?php echo $checkin_product['location']; ?></td>
-								  <td><?php echo $checkin_product['batch']; ?></td>
-								  <td><?php echo $checkin_product['quantity']; ?></td>
+								  <td><?php echo $fba_product['name']; ?></td>
+								  <td><?php echo $fba_product['location']; ?></td>
+								  <td><?php echo $fba_product['batch']; ?></td>
+								  <td><?php echo $fba_product['quantity']; ?></td>
 							    </tr>
 							    <?php } ?>
 							  </tbody>
@@ -138,18 +138,18 @@
 						  </div>
 					    </td>
 					    <td>
-						  <?php if($checkin['tracking']) { ?>
-						    <span class="tracking"><?php echo $checkin['tracking']; ?></span>
+						  <?php if($fba['tracking']) { ?>
+						    <span class="tracking"><?php echo $fba['tracking']; ?></span>
 						  <?php } ?>
 					    </td>
-					    <?php if($checkin['status'] == 1) { ?>
+					    <?php if($fba['status'] == 1) { ?>
 					    <td>
 						  <div class="input-group">
 						    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-						    <?php if($checkin['enable_toggle']) { ?>
-						    <span class="btn-checkin" onclick="change_checkin_status(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						    <?php if($fba['enable_toggle']) { ?>
+						    <span class="btn-fba" onclick="change_fba_status(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-refresh"></i></span>
 						    <?php } else { ?>
-							<span class="btn-checkin-disable"><i class="fa fa-refresh"></i></span>
+							<span class="btn-fba-disable"><i class="fa fa-refresh"></i></span>
 							<?php } ?>
 						  </div>
 					    </td>
@@ -157,14 +157,14 @@
 					    <td>
 						  <div class="input-group">
 						    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
-						    <span class="btn-checkin" onclick="change_checkin_status(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-refresh"></i></span>
+						    <span class="btn-fba" onclick="change_fba_status(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-refresh"></i></span>
 						  </div>
 					    </td>
 						<?php } ?>
-					    <td><?php echo $checkin['date_added']; ?></td>
+					    <td><?php echo $fba['date_added']; ?></td>
 					    <td class="text-center">
-						  <a href="<?php echo base_url(); ?>check/checkin/edit?checkin_id=<?php echo $checkin['checkin_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-						  <button class="btn btn-danger btn-delete" onclick="delete_checkin(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-trash"></i></button>
+						  <a href="<?php echo base_url(); ?>check/fba/edit?fba_id=<?php echo $fba['fba_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+						  <button class="btn btn-danger btn-delete" onclick="delete_fba(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-trash"></i></button>
 					    </td>
 					  </tr>
 					  <?php $offset++; ?>
@@ -184,9 +184,9 @@
   </div>
 </div>
 <script>
-function change_checkin_status(handle, checkin_id) {
+function change_fba_status(handle, fba_id) {
 	$.ajax({
-		url: '<?php echo base_url(); ?>check/checkin_ajax/change_status?checkin_id=' + checkin_id,
+		url: '<?php echo base_url(); ?>check/fba_ajax/change_status?fba_id=' + fba_id,
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -218,10 +218,10 @@ function change_checkin_status(handle, checkin_id) {
 }
 </script>
 <script>
-function delete_checkin(handle, checkin_id) {
+function delete_fba(handle, fba_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 		$.ajax({
-			url: '<?php echo base_url(); ?>check/checkin/delete?checkin_id=' + checkin_id,
+			url: '<?php echo base_url(); ?>check/fba/delete?fba_id=' + fba_id,
 			cache: false,
 			contentType: false,
 			processData: false,
@@ -250,24 +250,24 @@ function delete_checkin(handle, checkin_id) {
 <script>
 $(document).ready(function() {
 	$(document).on('input', 'input[name=\'id\']', function () {
-		filter_checkin();
+		filter_fba();
 	});
 	
 	$(document).on('input', 'input[name=\'tracking\']', function () {
-		filter_checkin();
+		filter_fba();
 	});
 	
 	$(document).on('change', 'select[name=\'status\']', function () {
-		filter_checkin();
+		filter_fba();
 	});
 	
 	$(document).on('input', 'input[name=\'date_added\']', function () {		
-		filter_checkin();
+		filter_fba();
 	});
 });
 </script>
 <script>
-function filter_checkin() {	
+function filter_fba() {	
 	id          = $('input[name=\'id\']').val();
 	tracking    = $('input[name=\'tracking\']').val();
 	status      = $('select[name=\'status\']').val();

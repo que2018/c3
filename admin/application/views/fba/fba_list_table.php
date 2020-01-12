@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-2">
 	  <div class="form-group">
-	    <label class="col-sm-6 control-label"><?php echo $this->lang->line('entry_checkin_id'); ?></label>
+	    <label class="col-sm-6 control-label"><?php echo $this->lang->line('entry_fba_id'); ?></label>
 	    <div class="col-sm-6"><input name="id" class="form-control" value="<?php echo $filter_id; ?>"></div>
 	  </div>
     </div>
@@ -45,16 +45,16 @@
 </div>
 <div class="table-responsive">
   <div id="detail" style="display:none;"></div>
-  <table class="table table-striped table-bordered table-hover table-checkin">
+  <table class="table table-striped table-bordered table-hover table-fba">
     <thead>
 	  <tr>
 	    <?php if($sort == 'id') { ?>
 	    <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
-		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkin_id'); ?></a>
+		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 	    </th>
 	    <?php } else { ?>
 	    <th style="width: 20%;" class="sorting">
-		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkin_id'); ?></a>
+		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_fba_id'); ?></a>
 	    </th>
 	    <?php } ?>
 	    <?php if($sort == 'tracking') { ?>
@@ -88,12 +88,12 @@
 	  </tr>
     </thead>
     <tbody>
-	  <?php if($checkins) { ?>
+	  <?php if($fbas) { ?>
 	    <?php $offset = 0; ?>
-	    <?php foreach($checkins as $checkin) { ?>
+	    <?php foreach($fbas as $fba) { ?>
 		  <tr>
 		    <td>
-			  <span>#<?php echo $checkin['checkin_id']; ?></span>
+			  <span>#<?php echo $fba['fba_id']; ?></span>
 			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 			    <table class="table">
 				  <thead>
@@ -103,12 +103,12 @@
 				    <th style="width: 18%;"><?php echo $this->lang->line('column_qty'); ?></th>
 				  </thead>
 				  <tbody>
-				    <?php foreach($checkin['checkin_products'] as $checkin_product) { ?>
+				    <?php foreach($fba['fba_products'] as $fba_product) { ?>
 				    <tr>
-					  <td><?php echo $checkin_product['name']; ?></td>
-					  <td><?php echo $checkin_product['location']; ?></td>
-					  <td><?php echo $checkin_product['batch']; ?></td>
-					  <td><?php echo $checkin_product['quantity']; ?></td>
+					  <td><?php echo $fba_product['name']; ?></td>
+					  <td><?php echo $fba_product['location']; ?></td>
+					  <td><?php echo $fba_product['batch']; ?></td>
+					  <td><?php echo $fba_product['quantity']; ?></td>
 				    </tr>
 				    <?php } ?>
 				  </tbody>
@@ -116,29 +116,29 @@
 			  </div>
 		    </td>
 	        <td>
-			  <?php if($checkin['tracking']) { ?>
-			    <span class="tracking"><?php echo $checkin['tracking']; ?></span></td>
+			  <?php if($fba['tracking']) { ?>
+			    <span class="tracking"><?php echo $fba['tracking']; ?></span></td>
 			  <?php } ?>
 		    </td>
-		     <?php if($checkin['status'] == 1) { ?>
+		     <?php if($fba['status'] == 1) { ?>
 		    <td>
 			  <div class="input-group">
 			    <span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>				        
-			    <span class="btn-checkin"><i class="fa fa-refresh"></i></span>
+			    <span class="btn-fba"><i class="fa fa-refresh"></i></span>
 			  </div>
 		    </td>
 		    <?php } else { ?>
 		    <td>
 			  <div class="input-group">
 			    <span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
-			    <span class="btn-checkin"><i class="fa fa-refresh"></i></span>
+			    <span class="btn-fba"><i class="fa fa-refresh"></i></span>
 			  </div>
 		    </td>
 		    <?php } ?>
-		    <td><?php echo $checkin['date_added']; ?></td>
+		    <td><?php echo $fba['date_added']; ?></td>
 		     <td class="text-center">
-			  <a href="<?php echo base_url(); ?>check/checkin/edit?checkin_id=<?php echo $checkin['checkin_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
-			  <button class="btn btn-danger btn-delete" onclick="delete_checkin(this, <?php echo $checkin['checkin_id']; ?>)"><i class="fa fa-trash"></i></button>
+			  <a href="<?php echo base_url(); ?>check/fba/edit?fba_id=<?php echo $fba['fba_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+			  <button class="btn btn-danger btn-delete" onclick="delete_fba(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-trash"></i></button>
 		    </td>
 		  </tr>
 		  <?php $offset++; ?>

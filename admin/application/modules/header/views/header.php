@@ -59,6 +59,12 @@
 			</ul>
 		  </li>
 		  <li>
+			<a><i class="fa fa-dropbox" aria-hidden="true"></i><span class="nav-label"><?php echo $this->lang->line('menu_fba'); ?></span><span class="fa arrow"></span></a>
+			<ul class="nav nav-second-level">
+			  <li><a href="<?php echo base_url(); ?>fba/fba"><?php echo $this->lang->line('menu_fba_list'); ?></a></li>
+			</ul>
+		  </li>
+		  <li>
 			<a><i class="fa fa-shopping-cart"></i><span class="nav-label"><?php echo $this->lang->line('menu_order'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>sale/sale_unsolved"><?php echo $this->lang->line('menu_unsolved_order'); ?></a></li>

@@ -16,6 +16,7 @@ $lang['menu_checkout_list']	         = 'Checkout List';
 $lang['menu_checkout_add']	         = 'Add Checkout';
 $lang['menu_checkout_scan']	     	 = 'Scan Checkout';
 $lang['menu_checkout_order']	     = 'Order Checkout';
+$lang['menu_fba']	                 = 'FBA';
 $lang['menu_fba_list']	             = 'FBA List';
 $lang['menu_checkout_complete']	     = 'Complete Checkout';
 $lang['menu_return']	             = 'Return';

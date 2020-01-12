@@ -16,6 +16,7 @@ $lang['menu_checkout_list']	         = '出库列表';
 $lang['menu_checkout_add']	         = '增加出库';
 $lang['menu_checkout_scan']	     	 = '扫描出库';
 $lang['menu_checkout_order']	     = '订单出库';
+$lang['menu_fba']	                 = 'FBA';
 $lang['menu_fba_list']	             = 'FBA列表';
 $lang['menu_checkout_complete']	     = '完成出库';
 $lang['menu_return']	             = '退货';
