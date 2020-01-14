@@ -4,11 +4,11 @@
 	<h2><?php echo $this->lang->line('text_title'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('text_fba'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>fba/fbain"><?php echo $this->lang->line('text_fba'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_fba_list'); ?></strong></li>
 	</ol>
 	<div class="button-group tooltip-demo">
-	  <a href="<?php echo base_url(); ?>check/fba/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
+	  <a href="<?php echo base_url(); ?>fba/fba/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
 	</div>
   </div>
 </div>
@@ -25,7 +25,7 @@
 		      <div class="col-md-2">
 			    <div class="form-group">
 			      <div class="col-sm-12">
-				     <input name="id" class="form-control" value="<?php echo $filter_id; ?>" placeholder="<?php echo $this->lang->line('entry_fba_id'); ?>">
+				     <input name="id" class="form-control" value="<?php echo $filter_fba_id; ?>" placeholder="<?php echo $this->lang->line('entry_fba_id'); ?>">
 				  </div>
 				</div>
 			  </div>
@@ -163,7 +163,7 @@
 						<?php } ?>
 					    <td><?php echo $fba['date_added']; ?></td>
 					    <td class="text-center">
-						  <a href="<?php echo base_url(); ?>check/fba/edit?fba_id=<?php echo $fba['fba_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
+						  <a href="<?php echo base_url(); ?>fba/fba/edit?fba_id=<?php echo $fba['fba_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 						  <button class="btn btn-danger btn-delete" onclick="delete_fba(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-trash"></i></button>
 					    </td>
 					  </tr>
@@ -186,7 +186,7 @@
 <script>
 function change_fba_status(handle, fba_id) {
 	$.ajax({
-		url: '<?php echo base_url(); ?>check/fba_ajax/change_status?fba_id=' + fba_id,
+		url: '<?php echo base_url(); ?>fba/fba_ajax/change_status?fba_id=' + fba_id,
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -221,7 +221,7 @@ function change_fba_status(handle, fba_id) {
 function delete_fba(handle, fba_id) {
 	if(confirm('<?php echo $this->lang->line('text_confirm_delete'); ?>')) {
 		$.ajax({
-			url: '<?php echo base_url(); ?>check/fba/delete?fba_id=' + fba_id,
+			url: '<?php echo base_url(); ?>fba/fba/delete?fba_id=' + fba_id,
 			cache: false,
 			contentType: false,
 			processData: false,
@@ -276,7 +276,7 @@ function filter_fba() {
 	url = '<?php echo $filter_url; ?>';
 
 	if(id)
-		url += '&filter_id=' + id;
+		url += '&filter_fba_id=' + id;
 
 	if(tracking)
 		url += '&filter_tracking=' + tracking;

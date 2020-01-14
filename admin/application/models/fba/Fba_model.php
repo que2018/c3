@@ -10,11 +10,11 @@ class Fba_model extends CI_Model
 		
 		//fba data
 		$fba_data = array(
-			'tracking' 		    => $data['tracking'],
-			'note' 		        => $data['note'],
-			'status' 		    => $data['status'],
-			'date_added'   		=> date('Y-m-d H:i:s'),
-			'date_modified'   	=> date('Y-m-d H:i:s')			
+			'tracking' 		  => $data['tracking'],
+			'note' 		      => $data['note'],
+			'status' 		  => $data['status'],
+			'date_added'      => date('Y-m-d H:i:s'),
+			'date_modified'   => date('Y-m-d H:i:s')			
 		);
 
 		$this->db->insert('fba', $fba_data);
@@ -36,42 +36,6 @@ class Fba_model extends CI_Model
 		}
 		
 		$this->db->insert_batch('fba_product', $fba_products);	
-		
-		//if completed, change inventory
-		if($data['status'] == 2)
-		{		
-			foreach($data['fba_products'] as $fba_product)
-			{
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id'], 'batch' => $fba_product['batch']));
-		
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->set('quantity', 'quantity+'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				} 
-				else
-				{
-					$inventory_data = array(
-						'product_id' 	 => $fba_product['product_id'],
-						'batch' 		 => $fba_product['batch'],
-						'quantity' 		 => $fba_product['quantity'],
-						'location_id' 	 => $fba_product['location_id'],
-						'date_added'     => date('Y-m-d H:i:s'),
-						'date_modified'  => date('Y-m-d H:i:s')			
-					);
-					
-					$this->db->insert('inventory', $inventory_data);	
-				}
-			}
-		}
 		
 		//transaction
 		if(($data['status'] == 2) && isset($data['fba_fees']))
@@ -446,7 +410,7 @@ class Fba_model extends CI_Model
 	
 	public function get_fba($fba_id) 
 	{	
-		$q = $this->db->get_where('fba', array('id' => $fba_id));
+		$q = $this->db->get_where('fba', array('fba_id' => $fba_id));
 		
 		if($q->num_rows() > 0)
 		{
@@ -555,9 +519,9 @@ class Fba_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('fba');
 		
-		if(!empty($data['filter_id'])) 
+		if(!empty($data['filter_fba_id'])) 
 		{						
-			$this->db->like('id', $data['filter_id'], 'after');			
+			$this->db->like('id', $data['filter_fba_id'], 'after');			
 		}
 		
 		if(!empty($data['filter_tracking'])) 
@@ -641,9 +605,9 @@ class Fba_model extends CI_Model
 		$this->db->select('*', false);
 		$this->db->from('fba');
 		
-		if(!empty($data['filter_id'])) 
+		if(!empty($data['filter_fba_id'])) 
 		{			
-			$this->db->where('id', $data['filter_id']);
+			$this->db->where('fba_id', $data['filter_fba_id']);
 		}
 		
 		if(!empty($data['filter_tracking'])) 
@@ -663,13 +627,14 @@ class Fba_model extends CI_Model
 		}
 		
 		$sort_data = array(
-			'id',
+			'fba_id',
 			'tracking',
 			'status',
 			'date_added'
 		);
 		
-		if(isset($data['start']) || isset($data['limit'])) {
+		if(isset($data['start']) || isset($data['limit'])) 
+		{
 			if ($data['start'] < 0) {
 				$data['start'] = 0;
 			}
@@ -707,12 +672,12 @@ class Fba_model extends CI_Model
 
 	public function get_fba_total($data)
 	{		
-		$this->db->select('COUNT(id) AS total', false);
+		$this->db->select('COUNT(fba_id) AS total', false);
 		$this->db->from('fba');
 		
-		if(!empty($data['filter_id'])) 
+		if(!empty($data['filter_fba_id'])) 
 		{			
-			$this->db->where('id', $data['filter_id']);
+			$this->db->where('fba_id', $data['filter_fba_id']);
 		}
 		
 		if(!empty($data['filter_tracking'])) 

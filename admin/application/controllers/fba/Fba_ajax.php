@@ -4,9 +4,9 @@ class Fba_ajax extends CI_Controller
 {
 	public function get_product()
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		$this->load->model('warehouse/location_model');
 		$this->load->model('inventory/inventory_model');
 		
@@ -92,7 +92,7 @@ class Fba_ajax extends CI_Controller
 	
 	public function get_locations()
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
 		$this->load->model('warehouse/location_model');
 
@@ -133,9 +133,9 @@ class Fba_ajax extends CI_Controller
 	
 	public function get_fba_by_tracking()
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 		
 		if($this->input->post('tracking'))
 		{
@@ -197,9 +197,9 @@ class Fba_ajax extends CI_Controller
 	
 	public function change_status()
 	{
-		$this->lang->load('check/fba');
+		$this->lang->load('fba/fba');
 		
-		$this->load->model('check/fba_model');
+		$this->load->model('fba/fba_model');
 
 		if($this->input->get('fba_id'))
 		{

@@ -1,16 +1,16 @@
 <?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
-	<h2><?php echo $this->lang->line('text_checkin_add'); ?></h2>
+	<h2><?php echo $this->lang->line('text_fba_add'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('text_checkin'); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line('text_checkin_add'); ?></strong></li>
+	  <li><a href="<?php echo base_url(); ?>fba/fba"><?php echo $this->lang->line('text_fba'); ?></a></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_fba_add'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-    <button class="btn btn-primary btn-submit" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save_checkin'); ?>" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>check/checkin" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+    <button class="btn btn-primary btn-submit" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save_fba'); ?>" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+    <a href="<?php echo base_url(); ?>fba/fba" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -69,7 +69,7 @@
 			    <div class="row">
 				  <div class="col-lg-12">     
 				    <div class="fbox-content">
-					  <table id="checkin-product" class="table table-bordered">
+					  <table id="fba-product" class="table table-bordered">
 					    <thead>
 						  <tr>
 						    <th style="width: 14%"><?php echo $this->lang->line('column_product_name'); ?></th>
@@ -82,21 +82,21 @@
 						  </tr>
 					    </thead>
 					    <tbody>
-						  <?php $checkin_product_row = 0; ?>
-						  <?php if($checkin_products) { ?>
-						    <?php foreach($checkin_products as $checkin_product) { ?>
-						    <tr id="row<?php echo $checkin_product_row; ?>">
-						    <td class="text-left"><input name="checkin_product[<?php echo $checkin_product_row; ?>][product_id]" type="hidden" value="<?php echo $checkin_product['product_id']; ?>"><div class="text-left"><?php echo $checkin_product['name']; ?></div></td>
-						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
-						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
-							<td><input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][batch]" value="<?php echo $checkin_product['batch']; ?>"></td>
-						    <td><input class="form-control text-center quantity" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
+						  <?php $fba_product_row = 0; ?>
+						  <?php if($fba_products) { ?>
+						    <?php foreach($fba_products as $fba_product) { ?>
+						    <tr id="row<?php echo $fba_product_row; ?>">
+						    <td class="text-left"><input name="fba_product[<?php echo $fba_product_row; ?>][product_id]" type="hidden" value="<?php echo $fba_product['product_id']; ?>"><div class="text-left"><?php echo $fba_product['name']; ?></div></td>
+						    <td class="text-left"><?php echo $fba_product['upc']; ?></td>
+						    <td class="text-left"><?php echo $fba_product['sku']; ?></td>
+							<td><input class="form-control" name="fba_product[<?php echo $fba_product_row; ?>][batch]" value="<?php echo $fba_product['batch']; ?>"></td>
+						    <td><input class="form-control text-center quantity" name="fba_product[<?php echo $fba_product_row; ?>][quantity]" value="<?php echo $fba_product['quantity']; ?>"></td>
 							<td>
-							  <input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][location_name]" value="<?php echo $checkin_product['location_name']; ?>">
-							  <input type="hidden" name="checkin_product[<?php echo $checkin_product_row; ?>][location_id]" value="<?php echo $checkin_product['location_id']; ?>">
+							  <input class="form-control" name="fba_product[<?php echo $fba_product_row; ?>][location_name]" value="<?php echo $fba_product['location_name']; ?>">
+							  <input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][location_id]" value="<?php echo $fba_product['location_id']; ?>">
 							</td>
-							<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $checkin_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
-						    <?php $checkin_product_row ++; ?>
+							<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i id="<?php echo $fba_product_row; ?>" class="fa fa-minus-circle"></i></button></td>
+						    <?php $fba_product_row ++; ?>
 						    <?php } ?>
 						  <?php } ?>
 					    </tbody>
@@ -111,13 +111,13 @@
 			<div class="panel-body">
 			  <div class="form-group">
 			    <div class="col-sm-12">
-				  <select name="checkout_fee_code" class="form-control">
+				  <select name="fbaout_fee_code" class="form-control">
 				    <option value=""></option>
-				    <?php foreach($checkin_fees as $checkin_fee) { ?>
-					<?php if($checkin_fee['code'] == $fee_code) { ?>
-					<option value="<?php echo $checkin_fee['code']; ?>" selected><?php echo $checkin_fee['name']; ?></option>
+				    <?php foreach($fba_fees as $fba_fee) { ?>
+					<?php if($fba_fee['code'] == $fee_code) { ?>
+					<option value="<?php echo $fba_fee['code']; ?>" selected><?php echo $fba_fee['name']; ?></option>
 					<?php } else { ?>
-					<option value="<?php echo $checkin_fee['code']; ?>"><?php echo $checkin_fee['name']; ?></option>					
+					<option value="<?php echo $fba_fee['code']; ?>"><?php echo $fba_fee['name']; ?></option>					
 					<?php } ?>
 					<?php } ?>
 				  </select>
@@ -143,7 +143,7 @@
 function refresh_fee() {
 	data = new FormData();
 				
-	$('#checkin-product tbody tr').each(function(index) {
+	$('#fba-product tbody tr').each(function(index) {
 		product_id = $(this).find('.product_id').val();
 		quantity = $(this).find('.quantity').val();
 				
@@ -151,7 +151,7 @@ function refresh_fee() {
 	});
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_checkin_fees',
+		url: '<?php echo base_url(); ?>extension/fee/get_fba_fees',
 		type: 'post',
 		data: data,
 		cache: false,
@@ -159,20 +159,20 @@ function refresh_fee() {
 		processData: false,
 		dataType: 'json',
 		success: function(json) {	
-			$('#checkin_fees tbody').html('');	
+			$('#fba_fees tbody').html('');	
 		
-			$.each(json.checkin_fees, function(checkin_fee_row, checkin_fee) {	
-				html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
-				html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="' + checkin_fee.name + '" class="form-control" /></td>';
+			$.each(json.fba_fees, function(fba_fee_row, fba_fee) {	
+				html  = '<tr id="fba-fee-row' + fba_fee_row + '">';
+				html += '<td><input name="fba_fee[' + fba_fee_row + '][name]" value="' + fba_fee.name + '" class="form-control" /></td>';
 				html += '<td class="text-right">';
 				html += '<div class="input-group">';
 				html += '<span class="input-group-addon">$</span>';
-				html += '<input name="checkin_fee[' + checkin_fee_row + '][amount]" value="' + checkin_fee.amount + '" class="form-control" /></td>';
+				html += '<input name="fba_fee[' + fba_fee_row + '][amount]" value="' + fba_fee.amount + '" class="form-control" /></td>';
 				html += '</div>';
-				html += '<td class="text-left"><button type="button" onclick="$(\'#checkin-fee-row' + checkin_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+				html += '<td class="text-left"><button type="button" onclick="$(\'#fba-fee-row' + fba_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 				html += '</tr>';
 
-				$('#checkin_fees tbody').append(html);			
+				$('#fba_fees tbody').append(html);			
 			});
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
@@ -182,10 +182,10 @@ function refresh_fee() {
 }
 </script>
 <script>
-function locationautocomplete(checkin_product_row) {
-	$('input[name=\'checkin_product[' + checkin_product_row + '][location_name]\']').autocomplete({
+function locationautocomplete(fba_product_row) {
+	$('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').autocomplete({
 		'source': function(request, response) {
-			location_name = $('input[name=\'checkin_product[' + checkin_product_row + '][location_name]\']').val();
+			location_name = $('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').val();
 						
 			$.ajax({
 				url: '<?php echo base_url(); ?>warehouse/location_ajax/autocomplete?location_name=' + location_name,
@@ -205,19 +205,19 @@ function locationautocomplete(checkin_product_row) {
 			});	
 		},
 		'select': function(event, ui) {		
-			$('input[name=\'checkin_product[' + checkin_product_row + '][location_name]\']').val(ui.item.name);
-			$('input[name=\'checkin_product[' + checkin_product_row + '][location_id]\']').val(ui.item.location_id);
+			$('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').val(ui.item.name);
+			$('input[name=\'fba_product[' + fba_product_row + '][location_id]\']').val(ui.item.location_id);
 		}
 	});
 }
 
-$('#checkin-product tbody tr').each(function(index, element) {
+$('#fba-product tbody tr').each(function(index, element) {
 	locationautocomplete(index);
 });
 </script>
 <script>
 $(document).ready(function() {
-	checkin_product_row = <?php echo $checkin_product_row; ?>;
+	fba_product_row = <?php echo $fba_product_row; ?>;
 	
 	$('input[name=\'code\']').autocomplete({  
 		'source': function(request, response) {
@@ -227,7 +227,7 @@ $(document).ready(function() {
 			data.append('code', code);
 			
 			$.ajax({
-				url: '<?php echo base_url(); ?>check/checkin_ajax/get_product',
+				url: '<?php echo base_url(); ?>fba/fba_ajax/get_product',
 				type: 'post',
 				data: data,
 				cache: false,
@@ -253,26 +253,26 @@ $(document).ready(function() {
 		'select': function(event, ui) {
 			product = ui.item;
 			
-			new_tr = $('<tr id="row_' + checkin_product_row + '"></tr>');
+			new_tr = $('<tr id="row_' + fba_product_row + '"></tr>');
 			
-			html  = '<td><input class="product_id" name="checkin_product[' + checkin_product_row + '][product_id]" type="hidden" value="' + product.product_id + '"><div class="text-left">' + product.name + '</div></td>';
+			html  = '<td><input class="product_id" name="fba_product[' + fba_product_row + '][product_id]" type="hidden" value="' + product.product_id + '"><div class="text-left">' + product.name + '</div></td>';
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
-			html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text" value=""></td>';
-			html += '<td><input class="form-control text-center quantity" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><input class="form-control" name="fba_product[' + fba_product_row + '][batch]" type="text" value=""></td>';
+			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
-			html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control">';
-			html += '<input type="hidden" name="checkin_product[' + checkin_product_row + '][location_id]">';
+			html += '<input name="fba_product[' + fba_product_row + '][location_name]" class="form-control">';
+			html += '<input type="hidden" name="fba_product[' + fba_product_row + '][location_id]">';
 			html += '</td>';
 			html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
 			
 			new_tr.html(html);
 			
-			$("#checkin-product").append(new_tr);
+			$("#fba-product").append(new_tr);
 			
-			locationautocomplete(checkin_product_row);
+			locationautocomplete(fba_product_row);
 			
-			checkin_product_row++;
+			fba_product_row++;
 			
 			$(this).val(''); 
 			
@@ -283,31 +283,12 @@ $(document).ready(function() {
 	});
 	
 	//remove product
-	$('#checkin-product').on('click', '.btn-delete', function() {		
+	$('#fba-product').on('click', '.btn-delete', function() {		
 		$(this).closest('tr').remove();		
 		
 		refresh_fee();
 	});
 });
-</script>
-<script>
-checkin_fee_row = <?php echo $checkin_fee_row; ?>;
-
-function add_checkin_fee() {
-	html  = '<tr id="checkin-fee-row' + checkin_fee_row + '">';
-	html += '<td><input name="checkin_fee[' + checkin_fee_row + '][name]" value="" class="form-control" /></td>';
-	html += '<td class="text-right">';
-	html += '<div class="input-group">';
-	html += '<span class="input-group-addon">$</span>';
-	html += '<input name="checkin_fee[' + checkin_fee_row + '][amount]" value="" class="form-control" /></td>';
-	html += '</div>';
-	html += '<td class="text-left"><button type="button" onclick="$(\'#checkin-fee-row' + checkin_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
-
-	$('#checkin_fees tbody').append(html);
-
-	checkin_fee_row++;
-}
 </script>
 <script>
 $(document).ready(function() {

@@ -45,13 +45,13 @@ class Fba extends MX_Controller
 		
 		$this->load->model('fba/fba_model');
 			
-		if($this->input->get('filter_id'))
+		if($this->input->get('filter_fba_id'))
 		{
-			$filter_id = $this->input->get('filter_id');
+			$filter_fba_id = $this->input->get('filter_fba_id');
 		} 
 		else 
 		{
-			$filter_id = '';
+			$filter_fba_id = '';
 		}
 		
 		if($this->input->get('filter_tracking'))
@@ -127,7 +127,7 @@ class Fba extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_id'           => $filter_id,
+			'filter_fba_id'       => $filter_fba_id,
 			'filter_tracking'     => $filter_tracking,
 			'filter_note'         => $filter_note,
 			'filter_status'       => $filter_status,			
@@ -152,7 +152,7 @@ class Fba extends MX_Controller
 			
 				$fba_products = array();
 				
-				$fba_products_data = $this->fba_model->get_fba_products($fba['id']);	
+				$fba_products_data = $this->fba_model->get_fba_products($fba['fba_id']);	
 				
 				foreach($fba_products_data as $fba_product_data) 
 				{
@@ -170,7 +170,7 @@ class Fba extends MX_Controller
 				}
 			
 				$data['fbas'][] = array(
-					'fba_id'         => $fba['id'],
+					'fba_id'         => $fba['fba_id'],
 					'tracking'       => $fba['tracking'],
 					'note'           => $fba['note'],
 					'status'         => $fba['status'],			
@@ -183,9 +183,9 @@ class Fba extends MX_Controller
 		
 		$url = '';
 		
-		if($this->input->get('filter_id')) 
+		if($this->input->get('filter_fba_id')) 
 		{
-			$url .= '&filter_id=' . $this->input->get('filter_id');
+			$url .= '&filter_fba_id=' . $this->input->get('filter_fba_id');
 		}
 		
 		if($this->input->get('filter_tracking')) 
@@ -232,9 +232,9 @@ class Fba extends MX_Controller
 
 		$url = '';
 		
-		if($this->input->get('filter_id')) 
+		if($this->input->get('filter_fba_id')) 
 		{
-			$url .= '&filter_id=' . $this->input->get('filter_id');
+			$url .= '&filter_fba_id=' . $this->input->get('filter_fba_id');
 		}
 		
 		if($this->input->get('filter_tracking')) 
@@ -312,9 +312,9 @@ class Fba extends MX_Controller
 			$url .= '&sort='.$this->input->get('sort');
 		}
 		
-		if($this->input->get('filter_id')) 
+		if($this->input->get('filter_fba_id')) 
 		{
-			$url .= '&filter_id=' . $this->input->get('filter_id');
+			$url .= '&filter_fba_id=' . $this->input->get('filter_fba_id');
 		}
 		
 		if($this->input->get('filter_tracking')) 
@@ -343,7 +343,7 @@ class Fba extends MX_Controller
 		$data['order']  = $order;
 		$data['limit']  = $limit;
 		
-		$data['filter_id']           = $filter_id;
+		$data['filter_fba_id']           = $filter_fba_id;
 		$data['filter_tracking']     = $filter_tracking;
 		$data['filter_note']         = $filter_note;
 		$data['filter_status']       = $filter_status;
@@ -364,8 +364,8 @@ class Fba extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
-		$this->load->model('extension/fee_model');
 		$this->load->model('fba/fba_model');
+		$this->load->model('extension/fee_model');
 		$this->load->model('catalog/product_model');
 	
 		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_edit.css');
@@ -422,11 +422,11 @@ class Fba extends MX_Controller
 		else
 		{
 			$data = array(
-				'tracking'          => $this->input->post('tracking'),
-				'fee_code'          => $this->config->item('config_default_fba_fee'),
-				'status'            => $this->input->post('status'),
-				'note'              => $this->input->post('note'),
-				'fba_products' => array()
+				'tracking'       => $this->input->post('tracking'),
+				'fee_code'       => $this->config->item('config_default_fba_fee'),
+				'status'         => $this->input->post('status'),
+				'note'           => $this->input->post('note'),
+				'fba_products'   => array()
 			);
 		}
 		
@@ -473,8 +473,8 @@ class Fba extends MX_Controller
 		
 		$this->form_validation->CI =& $this;
 		
-		$this->load->model('extension/fee_model');
 		$this->load->model('fba/fba_model');
+		$this->load->model('extension/fee_model');
 		$this->load->model('catalog/product_model');
 	
 		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_edit.css');
@@ -573,7 +573,7 @@ class Fba extends MX_Controller
 			
 			$data['fba_fees'] = array();
 			
-			$fba_fees = $this->fba_model->get_fba_fees($fba_id);	
+			/* $fba_fees = $this->fba_model->get_fba_fees($fba_id);	
 			
 			if($fba_fees) 
 			{
@@ -584,7 +584,7 @@ class Fba extends MX_Controller
 						'amount' => $fba_fee['amount']
 					);
 				}
-			}
+			} */
 			
 			//excel export begin
 			$objPHPExcel = new PHPExcel();	
