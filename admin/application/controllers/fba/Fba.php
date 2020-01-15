@@ -498,11 +498,12 @@ class Fba extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'tracking'          => $this->input->post('tracking'),
-				'fee_code'          => $this->input->post('fee_code'),
-				'status'            => $this->input->post('status'),
-				'fba_products'  => $this->input->post('fba_product'),
-				'note'              => $this->input->post('note')		
+				'tracking'     => $this->input->post('tracking'),
+				'fee_code'     => $this->input->post('fee_code'),
+				'status'       => $this->input->post('status'),
+				'note'         => $this->input->post('note'),		
+				'fba_products' => $this->input->post('fba_product'),
+				'fba_files'    => $this->input->post('fba_file')
 			);
 				
 			$this->fba_model->edit_fba($fba_id, $data);
@@ -515,11 +516,12 @@ class Fba extends MX_Controller
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{			
 			$data['fba_id']     = $this->input->get('fba_id');
-			$data['tracking']       = $this->input->post('tracking');
-			$data['fee_code']       = $this->input->post('fee_code');
-			$data['note']           = $this->input->post('note');
-			$data['status']         = $this->input->post('status');
+			$data['tracking']   = $this->input->post('tracking');
+			$data['fee_code']   = $this->input->post('fee_code');
+			$data['note']       = $this->input->post('note');
+			$data['status']     = $this->input->post('status');
 			$data['fba_fees']   = $this->input->post('fba_fee');
+			$data['fba_files']  = $this->input->post('fba_file');
 		
 			$fba_products = $this->input->post('fba_product');
 			
@@ -585,6 +587,26 @@ class Fba extends MX_Controller
 					);
 				}
 			} */
+			
+			//fba file
+			$data['fba_files'] = array();
+			
+			$fba_files = $this->fba_model->get_fba_files($fba_id);
+			
+			if($fba_files)
+			{
+				foreach($fba_files as $fba_file)
+				{					
+					if(is_file(FILEPATH . $fba_file['path'])) 
+					{
+						$data['fba_files'][] = array(
+							'name'  => basename($fba_file['path']),
+							'path'  => $fba_file['path'],
+							'url'   => $this->config->item('media_url') . '/file/' . $fba_file['path']
+						);
+					}
+				}
+			}
 			
 			//excel export begin
 			$objPHPExcel = new PHPExcel();	
