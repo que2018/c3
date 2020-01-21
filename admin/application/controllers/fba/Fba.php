@@ -343,7 +343,7 @@ class Fba extends MX_Controller
 		$data['order']  = $order;
 		$data['limit']  = $limit;
 		
-		$data['filter_fba_id']           = $filter_fba_id;
+		$data['filter_fba_id']       = $filter_fba_id;
 		$data['filter_tracking']     = $filter_tracking;
 		$data['filter_note']         = $filter_note;
 		$data['filter_status']       = $filter_status;
@@ -375,15 +375,14 @@ class Fba extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
 		
 		$this->header->set_title($this->lang->line('text_fba_add'));
 
-		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_product');
-		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_client');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
@@ -391,9 +390,10 @@ class Fba extends MX_Controller
 				'tracking'    => $this->input->post('tracking'),
 				'fee_code'    => $this->input->post('fee_code'),
 				'status'      => $this->input->post('status'),
-				'note'        => $this->input->post('note')
+				'note'        => $this->input->post('note'),
+			    'fba_files'   => $this->input->post('fba_file')
 			);
-			  
+						  
 			$fba_products = $this->input->post('fba_product');
 			
 			$data['fba_products'] = array();
@@ -413,6 +413,7 @@ class Fba extends MX_Controller
 						'sku'            => $product_info['sku'],
 						'batch'          => $fba_product['batch'],
 						'quantity'       => $fba_product['quantity'],
+						'quantity_draft' => $fba_product['quantity_draft'],
 						'location_id'    => $fba_product['location_id'],
 						'location_name'  => $fba_product['location_name']
 					);
@@ -430,6 +431,15 @@ class Fba extends MX_Controller
 			);
 		}
 		
+		if($this->form_validation->run() == true)
+		{
+			$this->fba_model->add_fba($data);
+			
+			$this->session->set_flashdata('success', $this->lang->line('text_fba_add_success'));
+			
+			redirect(base_url() . 'fba/fba', 'refresh');
+		}
+		
 		//fba fees
 		$data['fba_fees'] = array();
 		
@@ -438,18 +448,9 @@ class Fba extends MX_Controller
 		foreach($fba_fees_data as $fba_fee_data) 
 		{
 			$data['fba_fees'][] = array(
-				'code'     => $fba_fee_data['code'],
-				'name'     => $fba_fee_data['name']
+				'code'  => $fba_fee_data['code'],
+				'name'  => $fba_fee_data['name']
 			);
-		}
-		
-		if($this->form_validation->run() == true)
-		{
-			$this->fba_model->add_fba($data);
-			
-			$this->session->set_flashdata('success', $this->lang->line('text_fba_add_success'));
-			
-			redirect(base_url() . 'fba/fba', 'refresh');
 		}
 		
 		$data['error'] = validation_errors();
@@ -484,6 +485,7 @@ class Fba extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
 		
@@ -491,9 +493,7 @@ class Fba extends MX_Controller
 		
 		$fba_id = $this->input->get('fba_id');
 		
-		$this->form_validation->set_rules('status', $this->lang->line('text_status'), 'required');
 		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_product');
-		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_client');
 
 		if($this->form_validation->run() == true)
 		{
@@ -551,15 +551,17 @@ class Fba extends MX_Controller
 		{
 			$fba = $this->fba_model->get_fba($fba_id);	
 		
-			$data['tracking']      = $fba['tracking'];
-			$data['note']          = $fba['note'];
-			$data['status']        = $fba['status'];
+			$data['tracking']   = $fba['tracking'];
+			$data['fee_code']   = $fba['fee_code'];
+			$data['note']       = $fba['note'];
+			$data['status']     = $fba['status'];
 
 			$data['fba_products'] = array();
 			
 			$fba_products = $this->fba_model->get_fba_products($fba_id);	
 			
-			foreach($fba_products as $fba_product) {
+			foreach($fba_products as $fba_product) 
+			{
 				$data['fba_products'][] = array(
 					'product_id'     => $fba_product['product_id'],
 					'name'           => $fba_product['name'],
@@ -573,20 +575,10 @@ class Fba extends MX_Controller
 				);
 			}
 			
+			//fba file
 			$data['fba_fees'] = array();
 			
-			/* $fba_fees = $this->fba_model->get_fba_fees($fba_id);	
 			
-			if($fba_fees) 
-			{
-				foreach($fba_fees as $fba_fee) 
-				{
-					$data['fba_fees'][] = array(
-						'name'   => $fba_fee['name'],
-						'amount' => $fba_fee['amount']
-					);
-				}
-			} */
 			
 			//fba file
 			$data['fba_files'] = array();
@@ -607,70 +599,6 @@ class Fba extends MX_Controller
 					}
 				}
 			}
-			
-			//excel export begin
-			$objPHPExcel = new PHPExcel();	
-			$objPHPExcel->createSheet();
-			$objPHPExcel->setActiveSheetIndex(0);
-			
-			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
-			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
-			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
-			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);	
-			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);	
-			
-			$objPHPExcel->getActiveSheet()->mergeCells('A1:F1');
-			$objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
-			$objPHPExcel->getActiveSheet()->getStyle('E1:F1')->getFont()->setSize(12);
-			$objPHPExcel->getActiveSheet()->SetCellValue('A1', sprintf($this->lang->line('text_fba_edit_title'), $fba_id));
-			
-			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');
-			$objPHPExcel->getActiveSheet()->mergeCells('D2:F2');
-			$objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFont()->setSize(12);
-			$objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFont()->setBold(true);
-			
-			$objPHPExcel->getActiveSheet()->SetCellValue('A2', sprintf($this->lang->line('text_excel_tracking'), $fba['tracking']));
-			
-			if($fba['status']) 
-			{
-				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_pending'));
-			} 
-			else 
-			{
-				$objPHPExcel->getActiveSheet()->SetCellValue('D2', $this->lang->line('text_excel_completed'));
-			}
-
-			$objPHPExcel->getActiveSheet()->getStyle('A3:F3')->getFont()->setBold(true);
-			$objPHPExcel->getActiveSheet()->SetCellValue('A3', $this->lang->line('column_name'));
-			$objPHPExcel->getActiveSheet()->SetCellValue('B3', $this->lang->line('column_upc'));
-			$objPHPExcel->getActiveSheet()->SetCellValue('C3', $this->lang->line('column_sku'));
-			$objPHPExcel->getActiveSheet()->SetCellValue('D3', $this->lang->line('column_batch'));
-			$objPHPExcel->getActiveSheet()->SetCellValue('E3', $this->lang->line('column_quantity'));
-			$objPHPExcel->getActiveSheet()->SetCellValue('F3', $this->lang->line('column_location'));
-			
-			$i = 4;
-			
-			if($fba_products) 
-			{
-				foreach($fba_products as $fba_product)
-				{					
-					$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i, $fba_product['name']);
-					$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $fba_product['upc']);
-					$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $fba_product['sku']);
-					$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $fba_product['batch']);
-					$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $fba_product['quantity']);
-					$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $fba_product['location_name']);
-				
-					$i++;
-				}
-			}
-			
-			PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
-			
-			$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-			$objWriter->save(FCPATH  . 'assets/file/export/fba.xlsx');
-			//excel export end
 		}
 		
 		//fba fees
@@ -681,8 +609,8 @@ class Fba extends MX_Controller
 		foreach($fba_fees_data as $fba_fee_data) 
 		{
 			$data['fba_fees'][] = array(
-				'code'     => $fba_fee_data['code'],
-				'name'     => $fba_fee_data['name']
+				'code'  => $fba_fee_data['code'],
+				'name'  => $fba_fee_data['name']
 			);
 		}
 		
@@ -779,11 +707,12 @@ class Fba extends MX_Controller
 	}
 
 	public function validate_fba_product($fba_products)
-	{
+	{		
 		$this->lang->load('fba/fba');
 		
 		$this->load->model('fba/fba_model');
 		$this->load->model('catalog/product_model');
+		
 	
 		if($this->input->post('fba_product'))
 		{
@@ -822,31 +751,9 @@ class Fba extends MX_Controller
 				}
 			}
 			
-			if(!$validated)
-			{
-				$this->form_validation->set_message('validate_fba_product', $message);
-			}
+			//validate if is one client
+			$client_ids = array();
 			
-			return $validated;
-		}
-		else
-		{
-			$this->form_validation->set_message('validate_fba_product', $this->lang->line('error_fba_product_required'));
-			
-			return false;
-		}	
-	}
-	
-	public function validate_fba_client()
-	{	
-		$this->load->model('catalog/product_model');
-
-		$client_ids = array();
-
-		if($this->input->post('fba_product'))
-		{
-			$fba_products = $this->input->post('fba_product');
-						
 			foreach($fba_products as $fba_product)
 			{
 				$product_id = $fba_product['product_id'];
@@ -860,15 +767,24 @@ class Fba extends MX_Controller
 			
 			if(count($client_ids) > 1)
 			{
-				$this->form_validation->set_message('validate_fba_client', $this->lang->line('error_fba_product_multi_client'));
-							
-				return false;
+				if($validated)
+					$validated = false;
+				
+				$message .= $this->lang->line('error_fba_product_multi_client');
+				$message .= '<br>';				
 			}
-			else 
+	
+			if(!$validated)
 			{
-				return true;
-			}
+				$this->form_validation->set_message('validate_fba_product', $message);
+			}			
 		}
+		else
+		{
+			$this->form_validation->set_message('validate_fba_product', $this->lang->line('error_fba_product_required'));
+			
+			return false;
+		}	
 	}
 }
 

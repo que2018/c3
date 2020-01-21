@@ -10,15 +10,15 @@
 	</h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
-	  <li><a href="<?php echo base_url(); ?>check/fba"><?php echo $this->lang->line('text_fba'); ?></a></li>
+	  <li><a href="<?php echo base_url(); ?>fba/fba"><?php echo $this->lang->line('text_fba'); ?></a></li>
 	  <li class="active"><strong><?php echo $this->lang->line('text_fba_edit'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save_fba'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>check/fba_print?fba_id=<?php echo $fba_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print'); ?>" class="btn btn-info btn-print" target="_blank"><i class="fa fa-print"></i></a>
+    <a href="<?php echo base_url(); ?>fba/fba_print?fba_id=<?php echo $fba_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print'); ?>" class="btn btn-info btn-print" target="_blank"><i class="fa fa-print"></i></a>
 	<a href="<?php echo base_url(); ?>assets/file/export/fba.xlsx" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_download'); ?>" class="btn btn-success btn-download" download><i class="fa fa-download"></i></a>
-	<a href="<?php echo base_url(); ?>check/fba" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+	<a href="<?php echo base_url(); ?>fba/fba" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -32,7 +32,7 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-	<form method="post" action="<?php echo base_url(); ?>check/fba/edit?fba_id=<?php echo $fba_id; ?>" class="form-horizontal">
+	<form method="post" action="<?php echo base_url(); ?>fba/fba/edit?fba_id=<?php echo $fba_id; ?>" class="form-horizontal">
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
@@ -138,11 +138,14 @@
 					  <tr id="fba-file-row<?php echo $fba_file_row; ?>">
 					    <td class="text-left">
 						  <?php echo $fba_file['name']; ?>
+						  <input type="hidden" name="fba_file[<?php echo $fba_file_row; ?>][name]" value="<?php echo $fba_file['name']; ?>"/>
 						  <input type="hidden" name="fba_file[<?php echo $fba_file_row; ?>][path]" value="<?php echo $fba_file['path']; ?>"/>
 						</td>
 					    <td class="text-center">
 						  <button type="button" onclick="$('#fba-file-row<?php echo $fba_file_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
-						  <a class="btn btn-info btn-file-download" href="<?php echo $fba_file['url']; ?>" download><i class="fa fa-download"></i></a>
+						  <?php if(isset($fba_file['url'])) { ?>
+						    <a class="btn btn-info btn-file-download" href="<?php echo $fba_file['url']; ?>" download><i class="fa fa-download"></i></a>
+						  <?php } ?>
 						</td>
 					  </tr>
 					  <?php $fba_file_row++; ?>
@@ -234,7 +237,7 @@ $(document).ready(function() {
 			data.append('code', code);
 			
 			$.ajax({
-				url: '<?php echo base_url(); ?>check/fba_ajax/get_product',
+				url: '<?php echo base_url(); ?>fba/fba_ajax/get_product',
 				type: 'post',
 				data: data,
 				cache: false,
@@ -266,6 +269,7 @@ $(document).ready(function() {
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
 			html += '<td><input class="form-control" name="fba_product[' + fba_product_row + '][batch]" type="text" value=""></td>';
+			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity_draft]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="fba_product[' + fba_product_row + '][location_name]" class="form-control">';
@@ -313,23 +317,18 @@ function add_fba_file() {
 	$('#fba_file tbody').append(html);
 	
 	$("#dropzone" + fba_file_row).dropzone({
-		url: "<?php echo base_url(); ?>check/fba_ajax/upload_file",
+		url: "<?php echo base_url(); ?>fba/fba_ajax/upload_file",
 		previewTemplate: "<div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></div>",
 		success: function(file, response){
-			html = response.name + '<input type="hidden" name="fba_file[' + fba_file_row + '][path]" value="' + response.path + '">';
-			$("#fba-file-td" + fba_file_row).html(html);
+			html = response.name; 
+			html += '<input type="hidden" name="fba_file[' + fba_file_row + '][name]" value="' + response.name + '">';						
+			html += '<input type="hidden" name="fba_file[' + fba_file_row + '][path]" value="' + response.path + '">';			
+			$('#fba-file-td' + fba_file_row).html(html);	
 			
-			fba_file_row++;		
+			fba_file_row++;	
 		}
 	});
 }
-</script>
-<script>
-$(document).ready(function() {
-	$(document).on('input', '.quantity', function() {
-		refresh_fee();
-	});
-});
 </script>
 <script>
 $(document).ready(function() {

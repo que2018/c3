@@ -152,7 +152,8 @@ class Checkout extends MX_Controller
 				
 				$checkout_products_data = $this->checkout_model->get_checkout_products($checkout['id']);	
 				
-				foreach($checkout_products_data as $checkout_product_data) {
+				foreach($checkout_products_data as $checkout_product_data) 
+				{
 					$checkout_products[] = array(
 						'name'        => $checkout_product_data['name'],
 						'batch'       => $checkout_product_data['batch'],

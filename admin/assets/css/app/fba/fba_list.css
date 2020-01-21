@@ -23,12 +23,16 @@ a:focus, a:hover {
 .filter-select:focus, input:focus {
 	outline:0;
 }
-.btn-edit {	margin-right: 5px;
+.btn-print {
+	margin-right: 5px;
 }
-.btn-delete {
-	margin-left: 5px;
+.btn-bulk-print {
+    margin-right: 8px;
 }
-.btn-checkin {
+.btn-edit {
+	margin-right: 5px;
+}
+.btn-fba {
 	padding: 4px 7px;
     background: #fff;
     border-right: 1px solid #dedede;
@@ -38,8 +42,8 @@ a:focus, a:hover {
     font-size: 10px;
     cursor: pointer;
 }
-.btn-checkin-disable {
-	padding: 4px 7px;
+.btn-fba-disable {
+    padding: 4px 7px;
     background: #e2e1e1;
     border-right: 1px solid #dedede;
     border-top: 1px solid #dedede;
@@ -88,6 +92,14 @@ a:focus, a:hover {
 	top: 30px;    
 	right: 50px;
 }
+.shipping {
+    font-size: 9px;
+    background: #178bd2;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	margin-right: 5px;
+}
 .tracking {
     background: #23c6c8;
     color: #fff;
@@ -98,7 +110,7 @@ a:focus, a:hover {
     width: 200px;
     margin: 0 auto;
 }
-.table-checkin {
+.table-fba {
 	min-width: 1500px;
 }
 

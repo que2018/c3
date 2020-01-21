@@ -261,7 +261,7 @@ $(document).ready(function() {
 		filter_fba();
 	});
 	
-	$(document).on('input', 'input[name=\'date_added\']', function () {		
+	$(document).on('change', 'input[name=\'date_added\']', function () {		
 		filter_fba();
 	});
 });

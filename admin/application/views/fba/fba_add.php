@@ -28,6 +28,7 @@
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#file"><?php echo $this->lang->line('tab_file'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#note"><?php echo $this->lang->line('tab_note'); ?></a></li>
 		</ul>
@@ -76,8 +77,9 @@
 						    <th style="width: 14%"><?php echo $this->lang->line('column_upc'); ?></th>
 						    <th style="width: 14%"><?php echo $this->lang->line('column_sku'); ?></th>
 							<th style="width: 14%"><?php echo $this->lang->line('column_batch'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_quantity'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_location'); ?></th>
+							<th style="width: 9%"><?php echo $this->lang->line('column_quantity_draft'); ?></th>
+						    <th style="width: 9%"><?php echo $this->lang->line('column_quantity'); ?></th>
+						    <th style="width: 12%"><?php echo $this->lang->line('column_location'); ?></th>
 							<th></th>
 						  </tr>
 					    </thead>
@@ -91,6 +93,7 @@
 						    <td class="text-left"><?php echo $fba_product['sku']; ?></td>
 							<td><input class="form-control" name="fba_product[<?php echo $fba_product_row; ?>][batch]" value="<?php echo $fba_product['batch']; ?>"></td>
 						    <td><input class="form-control text-center quantity" name="fba_product[<?php echo $fba_product_row; ?>][quantity]" value="<?php echo $fba_product['quantity']; ?>"></td>
+							<td><input class="form-control text-center quantity" name="fba_product[<?php echo $fba_product_row; ?>][quantity_draft]" value="<?php echo $fba_product['quantity_draft']; ?>"></td>
 							<td>
 							  <input class="form-control" name="fba_product[<?php echo $fba_product_row; ?>][location_name]" value="<?php echo $fba_product['location_name']; ?>">
 							  <input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][location_id]" value="<?php echo $fba_product['location_id']; ?>">
@@ -107,11 +110,49 @@
               </div>			  
 			</div>
 		  </div>
+		  <div id="file" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="fba_file" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_name') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_action') ?></th>							
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $fba_file_row = 0; ?>
+					<?php if(isset($fba_files)) { ?>
+					  <?php foreach ($fba_files as $fba_file) { ?>
+					  <tr id="fba-file-row<?php echo $fba_file_row; ?>">
+					    <td class="text-left">
+						  <?php echo $fba_file['name']; ?>
+						  <input type="hidden" name="fba_file[<?php echo $fba_file_row; ?>][name]" value="<?php echo $fba_file['name']; ?>" />
+						  <input type="hidden" name="fba_file[<?php echo $fba_file_row; ?>][path]" value="<?php echo $fba_file['path']; ?>"/>
+						</td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#fba-file-row<?php echo $fba_file_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						</td>
+					  </tr>
+					  <?php $fba_file_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+				  <tfoot>
+					<tr>
+					  <td></td>
+					  <td class="text-left"><button type="button" onclick="add_fba_file();" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					</tr>
+				  </tfoot>
+                </table>
+              </div> 
+			</div>
+		  </div>
 		  <div id="fee" class="tab-pane">
 			<div class="panel-body">
 			  <div class="form-group">
 			    <div class="col-sm-12">
-				  <select name="fbaout_fee_code" class="form-control">
+				  <select name="fee_code" class="form-control">
 				    <option value=""></option>
 				    <?php foreach($fba_fees as $fba_fee) { ?>
 					<?php if($fba_fee['code'] == $fee_code) { ?>
@@ -139,48 +180,6 @@
 	</div>
   </div>  
 </div>
-<script>
-function refresh_fee() {
-	data = new FormData();
-				
-	$('#fba-product tbody tr').each(function(index) {
-		product_id = $(this).find('.product_id').val();
-		quantity = $(this).find('.quantity').val();
-				
-		data.append('product[' + product_id + ']', quantity);
-	});
-	
-	$.ajax({
-		url: '<?php echo base_url(); ?>extension/fee/get_fba_fees',
-		type: 'post',
-		data: data,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: 'json',
-		success: function(json) {	
-			$('#fba_fees tbody').html('');	
-		
-			$.each(json.fba_fees, function(fba_fee_row, fba_fee) {	
-				html  = '<tr id="fba-fee-row' + fba_fee_row + '">';
-				html += '<td><input name="fba_fee[' + fba_fee_row + '][name]" value="' + fba_fee.name + '" class="form-control" /></td>';
-				html += '<td class="text-right">';
-				html += '<div class="input-group">';
-				html += '<span class="input-group-addon">$</span>';
-				html += '<input name="fba_fee[' + fba_fee_row + '][amount]" value="' + fba_fee.amount + '" class="form-control" /></td>';
-				html += '</div>';
-				html += '<td class="text-left"><button type="button" onclick="$(\'#fba-fee-row' + fba_fee_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-				html += '</tr>';
-
-				$('#fba_fees tbody').append(html);			
-			});
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-}
-</script>
 <script>
 function locationautocomplete(fba_product_row) {
 	$('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').autocomplete({
@@ -214,6 +213,112 @@ function locationautocomplete(fba_product_row) {
 $('#fba-product tbody tr').each(function(index, element) {
 	locationautocomplete(index);
 });
+</script>
+<script>
+$(document).ready(function() {
+
+	fba_product_row = <?php echo $fba_product_row; ?>;
+	
+	$('input[name=\'code\']').autocomplete({  
+		'source': function(request, response) {
+			code = $('input[name=\'code\']').val();
+					
+			data = new FormData();
+			data.append('code', code);
+			
+			$.ajax({
+				url: '<?php echo base_url(); ?>fba/fba_ajax/get_product',
+				type: 'post',
+				data: data,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success: function(json) {
+					if(json.success)
+					{
+						response($.map(json.products, function(item) {					
+							return {
+								label:      item['label'],
+								product_id: item['product_id'],
+								upc:        item['upc'],
+								sku:        item['sku'],
+								name:       item['name']
+							}
+						}));
+					}
+				}
+			});
+		},
+		'select': function(event, ui) {
+			product = ui.item;
+			
+			new_tr = $('<tr id="row_' + fba_product_row + '"></tr>');
+			
+			html  = '<td><input class="product_id" name="fba_product[' + fba_product_row + '][product_id]" type="hidden" value="' + product.product_id + '"><div class="text-left">' + product.name + '</div></td>';
+			html += '<td class="text-left">' + product.upc + '</div></td>';
+			html += '<td class="text-left">' + product.sku + '</div></td>';
+			html += '<td><input class="form-control" name="fba_product[' + fba_product_row + '][batch]" type="text" value=""></td>';
+			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity_draft]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td>';
+			html += '<input name="fba_product[' + fba_product_row + '][location_name]" class="form-control">';
+			html += '<input type="hidden" name="fba_product[' + fba_product_row + '][location_id]">';
+			html += '</td>';
+			html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+			
+			new_tr.html(html);
+			
+			$("#fba-product").append(new_tr);
+			
+			locationautocomplete(fba_product_row);
+			
+			fba_product_row++;
+			
+			$(this).val(''); 
+						
+			return false;
+		}
+	});
+	
+	$('#fba-product tbody tr').each(function(index, element) {
+		locationautocomplete(index);
+	});
+	
+	//remove product
+	$('#fba-product').on('click', '.btn-delete', function() {		
+		$(this).closest('tr').remove();	
+	});
+});
+</script>
+<script>
+fba_file_row = <?php echo $fba_file_row; ?>;
+
+function add_fba_file() {
+	html  = '<tr id="fba-file-row' + fba_file_row + '">';
+	html += '<td id="fba-file-td' + fba_file_row + '">';
+	html += '<form class="upload-box" id="dropzone' + fba_file_row + '">';
+	html += '<input type="hidden" name="fba_file[' + fba_file_row + '][path]">';
+	html += '</form>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#fba-file-row' + fba_file_row  + '\').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#fba_file tbody').append(html);
+	
+	$("#dropzone" + fba_file_row).dropzone({
+		url: "<?php echo base_url(); ?>fba/fba_ajax/upload_file",
+		previewTemplate: "<div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></div>",
+		success: function(file, response){
+			html = response.name;
+			html += '<input type="hidden" name="fba_file[' + fba_file_row + '][name]" value="' + response.name + '">';						
+			html += '<input type="hidden" name="fba_file[' + fba_file_row + '][path]" value="' + response.path + '">';			
+			$('#fba-file-td' + fba_file_row).html(html);	
+			
+			fba_file_row++;	
+		}
+	});
+}
 </script>
 <script>
 $(document).ready(function() {
@@ -260,6 +365,7 @@ $(document).ready(function() {
 			html += '<td class="text-left">' + product.sku + '</div></td>';
 			html += '<td><input class="form-control" name="fba_product[' + fba_product_row + '][batch]" type="text" value=""></td>';
 			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+			html += '<td><input class="form-control text-center quantity" name="fba_product[' + fba_product_row + '][quantity_draft]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="fba_product[' + fba_product_row + '][location_name]" class="form-control">';
 			html += '<input type="hidden" name="fba_product[' + fba_product_row + '][location_id]">';
@@ -276,8 +382,6 @@ $(document).ready(function() {
 			
 			$(this).val(''); 
 			
-			refresh_fee();
-
 			return false;
 		}
 	});
@@ -286,13 +390,6 @@ $(document).ready(function() {
 	$('#fba-product').on('click', '.btn-delete', function() {		
 		$(this).closest('tr').remove();		
 		
-		refresh_fee();
-	});
-});
-</script>
-<script>
-$(document).ready(function() {
-	$(document).on('input', '.quantity', function() {
 		refresh_fee();
 	});
 });

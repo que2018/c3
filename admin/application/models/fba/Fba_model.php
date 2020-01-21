@@ -8,9 +8,16 @@ class Fba_model extends CI_Model
 		
 		$this->db->trans_begin();
 		
+		//get client
+		$product_id = $data['fba_products'][0]['product_id'];	
+		
+		$product_info = $this->product_model->get_product($product_id);	
+				
 		//fba data
 		$fba_data = array(
+			'client_id'       => $product_info['client_id'],
 			'tracking' 		  => $data['tracking'],
+			'fee_code' 		  => $data['fee_code'],
 			'note' 		      => $data['note'],
 			'status' 		  => $data['status'],
 			'date_added'      => date('Y-m-d H:i:s'),
@@ -27,35 +34,53 @@ class Fba_model extends CI_Model
 		foreach($data['fba_products'] as $fba_product)
 		{					
 			$fba_products[] = array(
-				'fba_id'		=> $fba_id,
-				'product_id' 	=> $fba_product['product_id'],
-				'batch' 		=> $fba_product['batch'],
-				'quantity' 		=> $fba_product['quantity'],
-				'location_id'   => $fba_product['location_id']
+				'fba_id'		  => $fba_id,
+				'batch' 		  => $fba_product['batch'],
+				'product_id' 	  => $fba_product['product_id'],
+				'location_id'     => $fba_product['location_id'],
+				'quantity' 		  => $fba_product['quantity'],
+				'quantity_draft'  => $fba_product['quantity_draft']
 			);
 		}
 		
-		$this->db->insert_batch('fba_product', $fba_products);	
+		$this->db->insert_batch('fba_product', $fba_products);
+
+		//fba file	
+		if(isset($data['fba_files']) && $data['fba_files'])
+		{	
+			$fba_files = array();
+	
+			foreach($data['fba_files'] as $fba_file)
+			{			
+				if(is_file(FILEPATH . $fba_file['path'])) 		
+				{
+					$fba_files[] = array(
+						'fba_id'   => $fba_id,
+						'path'     => $fba_file['path']
+					);
+				}
+			}
+	
+			$this->db->insert_batch('fba_file', $fba_files);
+		}		
 		
 		//transaction
-		if(($data['status'] == 2) && isset($data['fba_fees']))
+		if($data['fee_code'] && ($data['status'] == 2))
 		{
-			$fba_product = $data['fba_products'][0];
+			$code = $data['fee_code'];
+			
+			$this->load->model('fee/'. $code .'_model');
+
+			$amount = $this->{$code . '_model'}->run();
 			
 			$this->load->model('catalog/product_model');
+			$this->load->model('finance/transaction_model');
+
+			$fba_product = $data['fba_products'][0];
 			
 			$product_info = $this->product_model->get_product($fba_product['product_id']);
 			
 			$client_id = $product_info['client_id'];
-	
-			$amount = 0;
-			
-			foreach($data['fba_fees'] as $fba_fee) 
-			{
-				$amount += $fba_fee['amount'];
-			}
-			
-			$this->load->model('finance/transaction_model');
 			
 			$transaction_data = array(					
 				'client_id'		  => $client_id,
@@ -66,8 +91,8 @@ class Fba_model extends CI_Model
 				'amount'   		  => $amount,
 				'comment'         => sprintf($this->lang->line('text_fba_transaction_note'), $fba_id)
 			);
-			
-			$this->transaction_model->add_transaction($transaction_data); 							
+							
+			$this->transaction_model->add_transaction($transaction_data); 
 		} 
 		
 		if($this->db->trans_status() === false) 
@@ -90,120 +115,17 @@ class Fba_model extends CI_Model
 		
 		$this->db->trans_begin();
 		
-		//inventory data
+		//transaction
 		$fba = $this->get_fba($fba_id);
-		
-		if(($fba['status'] == 1) && ($data['status'] == 2))
-		{
-			foreach($data['fba_products'] as $fba_product)
-			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id'], 'batch' => $fba_product['batch']));
 
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->set('quantity', 'quantity+'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				}
-				else
-				{
-					$inventory_data = array(
-						'product_id' 	 => $fba_product['product_id'],
-						'batch' 		 => $fba_product['batch'],
-						'quantity' 		 => $fba_product['quantity'],
-						'location_id' 	 => $fba_product['location_id'],
-						'date_added'     => date('Y-m-d H:i:s'),
-						'date_modified'  => date('Y-m-d H:i:s')			
-					);
-					
-					$this->db->insert('inventory', $inventory_data);
-				}
-			}
-		} 
-		
-		if(($fba['status'] == 2) && ($data['status'] == 2))
-		{
-			$fba_products = $this->get_fba_products($fba_id);
-		
-			foreach($fba_products as $fba_product) 
-			{	
-				$this->db->where('product_id', $fba_product['product_id']);
-				$this->db->where('location_id', $fba_product['location_id']);
-				$this->db->where('batch', $fba_product['batch']);
-				$this->db->set('quantity', 'quantity-'.$fba_product['quantity'], false);				
-				$this->db->update('inventory');
-			}
-			
-			foreach($data['fba_products'] as $fba_product)
-			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id'], 'batch' => $fba_product['batch']));
-			
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->set('quantity', 'quantity+'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				}
-				else
-				{
-					$inventory_data = array(
-						'product_id' 	 => $fba_product['product_id'],
-						'quantity' 		 => $fba_product['quantity'],
-						'batch' 		 => $fba_product['batch'],
-						'location_id' 	 => $fba_product['location_id'],
-						'date_added'     => date('Y-m-d H:i:s'),
-						'date_modified'  => date('Y-m-d H:i:s')			
-					);
-					
-					$this->db->insert('inventory', $inventory_data);
-				}
-			}
-		}
-		
-		if(($fba['status'] == 2) && ($data['status'] == 1))
-		{
-			$fba_products = $this->get_fba_products($fba_id);
-		
-			foreach($fba_products as $fba_product) 
-			{	
-				$this->db->where('product_id', $fba_product['product_id']);
-				$this->db->where('location_id', $fba_product['location_id']);
-				$this->db->where('batch', $fba_product['batch']);
-				$this->db->set('quantity', 'quantity-'.$fba_product['quantity'], false);
-				$this->db->update('inventory');
-				
-				$this->db->where('product_id', $fba_product['product_id']);
-				$this->db->where('location_id', $fba_product['location_id']);
-				$this->db->where('batch', $fba_product['batch']);
-				$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-			}
-		}
-		
-		//transaction		
 		if($data['fee_code'])
 		{
-			//run fba fee
 			$code = $data['fee_code'];
 			
 			$this->load->model('fee/'. $code .'_model');
 
-			$amount = $this->{$code . '_model'}->run_fba($fba_id);
+			$amount = $this->{$code . '_model'}->run();
 			
-			//modify transition
 			$this->load->model('catalog/product_model');
 			$this->load->model('finance/transaction_model');
 
@@ -251,14 +173,15 @@ class Fba_model extends CI_Model
 			}
 		} 
 		
-		//fba data
+		//fba info
 		$fba_data = array(
 			'tracking'     => $data['tracking'],
+			'fee_code' 	   => $data['fee_code'],
 			'status'       => $data['status'],
 			'note' 		   => $data['note']
 		);
 		
-		$this->db->where('id', $fba_id);
+		$this->db->where('fba_id', $fba_id);
 		$this->db->update('fba', $fba_data);
 		
 		//fba product
@@ -266,9 +189,10 @@ class Fba_model extends CI_Model
 	
 		$fba_products = array();
 		
-		foreach($data['fba_products'] as $fba_product){
+		foreach($data['fba_products'] as $fba_product)
+		{
 			$fba_products[] = array(
-				'fba_id'     => $fba_id,
+				'fba_id'         => $fba_id,
 				'product_id'     => $fba_product['product_id'],
 				'location_id'    => $fba_product['location_id'],
 				'batch' 	     => $fba_product['batch'],
@@ -278,7 +202,28 @@ class Fba_model extends CI_Model
 		}
 		
 		$this->db->insert_batch('fba_product', $fba_products);
-
+		
+		//fba file	
+		$this->db->delete('fba_file', array('fba_id' => $fba_id));
+		
+		if(isset($data['fba_files']) && $data['fba_files'])
+		{	
+			$fba_files = array();
+	
+			foreach($data['fba_files'] as $fba_file)
+			{			
+				if(is_file(FILEPATH . $fba_file['path'])) 		
+				{
+					$fba_files[] = array(
+						'fba_id'  => $fba_id,
+						'path'    => $fba_file['path']
+					);
+				}
+			}
+			
+			$this->db->insert_batch('fba_file', $fba_files);
+		}
+		
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();
@@ -300,44 +245,30 @@ class Fba_model extends CI_Model
 		
 		if($fba['status'] == 1)
 		{
-			//inventory data
-			$fba_products = $this->get_fba_products($fba_id);
-			
-			foreach($fba_products as $fba_product)
-			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id'], 'batch' => $fba_product['batch']));
-
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->set('quantity', 'quantity+'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				}
-				else
-				{
-					$inventory_data = array(
-						'product_id' 	 => $fba_product['product_id'],
-						'location_id' 	 => $fba_product['location_id'],
-						'batch' 	     => $fba_product['batch'],
-						'quantity' 		 => $fba_product['quantity'],
-						'date_added'     => date('Y-m-d H:i:s'),
-						'date_modified'  => date('Y-m-d H:i:s')			
-					);
-					
-					$this->db->insert('inventory', $inventory_data);
-				}
-			}
-			
-			//fba data
-			$this->db->where('id', $fba_id);
+			$this->db->where('fba_id', $fba_id);
 			$this->db->update('fba', array('status'  => 2));
+			
+			$fba = $this->get_fba($fba_id);
+			
+			$code = $fba['fee_code'];
+			
+			$this->load->model('fee/'. $code .'_model');
+
+			$amount = $this->{$code . '_model'}->run();
+			
+			$this->load->model('finance/transaction_model');
+			
+			$transaction_data = array(					
+				'client_id'		  => $fba['client_id'],
+				'type'		      => 'fba',
+				'type_id'         => $fba_id,
+				'cost'   		  => 0,
+				'markup'   		  => $amount,
+				'amount'   		  => $amount,
+				'comment'         => sprintf($this->lang->line('text_fba_transaction_note'), $fba_id)
+			);
+								
+			$this->transaction_model->add_transaction($transaction_data); 
 		}
 		
 		if($this->db->trans_status() === false) 
@@ -362,35 +293,11 @@ class Fba_model extends CI_Model
 		
 		if($fba['status'] == 2)
 		{
-			//inventory data
-			$fba_products = $this->get_fba_products($fba_id);
-			
-			foreach($fba_products as $fba_product)
-			{	
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id'], 'batch' => $fba_product['batch']));
-
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->set('quantity', 'quantity-'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->where('batch', $fba_product['batch']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				}
-			}
-			
-			//transaction
 			$this->load->model('finance/transaction_model');
 
 			$this->transaction_model->delete_transaction_by_type('fba', $fba_id);				   
 			
-			//fba data
-			$this->db->where('id', $fba_id);
+			$this->db->where('fba_id', $fba_id);
 			$this->db->update('fba', array('status'  => 1));
 		}
 		
@@ -450,6 +357,18 @@ class Fba_model extends CI_Model
 		return false;
 	}
 	
+	public function get_fba_files($fba_id) 
+	{	
+		$q = $this->db->get_where('fba_file', array('fba_id' => $fba_id));
+
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_fba_fees($fba_id) 
 	{	
 		$q = $this->db->get_where('fba_fee', array('fba_id' => $fba_id));
@@ -466,38 +385,13 @@ class Fba_model extends CI_Model
 	{
 		$this->db->trans_begin();
 		
-		//restore inventory
-		$fba = $this->get_fba($fba_id);
-		
-		if($fba['status'] == 2)
-		{
-			$fba_products = $this->get_fba_products($fba_id);
-			
-			foreach($fba_products as $fba_product)
-			{
-				$q = $this->db->get_where('inventory', array('product_id' => $fba_product['product_id'], 'location_id' => $fba_product['location_id']));
-		
-				if($q->num_rows() > 0)
-				{
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->set('quantity', 'quantity-'.$fba_product['quantity'], false);
-					$this->db->update('inventory');
-					
-					$this->db->where('product_id', $fba_product['product_id']);
-					$this->db->where('location_id', $fba_product['location_id']);
-					$this->db->update('inventory', array('date_modified' => date('Y-m-d H:i:s'))); 
-				} 
-			}
-		}
-		
 		//restore transaction
-		$this->load->model('finance/transaction_model');
+		//$this->load->model('finance/transaction_model');
 
-		$this->transaction_model->delete_transaction_by_type('fba', $fba_id);	
+		//$this->transaction_model->delete_transaction_by_type('fba', $fba_id);	
 		
 		//delete fba
-		$this->db->delete('fba', array('id' => $fba_id));
+		$this->db->delete('fba', array('fba_id' => $fba_id));
 		$this->db->delete('fba_product', array('fba_id' => $fba_id));		
 		
 		if($this->db->trans_status() === false) 

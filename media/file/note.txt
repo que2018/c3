@@ -77,11 +77,70 @@ https://www.discoverlosangeles.com/es/node/31735
 
 ------------------------------------------------------------------------
 
-设置ubuntu gui:
+Honda AC Fix:
 
-https://stackoverflow.com/questions/25657596/how-to-set-up-gui-on-amazon-ec2-ubuntu-server
+https://www.youtube.com/watch?v=IywhDg5Mweg
 
 ------------------------------------------------------------------------
+
+ant字体:
+
+https://ant.design/docs/react/customize-theme-cn
+
+------------------------------------------------------------------------
+
+钓鱼网站:
+
+https://www.redondobeachsportfishing.com/
+
+------------------------------------------------------------------------
+
+Node项目
+
+https://github.com/cnodejs/nodeclub
+
+------------------------------------------------------------------------
+
+https://mesg.ebay.com/mesgweb/ViewMessageDetail/0/All/117277588511
+
+------------------------------------------------------------------------
+
+南瓜节：
+
+https://mrbonespumpkinpatch.com
+
+https://nightsofthejack.com
+
+------------------------------------------------------------------------
+
+https://stackoverflow.com/questions/1089285/maven-run-project
+
+------------------------------------------------------------------------
+
+meetup事件
+
+https://www.meetup.com/Mobile-App-Startup-Network/events/rdmvhryzqbmb/
+
+------------------------------------------------------------------------
+
+https://www.ebay.com/itm/2-SMALL-SHORT-GROMMET-PANEL-LINED-BLACKOUT-WINDOW-CURTAIN-TREATMENT-DRAPE-D24/302426660130?hash=item466a089d22:m:mlGsV2yklHXd8X1Z_BDLybg
+
+https://www.ebay.com/itm/Solid-Amy-Thermal-Blackout-Window-Curtain-Panel-With-Reflecting-Shiny-Back-New/282858362840?hash=item41dbac17d8:m:muxDS_zEwuKvtdPAdpjdHhA
+
+------------------------------------------------------------------------
+
+https://zhuanlan.zhihu.com/p/33932181
+
+------------------------------------------------------------------------
+
+https://www.xiachufang.com/recipe/104176034/
+
+https://www.xiachufang.com/recipe/104057063/
+
+------------------------------------------------------------------------
+
+
+
 
 
 
