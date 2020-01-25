@@ -8,18 +8,18 @@ class Fba_model extends CI_Model
 		
 		$this->db->trans_begin();
 		
-		//get client
-		$product_id = $data['fba_products'][0]['product_id'];	
-		
-		$product_info = $this->product_model->get_product($product_id);	
-				
 		//fba data
 		$fba_data = array(
-			'client_id'       => $product_info['client_id'],
+			'client_id'       => $data['client_id'],
 			'tracking' 		  => $data['tracking'],
-			'fee_code' 		  => $data['fee_code'],
-			'note' 		      => $data['note'],
 			'status' 		  => $data['status'],
+			'fee_code' 		  => $data['fee_code'],
+			'type'    	   	  => $data['type'],
+			'street'       	  => $data['street'],
+			'city'    	   	  => $data['city'],
+			'state'    	   	  => $data['state'],
+			'postcode'    	  => $data['postcode'],
+			'note' 		      => $data['note'],
 			'date_added'      => date('Y-m-d H:i:s'),
 			'date_modified'   => date('Y-m-d H:i:s')			
 		);
@@ -34,12 +34,13 @@ class Fba_model extends CI_Model
 		foreach($data['fba_products'] as $fba_product)
 		{					
 			$fba_products[] = array(
-				'fba_id'		  => $fba_id,
-				'batch' 		  => $fba_product['batch'],
-				'product_id' 	  => $fba_product['product_id'],
-				'location_id'     => $fba_product['location_id'],
-				'quantity' 		  => $fba_product['quantity'],
-				'quantity_draft'  => $fba_product['quantity_draft']
+				'fba_id'		  		=> $fba_id,
+				'fba_reference_number'  => $fba_product['fba_reference_number'],
+				'reference_number' 	    => $fba_product['reference_number'],
+				'cbm'                   => $fba_product['cbm'],
+				'quantity' 		        => $fba_product['quantity'],
+				'location_id'           => $fba_product['location_id'],
+				'note'                  => $fba_product['note']
 			);
 		}
 		
@@ -126,19 +127,12 @@ class Fba_model extends CI_Model
 
 			$amount = $this->{$code . '_model'}->run();
 			
-			$this->load->model('catalog/product_model');
 			$this->load->model('finance/transaction_model');
 
-			$fba_product = $data['fba_products'][0];
-			
-			$product_info = $this->product_model->get_product($fba_product['product_id']);
-			
-			$client_id = $product_info['client_id'];
-			
 			if(($fba['status'] == 1) && ($data['status'] == 2))
 			{
 				$transaction_data = array(					
-					'client_id'		  => $client_id,
+					'client_id'		  => $data['client_id'],
 					'type'		      => 'fba',
 					'type_id'         => $fba_id,
 					'cost'   		  => 0,
@@ -152,6 +146,8 @@ class Fba_model extends CI_Model
 			
 			if(($fba['status'] == 2) && ($data['status'] == 2))
 			{
+				$this->transaction_model->delete_transaction_by_type('fba', $fba_id);				   
+				
 				$transaction_data = array(					
 					'client_id'		  => $client_id,
 					'type'		      => 'fba',
@@ -161,8 +157,6 @@ class Fba_model extends CI_Model
 					'amount'   		  => $amount,
 					'comment'         => sprintf($this->lang->line('text_fba_transaction_note'), $fba_id)
 				);
-				
-				$this->transaction_model->delete_transaction_by_type('fba', $fba_id);				   
 								
 				$this->transaction_model->add_transaction($transaction_data);
 			}
@@ -175,10 +169,17 @@ class Fba_model extends CI_Model
 		
 		//fba info
 		$fba_data = array(
-			'tracking'     => $data['tracking'],
-			'fee_code' 	   => $data['fee_code'],
-			'status'       => $data['status'],
-			'note' 		   => $data['note']
+			'client_id'       => $data['client_id'],
+			'tracking' 		  => $data['tracking'],
+			'status' 		  => $data['status'],
+			'fee_code' 		  => $data['fee_code'],
+			'type'    	   	  => $data['type'],
+			'street'       	  => $data['street'],
+			'city'    	   	  => $data['city'],
+			'state'    	   	  => $data['state'],
+			'postcode'    	  => $data['postcode'],
+			'note' 		      => $data['note'],
+			'date_modified'   => date('Y-m-d H:i:s')	
 		);
 		
 		$this->db->where('fba_id', $fba_id);
@@ -192,12 +193,13 @@ class Fba_model extends CI_Model
 		foreach($data['fba_products'] as $fba_product)
 		{
 			$fba_products[] = array(
-				'fba_id'         => $fba_id,
-				'product_id'     => $fba_product['product_id'],
-				'location_id'    => $fba_product['location_id'],
-				'batch' 	     => $fba_product['batch'],
-				'quantity' 	     => $fba_product['quantity'],
-				'quantity_draft' => $fba_product['quantity_draft']
+				'fba_id'		  		=> $fba_id,
+				'fba_reference_number'  => $fba_product['fba_reference_number'],
+				'reference_number' 	    => $fba_product['reference_number'],
+				'cbm'                   => $fba_product['cbm'],
+				'quantity' 		        => $fba_product['quantity'],
+				'location_id'           => $fba_product['location_id'],
+				'note'                  => $fba_product['note']
 			);
 		}
 		
@@ -248,27 +250,28 @@ class Fba_model extends CI_Model
 			$this->db->where('fba_id', $fba_id);
 			$this->db->update('fba', array('status'  => 2));
 			
-			$fba = $this->get_fba($fba_id);
-			
-			$code = $fba['fee_code'];
-			
-			$this->load->model('fee/'. $code .'_model');
+			if($fba['fee_code'])
+			{
+				$code = $fba['fee_code'];
+				
+				$this->load->model('fee/'. $code .'_model');
 
-			$amount = $this->{$code . '_model'}->run();
-			
-			$this->load->model('finance/transaction_model');
-			
-			$transaction_data = array(					
-				'client_id'		  => $fba['client_id'],
-				'type'		      => 'fba',
-				'type_id'         => $fba_id,
-				'cost'   		  => 0,
-				'markup'   		  => $amount,
-				'amount'   		  => $amount,
-				'comment'         => sprintf($this->lang->line('text_fba_transaction_note'), $fba_id)
-			);
-								
-			$this->transaction_model->add_transaction($transaction_data); 
+				$amount = $this->{$code . '_model'}->run();
+				
+				$this->load->model('finance/transaction_model');
+				
+				$transaction_data = array(					
+					'client_id'		  => $fba['client_id'],
+					'type'		      => 'fba',
+					'type_id'         => $fba_id,
+					'cost'   		  => 0,
+					'markup'   		  => $amount,
+					'amount'   		  => $amount,
+					'comment'         => sprintf($this->lang->line('text_fba_transaction_note'), $fba_id)
+				);
+									
+				$this->transaction_model->add_transaction($transaction_data); 
+			}
 		}
 		
 		if($this->db->trans_status() === false) 
@@ -293,12 +296,15 @@ class Fba_model extends CI_Model
 		
 		if($fba['status'] == 2)
 		{
-			$this->load->model('finance/transaction_model');
-
-			$this->transaction_model->delete_transaction_by_type('fba', $fba_id);				   
-			
 			$this->db->where('fba_id', $fba_id);
 			$this->db->update('fba', array('status'  => 1));
+			
+			if($fba['fee_code'])
+			{
+				$this->load->model('finance/transaction_model');
+
+				$this->transaction_model->delete_transaction_by_type('fba', $fba_id);
+			}
 		}
 		
 		if($this->db->trans_status() === false) 
@@ -341,9 +347,8 @@ class Fba_model extends CI_Model
 	
 	public function get_fba_products($fba_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, fba_product.batch, fba_product.quantity, fba_product.quantity_draft, fba_product.location_id, location.name AS location_name', false);
+		$this->db->select('fba_product.*, location.name AS location_name', false);
 		$this->db->from('fba_product');
-		$this->db->join('product', 'product.id = fba_product.product_id', 'left');
 		$this->db->join('location', 'location.id = fba_product.location_id', 'left');
 		$this->db->where('fba_product.fba_id', $fba_id);
 
@@ -386,14 +391,15 @@ class Fba_model extends CI_Model
 		$this->db->trans_begin();
 		
 		//restore transaction
-		//$this->load->model('finance/transaction_model');
+		$this->load->model('finance/transaction_model');
 
-		//$this->transaction_model->delete_transaction_by_type('fba', $fba_id);	
+		$this->transaction_model->delete_transaction_by_type('fba', $fba_id);	
 		
 		//delete fba
 		$this->db->delete('fba', array('fba_id' => $fba_id));
 		$this->db->delete('fba_product', array('fba_id' => $fba_id));		
-		
+		$this->db->delete('fba_file', array('fba_id' => $fba_id));		
+
 		if($this->db->trans_status() === false) 
 		{
 			$this->db->trans_rollback();

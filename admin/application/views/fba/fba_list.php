@@ -119,17 +119,15 @@
 						  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						    <table class="table">
 							  <thead>
-							    <th style="width: 24%;"><?php echo $this->lang->line('column_name'); ?></th>
-							    <th style="width: 24%;"><?php echo $this->lang->line('column_loc'); ?></th>
-							    <th style="width: 24%;"><?php echo $this->lang->line('column_batch'); ?></th>
-							    <th style="width: 18%;"><?php echo $this->lang->line('column_qty'); ?></th>
+							    <th style="width: 50%;"><?php echo $this->lang->line('column_reference_number'); ?></th>
+							    <th style="width: 30%;"><?php echo $this->lang->line('column_loc'); ?></th>
+							    <th style="width: 20%;"><?php echo $this->lang->line('column_qty'); ?></th>
 							  </thead>
 							  <tbody>
 							    <?php foreach($fba['fba_products'] as $fba_product) { ?>
 							    <tr>
-								  <td><?php echo $fba_product['name']; ?></td>
+								  <td><?php echo $fba_product['reference_number']; ?></td>
 								  <td><?php echo $fba_product['location']; ?></td>
-								  <td><?php echo $fba_product['batch']; ?></td>
 								  <td><?php echo $fba_product['quantity']; ?></td>
 							    </tr>
 							    <?php } ?>

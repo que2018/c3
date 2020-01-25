@@ -46,7 +46,9 @@
 .note-editor p {
 	color: #807d7d;
 }
-
+#address {
+	display: none;
+}
 
 
 
