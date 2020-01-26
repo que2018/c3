@@ -78,7 +78,10 @@
     background: #ffffff;
     border: 1px dashed #1ab394 !important;
 }
-
+.i-checks {
+	display: inline-block;
+    padding: 5px 10px 0px 0px;
+}
 
 
 

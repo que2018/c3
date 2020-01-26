@@ -53,6 +53,22 @@
               </div>
 			  <div class="hr-line-dashed"></div>
 			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_import_method'); ?></label>
+			    <div class="col-sm-10">
+				  <?php if($import_method == 'fba_air') { ?>
+				    <div class="i-checks"><label><input type="radio" checked="" value="fba_air" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_air'); ?></label></div>
+				    <div class="i-checks"><label><input type="radio" value="fba_ocean" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_ocean'); ?></label></div>
+				  <?php } else if($import_method == 'fba_ocean') { ?>
+				    <div class="i-checks"><label><input type="radio" value="fba_air" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_air'); ?></label></div>
+				    <div class="i-checks"><label><input type="radio" checked="" value="fba_ocean" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_ocean'); ?></label></div>
+				  <?php } else { ?>
+				    <div class="i-checks"><label><input type="radio" value="fba_air" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_air'); ?></label></div>
+				    <div class="i-checks"><label><input type="radio" value="fba_ocean" name="import_method">&nbsp;<?php echo $this->lang->line('text_fba_ocean'); ?></label></div>
+				  <?php } ?>
+				</div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
 			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
 			    <div class="col-sm-10"><input name="tracking" value="<?php echo $tracking; ?>" class="form-control" ></div>
 			  </div>
@@ -354,6 +370,20 @@ function add_fba_file() {
 		}
 	});
 }
+</script>
+<script>
+$(document).ready(function () {
+	$('.i-checks').iCheck({
+		checkboxClass: 'icheckbox_square-green',
+		radioClass: 'iradio_square-green',
+	});
+});
+$(document).ready(function () {
+	$('.i-checks').iCheck({
+		checkboxClass: 'icheckbox_square-green',
+		radioClass: 'iradio_square-green',
+	});
+});
 </script>
 <script>
 $(document).ready(function() {

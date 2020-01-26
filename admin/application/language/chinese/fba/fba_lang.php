@@ -63,6 +63,9 @@ $lang['text_ups'] 	  	         				    		= 'UPS';
 $lang['text_fba_warehouse'] 	  	         	    		= 'FBA仓库';
 $lang['text_personal_address'] 	  	         	    		= '个人地址';
 $lang['text_client'] 	  	         	            		= '客户';
+$lang['text_fba_air'] 	  	         	         			= 'FBA空运';
+$lang['text_fba_ocean'] 	  	         	         		= 'FBA海运';
+$lang['text_import_method'] 	  	         	          	= '货运方式';
 
 // Tab
 $lang['tab_general'] 	        	    		 			= '通用';
@@ -121,6 +124,7 @@ $lang['entry_tracking'] 	  	    	 		 			= '追踪号';
 $lang['entry_status'] 	  	        	 		 			= '状态';
 $lang['entry_note'] 	  	        	 		 			= '备注';
 $lang['entry_date_added'] 	  	        	     			= '添加时间';
+$lang['entry_import_method'] 	  	        	     	 	= '货运方式';
 
 // Error 
 $lang['error_code_empty'] 	  	                 			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;代码是空的';

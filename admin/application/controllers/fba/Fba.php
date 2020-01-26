@@ -96,7 +96,7 @@ class Fba extends MX_Controller
 		} 
 		else 
 		{
-			$sort = 'date_added';
+			$sort = 'fba_id';
 		}
 
 		if ($this->input->get('order')) 
@@ -369,12 +369,14 @@ class Fba extends MX_Controller
 		$this->load->model('catalog/product_model');
 	
 		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_add.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
-
+		
+		$this->header->add_script(base_url(). 'assets/js/plugins/iCheck/icheck.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
@@ -382,13 +384,15 @@ class Fba extends MX_Controller
 		$this->header->set_title($this->lang->line('text_fba_add'));
 
 		$this->form_validation->set_rules('client_id', $this->lang->line('text_client'), 'required');
+		$this->form_validation->set_rules('import_method', $this->lang->line('text_import_method'), 'required');
 		$this->form_validation->set_rules('tracking', $this->lang->line('text_tracking'), 'callback_validate_add_tracking');
 		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_product');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
-		{
+		{						
 			$data = array(
 				'client_id'    	=> $this->input->post('client_id'),
+				'import_method' => $this->input->post('import_method'),
 				'tracking'    	=> $this->input->post('tracking'),
 				'status'      	=> $this->input->post('status'),
 				'type'    	    => $this->input->post('type'),
@@ -406,6 +410,7 @@ class Fba extends MX_Controller
 		{
 			$data = array(
 				'tracking'       => '',
+				'import_method'  => '',
 				'status'         => '',
 				'type'    	     => '',
 				'street'       	 => '',
@@ -500,12 +505,14 @@ class Fba extends MX_Controller
 		$this->load->model('catalog/product_model');
 	
 		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_edit.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/summernote/summernote-bs3.css');
 		$this->header->add_style(base_url(). 'assets/css/plugins/jasny/jasny-bootstrap.min.css');
 
+		$this->header->add_script(base_url(). 'assets/js/plugins/iCheck/icheck.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');		
 		$this->header->add_script(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.js');
 		$this->header->add_script(base_url(). 'assets/js/plugins/summernote/summernote.min.js');
@@ -523,6 +530,7 @@ class Fba extends MX_Controller
 			$data = array(
 				'client_id'    	=> $this->input->post('client_id'),
 				'tracking'    	=> $this->input->post('tracking'),
+				'import_method' => $this->input->post('import_method'),
 				'status'      	=> $this->input->post('status'),
 				'type'    	    => $this->input->post('type'),
 				'street'       	=> $this->input->post('street'),
@@ -544,19 +552,20 @@ class Fba extends MX_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{			
-			$data['fba_id']     = $this->input->get('fba_id');
-			$data['client_id']  = $this->input->post('client_id');
-			$data['tracking']   = $this->input->post('tracking');
-			$data['status']     = $this->input->post('status');
-			$data['type']       = $this->input->post('type');
-			$data['street']     = $this->input->post('street');
-			$data['city']       = $this->input->post('city');
-			$data['state']      = $this->input->post('state');
-			$data['postcode']   = $this->input->post('postcode');
-			$data['fee_code']   = $this->input->post('fee_code');
-			$data['note']       = $this->input->post('note');
-			$data['fba_fees']   = $this->input->post('fba_fee');
-			$data['fba_files']  = $this->input->post('fba_file');
+			$data['fba_id']     	= $this->input->get('fba_id');
+			$data['client_id']  	= $this->input->post('client_id');
+			$data['import_method']  = $this->input->post('import_method');
+			$data['tracking']   	= $this->input->post('tracking');
+			$data['status']     	= $this->input->post('status');
+			$data['type']       	= $this->input->post('type');
+			$data['street']     	= $this->input->post('street');
+			$data['city']       	= $this->input->post('city');
+			$data['state']      	= $this->input->post('state');
+			$data['postcode']   	= $this->input->post('postcode');
+			$data['fee_code']   	= $this->input->post('fee_code');
+			$data['note']       	= $this->input->post('note');
+			$data['fba_fees']   	= $this->input->post('fba_fee');
+			$data['fba_files']  	= $this->input->post('fba_file');
 		
 			$fba_products = $this->input->post('fba_product');
 			
@@ -582,16 +591,17 @@ class Fba extends MX_Controller
 		{
 			$fba = $this->fba_model->get_fba($fba_id);	
 		
-			$data['client_id']  = $fba['client_id'];
-			$data['tracking']   = $fba['tracking'];
-			$data['status']     = $fba['status'];
-			$data['type']       = $fba['type'];
-			$data['street']     = $fba['street'];
-			$data['city']       = $fba['city'];
-			$data['state']      = $fba['state'];
-			$data['postcode']   = $fba['postcode'];
-			$data['fee_code']   = $fba['fee_code'];
-			$data['note']       = $fba['note'];
+			$data['client_id']  	= $fba['client_id'];
+			$data['import_method']  = $fba['import_method'];
+			$data['tracking']   	= $fba['tracking'];
+			$data['status']     	= $fba['status'];
+			$data['type']       	= $fba['type'];
+			$data['street']     	= $fba['street'];
+			$data['city']       	= $fba['city'];
+			$data['state']      	= $fba['state'];
+			$data['postcode']   	= $fba['postcode'];
+			$data['fee_code']   	= $fba['fee_code'];
+			$data['note']       	= $fba['note'];
 
 			$data['fba_products'] = array();
 			
@@ -744,8 +754,6 @@ class Fba extends MX_Controller
 		
 		$this->load->model('fba/fba_model');
 
-		file_put_contents("log.txt", $tracking);
-
 		if($tracking)
 		{
 			$result = $this->fba_model->get_fba_by_tracking($tracking);
@@ -802,8 +810,7 @@ class Fba extends MX_Controller
 				
 				if(empty($fba_reference_number))
 				{		
-					$message .= sprintf($this->lang->line('error_fba_product_fba_reference_number_required'), ($i+1));
-					$message .= '<br>';
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_fba_reference_number_required'), ($i+1)).'</p>';
 					
 					if($validated)
 						$validated = false;
@@ -811,8 +818,7 @@ class Fba extends MX_Controller
 				
 				if(empty($reference_number))
 				{		
-					$message .= sprintf($this->lang->line('error_fba_product_reference_number_required'), ($i+1));
-					$message .= '<br>';
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_reference_number_required'), ($i+1)).'<p>';
 					
 					if($validated)
 						$validated = false;
@@ -820,8 +826,7 @@ class Fba extends MX_Controller
 				
 				if(!preg_match("/^[1-9]\d*$/", $cbm))
 				{					
-					$message .= sprintf($this->lang->line('error_fba_product_cbm_format'), ($i+1));
-					$message .= '<br>';
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_cbm_format'), ($i+1)).'</p>';
 					
 					if($validated)
 						$validated = false;
@@ -829,8 +834,7 @@ class Fba extends MX_Controller
 
 				if(!preg_match("/^[1-9]\d*$/", $quantity))
 				{
-					$message .= sprintf($this->lang->line('error_fba_product_quantity_format'), ($i+1));
-					$message .= '<br>';
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_quantity_format'), ($i+1)).'</p>';
 					
 					if($validated)
 						$validated = false;
@@ -838,8 +842,7 @@ class Fba extends MX_Controller
 				
 				if(empty($location_id))
 				{			
-					$message .= sprintf($this->lang->line('error_fba_product_location_required'), ($i+1));
-					$message .= '<br>';
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_location_required'), ($i+1)).'</p>';
 					
 					if($validated)
 						$validated = false;

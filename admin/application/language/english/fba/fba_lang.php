@@ -62,6 +62,9 @@ $lang['text_ups'] 	  	         				 			= 'UPS';
 $lang['text_fba_warehouse'] 	  	         	 			= 'FBA Warehouse';
 $lang['text_personal_address'] 	  	         	 			= 'Personal Address';
 $lang['text_client'] 	  	         	         			= 'client';
+$lang['text_fba_air'] 	  	         	         			= 'FBA Air';
+$lang['text_fba_ocean'] 	  	         	         		= 'FBA Ocean';
+$lang['text_import_method'] 	  	         	          	= 'import method';
 
 // Tab
 $lang['tab_general'] 	        	    		 			= 'General';
@@ -116,6 +119,7 @@ $lang['entry_tracking'] 	  	    	 		 			= 'Tracking / Refer';
 $lang['entry_status'] 	  	        	 		 			= 'Status';
 $lang['entry_note'] 	  	        	 		 			= 'Note';
 $lang['entry_date_added'] 	  	        	     			= 'Date Added';
+$lang['entry_import_method'] 	  	        	     	 	= 'Import Method';
 
 // Error 
 $lang['error_code_empty'] 	  	                 			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Code is required';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2020 at 12:12 AM
+-- Generation Time: Jan 26, 2020 at 07:53 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.0.32
 
@@ -328,7 +328,155 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (13251, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 00:11:40'),
 (13252, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 00:11:42'),
 (13253, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 00:11:47'),
-(13254, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 00:11:48');
+(13254, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 00:11:48'),
+(13255, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 00:19:29'),
+(13256, NULL, '::1', '', 'view the dashboard', 'GET', '2020-01-26 18:55:37'),
+(13257, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-01-26 18:55:43'),
+(13258, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-26 18:55:43'),
+(13259, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 18:55:49'),
+(13260, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 18:56:22'),
+(13261, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 18:57:20'),
+(13262, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 18:57:29'),
+(13263, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:01:04'),
+(13264, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2020-01-26 19:01:22'),
+(13265, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:01:27'),
+(13266, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:01:43'),
+(13267, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:01:43'),
+(13268, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:01:55'),
+(13269, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:02:02'),
+(13270, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:02:02'),
+(13271, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:02:10'),
+(13272, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:02:10'),
+(13273, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:02:16'),
+(13274, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:02:16'),
+(13275, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:02:24'),
+(13276, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:02:25'),
+(13277, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:02:26'),
+(13278, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:02:27'),
+(13279, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:02:28'),
+(13280, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:03:17'),
+(13281, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:03:21'),
+(13282, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:03:27'),
+(13283, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:03:27'),
+(13284, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:03:27'),
+(13285, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:03:29'),
+(13286, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:03:30'),
+(13287, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:03:49'),
+(13288, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:04:12'),
+(13289, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:04:12'),
+(13290, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:04:12'),
+(13291, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:04:15'),
+(13292, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:04:45'),
+(13293, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:04:46'),
+(13294, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:04:49'),
+(13295, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:04:57'),
+(13296, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:05:00'),
+(13297, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:05:10'),
+(13298, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:05:12'),
+(13299, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:05:16'),
+(13300, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:31'),
+(13301, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:32'),
+(13302, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:32'),
+(13303, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:33'),
+(13304, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:34'),
+(13305, 1, '::1', 'fba/fba_ajax/change_status', '0', 'GET', '2020-01-26 19:05:35'),
+(13306, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:43'),
+(13307, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:44'),
+(13308, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:44'),
+(13309, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:44'),
+(13310, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:45'),
+(13311, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:45'),
+(13312, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:46'),
+(13313, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:46'),
+(13314, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:47'),
+(13315, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:47'),
+(13316, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:47'),
+(13317, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:47'),
+(13318, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:48'),
+(13319, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:49'),
+(13320, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:50'),
+(13321, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:50'),
+(13322, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:51'),
+(13323, 1, '::1', 'fba/fba/filter', '0', 'GET', '2020-01-26 19:05:51'),
+(13324, 1, '::1', 'fba/fba/delete', '0', 'GET', '2020-01-26 19:05:55'),
+(13325, 1, '::1', 'fba/fba/reload', '0', 'GET', '2020-01-26 19:05:55'),
+(13326, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:05:58'),
+(13327, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:05:59'),
+(13328, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:06:05'),
+(13329, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:06:12'),
+(13330, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-26 19:08:08'),
+(13331, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:16:54'),
+(13332, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:19:18'),
+(13333, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:20:22'),
+(13334, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:20:57'),
+(13335, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:21:22'),
+(13336, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:21:37'),
+(13337, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:24:39'),
+(13338, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:26:25'),
+(13339, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:26:27'),
+(13340, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:28:49'),
+(13341, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:29:00'),
+(13342, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:30:06'),
+(13343, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:31:38'),
+(13344, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:31:59'),
+(13345, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:32:43'),
+(13346, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:32:53'),
+(13347, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:34:02'),
+(13348, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:35:13'),
+(13349, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:37:40'),
+(13350, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:37:49'),
+(13351, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:38:00'),
+(13352, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:38:04'),
+(13353, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:38:50'),
+(13354, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:39:17'),
+(13355, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:39:31'),
+(13356, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:41:15'),
+(13357, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:41:17'),
+(13358, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:44:21'),
+(13359, 1, '::1', 'warehouse/location_ajax/autocomplete', 'try to add warehouse location', 'GET', '2020-01-26 19:44:45'),
+(13360, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:44:47'),
+(13361, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:44:47'),
+(13362, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:47:03'),
+(13363, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:48:18'),
+(13364, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:49:00'),
+(13365, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:49:02'),
+(13366, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:49:52'),
+(13367, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:50:11'),
+(13368, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:50:49'),
+(13369, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:50:51'),
+(13370, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:50:53'),
+(13371, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:50:56'),
+(13372, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:50:56'),
+(13373, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:50:58'),
+(13374, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:51:01'),
+(13375, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:51:01'),
+(13376, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:51:10'),
+(13377, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:51:14'),
+(13378, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:51:14'),
+(13379, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:51:14'),
+(13380, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:51:55'),
+(13381, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:51:57'),
+(13382, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:52:41'),
+(13383, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:52:43'),
+(13384, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:52:47'),
+(13385, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:52:48'),
+(13386, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:52:52'),
+(13387, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:52:52'),
+(13388, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:52:53'),
+(13389, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:52:55'),
+(13390, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:52:57'),
+(13391, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-01-26 19:53:00'),
+(13392, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:53:00'),
+(13393, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:53:00'),
+(13394, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:53:02'),
+(13395, 1, '::1', 'fba/fba/edit', '0', 'POST', '2020-01-26 19:53:05'),
+(13396, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:53:05'),
+(13397, 1, '::1', 'fba/fba/edit', '0', 'GET', '2020-01-26 19:53:07'),
+(13398, 1, '::1', 'fba/fba', '0', 'GET', '2020-01-26 19:53:12'),
+(13399, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:53:21'),
+(13400, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:53:23'),
+(13401, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:53:26'),
+(13402, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:53:31');
 
 -- --------------------------------------------------------
 
@@ -771,6 +919,7 @@ INSERT INTO `extension` (`extension_id`, `type`, `code`) VALUES
 CREATE TABLE `fba` (
   `fba_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
+  `import_method` varchar(32) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `fee_code` varchar(64) NOT NULL,
   `type` varchar(64) NOT NULL,
@@ -788,9 +937,10 @@ CREATE TABLE `fba` (
 -- Dumping data for table `fba`
 --
 
-INSERT INTO `fba` (`fba_id`, `client_id`, `tracking`, `fee_code`, `type`, `street`, `city`, `state`, `postcode`, `note`, `status`, `date_added`, `date_modified`) VALUES
-(39, 4, '98896665205230', '', 'fba_warehouse', '19097 Colima Road', 'Rowland Heights', 'California', '91748', '', 1, '2020-01-25 20:06:10', '2020-01-25 23:21:29'),
-(40, 4, '896665620478', '', 'ups', '', '', '', '', '', 2, '2020-01-25 23:35:20', '2020-01-26 00:05:56');
+INSERT INTO `fba` (`fba_id`, `client_id`, `import_method`, `tracking`, `fee_code`, `type`, `street`, `city`, `state`, `postcode`, `note`, `status`, `date_added`, `date_modified`) VALUES
+(39, 4, 'fba_air', '98896665205230', '', 'fba_warehouse', '19097 Colima Road', 'Rowland Heights', 'California', '91748', '', 1, '2020-01-25 20:06:10', '2020-01-26 19:53:05'),
+(40, 4, 'fba_ocean', '896665620478', '', 'fba_warehouse', '19097 Colima Road', 'Rowland Heights', 'California', '91748', 'This is very very important order', 2, '2020-01-25 23:35:20', '2020-01-26 19:53:00'),
+(42, 4, 'fba_air', '556845662000', '', 'ups', '', '', '', '', '', 1, '2020-01-26 19:44:47', '2020-01-26 19:52:52');
 
 -- --------------------------------------------------------
 
@@ -809,7 +959,7 @@ CREATE TABLE `fba_file` (
 --
 
 INSERT INTO `fba_file` (`fba_file_id`, `fba_id`, `path`) VALUES
-(29, 40, 'note.txt');
+(34, 40, 'note.txt');
 
 -- --------------------------------------------------------
 
@@ -833,10 +983,11 @@ CREATE TABLE `fba_product` (
 --
 
 INSERT INTO `fba_product` (`fba_product_id`, `fba_id`, `fba_reference_number`, `reference_number`, `cbm`, `quantity`, `location_id`, `note`) VALUES
-(66, 39, '788965663500', '56632523230', 2000, 40, 2527, ''),
-(70, 40, '85669556620', 'AF25560', 500, 20, 2527, ''),
-(71, 40, '85669556688', 'AF25561', 450, 10, 2528, ''),
-(72, 40, '85669556645', 'AF25562', 380, 18, 2527, '');
+(89, 42, '55656252600', 'A554585078', 500, 200, 2527, ''),
+(90, 40, '85669556620', 'AF25560', 500, 20, 2527, ''),
+(91, 40, '85669556688', 'AF25561', 450, 10, 2528, ''),
+(92, 40, '85669556645', 'AF25562', 380, 18, 2527, ''),
+(93, 39, '788965663500', '56632523230', 2000, 40, 2527, '');
 
 -- --------------------------------------------------------
 
@@ -2006,7 +2157,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13255;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13403;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -2102,19 +2253,19 @@ ALTER TABLE `extension`
 -- AUTO_INCREMENT for table `fba`
 --
 ALTER TABLE `fba`
-  MODIFY `fba_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `fba_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `fba_file`
 --
 ALTER TABLE `fba_file`
-  MODIFY `fba_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `fba_file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `fba_product`
 --
 ALTER TABLE `fba_product`
-  MODIFY `fba_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `fba_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `information`
@@ -2228,7 +2379,7 @@ ALTER TABLE `store_sync_history`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `transfer`

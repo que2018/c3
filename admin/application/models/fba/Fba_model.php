@@ -11,6 +11,7 @@ class Fba_model extends CI_Model
 		//fba data
 		$fba_data = array(
 			'client_id'       => $data['client_id'],
+			'import_method'   => $data['import_method'],
 			'tracking' 		  => $data['tracking'],
 			'status' 		  => $data['status'],
 			'fee_code' 		  => $data['fee_code'],
@@ -170,6 +171,7 @@ class Fba_model extends CI_Model
 		//fba info
 		$fba_data = array(
 			'client_id'       => $data['client_id'],
+			'import_method'   => $data['import_method'],
 			'tracking' 		  => $data['tracking'],
 			'status' 		  => $data['status'],
 			'fee_code' 		  => $data['fee_code'],
