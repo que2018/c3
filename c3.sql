@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2020 at 07:53 PM
+-- Generation Time: Jan 30, 2020 at 07:51 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.0.32
 
@@ -476,7 +476,66 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (13399, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:53:21'),
 (13400, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:53:23'),
 (13401, 1, '::1', 'fba/fba/add', '0', 'POST', '2020-01-26 19:53:26'),
-(13402, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:53:31');
+(13402, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-26 19:53:31'),
+(13403, NULL, '::1', '', 'view the dashboard', 'GET', '2020-01-29 06:38:19'),
+(13404, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-01-29 06:38:41'),
+(13405, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-29 06:38:42'),
+(13406, 1, '::1', 'fba/fba/add', '0', 'GET', '2020-01-29 06:38:47'),
+(13407, 1, '::1', 'warehouse/warehouse', 'view the warehouse page', 'GET', '2020-01-29 06:38:51'),
+(13408, NULL, '::1', '', 'view the dashboard', 'GET', '2020-01-30 07:14:41'),
+(13409, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-01-30 07:14:47'),
+(13410, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-30 07:14:47'),
+(13411, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-01-30 07:16:19'),
+(13412, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:16:22'),
+(13413, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:18:46'),
+(13414, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:19:27'),
+(13415, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:20:29'),
+(13416, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:21:27'),
+(13417, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:22:18'),
+(13418, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:23:40'),
+(13419, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:24:39'),
+(13420, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:25:04'),
+(13421, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:25:31'),
+(13422, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:33:34'),
+(13423, 1, '::1', 'fba/fba_warehouse/add', '0', 'GET', '2020-01-30 07:33:35'),
+(13424, 1, '::1', 'fba/fba_warehouse/add', '0', 'POST', '2020-01-30 07:33:44'),
+(13425, 1, '::1', 'fba/fba_warehouse/add', '0', 'POST', '2020-01-30 07:33:50'),
+(13426, 1, '::1', 'fba/fba_warehouse/add', '0', 'POST', '2020-01-30 07:33:56'),
+(13427, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:33:56'),
+(13428, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:34:20'),
+(13429, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:34:24'),
+(13430, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:34:55'),
+(13431, 1, '::1', 'fba/fba_warehouse/edit', '0', 'GET', '2020-01-30 07:34:56'),
+(13432, 1, '::1', 'fba/fba_warehouse/edit', '0', 'POST', '2020-01-30 07:35:09'),
+(13433, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:35:10'),
+(13434, 1, '::1', 'fba/fba_warehouse/edit', '0', 'GET', '2020-01-30 07:35:19'),
+(13435, 1, '::1', 'fba/fba_warehouse/edit', '0', 'POST', '2020-01-30 07:35:24'),
+(13436, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:35:25'),
+(13437, 1, '::1', 'fba/fba_warehouse/edit', '0', 'GET', '2020-01-30 07:35:28'),
+(13438, 1, '::1', 'fba/fba_warehouse/edit', '0', 'POST', '2020-01-30 07:35:48'),
+(13439, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:35:49'),
+(13440, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:35:53'),
+(13441, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:37:29'),
+(13442, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:37:31'),
+(13443, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:37:34'),
+(13444, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:37:50'),
+(13445, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:39:02'),
+(13446, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:39:09'),
+(13447, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:42:08'),
+(13448, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:42:10'),
+(13449, 1, '::1', 'fba/fba_warehouse/reload', '0', 'GET', '2020-01-30 07:42:10'),
+(13450, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:42:34'),
+(13451, 1, '::1', 'fba/fba_warehouse/add', '0', 'GET', '2020-01-30 07:42:37'),
+(13452, 1, '::1', 'fba/fba_warehouse/add', '0', 'POST', '2020-01-30 07:42:44'),
+(13453, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:42:44'),
+(13454, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:42:48'),
+(13455, 1, '::1', 'fba/fba_warehouse/reload', '0', 'GET', '2020-01-30 07:42:49'),
+(13456, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:50:32'),
+(13457, 1, '::1', 'fba/fba_warehouse/add', '0', 'GET', '2020-01-30 07:50:34'),
+(13458, 1, '::1', 'fba/fba_warehouse/add', '0', 'POST', '2020-01-30 07:50:40'),
+(13459, 1, '::1', 'fba/fba_warehouse', '0', 'GET', '2020-01-30 07:50:40'),
+(13460, 1, '::1', 'fba/fba_warehouse/delete', '0', 'GET', '2020-01-30 07:50:43'),
+(13461, 1, '::1', 'fba/fba_warehouse/reload', '0', 'GET', '2020-01-30 07:50:43');
 
 -- --------------------------------------------------------
 
@@ -988,6 +1047,24 @@ INSERT INTO `fba_product` (`fba_product_id`, `fba_id`, `fba_reference_number`, `
 (91, 40, '85669556688', 'AF25561', 450, 10, 2528, ''),
 (92, 40, '85669556645', 'AF25562', 380, 18, 2527, ''),
 (93, 39, '788965663500', '56632523230', 2000, 40, 2527, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fba_warehouse`
+--
+
+CREATE TABLE `fba_warehouse` (
+  `fba_warehouse_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `city` varchar(55) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `zipcode` varchar(50) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1981,6 +2058,13 @@ ALTER TABLE `fba_product`
   ADD KEY `purchase_id` (`fba_id`);
 
 --
+-- Indexes for table `fba_warehouse`
+--
+ALTER TABLE `fba_warehouse`
+  ADD PRIMARY KEY (`fba_warehouse_id`),
+  ADD KEY `id` (`fba_warehouse_id`);
+
+--
 -- Indexes for table `information`
 --
 ALTER TABLE `information`
@@ -2157,7 +2241,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13403;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13462;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -2266,6 +2350,12 @@ ALTER TABLE `fba_file`
 --
 ALTER TABLE `fba_product`
   MODIFY `fba_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT for table `fba_warehouse`
+--
+ALTER TABLE `fba_warehouse`
+  MODIFY `fba_warehouse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `information`

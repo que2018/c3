@@ -19,6 +19,7 @@ $lang['menu_checkout_order']	     = '订单出库';
 $lang['menu_fba']	                 = 'FBA';
 $lang['menu_fba_add']	             = '添加FBA';
 $lang['menu_fba_list']	             = 'FBA列表';
+$lang['menu_fba_warehouse']	         = 'FBA仓库';
 $lang['menu_checkout_complete']	     = '完成出库';
 $lang['menu_return']	             = '退货';
 $lang['menu_return_list']	         = '退货入库';
