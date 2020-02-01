@@ -40,6 +40,7 @@ class Fba_model extends CI_Model
 				'reference_number' 	    => $fba_product['reference_number'],
 				'cbm'                   => $fba_product['cbm'],
 				'quantity' 		        => $fba_product['quantity'],
+				'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 				'location_id'           => $fba_product['location_id'],
 				'note'                  => $fba_product['note']
 			);
@@ -200,6 +201,7 @@ class Fba_model extends CI_Model
 				'reference_number' 	    => $fba_product['reference_number'],
 				'cbm'                   => $fba_product['cbm'],
 				'quantity' 		        => $fba_product['quantity'],
+				'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 				'location_id'           => $fba_product['location_id'],
 				'note'                  => $fba_product['note']
 			);
@@ -349,8 +351,9 @@ class Fba_model extends CI_Model
 	
 	public function get_fba_products($fba_id) 
 	{	
-		$this->db->select('fba_product.*, location.name AS location_name', false);
+		$this->db->select('fba_product.*, fba_warehouse.fba_warehouse_id, fba_warehouse.name AS fba_warehouse_name, location.name AS location_name', false);
 		$this->db->from('fba_product');
+		$this->db->join('fba_warehouse', 'fba_warehouse.fba_warehouse_id = fba_product.fba_warehouse_id', 'left');
 		$this->db->join('location', 'location.id = fba_product.location_id', 'left');
 		$this->db->where('fba_product.fba_id', $fba_id);
 

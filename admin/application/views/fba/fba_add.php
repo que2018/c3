@@ -138,9 +138,10 @@
 				    <tr>
 					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_fba_reference_number'); ?></th>
 					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_reference_number'); ?></th>
-					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_cbm'); ?></th>
-					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_quantity'); ?></th>
-					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_location'); ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_cbm'); ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_quantity'); ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_location'); ?></th>
+					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_fba_warehouse'); ?></th>
 					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_note'); ?></th>
 					  <th></th>
 				    </tr>
@@ -155,7 +156,8 @@
 					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][cbm]" value="<?php echo $fba_product['cbm']; ?>" class="form-control" /></td>
 					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][quantity]" value="<?php echo $fba_product['quantity']; ?>" class="form-control" /></td>
 					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][location_name]" value="<?php echo $fba_product['location_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][location_id]" value="<?php echo $fba_product['location_id']; ?>" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][note]" value="<?php echo $fba_product['note']; ?>" class="form-control" /></td>					  
+					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_name]" value="<?php echo $fba_product['fba_warehouse_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_id]" value="<?php echo $fba_product['fba_warehouse_id']; ?>" /></td>
+					  <td class="text-right"><textarea name="fba_product[<?php echo $fba_product_row; ?>][note]" class="form-control"><?php echo $fba_product['note']; ?></textarea></td>					  
 					  <td class="text-center"><button type="button" onclick="$('#fba-product-row<?php echo $fba_product_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
 					</tr>
 					<?php $fba_product_row++; ?>
@@ -164,7 +166,7 @@
 				  </tbody>
 				  <tfoot>
 				    <tr>
-					  <td colspan="6"></td>
+					  <td colspan="7"></td>
 					  <td class="text-center"><button type="button" onclick="addProduct();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
 				    </tr>
 				  </tfoot>
@@ -243,7 +245,7 @@
   </div>  
 </div>
 <script>
-function locationautocomplete(fba_product_row) {
+function locationAutocomplete(fba_product_row) {
 	$('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').autocomplete({
 		'source': function(request, response) {
 			location_name = $('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').val();
@@ -273,7 +275,7 @@ function locationautocomplete(fba_product_row) {
 }
 
 $('#fba-product tbody tr').each(function(index, element) {
-	locationautocomplete(index);
+	locationAutocomplete(index);
 });
 </script>
 <script>
@@ -286,19 +288,56 @@ function addProduct() {
 	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][cbm]" value="" class="form-control" /></td>';
 	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][quantity]" value="" class="form-control" /></td>';
 	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][location_name]" value="" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][location_id]" value="" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][note]" value="" class="form-control" /></td>';
+	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][fba_warehouse_name]" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][fba_warehouse_id]" value="" /></td>';
+	html += '<td class="text-right"><textarea name="fba_product[' + fba_product_row + '][note]" class="form-control" /></textarea></td>';
 	html += '<td class="text-center"><button type="button" onclick="$(\'#fba-product-row' + fba_product_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
 	$('#product tbody').append(html);
 	
-	locationautocomplete(fba_product_row);
+	locationAutocomplete(fba_product_row);
+	
+	fbaWarehouseAutocomplete(fba_product_row);
 
 	fba_product_row ++;
 }
 </script>
 <script>
-function locationautocomplete(fba_product_row) {
+function fbaWarehouseAutocomplete(fba_product_row) {
+	$('input[name=\'fba_product[' + fba_product_row + '][fba_warehouse_name]\']').autocomplete({
+		'source': function(request, response) {
+			fba_warehouse_name = $('input[name=\'fba_product[' + fba_product_row + '][fba_warehouse_name]\']').val();
+						
+			$.ajax({
+				url: '<?php echo base_url(); ?>fba/fba_warehouse/autocomplete?fba_warehouse_name=' + fba_warehouse_name,
+				dataType: 'json',
+				success: function(json) {
+					if(json.success)
+					{
+						response($.map(json.fba_warehouses, function(fba_warehouse) {					
+							return {
+								label:       	  fba_warehouse['name'],
+								fba_warehouse_id: fba_warehouse['fba_warehouse_id'],
+								name:             fba_warehouse['name']
+							}
+						}));
+					}
+				}
+			});	
+		},
+		'select': function(event, ui) {		
+			$('input[name=\'fba_product[' + fba_product_row + '][fba_warehouse_name]\']').val(ui.item.name);
+			$('input[name=\'fba_product[' + fba_product_row + '][fba_warehouse_id]\']').val(ui.item.fba_warehouse_id);
+		}
+	});
+}
+
+$('#fba-product tbody tr').each(function(index, element) {
+	fbaWarehouseAutocomplete(index);
+});
+</script>
+<script>
+function locationAutocomplete(fba_product_row) {
 	$('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').autocomplete({
 		'source': function(request, response) {
 			location_name = $('input[name=\'fba_product[' + fba_product_row + '][location_name]\']').val();
@@ -328,7 +367,7 @@ function locationautocomplete(fba_product_row) {
 }
 
 $('#fba-product tbody tr').each(function(index, element) {
-	locationautocomplete(index);
+	locationAutocomplete(index);
 });
 </script>
 <script>

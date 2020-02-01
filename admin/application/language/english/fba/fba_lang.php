@@ -105,6 +105,7 @@ $lang['column_sku'] 	    					 			= 'SKU';
 $lang['column_batch'] 	    				 	 			= 'Batch';
 $lang['column_quantity'] 	    				 			= 'Quantity';
 $lang['column_file'] 	    		    		 			= 'File';
+$lang['column_fba_warehouse'] 	    		    		    = 'FBA Warehouse';
 
 // Entry
 $lang['entry_fba_id'] 	  	    	 		     			= 'FBA ID(#)';
@@ -143,6 +144,7 @@ $lang['error_fba_product_reference_number_required']     	= '<i class="fa fa-exc
 $lang['error_fba_product_cbm_format']      		     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Row%s CBM format is incorrect';
 $lang['error_fba_product_quantity_format']      		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Row%s quantity format is incorrect';
 $lang['error_fba_product_location_required'] 	 			= '<i class="fa fa-exclamation-triangle"></i>&nbsp;Row%s location is required';
+$lang['error_fba_product_fba_warehouse_required'] 	 	    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Row%s fba warehouse is required';
 
 
 

@@ -106,6 +106,7 @@ $lang['column_sku'] 	    					 			= 'SKU';
 $lang['column_batch'] 	    				 	 			= '批次';
 $lang['column_quantity'] 	    				 			= '数量';
 $lang['column_file'] 	    		    		 			= '文件';
+$lang['column_fba_warehouse'] 	    		    		    = 'FBA仓库';
 
 // Entry
 $lang['entry_fba_id'] 	  	    	 		 				= 'FBAID(#)';
@@ -148,6 +149,7 @@ $lang['error_fba_product_reference_number_required']     	= '<i class="fa fa-exc
 $lang['error_fba_product_cbm_format']      		     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;第%s行CBM格式有误';
 $lang['error_fba_product_quantity_format']      		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第%s行数量格式有误';
 $lang['error_fba_product_location_required'] 				= '<i class="fa fa-exclamation-triangle"></i>&nbsp;第%s行库位是为空';
+$lang['error_fba_product_fba_warehouse_required'] 		    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;第%s行FBA仓库是为空';
 
 
 

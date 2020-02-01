@@ -580,6 +580,8 @@ class Fba extends MX_Controller
 						'reference_number'      => $fba_product['reference_number'],
 						'cbm'       			=> $fba_product['cbm'],
 						'quantity' 				=> $fba_product['quantity'],
+						'fba_warehouse_name'    => $fba_product['fba_warehouse_name'],
+						'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 						'location_name'  		=> $fba_product['location_name'],
 						'location_id'  		    => $fba_product['location_id'],
 						'note'  				=> $fba_product['note']
@@ -614,6 +616,8 @@ class Fba extends MX_Controller
 					'reference_number'      => $fba_product['reference_number'],
 					'cbm'       			=> $fba_product['cbm'],
 					'quantity' 				=> $fba_product['quantity'],
+					'fba_warehouse_name'    => $fba_product['fba_warehouse_name'],
+					'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 					'location_name'  		=> $fba_product['location_name'],
 					'location_id'  		    => $fba_product['location_id'],
 					'note'  				=> $fba_product['note']
@@ -806,6 +810,7 @@ class Fba extends MX_Controller
 				$reference_number     = $fba_product['reference_number'];
 				$cbm  				  = $fba_product['cbm'];
 				$quantity             = $fba_product['quantity'];
+				$fba_warehouse_id     = $fba_product['fba_warehouse_id'];
 				$location_id          = $fba_product['location_id'];
 				
 				if(empty($fba_reference_number))
@@ -835,6 +840,14 @@ class Fba extends MX_Controller
 				if(!preg_match("/^[1-9]\d*$/", $quantity))
 				{
 					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_quantity_format'), ($i+1)).'</p>';
+					
+					if($validated)
+						$validated = false;
+				}
+				
+				if(empty($fba_warehouse_id))
+				{			
+					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_fba_warehouse_required'), ($i+1)).'</p>';
 					
 					if($validated)
 						$validated = false;
