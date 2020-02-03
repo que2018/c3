@@ -13,6 +13,8 @@ $lang['text_zipcode'] 	  	                	= '邮编';
 $lang['text_inventory'] 	  	            	= '库存';
 $lang['text_fba'] 	  	        				= 'FBA';
 $lang['text_fba_warehouse'] 	  	        	= 'FBA仓库';
+$lang['text_import_fba_warehouse'] 	  	        = 'FBA仓库导入';
+$lang['text_import_fba_warehouse_description'] 	= '从excel导入FBA仓库';
 $lang['text_fba_warehouse_add'] 	  	    	= '添加FBA仓库';
 $lang['text_fba_warehouse_edit'] 	  	      	= '编辑FBA仓库';
 $lang['text_fba_warehouse_list'] 	  	      	= 'FBA仓库列表';
@@ -20,7 +22,8 @@ $lang['text_fba_warehouse_add_success']       	= '<i class="fa fa-check-circle-o
 $lang['text_fba_warehouse_edit_success']      	= '<i class="fa fa-check-circle-o"></i>&nbsp;FBA仓库编辑成功';
 $lang['text_fba_warehouse_list_description']  	= '显示 all fba_warehouses';
 $lang['text_confirm_delete'] 	  	      		= '您确定要 删除 这个 FBA仓库?';
-
+$lang['text_drop_file_and_upload'] 	            = '拖入文件或者点击上传';
+$lang['text_only_excel_will_accepted'] 	        = '( 只有Excel文件才能被接受 )';
 // Column
 $lang['column_name'] 	  	              		= '名称';
 $lang['column_street'] 	  	              		= '街道';

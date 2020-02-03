@@ -198,4 +198,24 @@ class Fba_warehouse_model extends CI_Model
 		
 		return false;
 	}
+	
+	public function clear_fba_warehouses() 
+	{
+		$this->db->trans_begin();
+		
+		$this->db->empty_table('fba_warehouse');
+
+		if($this->db->trans_status() === false) 
+		{
+			$this->db->trans_rollback();
+			
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			
+			return true;
+		}
+	}
 }

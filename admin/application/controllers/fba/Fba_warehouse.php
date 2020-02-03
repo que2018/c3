@@ -493,6 +493,107 @@ class Fba_warehouse extends MX_Controller
 		}
 	}
 	
+	public function import() 
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('fba/fba_warehouse');
+			
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/basic.css');
+		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
+		$this->header->add_style(base_url(). 'assets/css/app/fba/fba_warehouse_import.css');
+
+		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
+
+		$this->header->set_title($this->lang->line('text_import_fba_warehouse'));
+	
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('fba/fba_warehouse_import', $data);
+	}
+	
+	public function upload() 
+	{
+		$this->lang->load('fba/fba_warehouse');
+
+		if(!empty($_FILES)) 
+		{	
+			$temp_file = $_FILES['file']['tmp_name'];    
+
+			//extension error
+			$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);			
+			  
+			if($extension != 'xlsx') 
+			{
+				$outdata = array(
+					'success'  => false,
+					'message'  => $this->lang->line('error_file_type_not_excel')
+				);
+			
+				echo json_encode($outdata);
+				die();
+			}
+		
+			$target_file = FILEPATH . $_FILES['file']['name'];  
+	 
+			move_uploaded_file($temp_file, $target_file);
+									
+			$result = $this->import_excel($target_file);
+			
+			$outdata = array(
+				'success'   => ($result)?true:false
+			);	
+			
+			echo json_encode($outdata);
+			die();
+		}	
+	}
+	
+	private function import_excel($file) 
+	{		
+		$this->load->library('phpexcel');
+		
+		$this->load->model('fba/fba_warehouse_model');
+		
+		$obj_phpexcel = PHPExcel_IOFactory::load($file);		
+		$sheet = $obj_phpexcel->getSheet(0);
+		$total = $sheet->getHighestDataRow();
+				
+		$fba_warehouses = array();
+	
+		$validated = true;
+		
+		for($i = 2; $i <= $total; $i++)
+		{ 
+			$row = $sheet->rangeToArray('A' . $i . ':F' . $i, null, true, false);
+
+			$name     = trim($row[0][0]);
+			$street   = trim($row[0][1]);
+			$city     = trim($row[0][2]);
+			$state    = trim($row[0][3]);
+			$country  = trim($row[0][4]);
+			$zipcode  = trim($row[0][5]);
+						
+			$fba_warehouses[] = array(
+				'name'     => isset($name)?$name:'',
+				'street'   => isset($street)?$street:'',
+				'city'     => isset($city)?$city:'',
+				'state'    => isset($state)?$state:'',
+				'country'  => isset($country)?$country:'',
+				'zipcode'  => isset($zipcode)?$zipcode:''
+			);
+	
+			$this->fba_warehouse_model->clear_fba_warehouses();
+			
+			foreach($fba_warehouses as $fba_warehouse)
+			{
+				//$this->fba_warehouse_model->add_fba_warehouse($fba_warehouse);
+			}
+		}
+	}
+	
 	public function autocomplete()
 	{
 		$this->load->model('fba/fba_warehouse_model');
