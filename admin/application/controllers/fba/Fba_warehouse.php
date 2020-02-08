@@ -364,11 +364,11 @@ class Fba_warehouse extends MX_Controller
 		$this->header->set_title($this->lang->line('text_fba_warehouse_add'));
 		
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
-		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
-		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
-		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
-		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
+		//$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
+		//$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
+		//$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
+		//$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
+		//$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
 
 		$data = array(
 			'name'         => $this->input->post('name'),
@@ -416,11 +416,11 @@ class Fba_warehouse extends MX_Controller
 		$fba_warehouse_id = $this->input->get('fba_warehouse_id');
 	
 		$this->form_validation->set_rules('name', $this->lang->line('text_name'), 'required');
-		$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
-		$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
-		$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
-		$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
-		$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
+		//$this->form_validation->set_rules('street', $this->lang->line('text_street'), 'required');
+		//$this->form_validation->set_rules('city', $this->lang->line('text_city'), 'required');
+		//$this->form_validation->set_rules('state', $this->lang->line('text_state'), 'required');
+		//$this->form_validation->set_rules('country', $this->lang->line('text_country'), 'required');
+		//$this->form_validation->set_rules('zipcode', $this->lang->line('text_zipcode'), 'required|regex_match[/^\d{5}(?:[-\s]\d{4})?$/]');
 
 		if($this->form_validation->run() == true)
 		{
@@ -581,16 +581,16 @@ class Fba_warehouse extends MX_Controller
 				'street'   => isset($street)?$street:'',
 				'city'     => isset($city)?$city:'',
 				'state'    => isset($state)?$state:'',
-				'country'  => isset($country)?$country:'',
+				'country'  => 'United States',
 				'zipcode'  => isset($zipcode)?$zipcode:''
 			);
-	
-			$this->fba_warehouse_model->clear_fba_warehouses();
+		}
+		
+		$this->fba_warehouse_model->clear_fba_warehouses();
 			
-			foreach($fba_warehouses as $fba_warehouse)
-			{
-				//$this->fba_warehouse_model->add_fba_warehouse($fba_warehouse);
-			}
+		foreach($fba_warehouses as $fba_warehouse)
+		{
+			$this->fba_warehouse_model->add_fba_warehouse($fba_warehouse);
 		}
 	}
 	

@@ -100,6 +100,10 @@
 			  </tbody>			  
 		    </table>
 		  </div>
+		  <div class="pagination-block">
+		    <div class="pull-left"><?php echo $results; ?></div>
+		    <div class="pull-right"><?php echo $pagination; ?></div>
+		  </div>
 	    </div>
 	  </div>
     </div>
