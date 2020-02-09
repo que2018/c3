@@ -97,17 +97,15 @@
 			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 				<table class="table">
 				  <thead>
-					<th style="width: 24%;"><?php echo $this->lang->line('column_name'); ?></th>
-					<th style="width: 24%;"><?php echo $this->lang->line('column_loc'); ?></th>
-					<th style="width: 24%;"><?php echo $this->lang->line('column_batch'); ?></th>
-					<th style="width: 18%;"><?php echo $this->lang->line('column_qty'); ?></th>
+					<th style="width: 50%;"><?php echo $this->lang->line('column_reference_number'); ?></th>
+					<th style="width: 30%;"><?php echo $this->lang->line('column_loc'); ?></th>
+					<th style="width: 20%;"><?php echo $this->lang->line('column_qty'); ?></th>
 				  </thead>
 				  <tbody>
 					<?php foreach($fba['fba_products'] as $fba_product) { ?>
 					<tr>
-					  <td><?php echo $fba_product['name']; ?></td>
+					  <td><?php echo $fba_product['reference_number']; ?></td>
 					  <td><?php echo $fba_product['location']; ?></td>
-					  <td><?php echo $fba_product['batch']; ?></td>
 					  <td><?php echo $fba_product['quantity']; ?></td>
 					</tr>
 					<?php } ?>
@@ -124,25 +122,24 @@
 			<td>
 			  <div class="input-group">
 				<span class="pending"><?php echo $this->lang->line('text_pending'); ?></span>
-				<?php if($fba['enable_toggle']) { ?>
-				<span class="btn-fba" onclick="change_fba_status(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-refresh"></i></span>
-				<?php } else { ?>
-				<span class="btn-fba-disable"><i class="fa fa-refresh"></i></span>
-				<?php } ?>
 			  </div>
 			</td>
 			<?php } else { ?>
 			<td>
 			  <div class="input-group">
 				<span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>				        
-				<span class="btn-fba" onclick="change_fba_status(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-refresh"></i></span>
 			  </div>
 			</td>
 			<?php } ?>
 			<td><?php echo $fba['date_added']; ?></td>
 			<td class="text-center">
+			  <?php if($fba['status'] == 2) { ?>
+			  <a class="btn btn-edit-disable"><i class="fa fa-pencil-square-o"></i></a>
+			  <button class="btn btn-danger btn-delete" disabled><i class="fa fa-trash"></i></button>
+			  <?php } else { ?>
 			  <a href="<?php echo base_url(); ?>fba/fba/edit?fba_id=<?php echo $fba['fba_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil-square-o"></i></a>
 			  <button class="btn btn-danger btn-delete" onclick="delete_fba(this, <?php echo $fba['fba_id']; ?>)"><i class="fa fa-trash"></i></button>
+			  <?php } ?>
 			</td>
 		  </tr>
 		  <?php $offset++; ?>

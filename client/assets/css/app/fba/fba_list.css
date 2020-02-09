@@ -32,6 +32,15 @@ a:focus, a:hover {
 .btn-edit {
 	margin-right: 5px;
 }
+.btn-edit-disable {
+	margin-right: 5px;
+    background-color: #b3b3b3;
+    border-color: #b3b3b3;
+    color: #ffffff;
+}
+.btn-edit-disable:hover {
+    color: #ffffff;
+}
 .btn-fba {
 	padding: 4px 7px;
     background: #fff;

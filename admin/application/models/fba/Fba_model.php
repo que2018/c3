@@ -15,11 +15,6 @@ class Fba_model extends CI_Model
 			'tracking' 		  => $data['tracking'],
 			'status' 		  => $data['status'],
 			'fee_code' 		  => $data['fee_code'],
-			'type'    	   	  => $data['type'],
-			'street'       	  => $data['street'],
-			'city'    	   	  => $data['city'],
-			'state'    	   	  => $data['state'],
-			'postcode'    	  => $data['postcode'],
 			'note' 		      => $data['note'],
 			'date_added'      => date('Y-m-d H:i:s'),
 			'date_modified'   => date('Y-m-d H:i:s')			
@@ -176,11 +171,6 @@ class Fba_model extends CI_Model
 			'tracking' 		  => $data['tracking'],
 			'status' 		  => $data['status'],
 			'fee_code' 		  => $data['fee_code'],
-			'type'    	   	  => $data['type'],
-			'street'       	  => $data['street'],
-			'city'    	   	  => $data['city'],
-			'state'    	   	  => $data['state'],
-			'postcode'    	  => $data['postcode'],
 			'note' 		      => $data['note'],
 			'date_modified'   => date('Y-m-d H:i:s')	
 		);

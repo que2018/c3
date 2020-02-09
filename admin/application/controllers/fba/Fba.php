@@ -395,11 +395,6 @@ class Fba extends MX_Controller
 				'import_method' => $this->input->post('import_method'),
 				'tracking'    	=> $this->input->post('tracking'),
 				'status'      	=> $this->input->post('status'),
-				'type'    	    => $this->input->post('type'),
-				'street'       	=> $this->input->post('street'),
-				'city'    	   	=> $this->input->post('city'),
-				'state'    	   	=> $this->input->post('state'),
-				'postcode'    	=> $this->input->post('postcode'),
 				'fee_code'    	=> $this->input->post('fee_code'),
 				'note'        	=> $this->input->post('note'),
 			    'fba_products'  => $this->input->post('fba_product'),
@@ -412,11 +407,6 @@ class Fba extends MX_Controller
 				'tracking'       => '',
 				'import_method'  => '',
 				'status'         => '',
-				'type'    	     => '',
-				'street'       	 => '',
-				'city'    	   	 => '',
-				'state'    	   	 => '',
-				'postcode'    	 => '',
 				'fee_code'       => $this->config->item('config_default_fba_fee'),
 				'note'           => '',
 			    'fba_products'   => array(),
@@ -462,24 +452,6 @@ class Fba extends MX_Controller
 			);
 		}
 		
-		//fba dest type
-		$data['dest_types'] = [];
-		
-		$data['dest_types'][] = array(
-			'type'  => 'ups',
-			'name'  => $this->lang->line('text_ups')
-		);
-		
-		$data['dest_types'][] = array(
-			'type'  => 'fba_warehouse',
-			'name'  => $this->lang->line('text_fba_warehouse')
-		);
-		
-		$data['dest_types'][] = array(
-			'type'  => 'personal_address',
-			'name'  => $this->lang->line('text_personal_address')
-		);
-				
 		$data['error'] = validation_errors();
 		
 		$data['header'] = Modules::run('module/header/index');
@@ -532,11 +504,6 @@ class Fba extends MX_Controller
 				'tracking'    	=> $this->input->post('tracking'),
 				'import_method' => $this->input->post('import_method'),
 				'status'      	=> $this->input->post('status'),
-				'type'    	    => $this->input->post('type'),
-				'street'       	=> $this->input->post('street'),
-				'city'    	   	=> $this->input->post('city'),
-				'state'    	   	=> $this->input->post('state'),
-				'postcode'    	=> $this->input->post('postcode'),
 				'fee_code'    	=> $this->input->post('fee_code'),
 				'note'        	=> $this->input->post('note'),
 			    'fba_products'  => $this->input->post('fba_product'),
@@ -557,11 +524,6 @@ class Fba extends MX_Controller
 			$data['import_method']  = $this->input->post('import_method');
 			$data['tracking']   	= $this->input->post('tracking');
 			$data['status']     	= $this->input->post('status');
-			$data['type']       	= $this->input->post('type');
-			$data['street']     	= $this->input->post('street');
-			$data['city']       	= $this->input->post('city');
-			$data['state']      	= $this->input->post('state');
-			$data['postcode']   	= $this->input->post('postcode');
 			$data['fee_code']   	= $this->input->post('fee_code');
 			$data['note']       	= $this->input->post('note');
 			$data['fba_fees']   	= $this->input->post('fba_fee');
@@ -597,11 +559,6 @@ class Fba extends MX_Controller
 			$data['import_method']  = $fba['import_method'];
 			$data['tracking']   	= $fba['tracking'];
 			$data['status']     	= $fba['status'];
-			$data['type']       	= $fba['type'];
-			$data['street']     	= $fba['street'];
-			$data['city']       	= $fba['city'];
-			$data['state']      	= $fba['state'];
-			$data['postcode']   	= $fba['postcode'];
 			$data['fee_code']   	= $fba['fee_code'];
 			$data['note']       	= $fba['note'];
 
@@ -673,24 +630,6 @@ class Fba extends MX_Controller
 				'name'  => $fba_fee_data['name']
 			);
 		}
-		
-		//fba dest type
-		$data['dest_types'] = [];
-		
-		$data['dest_types'][] = array(
-			'type'  => 'ups',
-			'name'  => $this->lang->line('text_ups')
-		);
-		
-		$data['dest_types'][] = array(
-			'type'  => 'fba_warehouse',
-			'name'  => $this->lang->line('text_fba_warehouse')
-		);
-		
-		$data['dest_types'][] = array(
-			'type'  => 'personal_address',
-			'name'  => $this->lang->line('text_personal_address')
-		);
 		
 		$data['fba_id'] = $fba_id;		
 		

@@ -46,8 +46,13 @@
 .note-editor p {
 	color: #807d7d;
 }
-
-
+#address {
+	display: none;
+}
+.i-checks {
+	display: inline-block;
+    padding: 5px 10px 0px 0px;
+}
 
 
 

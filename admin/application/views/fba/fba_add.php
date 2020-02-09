@@ -90,44 +90,6 @@
 				  </select>
 			    </div>	
 			  </div>
-		      <div class="hr-line-dashed"></div>				
-			  <div class="form-group">
-			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_type'); ?></label>
-			    <div class="col-sm-10">
-				  <select name="type" class="form-control">
-				    <?php foreach($dest_types as $dest_type) { ?>
-					  <?php if($dest_type['type'] == $type) { ?>
-					  <option value="<?php echo $dest_type['type']; ?>" selected><?php echo $dest_type['name']; ?></option>
-					  <?php } else { ?>
-					  <option value="<?php echo $dest_type['type']; ?>"><?php echo $dest_type['name']; ?></option>
-					  <?php } ?>
-				    <?php } ?>
-				  </select>
-			    </div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div id="address">
-			  <div class="form-group">
-				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_street'); ?></label>
-				<div class="col-sm-10"><input type="text" name="street" value="<?php echo $street; ?>" class="form-control"></div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_city'); ?></label>
-				<div class="col-sm-10"><input type="text" name="city" value="<?php echo $city; ?>" class="form-control"></div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_state'); ?></label>
-				<div class="col-sm-10"><input type="text" name="state" value="<?php echo $state; ?>" class="form-control"></div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_postcode'); ?></label>
-				<div class="col-sm-10"><input type="text" name="postcode" value="<?php echo $postcode; ?>" class="form-control"></div>
-			  </div>
-			  <div class="hr-line-dashed"></div>
-			  </div>
 		    </div>
 		  </div>
 		  <div id="product" class="tab-pane">
