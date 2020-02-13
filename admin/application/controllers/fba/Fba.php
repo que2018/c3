@@ -546,7 +546,9 @@ class Fba extends MX_Controller
 						'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 						'location_name'  		=> $fba_product['location_name'],
 						'location_id'  		    => $fba_product['location_id'],
-						'note'  				=> $fba_product['note']
+						'note'  				=> $fba_product['note'],
+						'memo'  			    => $fba_product['memo'],
+						'status'  			    => $fba_product['status']
 					);
 				}
 			}	
@@ -577,7 +579,9 @@ class Fba extends MX_Controller
 					'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 					'location_name'  		=> $fba_product['location_name'],
 					'location_id'  		    => $fba_product['location_id'],
-					'note'  				=> $fba_product['note']
+					'note'  				=> $fba_product['note'],
+					'memo'  			    => $fba_product['memo'],
+					'status'  			    => $fba_product['status']
 				);
 			}
 			
@@ -730,7 +734,7 @@ class Fba extends MX_Controller
 	}
 
 	public function validate_fba_product()
-	{	
+	{		
 		$this->lang->load('fba/fba');
 		
 		$this->load->model('fba/fba_model');
@@ -751,6 +755,8 @@ class Fba extends MX_Controller
 				$quantity             = $fba_product['quantity'];
 				$fba_warehouse_id     = $fba_product['fba_warehouse_id'];
 				$location_id          = $fba_product['location_id'];
+				
+				/*
 				
 				if(empty($fba_reference_number))
 				{		
@@ -783,6 +789,8 @@ class Fba extends MX_Controller
 					if($validated)
 						$validated = false;
 				}
+				
+				*/
 				
 				if(empty($fba_warehouse_id))
 				{			

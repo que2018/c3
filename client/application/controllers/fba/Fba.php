@@ -722,6 +722,7 @@ class Fba extends MX_Controller
 				$quantity             = $fba_product['quantity'];
 				$fba_warehouse_id     = $fba_product['fba_warehouse_id'];
 				
+				/*
 				if(empty($fba_reference_number))
 				{		
 					$message .= '<p>'.sprintf($this->lang->line('error_fba_product_fba_reference_number_required'), ($i+1)).'</p>';
@@ -753,6 +754,7 @@ class Fba extends MX_Controller
 					if($validated)
 						$validated = false;
 				}
+				*/
 				
 				if(empty($fba_warehouse_id))
 				{			

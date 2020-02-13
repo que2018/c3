@@ -84,6 +84,7 @@ $lang['column_cbm'] 	        	         	 			= 'CBM';
 $lang['column_quantity'] 	        	         			= 'Quantity';
 $lang['column_location'] 	        	         			= 'Location';
 $lang['column_note'] 	        	         	 			= 'Note';
+$lang['column_memo'] 	        	         				= 'Memo';
 $lang['column_name'] 	        	    		 			= 'Name';
 $lang['column_product_name'] 	        	     			= 'Product Name';
 $lang['column_upc'] 	        	     		 			= 'UPC';
@@ -119,6 +120,7 @@ $lang['entry_location'] 	  	    	 		 			= 'Location';
 $lang['entry_tracking'] 	  	    	 		 			= 'Tracking / Refer';
 $lang['entry_status'] 	  	        	 		 			= 'Status';
 $lang['entry_note'] 	  	        	 		 			= 'Note';
+$lang['entry_memo'] 	  	        	 		 			= 'Memo';
 $lang['entry_date_added'] 	  	        	     			= 'Date Added';
 $lang['entry_import_method'] 	  	        	     	 	= 'Import Method';
 

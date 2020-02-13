@@ -37,7 +37,8 @@ class Fba_model extends CI_Model
 				'quantity' 		        => $fba_product['quantity'],
 				'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 				'location_id'           => $fba_product['location_id'],
-				'note'                  => $fba_product['note']
+				'note'                  => $fba_product['note'],
+				'memo'                  => $fba_product['memo']
 			);
 		}
 		
@@ -193,7 +194,8 @@ class Fba_model extends CI_Model
 				'quantity' 		        => $fba_product['quantity'],
 				'fba_warehouse_id'      => $fba_product['fba_warehouse_id'],
 				'location_id'           => $fba_product['location_id'],
-				'note'                  => $fba_product['note']
+				'note'                  => $fba_product['note'],
+				'memo'                  => $fba_product['memo']
 			);
 		}
 		

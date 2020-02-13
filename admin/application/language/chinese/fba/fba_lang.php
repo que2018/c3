@@ -85,6 +85,7 @@ $lang['column_cbm'] 	        	         				= 'CBM';
 $lang['column_quantity'] 	        	         			= '数量';
 $lang['column_location'] 	        	         			= '库位';
 $lang['column_note'] 	        	         				= '备注';
+$lang['column_memo'] 	        	         				= '管理员备注';
 $lang['column_name'] 	        	    		 			= '名称';
 $lang['column_product_name'] 	        	     			= '产品名称';
 $lang['column_upc'] 	        	     		 			= 'UPC';
@@ -124,6 +125,7 @@ $lang['entry_location'] 	  	    	 		 			= '库位';
 $lang['entry_tracking'] 	  	    	 		 			= '追踪号';
 $lang['entry_status'] 	  	        	 		 			= '状态';
 $lang['entry_note'] 	  	        	 		 			= '备注';
+$lang['entry_memo'] 	  	        	 		 			= '管理员备注';
 $lang['entry_date_added'] 	  	        	     			= '添加时间';
 $lang['entry_import_method'] 	  	        	     	 	= '货运方式';
 

@@ -108,11 +108,13 @@
 				    <tr>
 					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_fba_reference_number'); ?></th>
 					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_reference_number'); ?></th>
-					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_cbm'); ?></th>
-					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_quantity'); ?></th>
-					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_location'); ?></th>
-					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_fba_warehouse'); ?></th>
-					  <th class="text-left" style="width: 14%;"><?php echo $this->lang->line('column_note'); ?></th>
+					  <th class="text-left" style="width: 5%;"><?php echo $this->lang->line('column_cbm'); ?></th>
+					  <th class="text-left" style="width: 5%;"><?php echo $this->lang->line('column_quantity'); ?></th>
+					  <th class="text-left" style="width: 8%;"><?php echo $this->lang->line('column_location'); ?></th>
+					  <th class="text-left" style="width: 8%;"><?php echo $this->lang->line('column_fba_warehouse'); ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_note'); ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_memo'); ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_status'); ?></th>
 					  <th></th>
 				    </tr>
 				  </thead>
@@ -121,13 +123,28 @@
 				  <?php if($fba_products) { ?>
 					<?php foreach ($fba_products as $fba_product) { ?>
 					<tr id="fba-product-row<?php echo $fba_product_row; ?>">
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][fba_reference_number]" value="<?php echo $fba_product['fba_reference_number']; ?>" class="form-control" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][reference_number]" value="<?php echo $fba_product['reference_number']; ?>" class="form-control" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][cbm]" value="<?php echo $fba_product['cbm']; ?>" class="form-control" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][quantity]" value="<?php echo $fba_product['quantity']; ?>" class="form-control" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][location_name]" value="<?php echo $fba_product['location_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][location_id]" value="<?php echo $fba_product['location_id']; ?>" /></td>
-					  <td class="text-right"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_name]" value="<?php echo $fba_product['fba_warehouse_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_id]" value="<?php echo $fba_product['fba_warehouse_id']; ?>" /></td>
-					  <td class="text-right"><textarea name="fba_product[<?php echo $fba_product_row; ?>][note]" class="form-control"><?php echo $fba_product['note']; ?></textarea></td>					  
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][fba_reference_number]" value="<?php echo $fba_product['fba_reference_number']; ?>" class="form-control" /></td>
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][reference_number]" value="<?php echo $fba_product['reference_number']; ?>" class="form-control" /></td>
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][cbm]" value="<?php echo $fba_product['cbm']; ?>" class="form-control" /></td>
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][quantity]" value="<?php echo $fba_product['quantity']; ?>" class="form-control" /></td>
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][location_name]" value="<?php echo $fba_product['location_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][location_id]" value="<?php echo $fba_product['location_id']; ?>" /></td>
+					  <td class="text-left"><input type="text" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_name]" value="<?php echo $fba_product['fba_warehouse_name']; ?>" class="form-control" /><input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][fba_warehouse_id]" value="<?php echo $fba_product['fba_warehouse_id']; ?>" /></td>
+					  <td class="text-left"><textarea name="fba_product[<?php echo $fba_product_row; ?>][note]" class="form-control"><?php echo $fba_product['note']; ?></textarea></td>					  
+					  <td class="text-left"><textarea name="fba_product[<?php echo $fba_product_row; ?>][memo]" class="form-control"><?php echo $fba_product['memo']; ?></textarea></td>					  
+					  <td class="text-left">
+					    <?php if($fba_product['status'] == 1) { ?>
+						  <div class="input-group">
+						    <span class="pending-product"><?php echo $this->lang->line('text_pending'); ?></span>
+						    <span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>
+						  </div>
+					    <?php } else { ?>
+						  <div class="input-group">
+						    <span class="completed-product"><?php echo $this->lang->line('text_completed'); ?></span>				        
+						    <span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>
+						  </div>
+						<?php } ?>
+						<input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][status]" value="<?php echo $fba_product['status']; ?>" />
+					  </td>
 					  <td class="text-center"><button type="button" onclick="$('#fba-product-row<?php echo $fba_product_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
 					</tr>
 					<?php $fba_product_row++; ?>
@@ -136,7 +153,7 @@
 				  </tbody>
 				  <tfoot>
 				    <tr>
-					  <td colspan="7"></td>
+					  <td colspan="9"></td>
 					  <td class="text-center"><button type="button" onclick="addProduct();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
 				    </tr>
 				  </tfoot>
@@ -254,13 +271,23 @@ var fba_product_row = <?php echo $fba_product_row; ?>;
 
 function addProduct() {
 	html  = '<tr id="fba-product-row' + fba_product_row + '">';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][fba_reference_number]" value="" class="form-control" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][reference_number]" value="" class="form-control" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][cbm]" value="" class="form-control" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][quantity]" value="" class="form-control" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][location_name]" value="" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][location_id]" value="" /></td>';
-	html += '<td class="text-right"><input type="text" name="fba_product[' + fba_product_row + '][fba_warehouse_name]" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][fba_warehouse_id]" value="" /></td>';
-	html += '<td class="text-right"><textarea name="fba_product[' + fba_product_row + '][note]" class="form-control" /></textarea></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][fba_reference_number]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][reference_number]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][cbm]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][quantity]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][location_name]" value="" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][location_id]" value="" /></td>';
+	html += '<td class="text-left"><input type="text" name="fba_product[' + fba_product_row + '][fba_warehouse_name]" class="form-control" /><input type="hidden" name="fba_product[' + fba_product_row + '][fba_warehouse_id]" value="" /></td>';
+	html += '<td class="text-left"><textarea name="fba_product[' + fba_product_row + '][note]" class="form-control" /></textarea></td>';
+	html += '<td class="text-left"><textarea name="fba_product[' + fba_product_row + '][memo]" class="form-control" /></textarea></td>';
+	
+	html += '<td class="text-left">';
+	html += '<div class="input-group">';
+	html += '<span class="pending-product"><?php echo $this->lang->line("text_pending"); ?></span>';
+	html += '<span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>';
+	html += '</div>';
+	html += '<input type="hidden" name="fba_product[' + fba_product_row + '][status]" value="" />';
+	html += '</td>';
+	
 	html += '<td class="text-center"><button type="button" onclick="$(\'#fba-product-row' + fba_product_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
