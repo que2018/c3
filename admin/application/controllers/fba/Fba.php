@@ -389,12 +389,24 @@ class Fba extends MX_Controller
 		$this->form_validation->set_rules('fba_product', $this->lang->line('text_product'), 'callback_validate_fba_product');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
-		{						
+		{	
+			$fba_products = $this->input->post('fba_product');
+			
+			$completed = true;
+			
+			foreach($fba_products as $fba_product) 
+			{
+				if($completed && ($fba_product['status'] == 1))  
+				{
+					$completed = false;
+				}
+			}
+	
 			$data = array(
 				'client_id'    	=> $this->input->post('client_id'),
 				'import_method' => $this->input->post('import_method'),
 				'tracking'    	=> $this->input->post('tracking'),
-				'status'      	=> $this->input->post('status'),
+				'status'      	=> ($completed)?2:1,
 				'fee_code'    	=> $this->input->post('fee_code'),
 				'note'        	=> $this->input->post('note'),
 			    'fba_products'  => $this->input->post('fba_product'),
@@ -409,8 +421,7 @@ class Fba extends MX_Controller
 				'status'         => '',
 				'fee_code'       => $this->config->item('config_default_fba_fee'),
 				'note'           => '',
-			    'fba_products'   => array(),
-				'fba_products'   => array()
+			    'fba_products'   => array()
 			);
 		}
 		
@@ -499,11 +510,23 @@ class Fba extends MX_Controller
 
 		if($this->form_validation->run() == true)
 		{
+			$fba_products = $this->input->post('fba_product');
+			
+			$completed = true;
+			
+			foreach($fba_products as $fba_product) 
+			{
+				if($completed && ($fba_product['status'] == 1))  
+				{
+					$completed = false;
+				}
+			}
+			
 			$data = array(
 				'client_id'    	=> $this->input->post('client_id'),
 				'tracking'    	=> $this->input->post('tracking'),
 				'import_method' => $this->input->post('import_method'),
-				'status'      	=> $this->input->post('status'),
+				'status'      	=> ($completed)?2:1,
 				'fee_code'    	=> $this->input->post('fee_code'),
 				'note'        	=> $this->input->post('note'),
 			    'fba_products'  => $this->input->post('fba_product'),

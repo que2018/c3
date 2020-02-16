@@ -127,12 +127,12 @@
 					    <?php if($fba_product['status'] == 1) { ?>
 						  <div class="input-group">
 						    <span class="pending-product"><?php echo $this->lang->line('text_pending'); ?></span>
-						    <span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>
+						    <span class="btn-product" onclick="change_fba_product_status(this, <?php echo $fba_product_row; ?>)"><i class="fa fa-refresh"></i></span>
 						  </div>
 					    <?php } else { ?>
 						  <div class="input-group">
 						    <span class="completed-product"><?php echo $this->lang->line('text_completed'); ?></span>				        
-						    <span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>
+						    <span class="btn-product" onclick="change_fba_product_status(this, <?php echo $fba_product_row; ?>)"><i class="fa fa-refresh"></i></span>
 						  </div>
 						<?php } ?>
 						<input type="hidden" name="fba_product[<?php echo $fba_product_row; ?>][status]" value="<?php echo $fba_product['status']; ?>" />
@@ -274,9 +274,9 @@ function addProduct() {
 	html += '<td class="text-left">';
 	html += '<div class="input-group">';
 	html += '<span class="pending-product"><?php echo $this->lang->line("text_pending"); ?></span>';
-	html += '<span class="btn-product" onclick="change_fba_status()"><i class="fa fa-refresh"></i></span>';
+	html += '<span class="btn-product" onclick="change_fba_product_status(this,' + fba_product_row + ')"><i class="fa fa-refresh"></i></span>';
 	html += '</div>';
-	html += '<input type="hidden" name="fba_product[' + fba_product_row + '][status]" value="" />';
+	html += '<input type="hidden" name="fba_product[' + fba_product_row + '][status]" value="1" />';
 	html += '</td>';
 	
 	html += '<td class="text-center"><button type="button" onclick="$(\'#fba-product-row' + fba_product_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
@@ -358,6 +358,24 @@ function locationAutocomplete(fba_product_row) {
 $('#fba-product tbody tr').each(function(index, element) {
 	locationAutocomplete(index);
 });
+</script>
+<script>
+function change_fba_product_status(handle, fba_product_row) {
+	label = $(handle).closest('.input-group').find('span').eq(0);	
+	label.removeClass();		
+	
+	let status = $('input[name=\'fba_product['+ fba_product_row +'][status]\']').val();
+		
+	if(status == 1) {
+		label.addClass('completed-product');
+		label.text('<?php echo $this->lang->line("text_completed"); ?>');
+		$('input[name=\'fba_product['+ fba_product_row +'][status]\']').val(2);
+	} else {
+		label.addClass('pending-product');
+		label.text('<?php echo $this->lang->line("text_pending"); ?>');
+		$('input[name=\'fba_product['+ fba_product_row +'][status]\']').val(1);
+	} 
+}
 </script>
 <script>
 $(document).ready(function() {
