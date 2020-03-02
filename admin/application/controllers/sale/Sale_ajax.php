@@ -155,6 +155,105 @@ class Sale_ajax extends CI_Controller
 		$this->output->set_output(json_encode($outdata));
 	}
 
+	public function get_shipping_fee()
+	{
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->get('sale_id'))
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$sale = $this->sale_model->get_sale($sale_id);	
+			
+			$code = $sale['shipping_provider'];
+						
+			$this->load->model('shipping/'. $code .'_model');
+
+			$amount = $this->{$code . '_model'}->get_shipping_fee($sale_id);
+			
+			if($amount)
+			{
+				$outdata = array(
+					'success'   => true,
+					'amount'    => $amount
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'   => false
+				);
+			}
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
+	public function commit_shipping_fee()
+	{
+		$this->lang->load('sale/sale');
+
+		$this->load->model('sale/sale_model');
+		$this->load->model('finance/transaction_model');
+		
+		if($this->input->post('sale_id') && $this->input->post('amount'))
+		{
+			$sale_id = $this->input->post('sale_id');
+			$amount = $this->input->post('amount');
+			
+			$sale = $this->sale_model->get_sale($sale_id);
+
+			$transaction = $this->transaction_model->get_transaction_by_type('sale', $sale_id);
+						
+			if($transaction) 
+			{
+				$transaction_id = $transaction['id'];
+				
+				$data = array(					
+					'type'          => 'sale',
+					'type_id'       => $sale_id,
+					'cost'          => 0,
+					'markup'        => $amount,		
+					'amount'   		=> $amount,
+					'comment'       => sprintf($this->lang->line('text_label_fee_note2'), $sale_id)
+				);
+				
+				$result = $this->transaction_model->edit_transaction($transaction_id, $data);
+			} 
+			else 
+			{
+				$data = array(					
+					'type'          => 'sale',
+					'type_id'       => $sale_id,
+					'cost'          => 0,
+					'markup'        => $amount,		
+					'amount'   		=> $amount,
+					'comment'       => sprintf($this->lang->line('text_label_fee_note2'), $sale_id)
+				);
+				
+				$result = $this->transaction_model->add_transaction($data);
+			}
+			
+			if($result)
+			{
+				$outdata = array(
+					'success'   => true,
+					'amount'    => $amount
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'   => false
+				);
+			}
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+
 	public function checkout()
 	{
 		$this->lang->load('sale/sale');

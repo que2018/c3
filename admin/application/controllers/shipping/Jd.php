@@ -28,6 +28,7 @@ class Jd extends MX_Controller
 			$jd_fedex_ground_price_table  = $this->upload_price_table('fedex_ground_price_table');
 			$jd_fedex_two_day_price_table = $this->upload_price_table('fedex_two_day_price_table');
 			$jd_dhl_express_price_table   = $this->upload_price_table('dhl_express_price_table');
+			$jd_ups_ground_price_table   = $this->upload_price_table('ups_ground_price_table');
 
 			$data = array(	
 				'jd_user'   	 		    	=> $this->input->post('jd_user'),
@@ -62,6 +63,7 @@ class Jd extends MX_Controller
 				'jd_fedex_ground_price_table'   => $jd_fedex_ground_price_table,
 				'jd_fedex_two_day_price_table'  => $jd_fedex_two_day_price_table,
 				'jd_dhl_express_price_table'    => $jd_dhl_express_price_table,
+				'jd_ups_ground_price_table'     => $jd_ups_ground_price_table
 			);
 				
 			$this->setting_model->edit_setting('jd', $data);
@@ -377,6 +379,22 @@ class Jd extends MX_Controller
 			else
 			{
 				$data['jd_dhl_express_price_table'] = '';
+			}	
+		}
+		
+		if(isset($_FILES['ups_ground_price_table']))
+		{
+			$data['jd_ups_ground_price_table'] = $_FILES['ups_ground_price_table']['tmp_name'];    
+		}
+		else
+		{
+			if(is_file($this->config->item('jd_ups_ground_price_table')))
+			{
+				$data['jd_ups_ground_price_table'] = $this->config->item('jd_ups_ground_price_table');
+			}
+			else
+			{
+				$data['jd_ups_ground_price_table'] = '';
 			}	
 		}
 	

@@ -326,6 +326,11 @@ class Postpony_model extends CI_Model
 		return $outdata;
 	}
 	
+	public get_shipping_fee($sale_id)
+	{
+		return false;
+	}
+	
 	private function get_client_fee_value($client_id, $shipping_provider)
 	{
 		$client_fee_value = $this->config->item($shipping_provider . '_fee_value');

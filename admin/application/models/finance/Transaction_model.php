@@ -119,6 +119,18 @@ class Transaction_model extends CI_Model
 		return false;
 	}
 	
+	public function get_transaction_by_type($type, $type_id) 
+	{			
+		$q = $this->db->get_where('transaction', array('type' => $type, 'type_id' => $type_id));
+
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_transactions($data= array()) 
 	{			
 		$this->db->select("transaction.*, CONCAT(client.firstname, ' ', client.lastname) AS name", false);
@@ -385,8 +397,6 @@ class Transaction_model extends CI_Model
 		
 		return $result['total'];
 	}
-	
-	
 	
 	public function delete_transaction($transaction_id)
 	{

@@ -256,6 +256,11 @@ class Fedex_model extends CI_Model
 		return $result;
 	}
 	
+	public function get_shipping_fee($sale_id)
+	{
+		return false;
+	}
+	
 	protected function get_state_short($state)
 	{	
 		$state_short = $state;

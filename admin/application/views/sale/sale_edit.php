@@ -256,7 +256,18 @@
 				  </select>
 				</div>
               </div>
-			  <div class="hr-line-dashed"></div>  	
+			  <div class="hr-line-dashed"></div> 
+			  <div class="form-group">
+		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_fee'); ?></label>
+                <div class="col-sm-10">
+				  <div>
+				    <span id="shipping-fee"></span>
+					<input type="hidden" name="shipping_fee" value="" />
+					<span id="commit-fee" onclick="commit_shipping_fee()"><?php echo $this->lang->line('button_commit_fee'); ?></span>
+				  </div>
+				</div>
+              </div>
+			  <div class="hr-line-dashed"></div> 			  
 			</div>
 		  </div>
 		  <div id="label" class="tab-pane">
@@ -393,6 +404,34 @@ function refresh_weight() {
 }
 </script>
 <script>
+function commit_shipping_fee() {
+	let amount = $('input[name=\'shipping_fee\']').val();
+
+	data = new FormData();
+	data.append('sale_id', <?php echo $sale_id; ?>);
+	data.append('amount', amount);
+	
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/commit_shipping_fee',
+		type: 'post',
+		data: data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		success: function(json) {					
+			if(json.success) 
+			{	
+				
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 $(document).ready(function() {
 	sale_product_row = <?php echo $sale_product_row; ?>;
 	
@@ -472,6 +511,27 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+	//get shipping fee
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/get_shipping_fee?sale_id=<?php echo $sale_id; ?>',
+		dataType: 'json',
+		success: function(json) {					
+			if(json.success) 
+			{	
+				$('#shipping-fee').html('$' + json.amount);
+				$('input[name=\'shipping_fee\']').val(json.amount);
+			}
+			else 
+			{
+				$('#commit-fee').hide();
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+	
+	//get shipping provide info
 	$('select[name=\'shipping_provider\']').on('change', function() {
 		code = $(this).val();
 	

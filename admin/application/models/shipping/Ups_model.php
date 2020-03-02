@@ -238,6 +238,11 @@ class Ups_model extends CI_Model
 		return $result;
 	}
 	
+	public get_shipping_fee($sale_id)
+	{
+		return false;
+	}
+	
 	protected function get_service($code)
 	{	
 		$q = $this->db->get_where('setting', array('key' => 'ups_service'));

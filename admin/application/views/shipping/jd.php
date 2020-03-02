@@ -548,6 +548,7 @@
 				    <input type="file" name="fedex_two_day_price_table" class="form-control-file" id="jd-two-day-price-table-input">
 				  </div>	  
 			    </div>
+				
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_dhl_express_price_table'); ?></label>
@@ -560,6 +561,20 @@
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_dhl_express_price_table'); ?></label>
 				  <div class="col-sm-10">
 				    <input type="file" name="dhl_express_price_table" class="form-control-file" id="dhl-express-price-table-input">
+				  </div>	  
+			    </div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_ups_ground_price_table'); ?></label>
+				  <div class="col-sm-10">
+					<span class="form-control"><?php echo $jd_ups_ground_price_table; ?></span>
+				  </div>	  
+			    </div>	
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_ups_ground_price_table'); ?></label>
+				  <div class="col-sm-10">
+				    <input type="file" name="ups_ground_price_table" class="form-control-file" id="ups-ground-price-table-input">
 				  </div>	  
 			    </div>
 				<div class="hr-line-dashed"></div>
