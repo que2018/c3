@@ -92,6 +92,18 @@ class Platform extends MX_Controller
 
 		redirect(base_url() . 'extension/platform', 'refresh');
 	}
+	
+	public function get_platform_form() 
+	{
+		if($this->input->get('code'))
+		{
+			$code = $this->input->get('code');
+			
+			$this->lang->load('platform/' . $code);
+			
+			$this->load->view('platform/'. $code . '_form');
+		}
+	}
 }
 
 

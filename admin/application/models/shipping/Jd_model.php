@@ -365,13 +365,9 @@ class Jd_model extends CI_Model
 					{
 						$zone = $jd_fedex_zone_mapping['ground_zone'];
 					}
-					else if($sale['shipping_service'] == 'FEDEX_2D')
-					{
-						$zone = $jd_fedex_zone_mapping['express_zone'];
-					}
 					else
 					{
-						$zone = $jd_fedex_zone_mapping['ground_zone'];
+						$zone = $jd_fedex_zone_mapping['express_zone'];
 					}
 					
 					if(($zipcode_from <= $zipcode_prefix) && ($zipcode_prefix <= $zipcode_to))
@@ -400,9 +396,6 @@ class Jd_model extends CI_Model
 
 			if($sale['shipping_service'] == 'DHL_EXPM') 
 				$jd_price_table = $this->config->item('jd_dhl_express_price_table');
-			
-			if($sale['shipping_service'] == 'UPS_GROUND') 
-				$jd_price_table = $this->config->item('jd_ups_ground_price_table');
 		
 			if(file_exists($jd_price_table))
 			{

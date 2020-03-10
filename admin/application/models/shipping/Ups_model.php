@@ -79,23 +79,31 @@ class Ups_model extends CI_Model
 		$shipment->setParameter('toCode', $zipcode);
 		$shipment->setParameter('negotiatedRates', true);
 		
-		$response = $shipment->submitShipment();
-				
-		if(isset($response['error']) && $response['error'] != '') 
+		if($sale_shipping_service['method'] == 'M4') 
 		{
-			$result['error'] = $response['error'];	
+			$shipment->setParameter('packageId', '1');
+			$shipment->setParameter('uspsEndorsement', '1');
+		}
+		
+		$response = $shipment->submitShipment();
+						
+		if(isset($response['error']) && $response['error'] != '') 
+		{	
+			$result = array(
+				'success'  => false,
+				'message'  => $response['error']
+			);
 		} 
 		else 
 		{
 			if(isset($response['pkgs']) && is_array($response['pkgs']) && count($response['pkgs']) > 0) 
 			{
 				$tracking = $response['pkgs'][0]['pkg_trk_num'];
-				$label_img = 'img/shipping_label/ups_' . $tracking . '.' . $this->config->item('ups_image_type');
-				
-				if(@file_put_contents($label_img, base64_decode($response['pkgs'][0]['label_img'])))
+			
+				$file_path = LABELPATH . $tracking . '.' . $this->config->item('ups_image_type');
+
+				if(@file_put_contents($file_path, base64_decode($response['pkgs'][0]['label_img'])))
 				{	
-					$file_path = FCPATH . $label_img;
-					
 					$this->image->rotate($file_path, 90);
 			
 					if(isset($response['negotiated_charges'])) 
@@ -104,19 +112,26 @@ class Ups_model extends CI_Model
 						$amount = $response['charges'];
 			
 					$result = array(
+						'success'    => true,
 						'tracking'   => $tracking,
-						'label_img'  => $label_img,
+						'label_img'  => $tracking . '.' . $this->config->item('ups_image_type'),
 						'amount'     => $amount
 					);
 				}
 				else
 				{
-					$result['error'] = $this->lang->line('error_save_image_failed');
+					$result = array(
+						'success'  => false,
+						'message'  => $this->lang->line('error_save_image_failed')
+					);
 				}
 			}
 			else
 			{	
-				$result['error'] = $this->lang->line("error_create_shipping_label_faild");
+				$result = array(
+					'success'  => false,
+					'message'  => $this->lang->line("error_create_shipping_label_faild")
+				);
 			}
 		}
 		
@@ -236,11 +251,6 @@ class Ups_model extends CI_Model
 		}
 		
 		return $result;
-	}
-	
-	public get_shipping_fee($sale_id)
-	{
-		return false;
 	}
 	
 	protected function get_service($code)

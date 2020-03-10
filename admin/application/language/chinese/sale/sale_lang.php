@@ -82,7 +82,6 @@ $lang['entry_length_class'] 	  	     	 	= '长度单位';
 $lang['entry_weight_class'] 	  	     	  	= '重量单位';
 $lang['entry_shipping_provider'] 	  	 		= '配送提供者';
 $lang['entry_shipping_service'] 	  	        = '配送服务';
-$lang['entry_shipping_fee'] 	  	            = '配送费用';
 $lang['entry_store'] 	  	                    = '店铺';
 $lang['entry_store_order_id'] 	  	            = '店铺订单ID';
 $lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单添加成功';
@@ -113,7 +112,6 @@ $lang['column_date'] 	  	         		    = '日期';
 $lang['button_add_product'] 	  	     		= '添加产品';
 $lang['button_select_file'] 	  	     		= '选择文件';
 $lang['button_print'] 	  	             		= '打印';
-$lang['button_commit_fee'] 	  	                = '置入费用';
 
 // Error
 $lang['error_file_type_not_excel'] 	  	 		= '错误: 文件不是excel';

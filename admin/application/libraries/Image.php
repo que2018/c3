@@ -9,7 +9,7 @@ class Image
 	private $bits;
 	private $mime;
 
-	public function __construct($file) 
+	/* public function __construct($file) 
 	{
 		if (file_exists($file)) {
 			$this->file = $file;
@@ -31,7 +31,7 @@ class Image
 		} else {
 			exit('Error: Could not load image ' . $file . '!');
 		}
-	}
+	} */
 
 	public function getFile() 
 	{
@@ -193,7 +193,7 @@ class Image
 		$this->height = $bottom_y - $top_y;
 	}
 
-	public function rotate($degree, $color = 'FFFFFF') 
+	/* public function rotate($degree, $color = 'FFFFFF') 
 	{
 		$rgb = $this->html2rgb($color);
 
@@ -201,7 +201,7 @@ class Image
 
 		$this->width = imagesx($this->image);
 		$this->height = imagesy($this->image);
-	}
+	} */
 
 	private function filter() 
 	{
@@ -243,7 +243,7 @@ class Image
 		return array($r, $g, $b);
 	}
 	
-	/* public function rotate($file, $degrees) 
+	public function rotate($file, $degrees) 
 	{
 		$imagick = new Imagick(); 
 		$imagick->readImage($file);
@@ -254,5 +254,5 @@ class Image
 
 		$imagick->clear(); 
 		$imagick->destroy();
-	} */
+	} 
 }

@@ -322,6 +322,15 @@ class Ups extends MX_Controller
 			$ups_client_fees = $this->config->item('ups_client_fee');
 		}
 		
+		if($this->input->post('ups_self_defined_fee')) 
+		{
+			$data['ups_self_defined_fees'] = $this->input->post('ups_self_defined_fee');
+		} 
+		else 
+		{
+			$data['ups_self_defined_fees'] = $this->config->item('ups_self_defined_fee');
+		}
+		
 		$data['clients'] = array();
 		
 		$clients = $this->client_model->get_clients();
@@ -397,9 +406,9 @@ class Ups extends MX_Controller
 		);
 		
 		$data['ups_image_types'] = array(
-			'GIF'  =>  $this->lang->line('text_gif'),
-			'PNG'  =>  $this->lang->line('text_png'),
-			'JPG'  =>  $this->lang->line('text_jpg')
+			'gif'  =>  $this->lang->line('text_gif'),
+			'png'  =>  $this->lang->line('text_png'),
+			'jpg'  =>  $this->lang->line('text_jpg')
 		);
 		
 		$data['error'] = validation_errors();

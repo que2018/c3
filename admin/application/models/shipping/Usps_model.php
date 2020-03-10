@@ -380,9 +380,4 @@ class Usps_model extends CI_Model
 				
 		return $result;
 	}
-	
-	public function get_shipping_fee($sale_id)
-	{
-		return false;
-	}
 }

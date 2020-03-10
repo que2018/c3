@@ -118,7 +118,6 @@ $lang['entry_length_class'] 	  	     	 	= 'Length Class';
 $lang['entry_weight_class'] 	  	     	  	= 'Weight Class';
 $lang['entry_shipping_provider'] 	  	 		= 'Shipping Provider';
 $lang['entry_shipping_service'] 	  	        = 'Shipping Service';
-$lang['entry_shipping_fee'] 	  	            = 'Shipping Fee';
 $lang['entry_order_id'] 	  	                = 'Order ID';
 $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';
@@ -152,7 +151,6 @@ $lang['column_date'] 	  	         		    = 'Date';
 $lang['button_add_product'] 	  	     		= 'Add Product';
 $lang['button_select_file'] 	  	     		= 'Select file';
 $lang['button_print'] 	  	             		= 'Print';
-$lang['button_commit_fee'] 	  	                = 'Commit Fee';
 
 // Error
 $lang['error_label_not_exist']      		    = 'error: label is not exist';

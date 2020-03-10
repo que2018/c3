@@ -44,11 +44,8 @@ class Sf_model extends CI_Model
 		$output = curl_exec($ch);
 
 		curl_close ($ch);
-	}
-	
-	public function get_shipping_fee($sale_id)
-	{
-		return false;
+		
+		file_put_contents("log.txt", serialize($output));
 	}
 }
 

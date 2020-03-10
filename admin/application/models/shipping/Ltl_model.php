@@ -8,11 +8,6 @@ class Ltl_model extends CI_Model
 	{
 		$this->db->delete('setting', array('code' => 'ltl')); 
 	}
-	
-	public function get_shipping_fee($sale_id)
-	{
-		return false;
-	}
 }
 
 

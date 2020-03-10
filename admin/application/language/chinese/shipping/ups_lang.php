@@ -7,7 +7,7 @@ $lang['text_ups'] 	  	             	 = 'UPS';
 $lang['text_access_key'] 	  	         = 'access key';
 $lang['text_username'] 	  	         	 = '用户名';
 $lang['text_password'] 	  	         	 = '密码';
-$lang['text_account_number'] 	  	     = 'account number';
+$lang['text_account_number'] 	  	     = '账户';
 $lang['text_pickup_method'] 	  	     = 'pickup 方式';
 $lang['text_classification_code'] 	  	 = 'classification 代码';
 $lang['text_time_zone'] 	  	     	 = '时区';
@@ -24,7 +24,7 @@ $lang['text_description'] 	  	     	 = '描述';
 $lang['text_phone'] 	  	     	     = '电话';
 $lang['text_length_unit'] 	  	     	 = '长 Unit';
 $lang['text_weight_unit'] 	  	     	 = '重量 Unit';
-$lang['text_image_type'] 	  	     	 = '图片 类型';
+$lang['text_image_type'] 	  	     	 = '图片类型';
 $lang['text_debug_mode'] 	  	     	 = 'Debug Mode';
 $lang['text_sort_order'] 	  	         = '排序 订单';
 $lang['text_status'] 	  	             = '状态';
@@ -56,6 +56,7 @@ $lang['text_png'] 	  	 				 = 'png';
 $lang['text_jpg'] 	  					 = 'jpg';
 $lang['text_fixed'] 	  			     = '固定';
 $lang['text_ratio'] 	  			     = '比率';
+$lang['text_self_defined'] 	  			 = '自定义';
 $lang['text_fee_value'] 	  			 = '费 value';
 $lang['text_edit_success'] 	  		     = '<i class="fa fa-check-circle-o"></i>&nbsp;UPS 编辑 成功';
 
@@ -71,8 +72,10 @@ $lang['column_client'] 	  	             = '客户';
 $lang['column_fee'] 	  	             = '费用';
 $lang['column_method'] 	  	             = '方式';
 $lang['column_package'] 	  	         = 'Package';
-$lang['column_state_long'] 	  	         = '州 Long';
-$lang['column_state_short'] 	  	     = '州 Short';
+$lang['column_state_long'] 	  	         = '州全称';
+$lang['column_state_short'] 	  	     = '州缩写';
+$lang['column_weight'] 	  	     		 = '重量';
+$lang['column_price'] 	  	     		 = '价格';
 
 // Entry
 $lang['entry_access_key'] 	  	     	 = 'Access Key';

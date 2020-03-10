@@ -340,18 +340,24 @@
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_type'); ?></label>
 			      <div class="col-sm-10">
 				    <select name="ups_fee_type" class="form-control">
-					  <?php if($ups_fee_type) { ?>
-					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
-						<option value="1" selected><?php echo $this->lang->line('text_ratio'); ?></option>
-					  <?php } else { ?>
+					  <?php if($ups_fee_type  == 0) { ?>
 					    <option value="0" selected><?php echo $this->lang->line('text_fixed'); ?></option>
 						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
+						<option value="2"><?php echo $this->lang->line('text_self_defined'); ?></option>
+					  <?php } else if($ups_fee_type  == 1)  { ?>
+					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1" selected><?php echo $this->lang->line('text_ratio'); ?></option>
+						<option value="2"><?php echo $this->lang->line('text_self_defined'); ?></option>
+					  <?php } else { ?>
+					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
+						<option value="2" selected><?php echo $this->lang->line('text_self_defined'); ?></option>
 					  <?php } ?>
 					</select>
 				  </div>
 				</div>
 				<div class="hr-line-dashed"></div>
-				 <div class="form-group">
+				<div class="form-group">
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
 			      <div class="col-sm-10">
 				    <div class="input-group">
@@ -366,7 +372,7 @@
 				</div>
 				<div class="hr-line-dashed"></div>
 				<div class="table-responsive">
-				  <table class="table table-striped table-bordered table-hover dataTables-example" >
+				  <table id="ups-standard-fee" class="table table-striped table-bordered table-hover dataTables-example" >
 				    <thead>
 					  <tr>
 					    <th style="width:60%;"><?php echo $this->lang->line('column_client'); ?></th>
@@ -394,7 +400,35 @@
 					  <?php } ?>
 					</tbody>
 				  </table>
-				</div>
+                  <table id="ups-self-defined-fee" class="table table-striped table-bordered table-hover">
+					<thead>
+					  <tr>
+						<th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_weight') ?></th>
+						<th class="text-left" style="width: 35%;"><?php echo $this->lang->line('column_price') ?></th>
+						<th></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php $ups_self_defined_fee_row = 0; ?>
+					  <?php if($ups_self_defined_fees) { ?>
+						<?php foreach ($ups_self_defined_fees as $ups_self_defined_fee) { ?>
+						<tr id="ups-service-row<?php echo $ups_self_defined_fee_row; ?>">
+						  <td class="text-right"><input type="text" name="ups_self_defined_fee[<?php echo $ups_self_defined_fee_row; ?>][weight]" value="<?php echo $ups_self_defined_fee['weight']; ?>" class="form-control" /></td>
+						  <td class="text-right"><input type="text" name="ups_self_defined_fee[<?php echo $ups_self_defined_fee_row; ?>][price]" value="<?php echo $ups_self_defined_fee['price']; ?>" class="form-control" /></td>
+						  <td class="text-center"><button type="button" onclick="$('#ups-self-defined-fee-row<?php echo $ups_self_defined_fee_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+						</tr>
+						<?php $ups_self_defined_fee_row++; ?>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+					<tfoot>
+					  <tr>
+						<td colspan="2"></td>
+						<td class="text-center"><button type="button" onclick="addSelfDefinedFee();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  </tr>
+					</tfoot>
+                  </table>
+				</div>	
 			  </div>
 			</div>
 		  </div>
@@ -436,12 +470,34 @@ function addStateMapping() {
 }
 </script> 
 <script>
+var ups_self_defined_fee_row = <?php echo $ups_self_defined_fee_row; ?>;
+
+function addSelfDefinedFee() {
+	html  = '<tr id="ups-self-defined-fee-row' + ups_self_defined_fee_row + '">';
+	html += '<td class="text-right"><input type="text" name="ups_self_defined_fee[' + ups_self_defined_fee_row + '][weight]" value="" class="form-control" /></td>';
+	html += '<td class="text-right"><input type="text" name="ups_self_defined_fee[' + ups_self_defined_fee_row + '][price]" value="" class="form-control" /></td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#ups-state-mapping-row' + ups_self_defined_fee_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#ups-self-defined-fee tbody').append(html);
+
+	ups_self_defined_fee_row++;
+}
+</script> 
+<script>
 $(document).ready(function() {
 	$('select[name=\'ups_fee_type\']').on('change', function() {
-		if(this.value == 1) {
-			$('.fee-symbol').html('%');
-		} else {
+		if(this.value == 0) {
 			$('.fee-symbol').html('$');
+			$('#ups-standard-fee').show();
+			$('#ups-self-defined-fee').hide();
+		} else if (this.value == 1) {
+			$('.fee-symbol').html('%');
+			$('#ups-standard-fee').show();
+			$('#ups-self-defined-fee').hide();
+		} else {
+			$('#ups-standard-fee').hide();
+			$('#ups-self-defined-fee').show();
 		}			
 	})
 });

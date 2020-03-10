@@ -13,7 +13,6 @@ $lang['menu_checkin_add']	         = 'Add Checkin';
 $lang['menu_checkin_scan']	         = 'Scan Checkin';
 $lang['menu_checkin_rapid']	         = 'Rapid Checkin';
 $lang['menu_checkout_list']	         = 'Checkout List';
-$lang['menu_checkout_group']	     = 'Checkout Group';
 $lang['menu_checkout_add']	         = 'Add Checkout';
 $lang['menu_checkout_scan']	     	 = 'Scan Checkout';
 $lang['menu_checkout_order']	     = 'Order Checkout';

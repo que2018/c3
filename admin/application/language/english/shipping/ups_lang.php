@@ -56,6 +56,7 @@ $lang['text_png'] 	  	 				 = 'png';
 $lang['text_jpg'] 	  					 = 'jpg';
 $lang['text_fixed'] 	  			     = 'fixed';
 $lang['text_ratio'] 	  			     = 'ratio';
+$lang['text_self_defined'] 	  			 = 'self defined';
 $lang['text_fee_value'] 	  			 = 'fee value';
 $lang['text_edit_success'] 	  		     = '<i class="fa fa-check-circle-o"></i>&nbsp;UPS edit success';
 
@@ -73,6 +74,8 @@ $lang['column_method'] 	  	             = 'Method';
 $lang['column_package'] 	  	         = 'Package';
 $lang['column_state_long'] 	  	         = 'State Long';
 $lang['column_state_short'] 	  	     = 'State Short';
+$lang['column_weight'] 	  	     		 = 'Weight';
+$lang['column_price'] 	  	     		 = 'Price';
 
 // Entry
 $lang['entry_access_key'] 	  	     	 = 'Access Key';

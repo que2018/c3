@@ -124,11 +124,9 @@ $lang['entry_gas_fee'] 	  	        	= 'Gas Fee(%)';
 $lang['entry_fedex_ground_price_table'] 	  		= 'Fedex Ground Price Table';
 $lang['entry_fedex_two_day_price_table'] 	  		= 'Fedex Two Day Price Table';
 $lang['entry_dhl_express_price_table'] 	  	    	= 'DHL Express Price Table';
-$lang['entry_ups_ground_price_table'] 	  	    	= 'UPS Ground Price Table';
 $lang['entry_upload_fedex_ground_price_table'] 		= 'Upload Fedex Ground Price Table';
 $lang['entry_upload_fedex_two_day_price_table']		= 'Upload Fedex Two Day Price Table';
 $lang['entry_upload_dhl_express_price_table'] 	  	= 'Upload DHL Express Price Table';
-$lang['entry_upload_ups_ground_price_table'] 	  	= 'Upload UPS Ground Price Table';
 
 // Error
 $lang['error_write_pdf']  			   			   = 'write pdf to disk error';
