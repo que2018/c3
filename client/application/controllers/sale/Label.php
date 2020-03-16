@@ -98,35 +98,53 @@ class Label extends CI_Controller
 					{
 						$client_id = $store['client_id'];
 						
-						if($this->config->item($code . '_fee_type'))
+						if($this->config->item($code . '_fee_type') == 0)
 						{
+							$cost = $result['amount'];
+							
+							$markup = $this->get_client_fee_value($client_id, $code);
+							
+							$amount = $cost + $markup;
+						}
+						else if($this->config->item($code . '_fee_type') == 1)
+						{
+							$cost = $result['amount'];
+							
 							$ratio = $this->get_client_fee_value($client_id, $code);
 							
-							$markup = $result['amount'] * $ratio;
-						}
-						else 
-						{
-							$markup = $this->get_client_fee_value($client_id, $code);
-						}					
+							$markup = $cost * $ratio;
 							
-						$amount = $result['amount'] + $markup;	
+							$amount = $cost + $markup;
+						}	
+						else
+						{
+							$cost = 0;
+							
+							$markup = $result['amount'];
+							
+							$amount = $result['amount'];
+						}
 							
 						if($sale['store_sale_id']) 
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
+						}
 						else
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);
+						}
 							
 						$transaction_data = array(					
 							'client_id'		  => $client_id,
 							'type'		      => 'sale',
 							'type_id'         => $sale_id,
-							'cost'            => $result['amount'],
+							'cost'            => $cost,
 							'markup'          => $markup,
 							'amount'   		  => $amount,
 							'comment'         => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);
+						$this->transaction_model->add_transaction($transaction_data);	
 
 						//additional charge
 						if(isset($result['amount_addi']))
@@ -142,14 +160,12 @@ class Label extends CI_Controller
 							);
 											
 							$this->transaction_model->add_transaction($transaction_data);
-						}							
+						}						
 					}
 				}
 				
 				//display info
-				$data['ext']         = pathinfo($result['label_img'], PATHINFO_EXTENSION);
 				$data['label_img']   = $this->config->item('media_url') . '/label/' . $result['label_img'];
-				
 				$data['width']       = $this->config->item('config_label_width');
 				$data['width_type']  = $this->config->item('config_label_width_type');
 				$data['margin_top']  = $this->config->item('config_label_posy');
@@ -251,7 +267,22 @@ class Label extends CI_Controller
 
 			$result = $this->{$code . '_model'}->generate_sale_label($sale_id);
 			
-			if(!isset($result['error']))
+			if(!$result['success'])
+			{
+				$outdata = array(
+					'success'   => false,
+					'message'   => $result['message']
+				);
+			}
+			else if($result['success'] && (isset($result['pending'])))
+			{
+				$outdata = array(
+					'success'   => true,
+					'pending'   => true,
+					'message'   => $result['message']
+				);
+			}
+			else 
 			{	
 				if(!$this->config->item($code . '_debug_mode'))
 				{
@@ -269,38 +300,56 @@ class Label extends CI_Controller
 					$store = $this->store_model->get_store($sale['store_id']);	
 					
 					if($store)
-					{
+					{	
 						$client_id = $store['client_id'];
-						
-						if($this->config->item($code . '_fee_type'))
+				
+						if($this->config->item($code . '_fee_type') == 0)
 						{
+							$cost = $result['amount'];
+							
+							$markup = $this->get_client_fee_value($client_id, $code);
+							
+							$amount = $cost + $markup;
+						}
+						else if($this->config->item($code . '_fee_type') == 1)
+						{
+							$cost = $result['amount'];
+							
 							$ratio = $this->get_client_fee_value($client_id, $code);
 							
-							$markup = $result['amount'] * $ratio;
-						}
-						else 
-						{
-							$markup = $this->get_client_fee_value($client_id, $code);
-						}					
+							$markup = $cost * $ratio;
 							
-						$amount = $result['amount'] + $markup;	
+							$amount = $cost + $markup;
+						}	
+						else
+						{
+							$cost = 0;
+							
+							$markup = $result['amount'];
+							
+							$amount = $result['amount'];
+						}	
 
 						if($sale['store_sale_id']) 
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
+						}
 						else
-							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);						
+						{
+							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);	
+						}							
 										
 						$transaction_data = array(					
-							'client_id'		  => $client_id,
-							'type'		      => 'sale',
-							'type_id'         => $sale_id,
-							'cost'            => $result['amount'],
-							'markup'          => $markup,
-							'amount'   		  => $amount,
-							'comment'         => $comment
+							'client_id'	 	=> $client_id,
+							'type'		 	=> 'sale',
+							'type_id'    	=> $sale_id,
+							'cost'          => $cost,
+							'markup'        => $markup,
+							'amount'   		=> $amount,
+							'comment'       => $comment
 						);
 											
-						$this->transaction_model->add_transaction($transaction_data);	
+						$this->transaction_model->add_transaction($transaction_data);
 
 						//additional charge
 						if(isset($result['amount_addi']))
@@ -339,6 +388,7 @@ class Label extends CI_Controller
 					
 					$outdata = array(
 						'success'   => true,
+						'pending'   => false,
 						'tracking'  => $result['tracking']
 					);
 				}
@@ -350,14 +400,7 @@ class Label extends CI_Controller
 					);
 				}
 			}
-			else 
-			{
-				$outdata = array(
-					'success'   => false,
-					'message'   => $result['error']
-				);
-			}
-			
+		
 			$this->output->set_content_type('application/json');
 			$this->output->set_output(json_encode($outdata));
 		}

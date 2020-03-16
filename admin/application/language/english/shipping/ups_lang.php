@@ -24,6 +24,7 @@ $lang['text_description'] 	  	     	 = 'description';
 $lang['text_phone'] 	  	     	     = 'phone';
 $lang['text_length_unit'] 	  	     	 = 'Length Unit';
 $lang['text_weight_unit'] 	  	     	 = 'Weight Unit';
+$lang['text_weight_max'] 	  	     	 = 'Weight Max(lb)';
 $lang['text_image_type'] 	  	     	 = 'Image Type';
 $lang['text_debug_mode'] 	  	     	 = 'Debug Mode';
 $lang['text_sort_order'] 	  	         = 'sort order';
@@ -74,7 +75,7 @@ $lang['column_method'] 	  	             = 'Method';
 $lang['column_package'] 	  	         = 'Package';
 $lang['column_state_long'] 	  	         = 'State Long';
 $lang['column_state_short'] 	  	     = 'State Short';
-$lang['column_weight'] 	  	     		 = 'Weight';
+$lang['column_weight_threshold'] 	  	 = 'Weight(<=)';
 $lang['column_price'] 	  	     		 = 'Price';
 
 // Entry
@@ -98,6 +99,7 @@ $lang['entry_description'] 	  	     	 = 'Description';
 $lang['entry_phone'] 	  	     	     = 'Phone';
 $lang['entry_length_unit'] 	  	     	 = 'Length Unit';
 $lang['entry_weight_unit'] 	  	     	 = 'Weight Unit';
+$lang['entry_weight_max'] 	  	     	 = 'Weight Max';
 $lang['entry_image_type'] 	  	     	 = 'Image Type';
 $lang['entry_debug_mode'] 	  	     	 = 'Debug Mode';
 $lang['entry_sort_order'] 	  	         = 'Sort Order';
@@ -107,4 +109,6 @@ $lang['entry_fee_value'] 	  	         = 'Fee Value';
 
 // Error
 $lang['error_save_image_failed'] 	  	 = 'Error: save iamge failed';
+$lang['error_weight_exceed'] 	  	     = 'Error: weight exceeds max value allowed';
+
 

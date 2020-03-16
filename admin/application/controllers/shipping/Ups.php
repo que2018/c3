@@ -42,7 +42,8 @@ class Ups extends MX_Controller
 				'ups_description'    	   => $this->input->post('ups_description'),
 				'ups_phone'    	           => $this->input->post('ups_phone'),	
 				'ups_length_unit'    	   => $this->input->post('ups_length_unit'),	
-				'ups_weight_unit'    	   => $this->input->post('ups_weight_unit'),	
+				'ups_weight_unit'    	   => $this->input->post('ups_weight_unit'),
+				'ups_weight_max'    	   => $this->input->post('ups_weight_max'),	
 				'ups_image_type'    	   => $this->input->post('ups_image_type'),	
 				'ups_debug_mode'    	   => $this->input->post('ups_debug_mode'),	
 				'ups_status'   	  		   => $this->input->post('ups_status'),
@@ -51,6 +52,7 @@ class Ups extends MX_Controller
 				'ups_state_mapping'        => $this->input->post('ups_state_mapping'),
 				'ups_fee_type'     		   => $this->input->post('ups_fee_type'),
 				'ups_fee_value'            => $this->input->post('ups_fee_value'),
+				'ups_self_defined_fee'     => $this->input->post('ups_self_defined_fee'),
 				'ups_client_fee'           => $this->input->post('ups_client_fee')
 			);
 			
@@ -241,6 +243,15 @@ class Ups extends MX_Controller
 			$data['ups_weight_unit'] = $this->config->item('ups_weight_unit');
 		}
 		
+		if($this->input->post('ups_weight_max')) 
+		{
+			$data['ups_weight_max'] = $this->input->post('ups_weight_max');
+		} 
+		else 
+		{
+			$data['ups_weight_max'] = $this->config->item('ups_weight_max');
+		}
+		
 		if($this->input->post('ups_image_type')) 
 		{
 			$data['ups_image_type'] = $this->input->post('ups_image_type');
@@ -313,15 +324,6 @@ class Ups extends MX_Controller
 			$data['ups_fee_value'] = $this->config->item('ups_fee_value');
 		}
 		
-		if($this->input->post('ups_client_fee')) 
-		{
-			$ups_client_fees = $this->input->post('ups_client_fee');
-		} 
-		else 
-		{
-			$ups_client_fees = $this->config->item('ups_client_fee');
-		}
-		
 		if($this->input->post('ups_self_defined_fee')) 
 		{
 			$data['ups_self_defined_fees'] = $this->input->post('ups_self_defined_fee');
@@ -329,6 +331,15 @@ class Ups extends MX_Controller
 		else 
 		{
 			$data['ups_self_defined_fees'] = $this->config->item('ups_self_defined_fee');
+		}
+		
+		if($this->input->post('ups_client_fee')) 
+		{
+			$ups_client_fees = $this->input->post('ups_client_fee');
+		} 
+		else 
+		{
+			$ups_client_fees = $this->config->item('ups_client_fee');
 		}
 		
 		$data['clients'] = array();
@@ -410,7 +421,7 @@ class Ups extends MX_Controller
 			'png'  =>  $this->lang->line('text_png'),
 			'jpg'  =>  $this->lang->line('text_jpg')
 		);
-		
+				
 		$data['error'] = validation_errors();
 		
 		$data['header'] = Modules::run('module/header/index');

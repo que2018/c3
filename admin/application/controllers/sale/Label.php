@@ -98,29 +98,47 @@ class Label extends CI_Controller
 					{
 						$client_id = $store['client_id'];
 						
-						if($this->config->item($code . '_fee_type'))
+						if($this->config->item($code . '_fee_type') == 0)
 						{
+							$cost = $result['amount'];
+							
+							$markup = $this->get_client_fee_value($client_id, $code);
+							
+							$amount = $cost + $markup;
+						}
+						else if($this->config->item($code . '_fee_type') == 1)
+						{
+							$cost = $result['amount'];
+							
 							$ratio = $this->get_client_fee_value($client_id, $code);
 							
-							$markup = $result['amount'] * $ratio;
-						}
-						else 
-						{
-							$markup = $this->get_client_fee_value($client_id, $code);
-						}					
+							$markup = $cost * $ratio;
 							
-						$amount = $result['amount'] + $markup;	
+							$amount = $cost + $markup;
+						}	
+						else
+						{
+							$cost = 0;
+							
+							$markup = $result['amount'];
+							
+							$amount = $result['amount'];
+						}
 							
 						if($sale['store_sale_id']) 
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
+						}
 						else
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);
+						}
 							
 						$transaction_data = array(					
 							'client_id'		  => $client_id,
 							'type'		      => 'sale',
 							'type_id'         => $sale_id,
-							'cost'            => $result['amount'],
+							'cost'            => $cost,
 							'markup'          => $markup,
 							'amount'   		  => $amount,
 							'comment'         => $comment
@@ -282,32 +300,50 @@ class Label extends CI_Controller
 					$store = $this->store_model->get_store($sale['store_id']);	
 					
 					if($store)
-					{
+					{	
 						$client_id = $store['client_id'];
-						
-						if($this->config->item($code . '_fee_type'))
+				
+						if($this->config->item($code . '_fee_type') == 0)
 						{
+							$cost = $result['amount'];
+							
+							$markup = $this->get_client_fee_value($client_id, $code);
+							
+							$amount = $cost + $markup;
+						}
+						else if($this->config->item($code . '_fee_type') == 1)
+						{
+							$cost = $result['amount'];
+							
 							$ratio = $this->get_client_fee_value($client_id, $code);
 							
-							$markup = $result['amount'] * $ratio;
-						}
-						else 
-						{
-							$markup = $this->get_client_fee_value($client_id, $code);
-						}					
+							$markup = $cost * $ratio;
 							
-						$amount = $result['amount'] + $markup;	
+							$amount = $cost + $markup;
+						}	
+						else
+						{
+							$cost = 0;
+							
+							$markup = $result['amount'];
+							
+							$amount = $result['amount'];
+						}	
 
 						if($sale['store_sale_id']) 
+						{
 							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
+						}
 						else
-							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);						
+						{
+							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);	
+						}							
 										
 						$transaction_data = array(					
 							'client_id'	 	=> $client_id,
 							'type'		 	=> 'sale',
 							'type_id'    	=> $sale_id,
-							'cost'          => $result['amount'],
+							'cost'          => $cost,
 							'markup'        => $markup,
 							'amount'   		=> $amount,
 							'comment'       => $comment

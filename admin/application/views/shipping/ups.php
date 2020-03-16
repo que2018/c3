@@ -211,6 +211,11 @@
 				</div>
 				<div class="hr-line-dashed"></div>
 				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_weight_max'); ?></label>
+			      <div class="col-sm-10"><input name="ups_weight_max" value="<?php echo $ups_weight_max; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_image_type'); ?></label>
 			      <div class="col-sm-10">
 					<select name="ups_image_type" class="form-control">
@@ -340,7 +345,7 @@
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_type'); ?></label>
 			      <div class="col-sm-10">
 				    <select name="ups_fee_type" class="form-control">
-					  <?php if($ups_fee_type  == 0) { ?>
+					  <?php if($ups_fee_type == 0) { ?>
 					    <option value="0" selected><?php echo $this->lang->line('text_fixed'); ?></option>
 						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
 						<option value="2"><?php echo $this->lang->line('text_self_defined'); ?></option>
@@ -356,23 +361,33 @@
 					</select>
 				  </div>
 				</div>
-				<div class="hr-line-dashed"></div>
-				<div class="form-group">
-				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
-			      <div class="col-sm-10">
-				    <div class="input-group">
-					  <?php if($ups_fee_type) { ?>
-					    <span class="input-group-addon fee-symbol">%</span>
-					  <?php } else { ?>
-					    <span class="input-group-addon fee-symbol">$</span>
-					  <?php } ?>
-				      <input type="text" name="ups_fee_value" value="<?php echo $ups_fee_value; ?>" class="form-control">
+				<?php if(($ups_fee_type == 0)||($ups_fee_type == 1)) { ?>
+				<div id="fee-value">
+				<?php } else { ?>
+				<div id="fee-value" style="display:none;">
+				<?php } ?>
+				  <div class="hr-line-dashed"></div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
+			        <div class="col-sm-10">
+				      <div class="input-group">
+					    <?php if($ups_fee_type) { ?>
+					      <span class="input-group-addon fee-symbol">%</span>
+					    <?php } else { ?>
+					      <span class="input-group-addon fee-symbol">$</span>
+					    <?php } ?>
+				        <input type="text" name="ups_fee_value" value="<?php echo $ups_fee_value; ?>" class="form-control">
+				      </div>
 				    </div>
 				  </div>
+				  <div class="hr-line-dashed"></div>
 				</div>
-				<div class="hr-line-dashed"></div>
 				<div class="table-responsive">
-				  <table id="ups-standard-fee" class="table table-striped table-bordered table-hover dataTables-example" >
+				  <?php if(($ups_fee_type == 0)||($ups_fee_type == 1)) { ?>
+				  <table id="ups-standard-fee" class="table table-striped table-bordered table-hover dataTables-example">
+				  <?php } else { ?>
+				  <table id="ups-standard-fee" style="display:none;" class="table table-striped table-bordered table-hover dataTables-example">
+				  <?php } ?>
 				    <thead>
 					  <tr>
 					    <th style="width:60%;"><?php echo $this->lang->line('column_client'); ?></th>
@@ -400,10 +415,14 @@
 					  <?php } ?>
 					</tbody>
 				  </table>
-                  <table id="ups-self-defined-fee" class="table table-striped table-bordered table-hover">
+				  <?php if(($ups_fee_type == 0)||($ups_fee_type == 1)) { ?>
+				  <table id="ups-self-defined-fee" style="display:none;" class="table table-striped table-bordered table-hover">
+				  <?php } else { ?>
+				  <table id="ups-self-defined-fee" class="table table-striped table-bordered table-hover">
+				  <?php } ?>				  
 					<thead>
 					  <tr>
-						<th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_weight') ?></th>
+						<th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_weight_threshold') ?></th>
 						<th class="text-left" style="width: 35%;"><?php echo $this->lang->line('column_price') ?></th>
 						<th></th>
 					  </tr>
@@ -489,17 +508,20 @@ $(document).ready(function() {
 	$('select[name=\'ups_fee_type\']').on('change', function() {
 		if(this.value == 0) {
 			$('.fee-symbol').html('$');
+			$('#fee-value').show();
 			$('#ups-standard-fee').show();
 			$('#ups-self-defined-fee').hide();
 		} else if (this.value == 1) {
 			$('.fee-symbol').html('%');
+			$('#fee-value').show();
 			$('#ups-standard-fee').show();
 			$('#ups-self-defined-fee').hide();
 		} else {
+			$('#fee-value').hide();
 			$('#ups-standard-fee').hide();
 			$('#ups-self-defined-fee').show();
 		}			
-	})
+	});
 });
 </script>
 <?php echo $footer; ?>

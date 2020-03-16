@@ -29,6 +29,19 @@ class Ups_model extends CI_Model
 
 		$sale_shipping_service = $this->get_service($sale['shipping_service']);
 		
+		//exceed max weight
+		$weight = $this->weight_class_model->to_config($sale['weight_class_id'], $sale['weight']);
+
+		if($weight > $this->config->item('ups_weight_max')) 
+		{
+			$result = array(
+				'success'  => false,
+				'message'  => $this->lang->line('error_weight_exceed')
+			);
+			
+			return $result;
+		}
+		
 		require_once APPPATH . 'libraries/RocketShipIt/autoload.php';
 		$config = new \RocketShipIt\Config;
 		
@@ -106,11 +119,39 @@ class Ups_model extends CI_Model
 				{	
 					$this->image->rotate($file_path, 90);
 			
-					if(isset($response['negotiated_charges'])) 
-						$amount = $response['negotiated_charges'];
-					else 
-						$amount = $response['charges'];
-			
+					if(($this->config->item('ups_fee_type') == 0)||($this->config->item('ups_fee_type') == 1))
+					{
+						if(isset($response['negotiated_charges'])) 
+						{
+							$amount = $response['negotiated_charges'];
+						}
+						else 
+						{
+							$amount = $response['charges'];
+						}
+					}
+					else
+					{
+						$amount = 0;
+						
+						$ups_self_defined_fees = $this->config->item('ups_self_defined_fee');
+						
+						if(isset($ups_self_defined_fees))
+						{
+							$weight = $this->weight_class_model->to_config($sale['weight_class_id'], $sale['weight']);
+
+							foreach($ups_self_defined_fees as $ups_self_defined_fee)
+							{
+								if($ups_self_defined_fee['weight'] >= $weight)
+								{
+									$amount = $ups_self_defined_fee['price'];	
+									
+									break;
+								}
+							}
+						}
+					}
+					
 					$result = array(
 						'success'    => true,
 						'tracking'   => $tracking,
