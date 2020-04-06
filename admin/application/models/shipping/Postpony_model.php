@@ -49,19 +49,35 @@ class Postpony_model extends CI_Model
 	
 		$data['key'] = $this->config->item('postpony_key');
 		$data['pwd'] = $this->config->item('postpony_pwd');
-		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
-		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
-		$data['owner'] = $this->config->item('postpony_owner');
-		$data['company'] = $this->config->item('postpony_company');
-		$data['street'] = $this->config->item('postpony_street');
-		$data['street2'] = $this->config->item('postpony_street2');
-		$data['city'] = $this->config->item('postpony_city');
-		$data['state'] = $this->config->item('postpony_state');
-		$data['postcode'] = $this->config->item('postpony_postcode');
-		$data['country'] = $this->config->item('postpony_country');
-		$data['phone'] = $this->config->item('postpony_phone');
 		$data['signature'] = $this->config->item('postpony_signature');
-		
+		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
+		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
+
+		if($sale['alter_shipper'])
+		{
+			$data['owner'] = $sale['shipper_name'];
+			$data['company'] = $sale['shipper_company'];
+			$data['street'] = $sale['shipper_street'];
+			$data['street2'] = $sale['shipper_street2'];
+			$data['city'] = $sale['shipper_city'];
+			$data['state'] = $sale['shipper_state'];
+			$data['postcode'] = $sale['shipper_postcode'];
+			$data['country'] = $sale['shipper_country'];
+			$data['phone'] = $sale['shipper_phone'];
+		}
+		else
+		{
+			$data['owner'] = $this->config->item('postpony_owner');
+			$data['company'] = $this->config->item('postpony_company');
+			$data['street'] = $this->config->item('postpony_street');
+			$data['street2'] = $this->config->item('postpony_street2');
+			$data['city'] = $this->config->item('postpony_city');
+			$data['state'] = $this->config->item('postpony_state');
+			$data['postcode'] = $this->config->item('postpony_postcode');
+			$data['country'] = $this->config->item('postpony_country');
+			$data['phone'] = $this->config->item('postpony_phone');
+		}
+	
 		//service 
 		$shipping_service = $this->get_service($sale['shipping_service']);
 		

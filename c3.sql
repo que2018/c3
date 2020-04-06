@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 06, 2020 at 11:02 AM
--- Server version: 5.6.46-cll-lve
--- PHP Version: 7.2.7
+-- Host: 127.0.0.1
+-- Generation Time: Apr 06, 2020 at 09:33 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bhlintl_company`
+-- Database: `c3`
 --
 
 -- --------------------------------------------------------
@@ -223,7 +223,58 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (15683, NULL, '156.234.201.154', '', 'view the dashboard', 'HEAD', '2020-04-06 14:01:19'),
 (15684, NULL, '131.220.6.152', '', 'view the dashboard', 'GET', '2020-04-06 16:41:08'),
 (15685, NULL, '54.200.179.29', '', 'view the dashboard', 'GET', '2020-04-06 16:53:36'),
-(15686, NULL, '64.233.172.210', '', 'view the dashboard', 'GET', '2020-04-06 16:56:06');
+(15686, NULL, '64.233.172.210', '', 'view the dashboard', 'GET', '2020-04-06 16:56:06'),
+(15687, NULL, '::1', '', 'view the dashboard', 'GET', '2020-04-06 20:20:17'),
+(15688, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-04-06 20:20:22'),
+(15689, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-04-06 20:20:26'),
+(15690, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-04-06 20:20:43'),
+(15691, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-04-06 20:20:43'),
+(15692, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:20:56'),
+(15693, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:20:58'),
+(15694, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:24:47'),
+(15695, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:25:03'),
+(15696, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:25:40'),
+(15697, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:26:29'),
+(15698, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:28:50'),
+(15699, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2020-04-06 20:28:52'),
+(15700, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2020-04-06 20:29:00'),
+(15701, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:29:01'),
+(15702, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2020-04-06 20:29:29'),
+(15703, 1, '::1', 'sale/sale/add', 'view the order add page', 'GET', '2020-04-06 20:31:11'),
+(15704, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:33:09'),
+(15705, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:33:11'),
+(15706, 1, '::1', 'store/store_ajax/get_store', '0', 'GET', '2020-04-06 20:33:50'),
+(15707, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2020-04-06 20:34:00'),
+(15708, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:34:00'),
+(15709, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:34:02'),
+(15710, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2020-04-06 20:35:01'),
+(15711, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:35:01'),
+(15712, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:35:03'),
+(15713, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:35:57'),
+(15714, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:36:00'),
+(15715, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:36:03'),
+(15716, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2020-04-06 20:36:08'),
+(15717, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:36:08'),
+(15718, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:36:10'),
+(15719, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-04-06 20:37:07'),
+(15720, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-04-06 20:37:09'),
+(15721, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-04-06 20:51:53'),
+(15722, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:51:58'),
+(15723, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:52:00'),
+(15724, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:53:25'),
+(15725, 1, '::1', 'store/store_ajax/get_store', '0', 'GET', '2020-04-06 20:53:35'),
+(15726, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'POST', '2020-04-06 20:53:39'),
+(15727, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:53:39'),
+(15728, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:53:40'),
+(15729, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:53:46'),
+(15730, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 20:56:49'),
+(15731, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 20:56:50'),
+(15732, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-04-06 21:00:21'),
+(15733, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-04-06 21:00:26'),
+(15734, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 21:03:13'),
+(15735, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 21:03:15'),
+(15736, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-04-06 21:19:32'),
+(15737, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-06 21:30:36');
 
 -- --------------------------------------------------------
 
@@ -1114,6 +1165,7 @@ CREATE TABLE `sale` (
   `phone` varchar(20) NOT NULL,
   `alter_shipper` int(11) NOT NULL DEFAULT '0',
   `shipper_name` varchar(55) NOT NULL,
+  `shipper_company` varchar(255) NOT NULL,
   `shipper_street` varchar(255) NOT NULL,
   `shipper_street2` varchar(255) NOT NULL,
   `shipper_city` varchar(55) NOT NULL,
@@ -1144,9 +1196,9 @@ CREATE TABLE `sale` (
 -- Dumping data for table `sale`
 --
 
-INSERT INTO `sale` (`id`, `store_id`, `store_sale_id`, `name`, `street`, `street2`, `city`, `state`, `zipcode`, `country`, `email`, `phone`, `alter_shipper`, `shipper_name`, `shipper_street`, `shipper_street2`, `shipper_city`, `shipper_state`, `shipper_zipcode`, `shipper_country`, `shipper_email`, `shipper_phone`, `length`, `width`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `total`, `tracking`, `status_id`, `note`, `date_added`, `date_modified`, `jd_delivery_id`, `jd_order_date_added`) VALUES
-(1, 4, 'TEST#1234', 'TEST111', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', '54981', 'US', '', '111111111111', 0, 'Sam Shao', '12012 Lambert Ave', '', 'El Monte', 'California', '91732', 'United States', 'quedinge2019@gmail.com', '6265518446', '40.00', '20.00', '20.00', '4.00', 1, 5, 'jd', 'FEDEX_GRD', '0.00', '', 1, '', '2020-04-02 03:46:47', '2020-04-06 02:27:53', '', '2020-04-01 20:46:47'),
-(2, 4, 'BBB', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', 0, '', '', '', '', '', '', '', '', '', '40.00', '20.00', '20.00', '5.00', 1, 5, 'jd', 'FEDEX_GRD', '0.00', '', 1, '', '2020-04-06 03:42:12', '0000-00-00 00:00:00', '', '2020-04-05 20:42:12');
+INSERT INTO `sale` (`id`, `store_id`, `store_sale_id`, `name`, `street`, `street2`, `city`, `state`, `zipcode`, `country`, `email`, `phone`, `alter_shipper`, `shipper_name`, `shipper_company`, `shipper_street`, `shipper_street2`, `shipper_city`, `shipper_state`, `shipper_zipcode`, `shipper_country`, `shipper_email`, `shipper_phone`, `length`, `width`, `height`, `weight`, `length_class_id`, `weight_class_id`, `shipping_provider`, `shipping_service`, `total`, `tracking`, `status_id`, `note`, `date_added`, `date_modified`, `jd_delivery_id`, `jd_order_date_added`) VALUES
+(1, 4, 'TEST#1234', 'TEST111', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', '54981', 'US', '', '111111111111', 0, 'Sam Shao', '', '12012 Lambert Ave', '', 'El Monte', 'California', '91732', 'United States', 'quedinge2019@gmail.com', '6265518446', '40.00', '20.00', '20.00', '4.00', 1, 5, 'jd', 'FEDEX_GRD', '0.00', '', 1, '', '2020-04-02 03:46:47', '2020-04-06 02:27:53', '', '2020-04-01 20:46:47'),
+(2, 4, 'BBB', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'US', '', '', 1, 'Sam Shao', 'SamintheBox Inc', '12012 Lambert Ave', '', 'El Monte', 'California', '91732', 'United States', 'quedinge2019@gmail.com', '6265518446', '40.00', '20.00', '20.00', '5.00', 1, 5, 'jd', 'FEDEX_GRD', '0.00', '', 1, '', '2020-04-06 03:42:12', '2020-04-06 20:53:39', '', '2020-04-05 20:42:12');
 
 -- --------------------------------------------------------
 
@@ -1181,7 +1233,7 @@ CREATE TABLE `sale_product` (
 
 INSERT INTO `sale_product` (`id`, `sale_id`, `product_id`, `quantity`, `store_sale_product_id`) VALUES
 (2, 1, 134, 2, ''),
-(3, 2, 135, 2, '');
+(7, 2, 135, 2, '');
 
 -- --------------------------------------------------------
 
@@ -1998,7 +2050,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15687;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15738;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -2196,7 +2248,7 @@ ALTER TABLE `sale_label`
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setting`

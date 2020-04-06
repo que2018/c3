@@ -523,6 +523,7 @@ class Sale extends MX_Controller
 				'phone'             => $this->input->post('phone'),
 				'alter_shipper'     => $this->input->post('alter_shipper'),
 				'shipper_name'      => $this->input->post('shipper_name'),
+				'shipper_company'   => $this->input->post('shipper_company'),
 				'shipper_street'    => $this->input->post('shipper_street'),
 				'shipper_street2'   => $this->input->post('shipper_street2'),
 				'shipper_city'      => $this->input->post('shipper_city'),
@@ -577,8 +578,9 @@ class Sale extends MX_Controller
 				'zipcode'           => '',
 				'email'             => '',
 				'phone'             => '',
-				'alter_shipper'     => '',
+				'alter_shipper'     => 0,
 				'shipper_name'      => '',
+				'shipper_company'   => '',
 				'shipper_street'    => '',
 				'shipper_street2'   => '',
 				'shipper_city'      => '',
@@ -860,6 +862,7 @@ class Sale extends MX_Controller
 				'phone'             => $this->input->post('phone'),
 				'alter_shipper'     => $this->input->post('alter_shipper'),
 				'shipper_name'      => $this->input->post('shipper_name'),
+				'shipper_company'   => $this->input->post('shipper_company'),
 				'shipper_street'    => $this->input->post('shipper_street'),
 				'shipper_street2'   => $this->input->post('shipper_street2'),
 				'shipper_city'      => $this->input->post('shipper_city'),
@@ -911,6 +914,7 @@ class Sale extends MX_Controller
 			$data['phone']        	    = $this->input->post('phone');
 			$data['alter_shipper']      = $this->input->post('alter_shipper');
 			$data['shipper_name']  		= $this->input->post('shipper_name');
+			$data['shipper_company']    = $this->input->post('shipper_company');
 			$data['shipper_street']     = $this->input->post('shipper_street');
 			$data['shipper_street2']    = $this->input->post('shipper_street2');
 			$data['shipper_city']       = $this->input->post('shipper_city');
@@ -997,6 +1001,7 @@ class Sale extends MX_Controller
 			$data['phone']              = $sale['phone'];
 			$data['alter_shipper']      = $sale['alter_shipper'];
 			$data['shipper_name']       = $sale['shipper_name'];
+			$data['shipper_company']    = $sale['shipper_company'];
 			$data['shipper_street']     = $sale['shipper_street'];
 			$data['shipper_street2']    = $sale['shipper_street2'];
 			$data['shipper_city']       = $sale['shipper_city'];

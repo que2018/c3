@@ -2,6 +2,13 @@
 
 class Postpony_model extends CI_Model
 {	
+	public function install(){}
+	
+	public function uninstall() 
+	{
+		$this->db->delete('setting', array('code' => 'postpony')); 
+	}
+	
 	public function get_service($code)
 	{	
 		$q = $this->db->get_where('setting', array('key' => 'postpony_service'));
@@ -31,50 +38,46 @@ class Postpony_model extends CI_Model
 	
 	public function generate_sale_label($sale_id)
 	{
-		$this->lang->load('shipping/postpony');
-
 		$this->load->model('sale/sale_model');
-		$this->load->model('store/store_model');
-		$this->load->model('client/client_model');
-			
+		
+		$this->lang->load('shipping/postpony');
+				
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);
-		
-		$store_id = $sale['store_id'];
-		$store = $this->store_model->get_store($store_id);		
-		$client = $this->client_model->get_client($store['client_id']);
 		
 		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
 	
 		$data['key'] = $this->config->item('postpony_key');
 		$data['pwd'] = $this->config->item('postpony_pwd');
-		$data['authorized_key'] = $this->config->item('postpony_authorized_key');
-		$data['debug_mode'] = $this->config->item('postpony_debug_mode');
-		
-		/*
-		$data['owner'] = $this->config->item('postpony_owner');
-		$data['company'] = $this->config->item('postpony_company');
-		$data['street'] = $this->config->item('postpony_street');
-		$data['street2'] = $this->config->item('postpony_street2');
-		$data['city'] = $this->config->item('postpony_city');
-		$data['state'] = $this->config->item('postpony_state');
-		$data['postcode'] = $this->config->item('postpony_postcode');
-		$data['country'] = $this->config->item('postpony_country');
-		$data['phone'] = $this->config->item('postpony_phone');
-		*/
-		
-		$data['owner'] = $client['firstname'].' '.$client['lastname'];
-		$data['company'] = $client['company'];
-		$data['street'] = $client['street'];
-		$data['street2'] = '';
-		$data['city'] = $client['city'];
-		$data['state'] = $client['state'];
-		$data['postcode'] = $client['zipcode'];
-		$data['country'] = $client['country'];
-		$data['phone'] = $client['phone'];
-		
 		$data['signature'] = $this->config->item('postpony_signature');
-		
+		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
+		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
+
+		if($sale['alter_shipper'])
+		{
+			$data['owner'] = $sale['shipper_name'];
+			$data['company'] = $sale['shipper_company'];
+			$data['street'] = $sale['shipper_street'];
+			$data['street2'] = $sale['shipper_street2'];
+			$data['city'] = $sale['shipper_city'];
+			$data['state'] = $sale['shipper_state'];
+			$data['postcode'] = $sale['shipper_postcode'];
+			$data['country'] = $sale['shipper_country'];
+			$data['phone'] = $sale['shipper_phone'];
+		}
+		else
+		{
+			$data['owner'] = $this->config->item('postpony_owner');
+			$data['company'] = $this->config->item('postpony_company');
+			$data['street'] = $this->config->item('postpony_street');
+			$data['street2'] = $this->config->item('postpony_street2');
+			$data['city'] = $this->config->item('postpony_city');
+			$data['state'] = $this->config->item('postpony_state');
+			$data['postcode'] = $this->config->item('postpony_postcode');
+			$data['country'] = $this->config->item('postpony_country');
+			$data['phone'] = $this->config->item('postpony_phone');
+		}
+	
 		//service 
 		$shipping_service = $this->get_service($sale['shipping_service']);
 		
@@ -120,6 +123,7 @@ class Postpony_model extends CI_Model
 			if(@file_put_contents($label_img, base64_decode($label_data)))
 			{					
 				$result = array(
+					'success'    => true,
 					'tracking'   => $tracking,
 					'label_img'  => $tracking . '.png',
 					'amount'     => $amount
@@ -127,12 +131,18 @@ class Postpony_model extends CI_Model
 			}
 			else
 			{
-				$result['error'] = $this->lang->line('error_save_image_failed');
+				$result = array(
+					'success'   => false,
+					'message'   => $this->lang->line('error_save_image_failed')
+				);
 			}
 		}
 		else
 		{
-			$result['error'] = (string)$response->Msg;
+			$result = array(
+				'success'   => false,
+				'message'   => (string)$response->Msg
+			);
 		}
 			
 		return $result;

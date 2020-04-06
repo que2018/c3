@@ -37,7 +37,7 @@
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#volume_weight"><?php echo $this->lang->line('tab_volume_weight'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#volume-weight"><?php echo $this->lang->line('tab_volume_weight'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
@@ -150,7 +150,7 @@
 			  </table> 
 			</div>
 		  </div>
-		  <div id="volume_weight" class="tab-pane">
+		  <div id="volume-weight" class="tab-pane">
 			<div class="panel-body">
 			  <div class="form-group">
 				<label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_length'); ?></label>
@@ -261,7 +261,7 @@
 		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_alter_shipper'); ?></label>
                 <div class="col-sm-10">
 				  <select name="alter_shipper" class="form-control">
-				    <?php if($alternative_shipper) { ?>
+				    <?php if($alter_shipper) { ?>
 					<option value="1" selected><?php echo $this->lang->line('text_yes'); ?></option>
 					<option value="0"><?php echo $this->lang->line('text_no'); ?></option>
 					<?php } else { ?>
@@ -276,6 +276,11 @@
 			    <div class="form-group">
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_name'); ?></label>
                   <div class="col-sm-10"><input type="text" name="shipper_name" value="<?php echo $shipper_name; ?>" class="form-control"></div>
+                </div>
+			    <div class="hr-line-dashed"></div>
+				<div class="form-group">
+		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_company'); ?></label>
+                  <div class="col-sm-10"><input type="text" name="shipper_company" value="<?php echo $shipper_company; ?>" class="form-control"></div>
                 </div>
 			    <div class="hr-line-dashed"></div>
 			    <div class="form-group">
@@ -317,7 +322,6 @@
 		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_phone'); ?></label>
                   <div class="col-sm-10"><input type="text" name="shipper_phone" value="<?php echo $shipper_phone; ?>" class="form-control"></div>
                 </div> 
-			    <div class="hr-line-dashed"></div>
 			  </div>
 			</div>
 		  </div>
@@ -585,6 +589,7 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(json) {					
 					$('input[name=\'shipper_name\']').val(json.firstname + " " + json.lastname);
+					$('input[name=\'shipper_company\']').val(json.company);
 					$('input[name=\'shipper_street\']').val(json.street);
 					$('input[name=\'shipper_city\']').val(json.city);
 					$('input[name=\'shipper_state\']').val(json.state);
@@ -601,6 +606,7 @@ $(document).ready(function() {
 		else
 		{
 			$('input[name=\'shipper_name\']').val('');
+			$('input[name=\'shipper_company\']').val('');
 			$('input[name=\'shipper_street\']').val('');
 			$('input[name=\'shipper_city\']').val('');
 			$('input[name=\'shipper_state\']').val('');
@@ -608,6 +614,19 @@ $(document).ready(function() {
 			$('input[name=\'shipper_zipcode\']').val('');
 			$('input[name=\'shipper_email\']').val('');
 			$('input[name=\'shipper_phone\']').val('');
+		}
+	});
+});
+</script>
+<script>
+$(document).ready(function() {
+	$('select[name=\'alter_shipper\']').on('change', function() {
+		val = $(this).val();
+		
+		if(val == 1) {
+			$('#alter-shipper').show();
+		} else {
+			$('#alter-shipper').hide();
 		}
 	});
 });

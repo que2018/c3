@@ -82,6 +82,7 @@ $lang['entry_email'] 	  	             		= '邮件';
 $lang['entry_phone'] 	  	             		= '电话';
 $lang['entry_alter_shipper'] 	  	            = '另加发件人';
 $lang['entry_shipper_name'] 	  	            = '发件人名称';
+$lang['entry_shipper_company'] 	  	            = '发件人公司';
 $lang['entry_shipper_street'] 	  	            = '发件人街道';
 $lang['entry_shipper_street2'] 	  	            = '发件人街道2';
 $lang['entry_shipper_city'] 	  	            = '发件人城市';
