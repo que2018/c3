@@ -45,12 +45,15 @@
 		  <li>
 			<a href="<?php echo base_url(); ?>common/dashboard"><i class="fa fa-tachometer"></i><span class="nav-label"><?php echo $this->lang->line('menu_dashboard'); ?></span></a>
 		  </li>
+		  <?php if($check_permission) { ?>
 		  <li>
 			<a><i class="fa fa-arrow-circle-o-right"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkin'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
 			  <li><a href="<?php echo base_url(); ?>check/checkin"><?php echo $this->lang->line('menu_checkin_list'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($check_permission) { ?>
 		  <li>
 			<a><i class="fa fa-arrow-circle-o-left"></i><span class="nav-label"><?php echo $this->lang->line('menu_checkout'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -58,6 +61,8 @@
 			  <li><a href="<?php echo base_url(); ?>check/checkout_sale"><?php echo $this->lang->line('menu_checkout_order'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($fba_permission) { ?>
 		  <li>
 			<a><i class="fa fa-dropbox" aria-hidden="true"></i><span class="nav-label"><?php echo $this->lang->line('menu_fba'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -66,6 +71,8 @@
 			  <li><a href="<?php echo base_url(); ?>fba/fba_warehouse"><?php echo $this->lang->line('menu_fba_warehouse'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($sale_permission) { ?>
 		  <li>
 			<a><i class="fa fa-shopping-cart"></i><span class="nav-label"><?php echo $this->lang->line('menu_order'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -75,6 +82,8 @@
 			  <li><a href="<?php echo base_url(); ?>sale/customer"><?php echo $this->lang->line('menu_customer'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($catalog_permission) { ?>
 		  <li>
 			<a><i class="fa fa-product-hunt"></i><span class="nav-label"><?php echo $this->lang->line('menu_product'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -83,6 +92,8 @@
 			  <li><a href="<?php echo base_url(); ?>catalog/product_import"><?php echo $this->lang->line('menu_product_import'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($inventory_permission) { ?>
 		  <li>
 			<a><i class="fa fa-bars"></i><span class="nav-label"><?php echo $this->lang->line('menu_inventory'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -91,6 +102,8 @@
 			  <li><a href="<?php echo base_url(); ?>inventory/refund"><?php echo $this->lang->line('menu_return_list'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($warehouse_permission) { ?>
 		  <li>
 			<a><i class="fa fa-cubes"></i><span class="nav-label"><?php echo $this->lang->line('menu_warehouse'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -99,6 +112,8 @@
 			  <li><a href="<?php echo base_url(); ?>warehouse/warehouse"><?php echo $this->lang->line('menu_warehouse'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($store_permission) { ?>
 		  <li>
 			<a><i class="fa fa-university"></i><span class="nav-label"><?php echo $this->lang->line('menu_store'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -111,6 +126,8 @@
 			  <li><a href="<?php echo base_url(); ?>store/store_sync_history"><?php echo $this->lang->line('menu_sync_history'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($extension_permission) { ?>
 		  <li>
 			<a><i class="fa fa-puzzle-piece"></i><span class="nav-label"><?php echo $this->lang->line('menu_extension'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -120,6 +137,8 @@
 			  <li><a href="<?php echo base_url(); ?>extension/payment"><?php echo $this->lang->line('menu_payment'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($finance_permission) { ?>
 		  <li>
 			<a><i class="fa fa-usd"></i><span class="nav-label"><?php echo $this->lang->line('menu_finance'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -128,22 +147,8 @@
 			  <li><a href="<?php echo base_url(); ?>finance/transaction"><?php echo $this->lang->line('menu_transaction'); ?></a></li>
 			</ul>
 		  </li>
-		  <!--<li>
-			<a><i class="fa fa-bar-chart"></i><span class="nav-label"><?php echo $this->lang->line('menu_report'); ?></span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level">
-			  <li><a href="#"><?php echo $this->lang->line('menu_sale'); ?></a>
-			    <ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>report/sale/order"><?php echo $this->lang->line('menu_order'); ?></a></li>
-				  <li><a href="<?php echo base_url(); ?>report/sale/product"><?php echo $this->lang->line('menu_product'); ?></a></li>
-				</ul>
-			  </li>	  
-			  <li><a href="#"><?php echo $this->lang->line('menu_purchase'); ?></a>     
-				<ul class="nav nav-third-level">
-				  <li><a href="<?php echo base_url(); ?>report/purchase/alert"><?php echo $this->lang->line('menu_alert_list'); ?></a></li>
-				</ul>
-              </li>   
-			</ul>
-		  </li>-->
+		  <?php } ?>
+		  <?php if($client_permission) { ?>
 		  <li>
 			<a><i class="fa fa-address-card"></i><span class="nav-label"><?php echo $this->lang->line('menu_client'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -151,6 +156,8 @@
 			  <li><a href="<?php echo base_url(); ?>client/client/add"><?php echo $this->lang->line('menu_client_add'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($user_permission) { ?>
 		  <li>
 			<a><i class="fa fa fa-user-circle-o"></i><span class="nav-label"><?php echo $this->lang->line('menu_user'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -158,6 +165,8 @@
 			  <li><a href="<?php echo base_url(); ?>user/user_group"><?php echo $this->lang->line('menu_user_group'); ?></a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
+		  <?php if($system_permission) { ?>
 		  <li>
 			<a><i class="fa fa-cog"></i><span class="nav-label"><?php echo $this->lang->line('menu_system'); ?></span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
@@ -178,6 +187,7 @@
 			  <li><a href="<?php echo base_url(); ?>setting/about"><?php echo $this->lang->line('menu_about'); ?></a></li>			  
 			</ul>
 		  </li>
+		  <?php } ?>
 		</ul>
 	  </div>
 	</nav>

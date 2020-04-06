@@ -31,6 +31,19 @@ class Header extends MX_Controller
 		
 		$data['scripts'] = $this->scripts;
 		
+		$data['check_permission']      = $this->auth->has_permission('access', 'check');
+		$data['fba_permission']        = $this->auth->has_permission('access', 'fba');
+		$data['sale_permission']       = $this->auth->has_permission('access', 'sale');
+		$data['catalog_permission']    = $this->auth->has_permission('access', 'catalog');
+		$data['inventory_permission']  = $this->auth->has_permission('access', 'inventory');
+		$data['warehouse_permission']  = $this->auth->has_permission('access', 'warehouse');
+		$data['store_permission']      = $this->auth->has_permission('access', 'store');
+		$data['extension_permission']  = $this->auth->has_permission('access', 'extension');
+		$data['finance_permission']    = $this->auth->has_permission('access', 'finance');
+		$data['client_permission']     = $this->auth->has_permission('access', 'client');
+		$data['user_permission']       = $this->auth->has_permission('access', 'user');
+		$data['system_permission']     = $this->auth->has_permission('access', 'setting');
+
 		$data['success'] = $this->session->flashdata('success');
 		
 		$this->load->view('header', $data);

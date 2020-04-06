@@ -75,6 +75,9 @@ input:focus {
 .btn-bulk-print {
 	margin-right: 8px;
 }
+.btn-download {	
+	margin-right: 5px;
+}
 .page-heading {
 	position: relative;
 }

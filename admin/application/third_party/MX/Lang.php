@@ -43,9 +43,25 @@ class MX_Lang extends CI_Lang
 			return $this->language;
 		}
 			
-		$deft_lang = CI::$APP->config->item('language');
-		$idiom = ($lang == '') ? $deft_lang : $lang;
-	
+		CI::$APP->load->database();
+		
+		CI::$APP->load->library('session');
+		
+		if(CI::$APP->session->userdata('language_id'))
+		{
+			$language_id = CI::$APP->session->userdata('language_id');
+		}
+		else
+		{
+			$language_id = CI::$APP->config->item('config_admin_language_id');
+		}
+				
+		$q = CI::$APP->db->get_where('language', array('language_id' => $language_id));
+		
+		$result = $q->row_array();
+		
+		$idiom = $result['code'];
+		
 		if (in_array($langfile.'_lang'.EXT, $this->is_loaded, TRUE))
 			return $this->language;
 

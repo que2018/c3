@@ -242,6 +242,67 @@
 				  </div>
                 </div>
 				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_alter_shipper'); ?></label>
+                <div class="col-sm-10">
+				  <select name="alter_shipper" class="form-control">
+				    <?php if($alter_shipper) { ?>
+					<option value="1" selected><?php echo $this->lang->line('text_yes'); ?></option>
+					<option value="0"><?php echo $this->lang->line('text_no'); ?></option>
+					<?php } else { ?>
+					<option value="1"><?php echo $this->lang->line('text_yes'); ?></option>
+					<option value="0" selected><?php echo $this->lang->line('text_no'); ?></option>
+					<?php } ?>
+				  </select>
+				</div>
+              </div>
+			  <div class="hr-line-dashed"></div>
+			  <div id="alter-shipper" style="display:<?php echo ($alter_shipper)?'block':'none'; ?>">
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_name'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_name" value="<?php echo $shipper_name; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_street" value="<?php echo $shipper_street; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street2'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_street2" value="<?php echo $shipper_street2; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_city'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_city" value="<?php echo $shipper_city; ?>" class="form-control"></div>
+				</div> 
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_state'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_state" value="<?php echo $shipper_state; ?>" class="form-control"></div>
+				</div> 
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_country'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_country" value="<?php echo $shipper_country; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_zipcode'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_zipcode" value="<?php echo $shipper_zipcode; ?>" class="form-control"></div>
+				</div> 
+				<div class="hr-line-dashed"></div>
+			    <div class="form-group">
+				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_email'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_email" value="<?php echo $shipper_email; ?>" class="form-control"></div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+			      <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_phone'); ?></label>
+				  <div class="col-sm-10"><input type="text" name="shipper_phone" value="<?php echo $shipper_phone; ?>" class="form-control"></div>
+				</div> 
+			    <div class="hr-line-dashed"></div>
 			  </div>
 		    </div>
 			<div id="store" class="tab-pane">
@@ -451,6 +512,45 @@ $(document).ready(function() {
 			shipping_service_html = '<option value=""></option>';
 			
 			$('select[name=\'shipping_service\']').html(shipping_service_html);
+		}
+	});
+});
+</script>
+<script>
+$(document).ready(function() {
+	$('select[name=\'store_id\']').on('change', function() {
+		store_id = $(this).val();
+	
+		if(store_id) 
+		{			
+			$.ajax({
+				url: '<?php echo base_url(); ?>store/store_ajax/get_store?store_id=' + store_id,
+				dataType: 'json',
+				success: function(json) {					
+					$('input[name=\'shipper_name\']').val(json.firstname + " " + json.lastname);
+					$('input[name=\'shipper_street\']').val(json.street);
+					$('input[name=\'shipper_city\']').val(json.city);
+					$('input[name=\'shipper_state\']').val(json.state);
+					$('input[name=\'shipper_country\']').val(json.country);
+					$('input[name=\'shipper_zipcode\']').val(json.zipcode);
+					$('input[name=\'shipper_email\']').val(json.email);
+					$('input[name=\'shipper_phone\']').val(json.phone);	
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+		else
+		{
+			$('input[name=\'shipper_name\']').val('');
+			$('input[name=\'shipper_street\']').val('');
+			$('input[name=\'shipper_city\']').val('');
+			$('input[name=\'shipper_state\']').val('');
+			$('input[name=\'shipper_country\']').val('');
+			$('input[name=\'shipper_zipcode\']').val('');
+			$('input[name=\'shipper_email\']').val('');
+			$('input[name=\'shipper_phone\']').val('');
 		}
 	});
 });

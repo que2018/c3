@@ -435,6 +435,135 @@ class Sale_ajax extends CI_Controller
 		}
 	}
 	
+	public function export_sales() 
+	{
+		$this->lang->load('sale/sale');
+	
+		$this->load->library('phpexcel');
+
+		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('setting/length_class_model');
+		$this->load->model('setting/weight_class_model');
+		
+		//excel export begin
+		$objPHPExcel = new PHPExcel();	
+		$objPHPExcel->createSheet();
+		$objPHPExcel->setActiveSheetIndex(0);
+		
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+		
+		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+		
+		$objPHPExcel->getActiveSheet()->setCellValue('A1', $this->lang->line('column_name'));
+		$objPHPExcel->getActiveSheet()->setCellValue('B1', $this->lang->line('column_client'));
+		$objPHPExcel->getActiveSheet()->setCellValue('C1', $this->lang->line('column_upc'));
+		$objPHPExcel->getActiveSheet()->setCellValue('D1', $this->lang->line('column_sku'));
+		$objPHPExcel->getActiveSheet()->setCellValue('E1', $this->lang->line('column_quantity'));
+			
+		if($this->input->get('filter_sale_id'))
+		{
+			$filter_sale_id = $this->input->get('filter_sale_id');
+		} 
+		else 
+		{
+			$filter_sale_id = '';
+		}
+		
+		if($this->input->get('filter_store_sale_id'))
+		{
+			$filter_store_sale_id = $this->input->get('filter_store_sale_id');
+		} 
+		else 
+		{
+			$filter_store_sale_id = '';
+		}
+		
+		if($this->input->get('filter_status'))
+		{
+			$filter_status = $this->input->get('filter_status');
+		} 
+		else 
+		{
+			$filter_status = '';
+		}
+		
+		if($this->input->get('filter_tracking'))
+		{
+			$filter_tracking = $this->input->get('filter_tracking');
+		} 
+		else 
+		{
+			$filter_tracking = '';
+		}
+		
+		if($this->input->get('sort'))
+		{
+			$sort = $this->input->get('sort');
+		} 
+		else 
+		{
+			$sort = 'sale.id';
+		}
+		
+		if($this->input->get('order'))
+		{
+			$order = $this->input->get('order');
+		} 
+		else 
+		{
+			$order = 'DESC';
+		}
+	
+		$filter_data = array(
+			'filter_sale_id'        => $filter_sale_id,
+			'filter_store_sale_id'  => $filter_store_sale_id,
+			'filter_status'         => $filter_status,
+			'filter_tracking'       => $filter_tracking,
+			'sort'                  => $sort,
+			'order'                 => $order
+		);
+		
+		$sales = $this->sale_model->get_sales($filter_data);
+				
+		$data['sales'] = array();
+		
+		if($sales)
+		{			
+			foreach($sales as $sale)
+			{
+				$store = $this->store_model->get_store($sale['store_id']);	
+			
+				$length_class = $this->length_class_model->get_length_class($sale['length_class_id']);
+
+				$weight_class = $this->weight_class_model->get_weight_class($sale['weight_class_id']);
+
+				$data['sales'][] = array(
+					'sale_id'         => $sale['id'],
+					'store_name'      => $store['name'],
+					'store_sale_id'   => $sale['store_sale_id'],
+					'tracking'        => $sale['tracking'],
+					'status_id'       => $sale['status_id'],
+					'name'            => $sale['name'],
+					'length' 		  => $sale['length'],
+					'width' 		  => $sale['width'],
+					'height' 		  => $sale['height'],
+					'weight' 		  => $sale['weight'],
+					'length_class' 	  => $length_class['unit'],
+					'weight_class' 	  => $weight_class['unit'],
+					'date_added'      => $sale['date_added']
+				);	
+			}
+		}
+		
+		return $data;
+	}
+	
 	private function validate_sale_checkout($sale_id)
 	{
 		$this->lang->load('sale/sale');
