@@ -494,9 +494,17 @@ function print_label_d(handle, sale_id)
 </script>
 <script>
 function export_sale(handle) {
+	sale_id     	= $('input[name=\'sale_id\']').val();
+	store_sale_id   = $('input[name=\'store_sale_id\']').val();
+	status          = $('select[name=\'status\']').val();
+	tracking        = $('input[name=\'tracking\']').val();
+	
 	data = new FormData();
-	//data.append('sale_id', sale_id);
-
+	data.append('filter_sale_id', sale_id);
+	data.append('filter_store_sale_id', store_sale_id);
+	data.append('filter_status', status);
+	data.append('filter_tracking', tracking);
+	
 	$.ajax({
 		url: '<?php echo base_url(); ?>sale/sale_ajax/export_sale',
 		type: 'post',
@@ -508,8 +516,13 @@ function export_sale(handle) {
 		beforeSend: function() {
 			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
 		},
-		success: function(json) {			
-			
+		complete: function() {
+			$(handle).html('<i class="fa fa-download"></i>');
+		},
+		success: function(json) {	
+			if(json.success) {
+				window.location.href = json.link;
+			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

@@ -435,7 +435,7 @@ class Sale_ajax extends CI_Controller
 		}
 	}
 	
-	public function export_sales() 
+	public function export_sale() 
 	{
 		$this->lang->load('sale/sale');
 	
@@ -451,21 +451,43 @@ class Sale_ajax extends CI_Controller
 		$objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setSize(12);
-		$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:P1')->getFont()->setSize(12);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:P1')->getFont()->setBold(true);
 		
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
 		
-		$objPHPExcel->getActiveSheet()->setCellValue('A1', $this->lang->line('column_name'));
-		$objPHPExcel->getActiveSheet()->setCellValue('B1', $this->lang->line('column_client'));
-		$objPHPExcel->getActiveSheet()->setCellValue('C1', $this->lang->line('column_upc'));
-		$objPHPExcel->getActiveSheet()->setCellValue('D1', $this->lang->line('column_sku'));
-		$objPHPExcel->getActiveSheet()->setCellValue('E1', $this->lang->line('column_quantity'));
-			
+		$objPHPExcel->getActiveSheet()->setCellValue('A1', $this->lang->line('column_sale_id'));
+		$objPHPExcel->getActiveSheet()->setCellValue('B1', $this->lang->line('column_store_order_id'));
+		$objPHPExcel->getActiveSheet()->setCellValue('C1', $this->lang->line('column_tracking'));
+		$objPHPExcel->getActiveSheet()->setCellValue('D1', $this->lang->line('column_customer'));
+		$objPHPExcel->getActiveSheet()->setCellValue('E1', $this->lang->line('column_street'));
+		$objPHPExcel->getActiveSheet()->setCellValue('F1', $this->lang->line('column_street2'));
+		$objPHPExcel->getActiveSheet()->setCellValue('G1', $this->lang->line('column_city'));
+		$objPHPExcel->getActiveSheet()->setCellValue('H1', $this->lang->line('column_state'));
+		$objPHPExcel->getActiveSheet()->setCellValue('I1', $this->lang->line('column_country'));
+		$objPHPExcel->getActiveSheet()->setCellValue('J1', $this->lang->line('column_zipcode'));
+		$objPHPExcel->getActiveSheet()->setCellValue('K1', $this->lang->line('column_length'));
+		$objPHPExcel->getActiveSheet()->setCellValue('L1', $this->lang->line('column_width'));
+		$objPHPExcel->getActiveSheet()->setCellValue('M1', $this->lang->line('column_height'));
+		$objPHPExcel->getActiveSheet()->setCellValue('N1', $this->lang->line('column_weight'));
+		$objPHPExcel->getActiveSheet()->setCellValue('O1', $this->lang->line('column_length_class'));
+		$objPHPExcel->getActiveSheet()->setCellValue('P1', $this->lang->line('column_weight_class'));
+	
 		if($this->input->get('filter_sale_id'))
 		{
 			$filter_sale_id = $this->input->get('filter_sale_id');
@@ -529,10 +551,10 @@ class Sale_ajax extends CI_Controller
 			'order'                 => $order
 		);
 		
+		$row = 2;
+		
 		$sales = $this->sale_model->get_sales($filter_data);
 				
-		$data['sales'] = array();
-		
 		if($sales)
 		{			
 			foreach($sales as $sale)
@@ -542,26 +564,41 @@ class Sale_ajax extends CI_Controller
 				$length_class = $this->length_class_model->get_length_class($sale['length_class_id']);
 
 				$weight_class = $this->weight_class_model->get_weight_class($sale['weight_class_id']);
-
-				$data['sales'][] = array(
-					'sale_id'         => $sale['id'],
-					'store_name'      => $store['name'],
-					'store_sale_id'   => $sale['store_sale_id'],
-					'tracking'        => $sale['tracking'],
-					'status_id'       => $sale['status_id'],
-					'name'            => $sale['name'],
-					'length' 		  => $sale['length'],
-					'width' 		  => $sale['width'],
-					'height' 		  => $sale['height'],
-					'weight' 		  => $sale['weight'],
-					'length_class' 	  => $length_class['unit'],
-					'weight_class' 	  => $weight_class['unit'],
-					'date_added'      => $sale['date_added']
-				);	
+				
+				$objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $sale['id']);
+				$objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $sale['store_sale_id']);
+				$objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $sale['tracking']);
+				$objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $sale['name']);
+				$objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $sale['street']);
+				$objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $sale['street2']);
+				$objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $sale['city']);
+				$objPHPExcel->getActiveSheet()->setCellValue('H' . $row, $sale['state']);
+				$objPHPExcel->getActiveSheet()->setCellValue('I' . $row, $sale['country']);
+				$objPHPExcel->getActiveSheet()->setCellValue('J' . $row, $sale['zipcode']);
+				$objPHPExcel->getActiveSheet()->setCellValue('K' . $row, $sale['length']);
+				$objPHPExcel->getActiveSheet()->setCellValue('L' . $row, $sale['width']);
+				$objPHPExcel->getActiveSheet()->setCellValue('M' . $row, $sale['height']);
+				$objPHPExcel->getActiveSheet()->setCellValue('N' . $row, $sale['weight']);
+				$objPHPExcel->getActiveSheet()->setCellValue('O' . $row, $length_class['unit']);
+				$objPHPExcel->getActiveSheet()->setCellValue('P' . $row, $weight_class['unit']);
+				
+				$row++;
 			}
 		}
 		
-		return $data;
+		PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		
+		$objWriter->save(FILEPATH  . 'order.xlsx');
+	
+		$outdata = array(
+			'success'   => true,
+			'link'      => $this->config->item('media_url') . 'file/order.xlsx'
+		);
+				
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
 	}
 	
 	private function validate_sale_checkout($sale_id)
