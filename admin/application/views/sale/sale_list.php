@@ -37,7 +37,7 @@
 			      <div class="col-sm-12"><input name="store_sale_id" class="form-control" autocomplete="new-password" value="<?php echo $filter_store_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_store_order_id'); ?>" ></div>
 			    </div>
 			  </div>
-			  <div class="col-md-2">
+			  <div class="col-md-1">
 			    <div class="form-group">
 			      <div class="col-sm-12">
 				    <select name="status" class="form-control" autocomplete="new-password">
@@ -69,6 +69,16 @@
 			  <div class="col-md-2">
 			    <div class="form-group">
 			      <div class="col-sm-12"><input name="tracking" class="form-control" autocomplete="new-password" value="<?php echo $filter_tracking; ?>" placeholder="<?php echo $this->lang->line('entry_tracking'); ?>" ></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <div class="col-sm-12"><input name="date_added_from" class="form-control" autocomplete="new-password" value="<?php echo $filter_date_added_from; ?>" placeholder="<?php echo $this->lang->line('entry_date_added_from'); ?>" ></div>
+			    </div>
+			  </div>
+			  <div class="col-md-2">
+			    <div class="form-group">
+			      <div class="col-sm-12"><input name="date_added_to" class="form-control" autocomplete="new-password" value="<?php echo $filter_date_added_to; ?>" placeholder="<?php echo $this->lang->line('entry_date_added_to'); ?>" ></div>
 			    </div>
 			  </div>
 		    </div>
@@ -226,6 +236,8 @@ function filter_sale() {
 	store_sale_id   = $('input[name=\'store_sale_id\']').val();
 	status          = $('select[name=\'status\']').val();
 	tracking        = $('input[name=\'tracking\']').val();
+    date_added_from = $('input[name=\'date_added_from\']').val();
+    date_added_to   = $('input[name=\'date_added_to\']').val();
 
 	url = '<?php echo $filter_url; ?>';
 
@@ -240,6 +252,12 @@ function filter_sale() {
 	
 	if(tracking)
 		url += '&filter_tracking=' + tracking;
+	
+	if(date_added_from)
+		url += '&filter_date_added_from=' + date_added_from;
+	
+	if(date_added_to)
+		url += '&filter_date_added_from=' + date_added_to;
 		
 	$.ajax({
 		url: url,
@@ -498,12 +516,16 @@ function export_sale(handle) {
 	store_sale_id   = $('input[name=\'store_sale_id\']').val();
 	status          = $('select[name=\'status\']').val();
 	tracking        = $('input[name=\'tracking\']').val();
-	
+	date_added_from = $('input[name=\'date_added_from\']').val();
+	date_added_to   = $('input[name=\'date_added_to\']').val();
+
 	data = new FormData();
 	data.append('filter_sale_id', sale_id);
 	data.append('filter_store_sale_id', store_sale_id);
 	data.append('filter_status', status);
 	data.append('filter_tracking', tracking);
+	data.append('filter_date_added_from', date_added_from);
+	data.append('filter_date_added_to', date_added_to);
 	
 	$.ajax({
 		url: '<?php echo base_url(); ?>sale/sale_ajax/export_sale',
@@ -548,6 +570,14 @@ $(document).ready(function() {
 	$(document).on('input', 'input[name=\'tracking\']', function () {		
 		filter_sale();
 	});
+	
+	$(document).on('input', 'input[name=\'date_added_from\']', function () {		
+		filter_sale();
+	});
+	
+	$(document).on('input', 'input[name=\'date_added_to\']', function () {		
+		filter_sale();
+	});
 });
 </script>
 <script>
@@ -564,6 +594,24 @@ $(document).ready(function() {
 	});
 });
 </script>
+<script>
+$(document).ready(function() {
+	$("input[name='date_added_from']").datetimepicker({
+		pickTime: false,
+		format: 'YYYY-MM-DD'
+	});
+});
+</script>
+<script>
+$(document).ready(function() {
+	$("input[name='date_added_to']").datetimepicker({
+		pickTime: false,
+		format: 'YYYY-MM-DD'
+	});
+});
+</script>
+
+
 <script>
 $(document).ready(function() {
 	$(document).on('mouseenter', 'td:nth-child(2)', function() {

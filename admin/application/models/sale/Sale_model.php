@@ -671,6 +671,16 @@ class Sale_model extends CI_Model
 			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
 		}
 		
+		if(!empty($data['filter_date_added_from'])) 
+		{			
+			$this->db->where('sale.date_added >=', $data['filter_date_added_from'] . " 00:00:00");
+		}
+		
+		if(!empty($data['filter_date_added_to'])) 
+		{			
+			$this->db->where('sale.date_added <=', $data['filter_date_added_to'] . " 23:59:59");
+		}
+		
 		if(!empty($data['filter_status'])) 
 		{		
 			if($data['filter_status'] == 'unsolved')
@@ -792,6 +802,16 @@ class Sale_model extends CI_Model
 		{			
 			$this->db->where('sale.date_added >=', $data['filter_date_added'] . " 00:00:00");
 			$this->db->where('sale.date_added <=', $data['filter_date_added'] . " 23:59:59");
+		}
+		
+		if(!empty($data['filter_date_added_from'])) 
+		{			
+			$this->db->where('sale.date_added >=', $data['filter_date_added_from'] . " 00:00:00");
+		}
+		
+		if(!empty($data['filter_date_added_to'])) 
+		{			
+			$this->db->where('sale.date_added <=', $data['filter_date_added_to'] . " 23:59:59");
 		}
 		
 		if(!empty($data['filter_checkout_status'])) 

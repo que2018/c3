@@ -86,6 +86,24 @@ class Sale extends MX_Controller
 			$filter_tracking = '';
 		}
 		
+		if($this->input->get('filter_date_added_from'))
+		{
+			$filter_date_added_from = $this->input->get('filter_date_added_from');
+		} 
+		else 
+		{
+			$filter_date_added_from = '';
+		}
+		
+		if($this->input->get('filter_date_added_to'))
+		{
+			$filter_date_added_to = $this->input->get('filter_date_added_to');
+		} 
+		else 
+		{
+			$filter_date_added_to = '';
+		}
+		
 		if($this->input->get('sort'))
 		{
 			$sort = $this->input->get('sort');
@@ -144,6 +162,16 @@ class Sale extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
+		if($this->input->get('filter_date_added_from')) 
+		{
+			$url .= '&filter_date_added_from=' . $this->input->get('filter_date_added_from');
+		}
+		
+		if($this->input->get('filter_date_added_to')) 
+		{
+			$url .= '&filter_date_added_to=' . $this->input->get('filter_date_added_to');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -165,14 +193,16 @@ class Sale extends MX_Controller
 		}
 		
 		$filter_data = array(
-			'filter_sale_id'        => $filter_sale_id,
-			'filter_store_sale_id'  => $filter_store_sale_id,
-			'filter_status'         => $filter_status,
-			'filter_tracking'       => $filter_tracking,
-			'sort'                  => $sort,
-			'order'                 => $order,
-			'start'                 => ($page - 1) * $limit,
-			'limit'                 => $limit
+			'filter_sale_id'         => $filter_sale_id,
+			'filter_store_sale_id'   => $filter_store_sale_id,
+			'filter_status'          => $filter_status,
+			'filter_tracking'        => $filter_tracking,
+			'filter_date_added_from' => $filter_date_added_from,
+			'filter_date_added_to'   => $filter_date_added_to,
+			'sort'                   => $sort,
+			'order'                  => $order,
+			'start'                  => ($page - 1) * $limit,
+			'limit'                  => $limit
 		);
 		
 		$sales = $this->sale_model->get_sales($filter_data);
@@ -267,6 +297,16 @@ class Sale extends MX_Controller
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
 		
+		if($this->input->get('filter_date_added_from')) 
+		{
+			$url .= '&filter_date_added_from=' . $this->input->get('filter_date_added_from');
+		}
+		
+		if($this->input->get('filter_date_added_to')) 
+		{
+			$url .= '&filter_date_added_to=' . $this->input->get('filter_date_added_to');
+		}
+		
 		if($this->input->get('sort')) 
 		{
 			$url .= '&sort=' . $this->input->get('sort');
@@ -309,6 +349,16 @@ class Sale extends MX_Controller
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+		
+		if($this->input->get('filter_date_added_from')) 
+		{
+			$url .= '&filter_date_added_from=' . $this->input->get('filter_date_added_from');
+		}
+		
+		if($this->input->get('filter_date_added_to')) 
+		{
+			$url .= '&filter_date_added_to=' . $this->input->get('filter_date_added_to');
 		}
 		
 		if ($this->input->get('limit')) 
@@ -399,6 +449,16 @@ class Sale extends MX_Controller
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
 		}
+		
+		if($this->input->get('filter_date_added_from')) 
+		{
+			$url .= '&filter_date_added_from=' . $this->input->get('filter_date_added_from');
+		}
+		
+		if($this->input->get('filter_date_added_to')) 
+		{
+			$url .= '&filter_date_added_to=' . $this->input->get('filter_date_added_to');
+		}
 			
 		$data['add'] = base_url() . 'sale/sale/add' . $url;
 		
@@ -409,11 +469,13 @@ class Sale extends MX_Controller
 		$data['page']  = $page;
 		$data['limit'] = $limit;
 		
-		$data['filter_sale_id']   	  = $filter_sale_id;
-		$data['filter_store_sale_id'] = $filter_store_sale_id;
-		$data['filter_status']        = $filter_status;
-		$data['filter_tracking']      = $filter_tracking;
-		
+		$data['filter_sale_id']   	    = $filter_sale_id;
+		$data['filter_store_sale_id']   = $filter_store_sale_id;
+		$data['filter_status']          = $filter_status;
+		$data['filter_tracking']        = $filter_tracking;
+		$data['filter_date_added_from'] = $filter_date_added_from;
+		$data['filter_date_added_to']   = $filter_date_added_to;
+
 		return $data;
 	}
 

@@ -488,54 +488,72 @@ class Sale_ajax extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue('O1', $this->lang->line('column_length_class'));
 		$objPHPExcel->getActiveSheet()->setCellValue('P1', $this->lang->line('column_weight_class'));
 	
-		if($this->input->get('filter_sale_id'))
+		if($this->input->post('filter_sale_id'))
 		{
-			$filter_sale_id = $this->input->get('filter_sale_id');
+			$filter_sale_id = $this->input->post('filter_sale_id');
 		} 
 		else 
 		{
 			$filter_sale_id = '';
 		}
 		
-		if($this->input->get('filter_store_sale_id'))
+		if($this->input->post('filter_store_sale_id'))
 		{
-			$filter_store_sale_id = $this->input->get('filter_store_sale_id');
+			$filter_store_sale_id = $this->input->post('filter_store_sale_id');
 		} 
 		else 
 		{
 			$filter_store_sale_id = '';
 		}
 		
-		if($this->input->get('filter_status'))
+		if($this->input->post('filter_status'))
 		{
-			$filter_status = $this->input->get('filter_status');
+			$filter_status = $this->input->post('filter_status');
 		} 
 		else 
 		{
 			$filter_status = '';
 		}
 		
-		if($this->input->get('filter_tracking'))
+		if($this->input->post('filter_tracking'))
 		{
-			$filter_tracking = $this->input->get('filter_tracking');
+			$filter_tracking = $this->input->post('filter_tracking');
 		} 
 		else 
 		{
 			$filter_tracking = '';
 		}
 		
-		if($this->input->get('sort'))
+		if($this->input->post('filter_date_added_from'))
 		{
-			$sort = $this->input->get('sort');
+			$filter_date_added_from = $this->input->post('filter_date_added_from');
+		} 
+		else 
+		{
+			$filter_date_added_from = '';
+		}
+		
+		if($this->input->post('filter_date_added_to'))
+		{
+			$filter_date_added_to = $this->input->post('filter_date_added_to');
+		} 
+		else 
+		{
+			$filter_date_added_to = '';
+		}
+		
+		if($this->input->post('sort'))
+		{
+			$sort = $this->input->post('sort');
 		} 
 		else 
 		{
 			$sort = 'sale.id';
 		}
 		
-		if($this->input->get('order'))
+		if($this->input->post('order'))
 		{
-			$order = $this->input->get('order');
+			$order = $this->input->post('order');
 		} 
 		else 
 		{
@@ -543,12 +561,14 @@ class Sale_ajax extends CI_Controller
 		}
 	
 		$filter_data = array(
-			'filter_sale_id'        => $filter_sale_id,
-			'filter_store_sale_id'  => $filter_store_sale_id,
-			'filter_status'         => $filter_status,
-			'filter_tracking'       => $filter_tracking,
-			'sort'                  => $sort,
-			'order'                 => $order
+			'filter_sale_id'         => $filter_sale_id,
+			'filter_store_sale_id'   => $filter_store_sale_id,
+			'filter_status'          => $filter_status,
+			'filter_tracking'        => $filter_tracking,
+			'filter_date_added_from' => $filter_date_added_from,
+			'filter_date_added_to'   => $filter_date_added_to,
+			'sort'                   => $sort,
+			'order'                  => $order
 		);
 		
 		$row = 2;
