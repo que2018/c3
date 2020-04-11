@@ -10,8 +10,9 @@
   </div>
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
+	<a href="<?php echo base_url(); ?>sale/sale/return?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_return_order'); ?>" class="btn btn-success btn-return"><strong>R</strong></a>
 	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print_label'); ?>" class="btn btn-print" onclick="print_label()"><i class="fa fa-file-image-o"></i></button>   
-    <a href="<?php echo base_url(); ?>sale/sale" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_return'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+    <a href="<?php echo base_url(); ?>sale/sale" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_return'); ?>" class="btn btn-default btn-cancael"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

@@ -2,13 +2,27 @@
 
 class Auth
 {
-	private $client_id;
+	public $client_id;
 	
-	private $email;
+	public $email;
+
+	public $firstname;
 	
-	private $firstname;
+	public $lastname;
 	
-	private $lastname;
+	public $company;
+	
+	public $street;
+	
+	public $city;
+	
+	public $state;
+	
+	public $country;
+	
+	public $zipcode;
+	
+	public $phone;
 	
 	public function __construct()
 	{
@@ -28,9 +42,13 @@ class Auth
 				$this->email      = $client['email'];
 				$this->firstname  = $client['firstname'];
 				$this->lastname   = $client['lastname'];
-				
-				//$data = array();
-				//$this->user_model->update_user($client_id, $data);		
+				$this->company    = $client['company'];
+				$this->street     = $client['street'];
+				$this->city       = $client['city'];
+				$this->state      = $client['state'];
+				$this->country    = $client['country'];
+				$this->zipcode    = $client['zipcode'];
+				$this->phone      = $client['phone'];	
 			}
 			else
 			{
@@ -51,7 +69,14 @@ class Auth
 			$this->email      = $client['email'];
 			$this->firstname  = $client['firstname'];
 			$this->lastname   = $client['lastname'];
-			
+			$this->company    = $client['company'];
+			$this->street     = $client['street'];
+			$this->city       = $client['city'];
+			$this->state      = $client['state'];
+			$this->country    = $client['country'];
+			$this->zipcode    = $client['zipcode'];
+			$this->phone      = $client['phone'];
+
 			return true;
 		}
 		else
@@ -78,11 +103,6 @@ class Auth
 	public function get_client_id() 
 	{
 		return $this->client_id;
-	}
-
-	public function get_email() 
-	{
-		return $this->email;
 	}
 
 	//Enables the use of CI super-global without having to define an extra variable.

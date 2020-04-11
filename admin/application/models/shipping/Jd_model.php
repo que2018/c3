@@ -27,7 +27,8 @@ class Jd_model extends CI_Model
 		}
 		else
 		{
-			$result['error'] = $this->lang->line('error_label_printed');
+			$result['success'] = false; 
+			$result['message'] = $this->lang->line('error_label_printed');
 		}
 		
 		return $result;

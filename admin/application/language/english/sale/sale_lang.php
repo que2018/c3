@@ -8,6 +8,7 @@ $lang['text_all_orders'] 	  	                = 'All Orders';
 $lang['text_unsolved_order'] 	  	            = 'Unsolved Order';
 $lang['text_sale_add'] 	  	                	= 'Add Order';
 $lang['text_sale_edit'] 	  	               	= 'Edit Order';
+$lang['text_sale_return'] 	  	               	= 'Return Order';
 $lang['text_store_sale_id'] 	  	            = 'Store Order ID';
 $lang['text_tracking'] 	  	                    = 'Tracking';
 $lang['text_search'] 	  	                    = 'Search';
@@ -46,6 +47,7 @@ $lang['text_print_packing_list'] 	  	        = 'print packing list';
 $lang['text_unsolved_order'] 	  	     		= 'Unsolved Order';
 $lang['text_order_add'] 	  	         		= 'Add Order';
 $lang['text_order_edit'] 	  	         		= 'Edit Order';
+$lang['text_order_return'] 	  	         		= 'Return Order';
 $lang['text_order_edit_id'] 	  	            = 'Edit Order(#%s)';
 $lang['text_order_list'] 	  	         		= 'Order List';
 $lang['text_unsolved_order_list'] 	  	        = 'Unsolved Order List';
@@ -84,6 +86,7 @@ $lang['text_import_order_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i
 $lang['text_checkout_record_is_generated']		= '<i class="fa fa-check-circle-o"></i>&nbsp;checkout record is generated';
 $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"></i>&nbsp;<strong>%s rows are imported</strong>';
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows are imported</strong>';
+$lang['text_generate_return_order'] 	  	    = 'generate return label';
 
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';

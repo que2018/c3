@@ -1,27 +1,18 @@
 <?php echo $header; ?>
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-12">
-	<h2><?php echo sprintf($this->lang->line('text_order_edit_id'), $sale_id); ?>
-	  <?php if(!$checkout) { ?>
-	  &nbsp;<span class="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></span>
-	  <?php } else if($checkout['status'] == 1) {?>
-	  &nbsp;<span class="checking-out"><?php echo $this->lang->line('text_checking_out'); ?></span>
-	  <?php } else {?>
-	  &nbsp;<span class="completed"><?php echo $this->lang->line('text_completed'); ?></span>
-	  <?php } ?>
-	</h2>
+	<h2><?php echo $this->lang->line('text_order_return'); ?></h2>
 	<ol class="breadcrumb">
 	  <li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('text_home'); ?></a></li>
 	  <li><a href="<?php echo base_url(); ?>sale/sale"><?php echo $this->lang->line('text_order'); ?></a></li>
-	  <li class="active"><strong><?php echo $this->lang->line('text_order_edit'); ?></strong></li>
+	  <li class="active"><strong><?php echo $this->lang->line('text_order_return'); ?></strong></li>
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>sale/sale/return?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_return_order'); ?>" class="btn btn-success btn-gen"><strong>R</strong></a>
-	<a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_packing_list'); ?>" class="btn btn-info btn-gen"><i class="fa fa-refresh"></i></a>
+    <a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_packing_list'); ?>" class="btn btn-info btn-return"><i class="fa fa-refresh"></i></a>
 	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print_label'); ?>" class="btn btn-print" onclick="print_label()"><i class="fa fa-file-image-o"></i></button>
-    <a href="<?php echo $cancel; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
+    <a href="<?php echo $cancel; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-cancel"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -40,7 +31,6 @@
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#volume-weight"><?php echo $this->lang->line('tab_volume_weight'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
-		  <li class=""><a data-toggle="tab" href="#label"><?php echo $this->lang->line('tab_label'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#store"><?php echo $this->lang->line('tab_store'); ?></a></li>
 		</ul>
 		<div class="tab-content">
@@ -324,40 +314,6 @@
                   <div class="col-sm-10"><input type="text" name="shipper_phone" value="<?php echo $shipper_phone; ?>" class="form-control"></div>
                 </div> 
 			  </div>
-			</div>
-		  </div>
-		  <div id="label" class="tab-pane">
-		    <div class="panel-body">
-			  <div class="table-responsive">
-                <table id="sale_label" class="table table-striped table-bordered table-hover">
-				  <thead>
-					<tr>
-					  <th class="text-left" style="width: 30%;"><?php echo $this->lang->line('column_label') ?></th>
-					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_tracking') ?></th>							
-					  <th></th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<?php $sale_label_row = 0; ?>
-					<?php if($sale_labels) { ?>
-					  <?php foreach ($sale_labels as $sale_label) { ?>
-					  <tr id="sale-label-row<?php echo $sale_label_row; ?>">
-					    <td class="text-right" style="padding: 20px;">
-						  <img src="<?php echo $sale_label['link']; ?>" class="label-img" />
-						  <input type="hidden" name="sale_label[<?php echo $sale_label_row; ?>][path]" value="<?php echo $sale_label['path']; ?>"/>
-						</td>
-					    <td class="text-right"><div class="input-group"><span class="input-group-addon">#</span><input type="text" name="sale_label[<?php echo $sale_label_row; ?>][tracking]" value="<?php echo $sale_label['tracking']; ?>" class="form-control" /></div></td>
-					    <td class="text-center">
-						  <button type="button" onclick="$('#sale-label-row<?php echo $sale_label_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
-						  <a class="btn btn-info btn-download" href="<?php echo $sale_label['link']; ?>" download><i class="fa fa-download"></i></a>
-						</td>
-					  </tr>
-					  <?php $sale_label_row++; ?>
-					  <?php } ?>
-					<?php } ?>
-				  </tbody>
-                </table>
-              </div> 
 			</div>
 		  </div>
 		  <div id="store" class="tab-pane">

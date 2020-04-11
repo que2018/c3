@@ -24,7 +24,8 @@
 		    <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		    <li class=""><a data-toggle="tab" href="#service"><?php echo $this->lang->line('tab_service'); ?></a></li>
 			<li class=""><a data-toggle="tab" href="#state-mapping"><?php echo $this->lang->line('tab_state_mapping'); ?></a></li>
-		    <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
+		    <li class=""><a data-toggle="tab" href="#zone-mapping"><?php echo $this->lang->line('tab_zone_mapping'); ?></a></li>
+			<li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
 		  </ul>
 		  <div class="tab-content">
 		    <div id="general" class="tab-pane active">
@@ -244,6 +245,90 @@
 				</div>	
 			  </div>
 		    </div>
+		    <div id="zone-mapping" class="tab-pane">
+			  <div class="panel-body">
+			   	<div class="table-responsive">
+                  <table id="zones-mapping" class="table table-striped table-bordered table-hover">
+					<thead>
+					  <tr>
+					  	<th class="text-left" style="width: 25%;"><?php echo $this->lang->line('column_zipcode_from') ?></th>
+						<th class="text-left" style="width: 25%;"><?php echo $this->lang->line('column_zipcode_to') ?></th>
+						<th class="text-left" style="width: 25%;"><?php echo $this->lang->line('column_zone') ?></th>
+						<th></th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <?php $postpony_zone_mapping = 0; ?>
+					  <?php if($postpony_zones_mapping) { ?>
+						<?php foreach ($postpony_zones_mapping as $postpony_zone_mapping) { ?>
+						<tr id="postpony-zone-mapping-row<?php echo $postpony_zone_mapping; ?>">
+						  <td class="text-right"><input type="text" name="postpony_zone_mapping[<?php echo $postpony_zone_mapping; ?>][zipcode_from]" value="<?php echo $postpony_zone_mapping['zipcode_from']; ?>" class="form-control" /></td>
+						  <td class="text-right"><input type="text" name="postpony_zone_mapping[<?php echo $postpony_zone_mapping; ?>][zipcode_to]" value="<?php echo $postpony_zone_mapping['zipcode_to']; ?>" class="form-control" /></td>
+						  <td>
+						    <select name="postpony_zone_mapping[<?php echo $postpony_zone_mapping; ?>][zone]" class="form-control">
+							  <?php if($postpony_zone_mapping['express_zone'] == 1) { ?>
+							  <option value="1" selected><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } else { ?>
+							  <option value="1"><?php echo $this->lang->line('text_zone_one');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 2) { ?>
+							  <option value="2" selected><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } else { ?>
+							  <option value="2"><?php echo $this->lang->line('text_zone_two');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 3) { ?>
+							  <option value="3" selected><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } else { ?>
+							  <option value="3"><?php echo $this->lang->line('text_zone_three');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 4) { ?>
+							  <option value="4" selected><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } else { ?>
+							  <option value="4"><?php echo $this->lang->line('text_zone_four');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 5) { ?>
+							  <option value="5" selected><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } else { ?>
+							  <option value="5"><?php echo $this->lang->line('text_zone_five');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 6) { ?>
+							  <option value="6" selected><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } else { ?>
+							  <option value="6"><?php echo $this->lang->line('text_zone_six');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 7) { ?>
+							  <option value="7" selected><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } else { ?>
+							  <option value="7"><?php echo $this->lang->line('text_zone_seven');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 8) { ?>
+							  <option value="8" selected><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } else { ?>
+							  <option value="8"><?php echo $this->lang->line('text_zone_eight');  ?></option>
+							  <?php } ?>
+							  <?php if($postpony_zone_mapping['express_zone'] == 9) { ?>
+							  <option value="9" selected><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } else { ?>
+							  <option value="9"><?php echo $this->lang->line('text_zone_nine');  ?></option>
+							  <?php } ?>
+							</select>
+						  </td>
+						  <td class="text-center"><button type="button" onclick="$('#postpony-zone-mapping-row<?php echo $postpony_zone_mapping; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+						</tr>
+						<?php $postpony_zone_mapping++; ?>
+						<?php } ?>
+					  <?php } ?>
+					</tbody>
+					<tfoot>
+					  <tr>
+						<td colspan="3"></td>
+						<td class="text-center"><button type="button" onclick="addZoneMapping();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+					  </tr>
+					</tfoot>
+                  </table>
+				</div>	
+			  </div>
+		    </div>
 			<div id="fee" class="tab-pane">
 			  <div class="panel-body">
 				<div class="form-group">
@@ -345,6 +430,34 @@ function addStateMapping() {
 	postpony_state_mapping_row++;
 }
 </script> 
+<script>
+var postpony_zone_mapping = <?php echo $postpony_zone_mapping; ?>;
+         
+function addZoneMapping() {
+	html  = '<tr id="jd-fedex-zone-mapping-row' + postpony_zone_mapping + '">';
+	html += '<td class="text-right"><input type="text" name="postpony_zone_mapping[' + postpony_zone_mapping + '][zipcode_from]" value="" class="form-control" /></td>';
+	html += '<td class="text-right"><input type="text" name="postpony_zone_mapping[' + postpony_zone_mapping + '][zipcode_to]" value="" class="form-control" /></td>';
+	html += '<td class="text-center">';
+	html += '<select name="postpony_zone_mapping[' + postpony_zone_mapping + '][zone]" class="form-control">';
+	html += '<option value="1"><?php echo $this->lang->line("text_zone_one"); ?></option>';
+	html += '<option value="2"><?php echo $this->lang->line("text_zone_two"); ?></option>';
+	html += '<option value="3"><?php echo $this->lang->line("text_zone_three"); ?></option>';
+	html += '<option value="4"><?php echo $this->lang->line("text_zone_four"); ?></option>';
+	html += '<option value="5"><?php echo $this->lang->line("text_zone_five"); ?></option>';
+	html += '<option value="6"><?php echo $this->lang->line("text_zone_six"); ?></option>';
+	html += '<option value="7"><?php echo $this->lang->line("text_zone_seven"); ?></option>';
+	html += '<option value="8"><?php echo $this->lang->line("text_zone_eight"); ?></option>';
+	html += '<option value="9"><?php echo $this->lang->line("text_zone_nine"); ?></option>';
+	html += '</select>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#postpony-zone-mapping-row' + postpony_zone_mapping  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#zones-mapping tbody').append(html);
+
+	postpony_zone_mapping++;
+}
+</script>  
 <script>
 $(document).ready(function() {
 	$('select[name=\'postpony_fee_type\']').on('change', function() {

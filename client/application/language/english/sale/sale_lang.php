@@ -13,6 +13,12 @@ $lang['text_tracking'] 	  	                    = 'Tracking';
 $lang['text_search'] 	  	                    = 'Search';
 $lang['text_sku'] 	  	                 		= 'sku';
 $lang['text_quantity'] 	  	                    = 'quantity';
+$lang['text_name'] 	  	                 		= 'name';
+$lang['text_street'] 	  	             		= 'street';
+$lang['text_city'] 	  	                 		= 'city';
+$lang['text_state'] 	  	             		= 'state';
+$lang['text_country'] 	  	             		= 'country';
+$lang['text_zipcode'] 	  	             		= 'zipcode';
 $lang['text_customer_name'] 	  	            = 'customer name';
 $lang['text_customer_street'] 	  	            = 'customer street';
 $lang['text_customer_city'] 	  	            = 'customer city';
@@ -46,6 +52,7 @@ $lang['text_print_packing_list'] 	  	        = 'print packing list';
 $lang['text_unsolved_order'] 	  	     		= 'Unsolved Order';
 $lang['text_order_add'] 	  	         		= 'Add Order';
 $lang['text_order_edit'] 	  	         		= 'Edit Order';
+$lang['text_order_return'] 	  	         		= 'Return Order';
 $lang['text_order_edit_id'] 	  	            = 'Edit Order(#%s)';
 $lang['text_order_list'] 	  	         		= 'Order List';
 $lang['text_unsolved_order_list'] 	  	        = 'Unsolved Order List';
@@ -84,6 +91,7 @@ $lang['text_import_order_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i
 $lang['text_checkout_record_is_generated']		= '<i class="fa fa-check-circle-o"></i>&nbsp;checkout record is generated';
 $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"></i>&nbsp;<strong>%s rows are imported</strong>';
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows are imported</strong>';
+$lang['text_generate_return_order'] 	  	    = 'generate return label';
 
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';

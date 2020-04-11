@@ -63,6 +63,7 @@ class Postpony extends MX_Controller
 				'postpony_sort_order'  		 => $this->input->post('postpony_sort_order'),
 				'postpony_service'     		 => $this->input->post('postpony_service'),
 				'postpony_state_mapping'     => $this->input->post('postpony_state_mapping'),
+				'postpony_zone_mapping'      => $this->input->post('postpony_zone_mapping'),
 				'postpony_fee_type'          => $this->input->post('postpony_fee_type'),
 				'postpony_fee_value'         => $this->input->post('postpony_fee_value'),
 				'postpony_client_fee'        => $this->input->post('postpony_client_fee')
@@ -97,6 +98,7 @@ class Postpony extends MX_Controller
 			$data['postpony_sort_order']  		= $this->input->post('postpony_sort_order');
 			$data['postpony_services']     		= $this->input->post('postpony_service');
 			$data['postpony_states_mapping']    = $this->input->post('postpony_state_mapping');
+			$data['postpony_zones_mapping']     = $this->input->post('postpony_zone_mapping');
 			$data['postpony_fee_type']          = $this->input->post('postpony_fee_type');
 			$data['postpony_fee_value']         = $this->input->post('postpony_fee_value');
 			
@@ -124,6 +126,7 @@ class Postpony extends MX_Controller
 			$data['postpony_sort_order'] 		= $this->config->item('postpony_sort_order');
 			$data['postpony_services'] 			= $this->config->item('postpony_service');
 			$data['postpony_states_mapping'] 	= $this->config->item('postpony_state_mapping');
+			$data['postpony_zones_mapping'] 	= $this->config->item('postpony_zone_mapping');
 			$data['postpony_fee_type'] 			= $this->config->item('postpony_fee_type');
 			$data['postpony_fee_value'] 		= $this->config->item('postpony_fee_value');
 			

@@ -61,7 +61,7 @@ class Postpony_model extends CI_Model
 			$data['street2'] = $sale['shipper_street2'];
 			$data['city'] = $sale['shipper_city'];
 			$data['state'] = $sale['shipper_state'];
-			$data['postcode'] = $sale['shipper_postcode'];
+			$data['postcode'] = $sale['shipper_zipcode'];
 			$data['country'] = $sale['shipper_country'];
 			$data['phone'] = $sale['shipper_phone'];
 		}

@@ -196,6 +196,23 @@ class Client_model extends CI_Model
 		return false;
 	}
 	
+	public function get_client_by_store($store_id) 
+	{
+		$this->db->select('client.*', false);
+		$this->db->from('client');
+		$this->db->join('store', 'store.client_id = client.id', 'left');
+		$this->db->where('store.store_id', $store_id);		
+		
+		$q = $this->db->get();
+
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_client_locations($client_id) 
 	{		
 		$this->db->select('location_to_client.*, location.name', false);

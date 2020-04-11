@@ -27,6 +27,7 @@ $lang['text_order'] 	  	             		= '订单';
 $lang['text_unsolved_order'] 	  	     		= '未处理订单';
 $lang['text_order_add'] 	  	         		= '添加订单';
 $lang['text_order_edit'] 	  	         		= '编辑订单';
+$lang['text_order_return'] 	  	         		= '回退订单';
 $lang['text_order_view'] 	  	         		= '查看订单';
 $lang['text_order_edit_id'] 	  	            = '编辑订单(#%s)';
 $lang['text_order_view_id'] 	  	            = '查看订单(#%s)';
@@ -50,6 +51,7 @@ $lang['text_rows_imported'] 	  	     		= '<strong>共%s行被导入</strong>';
 $lang['text_confirm_delete'] 	  	     		= '你确认要删除这个订单?';
 $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"></i>&nbsp;<strong>共%s行被导入</strong>';
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>共%s行被导入</strong>';
+$lang['text_generate_return_order'] 	  	    = '生成退货订单';
 
 // Tab
 $lang['tab_customer'] 	  	             		= '客户';

@@ -610,8 +610,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-
-
 <script>
 $(document).ready(function() {
 	$(document).on('mouseenter', 'td:nth-child(2)', function() {

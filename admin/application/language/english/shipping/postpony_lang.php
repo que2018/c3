@@ -36,10 +36,24 @@ $lang['text_ratio'] 	  			     	= 'ratio';
 $lang['text_fee_value'] 	  				= 'fee value';
 $lang['text_save_setting'] 	  				= 'save setting';
 $lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Postpony edit success';
+$lang['text_zone_one'] 	  				= 'Zone1';
+$lang['text_zone_two'] 	  				= 'Zone2';
+$lang['text_zone_three'] 	  			= 'Zone3';
+$lang['text_zone_four'] 	  			= 'Zone4';
+$lang['text_zone_five'] 	  			= 'Zone5';
+$lang['text_zone_six'] 	  				= 'Zone6';
+$lang['text_zone_seven'] 	  			= 'Zone7';
+$lang['text_zone_eight'] 	  			= 'Zone8';
+$lang['text_zone_nine'] 	  			= 'Zone9';
+$lang['text_zone_ten'] 	  				= 'Zone10';
+$lang['text_zone_eleven'] 	  			= 'Zone11';
+$lang['text_zone_twelve'] 	  			= 'Zone12';
+$lang['text_zone_seventeen'] 	  		= 'Zone17';
 
 // Tab
 $lang['tab_service'] 	  	             	= 'Service';
 $lang['tab_state_mapping'] 	  	         	= 'State Mapping';
+$lang['tab_zone_mapping'] 	  	         	= 'Zone Mapping';
 $lang['tab_fee'] 	  	                 	= 'Fee';
 
 // Column
@@ -51,6 +65,9 @@ $lang['column_fee'] 	  	                = 'Fee';
 $lang['column_package'] 	  	         	= 'Package';
 $lang['column_state_long'] 	  	         	= 'State Long';
 $lang['column_state_short'] 	  	     	= 'State Short';
+$lang['column_zipcode_from'] 	  	        = 'Zipcode From';
+$lang['column_zipcode_to'] 	  	    	    = 'Zipcode To';
+$lang['column_zone'] 	  	                = 'Zone';
 
 // Entry
 $lang['entry_pwd'] 	  	     	 			= 'Pwd';

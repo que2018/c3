@@ -4,8 +4,8 @@
 .btn-submit {
 	margin-right: 6px;
 }
-.btn-return {
-	margin-right: 5px;
+.btn-print {
+	margin-right: 6px;
 }
 .btn-label {
 	margin-left: 25px;
@@ -19,6 +19,9 @@
 	color: #fff;
 	margin-right: 6px;
 }
+.btn-download {
+	margin-left: 6px;
+}
 .btn-print:hover,
 .btn-print:focus,
 .btn-print:active,
@@ -29,7 +32,10 @@
 .btn-print.active:focus {
   color: #fff;
 }
-.panel-body {
+.btn-gen {
+	margin-right: 4px;
+}
+.tab-pane > .panel-body {
 	min-height: 650px;
 	padding-top: 25px !important;
 }
@@ -60,18 +66,17 @@
     bottom: 30px;
     right: 30px;
 }
-input[name="customer_name"] {
-    border: 5px solid #1ab394;
-    height: 42px;
-}
-.label-customer {
-    padding-top: 12px !important;
-}
 .label-img {	
-    width: 200px;
+    width: 220px;
+    display: block;
+    border: 1px solid #dedede;
+    margin: 0 auto;
 }
+input[name=customer_name] {    
+	border: 5px solid #1ab394;
+    height: 42px;
+} 
 .note-editor .panel-body {
-	padding: 10px !important;
 	min-height: 250px !important;	
 }	
 .note-editor.note-frame {
@@ -85,10 +90,38 @@ input[name="customer_name"] {
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
 }
-.note-editable.panel-body {
-	color: #555 !important;
-	padding: 10px !important;
+.label-customer {
+	padding-top: 12px !important;
 }
-
+.unsolved {
+    font-size: 9px;
+    background: #ff4f09;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.checking-out {
+    font-size: 9px;
+    background: #f5e14d;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.completed {
+    font-size: 9px;
+    background: #3bbf7c;
+    color: #fff;
+    border-radius: 2px;
+    padding: 4px 5px;
+	position: absolute;
+	bottom: 3px;
+}
+.page-heading h2 {
+	position: relative;
+}#btn-sync {	cursor:pointer;	background-color: #18a689;    border-color: #18a689;    color: #FFFFFF;}
 
 
