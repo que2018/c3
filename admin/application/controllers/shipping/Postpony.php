@@ -66,7 +66,8 @@ class Postpony extends MX_Controller
 				'postpony_zone_mapping'      => $this->input->post('postpony_zone_mapping'),
 				'postpony_fee_type'          => $this->input->post('postpony_fee_type'),
 				'postpony_fee_value'         => $this->input->post('postpony_fee_value'),
-				'postpony_client_fee'        => $this->input->post('postpony_client_fee')
+				'postpony_client_fee'        => $this->input->post('postpony_client_fee'),
+				'postpony_price_table'       => $this->input->post('postpony_price_table')
 			);
 			
 			$this->setting_model->edit_setting('postpony', $data);
@@ -101,7 +102,8 @@ class Postpony extends MX_Controller
 			$data['postpony_zones_mapping']     = $this->input->post('postpony_zone_mapping');
 			$data['postpony_fee_type']          = $this->input->post('postpony_fee_type');
 			$data['postpony_fee_value']         = $this->input->post('postpony_fee_value');
-			
+			$data['postpony_price_table']         = $this->input->post('postpony_price_table');
+
 			$postpony_client_fees = $this->input->post('postpony_client_fee');
 		}
 		else
@@ -129,7 +131,8 @@ class Postpony extends MX_Controller
 			$data['postpony_zones_mapping'] 	= $this->config->item('postpony_zone_mapping');
 			$data['postpony_fee_type'] 			= $this->config->item('postpony_fee_type');
 			$data['postpony_fee_value'] 		= $this->config->item('postpony_fee_value');
-			
+			$data['postpony_price_table'] 		= $this->config->item('postpony_price_table');
+
 			$postpony_client_fees = $this->config->item('postpony_client_fee');
 		}
 		

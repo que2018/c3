@@ -33,6 +33,7 @@ $lang['text_lb'] 	  	 				 	= 'lb';
 $lang['text_png'] 	  	 				 	= 'png';
 $lang['text_fixed'] 	  			     	= '固定';
 $lang['text_ratio'] 	  			     	= '比率';
+$lang['text_self_defined'] 	  			    = '自定义';
 $lang['text_fee_value'] 	  				= '费用值';
 $lang['text_save_setting'] 	  				= '保存设定';
 $lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Postpony编辑成功';
@@ -86,11 +87,13 @@ $lang['entry_length_unit'] 	  	     	 	= '长度单位';
 $lang['entry_weight_unit'] 	  	     	 	= '重量单位';
 $lang['entry_signature'] 	  	     	 	= '签名';
 $lang['entry_image_type'] 	  	     	 	= '图片类型';
-$lang['entry_debug_mode'] 	  	     	 	= 'Debug Mode';
+$lang['entry_debug_mode'] 	  	     	 	= '沙箱模式';
 $lang['entry_status'] 	  	             	= '状态';
 $lang['entry_sort_order'] 	  	         	= '排序订单';
 $lang['entry_fee_type'] 	  	         	= '费用类型';
-$lang['entry_fee_value'] 	  	         	= '费用Value';
+$lang['entry_fee_value'] 	  	         	= '费用值';
+$lang['entry_price_table'] 	  				= '费用表';
+$lang['entry_upload_price_table'] 	  	    = '上传费用表';
 
 // 错误
 $lang['error_save_image_failed'] 	  	 	= '错误: 保存 图片 failed';

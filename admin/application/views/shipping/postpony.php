@@ -335,60 +335,84 @@
 				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_type'); ?></label>
 			      <div class="col-sm-10">
 				    <select name="postpony_fee_type" class="form-control">
-					  <?php if($postpony_fee_type) { ?>
-					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
-						<option value="1" selected><?php echo $this->lang->line('text_ratio'); ?></option>
-					  <?php } else { ?>
+					  <?php if($postpony_fee_type == 0) { ?>
 					    <option value="0" selected><?php echo $this->lang->line('text_fixed'); ?></option>
 						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
+						<option value="2"><?php echo $this->lang->line('text_self_defined'); ?></option>
+					  <?php } else if($postpony_fee_type == 1) { ?>
+					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1" selected><?php echo $this->lang->line('text_ratio'); ?></option>	
+						<option value="2"><?php echo $this->lang->line('text_self_defined'); ?></option>
+					  <?php } else { ?>
+					    <option value="0"><?php echo $this->lang->line('text_fixed'); ?></option>
+						<option value="1"><?php echo $this->lang->line('text_ratio'); ?></option>
+						<option value="2" selected><?php echo $this->lang->line('text_self_defined'); ?></option>
 					  <?php } ?>
 					</select>
 				  </div>
 				</div>
 				<div class="hr-line-dashed"></div>
-				 <div class="form-group">
-				  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
-			      <div class="col-sm-10">
-				    <div class="input-group">
-					  <?php if($postpony_fee_type) { ?>
-					    <span class="input-group-addon fee-symbol">%</span>
-					  <?php } else { ?>
-					    <span class="input-group-addon fee-symbol">$</span>
-					  <?php } ?>
-				      <input type="text" name="postpony_fee_value" value="<?php echo $postpony_fee_value; ?>" class="form-control">
+				<div id="general-defined">
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_fee_value'); ?></label>
+			        <div class="col-sm-10">
+				      <div class="input-group">
+					    <?php if($postpony_fee_type) { ?>
+					      <span class="input-group-addon fee-symbol">%</span>
+					    <?php } else { ?>
+					      <span class="input-group-addon fee-symbol">$</span>
+					    <?php } ?>
+				        <input type="text" name="postpony_fee_value" value="<?php echo $postpony_fee_value; ?>" class="form-control">
+				      </div>
 				    </div>
 				  </div>
+				  <div class="hr-line-dashed"></div>
+				  <div class="table-responsive">
+				    <table class="table table-striped table-bordered table-hover dataTables-example" >
+				      <thead>
+					    <tr>
+					      <th style="width:60%;"><?php echo $this->lang->line('column_client'); ?></th>
+						  <th><?php echo $this->lang->line('column_fee'); ?></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <?php if($clients) { ?>
+					      <?php foreach($clients as $i => $client) { ?>
+						  <tr>
+						   <td><?php echo $client['name']; ?></td>
+						    <td>  
+						      <div class="input-group">
+						      <?php if($postpony_fee_type) { ?>
+						      <span class="input-group-addon fee-symbol">%</span>
+							  <?php } else { ?>
+							  <span class="input-group-addon fee-symbol">$</span>
+							  <?php } ?>
+							  <input type="text" name="postpony_client_fee[<?php echo $i; ?>][fee]" value="<?php echo $client['fee']; ?>" class="form-control">
+							  <input type="hidden" name="postpony_client_fee[<?php echo $i; ?>][client_id]" value="<?php echo $client['client_id']; ?>">
+							  </div>
+						    </td>
+						  </tr>
+						  <?php } ?>
+					    <?php } ?>
+					  </tbody>
+				    </table>
+				  </div>
 				</div>
-				<div class="hr-line-dashed"></div>
-				<div class="table-responsive">
-				  <table class="table table-striped table-bordered table-hover dataTables-example" >
-				    <thead>
-					  <tr>
-					    <th style="width:60%;"><?php echo $this->lang->line('column_client'); ?></th>
-						<th><?php echo $this->lang->line('column_fee'); ?></th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <?php if($clients) { ?>
-					    <?php foreach($clients as $i => $client) { ?>
-						<tr>
-						  <td><?php echo $client['name']; ?></td>
-						  <td>  
-						    <div class="input-group">
-						    <?php if($postpony_fee_type) { ?>
-						    <span class="input-group-addon fee-symbol">%</span>
-							<?php } else { ?>
-							<span class="input-group-addon fee-symbol">$</span>
-							<?php } ?>
-							<input type="text" name="postpony_client_fee[<?php echo $i; ?>][fee]" value="<?php echo $client['fee']; ?>" class="form-control">
-							<input type="hidden" name="postpony_client_fee[<?php echo $i; ?>][client_id]" value="<?php echo $client['client_id']; ?>">
-							</div>
-						  </td>
-						</tr>
-						<?php } ?>
-					  <?php } ?>
-					</tbody>
-				  </table>
+				<div id="self-defined">
+				  <div class="form-group">
+		            <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_price_table'); ?></label>
+				    <div class="col-sm-10">
+					  <span class="form-control"><?php echo $postpony_price_table; ?></span>
+				    </div>	  
+			      </div>	
+				  <div class="hr-line-dashed"></div>
+				  <div class="form-group">
+		            <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_upload_price_table'); ?></label>
+				    <div class="col-sm-10">
+				      <input type="file" name="postpony_price_table" class="form-control-file" id="postpony-price-table-input">
+				    </div>	  
+			      </div>
+				  <div class="hr-line-dashed"></div>
 				</div>
 			  </div>
 			</div>
@@ -460,11 +484,26 @@ function addZoneMapping() {
 </script>  
 <script>
 $(document).ready(function() {
+	if((<?php echo $postpony_fee_type?> == 0) || (<?php echo $postpony_fee_type?> == 1)) {
+		$('#general-defined').show();
+		$('#self-defined').hide();
+	} else {
+		$('#general-defined').hide();
+		$('#self-defined').show();
+	}
+	
 	$('select[name=\'postpony_fee_type\']').on('change', function() {
-		if(this.value == 1) {
+		if(this.value == 0) {
+			$('#general-defined').show();
+			$('#self-defined').hide();
+			$('.fee-symbol').html('$');
+		} else if(this.value == 1) {
+			$('#general-defined').show();
+			$('#self-defined').hide();
 			$('.fee-symbol').html('%');
 		} else {
-			$('.fee-symbol').html('$');
+			$('#general-defined').hide();
+			$('#self-defined').show();
 		}			
 	})
 });
