@@ -20,7 +20,6 @@
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
     <a href="<?php echo base_url(); ?>sale/sale/return?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_return_order'); ?>" class="btn btn-success btn-gen"><strong>R</strong></a>
 	<a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_packing_list'); ?>" class="btn btn-info btn-gen"><i class="fa fa-refresh"></i></a>
-	<button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_print_label'); ?>" class="btn btn-print" onclick="print_label()"><i class="fa fa-file-image-o"></i></button>
     <a href="<?php echo $cancel; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>	
 </div>
@@ -391,14 +390,6 @@
     </div>
   </div>
 </div>
-<script>
-function print_label() 
-{
-	url = '<?php echo base_url();?>sale/label?sale_id=<?php echo $sale_id; ?>';
-			
-	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
-}
-</script>
 <script>
 function refresh_volume() {
 	data = new FormData();

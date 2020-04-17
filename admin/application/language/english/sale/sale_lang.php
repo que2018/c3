@@ -87,6 +87,7 @@ $lang['text_checkout_record_is_generated']		= '<i class="fa fa-check-circle-o"><
 $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"></i>&nbsp;<strong>%s rows are imported</strong>';
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows are imported</strong>';
 $lang['text_generate_return_order'] 	  	    = 'generate return label';
+$lang['text_confirm_multiple_label'] 	  	    = 'label generate already, print again?';
 
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';

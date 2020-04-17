@@ -385,18 +385,6 @@ function delete_sale(handle, sale_id) {
 }
 </script>
 <script>
-function print_label(handle) 
-{
-	h = $(handle);
-	
-	sale_id = h.closest('tr').find("input[name='sale_id']").val();
-	
-	url = '<?php echo base_url();?>sale/label?sale_id=' + sale_id;
-			
-	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
-}
-</script>
-<script>
 function print_label_c(handle, sale_id) 
 {	
 	data = new FormData();
@@ -452,7 +440,15 @@ function print_label_d(handle, sale_id)
 		},
 		success: function(json) {			
 			if(json.success) 
-			{				
+			{
+				//mulitple label confirmation
+				if(json.tracking && !confirm('<?php echo $this->lang->line("text_confirm_multiple_label"); ?>')) 
+				{
+					$(handle).html('<i class="fa fa-file-image-o"></i>');
+					
+					return;
+				}
+								
 				data = new FormData();
 				data.append('sale_id', sale_id);
 							

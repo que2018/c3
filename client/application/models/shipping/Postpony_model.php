@@ -38,15 +38,17 @@ class Postpony_model extends CI_Model
 	
 	public function generate_sale_label($sale_id)
 	{
-		$this->load->model('sale/sale_model');
-		
 		$this->lang->load('shipping/postpony');
-				
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('client/client_model');
+		
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);
 		
 		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
-	
+		
 		$data['key'] = $this->config->item('postpony_key');
 		$data['pwd'] = $this->config->item('postpony_pwd');
 		$data['signature'] = $this->config->item('postpony_signature');
@@ -61,21 +63,25 @@ class Postpony_model extends CI_Model
 			$data['street2'] = $sale['shipper_street2'];
 			$data['city'] = $sale['shipper_city'];
 			$data['state'] = $sale['shipper_state'];
-			$data['postcode'] = $sale['shipper_postcode'];
+			$data['postcode'] = $sale['shipper_zipcode'];
 			$data['country'] = $sale['shipper_country'];
 			$data['phone'] = $sale['shipper_phone'];
 		}
 		else
 		{
-			$data['owner'] = $this->config->item('postpony_owner');
-			$data['company'] = $this->config->item('postpony_company');
-			$data['street'] = $this->config->item('postpony_street');
-			$data['street2'] = $this->config->item('postpony_street2');
-			$data['city'] = $this->config->item('postpony_city');
-			$data['state'] = $this->config->item('postpony_state');
-			$data['postcode'] = $this->config->item('postpony_postcode');
-			$data['country'] = $this->config->item('postpony_country');
-			$data['phone'] = $this->config->item('postpony_phone');
+			$store = $this->store_model->get_store($sale['store_id']);	
+			
+			$client = $this->client_model->get_client($store['client_id']);	
+			
+			$data['owner'] = $client['firstname'].' '.$client['lastname'];
+			$data['company'] = trim($client['company']);
+			$data['street'] = trim($client['street']);
+			$data['street2'] = '';
+			$data['city'] = trim($client['city']);
+			$data['state'] = trim($client['state']);
+			$data['postcode'] = trim($client['zipcode']);
+			$data['country'] = trim($client['country']);
+			$data['phone'] = trim($client['phone']);
 		}
 	
 		//service 
@@ -108,7 +114,7 @@ class Postpony_model extends CI_Model
 		$data['weight'] = $sale['weight'];
 		
 		$response = $this->send_request($data);
-								
+										
 		if($response->Sucess == 'true')
 		{			
 			$label_data = $response->LableData->base64Binary;
@@ -340,6 +346,128 @@ class Postpony_model extends CI_Model
 		}
 			
 		return $outdata;
+	}
+	
+	public function get_self_defined_fee($sale_id) 
+	{
+		$this->load->library('phpexcel');
+
+		$this->load->model('sale/sale_model');
+		$this->load->model('setting/weight_class_model');
+
+		$zone_column_mapping = array(
+			2   => 'B',
+			3   => 'C',
+			4   => 'D',
+			5   => 'E',
+			6   => 'F',
+			7   => 'G',
+			8   => 'H',
+			9   => 'I',
+			10  => 'J'
+		);
+
+		$sale = $this->sale_model->get_sale($sale_id);	
+		
+		//get zone
+		$column = null;
+				
+		$zipcode_prefix = (int)substr($sale['zipcode'], 0, 3);
+
+		$postpony_zones_mapping = $this->config->item('postpony_zone_mapping');
+		
+		if($postpony_zones_mapping)
+		{
+			foreach($postpony_zones_mapping as $postpony_zone_mapping)
+			{
+				$zipcode_from = (int)$postpony_zone_mapping['zipcode_from'];
+				$zipcode_to   = (int)$postpony_zone_mapping['zipcode_to'];
+				
+				if($sale['shipping_service'] == 'FEDEX_GRD')
+				{
+					$zone = $jd_fedex_zone_mapping['ground_zone'];
+				}
+				else
+				{
+					$zone = $jd_fedex_zone_mapping['express_zone'];
+				}
+				
+				if(($zipcode_from <= $zipcode_prefix) && ($zipcode_prefix <= $zipcode_to))
+				{
+					$zone = $postpony_zone_mapping['zone'];
+
+					$column = $zone_column_mapping[$zone];
+					
+					break;
+				}	
+			}
+		}
+						
+		if($column)
+		{
+			//get weight in lbs
+			$weight = $sale['weight'];
+			$weight_class_id = $sale['weight_class_id'];
+			$weight = $this->weight_class_model->to_config($weight_class_id, $weight);	
+			
+			$postpony_price_table = $this->config->item('postpony_price_table');
+		
+			if(file_exists($postpony_price_table))
+			{
+				try {
+					//get price table
+					$fileType = PHPExcel_IOFactory::identify($postpony_price_table);
+					$objReader = PHPExcel_IOFactory::createReader($fileType);
+					$objPHPExcel = $objReader->load($postpony_price_table);
+					
+					$sheet = $objPHPExcel->getSheet(0); 
+					$highestRow = $sheet->getHighestRow(); 
+					$highestColumn = $sheet->getHighestColumn();
+									
+					$price = null;
+
+					for($row = 2; $row <= $highestRow; $row++) 
+					{
+						$cell = $sheet->getCell("A".$row);
+						
+						$weight_threshold = $cell->getValue();
+												
+						if($weight > $weight_threshold)
+						{
+							continue;
+						}
+						else
+						{
+							$cell = $sheet->getCell($column.$row);
+							
+							$price = $cell->getValue();
+							
+							break;
+						}
+					}
+					
+					if(isset($price))
+					{
+						return $price;
+					}
+					else
+					{
+						return false;
+					}
+					
+				} catch(Exception $e) {
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	private function get_client_fee_value($client_id, $shipping_provider)

@@ -38,15 +38,17 @@ class Postpony_model extends CI_Model
 	
 	public function generate_sale_label($sale_id)
 	{
-		$this->load->model('sale/sale_model');
-		
 		$this->lang->load('shipping/postpony');
-				
+		
+		$this->load->model('sale/sale_model');
+		$this->load->model('store/store_model');
+		$this->load->model('client/client_model');
+		
 		//get shipping info
 		$sale = $this->sale_model->get_sale($sale_id);
 		
 		$data['sale_detail'] = $this->sale_model->get_sale_detail($sale_id);
-	
+		
 		$data['key'] = $this->config->item('postpony_key');
 		$data['pwd'] = $this->config->item('postpony_pwd');
 		$data['signature'] = $this->config->item('postpony_signature');
@@ -67,15 +69,19 @@ class Postpony_model extends CI_Model
 		}
 		else
 		{
-			$data['owner'] = $this->config->item('postpony_owner');
-			$data['company'] = $this->config->item('postpony_company');
-			$data['street'] = $this->config->item('postpony_street');
-			$data['street2'] = $this->config->item('postpony_street2');
-			$data['city'] = $this->config->item('postpony_city');
-			$data['state'] = $this->config->item('postpony_state');
-			$data['postcode'] = $this->config->item('postpony_postcode');
-			$data['country'] = $this->config->item('postpony_country');
-			$data['phone'] = $this->config->item('postpony_phone');
+			$store = $this->store_model->get_store($sale['store_id']);	
+			
+			$client = $this->client_model->get_client($store['client_id']);	
+			
+			$data['owner'] = $client['firstname'].' '.$client['lastname'];
+			$data['company'] = trim($client['company']);
+			$data['street'] = trim($client['street']);
+			$data['street2'] = '';
+			$data['city'] = trim($client['city']);
+			$data['state'] = trim($client['state']);
+			$data['postcode'] = trim($client['zipcode']);
+			$data['country'] = trim($client['country']);
+			$data['phone'] = trim($client['phone']);
 		}
 	
 		//service 

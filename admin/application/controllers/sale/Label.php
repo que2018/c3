@@ -24,34 +24,27 @@ class Label extends CI_Controller
 		
 		$sale = $this->sale_model->get_sale($sale_id);
 		
-		//no shipping provider
 		if(empty($sale['shipping_provider']))
 		{
 			$outdata = array(
 				'success'  => false,
 				'message'  => $this->lang->line('error_shipping_provider_not_set')
 			);
-			
-			echo json_encode($outdata);
-			die();
 		}
-		
-		//no shipping method
-		if(empty($sale['shipping_service']))
+		else if(empty($sale['shipping_service']))
 		{
 			$outdata = array(
 				'success'  => false,
 				'message'  => $this->lang->line('error_shipping_method_not_set')
 			);
-			
-			echo json_encode($outdata);
-			die();
 		}
-		
-		//now ok
-		$outdata = array(
-			'success'  => true
-		);
+		else 
+	    {
+			$outdata = array(
+				'success'    => true,
+				'tracking'   => empty($sale['tracking'])?false:true
+			);
+		}
 		
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));		
@@ -216,7 +209,7 @@ class Label extends CI_Controller
 												
 				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
 				{
-					$this->printnode->submit_print_job($dest_path);
+					//$this->printnode->submit_print_job($dest_path);
 					
 					$outdata = array(
 						'success'   => true
@@ -384,7 +377,7 @@ class Label extends CI_Controller
 												
 				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
 				{
-					$this->printnode->submit_print_job($dest_path);
+					//$this->printnode->submit_print_job($dest_path);
 					
 					$outdata = array(
 						'success'   => true,

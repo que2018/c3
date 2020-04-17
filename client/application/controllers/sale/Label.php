@@ -216,7 +216,7 @@ class Label extends CI_Controller
 												
 				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
 				{
-					$this->printnode->submit_print_job($dest_path);
+					//$this->printnode->submit_print_job($dest_path);
 					
 					$outdata = array(
 						'success'   => true
@@ -384,7 +384,7 @@ class Label extends CI_Controller
 												
 				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
 				{
-					$this->printnode->submit_print_job($dest_path);
+					//$this->printnode->submit_print_job($dest_path);
 					
 					$outdata = array(
 						'success'   => true,
