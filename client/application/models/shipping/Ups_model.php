@@ -72,18 +72,10 @@ class Ups_model extends CI_Model
 		$config->setDefault('ups', 'weightUnit', $weight_class['unit']);
 
 		$shipment = new \RocketShipIt\Shipment('UPS', array('config' => $config));
-			
-		$package = new \RocketShipIt\Package('UPS');
-		$package->setParameter('length', $sale['length']);
-		$package->setParameter('width', $sale['width']);
-		$package->setParameter('height', $sale['height']);
-		$package->setParameter('weight', $sale['weight']);
 		
-		$shipment->addPackageToShipment($package);	
-			
 		$state = $this->get_state_short($sale['state']);
 		$zipcode = $this->get_clean_zipcode($sale['zipcode']);
-			
+		
 		$shipment->setParameter('toName', $sale['name']);
 		$shipment->setParameter('toPhone', $sale['phone']);
 		$shipment->setParameter('toAddr1', $sale['street']);
@@ -92,14 +84,50 @@ class Ups_model extends CI_Model
 		$shipment->setParameter('toCode', $zipcode);
 		$shipment->setParameter('negotiatedRates', true);
 		
-		if($sale_shipping_service['method'] == 'M4') 
+		if($sale_shipping_service['method'] != 'M4') 
 		{
-			$shipment->setParameter('packageId', '1');
-			$shipment->setParameter('uspsEndorsement', '1');
+			$package = new \RocketShipIt\Package('UPS');
+			$package->setParameter('length', $sale['length']);
+			$package->setParameter('width', $sale['width']);
+			$package->setParameter('height', $sale['height']);
+			$package->setParameter('weight', $sale['weight']);
+
+			$shipment->addPackageToShipment($package);	
+				
+			$response = $shipment->submitShipment(); 
 		}
-		
-		$response = $shipment->submitShipment();
-						
+		else
+		{						
+			$shipment->setParameter('service', 'M4');
+			$shipment->setParameter('packageId', '1');
+			$shipment->setParameter('costCenter', '00000');
+			$shipment->setParameter('uspsEndorsement', '1');
+			
+			$package = new \RocketShipIt\Package('UPS');
+					
+			if($weight >= 1)
+			{
+				$package->setParameter('weight', $weight);
+				$package->setParameter('weightUnit', 'LB');
+				$package->setParameter('packagingType', 63); 
+			}
+			else
+			{
+				$weight_oz = $weight * 16;
+				
+				$package->setParameter('weight', $weight_oz);
+				$package->setParameter('weightUnit', 'OZS');
+				$package->setParameter('packagingType', 62); 
+			}
+			
+			$package->setParameter('referenceCode','PC');
+			$package->setParameter('referenceValue', $sale_detail);	
+				
+			$shipment->addPackageToShipment($package);
+
+			$response = $shipment->submitShipment();
+		}
+					
 		if(isset($response['error']) && $response['error'] != '') 
 		{	
 			$result = array(
@@ -294,6 +322,11 @@ class Ups_model extends CI_Model
 		return $result;
 	}
 	
+	public function get_shipping_fee($sale_id) 
+	{
+		return false;
+	}
+	
 	protected function get_service($code)
 	{	
 		$q = $this->db->get_where('setting', array('key' => 'ups_service'));
@@ -342,7 +375,7 @@ class Ups_model extends CI_Model
 			}
 		}
 		
-		return $state_short;	
+		return strtoupper($state_short);	
 	}
 	
 	protected function get_clean_zipcode($zipcode)
