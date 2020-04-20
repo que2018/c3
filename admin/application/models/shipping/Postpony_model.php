@@ -114,32 +114,42 @@ class Postpony_model extends CI_Model
 		$data['weight'] = $sale['weight'];
 		
 		$response = $this->send_request($data);
-										
-		if($response->Sucess == 'true')
-		{			
-			$label_data = $response->LableData->base64Binary;
 			
-			$response_array = @json_decode(@json_encode($response), 1);
-			
-			$amount = $response_array['TotalFreight'];		
-			$tracking = $response_array['MainTrackingNum'];
-											
-			$label_img = LABELPATH . $tracking . '.png';
-						
-			if(@file_put_contents($label_img, base64_decode($label_data)))
-			{					
-				$result = array(
-					'success'    => true,
-					'tracking'   => $tracking,
-					'label_img'  => $tracking . '.png',
-					'amount'     => $amount
-				);
+		if($response)
+		{
+			if($response->Sucess == 'true')
+			{			
+				$label_data = $response->LableData->base64Binary;
+				
+				$response_array = @json_decode(@json_encode($response), 1);
+				
+				$amount = $response_array['TotalFreight'];		
+				$tracking = $response_array['MainTrackingNum'];
+												
+				$label_img = LABELPATH . $tracking . '.png';
+							
+				if(@file_put_contents($label_img, base64_decode($label_data)))
+				{					
+					$result = array(
+						'success'    => true,
+						'tracking'   => $tracking,
+						'label_img'  => $tracking . '.png',
+						'amount'     => $amount
+					);
+				}
+				else
+				{
+					$result = array(
+						'success'   => false,
+						'message'   => $this->lang->line('error_save_image_failed')
+					);
+				}
 			}
 			else
 			{
 				$result = array(
 					'success'   => false,
-					'message'   => $this->lang->line('error_save_image_failed')
+					'message'   => (string)$response->Msg
 				);
 			}
 		}
@@ -147,7 +157,7 @@ class Postpony_model extends CI_Model
 		{
 			$result = array(
 				'success'   => false,
-				'message'   => (string)$response->Msg
+				'message'   => $this->lang->line('error_no_response')
 			);
 		}
 			

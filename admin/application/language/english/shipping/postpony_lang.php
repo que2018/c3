@@ -96,6 +96,7 @@ $lang['entry_price_table'] 	  				= 'Price Table';
 $lang['entry_upload_price_table'] 	  	    = 'Upload Price Table';
 
 // Error
+$lang['error_no_response'] 	  	 	        = 'Error: no response';
 $lang['error_save_image_failed'] 	  	 	= 'Error: save image failed';
 $lang['error_create_shipping_label_faild'] 	= 'Error: Create Shipping Label Faild.';
 

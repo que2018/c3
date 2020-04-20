@@ -37,19 +37,19 @@ $lang['text_self_defined'] 	  			    = '自定义';
 $lang['text_fee_value'] 	  				= '费用值';
 $lang['text_save_setting'] 	  				= '保存设定';
 $lang['text_edit_success'] 	  				= '<i class="fa fa-check-circle-o"></i>&nbsp;Postpony编辑成功';
-$lang['text_zone_one'] 	  					= 'Zone1';
-$lang['text_zone_two'] 	  					= 'Zone2';
-$lang['text_zone_three'] 	  				= 'Zone3';
-$lang['text_zone_four'] 	  				= 'Zone4';
-$lang['text_zone_five'] 	  				= 'Zone5';
-$lang['text_zone_six'] 	  					= 'Zone6';
-$lang['text_zone_seven'] 	  				= 'Zone7';
-$lang['text_zone_eight'] 	  				= 'Zone8';
-$lang['text_zone_nine'] 	  				= 'Zone9';
-$lang['text_zone_ten'] 	  					= 'Zone10';
-$lang['text_zone_eleven'] 	  				= 'Zone11';
-$lang['text_zone_twelve'] 	  				= 'Zone12';
-$lang['text_zone_seventeen'] 	  			= 'Zone17';
+$lang['text_zone_one'] 	  					= '区域1';
+$lang['text_zone_two'] 	  					= '区域2';
+$lang['text_zone_three'] 	  				= '区域3';
+$lang['text_zone_four'] 	  				= '区域4';
+$lang['text_zone_five'] 	  				= '区域5';
+$lang['text_zone_six'] 	  					= '区域6';
+$lang['text_zone_seven'] 	  				= '区域7';
+$lang['text_zone_eight'] 	  				= '区域8';
+$lang['text_zone_nine'] 	  				= '区域9';
+$lang['text_zone_ten'] 	  					= '区域10';
+$lang['text_zone_eleven'] 	  				= '区域11';
+$lang['text_zone_twelve'] 	  				= '区域12';
+$lang['text_zone_seventeen'] 	  			= '区域17';
 
 // Tab
 $lang['tab_service'] 	  	             	= '服务';
@@ -95,7 +95,8 @@ $lang['entry_fee_value'] 	  	         	= '费用值';
 $lang['entry_price_table'] 	  				= '费用表';
 $lang['entry_upload_price_table'] 	  	    = '上传费用表';
 
-// 错误
-$lang['error_save_image_failed'] 	  	 	= '错误: 保存 图片 failed';
-$lang['error_create_shipping_label_faild'] 	= '错误: Create 配送 标签 Faild.';
+// Error
+$lang['error_no_response'] 	  	 	        = '错误:没有返回';
+$lang['error_save_image_failed'] 	  	 	= '错误:保存图片失败';
+$lang['error_create_shipping_label_faild'] 	= '错误:创建配送标签失败.';
 
