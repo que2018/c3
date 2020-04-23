@@ -81,11 +81,12 @@
 					    <thead>
 						  <tr>
 						    <th style="width: 14%"><?php echo $this->lang->line('column_product_name'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_upc'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_sku'); ?></th>
-							<th style="width: 14%"><?php echo $this->lang->line('column_batch'); ?></th>
-							<th style="width: 9%"><?php echo $this->lang->line('column_quantity_draft'); ?></th>
-						    <th style="width: 9%"><?php echo $this->lang->line('column_quantity'); ?></th>
+						    <th style="width: 12%"><?php echo $this->lang->line('column_upc'); ?></th>
+						    <th style="width: 12%"><?php echo $this->lang->line('column_sku'); ?></th>
+							<th style="width: 12%"><?php echo $this->lang->line('column_batch'); ?></th>
+							<th style="width: 8%"><?php echo $this->lang->line('column_carton'); ?></th>
+							<th style="width: 8%"><?php echo $this->lang->line('column_quantity_draft'); ?></th>
+						    <th style="width: 8%"><?php echo $this->lang->line('column_quantity'); ?></th>
 						    <th style="width: 12%"><?php echo $this->lang->line('column_location'); ?></th>
 							<th></th>
 						  </tr>
@@ -99,7 +100,8 @@
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
 						    <td><input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][batch]" value="<?php echo $checkin_product['batch']; ?>"></td>							
-						    <td>
+						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][carton]" value="<?php echo $checkin_product['carton']; ?>"></td>							
+							<td>
 							  <span class="form-control text-center"><?php echo $checkin_product['quantity_draft']; ?></span>
 							  <input type="hidden" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity_draft]" value="<?php echo $checkin_product['quantity_draft']; ?>" />
 							</td>
@@ -227,6 +229,7 @@ $(document).ready(function() {
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
 			html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text" value=""></td>';
+			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][carton]" type="text" value=""></td>';
 			html += '<td><input class="form-control text-center quantity" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control">';

@@ -176,6 +176,44 @@ class Sale_ajax extends CI_Controller
 			$this->output->set_output(json_encode($outdata));
 		}
 	}
+	
+	public function export_label() 
+	{
+		$this->load->library('pdf_merage');
+
+		$this->load->model('sale/sale_model');
+		
+		$merge = new FPDF_Merge();
+		
+		if($this->input->post('sale_id'))
+		{
+			$sale_ids = $this->input->post('sale_id');
+			
+			$pdfs = array();
+			
+			foreach($sale_ids as $sale_id)
+			{
+				$sale = $this->sale_model->get_sale($sale_id);
+				
+				if(is_file(FILEPATH . $sale['tracking'] . '.pdf'))
+				{
+					$pdf = FILEPATH . $sale['tracking'] . '.pdf';
+					
+					$merge->add($pdf);
+				}
+			}
+			
+			$merge->output(FILEPATH . 'labels.pdf');
+			
+			$outdata = array(
+				'success'   => true,
+				'link'      => $this->config->item('media_url') . 'file/labels.pdf'
+			);
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
 }
 
 

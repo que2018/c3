@@ -9,6 +9,7 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export_label'); ?>" onclick="export_label(this)" class="btn btn-pdf-download"><i class="fa fa-download"></i></button>
     <a href="<?php echo base_url(); ?>sale/sale/add" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
 </div>
@@ -26,6 +27,7 @@
 		  <div class="table-responsive">
 		    <table class="table table-striped table-bordered table-hover dataTables-example" >
 			  <thead>
+			    <th style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
 			    <?php if($sort == 'sale.id') { ?>
 				<th style="width: 8%;" class="sorting_<?php echo strtolower($order); ?>">
 				  <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_order_id'); ?></a>
@@ -78,6 +80,9 @@
                   <?php $offset = 0; ?>
 				  <?php foreach($sales as $sale) { ?>
 					<tr>
+					  <td class="text-center">
+					    <input type="checkbox" name="selected[]" value="<?php echo $sale['sale_id']; ?>" />
+					  </td>
 					  <td>
 					    <span>#<?php echo $sale['sale_id']; ?></span>
 					    <div class="detail" style="top: <?php echo $offset * 50 + 120; ?>px;">
@@ -163,6 +168,7 @@
 			  </tbody>			  
 			  <tfoot>
 			    <tr>
+				  <th></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="sale_id" placeholder="<?php echo $this->lang->line('column_order_id'); ?>" value="<?php echo $filter_sale_id; ?>" /></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="store_sale_id" placeholder="<?php echo $this->lang->line('column_store_order_id'); ?>" value="<?php echo $filter_store_sale_id; ?>" /></th>
 				  <th class="filter-td"><input type="text" class="filter-input" name="tracking" placeholder="<?php echo $this->lang->line('column_tracking'); ?>" value="<?php echo $filter_tracking; ?>" /></th>
@@ -359,6 +365,42 @@ function print_label_d(handle, sale_id)
 				
 				$('#alert-error span').html(json.message);		
 				$('#alert-error').show();
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
+function export_label(handle) {
+	data = new FormData();
+	
+	$('input[name*=\'selected\']').each(function(index) {
+		if($(this).is(':checked')) {
+			sale_id = $(this).val();
+			data.append('sale_id[]', sale_id);
+		}			
+	});
+	
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/export_label',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
+		},
+		complete: function() {			
+			$(handle).html('<i class="fa fa-download"></i>');
+		},
+		success: function(json) {	
+			if(json.success) {
+				window.location.href = json.link;
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {

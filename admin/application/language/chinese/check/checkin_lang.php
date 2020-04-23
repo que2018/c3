@@ -90,6 +90,7 @@ $lang['column_product_name'] 	    			 = '产品名称';
 $lang['column_upc'] 	    					 = 'UPC';
 $lang['column_sku'] 	    					 = 'SKU';
 $lang['column_batch'] 	    				 	 = '批次';
+$lang['column_carton'] 	    				 	 = '箱数';
 $lang['column_quantity'] 	    				 = '数量';
 $lang['column_file'] 	    		    		 = '文件';
 

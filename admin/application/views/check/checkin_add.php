@@ -76,8 +76,9 @@
 						    <th style="width: 14%"><?php echo $this->lang->line('column_upc'); ?></th>
 						    <th style="width: 14%"><?php echo $this->lang->line('column_sku'); ?></th>
 							<th style="width: 14%"><?php echo $this->lang->line('column_batch'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_quantity'); ?></th>
-						    <th style="width: 14%"><?php echo $this->lang->line('column_location'); ?></th>
+							<th style="width: 8%"><?php echo $this->lang->line('column_carton'); ?></th>
+						    <th style="width: 8%"><?php echo $this->lang->line('column_quantity'); ?></th>
+						    <th style="width: 12%"><?php echo $this->lang->line('column_location'); ?></th>
 							<th></th>
 						  </tr>
 					    </thead>
@@ -90,7 +91,8 @@
 						    <td class="text-left"><?php echo $checkin_product['upc']; ?></td>
 						    <td class="text-left"><?php echo $checkin_product['sku']; ?></td>
 							<td><input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][batch]" value="<?php echo $checkin_product['batch']; ?>"></td>
-						    <td><input class="form-control text-center quantity" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
+						    <td><input class="form-control text-center" name="checkin_product[<?php echo $checkin_product_row; ?>][carton]" value="<?php echo $checkin_product['carton']; ?>"></td>
+							<td><input class="form-control text-center quantity" name="checkin_product[<?php echo $checkin_product_row; ?>][quantity]" value="<?php echo $checkin_product['quantity']; ?>"></td>
 							<td>
 							  <input class="form-control" name="checkin_product[<?php echo $checkin_product_row; ?>][location_name]" value="<?php echo $checkin_product['location_name']; ?>">
 							  <input type="hidden" name="checkin_product[<?php echo $checkin_product_row; ?>][location_id]" value="<?php echo $checkin_product['location_id']; ?>">
@@ -259,6 +261,7 @@ $(document).ready(function() {
 			html += '<td class="text-left">' + product.upc + '</div></td>';
 			html += '<td class="text-left">' + product.sku + '</div></td>';
 			html += '<td><input class="form-control" name="checkin_product[' + checkin_product_row + '][batch]" type="text" value=""></td>';
+			html += '<td><input class="form-control text-center" name="checkin_product[' + checkin_product_row + '][carton]" type="text" value=""></td>';
 			html += '<td><input class="form-control text-center quantity" name="checkin_product[' + checkin_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
 			html += '<td>';
 			html += '<input name="checkin_product[' + checkin_product_row + '][location_name]" class="form-control">';

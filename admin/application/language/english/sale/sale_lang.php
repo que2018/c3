@@ -88,6 +88,8 @@ $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"><
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>%s rows are imported</strong>';
 $lang['text_generate_return_order'] 	  	    = 'generate return label';
 $lang['text_confirm_multiple_label'] 	  	    = 'label generate already, print again?';
+$lang['text_export_label'] 	  	    			= 'export label';
+$lang['text_export_order'] 	  	    			= 'export order';
 
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';
@@ -188,11 +190,15 @@ $lang['button_print'] 	  	             		= 'Print';
 $lang['error_label_not_exist']      		    = 'error: label is not exist';
 $lang['error_file_type_not_excel'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;file type is not excel';
 $lang['error_sku_not_found'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: sku <strong>%s</strong> is not found in product';
+$lang['error_dimension_not_found'] 	  	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: length or weight is not found in product';
+$lang['error_sku_or_dimension_not_found'] 	  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: sku <strong>%s</strong> or lenght and weight is not found in product';
 $lang['error_sku_client_error'] 	  	        = '<i class="fa fa-exclamation-triangle"></i>&nbsp;row %s: sku <strong>%s</strong> is not belong to the owner of the store';
 $lang['error_order_exist'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;store order id <strong>%s</strong> is existed';
 $lang['error_client_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;client is not selected';
 $lang['error_row_data'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;the <strong>%sth</strong> row has invalid data';
 $lang['error_client_empty'] 	  	     		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;client is empty';
+$lang['error_shipping_provider_not_select']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;shipping provider is empty';
+$lang['error_shipping_service_not_select'] 	  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;shipping service is empty';
 $lang['error_code_empty'] 	  	         		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;code is empty';
 $lang['error_tracking_is_used']                 = '<i class="fa fa-exclamation-triangle"></i>&nbsp;The tracking number <strong>%s</strong> has been used';
 $lang['error_client_product_not_found']  		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;the product of this client is not found';

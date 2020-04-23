@@ -392,7 +392,8 @@ class Client extends MX_Controller
 			'zipcode'    => $this->input->post('zipcode'),
 			'phone'      => $this->input->post('phone'),
 			'data'       => $this->input->post('data'),
-			'locations'  => $this->input->post('location')
+			'locations'  => $this->input->post('location'),
+			'addresses'  => $this->input->post('address')
 		);
 		
 		if($this->form_validation->run() == true)
@@ -467,7 +468,8 @@ class Client extends MX_Controller
 				'zipcode'    => $this->input->post('zipcode'),
 				'phone'      => $this->input->post('phone'),
 				'data'       => $this->input->post('data'),
-				'locations'  => $this->input->post('location')
+				'locations'  => $this->input->post('location'),
+				'addresses'  => $this->input->post('address')
 			);
 						
 			$this->client_model->edit_client($client_id, $data);
@@ -491,7 +493,8 @@ class Client extends MX_Controller
 			$data['zipcode']    = $this->input->post('zipcode');	
 			$data['phone']      = $this->input->post('phone');	
 			$data['data']       = $this->input->post('data');	
-			$data['locations']  = $this->input->post('location');							
+			$data['locations']  = $this->input->post('location');		
+			$data['addresses']  = $this->input->post('address');										
 		}
 		else
 		{
@@ -525,7 +528,8 @@ class Client extends MX_Controller
 			$data['zipcode']    = $client['zipcode'];
 			$data['phone']      = $client['phone'];
 			$data['data']       = $client['data'];
-			$data['locations']  = $locations;				
+			$data['locations']  = $locations;	
+			$data['addresses']  = $client['address'];						
 		}
 		
 		$data['client_id'] = $client_id;	

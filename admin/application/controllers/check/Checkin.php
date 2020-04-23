@@ -159,6 +159,7 @@ class Checkin extends MX_Controller
 					$checkin_products[] = array(
 						'name'           => $checkin_product_data['name'],
 						'batch'       	 => $checkin_product_data['batch'],
+						'carton'       	 => $checkin_product_data['carton'],
 						'quantity'    	 => $checkin_product_data['quantity'],
 						'location'       => $checkin_product_data['location_name']
 					);
@@ -412,6 +413,7 @@ class Checkin extends MX_Controller
 						'upc'            => $product_info['upc'],
 						'sku'            => $product_info['sku'],
 						'batch'          => $checkin_product['batch'],
+						'carton'         => $checkin_product['carton'],
 						'quantity'       => $checkin_product['quantity'],
 						'location_id'    => $checkin_product['location_id'],
 						'location_name'  => $checkin_product['location_name']
@@ -537,6 +539,7 @@ class Checkin extends MX_Controller
 						'upc'            => $product_info['upc'],
 						'sku'            => $product_info['sku'],
 						'batch'          => $checkin_product['batch'],
+						'carton'         => $checkin_product['carton'],
 						'quantity'       => $checkin_product['quantity'],
 						'quantity_draft' => $checkin_product['quantity_draft'],
 						'location_id'    => $checkin_product['location_id'],
@@ -564,6 +567,7 @@ class Checkin extends MX_Controller
 					'upc'            => $checkin_product['upc'],
 					'sku'            => $checkin_product['sku'],
 					'batch'          => $checkin_product['batch'],
+					'carton'         => $checkin_product['carton'],
 					'quantity'       => $checkin_product['quantity'],
 					'quantity_draft' => $checkin_product['quantity_draft'],
 					'location_id'    => $checkin_product['location_id'],

@@ -25,6 +25,7 @@
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li><a data-toggle="tab" href="#data"><?php echo $this->lang->line('tab_data'); ?></a></li>
 		  <li><a data-toggle="tab" href="#location"><?php echo $this->lang->line('tab_location'); ?></a></li>
+		  <li><a data-toggle="tab" href="#address"><?php echo $this->lang->line('tab_address'); ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
@@ -145,6 +146,46 @@
 			  </div>
 			</div>
 		  </div>
+		  <div id="address" class="tab-pane">
+			<div class="panel-body">
+		      <div class="table-responsive">
+			    <table id="addresses" class="table table-striped table-bordered table-hover">
+				  <thead>
+				    <tr>
+					  <td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_street') ?></td>
+					  <td class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_date_added') ?></td>
+					  <td></td>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <?php $address_row = 0; ?>
+				    <?php if($addresses) { ?>
+					  <?php foreach ($addresses as $address) { ?>
+					  <tr id="location-row<?php echo $address_row; ?>">
+					    <td class="text-right">
+						  <input type="text" name="location[<?php echo $address_row; ?>][name]" value="<?php echo $location['name']; ?>" class="form-control" />
+						  <input type="hidden" name="location[<?php echo $address_row; ?>][location_id]" />
+						</td>
+					    <td class="text-right">
+						  <input type="text" name="location[<?php echo $address_row; ?>][date_added]" value="<?php echo $location['date_added']; ?>" class="form-control text" data-date-format="YYYY-MM-DD" />
+						  <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button></span>
+						</td>
+					    <td class="text-center"><button type="button" onclick="$('#location-row<?php echo $address_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+					  </tr>
+					  <?php $address_row++; ?>
+					  <?php } ?>
+				    <?php } ?>
+				  </tbody>
+				  <tfoot>
+				    <tr>
+					  <td colspan="2"></td>
+					  <td class="text-center"><button type="button" onclick="addAddress();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+				    </tr>
+				  </tfoot>
+			    </table>
+			  </div>
+			</div>
+		  </div>
 		</div>
 	  </div>
 	</form>
@@ -204,6 +245,29 @@ function locationautocomplete(location_row) {
 			$('input[name=\'location[' + location_row + '][location_id]\']').val(ui.item.location_id);
 		}
 	});
+}
+</script>
+<script>
+var address_row = <?php echo $address_row; ?>;
+
+function addAddress() {
+	html  = '<tr id="address-row' + address_row + '">';
+	html += '<td class="text-right" style="width: 40%;">';
+	html += '<input type="text" name="address[' + address_row + '][name]" value="" class="form-control" />';
+	html += '<input type="hidden" name="address[' + address_row + '][location_id]" value="">';
+	html += '</td>';
+	html += '<td class="text-right" style="width: 40%;">';
+	html += '<div class="input-group">';
+	html += '<input type="text" name="address[' + address_row + '][date_added]" value="<?php echo $current_date; ?>" class="form-control" />';
+	html += '<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button></span>';
+	html += '</div>';
+	html += '</td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#address-row' + address_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#addresses tbody').append(html);
+	
+	location_row++;
 }
 </script>
 <script>

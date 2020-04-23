@@ -110,9 +110,9 @@ class Client_model extends CI_Model
 			$this->db->update('client', $client_data); 
 		}
 		
+		//location
 		$this->db->delete('location_to_client', array('client_id' => $client_id));
 		
-		//location data
 		if($data['locations'])
 		{
 			$this->db->delete('location_to_client', array('client_id' => $client_id));
@@ -126,6 +126,29 @@ class Client_model extends CI_Model
 				);
 				
 				$this->db->insert('location_to_client', $location_client_data);
+			}
+		}
+		
+		//address
+		$this->db->delete('address_to_client', array('client_id' => $client_id));
+		
+		if($data['addresses'])
+		{
+			$this->db->delete('address_to_client', array('client_id' => $client_id));
+			
+			foreach($data['addresses'] as $address)
+			{
+				$location_address_data = array(	
+					'client_id'  => $client_id,
+					'street'  	 => $address['street'],
+					'street2'    => $address['street2'],
+					'city'       => $address['street2'],
+					'state'      => $address['state'],
+					'zipcode'    => $address['zipcode'],
+					'country'    => $address['country']
+				);
+				
+				$this->db->insert('address_to_client', $location_address_data);
 			}
 		}
 		

@@ -22,7 +22,7 @@
 	    <div class="ibox-content">
 		  <div id="alert-success" class="alert alert-success" style="display:none;"><span></span><button type="button" class="close" onclick="$('.alert').hide()">&times;</button></div>
 		  <div id="alert-error" class="alert alert-danger" style="display:none;"><span></span><button type="button" class="close" onclick="$('.alert').hide()">&times;</button></div>
-		  <div class="client">
+		  <div class="form-horizontal">
 		    <div class="form-group">
 		      <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_store'); ?></label>
 			  <div class="col-sm-10">
@@ -34,7 +34,33 @@
 				</select>
 		      </div>
             </div>
-	      </div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+			  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_provider'); ?></label>
+			  <div class="col-sm-10">
+			    <select name="shipping_provider" class="form-control">
+				  <option value=""></option>
+				  <?php foreach($shipping_providers as $shipping_provider) { ?>
+				  <option value="<?php echo $shipping_provider['code']; ?>"><?php echo $shipping_provider['name']; ?></option>					
+				  <?php } ?>
+			    </select>
+			  </div>
+		    </div>
+		    <div class="hr-line-dashed"></div>
+		    <div class="form-group">
+			  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_service'); ?></label>
+			  <div class="col-sm-10">
+			    <select name="shipping_service" class="form-control">
+				<?php if($shipping_services) { ?>
+				  <?php foreach($shipping_services as $shipping_service) { ?>
+				  <option value="<?php echo $shipping_service['code']; ?>"><?php echo $shipping_service['name']; ?></option>					
+				  <?php } ?>
+				<?php } ?>
+			    </select>
+			  </div>
+		    </div>
+		    <div class="hr-line-dashed"></div>
+		  </div>
 		  <form action="<?php echo base_url(); ?>/sale/import/upload" class="dropzone" id="dropzoneForm">
 			<div class="fallback">
 		      <input name="file" type="file" multiple />
@@ -46,14 +72,66 @@
   </div>
 </div>
 <script>
+$(document).ready(function() {
+	$('select[name=\'shipping_provider\']').on('change', function() {
+		code = $(this).val();
+	
+		if(code) {
+			$.ajax({
+				url: '<?php echo base_url(); ?>extension/shipping/get_shipping_services?code=' + code,
+				dataType: "json",
+				beforeSend: function() {
+					$('#alert-error').hide();
+					$('#alert-loading').show();
+				},
+				complete: function() {
+					$('#alert-loading').hide();
+				},
+				success: function(json) {					
+					if(json.success) 
+					{	
+						shipping_service_html = '';
+					
+						$.each(json.shipping_services, function(index, shipping_serivce) {							
+							shipping_service_html += '<option value="'+ shipping_serivce.method +'">' + shipping_serivce.name + '</option>';
+						});
+				
+						$('select[name=\'shipping_service\']').html(shipping_service_html);
+					}
+					else 
+					{
+						$('#alert-error span').html(json.msg);		
+						$('#alert-error').show();
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+		else
+		{
+			shipping_service_html = '<option value=""></optioin>';
+			
+			$('select[name=\'shipping_service\']').html(shipping_service_html);
+		}
+	});
+});
+</script>
+<script>
 Dropzone.options.dropzoneForm = {
 	paramName: 'file', 
 	maxFilesize: 2,	
 	dictDefaultMessage: '<strong><?php echo $this->lang->line('text_drop_file_and_upload'); ?></strong><br><?php echo $this->lang->line('text_only_excel_will_accepted'); ?>',
 
 	sending: function(file, xhr, formData){
-		store_id = $('select[name=\'store_id\']').val();			
+		store_id = $('select[name=\'store_id\']').val();	
+		shipping_service = $('select[name=\'shipping_service\']').val();			
+		shipping_provider = $('select[name=\'shipping_provider\']').val();			
+		
         formData.append('store_id', store_id);
+		formData.append('shipping_service', shipping_service);
+        formData.append('shipping_provider', shipping_provider);
     },
 	
 	success: function(file, response){		

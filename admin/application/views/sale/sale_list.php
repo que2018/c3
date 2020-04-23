@@ -9,7 +9,8 @@
 	</ol>
   </div>
   <div class="button-group tooltip-demo">
-    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export'); ?>" onclick="export_sale(this)" class="btn btn-success btn-download"><i class="fa fa-download"></i></button>
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export_label'); ?>" onclick="export_label(this)" class="btn btn-pdf-download"><i class="fa fa-download"></i></button>
+    <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_export_order'); ?>" onclick="export_sale(this)" class="btn btn-success btn-download"><i class="fa fa-download"></i></button>
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_bulk_print'); ?>" class="btn btn-info btn-bulk-print"><i class="fa fa-print"></i></button>
     <a href="<?php echo $add; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_add'); ?>" class="btn btn-primary btn-add"><i class="fa fa-plus"></i></a>
   </div>
@@ -507,6 +508,42 @@ function print_label_d(handle, sale_id)
 }
 </script>
 <script>
+function export_label(handle) {
+	data = new FormData();
+	
+	$('input[name*=\'selected\']').each(function(index) {
+		if($(this).is(':checked')) {
+			sale_id = $(this).val();
+			data.append('sale_id[]', sale_id);
+		}			
+	});
+	
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/export_label',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$(handle).html('<i class="fa fa-spinner fa-spin"></i>');
+		},
+		complete: function() {			
+			$(handle).html('<i class="fa fa-download"></i>');
+		},
+		success: function(json) {	
+			if(json.success) {
+				window.location.href = json.link;
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+</script>
+<script>
 function export_sale(handle) {
 	sale_id     	= $('input[name=\'sale_id\']').val();
 	store_sale_id   = $('input[name=\'store_sale_id\']').val();
@@ -546,7 +583,6 @@ function export_sale(handle) {
 			$("#msg").html(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
-	
 }
 </script>
 <script>
@@ -582,7 +618,7 @@ $(document).ready(function() {
 		$('input[name*=\'selected\']').each(function(index) {
 			if($(this).is(':checked')) {
 				sale_id = $(this).val();
-				handle = $(this).closest('tr').find('.btn-print-d').get(0); ;
+				handle = $(this).closest('tr').find('.btn-print-d').get(0);
 				
 				print_label_d(handle, sale_id);
 			}			

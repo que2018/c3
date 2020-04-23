@@ -59,6 +59,8 @@ $lang['text_success_rows_imported'] 	  	    = '<i class="fa fa-check-circle-o"><
 $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>共%s行被导入</strong>';
 $lang['text_generate_return_order'] 	  	    = '生成退货订单';
 $lang['text_confirm_multiple_label'] 	  	    = '运单已生成，确认再次打印?';
+$lang['text_export_label'] 	  	    			= '导出运单';
+$lang['text_export_order'] 	  	    			= '导出订单';
 
 // Tab
 $lang['tab_customer'] 	  	             		= '客户';
@@ -154,10 +156,14 @@ $lang['button_print'] 	  	             		= '打印';
 // Error
 $lang['error_file_type_not_excel'] 	  	 		= '错误: 文件不是excel';
 $lang['error_sku_not_found'] 	  	     		= '错误: 第%s行有sku<strong>%s</strong>不存在';
+$lang['error_dimension_not_found'] 	  	        = '错误: 第%s行有长度或者重量<strong>%s</strong>不存在';
+$lang['error_sku_or_dimension_not_found'] 	  	= '错误: 第%s行有sku<strong>%s</strong>或者长度和重量不存在';
 $lang['error_order_exist'] 	  	         		= '错误: 店铺订单id<strong>%s</strong>已存在';
 $lang['error_client_not_select'] 	  	 		= '错误: 客户没有选择';
 $lang['error_row_data'] 	  	         		= '错误: 第<strong>%s</strong>行有无效数据';
 $lang['error_client_empty'] 	  	     		= '错误: 客户是空的';
+$lang['error_shipping_provider_not_select']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送商为空';
+$lang['error_shipping_service_not_select'] 	  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送服务为空';
 $lang['error_code_empty'] 	  	         		= '错误: 代码是空的';
 $lang['error_client_product_not_found']  		= '错误: 这个产品的这个客户没有找到';
 $lang['error_shipping_provider_not_set'] 		= '错误: 配送提供者没有设置';

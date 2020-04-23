@@ -30,6 +30,7 @@ class Checkin_model extends CI_Model
 				'checkin_id'	=> $checkin_id,
 				'product_id' 	=> $checkin_product['product_id'],
 				'batch' 		=> $checkin_product['batch'],
+				'carton' 		=> $checkin_product['carton'],
 				'quantity' 		=> $checkin_product['quantity'],
 				'location_id'   => $checkin_product['location_id']
 			);
@@ -62,6 +63,7 @@ class Checkin_model extends CI_Model
 					$inventory_data = array(
 						'product_id' 	 => $checkin_product['product_id'],
 						'batch' 		 => $checkin_product['batch'],
+						'carton' 		 => $checkin_product['carton'],
 						'quantity' 		 => $checkin_product['quantity'],
 						'location_id' 	 => $checkin_product['location_id'],
 						'date_added'     => date('Y-m-d H:i:s'),
@@ -153,6 +155,7 @@ class Checkin_model extends CI_Model
 					$inventory_data = array(
 						'product_id' 	 => $checkin_product['product_id'],
 						'batch' 		 => $checkin_product['batch'],
+						'carton' 		 => $checkin_product['carton'],
 						'quantity' 		 => $checkin_product['quantity'],
 						'location_id' 	 => $checkin_product['location_id'],
 						'date_added'     => date('Y-m-d H:i:s'),
@@ -200,6 +203,7 @@ class Checkin_model extends CI_Model
 						'product_id' 	 => $checkin_product['product_id'],
 						'quantity' 		 => $checkin_product['quantity'],
 						'batch' 		 => $checkin_product['batch'],
+						'carton' 		 => $checkin_product['carton'],
 						'location_id' 	 => $checkin_product['location_id'],
 						'date_added'     => date('Y-m-d H:i:s'),
 						'date_modified'  => date('Y-m-d H:i:s')			
@@ -308,6 +312,7 @@ class Checkin_model extends CI_Model
 				'product_id'     => $checkin_product['product_id'],
 				'location_id'    => $checkin_product['location_id'],
 				'batch' 	     => $checkin_product['batch'],
+				'carton' 	     => $checkin_product['carton'],
 				'quantity' 	     => $checkin_product['quantity'],
 				'quantity_draft' => $checkin_product['quantity_draft']
 			);
@@ -362,6 +367,7 @@ class Checkin_model extends CI_Model
 						'product_id' 	 => $checkin_product['product_id'],
 						'location_id' 	 => $checkin_product['location_id'],
 						'batch' 	     => $checkin_product['batch'],
+						'carton' 	     => $checkin_product['carton'],
 						'quantity' 		 => $checkin_product['quantity'],
 						'date_added'     => date('Y-m-d H:i:s'),
 						'date_modified'  => date('Y-m-d H:i:s')			
@@ -470,7 +476,7 @@ class Checkin_model extends CI_Model
 	
 	public function get_checkin_products($checkin_id) 
 	{	
-		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.batch, checkin_product.quantity, checkin_product.quantity_draft, checkin_product.location_id, location.name AS location_name', false);
+		$this->db->select('product.*, product.id AS product_id, product.name AS product_name, checkin_product.batch, checkin_product.carton, checkin_product.quantity, checkin_product.quantity_draft, checkin_product.location_id, location.name AS location_name', false);
 		$this->db->from('checkin_product');
 		$this->db->join('product', 'product.id = checkin_product.product_id', 'left');
 		$this->db->join('location', 'location.id = checkin_product.location_id', 'left');

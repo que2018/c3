@@ -78,6 +78,9 @@ input:focus {
 .btn-download {	
 	margin-right: 5px;
 }
+.btn-pdf-download {	
+	margin-right: 5px;
+}
 .page-heading {
 	position: relative;
 }

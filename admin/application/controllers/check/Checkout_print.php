@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require('fpdf_merge.php');
+
 class Checkout_print extends CI_Controller 
 {
 	public function index()
@@ -55,7 +57,6 @@ class Checkout_print extends CI_Controller
 	
 	public function bulk_print_d() 
 	{
-		$this->load->library('pdf');
 		$this->load->library('barcoder');
 		$this->load->library('printnode');
 		
