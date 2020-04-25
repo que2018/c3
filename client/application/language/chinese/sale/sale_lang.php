@@ -24,6 +24,7 @@ $lang['text_return'] 	  	             		= '返回';
 $lang['text_total'] 	  	             		= '总计';
 $lang['text_status'] 	  	             		= '状态';
 $lang['text_order'] 	  	             		= '订单';
+$lang['text_order_import'] 	  	                = '订单导入';
 $lang['text_unsolved_order'] 	  	     		= '未处理订单';
 $lang['text_order_add'] 	  	         		= '添加订单';
 $lang['text_order_edit'] 	  	         		= '编辑订单';

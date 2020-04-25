@@ -18,6 +18,8 @@ class Import extends MX_Controller
 		$this->header->add_style(base_url(). 'assets/css/plugins/dropzone/dropzone.css');
 		$this->header->add_script(base_url(). 'assets/js/plugins/dropzone/dropzone.js');
 
+		$this->header->set_title($this->lang->line('text_order_import'));
+
 		//stores
 		$stores = $this->store_model->get_stores();
 				

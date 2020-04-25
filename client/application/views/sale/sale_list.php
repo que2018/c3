@@ -400,7 +400,7 @@ function export_label(handle) {
 		},
 		success: function(json) {	
 			if(json.success) {
-				window.location.href = json.link;
+				window.open(json.link, '_blank');
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {

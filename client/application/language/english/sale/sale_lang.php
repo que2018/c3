@@ -36,6 +36,7 @@ $lang['text_order_products'] 	  	     		= 'order products';
 $lang['text_total'] 	  	             		= 'total';
 $lang['text_status'] 	  	             		= 'status';
 $lang['text_order'] 	  	             		= 'Order';
+$lang['text_order_import'] 	  	                = 'Order Import';
 $lang['text_add'] 	  	             			= 'add order';
 $lang['text_edit'] 	  	             			= 'edit order';
 $lang['text_delete'] 	  	             		= 'delete order';
