@@ -1307,6 +1307,25 @@ class Sale extends MX_Controller
 		$this->load->view('sale/sale_return', $data);
 	}
 	
+	public function delete()
+	{
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->get('sale_id'))
+		{
+			$sale_id = $this->input->get('sale_id');
+			
+			$result = $this->sale_model->delete_sale($sale_id);
+
+			$outdata = array(
+				'success'   => ($result)?true:false
+			);
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
 	public function view() 
 	{
 		$this->load->module('header');

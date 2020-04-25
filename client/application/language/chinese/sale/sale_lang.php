@@ -134,20 +134,24 @@ $lang['button_add_product'] 	  	     		= '添加产品';
 $lang['button_select_file'] 	  	     		= '选择文件';
 $lang['button_print'] 	  	             		= '打印';
 
-// 错误
+// Error
 $lang['error_file_type_not_excel'] 	  	 		= '错误: 文件不是excel';
 $lang['error_sku_not_found'] 	  	     		= '错误: 第%s行有sku<strong>%s</strong>不存在';
+$lang['error_dimension_not_found'] 	  	        = '错误: 第%s行有长度或者重量<strong>%s</strong>不存在';
+$lang['error_sku_or_dimension_not_found'] 	  	= '错误: 第%s行有sku<strong>%s</strong>或者长度和重量不存在';
 $lang['error_order_exist'] 	  	         		= '错误: 店铺订单id<strong>%s</strong>已存在';
 $lang['error_client_not_select'] 	  	 		= '错误: 客户没有选择';
 $lang['error_row_data'] 	  	         		= '错误: 第<strong>%s</strong>行有无效数据';
 $lang['error_client_empty'] 	  	     		= '错误: 客户是空的';
+$lang['error_shipping_provider_not_select']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送商为空';
+$lang['error_shipping_service_not_select'] 	  	= '<i class="fa fa-exclamation-triangle"></i>&nbsp;配送服务为空';
 $lang['error_code_empty'] 	  	         		= '错误: 代码是空的';
 $lang['error_client_product_not_found']  		= '错误: 这个产品的这个客户没有找到';
 $lang['error_shipping_provider_not_set'] 		= '错误: 配送提供者没有设置';
 $lang['error_shipping_method_not_set']   		= '错误: 配送方式没有设置';
 $lang['error_inventory_not_enough']      		= '错误: 库存不足';
+$lang['error_label_not_exist'] 	  	 		    = '运单不存在';
 $lang['error_location_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;库位没有选择';
 $lang['error_store_not_select'] 	  	 		= '<i class="fa fa-exclamation-triangle"></i>&nbsp;店铺没有选择';
-
 
 

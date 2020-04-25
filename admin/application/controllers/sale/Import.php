@@ -19,6 +19,7 @@ class Import extends MX_Controller
 	
 		$this->header->set_title($this->lang->line('text_import_order'));	
 			
+		//stores
 		$data['stores'] = array();
 		
 		$stores = $this->store_model->get_stores();

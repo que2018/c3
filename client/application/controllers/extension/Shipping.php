@@ -51,7 +51,9 @@ class Shipping extends CI_Controller
 	}
 	
 	public function get_shipping_services() 
-	{		
+	{
+		$this->lang->load('extension/shipping');
+		
 		if($this->input->get('code'))
 		{
 			$code = $this->input->get('code');
@@ -83,7 +85,8 @@ class Shipping extends CI_Controller
 				);
 			}
 					
-			echo json_encode($outdata);
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
 		}
 	}
 	
