@@ -34,6 +34,12 @@ $lang['text_confirm_delete'] 	 	  	        = 'Are you sure to delete this client
 // Column
 $lang['column_name'] 	  	             		= 'Name';
 $lang['column_company'] 	  	         		= 'Company';
+$lang['column_street'] 	  	             		= 'Street';
+$lang['column_street2'] 	  	             	= 'Street2';
+$lang['column_city'] 	  	             		= 'City';
+$lang['column_state'] 	  	             		= 'State';
+$lang['column_country'] 	  	             	= 'Country';
+$lang['column_zipcode'] 	  	             	= 'Zipcode';
 $lang['column_email'] 	  	             		= 'Email';
 $lang['column_phone'] 	  	             		= 'Phone';
 $lang['column_location'] 	  	                = 'Location';
@@ -43,6 +49,7 @@ $lang['column_action'] 	  	             		= 'Action';
 $lang['tab_general'] 	  	             		= 'General';
 $lang['tab_data'] 	  	             		    = 'Data';
 $lang['tab_location'] 	  	         		    = 'Location';
+$lang['tab_address'] 	  	         		    = 'Address';
 
 // Entry
 $lang['entry_email'] 	  	             		= 'Email';

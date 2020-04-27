@@ -500,6 +500,7 @@ class Client extends MX_Controller
 		{
 			$client = $this->client_model->get_client($client_id);
 			
+			//location
 			$locations_data = $this->client_model->get_client_locations($client_id);
 			
 			$locations = array();
@@ -512,6 +513,26 @@ class Client extends MX_Controller
 						'location_id' => $location_data['location_id'],
 						'name'        => $location_data['name'],
 						'date_added'  => $location_data['date_added']
+					);
+				}
+			}
+			
+			//address
+			$addresses_data = $this->client_model->get_client_addresses($client_id);
+			
+			$addresses = array();
+			
+			if($addresses_data)
+			{
+				foreach($addresses_data as $address_data)
+				{
+					$addresses[] = array(
+						'street'  => $address_data['street'],
+						'street2' => $address_data['street2'],
+						'city'    => $address_data['city'],
+						'state'   => $address_data['state'],
+						'country' => $address_data['country'],
+						'zipcode' => $address_data['zipcode']
 					);
 				}
 			}
@@ -529,7 +550,7 @@ class Client extends MX_Controller
 			$data['phone']      = $client['phone'];
 			$data['data']       = $client['data'];
 			$data['locations']  = $locations;	
-			$data['addresses']  = $client['address'];						
+			$data['addresses']  = $addresses;						
 		}
 		
 		$data['client_id'] = $client_id;	

@@ -25,6 +25,7 @@
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li><a data-toggle="tab" href="#data"><?php echo $this->lang->line('tab_data'); ?></a></li>
 		  <li><a data-toggle="tab" href="#location"><?php echo $this->lang->line('tab_location'); ?></a></li>
+		  <li><a data-toggle="tab" href="#address"><?php echo $this->lang->line('tab_address'); ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div id="general" class="tab-pane active">
@@ -147,6 +148,48 @@
 			  </div>
 			</div>
 		  </div>
+		  		  <div id="address" class="tab-pane">
+			<div class="panel-body">
+		      <div class="table-responsive">
+			    <table id="addresses" class="table table-striped table-bordered table-hover">
+				  <thead>
+				    <tr>
+					  <th class="text-left" style="width: 18%;"><?php echo $this->lang->line('column_street') ?></th>
+					  <th class="text-left" style="width: 18%;"><?php echo $this->lang->line('column_street2') ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_city') ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_state') ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_country') ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_zipcode') ?></th>
+					  <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <?php $address_row = 0; ?>
+				    <?php if($addresses) { ?>
+					  <?php foreach ($addresses as $address) { ?>
+					  <tr id="address-row<?php echo $address_row; ?>">
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][street]" value="<?php echo $address['street']; ?>" class="form-control" /></td>
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][street2]" value="<?php echo $address['street2']; ?>" class="form-control" /></td>
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" class="form-control" /></td>
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][state]" value="<?php echo $address['state']; ?>" class="form-control" /></td>
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][country]" value="<?php echo $address['country']; ?>" class="form-control" /></td>
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][zipcode]" value="<?php echo $address['zipcode']; ?>" class="form-control" /></td>					   
+					    <td class="text-center"><button type="button" onclick="$('#address-row<?php echo $address_row; ?>').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+					  </tr>
+					  <?php $address_row++; ?>
+					  <?php } ?>
+				    <?php } ?>
+				  </tbody>
+				  <tfoot>
+				    <tr>
+					  <td colspan="6"></td>
+					  <td class="text-center"><button type="button" onclick="addAddress();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+				    </tr>
+				  </tfoot>
+			    </table>
+			  </div>
+			</div>
+		  </div>
 		</div>
 	  </div>
 	</form>
@@ -206,6 +249,25 @@ function locationautocomplete(location_row) {
 			$('input[name=\'location[' + location_row + '][location_id]\']').val(ui.item.location_id);
 		}
 	});
+}
+</script>
+<script>
+var address_row = <?php echo $address_row; ?>;
+
+function addAddress() {
+	html  = '<tr id="address-row' + address_row + '">';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][street]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][street2]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][city]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][state]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][country]" value="" class="form-control" /></td>';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][zipcode]" value="" class="form-control" /></td>';
+	html += '<td class="text-center"><button type="button" onclick="$(\'#address-row' + address_row  + '\').remove();" data-toggle="tooltip" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
+
+	$('#addresses tbody').append(html);
+	
+	address_row++;
 }
 </script>
 <script>

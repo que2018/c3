@@ -34,6 +34,12 @@ $lang['text_confirm_delete'] 	 	  	        = '您确定要删除这个客户?';
 // Column
 $lang['column_name'] 	  	             		= '名称';
 $lang['column_company'] 	  	         		= '公司';
+$lang['column_street'] 	  	             		= '街道';
+$lang['column_street2'] 	  	             	= '街道2';
+$lang['column_city'] 	  	             		= '城市';
+$lang['column_state'] 	  	             		= '州';
+$lang['column_country'] 	  	             	= '国家';
+$lang['column_zipcode'] 	  	             	= '邮编';
 $lang['column_email'] 	  	             		= '邮箱';
 $lang['column_phone'] 	  	             		= '电话';
 $lang['column_location'] 	  	                = '库位';
@@ -43,6 +49,7 @@ $lang['column_action'] 	  	             		= '操作';
 $lang['tab_general'] 	  	             		= '通用';
 $lang['tab_data'] 	  	             		    = '数据';
 $lang['tab_location'] 	  	         		    = '库位';
+$lang['tab_address'] 	  	         		    = '地址';
 
 // Entry
 $lang['entry_email'] 	  	             		= '邮箱';

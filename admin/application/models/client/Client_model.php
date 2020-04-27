@@ -39,7 +39,41 @@ class Client_model extends CI_Model
 			$this->db->update('client', $client_data); 
 		}
 		
-		//balance data
+		//location		
+		if($data['locations'])
+		{
+			foreach($data['locations'] as $location)
+			{
+				$location_client_data = array(	
+					'client_id'    => $client_id,
+					'location_id'  => $location['location_id'],
+					'date_added'   => $location['date_added']
+				);
+				
+				$this->db->insert('location_to_client', $location_client_data);
+			}
+		}
+		
+		//address		
+		if($data['addresses'])
+		{
+			foreach($data['addresses'] as $address)
+			{
+				$location_address_data = array(	
+					'client_id'  => $client_id,
+					'street'  	 => $address['street'],
+					'street2'    => $address['street2'],
+					'city'       => $address['street2'],
+					'state'      => $address['state'],
+					'country'    => $address['country'],
+					'zipcode'    => $address['zipcode']
+				);
+				
+				$this->db->insert('client_address', $location_address_data);
+			}
+		}
+		
+		//balance
 		$this->load->model('finance/balance_model');
 		
 		$balance_data = array(	
@@ -130,12 +164,10 @@ class Client_model extends CI_Model
 		}
 		
 		//address
-		$this->db->delete('address_to_client', array('client_id' => $client_id));
+		$this->db->delete('client_address', array('client_id' => $client_id));
 		
 		if($data['addresses'])
 		{
-			$this->db->delete('address_to_client', array('client_id' => $client_id));
-			
 			foreach($data['addresses'] as $address)
 			{
 				$location_address_data = array(	
@@ -144,11 +176,11 @@ class Client_model extends CI_Model
 					'street2'    => $address['street2'],
 					'city'       => $address['street2'],
 					'state'      => $address['state'],
-					'zipcode'    => $address['zipcode'],
-					'country'    => $address['country']
+					'country'    => $address['country'],
+					'zipcode'    => $address['zipcode']
 				);
 				
-				$this->db->insert('address_to_client', $location_address_data);
+				$this->db->insert('client_address', $location_address_data);
 			}
 		}
 		
@@ -242,6 +274,22 @@ class Client_model extends CI_Model
 		$this->db->from('location_to_client');
 		$this->db->join('location', 'location.id = location_to_client.location_id', 'left');
 		$this->db->where('location_to_client.client_id', $client_id);
+		
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_client_addresses($client_id) 
+	{		
+		$this->db->select('client_address.*', false);
+		$this->db->from('client_address');
+		$this->db->where('client_address.client_id', $client_id);
 		
 		$q = $this->db->get();
 		
