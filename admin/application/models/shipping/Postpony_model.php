@@ -57,15 +57,15 @@ class Postpony_model extends CI_Model
 
 		if($sale['alter_shipper'])
 		{
-			$data['owner'] = $sale['shipper_name'];
-			$data['company'] = $sale['shipper_company'];
-			$data['street'] = $sale['shipper_street'];
-			$data['street2'] = $sale['shipper_street2'];
-			$data['city'] = $sale['shipper_city'];
-			$data['state'] = $sale['shipper_state'];
-			$data['postcode'] = $sale['shipper_zipcode'];
-			$data['country'] = $sale['shipper_country'];
-			$data['phone'] = $sale['shipper_phone'];
+			$data['owner'] = trim($sale['shipper_name']);
+			$data['company'] = trim($sale['shipper_company']);
+			$data['street'] = trim($sale['shipper_street']);
+			$data['street2'] = trim($sale['shipper_street2']);
+			$data['city'] = trim($sale['shipper_city']);
+			$data['state'] = trim($sale['shipper_state']);
+			$data['postcode'] = trim($sale['shipper_zipcode']);
+			$data['country'] = trim($sale['shipper_country']);
+			$data['phone'] = trim($sale['shipper_phone']);
 		}
 		else
 		{
