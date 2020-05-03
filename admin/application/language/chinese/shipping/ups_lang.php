@@ -8,8 +8,8 @@ $lang['text_access_key'] 	  	         = 'access key';
 $lang['text_username'] 	  	         	 = '用户名';
 $lang['text_password'] 	  	         	 = '密码';
 $lang['text_account_number'] 	  	     = '账户';
-$lang['text_pickup_method'] 	  	     = 'pickup 方式';
-$lang['text_classification_code'] 	  	 = 'classification 代码';
+$lang['text_pickup_method'] 	  	     = 'pickup方式';
+$lang['text_classification_code'] 	  	 = 'classification代码';
 $lang['text_time_zone'] 	  	     	 = '时区';
 $lang['text_origin'] 	  	     	     = 'orgin';
 $lang['text_street'] 	  	     	     = '街道';
@@ -58,8 +58,8 @@ $lang['text_jpg'] 	  					 = 'jpg';
 $lang['text_fixed'] 	  			     = '固定';
 $lang['text_ratio'] 	  			     = '比率';
 $lang['text_self_defined'] 	  			 = '自定义';
-$lang['text_fee_value'] 	  			 = '费 value';
-$lang['text_edit_success'] 	  		     = '<i class="fa fa-check-circle-o"></i>&nbsp;UPS 编辑 成功';
+$lang['text_fee_value'] 	  			 = '费用值';
+$lang['text_edit_success'] 	  		     = '<i class="fa fa-check-circle-o"></i>&nbsp;UPS编辑成功';
 
 // Tab
 $lang['tab_service'] 	  	             = '服务';

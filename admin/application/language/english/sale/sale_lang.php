@@ -90,6 +90,7 @@ $lang['text_generate_return_order'] 	  	    = 'generate return label';
 $lang['text_confirm_multiple_label'] 	  	    = 'label generate already, print again?';
 $lang['text_export_label'] 	  	    			= 'export label';
 $lang['text_export_order'] 	  	    			= 'export order';
+$lang['text_all_stores'] 	  	    			= 'All Store';
 
 // Tab
 $lang['tab_customer'] 	  	             		= 'Customer';

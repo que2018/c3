@@ -61,6 +61,7 @@ $lang['text_generate_return_order'] 	  	    = '生成退货订单';
 $lang['text_confirm_multiple_label'] 	  	    = '运单已生成，确认再次打印?';
 $lang['text_export_label'] 	  	    			= '导出运单';
 $lang['text_export_order'] 	  	    			= '导出订单';
+$lang['text_all_stores'] 	  	    			= '所有店铺';
 
 // Tab
 $lang['tab_customer'] 	  	             		= '客户';

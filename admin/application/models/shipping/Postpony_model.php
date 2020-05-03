@@ -358,6 +358,11 @@ class Postpony_model extends CI_Model
 		return $outdata;
 	}
 	
+	public function get_shipping_fee($sale_id) 
+	{
+		return false;
+	}
+	
 	public function get_self_defined_fee($sale_id) 
 	{
 		$this->load->library('phpexcel');

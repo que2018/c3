@@ -621,6 +621,157 @@ class Sale_ajax extends CI_Controller
 		$this->output->set_output(json_encode($outdata));
 	}
 	
+	public function get_shippings()
+	{	
+		$this->load->library('currency');
+	
+		$this->load->model('sale/sale_model');
+			
+		if($this->input->post('filter_sale_id'))
+		{
+			$filter_sale_id = $this->input->post('filter_sale_id');
+		} 
+		else 
+		{
+			$filter_sale_id = '';
+		}
+		
+		if($this->input->post('filter_store_id'))
+		{
+			$filter_store_id = $this->input->post('filter_store_id');
+		} 
+		else 
+		{
+			$filter_store_id = '';
+		}
+		
+		if($this->input->post('filter_store_sale_id'))
+		{
+			$filter_store_sale_id = $this->input->post('filter_store_sale_id');
+		} 
+		else 
+		{
+			$filter_store_sale_id = '';
+		}
+		
+		if($this->input->post('filter_status'))
+		{
+			$filter_status = $this->input->post('filter_status');
+		} 
+		else 
+		{
+			$filter_status = '';
+		}
+		
+		if($this->input->post('filter_tracking'))
+		{
+			$filter_tracking = $this->input->post('filter_tracking');
+		} 
+		else 
+		{
+			$filter_tracking = '';
+		}
+		
+		if($this->input->post('filter_date_added_from'))
+		{
+			$filter_date_added_from = $this->input->post('filter_date_added_from');
+		} 
+		else 
+		{
+			$filter_date_added_from = '';
+		}
+		
+		if($this->input->post('filter_date_added_to'))
+		{
+			$filter_date_added_to = $this->input->post('filter_date_added_to');
+		} 
+		else 
+		{
+			$filter_date_added_to = '';
+		}
+		
+		if($this->input->post('sort'))
+		{
+			$sort = $this->input->post('sort');
+		} 
+		else 
+		{
+			$sort = 'sale.id';
+		}
+		
+		if($this->input->post('order'))
+		{
+			$order = $this->input->post('order');
+		} 
+		else 
+		{
+			$order = 'DESC';
+		}
+		
+		if($this->input->post('limit'))
+		{
+			$limit = $this->input->post('limit');
+		} 
+		else 
+		{
+			$limit = $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->post('page'))
+		{
+			$page = $this->input->post('page');
+		} 
+		else 
+		{
+			$page = 1;
+		}
+		
+		$filter_data = array(
+			'filter_sale_id'         => $filter_sale_id,
+			'filter_store_id'        => $filter_store_id,
+			'filter_store_sale_id'   => $filter_store_sale_id,
+			'filter_status'          => $filter_status,
+			'filter_tracking'        => $filter_tracking,
+			'filter_date_added_from' => $filter_date_added_from,
+			'filter_date_added_to'   => $filter_date_added_to,
+			'sort'                   => $sort,
+			'order'                  => $order,
+			'start'                  => ($page - 1) * $limit,
+			'limit'                  => $limit
+		);
+		
+		$sales = $this->sale_model->get_sales($filter_data);
+		
+		$shippings = array();
+		
+		if($sales)
+		{			
+			foreach($sales as $sale)
+			{
+				//shipping fee
+				$code = $sale['shipping_provider'];
+				
+				$this->load->model('shipping/'. $code .'_model');
+				
+				$shippng_fee_unformat = $this->{$code . '_model'}->get_shipping_fee($sale['id']);
+								
+				$shipping_fee = $this->currency->format($shippng_fee_unformat);
+				
+				$shippings[] = array(
+					'sale_id'      => $sale['id'],
+					'shipping_fee' => $shipping_fee
+				);	
+			}
+		}
+		
+		$outdata = array(
+			'shippings'   => $shippings
+		);
+			
+		$this->output->set_content_type('application/json');
+		$this->output->set_output(json_encode($outdata));
+	}
+	
 	public function export_label() 
 	{
 		$this->load->library('pdf_merage');

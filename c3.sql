@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2020 at 01:21 AM
+-- Generation Time: May 03, 2020 at 10:39 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -1062,7 +1062,40 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (22622, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-04-28 01:17:45'),
 (22623, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-04-28 01:18:51'),
 (22624, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-04-28 01:18:57'),
-(22625, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-28 01:19:00');
+(22625, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-04-28 01:19:00'),
+(22626, NULL, '::1', '', 'view the dashboard', 'GET', '2020-05-03 22:27:34'),
+(22627, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-05-03 22:27:39'),
+(22628, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-03 22:27:39'),
+(22629, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 22:27:42'),
+(22630, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-03 22:27:54'),
+(22631, 1, '::1', 'catalog/product/add', 'view the product add page', 'GET', '2020-05-03 22:27:58'),
+(22632, 1, '::1', 'catalog/product', 'view the product page', 'GET', '2020-05-03 22:27:59'),
+(22633, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:28:07'),
+(22634, 1, '::1', 'common/logout', 'view the logout page', 'GET', '2020-05-03 22:28:19'),
+(22635, NULL, '::1', 'common/login', 'view the login page', 'GET', '2020-05-03 22:28:19'),
+(22636, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-05-03 22:28:25'),
+(22637, 1, '::1', 'common/dashboard', '?????', 'GET', '2020-05-03 22:28:26'),
+(22638, 1, '::1', 'sale/import', '????????', 'GET', '2020-05-03 22:28:44'),
+(22639, 1, '::1', 'client/client', '??????', 'GET', '2020-05-03 22:29:09'),
+(22640, 1, '::1', 'client/client/edit', '???????', 'GET', '2020-05-03 22:29:52'),
+(22641, 1, '::1', 'client/client/edit', '???????', 'POST', '2020-05-03 22:29:58'),
+(22642, 1, '::1', 'search/search', '????', 'GET', '2020-05-03 22:29:58'),
+(22643, 1, '::1', 'client/client', '??????', 'GET', '2020-05-03 22:29:58'),
+(22644, 1, '::1', 'client/client/edit', '???????', 'GET', '2020-05-03 22:30:14'),
+(22645, 1, '::1', 'client/client/edit', '???????', 'POST', '2020-05-03 22:30:17'),
+(22646, 1, '::1', 'client/client', '??????', 'GET', '2020-05-03 22:30:17'),
+(22647, 1, '::1', 'common/logout', '??????', 'GET', '2020-05-03 22:35:30'),
+(22648, NULL, '::1', 'common/login', '??????', 'GET', '2020-05-03 22:35:30'),
+(22649, NULL, '::1', 'common/login', '??????', 'POST', '2020-05-03 22:35:35'),
+(22650, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-03 22:35:36'),
+(22651, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:36:02');
+INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`, `method`, `date_added`) VALUES
+(22652, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:36:32'),
+(22653, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-03 22:38:02'),
+(22654, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2020-05-03 22:38:04'),
+(22655, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:38:07'),
+(22656, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:38:36'),
+(22657, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:39:22');
 
 -- --------------------------------------------------------
 
@@ -1188,6 +1221,7 @@ CREATE TABLE `checkin_product` (
   `checkin_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `batch` varchar(32) NOT NULL,
+  `carton` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `quantity_draft` int(11) NOT NULL,
   `location_id` int(11) NOT NULL
@@ -1197,29 +1231,29 @@ CREATE TABLE `checkin_product` (
 -- Dumping data for table `checkin_product`
 --
 
-INSERT INTO `checkin_product` (`id`, `checkin_id`, `product_id`, `batch`, `quantity`, `quantity_draft`, `location_id`) VALUES
-(60, 20, 119, '', 2, 0, 2527),
-(61, 20, 120, '', 4, 0, 2527),
-(62, 20, 121, '', 4, 0, 2527),
-(63, 20, 122, '', 15, 0, 2527),
-(64, 20, 123, '', 9, 0, 2527),
-(65, 20, 118, '', 4, 0, 2527),
-(66, 20, 124, '', 8, 0, 2527),
-(67, 21, 125, '', 1000, 0, 2527),
-(68, 22, 126, '', 600, 0, 2527),
-(77, 28, 134, '', 20, 0, 2527),
-(78, 27, 133, '', 40, 0, 2527),
-(79, 26, 132, '', 51, 0, 2527),
-(80, 25, 130, '', 40, 0, 2527),
-(81, 24, 131, '', 18, 0, 2527),
-(82, 23, 129, '', 55, 0, 2527),
-(85, 29, 135, '', 250, 0, 2527),
-(86, 29, 136, '', 250, 0, 2527),
-(87, 30, 139, '', 30, 0, 2527),
-(89, 32, 141, '', 50, 0, 0),
-(90, 33, 142, '', 50, 0, 0),
-(91, 34, 144, '', 0, 50, 0),
-(92, 35, 145, '', 0, 50, 0);
+INSERT INTO `checkin_product` (`id`, `checkin_id`, `product_id`, `batch`, `carton`, `quantity`, `quantity_draft`, `location_id`) VALUES
+(60, 20, 119, '', 0, 2, 0, 2527),
+(61, 20, 120, '', 0, 4, 0, 2527),
+(62, 20, 121, '', 0, 4, 0, 2527),
+(63, 20, 122, '', 0, 15, 0, 2527),
+(64, 20, 123, '', 0, 9, 0, 2527),
+(65, 20, 118, '', 0, 4, 0, 2527),
+(66, 20, 124, '', 0, 8, 0, 2527),
+(67, 21, 125, '', 0, 1000, 0, 2527),
+(68, 22, 126, '', 0, 600, 0, 2527),
+(77, 28, 134, '', 0, 20, 0, 2527),
+(78, 27, 133, '', 0, 40, 0, 2527),
+(79, 26, 132, '', 0, 51, 0, 2527),
+(80, 25, 130, '', 0, 40, 0, 2527),
+(81, 24, 131, '', 0, 18, 0, 2527),
+(82, 23, 129, '', 0, 55, 0, 2527),
+(85, 29, 135, '', 0, 250, 0, 2527),
+(86, 29, 136, '', 0, 250, 0, 2527),
+(87, 30, 139, '', 0, 30, 0, 2527),
+(89, 32, 141, '', 0, 50, 0, 0),
+(90, 33, 142, '', 0, 50, 0, 0),
+(91, 34, 144, '', 0, 0, 50, 0),
+(92, 35, 145, '', 0, 0, 50, 0);
 
 -- --------------------------------------------------------
 
@@ -1853,7 +1887,7 @@ INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`,
 (5, '', 'f41491d738f3b390a3f33975a28fbd18a996e0ff', '763', '2414752130@qq.com', 1, 'Fancy', 'Lin', '广州容宇生物科技有限公司', '', '', '', '', '', '13971596369', ''),
 (6, '', 'e967263b08bc082900332231c85829ef5822c99f', '243', 'kartonrepublic@gmail.com', 1, 'Cici', 'Zhan', ' Cartisan Design & Build Group, Inc', '', '', '', '', '', '626-333-2688', ''),
 (7, '', 'e3cc4538e4a8729e2037a5d837de63fd149661d8', '404', '549930496@qq.com', 1, 'Justin', 'Yao', 'JUSTIN INC', '', '', '', '', '', '6265003460', ''),
-(8, '', '30e62969db9497534edb54a47785a2ca834c9557', '216', 'sale@yjracing.com', 1, 'TTX ', 'Techonology', 'YJ Racing SPORTS INC', '1135 center dr unit IJ', 'City Of Industry', 'CA', 'US', '91789', '6268937741', ''),
+(8, '', 'b2377fe317ca03bb25707c6ba8e8f8321c970e07', '303', 'sale@yjracing.com', 1, 'TTX ', 'Techonology', 'YJ Racing SPORTS INC', '1135 center dr unit IJ', 'City Of Industry', 'CA', 'US', '91789', '6268937741', ''),
 (9, '', '6c5ee5c8c23ec2ae8555afd1e1e9ec0defc9da86', '414', 'demo@hualongus.com', 1, 'Lucy', 'Lin', 'HUALONG DEMO', '750 Blue Ave', 'Pasadena', 'CA', 'United States', '91720', '6265509873', ''),
 (10, '', 'b6e589ef6fee50fd764d36f3f1d60152da4553f9', '774', 'quedinge2012@gmail.com', 1, 'Sam', 'Parra', '', '11426 NEBRASKA CIR', 'OMAHA,', 'NE', 'United States', '68164', '3474483190', '');
 
@@ -1880,8 +1914,8 @@ CREATE TABLE `client_address` (
 
 INSERT INTO `client_address` (`client_address_id`, `client_id`, `street`, `street2`, `city`, `state`, `country`, `zipcode`) VALUES
 (1, 2, '750 Green Ave', '', '', 'CA', 'United States', '91700'),
-(5, 8, '750 Green Ave', '', '', 'CA', 'United States', '91700'),
-(6, 10, '622 Fire Tower Rd', '', '', 'LA', 'United States', '71064');
+(6, 10, '622 Fire Tower Rd', '', '', 'LA', 'United States', '71064'),
+(8, 8, '750 Green Ave', '', '', 'CA', 'United States', '91700');
 
 -- --------------------------------------------------------
 
@@ -5364,7 +5398,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22626;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22658;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -5436,7 +5470,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `client_address`
 --
 ALTER TABLE `client_address`
-  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`

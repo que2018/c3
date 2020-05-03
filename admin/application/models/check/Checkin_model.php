@@ -642,7 +642,7 @@ class Checkin_model extends CI_Model
 		return false;
 	}
 	
-	public function get_checkins($data) 
+	public function get_checkins($data = array()) 
 	{	
 		$this->db->select('*', false);
 		$this->db->from('checkin');
@@ -711,7 +711,7 @@ class Checkin_model extends CI_Model
 		}
 	}
 
-	public function get_checkin_total($data)
+	public function get_checkin_total($data = array())
 	{		
 		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('checkin');

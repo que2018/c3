@@ -68,7 +68,7 @@ $lang['column_state_long'] 	  	         	= '州全称';
 $lang['column_state_short'] 	  	     	= '州短名称';
 $lang['column_zipcode_from'] 	  	        = '邮编起始';
 $lang['column_zipcode_to'] 	  	    	    = '邮编结束';
-$lang['column_zone'] 	  	                = '区域'
+$lang['column_zone'] 	  	                = '区域';
 
 // Entry
 $lang['entry_pwd'] 	  	     	 			= 'Pwd';

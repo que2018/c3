@@ -98,7 +98,7 @@
 		    </td>
 		    <td>
 			  <span>#<?php echo $sale['sale_id']; ?></span>
-			  <div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
+			  <div id="detail<?php echo $sale['sale_id']; ?>" class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 			    <table class="table table-product">
 				  <thead>
 				    <th style="width: 35%;"><?php echo $this->lang->line('column_name'); ?></th>

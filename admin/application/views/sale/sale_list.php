@@ -38,30 +38,19 @@
 			      <div class="col-sm-12"><input name="store_sale_id" class="form-control" autocomplete="new-password" value="<?php echo $filter_store_sale_id; ?>" placeholder="<?php echo $this->lang->line('entry_store_order_id'); ?>" ></div>
 			    </div>
 			  </div>
-			  <div class="col-md-1">
+			  <div class="col-md-2">
 			    <div class="form-group">
 			      <div class="col-sm-12">
-				    <select name="status" class="form-control" autocomplete="new-password">
-					  <?php if($filter_status == 1) { ?>
-					  <option value=""></option>
-					  <option value="unsolved" selected><?php echo $this->lang->line('text_unsolved'); ?></option>
-					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
-					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else if($filter_status == 2) { ?>
-					  <option value=""></option>
-					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
-					  <option value="checking_out" selected><?php echo $this->lang->line('text_checking_out'); ?></option>
-					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else if($filter_status == 3) { ?>
-					  <option value=""></option>
-					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
-					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
-					  <option value="completed" selected><?php echo $this->lang->line('text_completed'); ?></option>
-					  <?php } else { ?>
-					  <option value=""></option>
-					  <option value="unsolved"><?php echo $this->lang->line('text_unsolved'); ?></option>
-					  <option value="checking_out"><?php echo $this->lang->line('text_checking_out'); ?></option>
-					  <option value="completed"><?php echo $this->lang->line('text_completed'); ?></option>
+				    <select name="store_id" class="form-control">
+					  <option value=""><?php echo $this->lang->line('text_all_stores'); ?></option>
+					  <?php if($stores) { ?>
+					    <?php foreach($stores as $store) { ?>
+						<?php if($store['store_id'] == $filter_store_id) { ?>
+						<option value="<?php echo $store['store_id']; ?>" selected><?php echo $store['name']; ?></option>
+						<?php } else { ?>
+						<option value="<?php echo $store['store_id']; ?>"><?php echo $store['name']; ?></option>
+						<?php } ?>
+					    <?php } ?>
 					  <?php } ?>
 					</select>
 				  </div>
@@ -146,7 +135,7 @@
 					  </td>
 					  <td>
 						<span>#<?php echo $sale['sale_id']; ?></span>
-						<div class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
+						<div id="detail<?php echo $sale['sale_id']; ?>" class="detail" style="top: <?php echo $offset * 50 + 170; ?>px;">
 						  <table class="table table-product">
 						    <thead>
 							  <th style="width: 35%;"><?php echo $this->lang->line('column_name'); ?></th>
@@ -234,8 +223,8 @@
 <script>
 function filter_sale() {	
 	sale_id     	= $('input[name=\'sale_id\']').val();
+	store_id   		= $('select[name=\'store_id\']').val();
 	store_sale_id   = $('input[name=\'store_sale_id\']').val();
-	status          = $('select[name=\'status\']').val();
 	tracking        = $('input[name=\'tracking\']').val();
     date_added_from = $('input[name=\'date_added_from\']').val();
     date_added_to   = $('input[name=\'date_added_to\']').val();
@@ -245,11 +234,11 @@ function filter_sale() {
 	if(sale_id)
 		url += '&filter_sale_id=' + sale_id;
 	
+	if(store_id)
+		url += '&filter_store_id=' + store_id;
+	
 	if(store_sale_id)
 		url += '&filter_store_sale_id=' + store_sale_id;
-	
-	if(status)
-		url += '&filter_status=' + status;
 	
 	if(tracking)
 		url += '&filter_tracking=' + tracking;
@@ -547,7 +536,6 @@ function export_label(handle) {
 function export_sale(handle) {
 	sale_id     	= $('input[name=\'sale_id\']').val();
 	store_sale_id   = $('input[name=\'store_sale_id\']').val();
-	status          = $('select[name=\'status\']').val();
 	tracking        = $('input[name=\'tracking\']').val();
 	date_added_from = $('input[name=\'date_added_from\']').val();
 	date_added_to   = $('input[name=\'date_added_to\']').val();
@@ -591,11 +579,11 @@ $(document).ready(function() {
 		filter_sale();
 	});
 	
-	$(document).on('input', 'input[name=\'store_sale_id\']', function () {
+	$(document).on('change', 'select[name=\'store_id\']', function () {
 		filter_sale();
 	});
 	
-	$(document).on('change', 'select[name=\'status\']', function () {
+	$(document).on('input', 'input[name=\'store_sale_id\']', function () {
 		filter_sale();
 	});
 	
@@ -609,6 +597,41 @@ $(document).ready(function() {
 	
 	$(document).on('input', 'input[name=\'date_added_to\']', function () {		
 		filter_sale();
+	});
+});
+</script>
+<script>
+$(document).ready(function() {
+	sale_id     	= $('input[name=\'sale_id\']').val();
+	store_id   		= $('select[name=\'store_id\']').val();
+	store_sale_id   = $('input[name=\'store_sale_id\']').val();
+	tracking        = $('input[name=\'tracking\']').val();
+    date_added_from = $('input[name=\'date_added_from\']').val();
+    date_added_to   = $('input[name=\'date_added_to\']').val();
+	page            = <?php echo $page; ?>;
+
+	data = new FormData();
+	data.append('filter_sale_id', sale_id);
+	data.append('filter_store_id', store_id);
+	data.append('filter_store_sale_id', store_sale_id);
+	data.append('filter_tracking', tracking);
+	data.append('filter_date_added_from', date_added_from);
+	data.append('filter_date_added_to', date_added_to);
+	data.append('page', page);
+		
+	$.ajax({
+		url: '<?php echo $shipping_url; ?>',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(json) {	
+			$.each(json.shippings, function(index, shipping) {
+			  $('#detail'+ shipping.sale_id).find('.shipping').append('(' + shipping.shipping_fee + ')');
+			});
+		}
 	});
 });
 </script>
