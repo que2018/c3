@@ -1431,7 +1431,7 @@ class Sale extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'tracking'          => $this->input->post('tracking'),
+				'tracking'          => '',
 				'note'              => $this->input->post('note'),
 				'name'              => $this->input->post('name'),
 				'street'            => $this->input->post('street'),
@@ -1482,7 +1482,7 @@ class Sale extends MX_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['tracking']       	= $this->input->post('tracking');
+			$data['tracking']       	= '';
 			$data['note']        	    = $this->input->post('note');			
 			$data['name']  		    	= $this->input->post('name');
 			$data['street']         	= $this->input->post('street');
@@ -1545,7 +1545,7 @@ class Sale extends MX_Controller
 			
 			$client = $this->client_model->get_client_by_store($sale['store_id']);
 			
-			$data['tracking']   		= $sale['tracking'];
+			$data['tracking']   		= '';
 			$data['note']    		    = $sale['note'];
 			$data['name']       		= $client['firstname'].' '.$client['lastname'];
 			$data['street']     		= $client['street'];

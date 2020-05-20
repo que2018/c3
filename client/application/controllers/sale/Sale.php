@@ -909,9 +909,7 @@ class Sale extends MX_Controller
 		$this->lang->load('sale/sale');
 		
 		$this->load->library('form_validation');
-		
-		$this->form_validation->CI =& $this;
-		
+				
 		$this->load->model('sale/sale_model');
 		$this->load->model('tool/image_model');
 		$this->load->model('store/store_model');
@@ -997,7 +995,7 @@ class Sale extends MX_Controller
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'tracking'          => $this->input->post('tracking'),
+				'tracking'          => '',
 				'note'              => $this->input->post('note'),
 				'name'              => $this->input->post('name'),
 				'street'            => $this->input->post('street'),
@@ -1048,7 +1046,7 @@ class Sale extends MX_Controller
 		
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$data['tracking']       	= $this->input->post('tracking');
+			$data['tracking']        	= '';			
 			$data['note']        	    = $this->input->post('note');			
 			$data['name']  		    	= $this->input->post('name');
 			$data['street']         	= $this->input->post('street');
@@ -1109,7 +1107,7 @@ class Sale extends MX_Controller
 		{
 			$sale = $this->sale_model->get_sale($sale_id);
 						
-			$data['tracking']   		= $sale['tracking'];
+			$data['tracking']   		= '';
 			$data['note']    		    = $sale['note'];
 			$data['name']       		= $this->auth->firstname.' '.$this->auth->lastname;
 			$data['street']     		= $this->auth->street;
