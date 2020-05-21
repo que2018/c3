@@ -305,6 +305,8 @@ class Sale extends MX_Controller
 		
 		$this->load->library('form_validation');
 		
+		$this->form_validation->CI =& $this;
+
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
 		$this->load->model('catalog/product_model');
@@ -544,6 +546,8 @@ class Sale extends MX_Controller
 		$this->lang->load('sale/sale');
 		
 		$this->load->library('form_validation');
+		
+		$this->form_validation->CI =& $this;
 		
 		$this->load->model('sale/sale_model');
 		$this->load->model('store/store_model');
@@ -909,7 +913,9 @@ class Sale extends MX_Controller
 		$this->lang->load('sale/sale');
 		
 		$this->load->library('form_validation');
-				
+		
+		$this->form_validation->CI =& $this;
+	
 		$this->load->model('sale/sale_model');
 		$this->load->model('tool/image_model');
 		$this->load->model('store/store_model');
@@ -1517,7 +1523,10 @@ class Sale extends MX_Controller
 	
 	public function validate_add_tracking($tracking)
 	{
-		$this->load->model('sale/sale_model');
+		return true;
+		
+		
+		/* $this->load->model('sale/sale_model');
 		
 		if($tracking)
 		{
@@ -1537,7 +1546,7 @@ class Sale extends MX_Controller
 		else
 		{
 			return true;
-		}
+		} */
 	}
 	
 	public function validate_edit_tracking($tracking)
