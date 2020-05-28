@@ -24,6 +24,7 @@
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
 		  <li><a data-toggle="tab" href="#data"><?php echo $this->lang->line('tab_data'); ?></a></li>
+		  <li><a data-toggle="tab" href="#permission"><?php echo $this->lang->line('tab_permission'); ?></a></li>
 		  <li><a data-toggle="tab" href="#location"><?php echo $this->lang->line('tab_location'); ?></a></li>
 		  <li><a data-toggle="tab" href="#address"><?php echo $this->lang->line('tab_address'); ?></a></li>
 		</ul>
@@ -106,6 +107,24 @@
 			  <div class="hr-line-dashed"></div>
 			</div>
 		  </div>
+		  <div id="permission" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipping_permission'); ?></label>
+				<div class="col-sm-10">
+				  <?php if($shipping_providers) { ?>
+				    <?php foreach($shipping_providers as $shipping_provider) { ?>
+					  <?php if(isset($permission['shipping'][$shipping_provider['code']])) { ?>
+				      <div class="i-checks"><label><input type="checkbox" name="permission[shipping][<?php echo $shipping_provider['code']; ?>]" value="1" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $shipping_provider['name']; ?></label></div>
+				      <?php } else { ?>
+				      <div class="i-checks"><label><input type="checkbox" name="permission[shipping][<?php echo $shipping_provider['code']; ?>]" value="1"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $shipping_provider['name']; ?></label></div>
+				      <?php } ?>
+					<?php } ?>
+				  <?php } ?>
+				</div>
+              </div>
+			</div>
+		  </div>	  
 		  <div id="location" class="tab-pane">
 			<div class="panel-body">
 		      <div class="table-responsive">
@@ -148,7 +167,7 @@
 			  </div>
 			</div>
 		  </div>
-		  		  <div id="address" class="tab-pane">
+		  <div id="address" class="tab-pane">
 			<div class="panel-body">
 		      <div class="table-responsive">
 			    <table id="addresses" class="table table-striped table-bordered table-hover">

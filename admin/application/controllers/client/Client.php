@@ -392,6 +392,7 @@ class Client extends MX_Controller
 			'zipcode'    => $this->input->post('zipcode'),
 			'phone'      => $this->input->post('phone'),
 			'data'       => $this->input->post('data'),
+			'permission' => $this->input->post('permission'),
 			'locations'  => $this->input->post('location'),
 			'addresses'  => $this->input->post('address')
 		);
@@ -429,7 +430,8 @@ class Client extends MX_Controller
 		$this->lang->load('client/client');
 
 		$this->load->model('client/client_model');
-		
+		$this->load->model('extension/shipping_model');
+
 		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
 		$this->header->add_style(base_url(). 'assets/css/app/client/client_edit.css');
 		$this->header->add_style(base_url(). 'assets/js/plugins/jquery-ui/jquery-ui.min.css');
@@ -468,6 +470,7 @@ class Client extends MX_Controller
 				'zipcode'    => $this->input->post('zipcode'),
 				'phone'      => $this->input->post('phone'),
 				'data'       => $this->input->post('data'),
+				'permission' => $this->input->post('permission'),
 				'locations'  => $this->input->post('location'),
 				'addresses'  => $this->input->post('address')
 			);
@@ -492,7 +495,8 @@ class Client extends MX_Controller
 			$data['country']    = $this->input->post('country');	
 			$data['zipcode']    = $this->input->post('zipcode');	
 			$data['phone']      = $this->input->post('phone');	
-			$data['data']       = $this->input->post('data');	
+			$data['data']       = $this->input->post('data');
+			$data['permission'] = $this->input->post('permission');
 			$data['locations']  = $this->input->post('location');		
 			$data['addresses']  = $this->input->post('address');										
 		}
@@ -549,12 +553,15 @@ class Client extends MX_Controller
 			$data['zipcode']    = $client['zipcode'];
 			$data['phone']      = $client['phone'];
 			$data['data']       = $client['data'];
+			$data['permission'] = $client['permission'];
 			$data['locations']  = $locations;	
 			$data['addresses']  = $addresses;						
 		}
 		
-		$data['client_id'] = $client_id;	
+		$data['shipping_providers'] = $this->shipping_model->get_shipping_providers();
 		
+		$data['client_id'] = $client_id;	
+
 		$data['current_date'] = $this->datetimer->current_datetime();
 		
 		$data['error'] = validation_errors();

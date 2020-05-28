@@ -24,6 +24,8 @@ class Auth
 	
 	public $phone;
 	
+	public $permission;
+	
 	public function __construct()
 	{
 		$this->load->library('session');
@@ -38,17 +40,18 @@ class Auth
 			
 			if($client)
 			{
-				$this->client_id  = $client['id'];
-				$this->email      = $client['email'];
-				$this->firstname  = $client['firstname'];
-				$this->lastname   = $client['lastname'];
-				$this->company    = $client['company'];
-				$this->street     = $client['street'];
-				$this->city       = $client['city'];
-				$this->state      = $client['state'];
-				$this->country    = $client['country'];
-				$this->zipcode    = $client['zipcode'];
-				$this->phone      = $client['phone'];	
+				$this->client_id  	= $client['id'];
+				$this->email      	= $client['email'];
+				$this->firstname  	= $client['firstname'];
+				$this->lastname   	= $client['lastname'];
+				$this->company    	= $client['company'];
+				$this->street     	= $client['street'];
+				$this->city       	= $client['city'];
+				$this->state      	= $client['state'];
+				$this->country    	= $client['country'];
+				$this->zipcode    	= $client['zipcode'];
+				$this->phone     	= $client['phone'];
+				$this->permission   = (!empty($client['permission']))?unserialize($client['permission']):false;		
 			}
 			else
 			{

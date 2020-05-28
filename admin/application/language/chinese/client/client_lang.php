@@ -48,6 +48,7 @@ $lang['column_action'] 	  	             		= '操作';
 // Tab
 $lang['tab_general'] 	  	             		= '通用';
 $lang['tab_data'] 	  	             		    = '数据';
+$lang['tab_permission'] 	  	                = '权限';
 $lang['tab_location'] 	  	         		    = '库位';
 $lang['tab_address'] 	  	         		    = '地址';
 
@@ -65,8 +66,9 @@ $lang['entry_zipcode'] 	  	                  	= '邮编';
 $lang['entry_phone'] 	  	             		= '电话';
 $lang['entry_balance'] 	  	             		= '余额';
 $lang['entry_volume_total'] 	  	            = '总容量';
+$lang['entry_shipping_permission'] 	  	        = '配送权限';
 
-// 错误 
+// Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;邮箱<strong>%s</strong>已被使用';
 $lang['error_can_not_delete_order_exist']       = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个订单存在';
 $lang['error_can_not_delete_product_exist']     = '<i class="fa fa-exclamation-triangle"></i>&nbsp;这个客户不能被删除因为这个产品存在';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2020 at 10:39 PM
+-- Generation Time: May 29, 2020 at 12:01 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -1095,7 +1095,179 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (22654, 1, '::1', 'check/checkout', 'view the checkout page', 'GET', '2020-05-03 22:38:04'),
 (22655, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:38:07'),
 (22656, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:38:36'),
-(22657, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:39:22');
+(22657, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 22:39:22'),
+(22658, 1, '::1', 'sale/import', 'view the order import page', 'GET', '2020-05-03 22:39:57'),
+(22659, 1, '::1', 'sale/import', 'view the order import page', 'GET', '2020-05-03 22:44:39'),
+(22660, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 22:50:41'),
+(22661, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 22:59:51'),
+(22662, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:01:14'),
+(22663, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:02:54'),
+(22664, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:02:59'),
+(22665, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:03:18'),
+(22666, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:05:49'),
+(22667, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:05:52'),
+(22668, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:05:54'),
+(22669, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:05:56'),
+(22670, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:05:57'),
+(22671, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:05:59'),
+(22672, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:06:01'),
+(22673, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:06:02'),
+(22674, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:08:23'),
+(22675, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:08:25'),
+(22676, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:08:27'),
+(22677, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:08:28'),
+(22678, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:08:30'),
+(22679, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:14:28'),
+(22680, 1, '::1', 'sale/sale/filter', '0', 'GET', '2020-05-03 23:14:30'),
+(22681, 1, '::1', 'sale/import', 'view the order import page', 'GET', '2020-05-03 23:24:11'),
+(22682, 1, '::1', 'sale/sale_unsolved', 'view the unsolved order list', 'GET', '2020-05-03 23:24:12'),
+(22683, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:24:15'),
+(22684, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 23:24:20'),
+(22685, 1, '::1', 'check/checkin/edit', 'view the checkin edit page', 'GET', '2020-05-03 23:24:21'),
+(22686, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 23:24:24'),
+(22687, 1, '::1', 'check/checkin', 'view the checkin page', 'GET', '2020-05-03 23:47:41'),
+(22688, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:47:44'),
+(22689, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-03 23:47:44'),
+(22690, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-03 23:47:55'),
+(22691, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-03 23:47:55'),
+(22692, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:08:30'),
+(22693, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:08:31'),
+(22694, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:08:44'),
+(22695, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:08:45'),
+(22696, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:08:50'),
+(22697, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:08:51'),
+(22698, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:09:41'),
+(22699, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:09:41'),
+(22700, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:10:07'),
+(22701, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:10:07'),
+(22702, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:10:37'),
+(22703, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:10:37'),
+(22704, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:11:07'),
+(22705, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:11:08'),
+(22706, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:12:19'),
+(22707, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:12:19'),
+(22708, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:17:33'),
+(22709, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:17:33'),
+(22710, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:17:49'),
+(22711, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:17:50'),
+(22712, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:18:13'),
+(22713, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:18:14'),
+(22714, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:19:10'),
+(22715, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:19:10'),
+(22716, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:26:23'),
+(22717, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:26:23'),
+(22718, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:26:30'),
+(22719, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:26:31'),
+(22720, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:26:45'),
+(22721, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:26:45'),
+(22722, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:27:52'),
+(22723, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:27:53'),
+(22724, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:27:54'),
+(22725, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:27:54'),
+(22726, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:28:21'),
+(22727, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:28:22'),
+(22728, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:28:28'),
+(22729, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:28:28'),
+(22730, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:29:44'),
+(22731, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:29:45'),
+(22732, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:32:12'),
+(22733, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:34:40'),
+(22734, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:34:40'),
+(22735, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:35:07'),
+(22736, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:35:08'),
+(22737, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:36:10'),
+(22738, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:36:10'),
+(22739, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:36:17'),
+(22740, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'GET', '2020-05-04 00:36:17'),
+(22741, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:36:48'),
+(22742, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-04 00:36:48'),
+(22743, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-04 00:36:53'),
+(22744, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-04 00:36:54'),
+(22745, NULL, '127.0.0.1', '', 'view the dashboard', 'GET', '2020-05-20 20:59:53'),
+(22746, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-05-20 20:59:59'),
+(22747, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-20 20:59:59'),
+(22748, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:00:02'),
+(22749, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:00:03'),
+(22750, 1, '::1', '', 'view the dashboard', 'GET', '2020-05-20 21:00:15'),
+(22751, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-20 21:00:15'),
+(22752, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-20 21:00:28'),
+(22753, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-20 21:36:48'),
+(22754, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:36:58'),
+(22755, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:36:58'),
+(22756, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:37:00'),
+(22757, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:37:01'),
+(22758, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:37:04'),
+(22759, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:37:06'),
+(22760, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:37:06'),
+(22761, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:37:08'),
+(22762, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:37:09'),
+(22763, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:34'),
+(22764, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:37'),
+(22765, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:38:39'),
+(22766, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:41'),
+(22767, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:38:42'),
+(22768, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:38:43'),
+(22769, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:44'),
+(22770, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:38:46'),
+(22771, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:48'),
+(22772, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:38:51'),
+(22773, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:38:51'),
+(22774, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-05-20 21:38:53'),
+(22775, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:38:55'),
+(22776, 1, '::1', 'sale/sale/return', '0', 'GET', '2020-05-20 21:39:47'),
+(22777, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-20 21:39:49'),
+(22778, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-20 21:39:50'),
+(22779, NULL, '::1', '', 'view the dashboard', 'GET', '2020-05-28 22:34:55'),
+(22780, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-05-28 22:34:59'),
+(22781, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-28 22:35:00'),
+(22782, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-28 22:35:03'),
+(22783, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-28 22:35:04'),
+(22784, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 22:35:06'),
+(22785, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 22:35:08'),
+(22786, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 22:40:19'),
+(22787, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 22:40:21'),
+(22788, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 22:49:08'),
+(22789, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 22:49:40'),
+(22790, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:01:13'),
+(22791, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:02:26'),
+(22792, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:02:32'),
+(22793, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:02:36'),
+(22794, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:02:37'),
+(22795, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:15:19'),
+(22796, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:15:48'),
+(22797, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:15:48'),
+(22798, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:15:50'),
+(22799, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:30:51'),
+(22800, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:31:20'),
+(22801, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:31:22'),
+(22802, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:31:24'),
+(22803, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:31:25'),
+(22804, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:31:26'),
+(22805, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:31:27'),
+(22806, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:31:27'),
+(22807, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:31:30'),
+(22808, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:31:30'),
+(22809, 1, '::1', '', 'view the dashboard', 'GET', '2020-05-28 23:31:34'),
+(22810, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-05-28 23:31:34'),
+(22811, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:31:36'),
+(22812, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:31:52'),
+(22813, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:31:55'),
+(22814, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:34:07'),
+(22815, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:34:10'),
+(22816, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:34:11'),
+(22817, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:34:13'),
+(22818, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-05-28 23:34:19'),
+(22819, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:34:19'),
+(22820, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:34:21'),
+(22821, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:36:16'),
+(22822, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-28 23:36:27'),
+(22823, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-28 23:36:27'),
+(22824, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:36:29'),
+(22825, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-05-28 23:39:41'),
+(22826, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-28 23:39:42'),
+(22827, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:40:07'),
+(22828, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:49:14'),
+(22829, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:58:48');
 
 -- --------------------------------------------------------
 
@@ -1873,23 +2045,24 @@ CREATE TABLE `client` (
   `country` varchar(255) NOT NULL,
   `zipcode` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `data` varchar(255) NOT NULL
+  `data` varchar(255) NOT NULL,
+  `permission` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`, `firstname`, `lastname`, `company`, `street`, `city`, `state`, `country`, `zipcode`, `phone`, `data`) VALUES
-(2, '', '0b09d2289b38afe9a3a4cf50a9d9621892108f38', '826', 'veetrading2015@gmail.com', 1, 'Newman', 'Trading', 'Vee Trading Inc', '687 W Price Creek Rd', 'Talking Rock', 'GA', 'United States', '30175', '7066695143', ''),
-(3, '', '647dd7cd5f4a5996d8263f93886ec311bb39d06d', '614', '2573661972@qq.com', 1, 'Amy', 'Huang', '广州容宇生物科技有限公司', '', '', '', '', '', '18565316449', ''),
-(4, '', 'd2672e812e995f780e40627c78f9e07f65759092', '697', '1131748860@qq.com', 1, 'Todd', 'Zhou', 'TTX Lighting', '1135 Center Dr. Unit I', 'City of Industry', 'CA', 'United States', '91789', '6265508970', ''),
-(5, '', 'f41491d738f3b390a3f33975a28fbd18a996e0ff', '763', '2414752130@qq.com', 1, 'Fancy', 'Lin', '广州容宇生物科技有限公司', '', '', '', '', '', '13971596369', ''),
-(6, '', 'e967263b08bc082900332231c85829ef5822c99f', '243', 'kartonrepublic@gmail.com', 1, 'Cici', 'Zhan', ' Cartisan Design & Build Group, Inc', '', '', '', '', '', '626-333-2688', ''),
-(7, '', 'e3cc4538e4a8729e2037a5d837de63fd149661d8', '404', '549930496@qq.com', 1, 'Justin', 'Yao', 'JUSTIN INC', '', '', '', '', '', '6265003460', ''),
-(8, '', 'b2377fe317ca03bb25707c6ba8e8f8321c970e07', '303', 'sale@yjracing.com', 1, 'TTX ', 'Techonology', 'YJ Racing SPORTS INC', '1135 center dr unit IJ', 'City Of Industry', 'CA', 'US', '91789', '6268937741', ''),
-(9, '', '6c5ee5c8c23ec2ae8555afd1e1e9ec0defc9da86', '414', 'demo@hualongus.com', 1, 'Lucy', 'Lin', 'HUALONG DEMO', '750 Blue Ave', 'Pasadena', 'CA', 'United States', '91720', '6265509873', ''),
-(10, '', 'b6e589ef6fee50fd764d36f3f1d60152da4553f9', '774', 'quedinge2012@gmail.com', 1, 'Sam', 'Parra', '', '11426 NEBRASKA CIR', 'OMAHA,', 'NE', 'United States', '68164', '3474483190', '');
+INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`, `firstname`, `lastname`, `company`, `street`, `city`, `state`, `country`, `zipcode`, `phone`, `data`, `permission`) VALUES
+(2, '', '0b09d2289b38afe9a3a4cf50a9d9621892108f38', '826', 'veetrading2015@gmail.com', 1, 'Newman', 'Trading', 'Vee Trading Inc', '687 W Price Creek Rd', 'Talking Rock', 'GA', 'United States', '30175', '7066695143', '', ''),
+(3, '', '647dd7cd5f4a5996d8263f93886ec311bb39d06d', '614', '2573661972@qq.com', 1, 'Amy', 'Huang', '广州容宇生物科技有限公司', '', '', '', '', '', '18565316449', '', ''),
+(4, '', 'd2672e812e995f780e40627c78f9e07f65759092', '697', '1131748860@qq.com', 1, 'Todd', 'Zhou', 'TTX Lighting', '1135 Center Dr. Unit I', 'City of Industry', 'CA', 'United States', '91789', '6265508970', '', ''),
+(5, '', 'f41491d738f3b390a3f33975a28fbd18a996e0ff', '763', '2414752130@qq.com', 1, 'Fancy', 'Lin', '广州容宇生物科技有限公司', '', '', '', '', '', '13971596369', '', ''),
+(6, '', 'e967263b08bc082900332231c85829ef5822c99f', '243', 'kartonrepublic@gmail.com', 1, 'Cici', 'Zhan', ' Cartisan Design & Build Group, Inc', '', '', '', '', '', '626-333-2688', '', ''),
+(7, '', 'e3cc4538e4a8729e2037a5d837de63fd149661d8', '404', '549930496@qq.com', 1, 'Justin', 'Yao', 'JUSTIN INC', '', '', '', '', '', '6265003460', '', ''),
+(8, '', 'b2377fe317ca03bb25707c6ba8e8f8321c970e07', '303', 'sale@yjracing.com', 1, 'TTX ', 'Techonology', 'YJ Racing SPORTS INC', '1135 center dr unit IJ', 'City Of Industry', 'CA', 'US', '91789', '6268937741', '', 'a:1:{s:8:\"shipping\";a:2:{s:4:\"usps\";s:1:\"1\";s:8:\"postpony\";s:1:\"1\";}}'),
+(9, '', '6c5ee5c8c23ec2ae8555afd1e1e9ec0defc9da86', '414', 'demo@hualongus.com', 1, 'Lucy', 'Lin', 'HUALONG DEMO', '750 Blue Ave', 'Pasadena', 'CA', 'United States', '91720', '6265509873', '', ''),
+(10, '', 'b6e589ef6fee50fd764d36f3f1d60152da4553f9', '774', 'quedinge2012@gmail.com', 1, 'Sam', 'Parra', '', '11426 NEBRASKA CIR', 'OMAHA,', 'NE', 'United States', '68164', '3474483190', '', '');
 
 -- --------------------------------------------------------
 
@@ -1915,7 +2088,7 @@ CREATE TABLE `client_address` (
 INSERT INTO `client_address` (`client_address_id`, `client_id`, `street`, `street2`, `city`, `state`, `country`, `zipcode`) VALUES
 (1, 2, '750 Green Ave', '', '', 'CA', 'United States', '91700'),
 (6, 10, '622 Fire Tower Rd', '', '', 'LA', 'United States', '71064'),
-(8, 8, '750 Green Ave', '', '', 'CA', 'United States', '91700');
+(12, 8, '750 Green Ave', '', '', 'CA', 'United States', '91700');
 
 -- --------------------------------------------------------
 
@@ -2404,7 +2577,8 @@ INSERT INTO `customer` (`id`, `client_id`, `name`, `email`, `company`, `street`,
 (458, 4, 'Tanisha Tramel', '', '', '5826 N 32ND ST', '', 'MILWAUKEE', 'WI', 'US', '53209-41', '6265003030'),
 (459, 2, 'Vanessa Hill', '', '', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', 'United States', '29461', ''),
 (460, 2, 'Emily Taggart', '', '', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', 'United States', '54981', '6265023666'),
-(461, 8, 'Emily Taggart', '', '', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', 'United States', '54981', '');
+(461, 8, 'Emily Taggart', '', '', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', 'United States', '54981', ''),
+(462, 8, 'TTX  Techonology', 'sale@yjracing.com', '', '1135 center dr unit IJ', '', 'City Of Industry', 'CA', 'US', '91789', '6268937741');
 
 -- --------------------------------------------------------
 
@@ -3227,7 +3401,8 @@ INSERT INTO `sale` (`id`, `store_id`, `store_sale_id`, `name`, `street`, `street
 (409, 8, 'Ling#184754', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'United States', '', '', 0, '', '', '', '', '', '', '', '', '', '', '20.00', '15.00', '18.00', '5.00', 1, 5, 'ltl', 'roadrunner', '0.00', '', 1, '', '2020-04-25 17:19:42', '0000-00-00 00:00:00'),
 (410, 8, 'Ling#185589', 'Emily Taggart', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', '54981', 'United States', '', '', 0, '', '', '', '', '', '', '', '', '', '', '20.00', '13.00', '40.00', '6.00', 1, 5, 'ltl', 'roadrunner', '0.00', '', 1, '', '2020-04-25 17:19:42', '0000-00-00 00:00:00'),
 (411, 8, 'Ling#184759', 'Vanessa Hill', '536 Goldensand Ln', '', 'Moncks Corner', 'South Carolina', '29461', 'United States', '', '', 0, '', '', '', '', '', '', '', '', '', '', '20.00', '15.00', '18.00', '5.00', 1, 5, 'ltl', 'roadrunner', '0.00', '', 1, '', '2020-04-25 17:24:35', '0000-00-00 00:00:00'),
-(412, 8, 'Ling#185670', 'Emily Taggart', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', '54981', 'United States', '', '', 0, '', '', '', '', '', '', '', '', '', '', '20.00', '13.00', '40.00', '6.00', 1, 5, 'ltl', 'roadrunner', '0.00', '', 1, '', '2020-04-25 17:24:35', '0000-00-00 00:00:00');
+(412, 8, 'Ling#185670', 'Emily Taggart', '410 e fulton st', 'Apt 9', 'Wauapca', 'Wisconsin', '54981', 'United States', '', '', 0, '', '', '', '', '', '', '', '', '', '', '20.00', '13.00', '40.00', '6.00', 1, 5, 'ltl', 'roadrunner', '0.00', '', 1, '', '2020-04-25 17:24:35', '0000-00-00 00:00:00'),
+(414, 8, '', 'TTX  Techonology', '1135 center dr unit IJ', '', 'City Of Industry', 'CA', '91789', 'US', 'sale@yjracing.com', '6268937741', 1, ' Jacob S. Harman ', '', '9695 4 CORNERS LN ', '', 'SAINT JACOB', 'IL ', '62281-10', 'UNITED STATES', '', '+1 314-282-9402 ext.', '29.52', '23.62', '5.90', '12.00', 1, 5, 'postpony', 'fedex_ground', '0.00', '', 1, '', '2020-05-21 20:20:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -3936,7 +4111,8 @@ INSERT INTO `sale_product` (`id`, `sale_id`, `product_id`, `quantity`, `store_sa
 (734, 409, 0, 1, ''),
 (735, 410, 0, 1, ''),
 (736, 411, 0, 1, ''),
-(737, 412, 0, 1, '');
+(737, 412, 0, 1, ''),
+(739, 414, 166, 1, '');
 
 -- --------------------------------------------------------
 
@@ -5062,6 +5238,23 @@ INSERT INTO `user_group` (`user_group_id`, `name`, `description`, `permission`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `version`
+--
+
+CREATE TABLE `version` (
+  `version` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `version`
+--
+
+INSERT INTO `version` (`version`) VALUES
+('1.35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `warehouse`
 --
 
@@ -5398,7 +5591,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22658;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22830;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -5470,13 +5663,13 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `client_address`
 --
 ALTER TABLE `client_address`
-  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=462;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
 
 --
 -- AUTO_INCREMENT for table `damage`
@@ -5566,7 +5759,7 @@ ALTER TABLE `refund`
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
 
 --
 -- AUTO_INCREMENT for table `sale_label`
@@ -5578,7 +5771,7 @@ ALTER TABLE `sale_label`
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=738;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=740;
 
 --
 -- AUTO_INCREMENT for table `setting`

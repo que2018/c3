@@ -21,23 +21,14 @@ class Client_model extends CI_Model
 			'state'	          => $data['state'],
 			'country'	      => $data['country'],
 			'zipcode'	      => $data['zipcode'],
-			'phone'   		  => $data['phone']
+			'phone'   		  => $data['phone'],
+			'data'   		  => (isset($data['data']))?serialize($data['data']):'',
+			'permission'      => (isset($data['permission']))?serialize($data['permission']):''
 		);
 		
 		$this->db->insert('client', $client_data);
 		
 		$client_id = $this->db->insert_id();
-		
-		if(isset($data['data']))
-		{
-			$client_data = array(
-				'data'	       => serialize($data['data'])
-			);
-		
-			$this->db->where('id', $client_id);
-		
-			$this->db->update('client', $client_data); 
-		}
 		
 		//location		
 		if($data['locations'])
@@ -112,23 +103,14 @@ class Client_model extends CI_Model
 			'state'	          => $data['state'],
 			'country'	      => $data['country'],
 			'zipcode'	      => $data['zipcode'],
-			'phone'   		  => $data['phone']
+			'phone'   		  => $data['phone'],
+			'data'   		  => (isset($data['data']))?serialize($data['data']):'',
+			'permission'      => (isset($data['permission']))?serialize($data['permission']):''
 		);
 		
 		$this->db->where('id', $client_id);
 		
 		$this->db->update('client', $client_data); 
-		
-		if(isset($data['data']))
-		{
-			$client_data = array(
-				'data'	       => serialize($data['data'])
-			);
-		
-			$this->db->where('id', $client_id);
-		
-			$this->db->update('client', $client_data); 
-		}
 		
 		if($data['password'])
 		{
@@ -218,7 +200,8 @@ class Client_model extends CI_Model
 				'country'     => $row['country'],
 				'zipcode'     => $row['zipcode'],
 				'phone'       => $row['phone'],
-				'data'        => unserialize($row['data'])
+				'data'        => (!empty($row['data']))?unserialize($row['data']):'',
+				'permission'  => (!empty($row['permission']))?unserialize($row['permission']):''
 			);
 			
 			return $result;

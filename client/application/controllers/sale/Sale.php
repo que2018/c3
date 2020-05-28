@@ -487,7 +487,7 @@ class Sale extends MX_Controller
 		{
 			$code = $shipping_provider_data['code'];
 			
-			if($this->config->item($code .'_status'))
+			if($this->config->item($code .'_status') && isset($this->auth->permission['shipping'][$code]))
 			{
 				$data['shipping_providers'][] = array(
 					'code'     => $shipping_provider_data['code'],
@@ -851,7 +851,7 @@ class Sale extends MX_Controller
 		{
 			$code = $shipping_provider_data['code'];
 			
-			if($this->config->item($code .'_status'))
+			if($this->config->item($code .'_status') && isset($this->auth->permission['shipping'][$code]))
 			{
 				$data['shipping_providers'][] = array(
 					'code'     => $shipping_provider_data['code'],

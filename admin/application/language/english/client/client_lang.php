@@ -48,6 +48,7 @@ $lang['column_action'] 	  	             		= 'Action';
 // Tab
 $lang['tab_general'] 	  	             		= 'General';
 $lang['tab_data'] 	  	             		    = 'Data';
+$lang['tab_permission'] 	  	                = 'Permssion';
 $lang['tab_location'] 	  	         		    = 'Location';
 $lang['tab_address'] 	  	         		    = 'Address';
 
@@ -65,6 +66,7 @@ $lang['entry_zipcode'] 	  	                  	= 'Zipcode';
 $lang['entry_phone'] 	  	             		= 'Phone';
 $lang['entry_balance'] 	  	             		= 'Balance';
 $lang['entry_volume_total'] 	  	            = 'Total Volume';
+$lang['entry_shipping_permission'] 	  	        = 'Shipping Permission';
 
 // Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> is used';
