@@ -30,6 +30,7 @@ $lang['text_client_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>
 $lang['text_client_list_description'] 	 		= '显示所有客户';
 $lang['text_volume_total'] 	 	  	       		= '%s %s^3';
 $lang['text_confirm_delete'] 	 	  	        = '您确定要删除这个客户?';
+$lang['text_labeling'] 	 	  	                = '打单';
 
 // Column
 $lang['column_name'] 	  	             		= '名称';
@@ -67,6 +68,7 @@ $lang['entry_phone'] 	  	             		= '电话';
 $lang['entry_balance'] 	  	             		= '余额';
 $lang['entry_volume_total'] 	  	            = '总容量';
 $lang['entry_shipping_permission'] 	  	        = '配送权限';
+$lang['entry_balance_permission'] 	  	        = '余额权限';
 
 // Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;邮箱<strong>%s</strong>已被使用';

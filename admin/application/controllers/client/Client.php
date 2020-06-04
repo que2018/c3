@@ -356,6 +356,7 @@ class Client extends MX_Controller
 		$this->lang->load('client/client');
 
 		$this->load->model('client/client_model');
+		$this->load->model('extension/shipping_model');
 		
 		$this->header->add_style(base_url(). 'assets/css/plugins/iCheck/custom.css');
 		$this->header->add_style(base_url(). 'assets/css/app/client/client_edit.css');
@@ -408,6 +409,8 @@ class Client extends MX_Controller
 		
 		$data['current_date'] = $this->datetimer->current_datetime();
 		
+		$data['shipping_providers'] = $this->shipping_model->get_shipping_providers();
+
 		$data['error'] = validation_errors();
 		
 		$data['header'] = Modules::run('module/header/index');
@@ -558,12 +561,12 @@ class Client extends MX_Controller
 			$data['addresses']  = $addresses;						
 		}
 		
-		$data['shipping_providers'] = $this->shipping_model->get_shipping_providers();
-		
 		$data['client_id'] = $client_id;	
 
 		$data['current_date'] = $this->datetimer->current_datetime();
 		
+		$data['shipping_providers'] = $this->shipping_model->get_shipping_providers();
+
 		$data['error'] = validation_errors();
 	
 		$data['header'] = Modules::run('module/header/index');

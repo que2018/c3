@@ -123,6 +123,17 @@
 				  <?php } ?>
 				</div>
               </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_balance_permission'); ?></label>
+				<div class="col-sm-10">
+				  <?php if(isset($permission['balance']['label'])) { ?>
+				  <div class="i-checks"><label><input type="checkbox" name="permission[balance][label]" value="1" checked><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_labeling'); ?></label></div>
+				  <?php } else { ?>
+				  <div class="i-checks"><label><input type="checkbox" name="permission[balance][label]" value="1"><i></i>&nbsp;&nbsp;&nbsp;<?php echo $this->lang->line('text_labeling'); ?></label></div>
+				  <?php } ?>
+				</div>
+              </div>
 			</div>
 		  </div>	  
 		  <div id="location" class="tab-pane">

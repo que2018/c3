@@ -30,6 +30,7 @@ $lang['text_client_edit_success'] 	  	 		= '<i class="fa fa-check-circle-o"></i>
 $lang['text_client_list_description'] 	 		= 'Display all clients';
 $lang['text_volume_total'] 	 	  	       		= '%s %s^3';
 $lang['text_confirm_delete'] 	 	  	        = 'Are you sure to delete this client?';
+$lang['text_labeling'] 	 	  	                = 'Labeling';
 
 // Column
 $lang['column_name'] 	  	             		= 'Name';
@@ -67,6 +68,7 @@ $lang['entry_phone'] 	  	             		= 'Phone';
 $lang['entry_balance'] 	  	             		= 'Balance';
 $lang['entry_volume_total'] 	  	            = 'Total Volume';
 $lang['entry_shipping_permission'] 	  	        = 'Shipping Permission';
+$lang['entry_balance_permission'] 	  	        = 'Balance Permission';
 
 // Error 
 $lang['error_email_is_used']                    = '<i class="fa fa-exclamation-triangle"></i>&nbsp;Email <strong>%s</strong> is used';

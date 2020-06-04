@@ -149,8 +149,11 @@
 					  <td><?php echo $sale['name']; ?></td>
 					  <td><?php echo $sale['date_added']; ?></td>
 					  <td style="text-align: center">
+					    <?php if($allow_label) { ?>
 					    <button onclick="print_label_d(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-d"><i class="fa fa-file-image-o"></i></button>
-					    <!--<button onclick="print_label_c(this, <?php echo $sale['sale_id']; ?>)" class="btn btn-success btn-print-c"><i class="fa fa-print"></i></button>-->
+						<?php } else { ?>
+						<button class="btn btn-success btn-print-d" disabled><i class="fa fa-file-image-o"></i></button>
+						<?php } ?>
 						<?php if($sale['status_id'] == 1) { ?>
 						<a href="<?php echo base_url(); ?>sale/sale/edit?sale_id=<?php echo $sale['sale_id']; ?>" class="btn btn-primary btn-edit"><i class="fa fa-pencil"></i></a>
                         <?php } else { ?>

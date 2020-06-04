@@ -10,6 +10,7 @@ class Sale extends MX_Controller
 		$this->lang->load('sale/sale');
 		
 		$this->load->model('sale/sale_model');
+		$this->load->model('finance/balance_model');
 		$this->load->model('setting/length_class_model');
 		$this->load->model('setting/weight_class_model');
 		
@@ -288,7 +289,26 @@ class Sale extends MX_Controller
 		$data['filter_store_sale_id']   = $filter_store_sale_id;
 		$data['filter_tracking']        = $filter_tracking;
 		$data['filter_name']            = $filter_name;
-		$data['filter_date_added']      = $filter_date_added;		
+		$data['filter_date_added']      = $filter_date_added;	
+
+		//label permission
+		if(isset($this->auth->permission['balance']['label']))
+		{
+			$data['allow_label'] = true;
+		}
+		else
+		{
+			$balance = $this->balance_model->get_balance();
+
+			if($balance['amount'] > 0) 
+			{
+				$data['allow_label'] = true;
+			}
+			else 
+			{
+				$data['allow_label'] = false;
+			}	
+		}
 		
 		$data['header'] = Modules::run('module/header/index');
 		$data['footer'] = Modules::run('module/footer/index');
