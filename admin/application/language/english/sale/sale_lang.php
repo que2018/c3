@@ -93,6 +93,7 @@ $lang['text_export_order'] 	  	    			= 'export order';
 $lang['text_all_stores'] 	  	    			= 'All Store';
 
 // Tab
+$lang['tab_shipper'] 	  	             		= 'Shipper';
 $lang['tab_customer'] 	  	             		= 'Customer';
 $lang['tab_product'] 	  	             		= 'Product';
 $lang['tab_label'] 	  	             		    = 'Label';
@@ -144,6 +145,7 @@ $lang['entry_store'] 	  	                    = 'Store';
 $lang['entry_store_order_id'] 	  	            = 'Store Order ID';
 $lang['entry_product_name'] 	  	            = 'Name';
 $lang['entry_product_quantity'] 	  	        = 'Qty';
+$lang['entry_select_shipper'] 	  	            = 'Select Shipper';
 
 // Column
 $lang['column_order_id'] 	  	     		    = 'Order Id';

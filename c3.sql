@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2020 at 12:01 AM
+-- Generation Time: Jun 19, 2020 at 12:06 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -1267,7 +1267,250 @@ INSERT INTO `activity_log` (`id`, `user_id`, `ip_address`, `uri`, `description`,
 (22826, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-05-28 23:39:42'),
 (22827, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:40:07'),
 (22828, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-05-28 23:49:14'),
-(22829, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:58:48');
+(22829, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-05-28 23:58:48'),
+(22830, NULL, '::1', '', 'view the dashboard', 'GET', '2020-06-04 04:22:55'),
+(22831, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-06-04 04:23:00'),
+(22832, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-06-04 04:23:00'),
+(22833, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:23:03'),
+(22834, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:23:05'),
+(22835, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:33:45'),
+(22836, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:35:39'),
+(22837, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:36:04'),
+(22838, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:36:05'),
+(22839, 1, '::1', 'client/client/add', 'view the client add page', 'GET', '2020-06-04 04:36:06'),
+(22840, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:36:09'),
+(22841, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:36:14'),
+(22842, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-06-04 04:36:18'),
+(22843, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-04 04:36:18'),
+(22844, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:36:18'),
+(22845, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:36:20'),
+(22846, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-06-04 04:36:53'),
+(22847, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-04 04:36:53'),
+(22848, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:36:53'),
+(22849, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:36:54'),
+(22850, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:37:26'),
+(22851, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:38:04'),
+(22852, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-04 04:56:29'),
+(22853, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-04 04:56:34'),
+(22854, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:56:34'),
+(22855, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 04:57:03'),
+(22856, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-04 05:07:33'),
+(22857, 1, '::1', 'client/client/view', '0', 'GET', '2020-06-04 05:07:35'),
+(22858, 1, '::1', 'finance/balance', 'view the balance page', 'GET', '2020-06-04 05:07:42'),
+(22859, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2020-06-04 05:07:59'),
+(22860, 1, '::1', 'finance/transaction/add', 'view the transaction add page', 'GET', '2020-06-04 05:08:03'),
+(22861, 1, '::1', 'finance/transaction/add', 'view the transaction add page', 'POST', '2020-06-04 05:08:14'),
+(22862, 1, '::1', 'finance/transaction', 'view the transaction page', 'GET', '2020-06-04 05:08:14'),
+(22863, NULL, '::1', '', 'view the dashboard', 'GET', '2020-06-16 03:27:16'),
+(22864, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-06-16 03:27:21'),
+(22865, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-06-16 03:27:21'),
+(22866, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-16 03:27:24'),
+(22867, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-16 03:27:26'),
+(22868, NULL, '::1', '', 'view the dashboard', 'GET', '2020-06-18 05:13:17'),
+(22869, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-06-18 05:15:20'),
+(22870, 1, '::1', 'common/dashboard', 'view the dashboard', 'GET', '2020-06-18 05:15:20'),
+(22871, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:15:27'),
+(22872, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:15:30'),
+(22873, 1, '::1', 'search/search', 'try to search something', 'GET', '2020-06-18 05:15:38'),
+(22874, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:15:38'),
+(22875, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:15:38'),
+(22876, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:15:40'),
+(22877, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:15:57'),
+(22878, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:15:57'),
+(22879, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:16:00'),
+(22880, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 05:16:09'),
+(22881, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 05:16:09'),
+(22882, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:16:11'),
+(22883, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:16:32'),
+(22884, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:16:35'),
+(22885, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 05:17:02'),
+(22886, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 05:17:03'),
+(22887, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:17:04'),
+(22888, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:19:13'),
+(22889, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:19:15'),
+(22890, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 05:19:22'),
+(22891, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 05:19:23'),
+(22892, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:19:24'),
+(22893, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:32:14'),
+(22894, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:32:16'),
+(22895, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:33:02'),
+(22896, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:33:40'),
+(22897, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:33:50'),
+(22898, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:35:13'),
+(22899, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:35:13'),
+(22900, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:35:15'),
+(22901, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:35:26'),
+(22902, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:35:26'),
+(22903, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:35:28'),
+(22904, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:36:55'),
+(22905, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:37:11'),
+(22906, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:37:13'),
+(22907, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:37:22'),
+(22908, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:37:22'),
+(22909, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:37:24'),
+(22910, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 05:37:34'),
+(22911, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 05:37:34'),
+(22912, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 05:37:40'),
+(22913, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 05:39:16'),
+(22914, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 05:39:16'),
+(22915, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:40:38'),
+(22916, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:54:09'),
+(22917, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:55:38'),
+(22918, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 05:57:21'),
+(22919, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 06:00:04'),
+(22920, NULL, '::1', 'common/login', 'view the login page', 'GET', '2020-06-18 21:37:09'),
+(22921, NULL, '::1', 'common/login', 'view the login page', 'POST', '2020-06-18 21:37:14'),
+(22922, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 21:37:14'),
+(22923, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 21:37:17'),
+(22924, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 21:37:19'),
+(22925, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 21:37:28'),
+(22926, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 21:37:28'),
+(22927, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 21:37:29'),
+(22928, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 21:40:08'),
+(22929, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 22:01:57'),
+(22930, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 22:01:59'),
+(22931, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 22:07:02'),
+(22932, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 22:07:05'),
+(22933, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 22:07:06'),
+(22934, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:07:07'),
+(22935, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 22:07:16'),
+(22936, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 22:07:24'),
+(22937, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 22:07:28'),
+(22938, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 22:07:33'),
+(22939, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 22:07:33'),
+(22940, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:07:34'),
+(22941, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:09:11'),
+(22942, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:09:36'),
+(22943, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:10:08'),
+(22944, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:17:33'),
+(22945, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:18:16'),
+(22946, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:20:26'),
+(22947, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 22:20:34'),
+(22948, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 22:20:35'),
+(22949, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 22:22:00'),
+(22950, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 22:22:01'),
+(22951, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 22:22:02'),
+(22952, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:22:03'),
+(22953, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:27:39'),
+(22954, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:28:44'),
+(22955, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:28:48'),
+(22956, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:29:42'),
+(22957, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:32:37'),
+(22958, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:33:04'),
+(22959, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:33:23'),
+(22960, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:34:01'),
+(22961, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:34:46'),
+(22962, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:34:51'),
+(22963, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:35:22'),
+(22964, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:35:50'),
+(22965, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:53:11'),
+(22966, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 22:53:13'),
+(22967, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:55:10'),
+(22968, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 22:55:12'),
+(22969, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 22:55:31'),
+(22970, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 22:55:33'),
+(22971, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 22:55:50'),
+(22972, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:13:01'),
+(22973, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:13:04'),
+(22974, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:13:23'),
+(22975, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:13:23'),
+(22976, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:13:27'),
+(22977, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:14:20'),
+(22978, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:14:24'),
+(22979, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:14:39'),
+(22980, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:14:42'),
+(22981, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:15:16'),
+(22982, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:15:19'),
+(22983, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:15:23'),
+(22984, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:15:26'),
+(22985, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:15:33'),
+(22986, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 23:15:41'),
+(22987, 1, '::1', 'client/client/edit', 'view the client edit page', 'GET', '2020-06-18 23:16:11'),
+(22988, 1, '::1', 'client/client/edit', 'view the client edit page', 'POST', '2020-06-18 23:16:39'),
+(22989, 1, '::1', 'client/client', 'view the client page', 'GET', '2020-06-18 23:16:39'),
+(22990, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 23:16:41'),
+(22991, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 23:16:41'),
+(22992, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:16:43'),
+(22993, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:16:46'),
+(22994, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:16:48'),
+(22995, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:16:50'),
+(22996, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:16:52'),
+(22997, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:17:24'),
+(22998, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:17:27'),
+(22999, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:17:52'),
+(23000, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:17:53'),
+(23001, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:17:55'),
+(23002, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:29:26'),
+(23003, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:29:31'),
+(23004, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:29:46'),
+(23005, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:30:06'),
+(23006, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:30:10'),
+(23007, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:30:15'),
+(23008, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:31:44'),
+(23009, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:31:47'),
+(23010, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:31:48'),
+(23011, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:32:16'),
+(23012, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:32:19'),
+(23013, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:32:20'),
+(23014, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:32:26'),
+(23015, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:32:30'),
+(23016, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:32:31'),
+(23017, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:32:33'),
+(23018, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:36:41'),
+(23019, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:36:43'),
+(23020, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:36:45'),
+(23021, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:36:47'),
+(23022, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:36:48'),
+(23023, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:36:51'),
+(23024, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:36:55'),
+(23025, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-18 23:37:05'),
+(23026, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:52:39'),
+(23027, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:52:42'),
+(23028, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:54:18'),
+(23029, 1, '::1', 'extension/shipping/get_shipping_provider', '0', 'GET', '2020-06-18 23:54:22'),
+(23030, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:54:22'),
+(23031, 1, '::1', 'extension/shipping', 'view the shipping page', 'GET', '2020-06-18 23:54:59'),
+(23032, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2020-06-18 23:55:01'),
+(23033, 1, '::1', 'shipping/usps', 'view the usps setting page', 'GET', '2020-06-18 23:55:29'),
+(23034, 1, '::1', 'sale/sale', 'view the order page', 'GET', '2020-06-18 23:55:34'),
+(23035, 1, '::1', 'sale/sale_ajax/get_shippings', '0', 'POST', '2020-06-18 23:55:34'),
+(23036, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:55:36'),
+(23037, 1, '::1', 'extension/shipping/get_shipping_provider', '0', 'GET', '2020-06-18 23:55:39'),
+(23038, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:55:39'),
+(23039, 1, '::1', 'extension/shipping/get_shipping_provider', '0', 'GET', '2020-06-18 23:55:40'),
+(23040, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:55:40'),
+(23041, 1, '::1', 'extension/shipping/get_shipping_provider', '0', 'GET', '2020-06-18 23:55:46'),
+(23042, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:55:46'),
+(23043, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:57:34'),
+(23044, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:57:43'),
+(23045, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:57:50'),
+(23046, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:57:53'),
+(23047, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:57:56'),
+(23048, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:58:46'),
+(23049, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:58:50'),
+(23050, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:59:21'),
+(23051, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-18 23:59:27'),
+(23052, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:59:38'),
+(23053, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:59:43'),
+(23054, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-18 23:59:48'),
+(23055, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-18 23:59:53'),
+(23056, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-19 00:00:04'),
+(23057, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:01:14'),
+(23058, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:01:16'),
+(23059, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:01:16'),
+(23060, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:01:32'),
+(23061, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:01:34'),
+(23062, 1, '::1', 'extension/shipping/get_shipping_provider', '0', 'GET', '2020-06-19 00:01:43'),
+(23063, 1, '::1', 'extension/shipping/get_shipping_services', '0', 'GET', '2020-06-19 00:01:43'),
+(23064, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:01:47'),
+(23065, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:01:55'),
+(23066, 1, '::1', 'client/client/get_client_address', '0', 'GET', '2020-06-19 00:01:59'),
+(23067, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:04:51'),
+(23068, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:04:55'),
+(23069, 1, '::1', 'sale/sale/edit', 'view the order edit page', 'GET', '2020-06-19 00:04:58'),
+(23070, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:05:01'),
+(23071, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:05:04'),
+(23072, 1, '::1', 'client/client/get_client_addresses', '0', 'GET', '2020-06-19 00:05:09');
 
 -- --------------------------------------------------------
 
@@ -1292,7 +1535,7 @@ INSERT INTO `balance` (`id`, `client_id`, `amount`) VALUES
 (5, 5, '0.00'),
 (6, 6, '410.40'),
 (7, 7, '0.00'),
-(8, 8, '1266.72'),
+(8, 8, '-4998733.28'),
 (9, 9, '0.00'),
 (10, 10, '0.00');
 
@@ -2073,6 +2316,7 @@ INSERT INTO `client` (`id`, `ip_address`, `password`, `salt`, `email`, `status`,
 CREATE TABLE `client_address` (
   `client_address_id` mediumint(8) UNSIGNED NOT NULL,
   `client_id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
   `street` varchar(255) NOT NULL,
   `street2` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
@@ -2085,10 +2329,12 @@ CREATE TABLE `client_address` (
 -- Dumping data for table `client_address`
 --
 
-INSERT INTO `client_address` (`client_address_id`, `client_id`, `street`, `street2`, `city`, `state`, `country`, `zipcode`) VALUES
-(1, 2, '750 Green Ave', '', '', 'CA', 'United States', '91700'),
-(6, 10, '622 Fire Tower Rd', '', '', 'LA', 'United States', '71064'),
-(12, 8, '750 Green Ave', '', '', 'CA', 'United States', '91700');
+INSERT INTO `client_address` (`client_address_id`, `client_id`, `name`, `street`, `street2`, `city`, `state`, `country`, `zipcode`) VALUES
+(1, 2, '', '750 Green Ave', '', '', 'CA', 'United States', '91700'),
+(6, 10, '', '622 Fire Tower Rd', '', '', 'LA', 'United States', '71064'),
+(21, 4, 'Lucy Chen', '12012 Lambert Ave', '', 'Arcadia', 'CA', 'United States', '91732'),
+(22, 8, 'Sam Shao', '750 Green Ave', '', 'Pasadena', 'CA', 'United States', '91700'),
+(23, 8, 'Sam Shao', '19093 Colima Road', '', 'Rowland Heights', 'CA', 'United States', '91748');
 
 -- --------------------------------------------------------
 
@@ -5141,7 +5387,8 @@ INSERT INTO `transaction` (`id`, `client_id`, `type`, `type_id`, `cost`, `markup
 (559, 4, 'sale', 396, '51.30', '32.00', '83.30', 'label fee for order - ID: 396', '2020-04-23 09:35:22', '2020-04-23 09:35:22'),
 (560, 4, 'sale', 395, '44.02', '32.00', '76.02', 'label fee for order - ID: 395', '2020-04-23 09:35:44', '2020-04-23 09:35:44'),
 (561, 4, 'checkout', 374, '0.00', '6.00', '6.00', 'transaction for checkout - ID: 374', '2020-04-23 10:28:57', '2020-04-23 10:28:57'),
-(562, 4, 'checkout', 375, '0.00', '6.00', '6.00', 'transaction for checkout - ID: 375', '2020-04-23 10:29:03', '2020-04-23 10:29:03');
+(562, 4, 'checkout', 375, '0.00', '6.00', '6.00', 'transaction for checkout - ID: 375', '2020-04-23 10:29:03', '2020-04-23 10:29:03'),
+(563, 8, NULL, NULL, '1000.00', '100000.00', '5000000.00', '', '2020-06-04 05:08:14', '2020-06-04 05:08:14');
 
 -- --------------------------------------------------------
 
@@ -5250,7 +5497,7 @@ CREATE TABLE `version` (
 --
 
 INSERT INTO `version` (`version`) VALUES
-('1.35');
+('1.4.0');
 
 -- --------------------------------------------------------
 
@@ -5591,7 +5838,7 @@ ALTER TABLE `weight_class`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22830;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23073;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -5663,7 +5910,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `client_address`
 --
 ALTER TABLE `client_address`
-  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `client_address_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -5801,7 +6048,7 @@ ALTER TABLE `store_sync_history`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=563;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=564;
 
 --
 -- AUTO_INCREMENT for table `transfer`

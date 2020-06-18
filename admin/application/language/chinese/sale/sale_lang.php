@@ -62,8 +62,12 @@ $lang['text_confirm_multiple_label'] 	  	    = '运单已生成，确认再次�
 $lang['text_export_label'] 	  	    			= '导出运单';
 $lang['text_export_order'] 	  	    			= '导出订单';
 $lang['text_all_stores'] 	  	    			= '所有店铺';
+$lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单添加成功';
+$lang['text_sale_edittext_sale_edit_success']   = '<i class="fa fa-check-circle-o"></i>&nbsp;订单编辑成功';
+
 
 // Tab
+$lang['tab_shipper'] 	  	             		= '发货人';
 $lang['tab_customer'] 	  	             		= '客户';
 $lang['tab_product'] 	  	             		= '产品';
 $lang['tab_label'] 	  	             		    = '标签';
@@ -111,8 +115,7 @@ $lang['entry_shipping_service'] 	  	        = '配送服务';
 $lang['entry_order_id'] 	  	                = '订单ID';
 $lang['entry_store'] 	  	                    = '店铺';
 $lang['entry_store_order_id'] 	  	            = '店铺订单ID';
-$lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单添加成功';
-$lang['text_sale_edittext_sale_edit_success']   = '<i class="fa fa-check-circle-o"></i>&nbsp;订单编辑成功';
+$lang['entry_select_shipper'] 	  	            = '选择发货人';
 
 // Column
 $lang['column_order_id'] 	  	     		    = '订单ID';

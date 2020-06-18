@@ -52,6 +52,7 @@ class Client_model extends CI_Model
 			{
 				$location_address_data = array(	
 					'client_id'  => $client_id,
+					'name'  	 => $address['name'],
 					'street'  	 => $address['street'],
 					'street2'    => $address['street2'],
 					'city'       => $address['street2'],
@@ -154,9 +155,10 @@ class Client_model extends CI_Model
 			{
 				$location_address_data = array(	
 					'client_id'  => $client_id,
+					'name'  	 => $address['name'],
 					'street'  	 => $address['street'],
 					'street2'    => $address['street2'],
-					'city'       => $address['street2'],
+					'city'       => $address['city'],
 					'state'      => $address['state'],
 					'country'    => $address['country'],
 					'zipcode'    => $address['zipcode']
@@ -263,6 +265,18 @@ class Client_model extends CI_Model
 		if($q->num_rows() > 0)
 		{
 			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
+	public function get_client_address($client_address_id) 
+	{
+		$q = $this->db->get_where('client_address', array('client_address_id' => $client_address_id), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->row_array();
 		} 
 		
 		return false;

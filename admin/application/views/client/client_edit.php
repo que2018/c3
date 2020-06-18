@@ -182,14 +182,15 @@
 			<div class="panel-body">
 		      <div class="table-responsive">
 			    <table id="addresses" class="table table-striped table-bordered table-hover">
-				  <thead>
+				   <thead>
 				    <tr>
-					  <th class="text-left" style="width: 18%;"><?php echo $this->lang->line('column_street') ?></th>
-					  <th class="text-left" style="width: 18%;"><?php echo $this->lang->line('column_street2') ?></th>
-					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_city') ?></th>
-					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_state') ?></th>
-					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_country') ?></th>
-					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_zipcode') ?></th>
+					  <th class="text-left" style="width: 12%;"><?php echo $this->lang->line('column_name') ?></th>
+					  <th class="text-left" style="width: 16%;"><?php echo $this->lang->line('column_street') ?></th>
+					  <th class="text-left" style="width: 16%;"><?php echo $this->lang->line('column_street2') ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_city') ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_state') ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_country') ?></th>
+					  <th class="text-left" style="width: 10%;"><?php echo $this->lang->line('column_zipcode') ?></th>
 					  <th></th>
 				    </tr>
 				  </thead>
@@ -197,7 +198,8 @@
 				    <?php $address_row = 0; ?>
 				    <?php if($addresses) { ?>
 					  <?php foreach ($addresses as $address) { ?>
-					  <tr id="address-row<?php echo $address_row; ?>">
+					  <tr id="address-row<?php echo $address_row; ?>">					   
+					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][name]" value="<?php echo $address['name']; ?>" class="form-control" /></td>
 					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][street]" value="<?php echo $address['street']; ?>" class="form-control" /></td>
 					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][street2]" value="<?php echo $address['street2']; ?>" class="form-control" /></td>
 					    <td class="text-left"><input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" class="form-control" /></td>
@@ -212,7 +214,7 @@
 				  </tbody>
 				  <tfoot>
 				    <tr>
-					  <td colspan="6"></td>
+					  <td colspan="7"></td>
 					  <td class="text-center"><button type="button" onclick="addAddress();" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
 				    </tr>
 				  </tfoot>
@@ -286,6 +288,7 @@ var address_row = <?php echo $address_row; ?>;
 
 function addAddress() {
 	html  = '<tr id="address-row' + address_row + '">';
+	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][name]" value="" class="form-control" /></td>';
 	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][street]" value="" class="form-control" /></td>';
 	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][street2]" value="" class="form-control" /></td>';
 	html += '<td class="text-left"><input type="text" name="address[' + address_row + '][city]" value="" class="form-control" /></td>';

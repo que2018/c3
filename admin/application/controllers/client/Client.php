@@ -534,6 +534,7 @@ class Client extends MX_Controller
 				foreach($addresses_data as $address_data)
 				{
 					$addresses[] = array(
+						'name'    => $address_data['name'],
 						'street'  => $address_data['street'],
 						'street2' => $address_data['street2'],
 						'city'    => $address_data['city'],
@@ -765,6 +766,92 @@ class Client extends MX_Controller
 		
 		$this->output->set_content_type('application/json');
 		$this->output->set_output(json_encode($outdata));
+	}
+	
+	public function get_client_addresses()
+	{	
+		if($this->input->get('store_id'))
+		{
+			$store_id = $this->input->get('store_id');
+			
+			$this->load->model('store/store_model');
+			$this->load->model('client/client_model');
+
+			$store = $this->store_model->get_store($store_id);
+
+			if($store) 
+			{
+				$shippers = array();
+				
+				$client_addresses = $this->client_model->get_client_addresses($store['client_id']);
+
+				if($client_addresses)
+				{
+					foreach($client_addresses as $client_address)
+					{
+						$shippers[] = array(
+							'client_address_id' => $client_address['client_address_id'],
+							'name'     			=> $client_address['name'],
+							'street'            => $client_address['street'],
+							'street2'           => $client_address['street2'],
+							'city'              => $client_address['city'],
+							'state'             => $client_address['state'],
+							'country'           => $client_address['country'],
+							'zipcode'           => $client_address['zipcode']
+						);
+					}
+				}
+				
+				$outdata = array(
+					'success'  => true,
+					'shippers' => $shippers
+				);
+			}
+			else 
+			{
+				$outdata = array(
+					'success'  => false
+				);
+			}
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
+	public function get_client_address()
+	{	
+		if($this->input->get('client_address_id'))
+		{
+			$client_address_id = $this->input->get('client_address_id');
+			
+			$this->load->model('client/client_model');
+
+			$client_address = $this->client_model->get_client_address($client_address_id);
+
+			if($client_address) 
+			{
+				$outdata = array(
+					'success'  => true,
+					'name'     => $client_address['name'],
+					'street'   => $client_address['street'],
+					'street2'  => $client_address['street2'],
+					'city'     => $client_address['city'],
+					'state'    => $client_address['state'],
+					'country'  => $client_address['country'],
+					'zipcode'  => $client_address['zipcode']
+				);
+			}
+			else 
+			{
+				$outdata = array(
+					'success'  => false
+				);
+			}
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
 	}
 }
 

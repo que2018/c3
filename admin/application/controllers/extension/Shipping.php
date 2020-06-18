@@ -92,6 +92,29 @@ class Shipping extends MX_Controller
 		redirect(base_url() . 'extension/shipping', 'refresh');
 	}
 	
+	public function get_shipping_provider() 
+	{
+		$this->lang->load('extension/shipping');
+
+		if($this->input->get('code'))
+		{
+			$code = $this->input->get('code');
+			
+			$outdata = array(
+				'name'   => $this->config->item($code.'_owner'),
+				'street'   => $this->config->item($code.'_street'),
+				'street2'  => $this->config->item($code.'_street2'),
+				'city'     => $this->config->item($code.'_city'),
+				'state'    => $this->config->item($code.'_state'),
+				'country'  => $this->config->item($code.'_country'),
+				'zipcode'  => $this->config->item($code.'_zipcode')
+			);
+
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
 	public function get_shipping_services() 
 	{
 		$this->lang->load('extension/shipping');
