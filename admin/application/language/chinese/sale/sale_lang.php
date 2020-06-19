@@ -65,7 +65,6 @@ $lang['text_all_stores'] 	  	    			= '所有店铺';
 $lang['text_sale_add_success']		            = '<i class="fa fa-check-circle-o"></i>&nbsp;订单添加成功';
 $lang['text_sale_edittext_sale_edit_success']   = '<i class="fa fa-check-circle-o"></i>&nbsp;订单编辑成功';
 
-
 // Tab
 $lang['tab_shipper'] 	  	             		= '发货人';
 $lang['tab_customer'] 	  	             		= '客户';

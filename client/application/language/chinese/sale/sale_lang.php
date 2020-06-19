@@ -63,6 +63,7 @@ $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triang
 $lang['text_generate_return_order'] 	  	    = '生成退货订单';
 
 // Tab
+$lang['tab_shipper'] 	  	             		= '发货人';
 $lang['tab_customer'] 	  	             		= '客户';
 $lang['tab_product'] 	  	             		= '产品';
 $lang['tab_label'] 	  	             		    = '标签';
@@ -84,7 +85,7 @@ $lang['entry_country'] 	  	             		= '国家';
 $lang['entry_zipcode'] 	  	             		= '邮编';
 $lang['entry_email'] 	  	             		= '邮件';
 $lang['entry_phone'] 	  	             		= '电话';
-$lang['entry_alter_shipper'] 	  	            = '另加发件人';
+$lang['entry_select_shipper'] 	  	            = '选择发件人';
 $lang['entry_shipper_name'] 	  	            = '发件人名称';
 $lang['entry_shipper_company'] 	  	            = '发件人公司';
 $lang['entry_shipper_street'] 	  	            = '发件人街道';

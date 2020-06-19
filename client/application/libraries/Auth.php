@@ -26,6 +26,8 @@ class Auth
 	
 	public $permission;
 	
+	public $addresses;
+
 	public function __construct()
 	{
 		$this->load->library('session');
@@ -37,6 +39,8 @@ class Auth
 			$session_client_id = $this->session->userdata('client_id');
 			
 			$client = $this->client_model->get_client($session_client_id);
+			
+			$client_addresses = $this->client_model->get_client_addresses($session_client_id);
 			
 			if($client)
 			{
@@ -51,6 +55,7 @@ class Auth
 				$this->country    	= $client['country'];
 				$this->zipcode    	= $client['zipcode'];
 				$this->phone     	= $client['phone'];
+				$this->addresses    = $client_addresses;
 				$this->permission   = (!empty($client['permission']))?unserialize($client['permission']):false;		
 			}
 			else
@@ -62,23 +67,29 @@ class Auth
 	
 	public function login($email, $password) 
 	{
+		$this->load->model('client/client_model');
+
 		$client = $this->client_model->get_client_by_email_password($email, $password);
 		
 		if($client)
 		{
 			$this->session->set_userdata('client_id', $client['id']);
 			
-			$this->client_id  = $client['id'];
-			$this->email      = $client['email'];
-			$this->firstname  = $client['firstname'];
-			$this->lastname   = $client['lastname'];
-			$this->company    = $client['company'];
-			$this->street     = $client['street'];
-			$this->city       = $client['city'];
-			$this->state      = $client['state'];
-			$this->country    = $client['country'];
-			$this->zipcode    = $client['zipcode'];
-			$this->phone      = $client['phone'];
+			$client_addresses = $this->client_model->get_client_addresses($client['id']);
+
+			$this->client_id  	= $client['id'];
+			$this->email      	= $client['email'];
+			$this->firstname  	= $client['firstname'];
+			$this->lastname   	= $client['lastname'];
+			$this->company    	= $client['company'];
+			$this->street     	= $client['street'];
+			$this->city       	= $client['city'];
+			$this->state      	= $client['state'];
+			$this->country    	= $client['country'];
+			$this->zipcode    	= $client['zipcode'];
+			$this->phone      	= $client['phone'];
+			$this->addresses  	= $client_addresses;
+			$this->permission 	= (!empty($client['permission']))?unserialize($client['permission']):false;		
 
 			return true;
 		}
@@ -96,6 +107,14 @@ class Auth
 		$this->email       = '';
 		$this->firstname   = '';
 		$this->lastname    = '';
+		$this->company     = '';
+		$this->street      = '';
+		$this->city        = '';
+		$this->state       = '';
+		$this->country     = '';
+		$this->zipcode     = '';
+		$this->phone       = '';
+		$this->permission  = '';
 	}
 
 	public function is_logged() 

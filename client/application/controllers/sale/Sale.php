@@ -364,16 +364,6 @@ class Sale extends MX_Controller
 			$data = array(
 				'tracking'    		=> $this->input->post('tracking'),
 				'note'     		    => $this->input->post('note'),
-				'name'       		=> $this->input->post('name'),
-				'street'      		=> $this->input->post('street'),
-				'street2'      		=> $this->input->post('street2'),
-				'city'        		=> $this->input->post('city'),
-				'state'       		=> $this->input->post('state'),
-				'country'     		=> $this->input->post('country'),
-				'zipcode'           => $this->input->post('zipcode'),
-				'email'             => $this->input->post('email'),
-				'phone'             => $this->input->post('phone'),
-				'alter_shipper'     => $this->input->post('alter_shipper'),
 				'shipper_name'      => $this->input->post('shipper_name'),
 				'shipper_company'   => $this->input->post('shipper_company'),
 				'shipper_street'    => $this->input->post('shipper_street'),
@@ -384,6 +374,15 @@ class Sale extends MX_Controller
 				'shipper_zipcode'   => $this->input->post('shipper_zipcode'),
 				'shipper_email'     => $this->input->post('shipper_email'),
 				'shipper_phone'     => $this->input->post('shipper_phone'),
+				'name'       		=> $this->input->post('name'),
+				'street'      		=> $this->input->post('street'),
+				'street2'      		=> $this->input->post('street2'),
+				'city'        		=> $this->input->post('city'),
+				'state'       		=> $this->input->post('state'),
+				'country'     		=> $this->input->post('country'),
+				'zipcode'           => $this->input->post('zipcode'),
+				'email'             => $this->input->post('email'),
+				'phone'             => $this->input->post('phone'),	
 				'length'            => $this->input->post('length'),
 				'width'             => $this->input->post('width'),
 				'height'            => $this->input->post('height'),
@@ -418,9 +417,22 @@ class Sale extends MX_Controller
 		}
 		else
 		{
+			$address = $this->auth->addresses[0];
+
+			
 			$data = array(
 				'tracking'    		=> '',
 				'note'     		    => '',
+				'shipper_name'      => $address['name'],
+				'shipper_company'   => $this->auth->company,
+				'shipper_street'    => $address['street'],
+				'shipper_street2'   => '',
+				'shipper_city'      => $address['city'],
+				'shipper_state'     => $address['state'],
+				'shipper_country'   => $address['country'],
+				'shipper_zipcode'   => $address['zipcode'],
+				'shipper_email'     => $this->auth->email,
+				'shipper_phone'     => $this->auth->phone,
 				'name'       		=> '',
 				'street'      		=> '',
 				'street2'      		=> '',
@@ -430,17 +442,6 @@ class Sale extends MX_Controller
 				'zipcode'           => '',
 				'email'             => '',
 				'phone'             => '',
-				'alter_shipper'     => 0,
-				'shipper_name'      => '',
-				'shipper_company'   => '',
-				'shipper_street'    => '',
-				'shipper_street2'   => '',
-				'shipper_city'      => '',
-				'shipper_state'     => '',
-				'shipper_country'   => '',
-				'shipper_zipcode'   => '',
-				'shipper_email'     => '',
-				'shipper_phone'     => '',
 				'length'            => '',
 				'width'             => '',
 				'height'            => '',
@@ -550,6 +551,9 @@ class Sale extends MX_Controller
 			}
 		}
 		
+		//shippers
+		$data['shippers'] = $this->auth->addresses;
+		
 		$data['error'] = validation_errors();
 		
 		$data['header'] = Modules::run('module/header/index');
@@ -606,16 +610,6 @@ class Sale extends MX_Controller
 			$data = array(
 				'tracking'          => $this->input->post('tracking'),
 				'note'              => $this->input->post('note'),
-				'name'              => $this->input->post('name'),
-				'street'            => $this->input->post('street'),
-				'street2'           => $this->input->post('street2'),
-				'city'              => $this->input->post('city'),
-				'state'             => $this->input->post('state'),
-				'country'           => $this->input->post('country'),
-				'zipcode'           => $this->input->post('zipcode'),
-				'email'             => $this->input->post('email'),
-				'phone'             => $this->input->post('phone'),
-				'alter_shipper'     => $this->input->post('alter_shipper'),
 				'shipper_name'      => $this->input->post('shipper_name'),
 				'shipper_company'   => $this->input->post('shipper_company'),
 				'shipper_street'    => $this->input->post('shipper_street'),
@@ -626,6 +620,15 @@ class Sale extends MX_Controller
 				'shipper_zipcode'   => $this->input->post('shipper_zipcode'),
 				'shipper_email'     => $this->input->post('shipper_email'),
 				'shipper_phone'     => $this->input->post('shipper_phone'),
+				'name'              => $this->input->post('name'),
+				'street'            => $this->input->post('street'),
+				'street2'           => $this->input->post('street2'),
+				'city'              => $this->input->post('city'),
+				'state'             => $this->input->post('state'),
+				'country'           => $this->input->post('country'),
+				'zipcode'           => $this->input->post('zipcode'),
+				'email'             => $this->input->post('email'),
+				'phone'             => $this->input->post('phone'),
 				'length'            => $this->input->post('length'),
 				'width'             => $this->input->post('width'),
 				'height'            => $this->input->post('height'),
@@ -659,17 +662,7 @@ class Sale extends MX_Controller
 		{
 			$data['status_id']       	= $this->input->post('status_id');
 			$data['tracking']       	= $this->input->post('tracking');
-			$data['note']        	    = $this->input->post('note');			
-			$data['name']  		    	= $this->input->post('name');
-			$data['street']         	= $this->input->post('street');
-			$data['street2']         	= $this->input->post('street2');
-			$data['city']           	= $this->input->post('city');
-			$data['state']          	= $this->input->post('state');
-			$data['country']        	= $this->input->post('country');
-			$data['zipcode']        	= $this->input->post('zipcode');
-			$data['email']        	    = $this->input->post('email');
-			$data['phone']        	    = $this->input->post('phone');
-			$data['alter_shipper']      = $this->input->post('alter_shipper');
+			$data['note']        	    = $this->input->post('note');
 			$data['shipper_name']  		= $this->input->post('shipper_name');
 			$data['shipper_company']    = $this->input->post('shipper_company');
 			$data['shipper_street']     = $this->input->post('shipper_street');
@@ -679,7 +672,16 @@ class Sale extends MX_Controller
 			$data['shipper_country']    = $this->input->post('shipper_country');
 			$data['shipper_zipcode']    = $this->input->post('shipper_zipcode');
 			$data['shipper_email']      = $this->input->post('shipper_email');
-			$data['shipper_phone']      = $this->input->post('shipper_phone');
+			$data['shipper_phone']      = $this->input->post('shipper_phone');			
+			$data['name']  		    	= $this->input->post('name');
+			$data['street']         	= $this->input->post('street');
+			$data['street2']         	= $this->input->post('street2');
+			$data['city']           	= $this->input->post('city');
+			$data['state']          	= $this->input->post('state');
+			$data['country']        	= $this->input->post('country');
+			$data['zipcode']        	= $this->input->post('zipcode');
+			$data['email']        	    = $this->input->post('email');
+			$data['phone']        	    = $this->input->post('phone');
 			$data['length']        	    = $this->input->post('length');
 			$data['width']        	    = $this->input->post('width');
 			$data['height']        	    = $this->input->post('height');
@@ -749,16 +751,6 @@ class Sale extends MX_Controller
 			$data['status_id']   		= $sale['status_id'];	
 			$data['tracking']   		= $sale['tracking'];
 			$data['note']    		    = $sale['note'];
-			$data['name']       		= $sale['name'];
-			$data['street']     		= $sale['street'];
-			$data['street2']     		= $sale['street2'];
-			$data['city']       		= $sale['city'];
-			$data['state']      		= $sale['state'];
-			$data['country']    		= $sale['country'];
-			$data['zipcode']            = $sale['zipcode'];
-			$data['email']              = $sale['email'];
-			$data['phone']              = $sale['phone'];
-			$data['alter_shipper']      = $sale['alter_shipper'];
 			$data['shipper_name']       = $sale['shipper_name'];
 			$data['shipper_company']    = $sale['shipper_company'];
 			$data['shipper_street']     = $sale['shipper_street'];
@@ -769,6 +761,15 @@ class Sale extends MX_Controller
 			$data['shipper_zipcode']    = $sale['shipper_zipcode'];
 			$data['shipper_email']      = $sale['shipper_email'];
 			$data['shipper_phone']      = $sale['shipper_phone'];
+			$data['name']       		= $sale['name'];
+			$data['street']     		= $sale['street'];
+			$data['street2']     		= $sale['street2'];
+			$data['city']       		= $sale['city'];
+			$data['state']      		= $sale['state'];
+			$data['country']    		= $sale['country'];
+			$data['zipcode']            = $sale['zipcode'];
+			$data['email']              = $sale['email'];
+			$data['phone']              = $sale['phone'];
 			$data['length']        	    = $sale['length'];
 			$data['width']        	    = $sale['width'];
 			$data['height']        	    = $sale['height'];
@@ -916,6 +917,9 @@ class Sale extends MX_Controller
 				);
 			}
 		}
+		
+		//shippers
+		$data['shippers'] = $this->auth->addresses;
 		
 		$data['error'] = validation_errors();
 		
@@ -1273,6 +1277,9 @@ class Sale extends MX_Controller
 				);
 			}
 		}
+		
+		//shippers
+		$data['shippers'] = $this->auth->addresses;
 		
 		$url = '';
 		

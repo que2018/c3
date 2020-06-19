@@ -678,19 +678,20 @@ class Sale extends MX_Controller
 		}
 		else
 		{
+
 			$data = array(
 				'tracking'    		=> '',
 				'note'     		    => '',
-				'shipper_name'      => '',
-				'shipper_company'   => '',
-				'shipper_street'    => '',
-				'shipper_street2'   => '',
-				'shipper_city'      => '',
-				'shipper_state'     => '',
-				'shipper_country'   => '',
-				'shipper_zipcode'   => '',
-				'shipper_email'     => '',
-				'shipper_phone'     => '',
+				'shipper_name'      => $this->config->item($this->config->item('config_default_order_shipping_provider').'_owner'),
+				'shipper_company'   => $this->config->item($this->config->item('config_default_order_shipping_provider').'_company'),
+				'shipper_street'    => $this->config->item($this->config->item('config_default_order_shipping_provider').'_street'),
+				'shipper_street2'   => $this->config->item($this->config->item('config_default_order_shipping_provider').'_street2'),
+				'shipper_city'      => $this->config->item($this->config->item('config_default_order_shipping_provider').'_city'),
+				'shipper_state'     => $this->config->item($this->config->item('config_default_order_shipping_provider').'_state'),
+				'shipper_country'   => $this->config->item($this->config->item('config_default_order_shipping_provider').'_country'),
+				'shipper_zipcode'   => $this->config->item($this->config->item('config_default_order_shipping_provider').'_zipcode'),
+				'shipper_email'     => $this->config->item($this->config->item('config_default_order_shipping_provider').'_email'),
+				'shipper_phone'     => $this->config->item($this->config->item('config_default_order_shipping_provider').'_phone'),
 				'name'       		=> '',
 				'street'      		=> '',
 				'street2'      		=> '',
@@ -805,32 +806,6 @@ class Sale extends MX_Controller
 					'store_id'  => $store['store_id'],
 					'name'      => $store['name']
 				);
-			}
-		}
-		
-		//shippers
-		$data['shippers'] = array();
-		
-		if($sale['store_id']) 
-		{
-			$store = $this->store_model->get_store($sale['store_id']);
-						
-			$client_addresses = $this->client_model->get_client_addresses($client_id);
-			
-			if($client_addresses)
-			{
-				foreach($client_addresses as $client_address)
-				{
-					$data['shippers'][] = array(
-						'name'     => $client_address['name'],
-						'street'   => $client_address['street'],
-						'street2'  => $client_address['street2'],
-						'city'     => $client_address['city'],
-						'state'    => $client_address['state'],
-						'country'  => $client_address['country'],
-						'zipcode'  => $client_address['zipcode']
-					);
-				}
 			}
 		}
 		
@@ -1294,6 +1269,8 @@ class Sale extends MX_Controller
 		//shippers
 		$data['shippers'] = array();
 		
+		$sale = $this->sale_model->get_sale($sale_id);
+
 		if($sale['store_id']) 
 		{
 			$store = $this->store_model->get_store($sale['store_id']);

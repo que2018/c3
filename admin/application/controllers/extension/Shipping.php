@@ -101,7 +101,7 @@ class Shipping extends MX_Controller
 			$code = $this->input->get('code');
 			
 			$outdata = array(
-				'name'   => $this->config->item($code.'_owner'),
+				'name'     => $this->config->item($code.'_owner'),
 				'street'   => $this->config->item($code.'_street'),
 				'street2'  => $this->config->item($code.'_street2'),
 				'city'     => $this->config->item($code.'_city'),

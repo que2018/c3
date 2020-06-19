@@ -95,6 +95,7 @@ $lang['text_error_rows_imported'] 	  	    	= '<i class="fa fa-exclamation-triang
 $lang['text_generate_return_order'] 	  	    = 'generate return label';
 
 // Tab
+$lang['tab_shipper'] 	  	             		= 'Shipper';
 $lang['tab_customer'] 	  	             		= 'Customer';
 $lang['tab_product'] 	  	             		= 'Product';
 $lang['tab_label'] 	  	             		    = 'Label';
@@ -118,7 +119,7 @@ $lang['entry_country'] 	  	             		= 'Country';
 $lang['entry_zipcode'] 	  	             		= 'Zipcode';
 $lang['entry_email'] 	  	             		= 'Email';
 $lang['entry_phone'] 	  	             		= 'Phone';
-$lang['entry_alter_shipper'] 	  	            = 'Alter Shipper';
+$lang['entry_select_shipper'] 	  	            = 'Select Shipper';
 $lang['entry_shipper_name'] 	  	            = 'Shipper Name';
 $lang['entry_shipper_company'] 	  	            = 'Shipper Company';
 $lang['entry_shipper_street'] 	  	            = 'Shipper Street';

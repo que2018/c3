@@ -53,37 +53,17 @@ class Postpony_model extends CI_Model
 		$data['pwd'] = $this->config->item('postpony_pwd');
 		$data['signature'] = $this->config->item('postpony_signature');
 		$data['debug_mode'] = $this->config->item('postpony_debug_mode');	
-		$data['authorized_key'] = $this->config->item('postpony_authorized_key');	
+		$data['authorized_key'] = $this->config->item('postpony_authorized_key');
+		$data['owner'] = $sale['shipper_name'];
+		$data['company'] = $sale['shipper_company'];
+		$data['street'] = $sale['shipper_street'];
+		$data['street2'] = $sale['shipper_street2'];
+		$data['city'] = $sale['shipper_city'];
+		$data['state'] = $sale['shipper_state'];
+		$data['postcode'] = $sale['shipper_zipcode'];
+		$data['country'] = $sale['shipper_country'];
+		$data['phone'] = $sale['shipper_phone'];
 
-		if($sale['alter_shipper'])
-		{
-			$data['owner'] = $sale['shipper_name'];
-			$data['company'] = $sale['shipper_company'];
-			$data['street'] = $sale['shipper_street'];
-			$data['street2'] = $sale['shipper_street2'];
-			$data['city'] = $sale['shipper_city'];
-			$data['state'] = $sale['shipper_state'];
-			$data['postcode'] = $sale['shipper_zipcode'];
-			$data['country'] = $sale['shipper_country'];
-			$data['phone'] = $sale['shipper_phone'];
-		}
-		else
-		{
-			$store = $this->store_model->get_store($sale['store_id']);	
-			
-			$client = $this->client_model->get_client($store['client_id']);	
-			
-			$data['owner'] = $client['firstname'].' '.$client['lastname'];
-			$data['company'] = trim($client['company']);
-			$data['street'] = trim($client['street']);
-			$data['street2'] = '';
-			$data['city'] = trim($client['city']);
-			$data['state'] = trim($client['state']);
-			$data['postcode'] = trim($client['zipcode']);
-			$data['country'] = trim($client['country']);
-			$data['phone'] = trim($client['phone']);
-		}
-	
 		//service 
 		$shipping_service = $this->get_service($sale['shipping_service']);
 		
