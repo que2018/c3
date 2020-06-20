@@ -68,8 +68,7 @@
 					      <?php echo $shipper['state']?>&nbsp;
 					      <?php echo $shipper['country']?>&nbsp;
 					      <?php echo $shipper['zipcode']?>&nbsp;
-						  						  <?php echo $shipper['company']?>&nbsp;
-
+						  <?php echo $shipper['phone']?>&nbsp;
 					    </option>
 					    <?php } ?>
 					  <?php } ?>
