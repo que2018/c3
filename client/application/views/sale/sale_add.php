@@ -61,12 +61,15 @@
 					    <?php foreach($shippers as $shipper) { ?>
 					    <option value="<?php echo $shipper['client_address_id']; ?>">
 					      <?php echo $shipper['name']?>&nbsp;
+						  <?php echo $shipper['company']?>&nbsp;
 					      <?php echo $shipper['street']?>&nbsp;
 					      <?php if($shipper['street2']){ echo $shipper['street2'].'&nbsp;';} ?>
 					      <?php echo $shipper['city']?>&nbsp;
 					      <?php echo $shipper['state']?>&nbsp;
 					      <?php echo $shipper['country']?>&nbsp;
 					      <?php echo $shipper['zipcode']?>&nbsp;
+						  						  <?php echo $shipper['company']?>&nbsp;
+
 					    </option>
 					    <?php } ?>
 					  <?php } ?>
@@ -420,12 +423,14 @@ function shipper_change(handle) {
 			success: function(json) {					
 				if(json.success) {
 					$('input[name=\'shipper_name\']').val(json.name);
+					$('input[name=\'shipper_company\']').val(json.company);
 					$('input[name=\'shipper_street\']').val(json.street);
 					$('input[name=\'shipper_street2\']').val(json.street2);
 					$('input[name=\'shipper_city\']').val(json.city);
 					$('input[name=\'shipper_state\']').val(json.state);
 					$('input[name=\'shipper_country\']').val(json.country);
 					$('input[name=\'shipper_zipcode\']').val(json.zipcode);
+					$('input[name=\'shipper_phone\']').val(json.phone);
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -434,12 +439,14 @@ function shipper_change(handle) {
 		});
 	} else {
 		$('input[name=\'shipper_name\']').val('');
+		$('input[name=\'shipper_company\']').val('');
 		$('input[name=\'shipper_street\']').val('');
 		$('input[name=\'shipper_street2\']').val('');
 		$('input[name=\'shipper_city\']').val('');
 		$('input[name=\'shipper_state\']').val('');
 		$('input[name=\'shipper_country\']').val('');
 		$('input[name=\'shipper_zipcode\']').val('');
+		$('input[name=\'shipper_phone\']').val('');
 	}
 }
 </script>

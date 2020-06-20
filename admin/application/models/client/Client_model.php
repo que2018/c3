@@ -53,12 +53,14 @@ class Client_model extends CI_Model
 				$location_address_data = array(	
 					'client_id'  => $client_id,
 					'name'  	 => $address['name'],
+					'company'  	 => $address['company'],
 					'street'  	 => $address['street'],
 					'street2'    => $address['street2'],
 					'city'       => $address['street2'],
 					'state'      => $address['state'],
 					'country'    => $address['country'],
-					'zipcode'    => $address['zipcode']
+					'zipcode'    => $address['zipcode'],
+					'phone'      => $address['phone']
 				);
 				
 				$this->db->insert('client_address', $location_address_data);
@@ -156,12 +158,14 @@ class Client_model extends CI_Model
 				$location_address_data = array(	
 					'client_id'  => $client_id,
 					'name'  	 => $address['name'],
+					'company'  	 => $address['company'],
 					'street'  	 => $address['street'],
 					'street2'    => $address['street2'],
 					'city'       => $address['city'],
 					'state'      => $address['state'],
 					'country'    => $address['country'],
-					'zipcode'    => $address['zipcode']
+					'zipcode'    => $address['zipcode'],
+					'phone'      => $address['phone']
 				);
 				
 				$this->db->insert('client_address', $location_address_data);

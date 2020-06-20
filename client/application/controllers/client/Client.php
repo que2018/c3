@@ -17,12 +17,14 @@ class Client extends MX_Controller
 				$outdata = array(
 					'success'  => true,
 					'name'     => $client_address['name'],
+					'company'  => $client_address['company'],
 					'street'   => $client_address['street'],
 					'street2'  => $client_address['street2'],
 					'city'     => $client_address['city'],
 					'state'    => $client_address['state'],
 					'country'  => $client_address['country'],
-					'zipcode'  => $client_address['zipcode']
+					'zipcode'  => $client_address['zipcode'],
+					'phone'    => $client_address['phone']
 				);
 			}
 			else 

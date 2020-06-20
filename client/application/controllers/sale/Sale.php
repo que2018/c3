@@ -419,20 +419,19 @@ class Sale extends MX_Controller
 		{
 			$address = $this->auth->addresses[0];
 
-			
 			$data = array(
 				'tracking'    		=> '',
 				'note'     		    => '',
 				'shipper_name'      => $address['name'],
-				'shipper_company'   => $this->auth->company,
+				'shipper_company'   => $address['company'],
 				'shipper_street'    => $address['street'],
-				'shipper_street2'   => '',
+				'shipper_street2'   => $address['street2'],
 				'shipper_city'      => $address['city'],
 				'shipper_state'     => $address['state'],
 				'shipper_country'   => $address['country'],
 				'shipper_zipcode'   => $address['zipcode'],
 				'shipper_email'     => $this->auth->email,
-				'shipper_phone'     => $this->auth->phone,
+				'shipper_phone'     => $address['phone'],
 				'name'       		=> '',
 				'street'      		=> '',
 				'street2'      		=> '',

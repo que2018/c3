@@ -488,12 +488,14 @@ function shipper_change(handle) {
 			success: function(json) {					
 				if(json.success) {
 					$('input[name=\'shipper_name\']').val(json.name);
+					$('input[name=\'shipper_company\']').val(json.company);
 					$('input[name=\'shipper_street\']').val(json.street);
 					$('input[name=\'shipper_street2\']').val(json.street2);
 					$('input[name=\'shipper_city\']').val(json.city);
 					$('input[name=\'shipper_state\']').val(json.state);
 					$('input[name=\'shipper_country\']').val(json.country);
 					$('input[name=\'shipper_zipcode\']').val(json.zipcode);
+					$('input[name=\'shipper_phone\']').val(json.phone);
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -502,12 +504,14 @@ function shipper_change(handle) {
 		});
 	} else {
 		$('input[name=\'shipper_name\']').val('');
+		$('input[name=\'shipper_company\']').val('');
 		$('input[name=\'shipper_street\']').val('');
 		$('input[name=\'shipper_street2\']').val('');
 		$('input[name=\'shipper_city\']').val('');
 		$('input[name=\'shipper_state\']').val('');
 		$('input[name=\'shipper_country\']').val('');
 		$('input[name=\'shipper_zipcode\']').val('');
+		$('input[name=\'shipper_phone\']').val('');
 	}
 }
 </script>
@@ -527,25 +531,29 @@ function store_change(handle) {
 						$.each(json.shippers, function(index, shipper) {							
 							shipper_html += '<option value=' + shipper.client_address_id + '>';
 							shipper_html += shipper.name + " "; 
+							shipper_html += shipper.company + " "; 
 							shipper_html += shipper.street + " "; 
 							shipper_html += shipper.street2 + " "; 
 							shipper_html += shipper.city + " "; 
 							shipper_html += shipper.state + " "; 
 							shipper_html += shipper.country + " "; 
 							shipper_html += shipper.zipcode + " "; 
+							shipper_html += shipper.phone + " "; 
 							shipper_html += '</option>';
 						});
 				
 						$('select[name=\'shipper\']').html(shipper_html);
 						
 						$('input[name=\'shipper_name\']').val(json.shippers[0].name);
+						$('input[name=\'shipper_company\']').val(json.shippers[0].company);
 						$('input[name=\'shipper_street\']').val(json.shippers[0].street);
 						$('input[name=\'shipper_street2\']').val(json.shippers[0].street2);
 						$('input[name=\'shipper_city\']').val(json.shippers[0].city);
 						$('input[name=\'shipper_state\']').val(json.shippers[0].state);
 						$('input[name=\'shipper_country\']').val(json.shippers[0].country);
 						$('input[name=\'shipper_zipcode\']').val(json.shippers[0].zipcode);
-						
+						$('input[name=\'shipper_phone\']').val(json.shippers[0].phone);
+
 						$('select[name=\'shipper\']').prop('selectedIndex', 1);
 					}
 				}
@@ -567,12 +575,14 @@ function shipping_provider_change(handle) {
 			dataType: 'json',
 			success: function(json) {					
 				$('input[name=\'shipper_name\']').val(json.name);
+				$('input[name=\'shipper_company\']').val(json.company);
 				$('input[name=\'shipper_street\']').val(json.street);
 				$('input[name=\'shipper_street2\']').val(json.street2);
 				$('input[name=\'shipper_city\']').val(json.city);
 				$('input[name=\'shipper_state\']').val(json.state);
 				$('input[name=\'shipper_country\']').val(json.country);
 				$('input[name=\'shipper_zipcode\']').val(json.zipcode);
+				$('input[name=\'shipper_phone\']').val(json.phone);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

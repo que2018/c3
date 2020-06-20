@@ -535,12 +535,14 @@ class Client extends MX_Controller
 				{
 					$addresses[] = array(
 						'name'    => $address_data['name'],
+						'company' => $address_data['company'],
 						'street'  => $address_data['street'],
 						'street2' => $address_data['street2'],
 						'city'    => $address_data['city'],
 						'state'   => $address_data['state'],
 						'country' => $address_data['country'],
-						'zipcode' => $address_data['zipcode']
+						'zipcode' => $address_data['zipcode'],
+						'phone'   => $address_data['phone']
 					);
 				}
 			}
@@ -792,12 +794,15 @@ class Client extends MX_Controller
 						$shippers[] = array(
 							'client_address_id' => $client_address['client_address_id'],
 							'name'     			=> $client_address['name'],
+							'company'     	    => $client_address['company'],
 							'street'            => $client_address['street'],
 							'street2'           => $client_address['street2'],
 							'city'              => $client_address['city'],
 							'state'             => $client_address['state'],
 							'country'           => $client_address['country'],
-							'zipcode'           => $client_address['zipcode']
+							'zipcode'           => $client_address['zipcode'],
+							'phone'             => $client_address['phone']
+
 						);
 					}
 				}
@@ -834,12 +839,14 @@ class Client extends MX_Controller
 				$outdata = array(
 					'success'  => true,
 					'name'     => $client_address['name'],
+					'company'  => $client_address['company'],
 					'street'   => $client_address['street'],
 					'street2'  => $client_address['street2'],
 					'city'     => $client_address['city'],
 					'state'    => $client_address['state'],
 					'country'  => $client_address['country'],
-					'zipcode'  => $client_address['zipcode']
+					'zipcode'  => $client_address['zipcode'],
+					'phone'    => $client_address['phone']
 				);
 			}
 			else 
