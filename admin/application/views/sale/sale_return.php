@@ -27,6 +27,7 @@
 	  <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#shipper"><?php echo $this->lang->line('tab_shipper'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#customer"><?php echo $this->lang->line('tab_customer'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#product"><?php echo $this->lang->line('tab_product'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#volume-weight"><?php echo $this->lang->line('tab_volume_weight'); ?></a></li>
@@ -52,6 +53,59 @@
               </div>
 			  <div class="hr-line-dashed"></div>			  
 			</div>
+		  </div>
+		  <div id="shipper" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_name'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_name" value="<?php echo $shipper_name; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_company'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_company" value="<?php echo $shipper_company; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_street" value="<?php echo $shipper_street; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street2'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_street2" value="<?php echo $shipper_street2; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_city'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_city" value="<?php echo $shipper_city; ?>" class="form-control"></div>
+			  </div> 
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_state'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_state" value="<?php echo $shipper_state; ?>" class="form-control"></div>
+			  </div> 
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_country'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_country" value="<?php echo $shipper_country; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_zipcode'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_zipcode" value="<?php echo $shipper_zipcode; ?>" class="form-control"></div>
+			  </div> 
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_email'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_email" value="<?php echo $shipper_email; ?>" class="form-control"></div>
+			  </div>
+			  <div class="hr-line-dashed"></div>
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_phone'); ?></label>
+			    <div class="col-sm-10"><input type="text" name="shipper_phone" value="<?php echo $shipper_phone; ?>" class="form-control"></div>
+			  </div> 
+		    </div> 
 		  </div>
 		  <div id="customer" class="tab-pane">
 			<div class="panel-body">
@@ -247,73 +301,6 @@
 				  </select>
 				</div>
               </div>
-			  <div class="hr-line-dashed"></div>  	
-			  <div class="form-group">
-		        <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_alter_shipper'); ?></label>
-                <div class="col-sm-10">
-				  <select name="alter_shipper" class="form-control">
-				    <?php if($alter_shipper) { ?>
-					<option value="1" selected><?php echo $this->lang->line('text_yes'); ?></option>
-					<option value="0"><?php echo $this->lang->line('text_no'); ?></option>
-					<?php } else { ?>
-					<option value="1"><?php echo $this->lang->line('text_yes'); ?></option>
-					<option value="0" selected><?php echo $this->lang->line('text_no'); ?></option>
-					<?php } ?>
-				  </select>
-				</div>
-              </div>
-			  <div class="hr-line-dashed"></div>
-			  <div id="alter-shipper" style="display:<?php echo ($alter_shipper)?'block':'none'; ?>">
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_name'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_name" value="<?php echo $shipper_name; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-				<div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_company'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_company" value="<?php echo $shipper_company; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_street" value="<?php echo $shipper_street; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_street2'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_street2" value="<?php echo $shipper_street2; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_city'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_city" value="<?php echo $shipper_city; ?>" class="form-control"></div>
-                </div> 
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_state'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_state" value="<?php echo $shipper_state; ?>" class="form-control"></div>
-                </div> 
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_country'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_country" value="<?php echo $shipper_country; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_zipcode'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_zipcode" value="<?php echo $shipper_zipcode; ?>" class="form-control"></div>
-                </div> 
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_email'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_email" value="<?php echo $shipper_email; ?>" class="form-control"></div>
-                </div>
-			    <div class="hr-line-dashed"></div>
-			    <div class="form-group">
-		          <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_shipper_phone'); ?></label>
-                  <div class="col-sm-10"><input type="text" name="shipper_phone" value="<?php echo $shipper_phone; ?>" class="form-control"></div>
-                </div> 
-			  </div>
 			</div>
 		  </div>
 		  <div id="store" class="tab-pane">

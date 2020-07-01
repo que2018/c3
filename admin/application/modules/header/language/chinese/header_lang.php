@@ -13,6 +13,7 @@ $lang['menu_checkin_add']	         = '增加入库';
 $lang['menu_checkin_scan']	         = '扫描入库';
 $lang['menu_checkin_rapid']	         = '快速入库';
 $lang['menu_checkout_list']	         = '出库列表';
+$lang['menu_checkout_group']	     = '出库组';
 $lang['menu_checkout_add']	         = '增加出库';
 $lang['menu_checkout_scan']	     	 = '扫描出库';
 $lang['menu_checkout_order']	     = '订单出库';

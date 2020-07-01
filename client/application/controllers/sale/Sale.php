@@ -1138,16 +1138,15 @@ class Sale extends MX_Controller
 						
 			$data['tracking']   		= '';
 			$data['note']    		    = $sale['note'];
-			$data['name']       		= $this->auth->firstname.' '.$this->auth->lastname;
-			$data['street']     		= $this->auth->street;
-			$data['street2']     		= '';
-			$data['city']       		= $this->auth->city;
-			$data['state']      		= $this->auth->state;
-			$data['country']    		= $this->auth->country;
-			$data['zipcode']            = $this->auth->zipcode;
-			$data['email']              = $this->auth->email;
-			$data['phone']              = $this->auth->phone;
-			$data['alter_shipper']      = 1;
+			$data['name']       		= $sale['shipper_name'];
+			$data['street']     		= $sale['shipper_street'];
+			$data['street2']     		= $sale['shipper_street2'];
+			$data['city']       		= $sale['shipper_city'];
+			$data['state']      		= $sale['shipper_state'];
+			$data['country']    		= $sale['shipper_country'];
+			$data['zipcode']            = $sale['shipper_zipcode'];
+			$data['email']              = $sale['shipper_email'];
+			$data['phone']              = $sale['shipper_phone'];
 			$data['shipper_name']       = $sale['name'];
 			$data['shipper_company']    = '';
 			$data['shipper_street']     = $sale['street'];
