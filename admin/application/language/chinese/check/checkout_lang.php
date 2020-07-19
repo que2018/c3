@@ -80,6 +80,7 @@ $lang['text_confirm_delete']             	  						= '您确定要删除这记录
 
 // Tab
 $lang['tab_general'] 	        	    	  						= '通用';
+$lang['tab_order'] 	        	              					    = '订单';
 $lang['tab_shipping'] 	        	              					= '配送';
 $lang['tab_label'] 	        	              					    = '标签';
 $lang['tab_fee'] 	        	              						= '费用';

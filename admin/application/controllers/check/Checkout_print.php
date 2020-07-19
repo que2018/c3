@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require('fpdf_merge.php');
+//require('fpdf_merge.php');
 
 class Checkout_print extends CI_Controller 
 {
@@ -59,7 +59,8 @@ class Checkout_print extends CI_Controller
 	{
 		$this->load->library('barcoder');
 		$this->load->library('printnode');
-		
+		$this->load->library('pdf_merage');
+
 		$this->lang->load('check/checkout');
 		
 		$this->load->model('check/checkout_model');

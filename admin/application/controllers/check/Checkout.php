@@ -55,15 +55,6 @@ class Checkout extends MX_Controller
 			$filter_id = '';
 		}
 		
-		if($this->input->get('filter_sale_id'))
-		{
-			$filter_sale_id = $this->input->get('filter_sale_id');
-		} 
-		else 
-		{
-			$filter_sale_id = '';
-		}
-		
 		if($this->input->get('filter_tracking'))
 		{
 			$filter_tracking = $this->input->get('filter_tracking');
@@ -129,7 +120,6 @@ class Checkout extends MX_Controller
 		
 		$filter_data = array(
 			'filter_id'          => $filter_id,
-			'filter_sale_id'     => $filter_sale_id,
 			'filter_tracking'    => $filter_tracking,
 			'filter_status'      => $filter_status,
 			'filter_date_added'  => $filter_date_added,
@@ -164,7 +154,6 @@ class Checkout extends MX_Controller
 			 
 				$data['checkouts'][] = array(
 					'checkout_id'        => $checkout['id'],
-					'sale_id'       	 => $checkout['sale_id'],
 					'tracking'       	 => $checkout['tracking'],
 					'status'         	 => $checkout['status'],
 					'shipping_provider'  => $checkout['shipping_provider'],
@@ -179,11 +168,6 @@ class Checkout extends MX_Controller
 		if($this->input->get('filter_id')) 
 		{
 			$url .= '&filter_id=' . $this->input->get('filter_id');
-		}
-		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
 		}
 		
 		if($this->input->get('filter_tracking')) 
@@ -230,11 +214,6 @@ class Checkout extends MX_Controller
 			$url .= '&filter_id=' . $this->input->get('filter_id');
 		}
 		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
@@ -261,7 +240,6 @@ class Checkout extends MX_Controller
 		}
 		
 		$data['sort_id']         = base_url() . 'check/checkout?sort=id' . $url;
-		$data['sort_sale_id']    = base_url() . 'check/checkout?sort=sale_to_checkout.sale_id' . $url;
 		$data['sort_tracking']   = base_url() . 'check/checkout?sort=tracking' . $url;
 		$data['sort_status']     = base_url() . 'check/checkout?sort=status' . $url;
 		$data['sort_date_added'] = base_url() . 'check/checkout?sort=date_added' . $url;
@@ -310,11 +288,6 @@ class Checkout extends MX_Controller
 			$url .= '&filter_id=' . $this->input->get('filter_id');
 		}
 		
-		if($this->input->get('filter_sale_id')) 
-		{
-			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
-		}
-		
 		if($this->input->get('filter_tracking')) 
 		{
 			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
@@ -337,7 +310,6 @@ class Checkout extends MX_Controller
 		$data['limit']  = $limit;
 		
 		$data['filter_id']          = $filter_id;
-		$data['filter_sale_id']     = $filter_sale_id;
 		$data['filter_tracking']    = $filter_tracking;
 		$data['filter_status']      = $filter_status;
 		$data['filter_date_added']  = $filter_date_added;
@@ -390,7 +362,7 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
-		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
+		//$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
 
 		if($this->input->server('REQUEST_METHOD') == 'POST')
 		{
@@ -406,6 +378,7 @@ class Checkout extends MX_Controller
 				'weight_class_id'   => $this->input->post('weight_class_id'),
 				'shipping_provider' => $this->input->post('shipping_provider'),
 				'shipping_service'  => $this->input->post('shipping_service'),
+				'checkout_sale_ids' => $this->input->post('checkout_sale_id'),
 				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fee_code' => $this->input->post('checkout_fee_code'),
 				'note'           	=> $this->input->post('note')
@@ -463,21 +436,21 @@ class Checkout extends MX_Controller
 		else
 		{
 			$data = array(
-				'sale_id'        	=> $this->input->post('sale_id'),
-				'tracking'       	=> $this->input->post('tracking'),
-				'status'         	=> $this->input->post('status'),
-				'length'            => $this->input->post('length'),
-				'width'             => $this->input->post('width'),
-				'height'            => $this->input->post('height'),
-				'weight'            => $this->input->post('weight'),
-				'length_class_id'   => $this->input->post('length_class_id'),
-				'weight_class_id'   => $this->input->post('weight_class_id'),
+				'tracking'       	=> '',
+				'status'         	=> '',
+				'length'            => '',
+				'width'             => '',
+				'height'            => '',
+				'weight'            => '',
+				'length_class_id'   => '',
+				'weight_class_id'   => '',
 				'shipping_provider' => $this->config->item('config_default_order_shipping_provider'),
 				'shipping_service'  => $this->config->item('config_default_order_shipping_service'),
-				'checkout_files'  	=> $this->input->post('checkout_file'),
 				'checkout_fee_code' => $this->config->item('config_default_checkout_fee'),
-				'note'           	=> $this->input->post('note'),
-				'checkout_products' => array()
+				'note'           	=> '',
+				'checkout_sale_ids' => null,
+				'checkout_files'  	=> null,
+				'checkout_products' => null
 			);
 		}
 		
@@ -627,12 +600,11 @@ class Checkout extends MX_Controller
 		$this->form_validation->set_rules('length_class_id', $this->lang->line('text_length_class'), 'required');
 		$this->form_validation->set_rules('weight_class_id', $this->lang->line('text_weight_class'), 'required');
 		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_product');
-		$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
+		//$this->form_validation->set_rules('checkout_product', $this->lang->line('text_checkout_product'), 'callback_validate_checkout_client');
 
 		if($this->form_validation->run() == true)
 		{
 			$data = array(
-				'sale_id'            => $this->input->post('sale_id'),
 				'status'             => $this->input->post('status'),
 				'tracking'           => $this->input->post('tracking'),
 				'length'             => $this->input->post('length'),
@@ -645,6 +617,7 @@ class Checkout extends MX_Controller
 				'shipping_service'   => $this->input->post('shipping_service'),
 				'checkout_fee_code'  => $this->input->post('checkout_fee_code'),
 				'note'               => $this->input->post('note'),
+				'checkout_sale_ids'  => $this->input->post('checkout_sale_id'),
 				'checkout_products'  => $this->input->post('checkout_product'),
 				'checkout_labels'    => $this->input->post('checkout_label'),
 				'checkout_files'     => $this->input->post('checkout_file')
@@ -660,7 +633,6 @@ class Checkout extends MX_Controller
 		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{			
 			$data['checkout_id']     	= $this->input->get('checkout_id');
-			$data['sale_id']         	= $this->input->post('sale_id');
 			$data['tracking']        	= $this->input->post('tracking');
 			$data['status']          	= $this->input->post('status');
 			$data['length']          	= $this->input->post('length');
@@ -671,8 +643,9 @@ class Checkout extends MX_Controller
 			$data['weight_class_id']    = $this->input->post('weight_class_id');
 			$data['shipping_provider']  = $this->input->post('shipping_provider');
 			$data['shipping_service']   = $this->input->post('shipping_service');
-			$data['checkout_fee_code']   = $this->input->post('checkout_fee_code');
+			$data['checkout_fee_code']  = $this->input->post('checkout_fee_code');
 			$data['note']            	= $this->input->post('note');
+			$data['checkout_sale_ids']  = $this->input->post('checkout_sale_id');
 			$data['checkout_labels']    = $this->input->post('checkout_label');
 			$data['checkout_files']     = $this->input->post('checkout_file');
 			
@@ -727,7 +700,6 @@ class Checkout extends MX_Controller
 		{
 			$checkout = $this->checkout_model->get_checkout($checkout_id);	
 		
-			$data['sale_id']  	  		= $checkout['sale_id'];
 			$data['location_id']  		= $checkout['location_id'];
 			$data['tracking']     		= $checkout['tracking'];
 			$data['status']       		= $checkout['status'];
@@ -741,6 +713,19 @@ class Checkout extends MX_Controller
 			$data['shipping_service']   = $checkout['shipping_service'];
 			$data['checkout_fee_code']  = $checkout['checkout_fee_code'];
 			$data['note']         		= $checkout['note'];
+
+			//checkout sales
+			$checkout_sales = $this->checkout_model->get_checkout_sales($checkout_id);	
+			
+			if($checkout_sales)
+			{
+				$data['checkout_sale_ids'] = array();
+				
+				foreach($checkout_sales as $checkout_sale)
+				{
+					$data['checkout_sale_ids'][] = $checkout_sale['sale_id'];
+				}
+			}
 			
 			//checkout products
 			$data['checkout_products'] = array();

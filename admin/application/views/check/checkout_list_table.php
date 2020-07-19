@@ -8,12 +8,6 @@
     </div>
     <div class="col-md-2">
 	  <div class="form-group">
-	    <label class="col-sm-6 control-label"><?php echo $this->lang->line('text_sale_id'); ?></label>
-	    <div class="col-sm-6"><input name="sale_id" class="form-control" value="<?php echo $filter_sale_id; ?>"></div>
-	  </div>
-    </div>
-    <div class="col-md-2">
-	  <div class="form-group">
 	    <label class="col-sm-5 control-label"><?php echo $this->lang->line('text_Status'); ?></label>
 	    <div class="col-sm-7">
 		  <select name="status" class="form-control">
@@ -49,21 +43,12 @@
 	  <tr>
 	    <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
 	    <?php if($sort == 'id') { ?>
-	    <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
+	    <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkout_id'); ?></a>
 	    </th>
 	    <?php } else { ?>
-	    <th style="width: 15%;" class="sorting">
+	    <th style="width: 20%;" class="sorting">
 		  <a href="<?php echo $sort_id; ?>"><?php echo $this->lang->line('column_checkout_id'); ?></a>
-	    </th>
-	    <?php } ?>
-	    <?php if($sort == 'sale_id') { ?>
-	    <th style="width: 15%;" class="sorting_<?php echo strtolower($order); ?>">
-		  <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_sale_id'); ?></a>
-	    </th>
-	    <?php } else { ?>
-	    <th style="width: 15%;" class="sorting">
-		  <a href="<?php echo $sort_sale_id; ?>"><?php echo $this->lang->line('column_sale_id'); ?></a>
 	    </th>
 	    <?php } ?>
 	    <?php if($sort == 'tracking') { ?>
@@ -76,11 +61,11 @@
 	    </th>
 	    <?php } ?>
 	    <?php if($sort == 'status') { ?>
-	    <th style="width: 12%;" class="sorting_<?php echo strtolower($order); ?>">
+	    <th style="width: 20%;" class="sorting_<?php echo strtolower($order); ?>">
 		  <a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
 	    </th>
 	    <?php } else { ?>
-	    <th style="width: 12%;" class="sorting">
+	    <th style="width: 20%;" class="sorting">
 		  <a href="<?php echo $sort_status; ?>"><?php echo $this->lang->line('column_status'); ?></a>
 	    </th>
 	    <?php } ?>
@@ -132,11 +117,6 @@
 			    </table>
 			  </div>
 		    </td>
-		    <td>
-			  <?php if($checkout['sale_id']) { ?>
-			  <a href="<?php echo base_url()?>/sale/sale/edit?sale_id=<?php echo $checkout['sale_id']; ?>">#<?php echo $checkout['sale_id']; ?></a>
-			   <?php } ?>
-		    </td>	  
 		    <td>
 			  <?php if($checkout['tracking']) { ?>
 			    <span class="tracking"><?php echo $checkout['tracking']; ?></span>

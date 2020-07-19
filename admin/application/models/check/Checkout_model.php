@@ -36,15 +36,20 @@ class Checkout_model extends CI_Model
 		$this->db->where('id', $checkout_id);
 		$this->db->update('checkout', array('code' => $code)); 
 		
-		//sale checkout
-		if($data['sale_id'])
+		//checkout sale
+		if(isset($data['checkout_sale_ids']))
 		{
-			$sale_checkout_data = array(
-				'sale_id' 		=> $data['sale_id'],
-				'checkout_id'   => $checkout_id	
-			);
-
-			$this->db->insert('sale_to_checkout', $sale_checkout_data);
+			$checkout_sale_ids = array();
+					
+			foreach($data['checkout_sale_ids'] as $checkout_sale_id)
+			{					
+				$checkout_to_sales[] = array(
+					'checkout_id' => $checkout_id,
+					'sale_id'     => $checkout_sale_id
+				);
+			}
+		
+			$this->db->insert_batch('sale_to_checkout', $checkout_to_sales);
 		}
 		
 		//checkout product
@@ -286,14 +291,19 @@ class Checkout_model extends CI_Model
 		//checkout sale	
 		$this->db->delete('sale_to_checkout', array('checkout_id' => $checkout_id));		
 				
-		if($data['sale_id'])
+		if(isset($data['checkout_sale_ids']))
 		{
-			$sale_checkout_data = array(
-				'sale_id' 		=> $data['sale_id'],
-				'checkout_id'   => $checkout_id	
-			);
-
-			$this->db->insert('sale_to_checkout', $sale_checkout_data);
+			$checkout_sale_ids = array();
+					
+			foreach($data['checkout_sale_ids'] as $checkout_sale_id)
+			{					
+				$checkout_to_sales[] = array(
+					'checkout_id' => $checkout_id,
+					'sale_id'     => $checkout_sale_id
+				);
+			}
+		
+			$this->db->insert_batch('sale_to_checkout', $checkout_to_sales);
 		}
 			
 		//checkout product
@@ -540,6 +550,22 @@ class Checkout_model extends CI_Model
 		return false;
 	}
 	
+	public function get_checkout_sales($checkout_id) 
+	{	
+		$this->db->select('*', false);
+		$this->db->from('sale_to_checkout');
+		$this->db->where('sale_to_checkout.checkout_id', $checkout_id);
+
+		$q = $this->db->get();
+		
+		if($q->num_rows() > 0)
+		{
+			return $q->result_array();
+		} 
+		
+		return false;
+	}
+	
 	public function get_checkout_products($checkout_id) 
 	{	
 		$this->db->select('checkout_product.inventory_id, checkout_product.quantity, product.*, product.id AS product_id, product.name AS product_name, location.name AS location_name, inventory.batch', false);
@@ -693,31 +719,25 @@ class Checkout_model extends CI_Model
 		return false;
 	}
 	
-	public function get_checkouts($data) 
+	public function get_checkouts($data = array()) 
 	{	
-		$this->db->select('checkout.*, sale_to_checkout.sale_id', false);
+		$this->db->select('*', false);
 		$this->db->from('checkout');
-		$this->db->join('sale_to_checkout', 'sale_to_checkout.checkout_id = checkout.id', 'left');
 		
 		if(!empty($data['filter_id'])) 
 		{			
-			$this->db->where('checkout.id', $data['filter_id']);
+			$this->db->where('id', $data['filter_id']);
 		}
-		
-		if(!empty($data['filter_sale_id'])) 
-		{			
-			$this->db->where('sale_to_checkout.sale_id', $data['filter_sale_id']);
-		}
-		
+			
 		if(!empty($data['filter_status'])) 
 		{			
-			$this->db->where('checkout.status', $data['filter_status']);
+			$this->db->where('status', $data['filter_status']);
 		}
 		
 		if(!empty($data['filter_date_added'])) 
 		{
-			$this->db->where('checkout.date_added >=', $data['filter_date_added'] . " 00:00:00");
-			$this->db->where('checkout.date_added <=', $data['filter_date_added'] . " 23:59:59");
+			$this->db->where('date_added >=', $data['filter_date_added'] . " 00:00:00");
+			$this->db->where('date_added <=', $data['filter_date_added'] . " 23:59:59");
 		}
 		
 		$sort_data = array(
@@ -764,29 +784,23 @@ class Checkout_model extends CI_Model
 
 	public function get_checkout_total($data)
 	{		
-		$this->db->select('COUNT(checkout.id) AS total', false);
+		$this->db->select('COUNT(id) AS total', false);
 		$this->db->from('checkout');
-		$this->db->join('sale_to_checkout', 'sale_to_checkout.checkout_id = checkout.id', 'left');
 		
 		if(!empty($data['filter_id'])) 
 		{			
-			$this->db->where('checkout.id', $data['filter_id']);
-		}
-		
-		if(!empty($data['filter_sale_id'])) 
-		{			
-			$this->db->where('sale_to_checkout.sale_id', $data['filter_sale_id']);
+			$this->db->where('id', $data['filter_id']);
 		}
 		
 		if(!empty($data['filter_status'])) 
 		{			
-			$this->db->where('checkout.status', $data['filter_status']);
+			$this->db->where('status', $data['filter_status']);
 		}
 		
 		if(!empty($data['filter_date_added'])) 
 		{
-			$this->db->where('checkout.date_added >=', $data['filter_date_added'] . " 00:00:00");
-			$this->db->where('checkout.date_added <=', $data['filter_date_added'] . " 23:59:59");
+			$this->db->where('date_added >=', $data['filter_date_added'] . " 00:00:00");
+			$this->db->where('date_added <=', $data['filter_date_added'] . " 23:59:59");
 		}
 		
 		$q = $this->db->get();

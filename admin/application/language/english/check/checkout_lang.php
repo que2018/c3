@@ -80,6 +80,7 @@ $lang['text_confirm_delete']             	  						= 'Are you sure to delete this
 
 // Tab
 $lang['tab_general'] 	        	    	  						= 'General';
+$lang['tab_order'] 	        	              					    = 'Order';
 $lang['tab_shipping'] 	        	              					= 'Shipping';
 $lang['tab_label'] 	        	              					    = 'Label';
 $lang['tab_fee'] 	        	              						= 'Fee';

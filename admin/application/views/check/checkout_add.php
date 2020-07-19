@@ -28,6 +28,7 @@
       <div class="tabs-container">
 	    <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#general"><?php echo $this->lang->line('tab_general'); ?></a></li>
+		  <li class=""><a data-toggle="tab" href="#sale"><?php echo $this->lang->line('tab_order'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#shipping"><?php echo $this->lang->line('tab_shipping'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#file"><?php echo $this->lang->line('tab_file'); ?></a></li>
 		  <li class=""><a data-toggle="tab" href="#fee"><?php echo $this->lang->line('tab_fee'); ?></a></li>
@@ -39,16 +40,6 @@
 			  <div class="container-fluid">
 			    <div class="row">
 				  <div class="col-lg-7">
-				    <div class="form-group">
-					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_sale_id'); ?></label>
-					  <div class="col-sm-10">
-					    <div class="input-group">
-					      <span class="input-group-addon">#</span>
-						  <input type="text" name="sale_id" value="<?php echo $sale_id; ?>" class="form-control">
-					    </div>
-					  </div>
-				    </div>
-				    <div class="hr-line-dashed"></div>
 				    <div class="form-group">
 					  <label class="col-sm-2 control-label"><?php echo $this->lang->line('entry_tracking'); ?></label>
 					  <div class="col-sm-10"><input name="tracking" value="<?php echo $tracking; ?>" class="form-control" ></div>
@@ -112,6 +103,37 @@
 		        </div> 
               </div>
             </div>	
+          </div>
+		  <div id="sale" class="tab-pane">
+		    <div class="panel-body">
+			  <div class="table-responsive">
+                <table id="checkout-sale" class="table table-striped table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="text-left" style="width: 60%;"><?php echo $this->lang->line('column_sale_id') ?></th>
+					  <th class="text-left" style="width: 40%;"><?php echo $this->lang->line('column_action') ?></th>							
+					</tr>
+				  </thead>
+				  <tbody>
+					<?php $checkout_sale_row = 0; ?>
+					<?php if($checkout_sale_ids) { ?>
+					  <?php foreach ($checkout_sale_ids as $checkout_sale_id) { ?>
+					  <tr id="checkout-sale-row<?php echo $checkout_sale_row; ?>">
+					    <td class="text-left">
+						  #<?php echo $checkout_sale_id; ?>
+						  <input type="hidden" name="checkout_sale_id[<?php echo $checkout_sale_row; ?>]" value="<?php echo $checkout_sale_id; ?>" />
+						</td>
+					    <td class="text-center">
+						  <button type="button" onclick="$('#checkout-sale-row<?php echo $checkout_sale_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+						</td>
+					  </tr>
+					  <?php $checkout_sale_row++; ?>
+					  <?php } ?>
+					<?php } ?>
+				  </tbody>
+                </table>
+              </div> 
+			</div>
           </div>
 		  <div id="shipping" class="tab-pane">
 		    <div class="panel-body">
@@ -433,8 +455,9 @@ function add_checkout_file() {
 </script>
 <script>
 $(document).ready(function() {
+	checkout_sale_row = <?php echo $checkout_sale_row; ?>;
 	checkout_product_row = <?php echo $checkout_product_row; ?>;
-	
+
 	$('input[name=\'code\']').autocomplete({  
 		'source': function(request, response) {
 			code = $('input[name=\'code\']').val();
@@ -453,17 +476,60 @@ $(document).ready(function() {
 				success: function(json) {
 					if(json.success)
 					{
-						response($.map(json.products, function(item) {					
-							return {
-								label:       item['label'],
-								product_id:  item['product_id'],
-								upc:         item['upc'],
-								sku:         item['sku'],
-								name:        item['name'],
-								fees:        item['fees'],
-								inventories: item['inventories']
-							}
-						}));
+						if(json.key == 'sale') 
+						{
+							//checkout product
+							$(json.products).each(function(index, product) {
+								new_tr = $('<tr id="row_' + checkout_product_row + '"></tr>');
+			
+								html  = '<td><input name="checkout_product[' + checkout_product_row + '][product_id]" type="hidden" value="' + product.product_id + '" class="product_id"><div class="text-left">' + product.name + '</div></td>';
+								html += '<td class="text-left">' + product.upc + '</div></td>';
+								html += '<td class="text-left">' + product.sku + '</div></td>';
+								html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+								html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
+								html += '</select></td>';
+								html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+								
+								new_tr.html(html);
+								
+								$("#checkout-product").append(new_tr);
+								
+								set_checkout_locations(checkout_product_row, product.product_id, false);
+							
+								checkout_product_row ++;
+							});
+							
+							$(this).val(''); 
+			
+							refresh_volume();
+							refresh_weight();
+							
+							//checkout sale
+							new_tr = $('<tr id="checkout-sale-row' + checkout_sale_row + '"></tr>');
+			
+							html  = '<td>#' + code + '<input name="checkout_sale_id[' + checkout_sale_row + ']" type="hidden" value="' + code + '"></td>';
+							html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-sale-row' + checkout_sale_row  + '\').remove();" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+								
+							new_tr.html(html);
+								
+							$("#checkout-sale").append(new_tr);
+						}
+						else
+						{
+							response($.map(json.products, function(item) {					
+								return {
+									label:       item['label'],
+									product_id:  item['product_id'],
+									upc:         item['upc'],
+									sku:         item['sku'],
+									name:        item['name'],
+									fees:        item['fees'],
+									inventories: item['inventories']
+								}
+							}));
+						}
+						
+						
 					}
 				}
 			});

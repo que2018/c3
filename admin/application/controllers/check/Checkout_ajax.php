@@ -6,6 +6,7 @@ class Checkout_ajax extends CI_Controller
 	{
 		$this->lang->load('check/checkout');
 		
+		$this->load->model('sale/sale_model');
 		$this->load->model('check/checkout_model');
 		$this->load->model('catalog/product_model');
 		$this->load->model('warehouse/location_model');
@@ -40,6 +41,13 @@ class Checkout_ajax extends CI_Controller
 			
 			$key = 'name';
 		}
+		
+		if(!$results)
+		{
+			$results = $this->sale_model->get_sale_products($code);	
+			
+			$key = 'sale';
+		}
 			
 		if(!$results)
 		{
@@ -58,10 +66,12 @@ class Checkout_ajax extends CI_Controller
 		
 		foreach($results as $result)
 		{
-			$product = $this->product_model->get_product($result['id']);
+			$product_id = ($key == 'sale')?$result['product_id']:$result['id'];
+			
+			$product = $this->product_model->get_product($product_id);
 			
 			//fee
-			$product_fees = $this->product_model->get_product_fees($result['id']);
+			$product_fees = $this->product_model->get_product_fees($product_id);
 			
 			$fees = array();
 			
@@ -103,8 +113,8 @@ class Checkout_ajax extends CI_Controller
 					);
 				}
 				
-				$products[] = array(
-					'label'       => $product[$key],
+				$products[] = array(    
+					'label'       => ($key == 'sale')?null:$product[$key],
 					'product_id'  => $product['id'],
 					'upc'         => $product['upc'],
 					'sku'         => $product['sku'],
@@ -118,6 +128,7 @@ class Checkout_ajax extends CI_Controller
 	
 		$outdata = array(
 			'success'   => true,
+			'key'       => $key,
 			'products'  => $products
 		);
 			
