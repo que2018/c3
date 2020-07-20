@@ -18,7 +18,7 @@
   </div>
   <div class="button-group tooltip-demo">
     <button data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_save'); ?>" class="btn btn-primary btn-submit" onclick="$('form').submit()"><i class="fa fa-save"></i></button>
-    <a href="<?php echo base_url(); ?>sale/sale/return?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_return_order'); ?>" class="btn btn-success btn-gen"><strong>R</strong></a>
+    <a href="<?php echo base_url(); ?>sale/sale/r?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_return_order'); ?>" class="btn btn-success btn-gen"><strong>R</strong></a>
 	<a href="<?php echo base_url(); ?>check/checkout_sale?sale_id=<?php echo $sale_id; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_generate_packing_list'); ?>" class="btn btn-info btn-gen"><i class="fa fa-refresh"></i></a>
     <a href="<?php echo $cancel; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $this->lang->line('text_cancel'); ?>" class="btn btn-default btn-return"><i class="fa fa-reply"></i></a>
   </div>	

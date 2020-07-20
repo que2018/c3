@@ -928,7 +928,7 @@ class Sale extends MX_Controller
 		$this->load->view('sale/sale_edit', $data);
 	}
 	
-	public function return() 
+	public function r() 
 	{
 		$this->load->module('header');
 		$this->load->module('footer');
