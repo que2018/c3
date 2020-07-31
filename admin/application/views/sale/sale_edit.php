@@ -358,6 +358,7 @@
 					    <td class="text-center">
 						  <button type="button" onclick="$('#sale-label-row<?php echo $sale_label_row; ?>').remove();" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
 						  <a class="btn btn-info btn-download" href="<?php echo $sale_label['link']; ?>" download><i class="fa fa-download"></i></a>
+						  <button type="button" onclick="void_label(this, <?php echo $sale_label['tracking']; ?>);" class="btn btn-success btn-void"><i class="fa fa-reply"></i></button>
 						</td>
 					  </tr>
 					  <?php $sale_label_row++; ?>
@@ -571,6 +572,20 @@ function shipping_provider_change(handle) {
 			}
 		});
 	}
+}
+</script>
+<script>
+function void_label(handle, tracking) {
+	$.ajax({
+		url: '<?php echo base_url(); ?>sale/sale_ajax/void_sale?tracking=' + tracking,
+		dataType: 'json',
+		beforeSend: function() {			
+			$(handle).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		success: function(json) {
+			
+		}
+	});
 }
 </script>
 <script>

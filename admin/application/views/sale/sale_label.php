@@ -22,7 +22,7 @@ $(document).ready(function() {
 	data.append('sale_id', '<?php echo $sale_id; ?>');
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>sale/label/check',
+		url: '<?php echo base_url(); ?>sale/label_ajax/check',
 		type: 'post',
 		data: data,
 		dataType: 'json',
@@ -40,7 +40,7 @@ $(document).ready(function() {
 				data.append('sale_id', '<?php echo $sale_id; ?>');
 							
 				$.ajax({
-					url: '<?php echo base_url(); ?>sale/label/execute',
+					url: '<?php echo base_url(); ?>sale/label_ajax/execute',
 					type: 'post',
 					data: data,
 					dataType: 'html',

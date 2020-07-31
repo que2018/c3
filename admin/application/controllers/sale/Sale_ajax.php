@@ -810,6 +810,39 @@ class Sale_ajax extends CI_Controller
 		}
 	}
 	
+	public function void_label($tracking) 
+	{
+		$this->load->model('sale/sale_model');
+		
+		if($this->input->get('tracking'))
+		{
+			$tracking = $this->input->get('tracking');
+			
+			$sale_label = $this->sale_model->get_sale_label($tracking);
+			
+			$code = $sale_label['shipping_provider'];
+			
+			$result = $this->{$code . '_model'}->void_label($tracking);
+
+			if($result['success'])
+			{
+				$outdata = array(
+					'success'   => true
+				);
+			}
+			else
+			{
+				$outdata = array(
+					'success'   => false,
+					'message'   => $result['message']
+				);
+			}
+			
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode($outdata));
+		}
+	}
+	
 	private function validate_sale_checkout($sale_id)
 	{
 		$this->lang->load('sale/sale');

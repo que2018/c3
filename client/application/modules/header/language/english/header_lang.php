@@ -43,6 +43,7 @@ $lang['menu_all_orders']	         = 'All Orders';
 $lang['menu_unsolved_order']	     = 'Unsolved Order';
 $lang['menu_order_add']	             = 'Add Order';
 $lang['menu_order_import']	         = 'Import Order';
+$lang['menu_label']	         		 = 'Label';
 $lang['menu_extension']	             = 'Extension';
 $lang['menu_fee']	             	 = 'Fee';
 $lang['menu_platform']	             = 'Platform';

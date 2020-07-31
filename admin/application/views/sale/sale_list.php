@@ -381,7 +381,7 @@ function print_label_c(handle, sale_id)
 	data.append('sale_id', sale_id);
 				
 	$.ajax({
-		url: '<?php echo base_url(); ?>sale/label/execute_c',
+		url: '<?php echo base_url(); ?>sale/label_ajax/execute_c',
 		type: 'post',
 		data: data,
 		dataType: 'json',
@@ -418,7 +418,7 @@ function print_label_d(handle, sale_id)
 	data.append('sale_id', sale_id);
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>sale/label/check',
+		url: '<?php echo base_url(); ?>sale/label_ajax/check',
 		type: 'post',
 		data: data,
 		dataType: 'json',
@@ -443,7 +443,7 @@ function print_label_d(handle, sale_id)
 				data.append('sale_id', sale_id);
 							
 				$.ajax({
-					url: '<?php echo base_url(); ?>sale/label/execute_d',
+					url: '<?php echo base_url(); ?>sale/label_ajax/execute_d',
 					type: 'post',
 					data: data,
 					dataType: 'json',

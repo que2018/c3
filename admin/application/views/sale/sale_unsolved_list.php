@@ -228,25 +228,13 @@ function delete_sale(handle, sale_id) {
 }
 </script>
 <script>
-function print_label(handle) 
-{
-	h = $(handle);
-	
-	sale_id = h.closest('tr').find("input[name='sale_id']").val();
-	
-	url = '<?php echo base_url();?>sale/label?sale_id=' + sale_id;
-			
-	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
-}
-</script>
-<script>
 function print_label_d(handle, sale_id) 
 {	
 	data = new FormData();
 	data.append('sale_id', sale_id);
 	
 	$.ajax({
-		url: '<?php echo base_url(); ?>sale/label/check',
+		url: '<?php echo base_url(); ?>sale/label_ajax/check',
 		type: 'post',
 		data: data,
 		dataType: 'json',
@@ -263,7 +251,7 @@ function print_label_d(handle, sale_id)
 				data.append('sale_id', sale_id);
 							
 				$.ajax({
-					url: '<?php echo base_url(); ?>sale/label/execute_d',
+					url: '<?php echo base_url(); ?>sale/label_ajax/execute_d',
 					type: 'post',
 					data: data,
 					dataType: 'json',

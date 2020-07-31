@@ -149,6 +149,47 @@ class Postpony_model extends CI_Model
 		
 	}
 	
+	public function void_label($tracking)
+	{
+		$q = $this->db->get_where('postpony_label', array('tracking' => $tracking), 1); 
+		
+		if($q->num_rows() > 0)
+		{
+			$row = $q->row_array();
+			
+			$label_id = $row['label_id'];
+			
+			$xml  = '<?xml version="1.0" encoding="utf-8" ?>';
+			$xml .= '<CancelShipRequst xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
+			$xml .= 'xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
+			$xml .= '<UserCredential>';
+			$xml .= '<Key>YourKey</Key>';
+			$xml .= '<Pwd>YourPwd</Pwd>';
+			$xml .= '</UserCredential>';
+			$xml .= '<LabelId>'.$label_id.'</LabelId>';
+			$xml .= '</CancelShipRequst>';
+			
+			$headers = array(
+				'Content-type: text/xml',
+				'Content-length: ' . strlen($xml),
+				'Connection: close'
+			);
+		
+			$ch = curl_init(); 
+			
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+			$response = curl_exec($ch); 
+									
+			$result = simplexml_load_string($response);
+		} 
+	}
+	
 	public function rating($sale) 
 	{		
 		if($this->config->item('postpony_debug_mode'))

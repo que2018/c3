@@ -1,440 +1,455 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Label extends CI_Controller 
+class Label extends MX_Controller
 {
 	public function index()
-	{
-		$this->lang->load('sale/sale');
-		
-		$this->load->model('sale/sale_model');
-		
-		$data['sale_id'] = $this->input->get('sale_id');
-		
-		$this->load->view('sale/sale_label', $data);
+	{	
+		$this->load->module('header');
+		$this->load->module('footer');
+	
+		$this->lang->load('sale/label');
+	
+		$this->header->add_style(base_url(). 'assets/css/app/sale/label_list.css');
+	
+		$this->header->set_title($this->lang->line('text_label_list'));
+
+		$data = $this->get_list();
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');	
+			
+		$this->load->view('sale/label_list', $data);
 	}
 	
-	public function check()
+	public function reload()
 	{
-		$this->lang->load('sale/sale');
+		$data = $this->get_list();
+			
+		$this->load->view('sale/label_list_table', $data);
+	}
+	
+	public function filter()
+	{
+		$data = $this->get_list();
+			
+		$this->load->view('sale/label_list_filter', $data);
+	}
+	
+	protected function get_list()
+	{	
+		$this->lang->load('sale/label');
+
+		$this->load->model('sale/label_model');
 		
-		$this->load->model('sale/sale_model');
-		$this->load->model('inventory/inventory_model');
-		
-		$sale_id = $this->input->post('sale_id');
-		
-		$sale = $this->sale_model->get_sale($sale_id);
-		
-		if(empty($sale['shipping_provider']))
+		if($this->input->get('filter_sale_id'))
 		{
-			$outdata = array(
-				'success'  => false,
-				'message'  => $this->lang->line('error_shipping_provider_not_set')
-			);
-		}
-		else if(empty($sale['shipping_service']))
-		{
-			$outdata = array(
-				'success'  => false,
-				'message'  => $this->lang->line('error_shipping_method_not_set')
-			);
-		}
+			$filter_sale_id = $this->input->get('filter_sale_id');
+		} 
 		else 
-	    {
-			$outdata = array(
-				'success'    => true,
-				'tracking'   => empty($sale['tracking'])?false:true
-			);
+		{
+			$filter_sale_id = '';
 		}
 		
-		$this->output->set_content_type('application/json');
-		$this->output->set_output(json_encode($outdata));		
+		if($this->input->get('filter_tracking'))
+		{
+			$filter_tracking = $this->input->get('filter_tracking');
+		} 
+		else 
+		{
+			$filter_tracking = '';
+		}
+		
+		if($this->input->get('filter_status'))
+		{
+			$filter_status = $this->input->get('filter_status');
+		} 
+		else 
+		{
+			$filter_status = '';
+		}
+		
+		if($this->input->get('sort'))
+		{
+			$sort = $this->input->get('sort');
+		} 
+		else 
+		{
+			$sort = 'sale_id';
+		}
+		
+		if($this->input->get('order'))
+		{
+			$order = $this->input->get('order');
+		} 
+		else 
+		{
+			$order = 'DESC';
+		}
+		
+		if($this->input->get('limit'))
+		{
+			$limit = $this->input->get('limit');
+		} 
+		else 
+		{
+			$limit = $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page'))
+		{
+			$page = $this->input->get('page');
+		} 
+		else 
+		{
+			$page = 1;
+		}
+		
+		$url = '';
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if ($this->input->get('limit')) 
+		{
+			$url .= '&limit=' . $this->input->get('limit');
+		}
+		
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+		
+		$filter_data = array(
+			'filter_sale_id'   => $filter_sale_id,
+			'filter_tracking'  => $filter_tracking,
+			'filter_status'    => $filter_status,
+			'sort'             => $sort,
+			'order'            => $order,
+			'start'            => ($page - 1) * $limit,
+			'limit'            => $limit
+		);
+		
+		$sale_labels = $this->label_model->get_sale_labels($filter_data);
+		$sale_label_total = $this->label_model->get_sale_label_total($filter_data);
+		
+		$data['sale_labels'] = array();
+		
+		if($sale_labels)
+		{			
+			foreach($sale_labels as $sale_label)
+			{
+				$data['sale_labels'][] = array(
+					'sale_label_id' => $sale_label['id'],
+					'sale_id'       => $sale_label['sale_id'],
+					'tracking'      => $sale_label['tracking'],
+					'status_id'     => $sale_label['status_id']
+				);	
+			}
+		}
+		
+		$url = '';
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+	
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+	
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if ($this->input->get('limit')) 
+		{
+			$url .= '&limit=' . $this->input->get('limit');
+		}
+		
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+	
+		$this->pagination->total  = $sale_label_total;
+		$this->pagination->page   = $page;
+		$this->pagination->limit  = $limit;
+		$this->pagination->url    = base_url().'sale/label?page={page}' . $url;
+		$data['pagination']       = $this->pagination->render();
+		$data['results']          = sprintf($this->lang->line('text_pagination'), ($sale_label_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($sale_label_total - $limit)) ? $sale_label_total : ((($page - 1) * $limit) + $limit), $sale_label_total, ceil($sale_label_total / $limit));
+		
+		$url = '';
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
+		if ($this->input->get('limit')) 
+		{
+			$url .= '&limit=' . $this->input->get('limit');
+		}
+		
+		if ($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if ($order == 'ASC') 
+		{
+			$url .= '&order=DESC';
+		} 
+		else 
+		{
+			$url .= '&order=ASC';
+		}
+		
+		$data['sort_sale_id']  = base_url().'sale/label?sort=sale_id' . $url;
+		$data['sort_tracking'] = base_url().'sale/label?sort=tracking' . $url;
+		$data['sort_status']   = base_url().'sale/label?sort=status_id' . $url;
+
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		$data['filter_url'] = base_url() . 'sale/label/filter' . $url;
+				
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+	
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_status')) 
+		{
+			$url .= '&filter_status=' . $this->input->get('filter_status');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+				
+		$data['reload_url'] = base_url() . 'sale/label/reload' . $url;
+		
+		$data['sort']  = $sort;
+		$data['order'] = $order;
+		$data['page']  = $page;
+		$data['limit'] = $limit;
+		
+		$data['filter_sale_id']   = $filter_sale_id;
+		$data['filter_tracking']  = $filter_tracking;
+		$data['filter_status']    = $filter_status;
+
+		return $data;
 	}
 	
-	public function execute()
+	public function edit() 
 	{
-		$this->lang->load('sale/sale');
+		$this->load->module('header');
+		$this->load->module('footer');
 		
-		$this->load->model('sale/sale_model');
-		$this->load->model('store/store_model');
-		$this->load->model('finance/transaction_model');
-		
-		if($this->input->post('sale_id'))
-		{
-			$sale_id = $this->input->post('sale_id');
-			
-			$sale = $this->sale_model->get_sale($sale_id);
-			
-			$code = $sale['shipping_provider'];
-			
-			$this->load->model('shipping/'. $code .'_model');
+		$this->lang->load('sale/label');
 
-			$result = $this->{$code . '_model'}->generate_sale_label($sale_id);
-			
-			if(!isset($result['error']))
-			{	
-				if(!$this->config->item($code . '_debug_mode'))
-				{
-					//update sale
-					$label_data = array(
-						'tracking'  => $result['tracking'],
-						'path'      => $result['label_img']
-					);
-					
-					$this->sale_model->add_label($sale_id, $label_data);
+		$this->load->model('sale/label_model');
 				
-					$this->sale_model->update_tracking($sale_id, $result['tracking']);
-					
-					//fee
-					$store = $this->store_model->get_store($sale['store_id']);	
-					
-					if($store)
-					{
-						$client_id = $store['client_id'];
+		$this->header->add_style(base_url(). 'assets/css/app/sale/label_edit.css');
+
+		$this->header->set_title($this->lang->line('text_label_edit'));
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+	
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
 						
-						if($this->config->item($code . '_fee_type') == 0)
-						{
-							$cost = $result['amount'];
-							
-							$markup = $this->get_client_fee_value($client_id, $code);
-							
-							$amount = $cost + $markup;
-						}
-						else if($this->config->item($code . '_fee_type') == 1)
-						{
-							$cost = $result['amount'];
-							
-							$ratio = $this->get_client_fee_value($client_id, $code);
-							
-							$markup = $cost * $ratio;
-							
-							$amount = $cost + $markup;
-						}	
-						else
-						{
-							$cost = 0;
-							
-							$markup = $result['amount'];
-							
-							$amount = $result['amount'];
-						}
-							
-						if($sale['store_sale_id']) 
-						{
-							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
-						}
-						else
-						{
-							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);
-						}
-							
-						$transaction_data = array(					
-							'client_id'		  => $client_id,
-							'type'		      => 'sale',
-							'type_id'         => $sale_id,
-							'cost'            => $cost,
-							'markup'          => $markup,
-							'amount'   		  => $amount,
-							'comment'         => $comment
-						);
-											
-						$this->transaction_model->add_transaction($transaction_data);	
-
-						//additional charge
-						if(isset($result['amount_addi']))
-						{
-							$transaction_data = array(					
-								'client_id'		=> $client_id,
-								'type'		    => 'sale',
-								'type_id'       => $sale_id,
-								'cost'          => $result['amount_addi'],
-								'markup'        => 0,
-								'amount'   		=> $result['amount_addi'],
-								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
-							);
-											
-							$this->transaction_model->add_transaction($transaction_data);
-						}						
-					}
-				}
-				
-				//display info
-				$data['label_img']   = $this->config->item('media_url') . '/label/' . $result['label_img'];
-				$data['width']       = $this->config->item('config_label_width');
-				$data['width_type']  = $this->config->item('config_label_width_type');
-				$data['margin_top']  = $this->config->item('config_label_posy');
-				
-				$this->load->view('sale/label_success', $data);
-			}
-			else 
-			{
-				$data['message'] = $result['error'];
-				
-				$this->load->view('sale/label_error', $data);
-			}
-		}
-	}
+		$sale_label_id = $this->input->get('sale_label_id');
 	
-	public function execute_c()
-	{
-		$this->load->library('pdf');
-		$this->load->library('file');
-		$this->load->library('printnode');
-		
-		$this->lang->load('sale/sale');
-		
-		$this->load->model('sale/sale_model');
-		
-		if($this->input->post('sale_id'))
+		if($this->input->server('REQUEST_METHOD') == 'POST') 
 		{
-			$sale_id = $this->input->post('sale_id');
-			
-			$sale = $this->sale_model->get_sale($sale_id);
-			
-			$result = $this->sale_model->get_label_by_tracking($sale['tracking']);
-			
-			$image_path = LABELPATH . $result['path'];
-			
-			if(is_file($image_path))
-			{
-				//submit print job				
-				$filename = $this->file->get_filename($image_path);
+			$data = array(
+				'status_id'  => $this->input->post('status_id')
+			);
+						
+			$this->label_model->edit_sale_label($sale_label_id, $data);
 				
-				$dest_path = FILEPATH . $filename . '.pdf';
-				
-				$attrs = array(
-					'position_x'   => $this->config->item('config_printnode_position_x'),
-					'position_y'   => $this->config->item('config_printnode_position_y'),
-					'width'        => $this->config->item('config_printnode_width')
-				);
-												
-				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
-				{
-					//$this->printnode->submit_print_job($dest_path);
-					
-					$outdata = array(
-						'success'   => true
-					);
-				}
-				else
-				{
-					$outdata = array(
-						'success'   => false,
-						'message'   => $this->lang->line('error_not_able_convert_image_to_pdf')
-					);
-				}
-			}
-			else
-			{
-				$outdata = array(
-					'success'   => false,
-					'message'   => $this->lang->line('error_label_not_exist')
-				);
-			}
-
-			$this->output->set_content_type('application/json');
-			$this->output->set_output(json_encode($outdata));
+			$this->session->set_flashdata('success', $this->lang->line('text_label_edit_success'));
+			
+			redirect(base_url() . 'sale/label' . $url, 'refresh');
 		}
-	}
-	
-	public function execute_d()
-	{
-		$this->load->library('pdf');
-		$this->load->library('file');
-		$this->load->library('printnode');
-		
-		$this->lang->load('sale/sale');
-		
-		$this->load->model('sale/sale_model');
-		$this->load->model('store/store_model');
-		$this->load->model('finance/transaction_model');
-		
-		if($this->input->post('sale_id'))
+		else
 		{
-			$sale_id = $this->input->post('sale_id');
+			$label = $this->label_model->get_sale_label($sale_label_id);
 			
-			$sale = $this->sale_model->get_sale($sale_id);
-			
-			$code = $sale['shipping_provider'];
-			
-			$this->load->model('shipping/'. $code .'_model');
-
-			$result = $this->{$code . '_model'}->generate_sale_label($sale_id);
-			
-			if(!$result['success'])
-			{
-				$outdata = array(
-					'success'   => false,
-					'message'   => $result['message']
-				);
-			}
-			else if($result['success'] && (isset($result['pending'])))
-			{
-				$outdata = array(
-					'success'   => true,
-					'pending'   => true,
-					'message'   => $result['message']
-				);
-			}
-			else 
-			{	
-				if(!$this->config->item($code . '_debug_mode'))
-				{
-					//update sale
-					$label_data = array(
-						'tracking'  => $result['tracking'],
-						'path'      => $result['label_img']
-					);
-					
-					$this->sale_model->add_label($sale_id, $label_data);
-					
-					$this->sale_model->update_tracking($sale_id, $result['tracking']);
-					
-					//fee
-					$store = $this->store_model->get_store($sale['store_id']);	
-					
-					if($store)
-					{	
-						$client_id = $store['client_id'];
-				
-						if($this->config->item($code . '_fee_type') == 0)
-						{
-							$cost = $result['amount'];
-							
-							$markup = $this->get_client_fee_value($client_id, $code);
-							
-							$amount = $cost + $markup;
-						}
-						else if($this->config->item($code . '_fee_type') == 1)
-						{
-							$cost = $result['amount'];
-							
-							$ratio = $this->get_client_fee_value($client_id, $code);
-							
-							$markup = $cost * $ratio;
-							
-							$amount = $cost + $markup;
-						}	
-						else
-						{
-							$cost = 0;
-							
-							$markup = $result['amount'];
-							
-							$amount = $result['amount'];
-						}	
-
-						if($sale['store_sale_id']) 
-						{
-							$comment = sprintf($this->lang->line('text_label_fee_note1'), $sale_id, $sale['store_sale_id']);
-						}
-						else
-						{
-							$comment = sprintf($this->lang->line('text_label_fee_note2'), $sale_id);	
-						}							
-										
-						$transaction_data = array(					
-							'client_id'	 	=> $client_id,
-							'type'		 	=> 'sale',
-							'type_id'    	=> $sale_id,
-							'cost'          => $cost,
-							'markup'        => $markup,
-							'amount'   		=> $amount,
-							'comment'       => $comment
-						);
-											
-						$this->transaction_model->add_transaction($transaction_data);
-
-						//additional charge
-						if(isset($result['amount_addi']))
-						{
-							$transaction_data = array(					
-								'client_id'		=> $client_id,
-								'type'		    => 'sale',
-								'type_id'       => $sale_id,
-								'cost'          => $result['amount_addi'],
-								'markup'        => 0,
-								'amount'   		=> $result['amount_addi'],
-								'comment'       => sprintf($this->lang->line('text_label_fee_additional'), $sale_id)						
-							);
-											
-							$this->transaction_model->add_transaction($transaction_data);
-						}
-					}
-				}
-				
-				//submit print job
-				$image_path = LABELPATH . $result['label_img'];
-				
-				$filename = $this->file->get_filename($image_path);
-				
-				$dest_path = FILEPATH . $filename . '.pdf';
-				
-				$attrs = array(
-					'position_x'   => $this->config->item('config_printnode_position_x'),
-					'position_y'   => $this->config->item('config_printnode_position_y'),
-					'width'        => $this->config->item('config_printnode_width')
-				);
-												
-				if($this->pdf->convert_image($image_path, $dest_path, $attrs))
-				{
-					//$this->printnode->submit_print_job($dest_path);
-					
-					$outdata = array(
-						'success'   => true,
-						'pending'   => false,
-						'tracking'  => $result['tracking']
-					);
-				}
-				else
-				{
-					$outdata = array(
-						'success'   => false,
-						'message'   => $this->lang->line('error_not_able_convert_image_to_pdf')
-					);
-				}
-			}
-		
-			$this->output->set_content_type('application/json');
-			$this->output->set_output(json_encode($outdata));
-		}
-	}
-	
-	private function get_client_fee_value($client_id, $shipping_provider)
-	{
-		$client_fee_value = $this->config->item($shipping_provider . '_fee_value');
-		
-		$client_fees = $this->config->item($shipping_provider . '_client_fee');
-		
-		if($client_fees)
-		{
-			foreach($client_fees as $client_fee)
-			{
-				if($client_fee['client_id'] == $client_id)
-				{
-					$client_fee_value = $client_fee['fee'];
-					break;
-				}
-			}
+			$data['tracking']   = $label['tracking'];
+			$data['status_id']  = $label['status_id'];
 		}
 		
-		return $client_fee_value;
+		$data['sale_label_id'] = $sale_label_id;
+		
+		$url = '';
+		
+		if($this->input->get('limit')) 
+		{
+			$url .= '?limit=' . $this->input->get('limit');
+		}
+		else
+		{
+			$url .= '?limit=' . $this->config->item('config_page_limit');
+		}
+		
+		if($this->input->get('sort')) 
+		{
+			$url .= '&sort=' . $this->input->get('sort');
+		}
+		
+		if($this->input->get('page')) 
+		{
+			$url .= '&page=' . $this->input->get('page');
+		}
+		
+		if($this->input->get('order')) 
+		{
+			$url .= '&order=' . $this->input->get('order');
+		}
+		
+		if($this->input->get('filter_sale_id')) 
+		{
+			$url .= '&filter_sale_id=' . $this->input->get('filter_sale_id');
+		}
+		
+		if($this->input->get('filter_tracking')) 
+		{
+			$url .= '&filter_tracking=' . $this->input->get('filter_tracking');
+		}
+			
+		$data['statuses'][] = array(
+			'status_id' => 1,
+			'name'      => $this->lang->line('text_completed')
+		);
+		
+		$data['statuses'][] = array(
+			'status_id' => 3,
+			'name'      => $this->lang->line('text_request_void')
+		);
+		
+		$data['statuses'][] = array(
+			'status_id' => 5,
+			'name'      => $this->lang->line('text_void')
+		);
+			
+		$data['header'] = Modules::run('module/header/index');
+		$data['footer'] = Modules::run('module/footer/index');
+		
+		$this->load->view('sale/label_edit', $data);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

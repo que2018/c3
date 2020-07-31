@@ -520,41 +520,54 @@ $(document).ready(function() {
 					{
 						if(json.key == 'sale') 
 						{
-							//checkout product
-							$(json.products).each(function(index, product) {
-								new_tr = $('<tr id="row_' + checkout_product_row + '"></tr>');
-			
-								html  = '<td><input name="checkout_product[' + checkout_product_row + '][product_id]" type="hidden" value="' + product.product_id + '" class="product_id"><div class="text-left">' + product.name + '</div></td>';
-								html += '<td class="text-left">' + product.upc + '</div></td>';
-								html += '<td class="text-left">' + product.sku + '</div></td>';
-								html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
-								html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
-								html += '</select></td>';
-								html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
-								
-								new_tr.html(html);
-								
-								$("#checkout-product").append(new_tr);
-								
-								set_checkout_locations(checkout_product_row, product.product_id, false);
+							var sale_find = false;
 							
-								checkout_product_row ++;
+							$('#checkout-sale input').each(function(index){								
+								if($(this).val() == code) {
+									sale_find = true;
+
+									return false;
+								}
 							});
 							
-							$(this).val(''); 
-			
-							refresh_volume();
-							refresh_weight();
-							
-							//checkout sale
-							new_tr = $('<tr id="checkout-sale-row' + checkout_sale_row + '"></tr>');
-			
-							html  = '<td>#' + code + '<input name="checkout_sale_id[' + checkout_sale_row + ']" type="hidden" value="' + code + '"></td>';
-							html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-sale-row' + checkout_sale_row  + '\').remove();" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+							if(!sale_find)
+							{
+								//checkout product
+								$(json.products).each(function(index, product) {
+									new_tr = $('<tr id="row_' + checkout_product_row + '"></tr>');
+				
+									html  = '<td><input name="checkout_product[' + checkout_product_row + '][product_id]" type="hidden" value="' + product.product_id + '" class="product_id"><div class="text-left">' + product.name + '</div></td>';
+									html += '<td class="text-left">' + product.upc + '</div></td>';
+									html += '<td class="text-left">' + product.sku + '</div></td>';
+									html += '<td><input class="form-control text-center quantity" name="checkout_product[' + checkout_product_row + '][quantity]" type="text" value="1" onClick="this.select();"></td>';
+									html += '<td><select name="checkout_product[' + checkout_product_row + '][inventory_id]" class="form-control">';
+									html += '</select></td>';
+									html += '<td class="text-center"><button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+									
+									new_tr.html(html);
+									
+									$("#checkout-product").append(new_tr);
+									
+									set_checkout_locations(checkout_product_row, product.product_id, false);
 								
-							new_tr.html(html);
+									checkout_product_row ++;
+								});
 								
-							$("#checkout-sale").append(new_tr);
+								$(this).val(''); 
+				
+								refresh_volume();
+								refresh_weight();
+								
+								//checkout sale
+								new_tr = $('<tr id="checkout-sale-row' + checkout_sale_row + '"></tr>');
+				
+								html  = '<td>#' + code + '<input name="checkout_sale_id[' + checkout_sale_row + ']" type="hidden" value="' + code + '"></td>';
+								html += '<td class="text-center"><button type="button" onclick="$(\'#checkout-sale-row' + checkout_sale_row  + '\').remove();" class="btn btn-danger btn-delete"><i class="fa fa-minus-circle"></i></button></td>';
+									
+								new_tr.html(html);
+									
+								$("#checkout-sale").append(new_tr);
+							}
 						}
 						else
 						{

@@ -40,6 +40,7 @@ $lang['menu_transfer_list']	         = '转移入库';
 $lang['menu_transfer_add']	         = '入库转移';
 $lang['menu_damage_list']	         = '损坏入库';
 $lang['menu_order']	                 = '订单';
+$lang['menu_label']	 		 		 = '运单';
 $lang['menu_all_orders']	         = '所有订单';
 $lang['menu_unsolved_order']	     = '未处理订单';
 $lang['menu_order_add']	             = '增加订单';

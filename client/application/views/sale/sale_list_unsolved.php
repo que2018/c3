@@ -189,18 +189,5 @@ $(document).ready(function() {
 		});
 	});
 });
-</script>
-<script>
-function print_label(handle) 
-{
-	h = $(handle);
-	
-	id = h.closest('tr').find("input[name='id']").val();
-	
-	url = '<?php echo base_url();?>sale/label?unsolved=0&id=' + id;
-			
-	window.open(url, 'print_label', 'width=580, height=750, left=50, top=50');
-}
-</script>
-		
+</script>		
 		

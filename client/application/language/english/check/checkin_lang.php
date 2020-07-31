@@ -3,6 +3,7 @@
 // Text
 $lang['text_title'] 	  	        			 = 'Checkin List';
 $lang['text_checkin'] 	  	        			 = 'Checkin';
+$lang['text_import_checkin'] 	  	             = 'Checkin Import';
 $lang['text_location'] 	  	    				 = 'location';
 $lang['text_status'] 	  	    				 = 'status';
 $lang['text_tracking'] 	  	    				 = 'tracking';

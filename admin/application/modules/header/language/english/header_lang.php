@@ -40,6 +40,7 @@ $lang['menu_transfer_list']	         = 'Transfer List';
 $lang['menu_transfer_add']	         = 'Add Transfer';
 $lang['menu_damage_list']	         = 'Damage List';
 $lang['menu_order']	                 = 'Order';
+$lang['menu_label']	                 = 'Label';
 $lang['menu_all_orders']	         = 'All Orders';
 $lang['menu_unsolved_order']	     = 'Unsolved Order';
 $lang['menu_order_add']	             = 'Add Order';

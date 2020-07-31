@@ -43,6 +43,7 @@ $lang['menu_all_orders']	         = '所有订单';
 $lang['menu_unsolved_order']	     = '未处理订单';
 $lang['menu_order_add']	             = '增加订单';
 $lang['menu_order_import']	         = '库存订单';
+$lang['menu_label']	         		 = '运单';
 $lang['menu_extension']	             = '扩展';
 $lang['menu_fee']	             	 = '费用';
 $lang['menu_platform']	             = '平台';

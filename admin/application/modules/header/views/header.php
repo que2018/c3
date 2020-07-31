@@ -81,6 +81,7 @@
 			  <li><a href="<?php echo base_url(); ?>sale/sale"><?php echo $this->lang->line('menu_all_orders'); ?></a></li>			  
 			  <li><a href="<?php echo base_url(); ?>sale/import"><?php echo $this->lang->line('menu_order_import'); ?></a></li>
 			  <li><a href="<?php echo base_url(); ?>sale/customer"><?php echo $this->lang->line('menu_customer'); ?></a></li>
+			  <li><a href="<?php echo base_url(); ?>sale/label"><?php echo $this->lang->line('menu_label'); ?></a></li>
 			</ul>
 		  </li>
 		  <?php } ?>
