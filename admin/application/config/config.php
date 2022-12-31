@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost/c3/admin';
+$config['base_url'] = 'http://localhost/c3/admindfdfdfdfd';
 
 $config['client_url'] = 'http://localhost/c3/client';
 
